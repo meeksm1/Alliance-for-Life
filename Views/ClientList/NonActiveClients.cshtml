@@ -1,0 +1,28 @@
+﻿@model IEnumerable <Alliance_for_Life.Models.ClientList>
+
+@{
+    ViewBag.Title = "All Clients";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>History view of Non-Active Clients</h2>
+
+<ul class="client">
+    @foreach (var nonactiveclients in Model)
+    {
+            <li class="col-sm-3">
+                <div class="details">
+                    <div class="clientid">@nonactiveclients.Id</div>
+                    <div class="orgname">@nonactiveclients.Subcontractor</div>
+                    <div class="fname">@nonactiveclients.FirstName</div>
+                    <div class="lname">@nonactiveclients.LastName</div>
+                    <div class="dob">@nonactiveclients.DOB.ToShortDateString()</div>
+                    <div class="due">@nonactiveclients.DueDate.ToShortDateString()</div>
+                </div>
+                <div class="actions">
+                    <a href="@Url.Action("Edit", "ClientList", new { id = nonactiveclients.Id })">Edit</a>
+                </div>
+             </li>       
+    }
+</ul>
+

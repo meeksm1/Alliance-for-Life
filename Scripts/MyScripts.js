@@ -1,0 +1,49 @@
+﻿$(function () {
+
+    $("#TotA2AEnrollment,#TotA2ABedNights").keyup(function (e) {
+
+        var q = $("#TotA2ABedNights").val();
+        var p = $("#TotA2AEnrollment").val();
+        var result = "";
+
+        if (q !== "" && p !== "" && $.isNumeric(q) && $.isNumeric(p)) {
+            result = parseFloat(q) / parseFloat(p);
+        }
+        $("#ma2apercent").val(result * 100);
+    });
+});
+
+$(function () {
+    $('.numAdd').change(function () {
+
+        // Loop through all input's and re-calculate the total
+        var total = 0;
+        $('.numAdd').each(function () {
+            total += parseFloat(this.value);
+        });
+
+        // Update the total
+        $("#ATotCosts").val(total.toFixed(2));
+        $("#AdminFee").val((total * .1).toFixed(2));
+
+        var maxtot = (parseFloat($("#ATotCosts").val()) + parseFloat($("#AdminFee").val()) + parseFloat($("#BTotal").val())).toFixed(2)
+        $("#Maxtot").val(maxtot)
+    });
+});
+
+
+$(function () {
+    $('.numAdd2').change(function () {
+        // Loop through all input's and re-calculate the total
+        var total = 0;
+        $('.numAdd2').each(function () {
+            total += parseFloat(this.value);
+        });
+
+        // Update the total
+        $("#BTotal").val(total.toFixed(2));
+
+        var maxtot = (parseFloat($("#ATotCosts").val()) + parseFloat($("#AdminFee").val()) + parseFloat($("#BTotal").val())).toFixed(2)
+        $("#Maxtot").val(maxtot)
+    });
+});

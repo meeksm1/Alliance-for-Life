@@ -1,0 +1,28 @@
+﻿@model Alliance_for_Life.ViewModels.ContractorFormViewModel
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Monthly Client Forms</h2>
+
+<li><a href="@Url.Action("Create", "ClientList")">Add Clients</a></li>
+<li><a href="@Url.Action("Create", "ResidentialMIR")">Residential MIR Form</a></li>
+<li><a href="@Url.Action("Create", "NonResidentialMIR")">NonResidential MIR Form</a></li>
+<li><a href="@Url.Action("Create", "AdminCosts")">Direct Administrative Costs</a></li>
+<li><a href="@Url.Action("Create", "ParticipationServices")">Participation Services</a></li>
+<li><a href="@Url.Action("Create", "Adoption")">Adoption</a></li>
+<li><a href="@Url.Action("Create", "PostAbortion")">Post Abortion Ministry</a></li>
+<li><a href="@Url.Action("Create", "MaternityHomes")">Maternity Homes</a></li>
+<li><a href="@Url.Action("Create", "YearEndStats")">Year End Stats</a></li>
+
+
+
+
+@section scripts
+    {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/MyScripts.js"></script>
+}
+
+

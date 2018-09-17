@@ -1,0 +1,23 @@
+﻿@model IEnumerable<Alliance_for_Life.Models.SubContractor>
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<ul class="subcontractor">
+    @foreach (var subcontractor in Model)
+    {
+        <li class="col-sm-3">
+            <div class="details">
+                <div class="orgname">@subcontractor.OrgName</div>
+                <div class="address1">@subcontractor.Address1</div>
+                <div class="city">@subcontractor.City</div>
+                <div class="state">@subcontractor.State</div>
+            </div>
+            <div class="actions">
+                <a href="@Url.Action("Edit", "SubContractor", new { id = subcontractor.ID })">Edit</a>
+            </div>
+        </li>
+    }
+</ul>
+
+

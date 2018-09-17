@@ -1,0 +1,52 @@
+﻿@model Alliance_for_Life.ViewModels.ClientListFormViewModel
+
+@{
+    ViewBag.Title = Model.Heading;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Model.Heading</h2>
+@using (Html.BeginForm(Model.Action, "ClientList"))
+{
+    <p class="alert alert-info">All fields are <strong>required</strong>.</p>
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.Id)
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Subcontractor)
+        @Html.DropDownListFor(m => m.Subcontractor, new SelectList(Model.SubContractors, "Id", "OrgName"), "", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Subcontractor)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.FirstName)
+        @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.FirstName)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.LastName)
+        @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.LastName)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.DOB)
+        @Html.TextBoxFor(m => m.DOB, new { @class = "form-control", placeholder = "eg 12/18/1980" })
+        @Html.ValidationMessageFor(m => m.DOB)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.DueDate)
+        @Html.TextBoxFor(m => m.DueDate, new { @class = "form-control", placeholder = "eg 12/18/2018" })
+        @Html.ValidationMessageFor(m => m.DueDate)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Active)
+        @Html.RadioButtonFor(m => m.Active, "True", new { @class = "form-group" })Yes.
+        @Html.RadioButtonFor(m => m.Active, "False", new { @class = "form-group" })No.
+    </div>
+    <button type="submit" class="btn btn-primary">Add Client</button>
+}
+@section scripts
+    {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
+
+

@@ -1,0 +1,86 @@
+﻿@model Alliance_for_Life.ViewModels.ResidentialMIRFormViewModel
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Residential Monthly Invoice Report</h2>
+@using (Html.BeginForm("Create", "ResidentialMIR"))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Subcontractor)
+        @Html.DropDownListFor(m => m.Subcontractor, new SelectList(Model.Subcontractors, "Id", "OrgName"), "", new {@class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Subcontractor)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Month)
+        @Html.DropDownListFor(m=> m.Month, new SelectList(Model.Months, "Id", "Months"),"", new { @class = "form-control"})
+        @Html.ValidationMessageFor(m => m.Month)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.TotBedNights)
+        @Html.TextBoxFor(m => m.TotBedNights, new { @class = "form-control"})
+        @Html.ValidationMessageFor(m => m.TotBedNights)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.TotA2AEnrollment)
+        @Html.TextBoxFor(m => m.TotA2AEnrollment, new { @class = "form-control"})
+        @Html.ValidationMessageFor(m => m.TotA2AEnrollment)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.TotA2ABedNights)
+        @Html.TextBoxFor(m => m.TotA2ABedNights, new { @class = "form-control"})
+        @Html.ValidationMessageFor(m => m.TotA2ABedNights)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.MA2Apercent)
+        @Html.TextBoxFor(m => m.MA2Apercent, new { @class = "form-control"})
+        @Html.ValidationMessageFor(m => m.MA2Apercent)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.ClientsJobEduServ)
+        @Html.TextBoxFor(m => m.ClientsJobEduServ, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.ClientsJobEduServ)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.ParticipatingFathers)
+        @Html.TextBoxFor(m => m.ParticipatingFathers, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.ParticipatingFathers)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.TotEduClasses)
+        @Html.TextBoxFor(m => m.TotEduClasses, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.TotEduClasses)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.TotClientsinEduClasses)
+        @Html.TextBoxFor(m => m.TotClientsinEduClasses, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.TotClientsinEduClasses)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.TotCaseHrs)
+        @Html.TextBoxFor(m => m.TotCaseHrs, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.TotCaseHrs)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.TotClientsCaseHrs)
+        @Html.TextBoxFor(m => m.TotClientsCaseHrs, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.TotClientsCaseHrs)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.TotOtherClasses)
+        @Html.TextBoxFor(m => m.TotOtherClasses, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.TotOtherClasses)
+    </div>
+
+    <button type="submit" class="btn btn-primary">Create Invoice</button>
+}
+   
+@section scripts
+    {
+        @Scripts.Render("~/bundles/jqueryval")
+        <script src="~/Scripts/MyScripts.js"></script>
+    }
