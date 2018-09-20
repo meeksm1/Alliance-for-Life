@@ -1,0 +1,59 @@
+﻿@model IEnumerable<Alliance_for_Life.Models.Surveys>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Export</title>
+</head>
+<body>
+    <div> 
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Months.Months)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.OrgName.OrgName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Date)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SurveysCompleted)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Months.Months)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.OrgName.OrgName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Date)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SurveysCompleted)
+                    </td>
+                </tr>
+            } 
+        </table>
+
+                <br />
+                @using (Html.BeginForm("Export", "SurveyReport", FormMethod.Post))
+                {
+                    <input type="submit" value="Export to Excel" class="button" />
+                }
+    </div>
+</body>
+</html>

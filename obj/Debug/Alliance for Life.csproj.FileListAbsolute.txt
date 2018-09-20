@@ -1,113 +1,3 @@
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance for Life\obj\Debug\Alliance for Life.csprojResolveAssemblyReference.cache
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance for Life\obj\Debug\Alliance_for_Life.Migrations.CreateTables.resources
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance for Life\obj\Debug\Alliance_for_Life.Migrations.CreateContractorTables.resources
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance for Life\obj\Debug\Alliance_for_Life.Migrations.CreateRegionTable.resources
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance for Life\obj\Debug\Alliance_for_Life.Migrations.PopulateRegionTable.resources
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance for Life\obj\Debug\Alliance_for_Life.Migrations.UpdateDatabase.resources
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance for Life\obj\Debug\Alliance_for_Life.Migrations.RemoveRegion.resources
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance for Life\obj\Debug\Alliance_for_Life.Migrations.RemoveMonthCol.resources
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance for Life\obj\Debug\Alliance_for_Life.Migrations.CreateActiveUsers.resources
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance for Life\obj\Debug\Alliance_for_Life.Migrations.Addnametoapplicationuser.resources
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance for Life\obj\Debug\Alliance_for_Life.Migrations.UpdateAdd2toPoBox.resources
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance for Life\obj\Debug\Alliance_for_Life.Migrations.CreateMonthsTable.resources
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance for Life\obj\Debug\Alliance_for_Life.Migrations.PopulateMonthsTable.resources
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance for Life\obj\Debug\Alliance_for_Life.Migrations.CreateResMonInvRepTable.resources
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance for Life\obj\Debug\Alliance_for_Life.Migrations.AddMonthProptoRMI.resources
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance for Life\obj\Debug\Alliance_for_Life.Migrations.ChangemonthtoMonthId.resources
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance for Life\obj\Debug\Alliance_for_Life.Migrations.UpdatedResMIRviewModel.resources
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance for Life\obj\Debug\Alliance_for_Life.Migrations.UpdateRIMTables.resources
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance for Life\obj\Debug\Alliance_for_Life.Migrations.UpdateRMIRTables.resources
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance for Life\obj\Debug\Alliance_for_Life.Migrations.UpdateClientListTables.resources
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance for Life\obj\Debug\Alliance_for_Life.Migrations.Reboot.resources
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance for Life\obj\Debug\Alliance_for_Life.Migrations.CreateNonResMIRTable.resources
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance for Life\obj\Debug\Alliance_for_Life.Migrations.CreateExpendituresTable.resources
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance for Life\obj\Debug\Alliance_for_Life.Migrations.CreateTablesAdminandPaticipant.resources
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance for Life\obj\Debug\Alliance_for_Life.Migrations.UpdateClientListsTable.resources
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance for Life\obj\Debug\Alliance_for_Life.Migrations.AddSubcontractorstoUsersTable.resources
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance for Life\obj\Debug\Alliance_for_Life.Migrations.UpdateRegionTable.resources
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance for Life\obj\Debug\Alliance_for_Life.Migrations.CreateBudgetTable.resources
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance for Life\obj\Debug\Alliance for Life.csproj.GenerateResource.Cache
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance for Life\bin\ApplicationInsights.config
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance for Life\bin\roslyn\csc.exe
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance for Life\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance for Life\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance for Life\bin\roslyn\Microsoft.CodeAnalysis.dll
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance for Life\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance for Life\bin\roslyn\Microsoft.CSharp.Core.targets
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance for Life\bin\roslyn\Microsoft.VisualBasic.Core.targets
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance for Life\bin\roslyn\System.Collections.Immutable.dll
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance for Life\bin\roslyn\System.Reflection.Metadata.dll
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance for Life\bin\roslyn\vbc.exe
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance for Life\bin\roslyn\VBCSCompiler.exe
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance for Life\bin\roslyn\VBCSCompiler.exe.config
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance for Life\bin\Alliance for Life.dll.config
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance for Life\bin\Alliance for Life.dll
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance for Life\bin\Alliance for Life.pdb
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance for Life\bin\Antlr3.Runtime.dll
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance for Life\bin\EntityFramework.dll
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance for Life\bin\EntityFramework.SqlServer.dll
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance for Life\bin\Microsoft.AI.Agent.Intercept.dll
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance for Life\bin\Microsoft.AI.DependencyCollector.dll
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance for Life\bin\Microsoft.AI.PerfCounterCollector.dll
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance for Life\bin\Microsoft.AI.ServerTelemetryChannel.dll
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance for Life\bin\Microsoft.AI.Web.dll
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance for Life\bin\Microsoft.AI.WindowsServer.dll
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance for Life\bin\Microsoft.ApplicationInsights.dll
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance for Life\bin\Microsoft.AspNet.Identity.Core.dll
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance for Life\bin\Microsoft.AspNet.Identity.EntityFramework.dll
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance for Life\bin\Microsoft.AspNet.Identity.Owin.dll
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance for Life\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance for Life\bin\Microsoft.Owin.dll
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance for Life\bin\Microsoft.Owin.Host.SystemWeb.dll
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance for Life\bin\Microsoft.Owin.Security.Cookies.dll
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance for Life\bin\Microsoft.Owin.Security.dll
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance for Life\bin\Microsoft.Owin.Security.Facebook.dll
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance for Life\bin\Microsoft.Owin.Security.Google.dll
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance for Life\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance for Life\bin\Microsoft.Owin.Security.OAuth.dll
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance for Life\bin\Microsoft.Owin.Security.Twitter.dll
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance for Life\bin\Microsoft.Web.Infrastructure.dll
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance for Life\bin\Newtonsoft.Json.dll
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance for Life\bin\Owin.dll
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance for Life\bin\System.Web.Helpers.dll
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance for Life\bin\System.Web.Mvc.dll
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance for Life\bin\System.Web.Optimization.dll
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance for Life\bin\System.Web.Razor.dll
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance for Life\bin\System.Web.WebPages.Deployment.dll
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance for Life\bin\System.Web.WebPages.dll
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance for Life\bin\System.Web.WebPages.Razor.dll
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance for Life\bin\WebGrease.dll
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance for Life\bin\Microsoft.AI.DependencyCollector.xml
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance for Life\bin\Microsoft.AI.ServerTelemetryChannel.xml
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance for Life\bin\Microsoft.AI.Web.xml
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance for Life\bin\Microsoft.AI.WindowsServer.xml
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance for Life\bin\Microsoft.ApplicationInsights.xml
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance for Life\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance for Life\bin\System.Web.Helpers.xml
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance for Life\bin\System.Web.Mvc.xml
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance for Life\bin\System.Web.Optimization.xml
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance for Life\bin\System.Web.Razor.xml
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance for Life\bin\System.Web.WebPages.xml
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance for Life\bin\System.Web.WebPages.Deployment.xml
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance for Life\bin\System.Web.WebPages.Razor.xml
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance for Life\bin\Antlr3.Runtime.pdb
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance for Life\bin\Newtonsoft.Json.xml
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance for Life\bin\EntityFramework.xml
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance for Life\bin\EntityFramework.SqlServer.xml
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance for Life\bin\Microsoft.AspNet.Identity.Core.xml
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance for Life\bin\Microsoft.AspNet.Identity.Owin.xml
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance for Life\bin\Microsoft.AspNet.Identity.EntityFramework.xml
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance for Life\bin\Microsoft.Owin.xml
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance for Life\bin\Microsoft.Owin.Host.SystemWeb.xml
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance for Life\bin\Microsoft.Owin.Security.xml
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance for Life\bin\Microsoft.Owin.Security.Facebook.xml
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance for Life\bin\Microsoft.Owin.Security.Cookies.xml
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance for Life\bin\Microsoft.Owin.Security.OAuth.xml
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance for Life\bin\Microsoft.Owin.Security.Google.xml
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance for Life\bin\Microsoft.Owin.Security.Twitter.xml
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance for Life\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance for Life\obj\Debug\Alliance for Life.dll
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance for Life\obj\Debug\Alliance for Life.pdb
 C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\bin\ApplicationInsights.config
 C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\bin\roslyn\csc.exe
 C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
@@ -125,8 +15,12 @@ C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\bin\Alliance f
 C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\bin\Alliance for Life.dll
 C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\bin\Alliance for Life.pdb
 C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\bin\Antlr3.Runtime.dll
+C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\bin\ClosedXML.dll
+C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\bin\DocumentFormat.OpenXml.dll
 C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\bin\EntityFramework.dll
 C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\bin\EntityFramework.SqlServer.dll
+C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\bin\ExcelNumberFormat.dll
+C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\bin\FastMember.Signed.dll
 C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\bin\Microsoft.AI.Agent.Intercept.dll
 C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\bin\Microsoft.AI.DependencyCollector.dll
 C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\bin\Microsoft.AI.PerfCounterCollector.dll
@@ -150,7 +44,10 @@ C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\bin\Microsoft.
 C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\bin\Microsoft.Web.Infrastructure.dll
 C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\bin\Newtonsoft.Json.dll
 C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\bin\Owin.dll
+C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\bin\System.Net.Http.Formatting.dll
 C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\bin\System.Web.Helpers.dll
+C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\bin\System.Web.Http.dll
+C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\bin\System.Web.Http.WebHost.dll
 C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\bin\System.Web.Mvc.dll
 C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\bin\System.Web.Optimization.dll
 C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\bin\System.Web.Razor.dll
@@ -158,12 +55,18 @@ C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\bin\System.Web
 C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\bin\System.Web.WebPages.dll
 C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\bin\System.Web.WebPages.Razor.dll
 C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\bin\WebGrease.dll
+C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\bin\ClosedXML.xml
+C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\bin\DocumentFormat.OpenXml.xml
+C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\bin\ExcelNumberFormat.xml
 C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\bin\Microsoft.AI.DependencyCollector.xml
 C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\bin\Microsoft.AI.ServerTelemetryChannel.xml
 C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\bin\Microsoft.AI.Web.xml
 C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\bin\Microsoft.AI.WindowsServer.xml
 C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\bin\Microsoft.ApplicationInsights.xml
 C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\bin\System.Net.Http.Formatting.xml
+C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\bin\System.Web.Http.xml
+C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\bin\System.Web.Http.WebHost.xml
 C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\bin\System.Web.Helpers.xml
 C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\bin\System.Web.Mvc.xml
 C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\bin\System.Web.Optimization.xml
@@ -189,32 +92,6 @@ C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\bin\Microsoft.
 C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\obj\Debug\Alliance for Life.csprojResolveAssemblyReference.cache
 C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\obj\Debug\Alliance_for_Life.Migrations.CreateTables.resources
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\obj\Debug\Alliance_for_Life.Migrations.CreateContractorTables.resources
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\obj\Debug\Alliance_for_Life.Migrations.CreateRegionTable.resources
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\obj\Debug\Alliance_for_Life.Migrations.PopulateRegionTable.resources
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\obj\Debug\Alliance_for_Life.Migrations.UpdateDatabase.resources
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\obj\Debug\Alliance_for_Life.Migrations.RemoveRegion.resources
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\obj\Debug\Alliance_for_Life.Migrations.RemoveMonthCol.resources
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\obj\Debug\Alliance_for_Life.Migrations.CreateActiveUsers.resources
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\obj\Debug\Alliance_for_Life.Migrations.Addnametoapplicationuser.resources
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\obj\Debug\Alliance_for_Life.Migrations.UpdateAdd2toPoBox.resources
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\obj\Debug\Alliance_for_Life.Migrations.CreateMonthsTable.resources
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\obj\Debug\Alliance_for_Life.Migrations.PopulateMonthsTable.resources
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\obj\Debug\Alliance_for_Life.Migrations.CreateResMonInvRepTable.resources
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\obj\Debug\Alliance_for_Life.Migrations.AddMonthProptoRMI.resources
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\obj\Debug\Alliance_for_Life.Migrations.ChangemonthtoMonthId.resources
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\obj\Debug\Alliance_for_Life.Migrations.UpdatedResMIRviewModel.resources
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\obj\Debug\Alliance_for_Life.Migrations.UpdateRIMTables.resources
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\obj\Debug\Alliance_for_Life.Migrations.UpdateRMIRTables.resources
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\obj\Debug\Alliance_for_Life.Migrations.UpdateClientListTables.resources
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\obj\Debug\Alliance_for_Life.Migrations.Reboot.resources
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\obj\Debug\Alliance_for_Life.Migrations.CreateNonResMIRTable.resources
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\obj\Debug\Alliance_for_Life.Migrations.CreateExpendituresTable.resources
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\obj\Debug\Alliance_for_Life.Migrations.CreateTablesAdminandPaticipant.resources
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\obj\Debug\Alliance_for_Life.Migrations.UpdateClientListsTable.resources
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\obj\Debug\Alliance_for_Life.Migrations.AddSubcontractorstoUsersTable.resources
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\obj\Debug\Alliance_for_Life.Migrations.UpdateRegionTable.resources
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\obj\Debug\Alliance_for_Life.Migrations.CreateBudgetTable.resources
 C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\obj\Debug\Alliance for Life.csproj.GenerateResource.Cache
 C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\obj\Debug\Alliance for Life.dll
 C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\obj\Debug\Alliance for Life.pdb

@@ -8,6 +8,7 @@ namespace Alliance_for_Life.Models
 
         [Required]
         [StringLength(25)]
+        [Display(Name = "Month")]
         public string Months { get; set; }
     }
 }

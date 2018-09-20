@@ -1,0 +1,51 @@
+﻿@model Alliance_for_Life.Models.Surveys
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Surveys</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Months)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MonthId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OrgName.OrgName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SubcontractorId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SurveysCompleted)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SurveysCompleted)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.SurveyId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

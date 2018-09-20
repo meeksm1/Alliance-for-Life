@@ -4,7 +4,7 @@ namespace Alliance_for_Life.Models
 {
     public class SubContractor
     {
-        public int ID { get; set; }
+        public int SubcontractorId { get; set; }
 
         public ApplicationUser Administrator { get; set; }
 
@@ -13,6 +13,7 @@ namespace Alliance_for_Life.Models
 
         [Required]
         [StringLength(255)]
+        [Display(Name = "Organization")]
         public string OrgName { get; set; }
 
         [Required]

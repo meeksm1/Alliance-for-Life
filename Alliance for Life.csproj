@@ -46,6 +46,22 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ClosedXML, Version=0.93.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ClosedXML.0.93.1\lib\net40\ClosedXML.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DocumentFormat.OpenXml, Version=2.7.2.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
+      <HintPath>..\packages\DocumentFormat.OpenXml.2.7.2\lib\net40\DocumentFormat.OpenXml.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ExcelNumberFormat, Version=1.0.3.0, Culture=neutral, PublicKeyToken=23c6f5d73be07eca, processorArchitecture=MSIL">
+      <HintPath>..\packages\ExcelNumberFormat.1.0.3\lib\net20\ExcelNumberFormat.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FastMember.Signed, Version=1.3.0.0, Culture=neutral, PublicKeyToken=9e8f22703bef9a29, processorArchitecture=MSIL">
+      <HintPath>..\packages\FastMember.Signed.1.3.0\lib\net45\FastMember.Signed.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.AI.Agent.Intercept, Version=1.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.1.2.1\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
       <Private>True</Private>
@@ -87,12 +103,24 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -145,6 +173,7 @@
       <Private>True</Private>
       <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json">
@@ -202,6 +231,7 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminCostsController.cs" />
     <Compile Include="Controllers\AFLFormController.cs" />
@@ -215,116 +245,13 @@
     <Compile Include="Controllers\ParticipationServicesController.cs" />
     <Compile Include="Controllers\ResidentialMIRController.cs" />
     <Compile Include="Controllers\SubContractorController.cs" />
+    <Compile Include="Controllers\SurveysController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201807261331083_CreateTables.cs" />
-    <Compile Include="Migrations\201807261331083_CreateTables.Designer.cs">
-      <DependentUpon>201807261331083_CreateTables.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201807261339261_CreateContractorTables.cs" />
-    <Compile Include="Migrations\201807261339261_CreateContractorTables.Designer.cs">
-      <DependentUpon>201807261339261_CreateContractorTables.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201807261655387_CreateRegionTable.cs" />
-    <Compile Include="Migrations\201807261655387_CreateRegionTable.Designer.cs">
-      <DependentUpon>201807261655387_CreateRegionTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201807261657474_PopulateRegionTable.cs" />
-    <Compile Include="Migrations\201807261657474_PopulateRegionTable.Designer.cs">
-      <DependentUpon>201807261657474_PopulateRegionTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201807261726421_UpdateDatabase.cs" />
-    <Compile Include="Migrations\201807261726421_UpdateDatabase.Designer.cs">
-      <DependentUpon>201807261726421_UpdateDatabase.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201807261827218_RemoveRegion.cs" />
-    <Compile Include="Migrations\201807261827218_RemoveRegion.Designer.cs">
-      <DependentUpon>201807261827218_RemoveRegion.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201807262025049_RemoveMonthCol.cs" />
-    <Compile Include="Migrations\201807262025049_RemoveMonthCol.Designer.cs">
-      <DependentUpon>201807262025049_RemoveMonthCol.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201807271927451_CreateActiveUsers.cs" />
-    <Compile Include="Migrations\201807271927451_CreateActiveUsers.Designer.cs">
-      <DependentUpon>201807271927451_CreateActiveUsers.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201807272022106_Addnametoapplicationuser.cs" />
-    <Compile Include="Migrations\201807272022106_Addnametoapplicationuser.Designer.cs">
-      <DependentUpon>201807272022106_Addnametoapplicationuser.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201807272100317_UpdateAdd2toPoBox.cs" />
-    <Compile Include="Migrations\201807272100317_UpdateAdd2toPoBox.Designer.cs">
-      <DependentUpon>201807272100317_UpdateAdd2toPoBox.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201807301536219_CreateMonthsTable.cs" />
-    <Compile Include="Migrations\201807301536219_CreateMonthsTable.Designer.cs">
-      <DependentUpon>201807301536219_CreateMonthsTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201807301538138_PopulateMonthsTable.cs" />
-    <Compile Include="Migrations\201807301538138_PopulateMonthsTable.Designer.cs">
-      <DependentUpon>201807301538138_PopulateMonthsTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201807301644517_CreateResMonInvRepTable.cs" />
-    <Compile Include="Migrations\201807301644517_CreateResMonInvRepTable.Designer.cs">
-      <DependentUpon>201807301644517_CreateResMonInvRepTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201807301654076_AddMonthProptoRMI.cs" />
-    <Compile Include="Migrations\201807301654076_AddMonthProptoRMI.Designer.cs">
-      <DependentUpon>201807301654076_AddMonthProptoRMI.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201807301810304_ChangemonthtoMonthId.cs" />
-    <Compile Include="Migrations\201807301810304_ChangemonthtoMonthId.Designer.cs">
-      <DependentUpon>201807301810304_ChangemonthtoMonthId.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201807301844120_UpdatedResMIRviewModel.cs" />
-    <Compile Include="Migrations\201807301844120_UpdatedResMIRviewModel.Designer.cs">
-      <DependentUpon>201807301844120_UpdatedResMIRviewModel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201808031558474_UpdateRIMTables.cs" />
-    <Compile Include="Migrations\201808031558474_UpdateRIMTables.Designer.cs">
-      <DependentUpon>201808031558474_UpdateRIMTables.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201808031921344_UpdateRMIRTables.cs" />
-    <Compile Include="Migrations\201808031921344_UpdateRMIRTables.Designer.cs">
-      <DependentUpon>201808031921344_UpdateRMIRTables.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201808061320163_UpdateClientListTables.cs" />
-    <Compile Include="Migrations\201808061320163_UpdateClientListTables.Designer.cs">
-      <DependentUpon>201808061320163_UpdateClientListTables.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201808061745093_Reboot.cs" />
-    <Compile Include="Migrations\201808061745093_Reboot.Designer.cs">
-      <DependentUpon>201808061745093_Reboot.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201808101645331_CreateNonResMIRTable.cs" />
-    <Compile Include="Migrations\201808101645331_CreateNonResMIRTable.Designer.cs">
-      <DependentUpon>201808101645331_CreateNonResMIRTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201808101906384_CreateExpendituresTable.cs" />
-    <Compile Include="Migrations\201808101906384_CreateExpendituresTable.Designer.cs">
-      <DependentUpon>201808101906384_CreateExpendituresTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201808131814260_CreateTablesAdminandPaticipant.cs" />
-    <Compile Include="Migrations\201808131814260_CreateTablesAdminandPaticipant.Designer.cs">
-      <DependentUpon>201808131814260_CreateTablesAdminandPaticipant.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201808132128276_UpdateClientListsTable.cs" />
-    <Compile Include="Migrations\201808132128276_UpdateClientListsTable.Designer.cs">
-      <DependentUpon>201808132128276_UpdateClientListsTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201808151834007_AddSubcontractorstoUsersTable.cs" />
-    <Compile Include="Migrations\201808151834007_AddSubcontractorstoUsersTable.Designer.cs">
-      <DependentUpon>201808151834007_AddSubcontractorstoUsersTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201808221846578_UpdateRegionTable.cs" />
-    <Compile Include="Migrations\201808221846578_UpdateRegionTable.Designer.cs">
-      <DependentUpon>201808221846578_UpdateRegionTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201808222040123_CreateBudgetTable.cs" />
-    <Compile Include="Migrations\201808222040123_CreateBudgetTable.Designer.cs">
-      <DependentUpon>201808222040123_CreateBudgetTable.cs</DependentUpon>
+    <Compile Include="Migrations\201809191345122_CreateTables.cs" />
+    <Compile Include="Migrations\201809191345122_CreateTables.Designer.cs">
+      <DependentUpon>201809191345122_CreateTables.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AdminCost.cs" />
@@ -341,8 +268,10 @@
     <Compile Include="Models\Region.cs" />
     <Compile Include="Models\ResidentialMIR.cs" />
     <Compile Include="Models\SubContrator.cs" />
+    <Compile Include="Models\Surveys.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReportControllers\ClientListReportController.cs" />
+    <Compile Include="ReportControllers\SurveyReportController.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\AddPhoneNumberViewModel.cs" />
     <Compile Include="ViewModels\AdminCostsViewModel.cs" />
@@ -370,6 +299,7 @@
     <Compile Include="ViewModels\SendCodeViewModel.cs" />
     <Compile Include="ViewModels\SetPasswordViewModel.cs" />
     <Compile Include="ViewModels\SubContractorFormViewModel.cs" />
+    <Compile Include="ViewModels\SurveysViewModel.cs" />
     <Compile Include="ViewModels\VerifyCodeViewModel.cs" />
     <Compile Include="ViewModels\VerifyPhoneNumberViewModel.cs" />
   </ItemGroup>
@@ -727,6 +657,12 @@
     <Content Include="Views\BudgetCost\BudgetCostForm.cshtml" />
     <Content Include="Views\Asset\Index.cshtml" />
     <Content Include="Views\ClientListReport\Index.cshtml" />
+    <Content Include="Views\Surveys\Create.cshtml" />
+    <Content Include="Views\Surveys\Delete.cshtml" />
+    <Content Include="Views\Surveys\Details.cshtml" />
+    <Content Include="Views\Surveys\Edit.cshtml" />
+    <Content Include="Views\Surveys\Index.cshtml" />
+    <Content Include="Views\SurveyReport\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -738,89 +674,6 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201807261331083_CreateTables.resx">
-      <DependentUpon>201807261331083_CreateTables.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807261339261_CreateContractorTables.resx">
-      <DependentUpon>201807261339261_CreateContractorTables.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807261655387_CreateRegionTable.resx">
-      <DependentUpon>201807261655387_CreateRegionTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807261657474_PopulateRegionTable.resx">
-      <DependentUpon>201807261657474_PopulateRegionTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807261726421_UpdateDatabase.resx">
-      <DependentUpon>201807261726421_UpdateDatabase.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807261827218_RemoveRegion.resx">
-      <DependentUpon>201807261827218_RemoveRegion.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807262025049_RemoveMonthCol.resx">
-      <DependentUpon>201807262025049_RemoveMonthCol.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807271927451_CreateActiveUsers.resx">
-      <DependentUpon>201807271927451_CreateActiveUsers.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807272022106_Addnametoapplicationuser.resx">
-      <DependentUpon>201807272022106_Addnametoapplicationuser.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807272100317_UpdateAdd2toPoBox.resx">
-      <DependentUpon>201807272100317_UpdateAdd2toPoBox.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807301536219_CreateMonthsTable.resx">
-      <DependentUpon>201807301536219_CreateMonthsTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807301538138_PopulateMonthsTable.resx">
-      <DependentUpon>201807301538138_PopulateMonthsTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807301644517_CreateResMonInvRepTable.resx">
-      <DependentUpon>201807301644517_CreateResMonInvRepTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807301654076_AddMonthProptoRMI.resx">
-      <DependentUpon>201807301654076_AddMonthProptoRMI.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807301810304_ChangemonthtoMonthId.resx">
-      <DependentUpon>201807301810304_ChangemonthtoMonthId.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807301844120_UpdatedResMIRviewModel.resx">
-      <DependentUpon>201807301844120_UpdatedResMIRviewModel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201808031558474_UpdateRIMTables.resx">
-      <DependentUpon>201808031558474_UpdateRIMTables.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201808031921344_UpdateRMIRTables.resx">
-      <DependentUpon>201808031921344_UpdateRMIRTables.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201808061320163_UpdateClientListTables.resx">
-      <DependentUpon>201808061320163_UpdateClientListTables.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201808061745093_Reboot.resx">
-      <DependentUpon>201808061745093_Reboot.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201808101645331_CreateNonResMIRTable.resx">
-      <DependentUpon>201808101645331_CreateNonResMIRTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201808101906384_CreateExpendituresTable.resx">
-      <DependentUpon>201808101906384_CreateExpendituresTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201808131814260_CreateTablesAdminandPaticipant.resx">
-      <DependentUpon>201808131814260_CreateTablesAdminandPaticipant.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201808132128276_UpdateClientListsTable.resx">
-      <DependentUpon>201808132128276_UpdateClientListsTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201808151834007_AddSubcontractorstoUsersTable.resx">
-      <DependentUpon>201808151834007_AddSubcontractorstoUsersTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201808221846578_UpdateRegionTable.resx">
-      <DependentUpon>201808221846578_UpdateRegionTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201808222040123_CreateBudgetTable.resx">
-      <DependentUpon>201808222040123_CreateBudgetTable.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
@@ -828,6 +681,11 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\index.d.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201809191345122_CreateTables.resx">
+      <DependentUpon>201809191345122_CreateTables.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

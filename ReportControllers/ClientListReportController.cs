@@ -21,7 +21,7 @@ namespace Alliance_for_Life.ReportControllers
         public ActionResult Index()
         {
             var clientListReportViewModel = from c in client
-                                            join s in sub on c.Subcontractor equals s.ID 
+                                            join s in sub on c.Subcontractor equals s.SubcontractorId 
                                             select new ClientListReportViewModel { clientListVm = c, subcontractorVm = s };
 
             return View(clientListReportViewModel);
