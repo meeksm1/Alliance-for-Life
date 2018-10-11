@@ -16,6 +16,7 @@ namespace Alliance_for_Life.Models
         public DbSet<ParticipationService> ParticipationServices { get; set; }
         public DbSet<BudgetCosts> BudgetCosts  { get; set; }
         public DbSet<Asset> Assets { get; set; }
+        public DbSet<Surveys> Surveys { get; set; }
 
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
@@ -27,7 +28,7 @@ namespace Alliance_for_Life.Models
             return new ApplicationDbContext();
         }
 
-        public System.Data.Entity.DbSet<Alliance_for_Life.Models.Surveys> Surveys { get; set; }
+
 
         public System.Data.Entity.DbSet<Alliance_for_Life.ViewModels.SurveysViewModel> SurveysViewModels { get; set; }
 

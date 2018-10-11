@@ -13,7 +13,9 @@ namespace Alliance_for_Life.ReportControllers
         public ActionResult Index()
         {
             ApplicationDbContext db = new ApplicationDbContext();
-            return View(from surveys in db.Surveys.Take(10) select surveys);
+            return View(from surveys in db.Surveys.Take(24) join sc in db.SubContractors.Take(24)
+                        on surveys.SubcontractorId equals sc.SubcontractorId
+                        select new { surveys.Months, sc.OrgName, surveys.SurveyId, surveys.SurveysCompleted });
         }
 
         [HttpPost]
@@ -21,21 +23,23 @@ namespace Alliance_for_Life.ReportControllers
         {
            ApplicationDbContext db = new ApplicationDbContext();
            DataTable dt = new DataTable("Grid");
-            dt.Columns.AddRange(new DataColumn[4]
+            dt.Columns.AddRange(new DataColumn[5]
             {
+                new DataColumn ("Survey ID"),
                 new DataColumn ("Month"),
                 new DataColumn ("Organization"),
                 new DataColumn ("Date"),
                 new DataColumn ("Surveys Returned")
             });
 
-            var surveys = from survey in db.Surveys.Take(10) select survey;
+            var query = from s in db.Surveys.Take(24)
+                          select new { s.Months.Months, s.OrgName, s.SurveyId, s.SurveysCompleted, s.Date };           
 
-            foreach (var survey in surveys)
+            foreach (var item in query)
             {
-                dt.Rows.Add(survey.Months, survey.OrgName, survey.Date, survey.SurveysCompleted);
-            }
-
+                dt.Rows.Add(item.Date, item.Months, item.OrgName, item.SurveysCompleted, item.SurveyId);
+            }         
+            
             using (XLWorkbook wb = new XLWorkbook())
             {
                 wb.Worksheets.Add(dt);

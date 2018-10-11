@@ -55,8 +55,9 @@ namespace Alliance_for_Life.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.MonthId = new SelectList(db.Months, "Id", "Months", surveys.MonthId);
-            ViewBag.SubcontractorId = new SelectList(db.SubContractors, "SubcontractorId", "OrgName", surveys.SubcontractorId);
+            ViewBag.MonthId = new SelectList(db.Months, "Id", "Months", surveys.Months);
+            ViewBag.SubcontractorId = new SelectList(db.SubContractors, "SubcontractorId", "OrgName", surveys.OrgName);
+
             return View(surveys);
         }
 

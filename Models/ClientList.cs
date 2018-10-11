@@ -11,8 +11,8 @@ namespace Alliance_for_Life.Models
 
         public SubContractor Subcontractors { get; set; }
 
-        public SubContractor OrgName { get; set; }
-        
+        public string OrgName { get; set; }
+
         [Required]
         [StringLength(255)]
         public string FirstName { get; set; }

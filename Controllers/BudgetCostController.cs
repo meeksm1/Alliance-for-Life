@@ -1,10 +1,6 @@
 ﻿using Alliance_for_Life.Models;
-using Microsoft.Office.Interop.Word;
 using System.Linq;
 using System.Web.Mvc;
-using System.Web;
-using System.Web.Hosting;
-using System;
 using Alliance_for_Life.ViewModels;
 
 namespace Alliance_for_Life.Controllers

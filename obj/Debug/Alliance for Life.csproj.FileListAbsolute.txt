@@ -1,3 +1,5 @@
+C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\obj\Debug\Alliance_for_Life.Migrations.CreateTables.resources
+C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\obj\Debug\Alliance for Life.csproj.GenerateResource.Cache
 C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\bin\ApplicationInsights.config
 C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\bin\roslyn\csc.exe
 C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
@@ -90,8 +92,6 @@ C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\bin\Microsoft.
 C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\bin\Microsoft.Owin.Security.Google.xml
 C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\bin\Microsoft.Owin.Security.Twitter.xml
 C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\obj\Debug\Alliance for Life.csprojResolveAssemblyReference.cache
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\obj\Debug\Alliance_for_Life.Migrations.CreateTables.resources
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\obj\Debug\Alliance for Life.csproj.GenerateResource.Cache
 C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\obj\Debug\Alliance for Life.dll
 C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\obj\Debug\Alliance for Life.pdb
+C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\obj\Debug\Alliance for Life.csprojResolveAssemblyReference.cache

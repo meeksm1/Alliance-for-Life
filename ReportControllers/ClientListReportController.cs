@@ -1,9 +1,6 @@
 ﻿using Alliance_for_Life.Models;
-using System;
-using System.Collections.Generic;
-using System.Data.Entity;
+using Alliance_for_Life.ViewModels;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace Alliance_for_Life.ReportControllers
@@ -16,16 +13,34 @@ namespace Alliance_for_Life.ReportControllers
             _context = new ApplicationDbContext();
         }
 
-        List<ClientList> client = new List<ClientList>();
-        List<SubContractor> sub = new List<SubContractor>();
         public ActionResult Index()
         {
-            var clientListReportViewModel = from c in client
-                                            join s in sub on c.Subcontractor equals s.SubcontractorId 
-                                            select new ClientListReportViewModel { clientListVm = c, subcontractorVm = s };
+            var query = from c in _context.ClientLists
+                        join s in _context.SubContractors
+                        on c.Subcontractor equals s.SubcontractorId
+                        select new
+                        {
+                            FirstName = c.FirstName,
+                            LastName = c.LastName,
+                            DOB = c.DOB,
+                            DueDate = c.DueDate,
+                            OrgName = s.OrgName,
+                            isActive = c.Active
+                        };
+            foreach (var item in query)
+            {
+                var clientList = new ClientList
+                {
+                    FirstName = item.FirstName,
+                    LastName = item.LastName,
+                    DOB = item.DOB,
+                    DueDate = item.DueDate,
+                    OrgName = item.OrgName,
+                    Active = item.isActive
+                };
 
-            return View(clientListReportViewModel);
-
+            }
+            return View();
         }
 
     }

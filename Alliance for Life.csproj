@@ -279,7 +279,7 @@
     <Compile Include="ViewModels\BudgetCostViewModel.cs" />
     <Compile Include="ViewModels\ChangePasswordViewModel.cs" />
     <Compile Include="ViewModels\ClientListFormViewModel.cs" />
-    <Compile Include="Models\ClientListReportViewModel.cs" />
+    <Compile Include="ViewModels\ClientListReportViewModel.cs" />
     <Compile Include="ViewModels\ConfigureTwoFactorViewModel.cs" />
     <Compile Include="ViewModels\ContractorFormViewModel.cs" />
     <Compile Include="ViewModels\ExternalLoginConfirmationViewModel.cs" />
@@ -656,7 +656,6 @@
     <Content Include="Views\AflForm\Create.cshtml" />
     <Content Include="Views\BudgetCost\BudgetCostForm.cshtml" />
     <Content Include="Views\Asset\Index.cshtml" />
-    <Content Include="Views\ClientListReport\Index.cshtml" />
     <Content Include="Views\Surveys\Create.cshtml" />
     <Content Include="Views\Surveys\Delete.cshtml" />
     <Content Include="Views\Surveys\Details.cshtml" />

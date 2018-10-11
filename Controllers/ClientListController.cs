@@ -64,7 +64,7 @@ namespace Alliance_for_Life.Controllers
                 return View("ClientListForm", viewModel);
             }
 
-            var client = _context.ClientLists.Single(s => s.Id == viewModel.Id);
+            var client = _context.ClientLists.Single(s => s.Subcontractor == viewModel.Id);
             {
                 client.Subcontractor = viewModel.Subcontractor;
                 client.FirstName = viewModel.FirstName;

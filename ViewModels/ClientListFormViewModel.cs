@@ -20,7 +20,7 @@ namespace Alliance_for_Life.ViewModels
 
         public IEnumerable<SubContractor> SubContractors { get; set; }
 
-        public SubContractor OrgName { get; set; }
+        //public SubContractor OrgName { get; set; }
         
         [Required]
         [Display(Name = "Clients First Initial of First Name")]
