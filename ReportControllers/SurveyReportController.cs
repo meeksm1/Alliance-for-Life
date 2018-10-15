@@ -15,7 +15,7 @@ namespace Alliance_for_Life.ReportControllers
             ApplicationDbContext db = new ApplicationDbContext();
             return View(from surveys in db.Surveys.Take(24) join sc in db.SubContractors.Take(24)
                         on surveys.SubcontractorId equals sc.SubcontractorId
-                        select new { surveys.Months, sc.OrgName, surveys.SurveyId, surveys.SurveysCompleted });
+                        select new { surveys.Months, surveys.OrgName, surveys.SurveyId, surveys.SurveysCompleted });
         }
 
         [HttpPost]
