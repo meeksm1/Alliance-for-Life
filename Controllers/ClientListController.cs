@@ -1,5 +1,6 @@
 ﻿using Alliance_for_Life.Models;
 using Alliance_for_Life.ViewModels;
+using Microsoft.AspNet.Identity;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -19,7 +20,7 @@ namespace Alliance_for_Life.Controllers
         {
             var viewModel = new ClientListFormViewModel
             {
-                SubContractors = _context.SubContractors.ToList(),
+                Subcontractors = _context.SubContractors.ToList(),
                 Heading = "Add Client Information"
             };
             return View("ClientListForm", viewModel);
@@ -32,14 +33,13 @@ namespace Alliance_for_Life.Controllers
         {
             if (!ModelState.IsValid)
             {
-                viewModel.SubContractors = _context.SubContractors.ToList();
+                viewModel.Subcontractors = _context.SubContractors.ToList();
                 return View("ClientListForm", viewModel);
             }
-                
 
             var client = new ClientList
             {
-                Subcontractor = viewModel.Subcontractor,
+                SubcontractorId = viewModel.SubcontractorId,
                 FirstName = viewModel.FirstName,
                 LastName = viewModel.LastName,
                 DOB = viewModel.GetDateTimeDOB(),
@@ -60,13 +60,13 @@ namespace Alliance_for_Life.Controllers
         {
             if (!ModelState.IsValid)
             {
-                viewModel.SubContractors = _context.SubContractors.ToList();
+                viewModel.Subcontractors = _context.SubContractors.ToList();
                 return View("ClientListForm", viewModel);
             }
 
-            var client = _context.ClientLists.Single(s => s.Subcontractor == viewModel.Id);
+            var client = _context.ClientLists.Single(s => s.Id == viewModel.Id);
             {
-                client.Subcontractor = viewModel.Subcontractor;
+                client.SubcontractorId = viewModel.SubcontractorId;
                 client.FirstName = viewModel.FirstName;
                 client.LastName = viewModel.LastName;
                 client.DOB = viewModel.GetDateTimeDOB();
@@ -87,7 +87,7 @@ namespace Alliance_for_Life.Controllers
             {
                 Heading = "Edit Client Information",
                 Id = client.Id,
-                SubContractors = _context.SubContractors.ToList(),
+                Subcontractors = _context.SubContractors.ToList(),
                 FirstName = client.FirstName,
                 LastName = client.LastName,
                 DOB = client.DOB.ToString("mm/dd/yyyy"),
@@ -99,16 +99,33 @@ namespace Alliance_for_Life.Controllers
 
         public ActionResult NonActiveClients()
         {
-            var nonactiveclients = _context.ClientLists
-                .Where(c => !c.Active);
-            
+            var user1 = User.Identity.GetUserId();
+            var nonactiveclients = from cl in _context.ClientLists
+                                join su in _context.SubContractors on cl.SubcontractorId equals su.SubcontractorId
+                                join us in _context.Users on su.SubcontractorId equals us.SubcontractorId
+                                where cl.Active == false && us.Id == user1
+                                select new ClientListReport
+                                {
+                                    Id = cl.Id,
+                                    Orgname = su.OrgName,
+                                    FirstName = cl.FirstName,
+                                    LastName = cl.LastName,
+                                    DOB = cl.DOB,
+                                    DueDate = cl.DueDate
+                                };
+
             return View(nonactiveclients);
         }
 
         public ActionResult ActiveClients()
         {
-            var activeclients = _context.ClientLists
-                .Where(c => c.Active);
+            var user1 = User.Identity.GetUserId();
+            var activeclients = from cl in _context.ClientLists
+                                join su in _context.SubContractors on cl.SubcontractorId equals su.SubcontractorId
+                                join us in _context.Users on su.SubcontractorId equals us.SubcontractorId
+                                where cl.Active && us.Id == user1
+                                select new ClientListReport { Id = cl.Id, Orgname = su.OrgName,
+                                    FirstName = cl.FirstName, LastName = cl.LastName, DOB = cl.DOB, DueDate = cl.DueDate};
 
             return View(activeclients);
         }

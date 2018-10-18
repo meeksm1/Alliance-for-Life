@@ -15,7 +15,8 @@ namespace Alliance_for_Life.Models
         public string Name { get; set; }
 
         [Required]
-        public int Subcontractor { get; set; }
+        [Display(Name ="Organization")]
+        public int SubcontractorId { get; set; }
 
         public IEnumerable<SubContractor> Subcontractors { get; set; }
 

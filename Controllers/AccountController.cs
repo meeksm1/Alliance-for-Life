@@ -160,9 +160,11 @@ namespace Alliance_for_Life.Controllers
                 return View("Create", viewModel);
             }
             {
+                var subcontractorId = _context.SubContractors.Single(s => s.SubcontractorId == viewModel.SubcontractorId);
+
                 var user = new ApplicationUser
                 {
-                    Subcontractor = viewModel.Subcontractor,
+                    SubcontractorId = viewModel.SubcontractorId,
                     UserName = viewModel.Email,
                     Email = viewModel.Email,
                     Name = viewModel.Name

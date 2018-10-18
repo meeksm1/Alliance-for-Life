@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Alliance_for_Life.Models.ClientList>
+﻿@model IEnumerable<Alliance_for_Life.Models.ClientListReport>
 @{
     ViewBag.Title = "All Clients";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -6,21 +6,71 @@
 
 <h2>Current Active Clients</h2>
 
-    <ul class="client">
-        @foreach (var activeclients in Model)
-        {
-            <li class="col-sm-3">
-                <div class="details">
-                    <div class="clientid">@activeclients.Id</div>
-                    <div class="orgname">@activeclients.Subcontractor</div>
-                    <div class="fname">@activeclients.FirstName</div>
-                    <div class="lname">@activeclients.LastName</div>
-                    <div class="dob">@activeclients.DOB.ToShortDateString()</div>
-                    <div class="due">@activeclients.DueDate.ToShortDateString()</div>
-                </div>
-                <div class="actions">
-                    <a href="@Url.Action("Edit", "ClientList", new { id = activeclients.Id })">Edit</a>
-                </div>
-            </li>
-        }
-    </ul>
+<table class="table">
+    <tr>
+        <th>
+           Client Id
+        </th>
+
+        <th>
+            Organization Name
+        </th>
+
+        <th>
+            First Name
+        </th>
+        <th>
+            Last Name
+        </th>
+        <th>
+            Due Date
+        </th>
+        <th>
+            Birthday
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var activeclients in Model)
+    {
+        <tr>
+            <td>
+                <div class="clientid">@activeclients.Id</div>
+            </td>
+
+            <td>
+                <div class="clientid">@activeclients.Orgname</div>
+            </td>
+
+            <td>
+                <div class="fname">@activeclients.FirstName</div>
+            </td>
+
+            <td>
+                <div class="lname">@activeclients.LastName</div>
+            </td>
+
+            <td>
+                <div class="due">@activeclients.DueDate.ToShortDateString()</div>
+            </td>
+
+            <td>
+                <div class="due">@activeclients.DOB.ToShortDateString()</div>
+            </td>
+
+            <td>
+                <div class="due">@activeclients.Address1</div>
+            </td>
+
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = activeclients.Id })
+            </td>
+        </tr>
+    }
+    <tr>
+        <td colspan="12">
+            <br />
+            <a href="@Url.Action("Index", "SurveyReport")">Export to Excel</a>
+        </td>
+    </tr>
+</table>
