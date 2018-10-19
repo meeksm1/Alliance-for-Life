@@ -16,7 +16,7 @@
             @Html.DisplayNameFor(model => model.Months.Months)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.OrgName.OrgName)
+            @Html.DisplayNameFor(model => model.Subcontractors.OrgName)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Date)
@@ -27,27 +27,28 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Months.Months)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.OrgName.OrgName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Date)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SurveysCompleted)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.SurveyId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.SurveyId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.SurveyId })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @item.Months.Months
+            </td>
+            <td>
+                @item.Subcontractors.OrgName
+            </td>
+            <td>
+                @item.Date.ToShortDateString()
+            </td>
+            <td>
+                @item.SurveysCompleted
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.SurveyId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.SurveyId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.SurveyId })
+            </td>
+        </tr>
+    }
     <tr>
         <td colspan="12">
             <br />

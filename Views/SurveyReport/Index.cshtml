@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Alliance_for_Life.Models.Surveys>
+﻿@model IEnumerable<Alliance_for_Life.Models.SurveyReport>
 
 @{
     Layout = null;
@@ -16,16 +16,16 @@
         <table class="table">
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.Months.Months)
+                   Month
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.OrgName.OrgName)
+                    Organization
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Date)
+                    Date
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.SurveysCompleted)
+                    # of Surveys Completed
                 </th>
                 <th></th>
             </tr>
@@ -34,16 +34,16 @@
             {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Months)
+                        @item.Month
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.OrgName)
+                        @item.Orgname
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Date)
+                        @item.Date.ToShortDateString()
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.SurveysCompleted)
+                        @item.SurveysCompleted
                     </td>
                 </tr>
             } 

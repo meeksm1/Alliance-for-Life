@@ -9,19 +9,32 @@ namespace Alliance_for_Life.ReportControllers
 {
     public class SurveyReportController : Controller
     {
+        private readonly ApplicationDbContext _context;
+        public SurveyReportController()
+        {
+            _context = new ApplicationDbContext();
+        }
         // GET: SurveyReport
         public ActionResult Index()
         {
-            ApplicationDbContext db = new ApplicationDbContext();
-            return View(from surveys in db.Surveys.Take(24) join sc in db.SubContractors.Take(24)
-                        on surveys.SubcontractorId equals sc.SubcontractorId
-                        select new { surveys.Months, surveys.OrgName, surveys.SurveyId, surveys.SurveysCompleted });
+            var query = from s in _context.Surveys
+                        join sc in _context.SubContractors on s.SubcontractorId equals sc.SubcontractorId
+                        join m in _context.Months on s.MonthId equals m.Id
+                        select new SurveyReport
+                        {
+                            SurveyId = s.SurveyId,
+                            Month = m.Months,
+                            Orgname = sc.OrgName,
+                            Date = s.Date,
+                            SurveysCompleted = s.SurveysCompleted,
+                        };
+
+            return View(query);
         }
 
         [HttpPost]
         public FileResult Export()
         {
-           ApplicationDbContext db = new ApplicationDbContext();
            DataTable dt = new DataTable("Grid");
             dt.Columns.AddRange(new DataColumn[5]
             {
@@ -32,12 +45,21 @@ namespace Alliance_for_Life.ReportControllers
                 new DataColumn ("Surveys Returned")
             });
 
-            var query = from s in db.Surveys.Take(24)
-                          select new { s.Months.Months, s.OrgName, s.SurveyId, s.SurveysCompleted, s.Date };           
+            var query = from s in _context.Surveys
+                        join sc in _context.SubContractors on s.SubcontractorId equals sc.SubcontractorId
+                        join m in _context.Months on s.MonthId equals m.Id
+                          select new SurveyReport
+                          {
+                              SurveyId = s.SurveyId,
+                              Month = m.Months,
+                              Orgname = sc.OrgName,
+                              Date = s.Date,
+                              SurveysCompleted = s.SurveysCompleted,
+                          };           
 
             foreach (var item in query)
             {
-                dt.Rows.Add(item.Date, item.Months, item.OrgName, item.SurveysCompleted, item.SurveyId);
+                dt.Rows.Add(item.SurveyId, item.Month, item.Orgname, item.Date, item.SurveysCompleted);
             }         
             
             using (XLWorkbook wb = new XLWorkbook())
