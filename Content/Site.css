@@ -159,11 +159,10 @@ font-size: 14px;
 
 .footer-alignment{
     width: 100%;
-    position: fixed;
+    position: absolute;
     text-align: center;
     bottom: 5px;
     clear: both;
-
 }
 .well {
     min-height: 10px;
@@ -174,4 +173,3 @@ font-size: 14px;
     border-radius: 4px;
     font-size: 14px;
 }
-

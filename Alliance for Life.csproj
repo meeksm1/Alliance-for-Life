@@ -254,12 +254,57 @@
     <Compile Include="Controllers\ResidentialMIRController.cs" />
     <Compile Include="Controllers\SubContractorController.cs" />
     <Compile Include="Controllers\SurveysController.cs" />
+    <Compile Include="DTO\SurveyReport.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201809191345122_CreateTables.cs" />
     <Compile Include="Migrations\201809191345122_CreateTables.Designer.cs">
       <DependentUpon>201809191345122_CreateTables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810151540221_AddRegionsToTable.cs" />
+    <Compile Include="Migrations\201810151540221_AddRegionsToTable.Designer.cs">
+      <DependentUpon>201810151540221_AddRegionsToTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810151618573_PopulateMonthsTable.cs" />
+    <Compile Include="Migrations\201810151618573_PopulateMonthsTable.Designer.cs">
+      <DependentUpon>201810151618573_PopulateMonthsTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810152042061_UpdateSurveyProperties.cs" />
+    <Compile Include="Migrations\201810152042061_UpdateSurveyProperties.Designer.cs">
+      <DependentUpon>201810152042061_UpdateSurveyProperties.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810152047094_UpdateSurveyProperties1.cs" />
+    <Compile Include="Migrations\201810152047094_UpdateSurveyProperties1.Designer.cs">
+      <DependentUpon>201810152047094_UpdateSurveyProperties1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810171501196_updatecolumnids.cs" />
+    <Compile Include="Migrations\201810171501196_updatecolumnids.Designer.cs">
+      <DependentUpon>201810171501196_updatecolumnids.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810171828192_RemoveClientAdminSubID.cs" />
+    <Compile Include="Migrations\201810171828192_RemoveClientAdminSubID.Designer.cs">
+      <DependentUpon>201810171828192_RemoveClientAdminSubID.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810171842179_UpdateRegistrationToOrgName.cs" />
+    <Compile Include="Migrations\201810171842179_UpdateRegistrationToOrgName.Designer.cs">
+      <DependentUpon>201810171842179_UpdateRegistrationToOrgName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810181320361_addedUserNavProptoClientList.cs" />
+    <Compile Include="Migrations\201810181320361_addedUserNavProptoClientList.Designer.cs">
+      <DependentUpon>201810181320361_addedUserNavProptoClientList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810181436175_AddForeignKeyPropertiestoCL.cs" />
+    <Compile Include="Migrations\201810181436175_AddForeignKeyPropertiestoCL.Designer.cs">
+      <DependentUpon>201810181436175_AddForeignKeyPropertiestoCL.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810181553153_RemoveForiegnKeyPropertiesFromCLTable.cs" />
+    <Compile Include="Migrations\201810181553153_RemoveForiegnKeyPropertiesFromCLTable.Designer.cs">
+      <DependentUpon>201810181553153_RemoveForiegnKeyPropertiesFromCLTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810181937004_DropClientListColumns.cs" />
+    <Compile Include="Migrations\201810181937004_DropClientListColumns.Designer.cs">
+      <DependentUpon>201810181937004_DropClientListColumns.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AdminCost.cs" />
@@ -277,6 +322,7 @@
     <Compile Include="Models\ResidentialMIR.cs" />
     <Compile Include="Models\SubContrator.cs" />
     <Compile Include="Models\Surveys.cs" />
+    <Compile Include="DTO\ClientListReport.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReportControllers\ClientListReportController.cs" />
     <Compile Include="ReportControllers\SurveyReportController.cs" />
@@ -658,9 +704,9 @@
     <Content Include="Views\ContractorForm\Create.cshtml" />
     <Content Include="Views\AdminCosts\AdminCostsForm.cshtml" />
     <Content Include="Views\ParticipationServices\Create.cshtml" />
-    <Content Include="Views\ClientList\ActiveClients.cshtml" />
-    <Content Include="Views\ClientList\NonActiveClients.cshtml" />
-    <Content Include="Views\ClientList\Reports.cshtml" />
+    <Content Include="Views\ClientListReport\ActiveClients.cshtml" />
+    <Content Include="Views\ClientListReport\NonActiveClients.cshtml" />
+    <Content Include="Views\ClientListReport\Reports.cshtml" />
     <Content Include="Views\AflForm\Create.cshtml" />
     <Content Include="Views\BudgetCost\BudgetCostForm.cshtml" />
     <Content Include="Views\Asset\Index.cshtml" />
@@ -670,6 +716,8 @@
     <Content Include="Views\Surveys\Edit.cshtml" />
     <Content Include="Views\Surveys\Index.cshtml" />
     <Content Include="Views\SurveyReport\Index.cshtml" />
+    <Content Include="Views\ClientListReport\AllNonActiveClients.cshtml" />
+    <Content Include="Views\ClientListReport\AllActiveClients.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -692,6 +740,39 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201809191345122_CreateTables.resx">
       <DependentUpon>201809191345122_CreateTables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810151540221_AddRegionsToTable.resx">
+      <DependentUpon>201810151540221_AddRegionsToTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810151618573_PopulateMonthsTable.resx">
+      <DependentUpon>201810151618573_PopulateMonthsTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810152042061_UpdateSurveyProperties.resx">
+      <DependentUpon>201810152042061_UpdateSurveyProperties.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810152047094_UpdateSurveyProperties1.resx">
+      <DependentUpon>201810152047094_UpdateSurveyProperties1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810171501196_updatecolumnids.resx">
+      <DependentUpon>201810171501196_updatecolumnids.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810171828192_RemoveClientAdminSubID.resx">
+      <DependentUpon>201810171828192_RemoveClientAdminSubID.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810171842179_UpdateRegistrationToOrgName.resx">
+      <DependentUpon>201810171842179_UpdateRegistrationToOrgName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810181320361_addedUserNavProptoClientList.resx">
+      <DependentUpon>201810181320361_addedUserNavProptoClientList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810181436175_AddForeignKeyPropertiestoCL.resx">
+      <DependentUpon>201810181436175_AddForeignKeyPropertiestoCL.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810181553153_RemoveForiegnKeyPropertiesFromCLTable.resx">
+      <DependentUpon>201810181553153_RemoveForiegnKeyPropertiesFromCLTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810181937004_DropClientListColumns.resx">
+      <DependentUpon>201810181937004_DropClientListColumns.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

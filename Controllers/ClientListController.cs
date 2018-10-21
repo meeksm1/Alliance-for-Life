@@ -19,7 +19,7 @@ namespace Alliance_for_Life.Controllers
         {
             var viewModel = new ClientListFormViewModel
             {
-                SubContractors = _context.SubContractors.ToList(),
+                Subcontractors = _context.SubContractors.ToList(),
                 Heading = "Add Client Information"
             };
             return View("ClientListForm", viewModel);
@@ -32,14 +32,13 @@ namespace Alliance_for_Life.Controllers
         {
             if (!ModelState.IsValid)
             {
-                viewModel.SubContractors = _context.SubContractors.ToList();
+                viewModel.Subcontractors = _context.SubContractors.ToList();
                 return View("ClientListForm", viewModel);
             }
-                
 
             var client = new ClientList
             {
-                Subcontractor = viewModel.Subcontractor,
+                SubcontractorId = viewModel.SubcontractorId,
                 FirstName = viewModel.FirstName,
                 LastName = viewModel.LastName,
                 DOB = viewModel.GetDateTimeDOB(),
@@ -60,13 +59,13 @@ namespace Alliance_for_Life.Controllers
         {
             if (!ModelState.IsValid)
             {
-                viewModel.SubContractors = _context.SubContractors.ToList();
+                viewModel.Subcontractors = _context.SubContractors.ToList();
                 return View("ClientListForm", viewModel);
             }
 
-            var client = _context.ClientLists.Single(s => s.Subcontractor == viewModel.Id);
+            var client = _context.ClientLists.Single(s => s.Id == viewModel.Id);
             {
-                client.Subcontractor = viewModel.Subcontractor;
+                client.SubcontractorId = viewModel.SubcontractorId;
                 client.FirstName = viewModel.FirstName;
                 client.LastName = viewModel.LastName;
                 client.DOB = viewModel.GetDateTimeDOB();
@@ -87,7 +86,7 @@ namespace Alliance_for_Life.Controllers
             {
                 Heading = "Edit Client Information",
                 Id = client.Id,
-                SubContractors = _context.SubContractors.ToList(),
+                Subcontractors = _context.SubContractors.ToList(),
                 FirstName = client.FirstName,
                 LastName = client.LastName,
                 DOB = client.DOB.ToString("mm/dd/yyyy"),
@@ -97,25 +96,6 @@ namespace Alliance_for_Life.Controllers
             return View("ClientListForm", viewModel);
         }
 
-        public ActionResult NonActiveClients()
-        {
-            var nonactiveclients = _context.ClientLists
-                .Where(c => !c.Active);
-            
-            return View(nonactiveclients);
-        }
-
-        public ActionResult ActiveClients()
-        {
-            var activeclients = _context.ClientLists
-                .Where(c => c.Active);
-
-            return View(activeclients);
-        }
-
-        public ActionResult Reports()
-        {
-            return View();
-        }
+      
     }
 }

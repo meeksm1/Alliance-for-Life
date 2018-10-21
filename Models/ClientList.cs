@@ -7,11 +7,7 @@ namespace Alliance_for_Life.Models
     {
         public int Id { get; set; }
 
-        public int Subcontractor { get; set; }
-
-        public SubContractor Subcontractors { get; set; }
-
-        public string OrgName { get; set; }
+        public int SubcontractorId { get; set; }
 
         [Required]
         [StringLength(255)]
@@ -27,9 +23,9 @@ namespace Alliance_for_Life.Models
 
         public bool Active { get; set; }
 
-        public string AdministratorId { get; set; }
+        //Navigation Properties
 
-        public ApplicationUser Administrator { get; set; }
+        public SubContractor Subcontractors { get; set; }
 
     }
 }

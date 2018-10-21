@@ -1,5 +1,4 @@
-﻿using Alliance_for_Life.Models;
-using Microsoft.AspNet.Identity.EntityFramework;
+﻿using Microsoft.AspNet.Identity.EntityFramework;
 using System.Data.Entity;
 
 namespace Alliance_for_Life.Models

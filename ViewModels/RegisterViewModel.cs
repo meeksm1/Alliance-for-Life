@@ -10,7 +10,7 @@ namespace Alliance_for_Life.ViewModels
     {
         [Required]
         [Display(Name="Organization")]
-        public int Subcontractor { get; set; }
+        public int SubcontractorId { get; set; }
 
         public IEnumerable<SubContractor> Subcontractors { get; set; }
 

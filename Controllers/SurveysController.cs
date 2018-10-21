@@ -14,7 +14,7 @@ namespace Alliance_for_Life.Controllers
         // GET: Surveys
         public ActionResult Index()
         {
-            var surveys = db.Surveys.Include(s => s.Months).Include(s => s.OrgName);
+            var surveys = db.Surveys.Include(s => s.Months).Include(s => s.Subcontractors);
             return View(surveys.ToList());
         }
 
@@ -56,7 +56,7 @@ namespace Alliance_for_Life.Controllers
             }
 
             ViewBag.MonthId = new SelectList(db.Months, "Id", "Months", surveys.Months);
-            ViewBag.SubcontractorId = new SelectList(db.SubContractors, "SubcontractorId", "OrgName", surveys.OrgName);
+            ViewBag.SubcontractorId = new SelectList(db.SubContractors, "SubcontractorId", "OrgName", surveys.Subcontractors);
 
             return View(surveys);
         }

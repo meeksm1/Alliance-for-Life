@@ -16,12 +16,10 @@ namespace Alliance_for_Life.ViewModels
 
         [Required]
         [Display(Name = "Organization")]
-        public int Subcontractor { get; set; }
+        public int SubcontractorId { get; set; }
 
-        public IEnumerable<SubContractor> SubContractors { get; set; }
+        public int UserId { get; set; }
 
-        //public SubContractor OrgName { get; set; }
-        
         [Required]
         [Display(Name = "Clients First Initial of First Name")]
         public string FirstName { get; set; }
@@ -51,6 +49,11 @@ namespace Alliance_for_Life.ViewModels
         }
 
         public bool Active { get; set; }
+
+        //Used for Navigation Properties
+        public IEnumerable<SubContractor> Subcontractors { get; set; }
+
+        public IEnumerable<ApplicationUser> User { get; set; }
 
         //used to set the heading of the page
         public string Heading { get; set; }

@@ -13,13 +13,12 @@
     @Html.ValidationSummary("", new { @class = "text-danger" })
 
     <div class="form-group">
-        @Html.LabelFor(m => m.Subcontractor, new { @class = "col-md-2 control-label" })
+        @Html.LabelFor(m => m.OrgName, new { @class = "col-md-2 control-label" })
         <div class="col-md-4">
-            @Html.DropDownListFor(m => m.Subcontractor, new SelectList(Model.Subcontractors, "Id", "OrgName"), "", new { @class = "form-control" })
-            @Html.ValidationMessageFor(m => m.Subcontractor)
-        </div>
-           
-        </div>
+            @Html.DropDownListFor(m => m.OrgName, new SelectList(Model.Subcontractors, "OrgName", "OrgName"), "", new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.OrgName)
+        </div>   
+    </div>
     <div class="form-group">
         @Html.LabelFor(m => m.Name, new { @class = "col-md-2 control-label" })
         <div class="col-md-4">
