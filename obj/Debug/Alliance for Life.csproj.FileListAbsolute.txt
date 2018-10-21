@@ -95,3 +95,5 @@ C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\bin\Microsoft.
 C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\obj\Debug\Alliance for Life.dll
 C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\obj\Debug\Alliance for Life.pdb
 C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\obj\Debug\Alliance for Life.csprojResolveAssemblyReference.cache
+C:\Users\Matt\Documents\GitHub\Alliance-for-Life\obj\Debug\Alliance for Life.dll
+C:\Users\Matt\Documents\GitHub\Alliance-for-Life\obj\Debug\Alliance for Life.pdb
