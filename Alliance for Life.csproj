@@ -235,7 +235,6 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminCostsController.cs" />
     <Compile Include="Controllers\AFLFormController.cs" />
-    <Compile Include="Controllers\AssetController.cs" />
     <Compile Include="Controllers\BudgetCostController.cs" />
     <Compile Include="Controllers\ClientListController.cs" />
     <Compile Include="Controllers\ContractorFormController.cs" />
@@ -302,7 +301,6 @@
     <Compile Include="Models\AdminCost.cs" />
     <Compile Include="Models\AFLForm.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
-    <Compile Include="Models\Asset.cs" />
     <Compile Include="Models\BudgetCosts.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Models\ClientList.cs" />
@@ -701,7 +699,6 @@
     <Content Include="Views\ClientListReport\Reports.cshtml" />
     <Content Include="Views\AflForm\Create.cshtml" />
     <Content Include="Views\BudgetCost\BudgetCostForm.cshtml" />
-    <Content Include="Views\Asset\Index.cshtml" />
     <Content Include="Views\Surveys\Create.cshtml" />
     <Content Include="Views\Surveys\Delete.cshtml" />
     <Content Include="Views\Surveys\Details.cshtml" />

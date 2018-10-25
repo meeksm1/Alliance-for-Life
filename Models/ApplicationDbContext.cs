@@ -14,7 +14,6 @@ namespace Alliance_for_Life.Models
         public DbSet<AdminCosts> AdminCosts { get; set; }
         public DbSet<ParticipationService> ParticipationServices { get; set; }
         public DbSet<BudgetCosts> BudgetCosts  { get; set; }
-        public DbSet<Asset> Assets { get; set; }
         public DbSet<Surveys> Surveys { get; set; }
 
         public ApplicationDbContext()
