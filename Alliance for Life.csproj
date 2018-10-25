@@ -235,6 +235,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminCostsController.cs" />
     <Compile Include="Controllers\AFLFormController.cs" />
+    <Compile Include="Controllers\AuthenticationController.cs" />
     <Compile Include="Controllers\BudgetCostController.cs" />
     <Compile Include="Controllers\ClientListController.cs" />
     <Compile Include="Controllers\ContractorFormController.cs" />
@@ -301,6 +302,7 @@
     <Compile Include="Models\AdminCost.cs" />
     <Compile Include="Models\AFLForm.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
+    <Compile Include="Models\Authentication.cs" />
     <Compile Include="Models\BudgetCosts.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Models\ClientList.cs" />
@@ -707,6 +709,7 @@
     <Content Include="Views\SurveyReport\Index.cshtml" />
     <Content Include="Views\ClientListReport\AllNonActiveClients.cshtml" />
     <Content Include="Views\ClientListReport\AllActiveClients.cshtml" />
+    <Content Include="Views\Authentication\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

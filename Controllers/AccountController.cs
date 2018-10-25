@@ -167,7 +167,9 @@ namespace Alliance_for_Life.Controllers
                     SubcontractorId = viewModel.SubcontractorId,
                     UserName = viewModel.Email,
                     Email = viewModel.Email,
-                    Name = viewModel.Name
+                    FirstName = viewModel.FirstName,
+                    LastName = viewModel.LastName,
+                    isAdmin = viewModel.isAdmin
                 };
 
                 var result = await UserManager.CreateAsync(user, viewModel.Password);
