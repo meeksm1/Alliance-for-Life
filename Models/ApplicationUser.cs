@@ -22,9 +22,8 @@ namespace Alliance_for_Life.Models
         [Display(Name ="Organization")]
         public int SubcontractorId { get; set; }
 
-        [Required]
-        [Display(Name="Administrator")]
-        public int isAdmin { get; set; }
+        [Display(Name="Administrator Role")]
+        public string RoleName { get; set; }
         
         public IEnumerable<SubContractor> Subcontractors { get; set; }
 

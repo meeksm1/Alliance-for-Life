@@ -23,12 +23,26 @@
                 @Html.ActionLink("Alternatives to Abortion Users", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li><a href="@Url.Action("Create", "AFLForm")">AFL Forms</a></li>
-                    <li><a href="@Url.Action("Create", "ContractorForm")">Subcontractor Forms</a></li>
-                    <li><a href="@Url.Action("Reports", "ClientListReport")">Client Reports</a></li>
-                    <li><a href="@Url.Action("Index", "Asset")">Asset Grid View</a></li>
-                </ul>
+                    @if (ViewContext.HttpContext.User.IsInRole("SuperUser"))
+                    {
+                        < li >< a href = "@Url.Action("Create", "AFLForm")" > AFL Forms </ a ></ li >
+                        < li >< a href = "@Url.Action("Create", "ContractorForm")" > Subcontractor Forms </ a ></ li >
+                        < li >< a href = "@Url.Action("Reports", "ClientListReport")" > Client Reports </ a ></ li >
+                        < li >< a href = "@Url.Action("Index", "Role")" > Assign Roles to Users </ a ></ li >
+                    }
+
+                    else if (ViewContext.HttpContext.User.IsInRole("Admin"))
+                    {
+                        @Html.ActionLink("AFLForm", "Create", "AFLForm", new { area = "" }, new { @class = "navbar-brand" })
+                        @Html.ActionLink("ContractorForm", "Create", "ContractorForm", new { area = "" }, new { @class = "navbar-brand" })
+                    }
+
+                    else
+                    {
+                        @Html.ActionLink("Reports", "Reports", "ClientListReport", new { area = "" }, new { @class = "navbar-brand" })
+                        @Html.ActionLink("Assign Roles To Users", "Index", "Role", new { area = "" }, new { @class = "navbar-brand" })
+                    }
+
                 @Html.Partial("_LoginPartial")
             </div>
         </div>

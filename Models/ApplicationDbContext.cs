@@ -6,7 +6,7 @@ namespace Alliance_for_Life.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public DbSet<SubContractor> SubContractors { get; set; }
-        public DbSet<ClientList> ClientLists { get; set; }
+        public DbSet<ClientList> User { get; set; }
         public DbSet<Region> Regions { get; set; }
         public DbSet<Month> Months { get; set; }
         public DbSet<ResidentialMIR> ResidentialMIRs { get; set; }

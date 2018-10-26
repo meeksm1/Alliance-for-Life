@@ -24,7 +24,7 @@ namespace Alliance_for_Life.ReportControllers
 
         public ActionResult AllActiveClients()
         {
-            var allactive = from cl in _context.ClientLists
+            var allactive = from cl in _context.User
                             join su in _context.SubContractors on cl.SubcontractorId equals su.SubcontractorId
                             where cl.Active == true
                             select new ClientListReport
@@ -41,7 +41,7 @@ namespace Alliance_for_Life.ReportControllers
 
         public ActionResult AllNonActiveClients()
         {
-            var allnonactive = from cl in _context.ClientLists
+            var allnonactive = from cl in _context.User
                                join su in _context.SubContractors on cl.SubcontractorId equals su.SubcontractorId
                                where cl.Active == false
                                select new ClientListReport
@@ -59,7 +59,7 @@ namespace Alliance_for_Life.ReportControllers
         public ActionResult NonActiveClients()
         {
             var user1 = User.Identity.GetUserId();
-            var nonactiveclients = from cl in _context.ClientLists
+            var nonactiveclients = from cl in _context.User
                                    join su in _context.SubContractors on cl.SubcontractorId equals su.SubcontractorId
                                    join us in _context.Users on su.SubcontractorId equals us.SubcontractorId
                                    where cl.Active == false && us.Id == user1
@@ -79,7 +79,7 @@ namespace Alliance_for_Life.ReportControllers
         public ActionResult ActiveClients()
         {
             var user1 = User.Identity.GetUserId();
-            var activeclients = from cl in _context.ClientLists
+            var activeclients = from cl in _context.User
                                 join su in _context.SubContractors on cl.SubcontractorId equals su.SubcontractorId
                                 join us in _context.Users on su.SubcontractorId equals us.SubcontractorId
                                 where cl.Active && us.Id == user1
@@ -112,7 +112,7 @@ namespace Alliance_for_Life.ReportControllers
             });
 
             var user1 = User.Identity.GetUserId();
-            var query = from cl in _context.ClientLists
+            var query = from cl in _context.User
                         join su in _context.SubContractors on cl.SubcontractorId equals su.SubcontractorId
                         join us in _context.Users on su.SubcontractorId equals us.SubcontractorId
                         where cl.Active && us.Id == user1
@@ -156,7 +156,7 @@ namespace Alliance_for_Life.ReportControllers
             });
 
             var user1 = User.Identity.GetUserId();
-            var query = from cl in _context.ClientLists
+            var query = from cl in _context.User
                         join su in _context.SubContractors on cl.SubcontractorId equals su.SubcontractorId
                         where cl.Active 
                         select new ClientListReport
@@ -200,7 +200,7 @@ namespace Alliance_for_Life.ReportControllers
             });
 
             var user1 = User.Identity.GetUserId();
-            var query = from cl in _context.ClientLists
+            var query = from cl in _context.User
                         join su in _context.SubContractors on cl.SubcontractorId equals su.SubcontractorId
                         join us in _context.Users on su.SubcontractorId equals us.SubcontractorId
                         where cl.Active == false && us.Id == user1
@@ -245,7 +245,7 @@ namespace Alliance_for_Life.ReportControllers
             });
 
             var user1 = User.Identity.GetUserId();
-            var query = from cl in _context.ClientLists
+            var query = from cl in _context.User
                         join su in _context.SubContractors on cl.SubcontractorId equals su.SubcontractorId
                         where cl.Active == false 
                         select new ClientListReport
