@@ -13,7 +13,7 @@ namespace Alliance_for_Life.Models
         public DbSet<NonResidentialMIR> NonResidentialMIRs { get; set; }
         public DbSet<AdminCosts> AdminCosts { get; set; }
         public DbSet<ParticipationService> ParticipationServices { get; set; }
-        public DbSet<BudgetCosts> BudgetCosts  { get; set; }
+        public DbSet<BudgetCosts> BudgetCosts { get; set; }
         public DbSet<Surveys> Surveys { get; set; }
 
         public ApplicationDbContext()

@@ -8,20 +8,8 @@ namespace Alliance_for_Life.Models
 {
     public class BudgetCosts
     {
-        [Required]
         [Key]
-        public int MonthId { get; set; }
-
-        //[Required]
-        //[Key]
-
-        //public int Year { get; set; }
-
-        public int RegionId { get; set; }
-
-        public Region Region { get; set; }
-
-        public Month Months { get; set; }
+        public int BudgetInvoiceId { get; set; }
 
         public int ASalandWages { get; set; }
 
@@ -92,8 +80,5 @@ namespace Alliance_for_Life.Models
         public int BTotal { get; set; }
 
         public double Maxtot { get; set; }
-
-
-
     }
 }

@@ -298,12 +298,16 @@
     <Compile Include="Migrations\201810181937004_DropClientListColumns.Designer.cs">
       <DependentUpon>201810181937004_DropClientListColumns.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201810301312401_CreateBudgetTable.cs" />
+    <Compile Include="Migrations\201810301312401_CreateBudgetTable.Designer.cs">
+      <DependentUpon>201810301312401_CreateBudgetTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AdminCost.cs" />
     <Compile Include="Models\AFLForm.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
-    <Compile Include="Models\BudgetCosts.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
+    <Compile Include="Models\BudgetCosts.cs" />
     <Compile Include="Models\ClientList.cs" />
     <Compile Include="Models\ContractorForm.cs" />
     <Compile Include="Models\Month.cs" />
@@ -699,7 +703,6 @@
     <Content Include="Views\ClientListReport\NonActiveClients.cshtml" />
     <Content Include="Views\ClientListReport\Reports.cshtml" />
     <Content Include="Views\AflForm\Create.cshtml" />
-    <Content Include="Views\BudgetCost\BudgetCostForm.cshtml" />
     <Content Include="Views\Surveys\Create.cshtml" />
     <Content Include="Views\Surveys\Delete.cshtml" />
     <Content Include="Views\Surveys\Details.cshtml" />
@@ -712,6 +715,7 @@
     <Content Include="Views\Role\Index.cshtml" />
     <Content Include="Views\Role\Create.cshtml" />
     <Content Include="Views\Account\RegisterRole.cshtml" />
+    <Content Include="Views\BudgetCost\BudgetCostForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -767,6 +771,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201810181937004_DropClientListColumns.resx">
       <DependentUpon>201810181937004_DropClientListColumns.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810301312401_CreateBudgetTable.resx">
+      <DependentUpon>201810301312401_CreateBudgetTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

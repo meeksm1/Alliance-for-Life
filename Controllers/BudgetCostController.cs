@@ -40,8 +40,6 @@ namespace Alliance_for_Life.Controllers
 
             var invoice = new BudgetCosts
             {
-                RegionId = viewModel.Region,
-                MonthId = viewModel.Month,
                 ASalandWages = viewModel.ASalandWages,
                 AConsulting = viewModel.AConsulting,
                 ADepreciation = viewModel.ADepreciation,
@@ -99,8 +97,6 @@ namespace Alliance_for_Life.Controllers
 
             var invoice = new BudgetCosts
             {
-                RegionId = viewModel.Region,
-                MonthId = viewModel.Month,
                 ASalandWages = viewModel.ASalandWages,
                 AConsulting = viewModel.AConsulting,
                 ADepreciation = viewModel.ADepreciation,
@@ -149,7 +145,7 @@ namespace Alliance_for_Life.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id)
         {
-            var org = _context.BudgetCosts.Single(s => s.MonthId == id);
+            var org = _context.BudgetCosts.Single(s => s.BudgetInvoiceId == id);
             var viewModel = new BudgetCostViewModel
             {
                 Heading = "Edit Region Budget Analysis",
