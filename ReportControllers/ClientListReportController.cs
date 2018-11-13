@@ -106,7 +106,7 @@ namespace Alliance_for_Life.ReportControllers
                 new DataColumn ("Client ID"),
                 new DataColumn ("Organization"),
                 new DataColumn ("First Name"),
-                new DataColumn ("LastName"),
+                new DataColumn ("Last Name"),
                 new DataColumn ("Due Date"),
                 new DataColumn ("Birthday")
             });
@@ -150,7 +150,7 @@ namespace Alliance_for_Life.ReportControllers
                 new DataColumn ("Client ID"),
                 new DataColumn ("Organization"),
                 new DataColumn ("First Name"),
-                new DataColumn ("LastName"),
+                new DataColumn ("Last Name"),
                 new DataColumn ("Due Date"),
                 new DataColumn ("Birthday")
             });
@@ -194,7 +194,7 @@ namespace Alliance_for_Life.ReportControllers
                 new DataColumn ("Client ID"),
                 new DataColumn ("Organization"),
                 new DataColumn ("First Name"),
-                new DataColumn ("LastName"),
+                new DataColumn ("Last Name"),
                 new DataColumn ("Due Date"),
                 new DataColumn ("Birthday")
             });
@@ -239,7 +239,7 @@ namespace Alliance_for_Life.ReportControllers
                 new DataColumn ("Client ID"),
                 new DataColumn ("Organization"),
                 new DataColumn ("First Name"),
-                new DataColumn ("LastName"),
+                new DataColumn ("Last Name"),
                 new DataColumn ("Due Date"),
                 new DataColumn ("Birthday")
             });

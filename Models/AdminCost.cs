@@ -10,11 +10,6 @@ namespace Alliance_for_Life.Models
         [Key]
         public int MonthId { get; set; }
 
-        //[Required]
-        //[Key]
-
-        //public int Year { get; set; }
-
         public int RegionId { get; set; }
 
         public SubContractor Region { get; set; }
@@ -59,6 +54,19 @@ namespace Alliance_for_Life.Models
         public int AOther3 { get; set; }
 
         public int ATotCosts { get; set; }
-        
+
+        private int testmath;
+
+        public int TestMath
+        {
+            get {
+                testmath = ATotCosts - ATechSupport;
+                return testmath;
+            }
+            set { testmath = value; }
+        }
+
+
+
     }
 }

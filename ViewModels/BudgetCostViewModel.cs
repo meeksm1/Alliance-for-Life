@@ -3,9 +3,7 @@ using Alliance_for_Life.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Web;
 using System.Web.Mvc;
 
 namespace Alliance_for_Life.ViewModels
@@ -136,7 +134,7 @@ namespace Alliance_for_Life.ViewModels
         public int RFO { get; set; }
 
         [Display(Name = "Total")]
-        public int BTotal { get; set; }
+        public double BTotal { get; set; }
 
         [Display(Name = "Maximum Annual Total Price")]
         public double Maxtot { get; set; }

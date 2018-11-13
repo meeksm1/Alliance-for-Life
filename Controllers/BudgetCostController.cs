@@ -1,7 +1,10 @@
 ﻿using Alliance_for_Life.Models;
+using Alliance_for_Life.ViewModels;
+using ClosedXML.Excel;
+using System.Data;
+using System.IO;
 using System.Linq;
 using System.Web.Mvc;
-using Alliance_for_Life.ViewModels;
 
 namespace Alliance_for_Life.Controllers
 {
@@ -14,6 +17,52 @@ namespace Alliance_for_Life.Controllers
         {
             _context = new ApplicationDbContext();
         }
+
+
+        // GET: BudgetReports
+        public ActionResult Index()
+        {
+            return View(_context.BudgetCosts.ToList());
+        }
+
+        public ActionResult Reports()
+        {
+            var budgets = from b in _context.BudgetCosts
+                          join m in _context.Months on b.Month.Id equals m.Id
+                          join r in _context.Regions on b.Region.Id equals r.Id
+                          where b.BudgetInvoiceId > 0
+                          select new BudgetReport
+                          {
+                              BudgetInvoiceId = b.BudgetInvoiceId,
+                              MonthName = m.Months,
+                              RegionName = r.Regions,
+                              ATotCosts = b.ATotCosts,
+                              BTotal = b.BTotal,
+                              Maxtot = b.Maxtot
+                          };
+
+            return View(budgets);
+        }
+
+        public ActionResult ExpenseReports()
+        {
+            var budgets = from b in _context.BudgetCosts
+                          join m in _context.Months on b.Month.Id equals m.Id
+                          join r in _context.Regions on b.Region.Id equals r.Id
+                          where b.BudgetInvoiceId > 0
+                          select new BudgetReport
+                          {
+                              BudgetInvoiceId = b.BudgetInvoiceId,
+                              MonthName = m.Months,
+                              RegionName = r.Regions,
+                              ATotCosts = b.ATotCosts,
+                              BTotal = b.BTotal,
+                              Maxtot = b.Maxtot
+                          };
+
+            return View(budgets);
+        }
+
 
         public ActionResult Create()
         {
@@ -186,6 +235,50 @@ namespace Alliance_for_Life.Controllers
                 Maxtot = org.Maxtot,
             };
             return View("BudgetCostForm", viewModel);
+        }
+
+        [HttpPost]
+        public FileResult Export()
+        {
+            DataTable dt = new DataTable("Grid");
+            dt.Columns.AddRange(new DataColumn[6]
+            {
+                new DataColumn ("Budget Invoice ID"),
+                new DataColumn ("Month"),
+                new DataColumn ("Region"),
+                new DataColumn ("Admin Totals"),
+                new DataColumn ("Utility Totals"),
+                new DataColumn ("Combined Totals")
+            });
+
+            var budgets = from b in _context.BudgetCosts
+                          join m in _context.Months on b.Month.Id equals m.Id
+                          join r in _context.Regions on b.Region.Id equals r.Id
+                          where b.BudgetInvoiceId > 0
+                          select new BudgetReport
+                          {
+                              BudgetInvoiceId = b.BudgetInvoiceId,
+                              MonthName = m.Months,
+                              RegionName = r.Regions,
+                              ATotCosts = b.ATotCosts,
+                              BTotal = b.BTotal,
+                              Maxtot = b.Maxtot
+                          };
+
+            foreach (var item in budgets)
+            {
+                dt.Rows.Add(item.BudgetInvoiceId, item.MonthName, item.RegionName, item.ATotCosts, item.BTotal, item.Maxtot);
+            }
+
+            using (XLWorkbook wb = new XLWorkbook())
+            {
+                wb.Worksheets.Add(dt);
+                using (MemoryStream stream = new MemoryStream())
+                {
+                    wb.SaveAs(stream);
+                    return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Grid.xlsx");
+                }
+            }
         }
     }      
 }

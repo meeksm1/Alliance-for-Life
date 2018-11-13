@@ -154,5 +154,43 @@ namespace Alliance_for_Life.Controllers
             };
             return View("AdminCostsForm", viewModel);
         }
+
+        public ActionResult ExpenseReports()
+        {
+            var budgets = from b in _context.BudgetCosts
+                          join m in _context.Months on b.Month.Id equals m.Id
+                          join r in _context.Regions on b.Region.Id equals r.Id
+                          where b.BudgetInvoiceId > 0
+                          select new BudgetReport
+                          {
+                              BudgetInvoiceId = b.BudgetInvoiceId,
+                              MonthName = m.Months,
+                              RegionName = r.Regions,
+                              ATotCosts = b.ATotCosts,
+                              BTotal = b.BTotal,
+                              Maxtot = b.Maxtot
+                          };
+
+            return View(budgets);
+        }
+ 
+        public ActionResult Reports()
+        {
+            var budgets = from b in _context.BudgetCosts
+                          join m in _context.Months on b.Month.Id equals m.Id
+                          join r in _context.Regions on b.Region.Id equals r.Id
+                          where b.BudgetInvoiceId > 0
+                          select new BudgetReport
+                          {
+                              BudgetInvoiceId = b.BudgetInvoiceId,
+                              MonthName = m.Months,
+                              RegionName = r.Regions,
+                              ATotCosts = b.ATotCosts,
+                              BTotal = b.BTotal,
+                              Maxtot = b.Maxtot
+                          };
+
+            return View(budgets);
+        }
     }
 }

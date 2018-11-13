@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Alliance_for_Life.Models
 {
@@ -77,8 +73,14 @@ namespace Alliance_for_Life.Models
 
         public int RFO { get; set; }
 
-        public int BTotal { get; set; }
+        public double BTotal { get; set; }
 
         public double Maxtot { get; set; }
+
+        // Navigation Properties
+
+        public Month Month { get; set; }
+        public Region Region { get; set; }
+
     }
 }
