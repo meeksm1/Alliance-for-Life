@@ -1,5 +1,8 @@
 ﻿using Alliance_for_Life.Models;
 using Alliance_for_Life.ViewModels;
+using ClosedXML.Excel;
+using System.Data;
+using System.IO;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -11,6 +14,49 @@ namespace Alliance_for_Life.Controllers
         public AdminCostsController()
         {
             _context = new ApplicationDbContext();
+        }
+
+        public ActionResult Index()
+        {
+            return View(_context.AdminCosts.ToList());
+        }
+
+        public ActionResult Reports()
+        {
+            var costs = from a in _context.AdminCosts
+                        join m in _context.Months on a.MonthId equals m.Id
+                        join r in _context.Regions on a.RegionId equals r.Id
+                        where a.AdminCostId > 0
+                        select new AdminReport
+                        {
+                            AdminCostId = a.AdminCostId,
+                            MonthName = m.Months,
+                            RegionName = r.Regions,
+                            ASalandWages = a.ASalandWages,
+                            AEquipment = a.AEquipment,
+                            ATotCosts = a.ATotCosts
+                        };
+
+            return View(costs);
+        }
+
+        public ActionResult ExpenseReports()
+        {
+            var costs = from a in _context.AdminCosts
+                        join m in _context.Months on a.MonthId equals m.Id
+                        join r in _context.Regions on a.RegionId equals r.Id
+                        where a.AdminCostId > 0
+                        select new AdminReport
+                        {
+                            AdminCostId = a.AdminCostId,
+                            RegionName = r.Regions,
+                            MonthName = m.Months,
+                            ATotCosts = a.ATotCosts,
+                            ASalandWages = a.ASalandWages,
+                            AEquipment = a.AEquipment
+                        };
+
+            return View(costs);
         }
 
         public ActionResult Create()
@@ -39,8 +85,8 @@ namespace Alliance_for_Life.Controllers
 
             var invoice = new AdminCosts
             {
-                RegionId = viewModel.Region,
                 MonthId = viewModel.Month,
+                RegionId = viewModel.Region,
                 ASalandWages = viewModel.ASalandWages,
                 AConsulting = viewModel.AConsulting,
                 ADepreciation = viewModel.ADepreciation,
@@ -85,9 +131,8 @@ namespace Alliance_for_Life.Controllers
 
             var invoice = new AdminCosts
             {
-                
-                RegionId = viewModel.Region,
                 MonthId = viewModel.Month,
+                RegionId = viewModel.Region,
                 ASalandWages = viewModel.ASalandWages,
                 AConsulting = viewModel.AConsulting,
                 ADepreciation = viewModel.ADepreciation,
@@ -122,12 +167,12 @@ namespace Alliance_for_Life.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id)
         {
-            var org = _context.AdminCosts.Single(s => s.Id == id);
+            var org = _context.AdminCosts.Single(s => s.AdminCostId == id);
             var viewModel = new AdminCostsViewModel
 
             {
                 Heading = "Edit Region Budget Analysis",
-                Id = org.Id,
+                Id = org.AdminCostId,
                 Regions = _context.Regions.ToList(),
                 Months = _context.Months.ToList(),
                 ASalandWages = org.ASalandWages,
@@ -155,42 +200,48 @@ namespace Alliance_for_Life.Controllers
             return View("AdminCostsForm", viewModel);
         }
 
-        public ActionResult ExpenseReports()
+        [HttpPost]
+        public FileResult Export()
         {
-            var budgets = from b in _context.BudgetCosts
-                          join m in _context.Months on b.Month.Id equals m.Id
-                          join r in _context.Regions on b.Region.Id equals r.Id
-                          where b.BudgetInvoiceId > 0
-                          select new BudgetReport
-                          {
-                              BudgetInvoiceId = b.BudgetInvoiceId,
-                              MonthName = m.Months,
-                              RegionName = r.Regions,
-                              ATotCosts = b.ATotCosts,
-                              BTotal = b.BTotal,
-                              Maxtot = b.Maxtot
-                          };
+            DataTable dt = new DataTable("Grid");
+            dt.Columns.AddRange(new DataColumn[6]
+            {
+                new DataColumn ("Administration Invoice ID"),
+                new DataColumn ("Month"),
+                new DataColumn ("Region"),
+                new DataColumn ("Salary/Wages"),
+                new DataColumn ("Equipment Totals"),
+                new DataColumn ("Total Cost")
+            });
 
-            return View(budgets);
-        }
- 
-        public ActionResult Reports()
-        {
-            var budgets = from b in _context.BudgetCosts
-                          join m in _context.Months on b.Month.Id equals m.Id
-                          join r in _context.Regions on b.Region.Id equals r.Id
-                          where b.BudgetInvoiceId > 0
-                          select new BudgetReport
-                          {
-                              BudgetInvoiceId = b.BudgetInvoiceId,
-                              MonthName = m.Months,
-                              RegionName = r.Regions,
-                              ATotCosts = b.ATotCosts,
-                              BTotal = b.BTotal,
-                              Maxtot = b.Maxtot
-                          };
+            var costs = from a in _context.AdminCosts
+                        join m in _context.Months on a.MonthId equals m.Id
+                        join r in _context.Regions on a.RegionId equals r.Id
+                        where a.AdminCostId > 0
+                        select new AdminReport
+                        {
+                            AdminCostId = a.AdminCostId,
+                            MonthName = m.Months,
+                            RegionName = r.Regions,
+                            ASalandWages = a.ASalandWages,
+                            AEquipment = a.AEquipment,
+                            ATotCosts = a.ATotCosts
+                        };
 
-            return View(budgets);
+            foreach (var item in costs)
+            {
+                dt.Rows.Add(item.AdminCostId, item.MonthName, item.RegionName, item.ASalandWages, item.AEquipment, item.ATotCosts);
+            }
+
+            using (XLWorkbook wb = new XLWorkbook())
+            {
+                wb.Worksheets.Add(dt);
+                using (MemoryStream stream = new MemoryStream())
+                {
+                    wb.SaveAs(stream);
+                    return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Grid.xlsx");
+                }
+            }
         }
     }
 }

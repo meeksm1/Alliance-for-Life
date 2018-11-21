@@ -1,0 +1,72 @@
+﻿@model IEnumerable<Alliance_for_Life.Models.AdminReport>
+
+@{
+    ViewBag.Title = "Reports";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Administration Costs Reports</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Admin Invoice Id
+        </th>
+
+        <th>
+            Month Id
+        </th>
+
+        <th>
+            Region
+        </th>
+
+        <th>
+            Salary and Wages
+        </th>
+
+        <th>
+            Equipment Costs
+        </th>
+
+        <th>
+            Total Costs
+        </th>
+        <th></th>
+    </tr>
+    @foreach (var costs in Model)
+    {
+        <tr>
+            <td>
+                <div class="clientid">@costs.AdminCostId</div>
+            </td>
+
+            <td>
+                <div class="clientid">@costs.MonthName</div>
+            </td>
+
+            <td>
+                <div class="fname">@costs.RegionName</div>
+            </td>
+
+            <td>
+                <div class="lname">@costs.ASalandWages</div>
+            </td>
+
+            <td>
+                <div class="due">@costs.AEquipment</div>
+            </td>
+
+            <td>
+                <div class="due">@costs.ATotCosts</div>
+            </td>
+        </tr>
+    }
+    <tr></tr>
+</table>
+
+<br />
+@using (Html.BeginForm("Export", "AdminCosts", FormMethod.Post))
+{
+    <input type="submit" value="Export to Excel" class="button" />
+}

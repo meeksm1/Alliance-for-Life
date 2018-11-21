@@ -97,7 +97,7 @@ namespace Alliance_for_Life.ViewModels
                 Expression<Func<BudgetCostController, ActionResult>> create =
                     (c => c.Create(this));
 
-                var action = (Month != 0 && Region !=0) ? update : create;
+                var action = (Month != 0 && Region != 0) ? update : create;
                 return (action.Body as MethodCallExpression).Method.Name;
             }
 
@@ -138,5 +138,7 @@ namespace Alliance_for_Life.ViewModels
 
         [Display(Name = "Maximum Annual Total Price")]
         public double Maxtot { get; set; }
+
+        public int Id { get; internal set; }
     }
 }

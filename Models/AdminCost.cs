@@ -4,17 +4,9 @@ namespace Alliance_for_Life.Models
 {
     public class AdminCosts
     {
-        public int Id { get; set; }
-
-        [Required]
         [Key]
-        public int MonthId { get; set; }
+        public int AdminCostId { get; set; }
 
-        public int RegionId { get; set; }
-
-        public SubContractor Region { get; set; }
-        
-        public Month Months { get; set; }
         public int ASalandWages { get; set; }
 
         public int AEmpBenefits { get; set; }
@@ -55,17 +47,14 @@ namespace Alliance_for_Life.Models
 
         public int ATotCosts { get; set; }
 
-        private int testmath;
 
-        public int TestMath
-        {
-            get {
-                testmath = ATotCosts - ATechSupport;
-                return testmath;
-            }
-            set { testmath = value; }
-        }
+        //Navigation Properties
+        public Region Region { get; set; }
 
+        public Month Month { get; set; }
+
+        public int RegionId { get; set; }
+        public int MonthId { get; set; }
 
 
     }

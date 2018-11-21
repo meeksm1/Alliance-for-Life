@@ -44,12 +44,73 @@ namespace Alliance_for_Life.Controllers
             return View(budgets);
         }
 
-        public ActionResult ExpenseReports()
+        public ActionResult FirstQuarterReports()
         {
             var budgets = from b in _context.BudgetCosts
                           join m in _context.Months on b.Month.Id equals m.Id
                           join r in _context.Regions on b.Region.Id equals r.Id
-                          where b.BudgetInvoiceId > 0
+                          where b.MonthId  <= 3
+                          orderby b.MonthId ascending
+                          select new BudgetReport
+                          {
+                              BudgetInvoiceId = b.BudgetInvoiceId,
+                              MonthName = m.Months,
+                              RegionName = r.Regions,
+                              ATotCosts = b.ATotCosts,
+                              BTotal = b.BTotal,
+                              Maxtot = b.Maxtot
+                          };
+
+            return View(budgets);
+        }
+
+        public ActionResult SecondQuarterReports()
+        {
+            var budgets = from b in _context.BudgetCosts
+                          join m in _context.Months on b.Month.Id equals m.Id
+                          join r in _context.Regions on b.Region.Id equals r.Id
+                          where b.MonthId >= 4 && b.MonthId <= 6
+                          orderby b.MonthId ascending
+                          select new BudgetReport
+                          {
+                              BudgetInvoiceId = b.BudgetInvoiceId,
+                              MonthName = m.Months,
+                              RegionName = r.Regions,
+                              ATotCosts = b.ATotCosts,
+                              BTotal = b.BTotal,
+                              Maxtot = b.Maxtot
+                          };
+
+            return View(budgets);
+        }
+
+        public ActionResult ThirdQuarterReports()
+        {
+            var budgets = from b in _context.BudgetCosts
+                          join m in _context.Months on b.Month.Id equals m.Id
+                          join r in _context.Regions on b.Region.Id equals r.Id
+                          where b.MonthId >= 7 && b.MonthId <= 9
+                          orderby b.MonthId ascending
+                          select new BudgetReport
+                          {
+                              BudgetInvoiceId = b.BudgetInvoiceId,
+                              MonthName = m.Months,
+                              RegionName = r.Regions,
+                              ATotCosts = b.ATotCosts,
+                              BTotal = b.BTotal,
+                              Maxtot = b.Maxtot
+                          };
+
+            return View(budgets);
+        }
+
+        public ActionResult FourthQuarterReports()
+        {
+            var budgets = from b in _context.BudgetCosts
+                          join m in _context.Months on b.Month.Id equals m.Id
+                          join r in _context.Regions on b.Region.Id equals r.Id
+                          where b.MonthId >= 10 && b.MonthId <= 12
+                          orderby b.MonthId ascending
                           select new BudgetReport
                           {
                               BudgetInvoiceId = b.BudgetInvoiceId,
@@ -89,6 +150,8 @@ namespace Alliance_for_Life.Controllers
 
             var invoice = new BudgetCosts
             {
+                MonthId = viewModel.Month,
+                RegionId = viewModel.Region,
                 ASalandWages = viewModel.ASalandWages,
                 AConsulting = viewModel.AConsulting,
                 ADepreciation = viewModel.ADepreciation,
@@ -146,6 +209,8 @@ namespace Alliance_for_Life.Controllers
 
             var invoice = new BudgetCosts
             {
+                MonthId = viewModel.Month,
+                RegionId = viewModel.Region,
                 ASalandWages = viewModel.ASalandWages,
                 AConsulting = viewModel.AConsulting,
                 ADepreciation = viewModel.ADepreciation,

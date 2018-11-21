@@ -81,6 +81,8 @@ namespace Alliance_for_Life.Models
 
         public Month Month { get; set; }
         public Region Region { get; set; }
+        public int RegionId { get; set; }
+        public int MonthId { get; set; }
 
     }
 }
