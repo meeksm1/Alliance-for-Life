@@ -15,6 +15,7 @@ namespace Alliance_for_Life.Models
         public DbSet<ParticipationService> ParticipationServices { get; set; }
         public DbSet<BudgetCosts> BudgetCosts { get; set; }
         public DbSet<Surveys> Surveys { get; set; }
+        public DbSet<Invoice> Invoices { get; set; }
 
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
@@ -26,20 +27,21 @@ namespace Alliance_for_Life.Models
             return new ApplicationDbContext();
         }
 
-
-
-        public System.Data.Entity.DbSet<Alliance_for_Life.ViewModels.SurveysViewModel> SurveysViewModels { get; set; }
-
         //protected override void OnModelCreating(DbModelBuilder modelBuilder)
         //{
         //    modelBuilder.Entity<ClientList>()
+        //        .HasRequired(c => c.Subcontractors)
+        //        .WithMany()
+        //        .WillCascadeOnDelete(false);
+
+        //    base.OnModelCreating(modelBuilder);
+
+        //    modelBuilder.Entity<AdminCosts>()
         //        .HasRequired(c => c.Subcontractor)
         //        .WithMany()
         //        .WillCascadeOnDelete(false);
 
         //    base.OnModelCreating(modelBuilder);
         //}
-    }
-
-   
+    }   
 }

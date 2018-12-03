@@ -248,6 +248,7 @@
     <Compile Include="Controllers\SurveysController.cs" />
     <Compile Include="DTO\AdminReport.cs" />
     <Compile Include="DTO\BudgetReport.cs" />
+    <Compile Include="DTO\Invoice.cs" />
     <Compile Include="DTO\MIRReport.cs" />
     <Compile Include="DTO\SubcontractorReport.cs" />
     <Compile Include="DTO\SurveyReport.cs" />
@@ -306,6 +307,14 @@
     <Compile Include="Migrations\201810301312401_CreateBudgetTable.Designer.cs">
       <DependentUpon>201810301312401_CreateBudgetTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201811261438538_CreateAdminTable.cs" />
+    <Compile Include="Migrations\201811261438538_CreateAdminTable.Designer.cs">
+      <DependentUpon>201811261438538_CreateAdminTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811261544362_Createcascadepaths.cs" />
+    <Compile Include="Migrations\201811261544362_Createcascadepaths.Designer.cs">
+      <DependentUpon>201811261544362_Createcascadepaths.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AdminCost.cs" />
     <Compile Include="Models\AFLForm.cs" />
@@ -324,6 +333,7 @@
     <Compile Include="DTO\ClientListReport.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReportControllers\ClientListReportController.cs" />
+    <Compile Include="ReportControllers\InvoicesController.cs" />
     <Compile Include="ReportControllers\SurveyReportController.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\AddPhoneNumberViewModel.cs" />
@@ -512,6 +522,7 @@
     <Content Include="Content\DataTables\css\select.jqueryui.min.css" />
     <Content Include="Content\DataTables\css\select.semanticui.css" />
     <Content Include="Content\DataTables\css\select.semanticui.min.css" />
+    <Content Include="Content\DataTables\images\afllogo.png" />
     <Content Include="Content\DataTables\images\details_close.png" />
     <Content Include="Content\DataTables\images\details_open.png" />
     <Content Include="Content\DataTables\images\sort_asc.png" />
@@ -662,6 +673,7 @@
     <Content Include="Views\AdminCosts\Reports.cshtml" />
     <Content Include="Views\BudgetCost\BudgetCostForm.cshtml" />
     <Content Include="Views\BudgetCost\Reports.cshtml" />
+    <Content Include="Views\ParticipationServices\Create.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -710,7 +722,6 @@
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\NonResidentialMIR\Create.cshtml" />
     <Content Include="Views\ContractorForm\Create.cshtml" />
-    <Content Include="Views\ParticipationServices\Create.cshtml" />
     <Content Include="Views\ClientListReport\ActiveClients.cshtml" />
     <Content Include="Views\ClientListReport\NonActiveClients.cshtml" />
     <Content Include="Views\ClientListReport\Reports.cshtml" />
@@ -736,6 +747,13 @@
     <Content Include="Views\BudgetCost\FirstQuarterReports.cshtml" />
     <Content Include="Views\BudgetCost\ThirdQuarterReports.cshtml" />
     <Content Include="Views\BudgetCost\FourthQuarterReports.cshtml" />
+    <Content Include="Views\AdminCosts\Invoice.cshtml" />
+    <Content Include="Views\Shared\_LayoutWord.cshtml" />
+    <Content Include="Views\Invoices\Create.cshtml" />
+    <Content Include="Views\Invoices\Delete.cshtml" />
+    <Content Include="Views\Invoices\Details.cshtml" />
+    <Content Include="Views\Invoices\Edit.cshtml" />
+    <Content Include="Views\Invoices\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -794,6 +812,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201810301312401_CreateBudgetTable.resx">
       <DependentUpon>201810301312401_CreateBudgetTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811261438538_CreateAdminTable.resx">
+      <DependentUpon>201811261438538_CreateAdminTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811261544362_Createcascadepaths.resx">
+      <DependentUpon>201811261544362_Createcascadepaths.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

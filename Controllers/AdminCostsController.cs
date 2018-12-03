@@ -1,6 +1,8 @@
 ﻿using Alliance_for_Life.Models;
 using Alliance_for_Life.ViewModels;
 using ClosedXML.Excel;
+using Microsoft.AspNet.Identity;
+using System;
 using System.Data;
 using System.IO;
 using System.Linq;
@@ -19,6 +21,31 @@ namespace Alliance_for_Life.Controllers
         public ActionResult Index()
         {
             return View(_context.AdminCosts.ToList());
+        }
+
+
+        public ActionResult Invoice()
+        {
+            var user1 = User.Identity.GetUserId();
+            var invoice = from a in _context.AdminCosts
+                        join p in _context.ParticipationServices on a.SubcontractorId equals p.SubcontractorId
+                        join s in _context.SubContractors on a.SubcontractorId equals s.SubcontractorId
+                        join u in _context.Users on s.SubcontractorId equals u.SubcontractorId
+                        where u.Id == user1
+                          select new Invoice
+                        {
+                            OrgName = s.OrgName,
+                            DirectAdminCost = a.ATotCosts,
+                            ParticipantServices = p.PTotals,
+                            GrandTotal = a.ATotCosts + p.PTotals,
+                            LessManagementFee = (a.ATotCosts + p.PTotals) * .03,
+                            BeginningAllocation = s.AllocatedContractAmount,
+                            AdjustedAllocation = s.AllocatedAdjustments,
+                            BillingDate = DateTime.Today,
+                            BalanceRemaining = s.AllocatedContractAmount - s.AllocatedAdjustments
+                        };
+
+            return View(invoice);
         }
 
         public ActionResult Reports()
@@ -63,6 +90,7 @@ namespace Alliance_for_Life.Controllers
         {
             var viewModel = new AdminCostsViewModel
             {
+                Subcontractors = _context.SubContractors.ToList(),
                 Regions = _context.Regions.ToList(),
                 Months = _context.Months.ToList(),
                 Heading = "Direct Administrative Costs"
@@ -77,6 +105,7 @@ namespace Alliance_for_Life.Controllers
         {
             if (!ModelState.IsValid)
             {
+                viewModel.Subcontractors = _context.SubContractors.ToList();
                 viewModel.Regions = _context.Regions.ToList();
                 viewModel.Months = _context.Months.ToList();
                 return View("AdminCostsForm", viewModel);
@@ -85,6 +114,7 @@ namespace Alliance_for_Life.Controllers
 
             var invoice = new AdminCosts
             {
+                SubcontractorId = viewModel.SubcontractorId,
                 MonthId = viewModel.Month,
                 RegionId = viewModel.Region,
                 ASalandWages = viewModel.ASalandWages,

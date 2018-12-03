@@ -17,6 +17,11 @@ namespace Alliance_for_Life.Controllers
             _context = new ApplicationDbContext();
         }
 
+        public ActionResult Index()
+        {
+            return View();
+        }
+
         public ActionResult Create()
         {
             var viewModel = new ResidentialMIRFormViewModel
@@ -25,11 +30,6 @@ namespace Alliance_for_Life.Controllers
                 Subcontractors = _context.SubContractors.ToList()
         };
             return View(viewModel);
-        }
-
-        public ActionResult Index()
-        { 
-            return View();
         }
 
         [Authorize]

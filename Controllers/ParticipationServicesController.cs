@@ -1,5 +1,6 @@
 ﻿using Alliance_for_Life.Models;
 using Alliance_for_Life.ViewModels;
+using Microsoft.AspNet.Identity;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -18,7 +19,9 @@ namespace Alliance_for_Life.Controllers
         {
             var viewModel = new ParticipationServicesViewModel
             {
+                Subcontractors = _context.SubContractors.ToList(),
                 Months = _context.Months.ToList(),
+                Regions = _context.Regions.ToList()
             };
             return View(viewModel);
         }
@@ -35,14 +38,19 @@ namespace Alliance_for_Life.Controllers
         {
             if (!ModelState.IsValid)
             {
+                var user1 = User.Identity.GetUserId();
+                viewModel.Subcontractors = _context.SubContractors.ToList();
                 viewModel.Months = _context.Months.ToList();
+                viewModel.Regions = _context.Regions.ToList();
 
                 return View("Create", viewModel);
             }
 
             var invoice = new ParticipationService
             {
-                MonthId=viewModel.Month,
+                SubcontractorId = viewModel.SubcontractorId,
+                MonthId = viewModel.Month,
+                RegionId = viewModel.Region,
                 PChildCare=viewModel.PChildCare,
                 PClothing=viewModel.PClothing,
                 PEducationAssistance=viewModel.PEducationAssistance,

@@ -11,6 +11,8 @@ namespace Alliance_for_Life.ViewModels
 {
     public class AdminCostsViewModel
     {
+        public int SubcontractorId { get; set; }
+        public IEnumerable<SubContractor> Subcontractors { get; set; }
 
         [Required]
         public int Month { get; set; }

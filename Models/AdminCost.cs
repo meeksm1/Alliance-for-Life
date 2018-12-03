@@ -53,8 +53,12 @@ namespace Alliance_for_Life.Models
 
         public Month Month { get; set; }
 
+        public SubContractor Subcontractor { get; set; }
+
         public int RegionId { get; set; }
         public int MonthId { get; set; }
+        public int SubcontractorId { get; set; }
+
 
 
     }

@@ -1,15 +1,15 @@
 ﻿using Alliance_for_Life.Models;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
 
 namespace Alliance_for_Life.ViewModels
 
 {
     public class ParticipationServicesViewModel
     {
+        public int SubcontractorId { get; set; }
+        public IEnumerable<SubContractor> Subcontractors { get; set; }
+
         [Display(Name = "Transportation")]
         public int PTranspotation { get; set; }
 
@@ -59,5 +59,10 @@ namespace Alliance_for_Life.ViewModels
         public int Month { get; set; }
 
         public IEnumerable<Month> Months { get; set; }
+
+        [Required]
+        public int Region { get; set; }
+
+        public IEnumerable<Region> Regions { get; set; }
     }
 }
