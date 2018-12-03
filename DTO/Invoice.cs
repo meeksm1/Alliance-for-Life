@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Alliance_for_Life.Models
 {
@@ -8,23 +9,31 @@ namespace Alliance_for_Life.Models
 
         public string OrgName { get; set; }
 
+        [UIHint("Currency")]
         public decimal DirectAdminCost { get; set; }
 
-        public double ParticipantServices { get; set; }
+        [UIHint("Currency")]
+        public decimal ParticipantServices { get; set; }
 
-        public double GrandTotal { get; set; }
+        [UIHint("Currency")]
+        public decimal GrandTotal { get; set; }
+
 
         public double LessManagementFee { get; set; }
 
-        public double DepositAmount { get; set; }
+        [UIHint("Currency")]
+        public decimal DepositAmount { get; set; }
 
-        public double BeginningAllocation { get; set; }
+        [UIHint("Currency")]
+        public decimal BeginningAllocation { get; set; }
 
-        public double AdjustedAllocation { get; set; }
+        [UIHint("Currency")]
+        public decimal AdjustedAllocation { get; set; }
 
         public DateTime BillingDate { get; set; }
 
-        public double BalanceRemaining { get; set; }
+        [UIHint("Currency")]
+        public decimal BalanceRemaining { get; set; }
 
     }
 }
