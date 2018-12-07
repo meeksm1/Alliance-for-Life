@@ -1,0 +1,113 @@
+﻿@model Alliance_for_Life.ViewModels.ParticipationServicesViewModel
+
+@{
+    ViewBag.Title = Model.Heading;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Model.Heading</h2>
+@using (Html.BeginForm(Model.Action, "ParticipationServices"))
+
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.SubcontractorId)
+        @Html.DropDownListFor(m => m.SubcontractorId, new SelectList(Model.Subcontractors, "SubcontractorId", "OrgName"), "", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.SubcontractorId)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Month)
+        @Html.DropDownListFor(m => m.Month, new SelectList(Model.Months, "Id", "Months"), "", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Month)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Region)
+        @Html.DropDownListFor(m => m.Region, new SelectList(Model.Regions, "Id", "Regions"), "", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Region)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.PTranspotation)
+        @Html.TextBoxFor(m => m.PTranspotation, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.PTranspotation)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.PJobTrain)
+        @Html.TextBoxFor(m => m.PJobTrain, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.PJobTrain)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.PEducationAssistance)
+        @Html.TextBoxFor(m => m.PEducationAssistance, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.PEducationAssistance)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.PResidentialCare)
+        @Html.TextBoxFor(m => m.PResidentialCare, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.PResidentialCare)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.PUtilities)
+        @Html.TextBoxFor(m => m.PUtilities, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.PUtilities)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.PHousingEmergency)
+        @Html.TextBoxFor(m => m.PHousingEmergency, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.PHousingEmergency)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.PHousingAssistance)
+        @Html.TextBoxFor(m => m.PHousingAssistance, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.PHousingAssistance)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.PChildCare)
+        @Html.TextBoxFor(m => m.PChildCare, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.PChildCare)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.PClothing)
+        @Html.TextBoxFor(m => m.PClothing, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.PClothing)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.PFood)
+        @Html.TextBoxFor(m => m.PFood, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.PFood)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.PSupplies)
+        @Html.TextBoxFor(m => m.PSupplies, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.PSupplies)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.POther)
+        @Html.TextBoxFor(m => m.POther, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.POther)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.POther2)
+        @Html.TextBoxFor(m => m.POther2, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.POther2)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.POther3)
+        @Html.TextBoxFor(m => m.POther3, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.POther3)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.PTotals)
+        @Html.TextBoxFor(m => m.PTotals, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.PTotals)
+    </div>
+
+    <button type="submit" class="btn btn-primary">Create Invoice</button>
+}
+
+@section scripts
+    {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/MyScripts.js"></script>
+}
+

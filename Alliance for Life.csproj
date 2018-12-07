@@ -250,6 +250,7 @@
     <Compile Include="DTO\BudgetReport.cs" />
     <Compile Include="DTO\Invoice.cs" />
     <Compile Include="DTO\MIRReport.cs" />
+    <Compile Include="DTO\ParticipationServiceReport.cs" />
     <Compile Include="DTO\SubcontractorReport.cs" />
     <Compile Include="DTO\SurveyReport.cs" />
     <Compile Include="Global.asax.cs">
@@ -334,7 +335,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReportControllers\ClientListReportController.cs" />
     <Compile Include="ReportControllers\InvoicesController.cs" />
-    <Compile Include="ReportControllers\SurveyReportController.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\AddPhoneNumberViewModel.cs" />
     <Compile Include="ViewModels\AdminCostsViewModel.cs" />
@@ -673,7 +673,7 @@
     <Content Include="Views\AdminCosts\Reports.cshtml" />
     <Content Include="Views\BudgetCost\BudgetCostForm.cshtml" />
     <Content Include="Views\BudgetCost\Reports.cshtml" />
-    <Content Include="Views\ParticipationServices\Create.cshtml" />
+    <Content Include="Views\ParticipationServices\ParticipationServicesForm.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -731,7 +731,6 @@
     <Content Include="Views\Surveys\Details.cshtml" />
     <Content Include="Views\Surveys\Edit.cshtml" />
     <Content Include="Views\Surveys\Index.cshtml" />
-    <Content Include="Views\SurveyReport\Index.cshtml" />
     <Content Include="Views\ClientListReport\AllNonActiveClients.cshtml" />
     <Content Include="Views\ClientListReport\AllActiveClients.cshtml" />
     <Content Include="Views\Role\AssignRoleToUser.cshtml" />

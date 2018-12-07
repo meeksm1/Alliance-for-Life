@@ -7,17 +7,25 @@
 <h2>AFL Reports</h2>
 
 <ul>
+    <text><strong>Budget Reports</strong></text>
     <li><a href="@Url.Action("Reports", "BudgetCost")">Monthly Budget Reports</a></li>
     <li><a href="@Url.Action("FirstQuarterReports", "BudgetCost")">First Quarter Budget Reports</a></li>
     <li><a href="@Url.Action("SecondQuarterReports", "BudgetCost")">Second Quarter Budget Reports</a></li>
     <li><a href="@Url.Action("ThirdQuarterReports", "BudgetCost")">Third Quarter Budget Reports</a></li>
     <li><a href="@Url.Action("FourthQuarterReports", "BudgetCost")">Fourth Quarter Budget Reports</a></li>
+    <br />
+    <text><strong>Client Reports</strong></text>
     <li><a href="@Url.Action("AllActiveClients", "ClientListReport")">All Active Client Report</a></li>
     <li><a href="@Url.Action("AllNonActiveClients", "ClientListReport")">All Non-Active Client Report</a></li>
+    <br />
+    <text><strong>Other Reports</strong></text>
     <li><a href="@Url.Action("Reports", "SubContractor")">Subcontractor Reports</a></li>
     <li><a href="@Url.Action("Reports", "ResidentialMIR")">Residential MIR Reports</a></li>
     <li><a href="@Url.Action("Reports", "NonResidentialMIR")">Non-Residential MIR Reports</a></li>
-    <li><a href="@Url.Action("Reports", "AdminCosts")">Administrator Cost Reports</a></li>
-    <li><a href="@Url.Action("Index", "Invoices")">Invoices</a></li>
+    <li><a href="@Url.Action("Reports", "AdminCosts")">Subcontrator Monthly Admin Cost Reports</a></li>
+    <li><a href="@Url.Action("Reports", "AdminCosts")">Subcontractor Participation Cost Reports</a></li>
+    <br />
+    <text><strong>Surveys</strong></text>
+    <li><a href="@Url.Action("Index", "Surveys")">Completed Surveys</a></li>
 </ul>
 

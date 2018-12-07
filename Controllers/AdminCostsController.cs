@@ -1,8 +1,6 @@
 ﻿using Alliance_for_Life.Models;
 using Alliance_for_Life.ViewModels;
 using ClosedXML.Excel;
-using Microsoft.AspNet.Identity;
-using System;
 using System.Data;
 using System.IO;
 using System.Linq;
@@ -23,37 +21,11 @@ namespace Alliance_for_Life.Controllers
             return View(_context.AdminCosts.ToList());
         }
 
-
-        public ActionResult Invoice()
-        {
-            var user1 = User.Identity.GetUserId();
-            var invoice = from a in _context.AdminCosts
-                        join p in _context.ParticipationServices on a.SubcontractorId equals p.SubcontractorId
-                        join s in _context.SubContractors on a.SubcontractorId equals s.SubcontractorId
-                        join u in _context.Users on s.SubcontractorId equals u.SubcontractorId
-                        where u.Id == user1
-                          select new Invoice
-                        {
-                            OrgName = s.OrgName,
-                            DirectAdminCost = a.ATotCosts,
-                            ParticipantServices = p.PTotals,
-                            GrandTotal = a.ATotCosts + p.PTotals,
-                            LessManagementFee = (a.ATotCosts + p.PTotals) * .03,
-                            BeginningAllocation = s.AllocatedContractAmount,
-                            AdjustedAllocation = s.AllocatedAdjustments,
-                            BillingDate = DateTime.Today,
-                            BalanceRemaining = s.AllocatedContractAmount - s.AllocatedAdjustments
-                        };
-
-            return View(invoice);
-        }
-
         public ActionResult Reports()
         {
             var costs = from a in _context.AdminCosts
                         join m in _context.Months on a.MonthId equals m.Id
                         join r in _context.Regions on a.RegionId equals r.Id
-                        where a.AdminCostId > 0
                         select new AdminReport
                         {
                             AdminCostId = a.AdminCostId,
@@ -72,7 +44,6 @@ namespace Alliance_for_Life.Controllers
             var costs = from a in _context.AdminCosts
                         join m in _context.Months on a.MonthId equals m.Id
                         join r in _context.Regions on a.RegionId equals r.Id
-                        where a.AdminCostId > 0
                         select new AdminReport
                         {
                             AdminCostId = a.AdminCostId,
@@ -93,7 +64,7 @@ namespace Alliance_for_Life.Controllers
                 Subcontractors = _context.SubContractors.ToList(),
                 Regions = _context.Regions.ToList(),
                 Months = _context.Months.ToList(),
-                Heading = "Direct Administrative Costs"
+                Heading = "Budgeted Administrative Costs"
             };
             return View("AdminCostsForm", viewModel);
         }
