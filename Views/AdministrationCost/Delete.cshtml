@@ -1,0 +1,209 @@
+﻿@model Alliance_for_Life.Models.AdminCosts
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>AdminCosts</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Month.Months)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Month.Months)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Region.Regions)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Region.Regions)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Subcontractor.AdministratorId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Subcontractor.AdministratorId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ASalandWages)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ASalandWages)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AEmpBenefits)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AEmpBenefits)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AEmpTravel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AEmpTravel)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AEmpTraining)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AEmpTraining)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AOfficeRent)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AOfficeRent)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AOfficeUtilities)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AOfficeUtilities)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AFacilityIns)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AFacilityIns)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AOfficeSupplies)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AOfficeSupplies)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AEquipment)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AEquipment)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AOfficeCommunications)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AOfficeCommunications)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AOfficeMaint)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AOfficeMaint)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AConsulting)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AConsulting)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AJanitorServices)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AJanitorServices)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ADepreciation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ADepreciation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ATechSupport)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ATechSupport)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ASecurityServices)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ASecurityServices)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AOther)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AOther)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AOther2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AOther2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AOther3)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AOther3)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ATotCosts)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ATotCosts)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

@@ -60,6 +60,9 @@
             <td>
                 <div class="due">@budgets.Maxtot.ToString("C")</div>
             </td>
+            <td>
+                <a href="@Html.Action("Edit", "BudgetCost", new { id = budgets.BudgetInvoiceId })">Edit</a>
+            </td>
         </tr>
     }
     <tr></tr>

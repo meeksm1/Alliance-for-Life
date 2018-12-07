@@ -1,0 +1,207 @@
+﻿@model Alliance_for_Life.Models.AdminCosts
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>AdminCosts</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Organization
+        </dt>
+
+        <dd>
+            @Model.Subcontractor.OrgName
+        </dd>
+        <dt>
+            Month
+        </dt>
+
+        <dd>
+            @Model.Month.Months
+        </dd>
+
+        <dt>
+            Region
+        </dt>
+
+        <dd>
+            @Model.Region.Regions
+        </dd>
+
+        <dt>
+            Salaries and Wages
+        </dt>
+
+        <dd>
+            @Model.ASalandWages.ToString("C")
+        </dd>
+
+        <dt>
+            Employee Benefits
+        </dt>
+
+        <dd>
+            @Model.AEmpBenefits.ToString("C")
+        </dd>
+
+        <dt>
+            Employee Travel
+        </dt>
+
+        <dd>
+            @Model.AEmpTravel.ToString("C")
+        </dd>
+
+        <dt>
+            Employee Training
+        </dt>
+
+        <dd>
+            @Model.AEmpTraining.ToString("C")
+        </dd>
+
+        <dt>
+            Office Rent
+        </dt>
+
+        <dd>
+            @Model.AOfficeRent.ToString("C")
+        </dd>
+
+        <dt>
+            Office Utilities
+        </dt>
+
+        <dd>
+            @Model.AOfficeUtilities.ToString("C")
+        </dd>
+
+        <dt>
+            Facility Insurance
+        </dt>
+
+        <dd>
+            @Model.AFacilityIns.ToString("C")
+        </dd>
+
+        <dt>
+            Office Supplies
+        </dt>
+
+        <dd>
+            @Model.AOfficeSupplies.ToString("C")
+        </dd>
+
+        <dt>
+            Equipment
+        </dt>
+
+        <dd>
+            @Model.AEquipment.ToString("C")
+        </dd>
+
+        <dt>
+           Office Communications
+        </dt>
+
+        <dd>
+            @Model.AOfficeCommunications.ToString("C")
+        </dd>
+
+        <dt>
+            Office Maintenance
+        </dt>
+
+        <dd>
+            @Model.AOfficeMaint.ToString("C")
+        </dd>
+
+        <dt>
+            Consulting Fees
+        </dt>
+
+        <dd>
+            @Model.AConsulting.ToString("C")
+        </dd>
+
+        <dt>
+            Janitor Services
+        </dt>
+
+        <dd>
+            @Model.AJanitorServices.ToString("C")
+        </dd>
+
+        <dt>
+            Depreciation
+        </dt>
+
+        <dd>
+            @Model.ADepreciation.ToString("C")
+        </dd>
+
+        <dt>
+            Technical Support
+        </dt>
+
+        <dd>
+            @Model.ATechSupport.ToString("C")
+        </dd>
+
+        <dt>
+            Security Services
+        </dt>
+
+        <dd>
+            @Model.ASecurityServices.ToString("C")
+        </dd>
+
+        <dt>
+            Other
+        </dt>
+
+        <dd>
+            @Model.AOther.ToString("C")
+        </dd>
+
+        <dt>
+            Other
+        </dt>
+
+        <dd>
+            @Model.AOther2.ToString("C")
+        </dd>
+
+        <dt>
+            Other
+        </dt>
+
+        <dd>
+            @Model.AOther3.ToString("C")
+        </dd>
+
+        <dt>
+            Total Costs
+        </dt>
+
+        <dd>
+            @Model.ATotCosts.ToString("C")
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.AdminCostId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+@using (Html.BeginForm("Export", "AdministrationCost", FormMethod.Post))
+{
+    <input type="submit" value="Export to Excel" class="btn-primary" />
+}

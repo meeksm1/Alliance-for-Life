@@ -27,6 +27,8 @@ namespace Alliance_for_Life.Models
             return new ApplicationDbContext();
         }
 
+        public System.Data.Entity.DbSet<Alliance_for_Life.ViewModels.BudgetCostViewModel> BudgetCostViewModels { get; set; }
+
         //protected override void OnModelCreating(DbModelBuilder modelBuilder)
         //{
         //    modelBuilder.Entity<ClientList>()
