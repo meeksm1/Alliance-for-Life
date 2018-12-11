@@ -109,3 +109,4 @@ C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\obj\Debug\Alli
 C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\obj\Debug\Alliance for Life.csproj.GenerateResource.Cache
 C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\obj\Debug\Alliance for Life.dll
 C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\obj\Debug\Alliance for Life.pdb
+C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\obj\Debug\Alliance_for_Life.Migrations.CreateBudgetTable1.resources

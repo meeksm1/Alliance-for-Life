@@ -112,7 +112,12 @@ namespace Alliance_for_Life.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            AdminCosts adminCosts = db.AdminCosts.Find(id);
+            AdminCosts adminCosts = db.AdminCosts
+                .Include(a => a.Month)
+                .Include(a => a.Region)
+                .Include(a => a.Subcontractor)
+                .SingleOrDefault(a => a.AdminCostId == id);
+
             if (adminCosts == null)
             {
                 return HttpNotFound();
@@ -125,7 +130,12 @@ namespace Alliance_for_Life.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            AdminCosts adminCosts = db.AdminCosts.Find(id);
+            AdminCosts adminCosts = db.AdminCosts
+                .Include(a => a.Month)
+                .Include(a => a.Region)
+                .Include(a => a.Subcontractor)
+                .SingleOrDefault(a => a.AdminCostId == id);
+
             db.AdminCosts.Remove(adminCosts);
             db.SaveChanges();
             return RedirectToAction("Index");

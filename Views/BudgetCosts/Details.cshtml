@@ -1,0 +1,353 @@
+﻿@model Alliance_for_Life.Models.BudgetCosts
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style type="text/css" media="print">
+    {
+        resize: both;
+        margin: 0mm;  /* this affects the margin in the printer settings */
+    }
+
+    html
+    {
+        background-color: #FFFFFF;
+        margin: 1.5px;  /* this affects the margin on the html before sending to printer */
+    }
+
+    body
+    {
+        margin: 10mm 15mm 10mm 15mm; /* margin you want for the content */
+    }
+    footer{
+        display: none;
+    }
+    p{
+        display: none;
+    }
+    header{
+        display: none;
+    }
+    input{
+        display: none;
+    }
+</style>
+<h2>Details</h2>
+
+<div>
+    <h4>BudgetCosts</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Organization
+        </dt>
+        <dd>
+            @Model.Subcontractor.OrgName
+        </dd>
+        <dt>
+            Month
+        </dt>
+
+        <dd>
+            @Model.Month.Months
+        </dd>
+
+        <dt>
+            Region
+        </dt>
+
+        <dd>
+            @Model.Region.Regions
+        </dd>
+
+        <dt>
+            Salaries or Wages
+        </dt>
+
+        <dd>
+            @Model.ASalandWages.ToString("C")
+        </dd>
+
+        <dt>
+            Employee Benefits
+        </dt>
+
+        <dd>
+            @Model.AEmpBenefits.ToString("C")
+        </dd>
+
+        <dt>
+            Employee Travel
+        </dt>
+
+        <dd>
+            @Model.AEmpTravel.ToString("C")
+        </dd>
+
+        <dt>
+            Employee Training
+        </dt>
+
+        <dd>
+            @Model.AEmpTraining.ToString("C")
+        </dd>
+
+        <dt>
+            Office Rent
+        </dt>
+
+        <dd>
+            @Model.AOfficeRent.ToString("C")
+        </dd>
+
+        <dt>
+            Office Utilities
+        </dt>
+
+        <dd>
+            @Model.AOfficeUtilities.ToString("C")
+        </dd>
+
+        <dt>
+            Facility Insurance
+        </dt>
+
+        <dd>
+            @Model.AFacilityIns.ToString("C")
+        </dd>
+
+        <dt>
+            Office Supplies
+        </dt>
+
+        <dd>
+            @Model.AOfficeSupplies.ToString("C")
+        </dd>
+
+        <dt>
+            Equipment
+        </dt>
+
+        <dd>
+            @Model.AEquipment.ToString("C")
+        </dd>
+
+        <dt>
+            Office Communications
+        </dt>
+
+        <dd>
+            @Model.AOfficeCommunications.ToString("C")
+        </dd>
+
+        <dt>
+            Office Maintenance
+        </dt>
+
+        <dd>
+            @Model.AOfficeMaint.ToString("C")
+        </dd>
+
+        <dt>
+            Consulting Fees
+        </dt>
+
+        <dd>
+            @Model.AConsulting.ToString("C")
+        </dd>
+
+        <dt>
+            EFT Fees
+        </dt>
+
+        <dd>
+            @Model.SubConPayCost.ToString("C")
+        </dd>
+
+        <dt>
+            Background Check
+        </dt>
+
+        <dd>
+            @Model.BackgrounCheck.ToString("C")
+        </dd>
+
+        <dt>
+            Other
+        </dt>
+
+        <dd>
+            @Model.Other.ToString("C")
+        </dd>
+
+        <dt>
+            Janitorial Services
+        </dt>
+
+        <dd>
+            @Model.AJanitorServices.ToString("C")
+        </dd>
+
+        <dt>
+            Depreciation
+        </dt>
+
+        <dd>
+            @Model.ADepreciation.ToString("C")
+        </dd>
+
+        <dt>
+            Technical Support
+        </dt>
+
+        <dd>
+            @Model.ATechSupport.ToString("C")
+        </dd>
+
+        <dt>
+            Security Services
+        </dt>
+
+        <dd>
+            @Model.ASecurityServices.ToString("C")
+        </dd>
+
+        <dt>
+            Admininstration Totals
+        </dt>
+
+        <dd>
+            @Model.ATotCosts.ToString("C")
+        </dd>
+
+        <dt>
+            Administration Fee
+        </dt>
+
+        <dd>
+            @Model.AdminFee.ToString("C")
+        </dd>
+
+        <dt>
+            Transportation
+        </dt>
+
+        <dd>
+            @Model.Trasportation.ToString("C")
+        </dd>
+
+        <dt>
+            Job Training
+        </dt>
+
+        <dd>
+            @Model.JobTraining.ToString("C")
+        </dd>
+
+        <dt>
+            Tuition Assistance
+        </dt>
+
+        <dd>
+            @Model.TuitionAssistance.ToString("C")
+        </dd>
+
+        <dt>
+            Contracted Residential Care
+        </dt>
+
+        <dd>
+            @Model.ContractedResidential.ToString("C")
+        </dd>
+
+        <dt>
+            Utility Assistance
+        </dt>
+
+        <dd>
+            @Model.UtilityAssistance.ToString("C")
+        </dd>
+
+        <dt>
+            Emergency Shelter
+        </dt>
+
+        <dd>
+            @Model.EmergencyShelter.ToString("C")
+        </dd>
+
+        <dt>
+            Housing Assistance
+        </dt>
+
+        <dd>
+            @Model.HousingAssistance.ToString("C")
+        </dd>
+
+        <dt>
+            Childcare
+        </dt>
+
+        <dd>
+            @Model.Childcare.ToString("C")
+        </dd>
+
+        <dt>
+            Clothing
+        </dt>
+
+        <dd>
+            @Model.Clothing.ToString("C")
+        </dd>
+
+        <dt>
+            Food
+        </dt>
+
+        <dd>
+            @Model.Food.ToString("C")
+        </dd>
+
+        <dt>
+            Supplies
+        </dt>
+
+        <dd>
+            @Model.Supplies.ToString("C")
+        </dd>
+
+        <dt>
+            RFO Costs
+        </dt>
+
+        <dd>
+            @Model.RFO.ToString("C")
+        </dd>
+
+        <dt>
+            Participation Total Costs
+        </dt>
+
+        <dd>
+            @Model.BTotal.ToString("C")
+        </dd>
+
+        <dt>
+            Direct and Participation Total Costs
+        </dt>
+
+        <dd>
+            @Model.Maxtot.ToString("C")
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.BudgetInvoiceId }) |
+    @Html.ActionLink("Back to List", "Index")|
+    <a href="javascript:window.print()">Print Invoice</a>
+</p>
+@using (Html.BeginForm("Export", "BudgetCosts", FormMethod.Post))
+    {
+<input type="submit" value="Export to Excel" class="btn btn-primary" />
+    }

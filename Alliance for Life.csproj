@@ -235,7 +235,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdministrationCostController.cs" />
     <Compile Include="Controllers\AFLFormController.cs" />
-    <Compile Include="Controllers\BudgetCostController.cs" />
+    <Compile Include="Controllers\BudgetCostsController.cs" />
     <Compile Include="Controllers\ClientListController.cs" />
     <Compile Include="Controllers\ContractorFormController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -315,6 +315,10 @@
     <Compile Include="Migrations\201811261544362_Createcascadepaths.cs" />
     <Compile Include="Migrations\201811261544362_Createcascadepaths.Designer.cs">
       <DependentUpon>201811261544362_Createcascadepaths.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812101758180_CreateBudgetTable1.cs" />
+    <Compile Include="Migrations\201812101758180_CreateBudgetTable1.Designer.cs">
+      <DependentUpon>201812101758180_CreateBudgetTable1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AdminCost.cs" />
@@ -669,8 +673,11 @@
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
     <None Include="Scripts\_references.js" />
-    <Content Include="Views\BudgetCost\BudgetCostForm.cshtml" />
-    <Content Include="Views\BudgetCost\Reports.cshtml" />
+    <Content Include="Views\BudgetCosts\Create.cshtml" />
+    <Content Include="Views\BudgetCosts\Delete.cshtml" />
+    <Content Include="Views\BudgetCosts\Details.cshtml" />
+    <Content Include="Views\BudgetCosts\Edit.cshtml" />
+    <Content Include="Views\BudgetCosts\Index.cshtml" />
     <Content Include="Views\ParticipationServices\ParticipationServicesForm.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -740,10 +747,6 @@
     <Content Include="Views\SubContractor\Reports.cshtml" />
     <Content Include="Views\ResidentialMIR\Reports.cshtml" />
     <Content Include="Views\NonResidentialMIR\Reports.cshtml" />
-    <Content Include="Views\BudgetCost\SecondQuarterReports.cshtml" />
-    <Content Include="Views\BudgetCost\FirstQuarterReports.cshtml" />
-    <Content Include="Views\BudgetCost\ThirdQuarterReports.cshtml" />
-    <Content Include="Views\BudgetCost\FourthQuarterReports.cshtml" />
     <Content Include="Views\Shared\_LayoutWord.cshtml" />
     <Content Include="Views\Invoices\Create.cshtml" />
     <Content Include="Views\Invoices\Delete.cshtml" />
@@ -756,6 +759,7 @@
     <Content Include="Views\AdministrationCost\Details.cshtml" />
     <Content Include="Views\AdministrationCost\Edit.cshtml" />
     <Content Include="Views\AdministrationCost\Index.cshtml" />
+    <Content Include="Views\BudgetCosts\FirstQuarter.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -820,6 +824,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201811261544362_Createcascadepaths.resx">
       <DependentUpon>201811261544362_Createcascadepaths.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812101758180_CreateBudgetTable1.resx">
+      <DependentUpon>201812101758180_CreateBudgetTable1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
