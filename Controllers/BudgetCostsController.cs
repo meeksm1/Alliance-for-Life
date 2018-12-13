@@ -1,5 +1,4 @@
 ﻿using Alliance_for_Life.Models;
-using Alliance_for_Life.ViewModels;
 using ClosedXML.Excel;
 using System.Data;
 using System.Data.Entity;
@@ -31,6 +30,42 @@ namespace Alliance_for_Life.Controllers
                 //.Where(b => b.User.SubcontractorId == b.SubcontractorId)
                 .Where(b => b.MonthId >= 1 && b.MonthId <= 3);
                 return View(budgetCosts.ToList());    
+        }
+
+        public ActionResult SecondQuarter()
+        {
+            var budgetCosts = db.BudgetCosts
+            .Include(b => b.Month)
+            .Include(b => b.Region)
+            .Include(b => b.Subcontractor)
+            .Include(b => b.User)
+            //.Where(b => b.User.SubcontractorId == b.SubcontractorId)
+            .Where(b => b.MonthId >= 4 && b.MonthId <= 6);
+            return View(budgetCosts.ToList());
+        }
+
+        public ActionResult ThirdQuarter()
+        {
+            var budgetCosts = db.BudgetCosts
+            .Include(b => b.Month)
+            .Include(b => b.Region)
+            .Include(b => b.Subcontractor)
+            .Include(b => b.User)
+            //.Where(b => b.User.SubcontractorId == b.SubcontractorId)
+            .Where(b => b.MonthId >= 7 && b.MonthId <= 9);
+            return View(budgetCosts.ToList());
+        }
+
+        public ActionResult FourthQuarter()
+        {
+            var budgetCosts = db.BudgetCosts
+            .Include(b => b.Month)
+            .Include(b => b.Region)
+            .Include(b => b.Subcontractor)
+            .Include(b => b.User)
+            //.Where(b => b.User.SubcontractorId == b.SubcontractorId)
+            .Where(b => b.MonthId >= 10 && b.MonthId <= 12);
+            return View(budgetCosts.ToList());
         }
 
         // GET: BudgetCosts/Details/5
@@ -152,13 +187,6 @@ namespace Alliance_for_Life.Controllers
             db.BudgetCosts.Remove(budgetCosts);
             db.SaveChanges();
             return RedirectToAction("Index");
-        }
-
-        [WordDocument]
-        public ActionResult Print()
-        {
-            ViewBag.WordDocumentFilename = "Invoice";
-            return View("Details");
         }
 
         protected override void Dispose(bool disposing)

@@ -5,14 +5,13 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+<h2>Invoice Details</h2>
 
 <table class="table">
     <tr>
+        <th>
+
+        </th>
         <th>
             Organization
         </th>
@@ -57,6 +56,9 @@
     {
         <tr>
             <td>
+                @Html.ActionLink("Details", "Details", new { id = invoice.InvoiceId })
+            </td>
+            <td>
                 <div class="clientid">@invoice.OrgName</div>
             </td>
             <td>
@@ -93,12 +95,6 @@
             <td>
                 <div class="due">@invoice.BalanceRemaining.ToString("C")</div>
             </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = invoice.InvoiceId }) |
-                @Html.ActionLink("Details", "Details", new { id = invoice.InvoiceId }) |
-                @Html.ActionLink("Delete", "Delete", new { id = invoice.InvoiceId })|
-            </td>
         </tr>
     }
-    <tr></tr>
 </table>

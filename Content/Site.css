@@ -59,6 +59,10 @@ span.field-validation-error {
     border-top-color: #fff;
     border-bottom-color: #fff;
 }
+.navbar-header {
+    margin: 0;
+    display: none;
+}
 
 body,
 h1,
@@ -174,3 +178,4 @@ font-size: 14px;
     border-radius: 4px;
     font-size: 14px;
 }
+

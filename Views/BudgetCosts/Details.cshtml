@@ -4,35 +4,7 @@
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<style type="text/css" media="print">
-    {
-        resize: both;
-        margin: 0mm;  /* this affects the margin in the printer settings */
-    }
 
-    html
-    {
-        background-color: #FFFFFF;
-        margin: 1.5px;  /* this affects the margin on the html before sending to printer */
-    }
-
-    body
-    {
-        margin: 10mm 15mm 10mm 15mm; /* margin you want for the content */
-    }
-    footer{
-        display: none;
-    }
-    p{
-        display: none;
-    }
-    header{
-        display: none;
-    }
-    input{
-        display: none;
-    }
-</style>
 <h2>Details</h2>
 
 <div>
@@ -344,8 +316,8 @@
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.BudgetInvoiceId }) |
-    @Html.ActionLink("Back to List", "Index")|
-    <a href="javascript:window.print()">Print Invoice</a>
+    @Html.ActionLink("Delete", "Delete", new { id = Model.BudgetInvoiceId })|
+    @Html.ActionLink("Back to List", "Index")
 </p>
 @using (Html.BeginForm("Export", "BudgetCosts", FormMethod.Post))
     {

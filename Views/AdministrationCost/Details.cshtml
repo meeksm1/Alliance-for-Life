@@ -198,8 +198,8 @@
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.AdminCostId }) |
-    @Html.ActionLink("Back to List", "Index")|
-    <a href="javascript:window.print()">Print Invoice</a>
+    @Html.ActionLink("Delete", "Delete", new { id = Model.AdminCostId })|
+    @Html.ActionLink("Back to List", "Index")
 </p>
 
 @using (Html.BeginForm("Export", "AdministrationCost", FormMethod.Post))

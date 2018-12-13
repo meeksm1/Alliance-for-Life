@@ -13,6 +13,9 @@
 <table class="table">
     <tr>
         <th>
+
+        </th>
+        <th>
             Organization
         </th>
         <th>
@@ -87,6 +90,9 @@
 @foreach (var item in Model) {
     <tr>
         <td>
+            @Html.ActionLink("Details", "Details", new { id = item.AdminCostId })
+        </td>
+        <td>
             @item.Subcontractor.OrgName
         </td>
         <td>
@@ -155,11 +161,7 @@
         <td>
             @item.ATotCosts.ToString("C")
         </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.AdminCostId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.AdminCostId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.AdminCostId })
-        </td>
+        
     </tr>
 }
 

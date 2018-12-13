@@ -760,6 +760,9 @@
     <Content Include="Views\AdministrationCost\Edit.cshtml" />
     <Content Include="Views\AdministrationCost\Index.cshtml" />
     <Content Include="Views\BudgetCosts\FirstQuarter.cshtml" />
+    <Content Include="Views\BudgetCosts\SecondQuarter.cshtml" />
+    <Content Include="Views\BudgetCosts\FourthQuarter.cshtml" />
+    <Content Include="Views\BudgetCosts\ThirdQuarter.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
