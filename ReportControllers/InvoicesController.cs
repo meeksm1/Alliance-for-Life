@@ -17,6 +17,10 @@ namespace Alliance_for_Life.ReportControllers
             return View(db.Invoices.ToList());
         }
 
+        //public ActionResult SubIndex()
+        //{
+        //    return View(db.Invoices.ToList());
+        //}
         // GET: Invoices/Details/5
         public ActionResult Details(int? id)
         {

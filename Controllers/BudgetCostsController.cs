@@ -20,6 +20,15 @@ namespace Alliance_for_Life.Controllers
             return View(budgetCosts.ToList());
         }
 
+        public ActionResult AExpenseVSBExpense()
+        {
+            var expensereport = db.BudgetCosts
+                .Include(b => b.AdminCost)
+                .Include(b => b.ParticipationCost);
+
+            return View(expensereport.ToList());
+        }
+
         public ActionResult FirstQuarter()
         {
                 var budgetCosts = db.BudgetCosts
@@ -27,8 +36,9 @@ namespace Alliance_for_Life.Controllers
                 .Include(b => b.Region)
                 .Include(b => b.Subcontractor)
                 .Include(b => b.User)
-                //.Where(b => b.User.SubcontractorId == b.SubcontractorId)
+                //.Where(b => b.User.Id == b.Subcontractor.AdministratorId)
                 .Where(b => b.MonthId >= 1 && b.MonthId <= 3);
+
                 return View(budgetCosts.ToList());    
         }
 
@@ -39,7 +49,7 @@ namespace Alliance_for_Life.Controllers
             .Include(b => b.Region)
             .Include(b => b.Subcontractor)
             .Include(b => b.User)
-            //.Where(b => b.User.SubcontractorId == b.SubcontractorId)
+            //.Where(b => b.User.Id == b.Subcontractor.AdministratorId)
             .Where(b => b.MonthId >= 4 && b.MonthId <= 6);
             return View(budgetCosts.ToList());
         }
@@ -51,7 +61,7 @@ namespace Alliance_for_Life.Controllers
             .Include(b => b.Region)
             .Include(b => b.Subcontractor)
             .Include(b => b.User)
-            //.Where(b => b.User.SubcontractorId == b.SubcontractorId)
+            //.Where(b => b.User.Id == b.Subcontractor.AdministratorId)
             .Where(b => b.MonthId >= 7 && b.MonthId <= 9);
             return View(budgetCosts.ToList());
         }
@@ -63,7 +73,7 @@ namespace Alliance_for_Life.Controllers
             .Include(b => b.Region)
             .Include(b => b.Subcontractor)
             .Include(b => b.User)
-            //.Where(b => b.User.SubcontractorId == b.SubcontractorId)
+            //.Where(b => b.User.Id == b.Subcontractor.AdministratorId)
             .Where(b => b.MonthId >= 10 && b.MonthId <= 12);
             return View(budgetCosts.ToList());
         }

@@ -241,12 +241,13 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\NonResidentialMIRController.cs" />
-    <Compile Include="Controllers\ParticipationServicesController.cs" />
+    <Compile Include="Controllers\ParticipationCostController.cs" />
     <Compile Include="Controllers\ResidentialMIRController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\SubContractorController.cs" />
     <Compile Include="Controllers\SurveysController.cs" />
     <Compile Include="DTO\AdminReport.cs" />
+    <Compile Include="DTO\AExpenseVsBExpense.cs" />
     <Compile Include="DTO\BudgetReport.cs" />
     <Compile Include="DTO\Invoice.cs" />
     <Compile Include="DTO\MIRReport.cs" />
@@ -678,7 +679,6 @@
     <Content Include="Views\BudgetCosts\Details.cshtml" />
     <Content Include="Views\BudgetCosts\Edit.cshtml" />
     <Content Include="Views\BudgetCosts\Index.cshtml" />
-    <Content Include="Views\ParticipationServices\ParticipationServicesForm.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -763,6 +763,12 @@
     <Content Include="Views\BudgetCosts\SecondQuarter.cshtml" />
     <Content Include="Views\BudgetCosts\FourthQuarter.cshtml" />
     <Content Include="Views\BudgetCosts\ThirdQuarter.cshtml" />
+    <Content Include="Views\ParticipationCost\Create.cshtml" />
+    <Content Include="Views\ParticipationCost\Delete.cshtml" />
+    <Content Include="Views\ParticipationCost\Details.cshtml" />
+    <Content Include="Views\ParticipationCost\Edit.cshtml" />
+    <Content Include="Views\ParticipationCost\Index.cshtml" />
+    <Content Include="Views\BudgetCosts\AExpenseVSBExpense.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

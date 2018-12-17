@@ -1,10 +1,6 @@
-﻿using Alliance_for_Life.Controllers;
-using Alliance_for_Life.Models;
-using System;
+﻿using Alliance_for_Life.Models;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq.Expressions;
-using System.Web.Mvc;
 
 namespace Alliance_for_Life.ViewModels
 
@@ -55,25 +51,6 @@ namespace Alliance_for_Life.ViewModels
 
         [Display(Name = "Participation Totals")]
         public int PTotals { get; set; }
-
-        //used to set the heading of the page
-        public string Heading { get; set; }
-
-        public string Action
-        {
-            get
-            {
-                Expression<Func<ParticipationServicesController, ActionResult>> update =
-                    (c => c.Update(this));
-
-                Expression<Func<ParticipationServicesController, ActionResult>> create =
-                    (c => c.Create(this));
-
-                var action = (Month != 0 && Region != 0) ? update : create;
-                return (action.Body as MethodCallExpression).Method.Name;
-            }
-
-        }
 
         public int Id { get; internal set; }
 
