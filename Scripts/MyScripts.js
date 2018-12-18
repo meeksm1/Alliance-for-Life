@@ -1,6 +1,6 @@
 ﻿$(function () {
 
-    $("#TotA2AEnrollment,#TotA2ABedNights").keyup(function (e) {
+    jQuery("#TotA2AEnrollment,#TotA2ABedNights").keyup(function (e) {
 
         var q = $("#TotA2ABedNights").val();
         var p = $("#TotA2AEnrollment").val();
@@ -9,7 +9,7 @@
         if (q !== "" && p !== "" && $.isNumeric(q) && $.isNumeric(p)) {
             result = parseFloat(q) / parseFloat(p);
         }
-        $("#ma2apercent").val(result * 100);
+        jQuery("#ma2apercent").val(result * 100);
     });
 });
 
@@ -47,3 +47,4 @@ $(function () {
         $("#Maxtot").val(maxtot)
     });
 });
+

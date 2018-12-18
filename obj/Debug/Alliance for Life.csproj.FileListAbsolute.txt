@@ -1,3 +1,20 @@
+C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\obj\Debug\Alliance_for_Life.Migrations.CreateTables.resources
+C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\obj\Debug\Alliance_for_Life.Migrations.AddRegionsToTable.resources
+C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\obj\Debug\Alliance_for_Life.Migrations.PopulateMonthsTable.resources
+C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\obj\Debug\Alliance_for_Life.Migrations.UpdateSurveyProperties.resources
+C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\obj\Debug\Alliance_for_Life.Migrations.UpdateSurveyProperties1.resources
+C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\obj\Debug\Alliance_for_Life.Migrations.updatecolumnids.resources
+C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\obj\Debug\Alliance_for_Life.Migrations.RemoveClientAdminSubID.resources
+C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\obj\Debug\Alliance_for_Life.Migrations.UpdateRegistrationToOrgName.resources
+C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\obj\Debug\Alliance_for_Life.Migrations.addedUserNavProptoClientList.resources
+C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\obj\Debug\Alliance_for_Life.Migrations.AddForeignKeyPropertiestoCL.resources
+C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\obj\Debug\Alliance_for_Life.Migrations.RemoveForiegnKeyPropertiesFromCLTable.resources
+C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\obj\Debug\Alliance_for_Life.Migrations.DropClientListColumns.resources
+C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\obj\Debug\Alliance_for_Life.Migrations.CreateBudgetTable.resources
+C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\obj\Debug\Alliance_for_Life.Migrations.CreateAdminTable.resources
+C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\obj\Debug\Alliance_for_Life.Migrations.Createcascadepaths.resources
+C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\obj\Debug\Alliance_for_Life.Migrations.CreateBudgetTable1.resources
+C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\obj\Debug\Alliance for Life.csproj.GenerateResource.Cache
 C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\bin\ApplicationInsights.config
 C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\bin\roslyn\csc.exe
 C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
@@ -90,21 +107,8 @@ C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\bin\Microsoft.
 C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\bin\Microsoft.Owin.Security.Google.xml
 C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\bin\Microsoft.Owin.Security.Twitter.xml
 C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\obj\Debug\Alliance_for_Life.Migrations.CreateTables.resources
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\obj\Debug\Alliance_for_Life.Migrations.AddRegionsToTable.resources
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\obj\Debug\Alliance_for_Life.Migrations.PopulateMonthsTable.resources
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\obj\Debug\Alliance_for_Life.Migrations.UpdateSurveyProperties.resources
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\obj\Debug\Alliance_for_Life.Migrations.UpdateSurveyProperties1.resources
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\obj\Debug\Alliance_for_Life.Migrations.updatecolumnids.resources
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\obj\Debug\Alliance_for_Life.Migrations.RemoveClientAdminSubID.resources
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\obj\Debug\Alliance_for_Life.Migrations.UpdateRegistrationToOrgName.resources
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\obj\Debug\Alliance_for_Life.Migrations.addedUserNavProptoClientList.resources
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\obj\Debug\Alliance_for_Life.Migrations.AddForeignKeyPropertiestoCL.resources
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\obj\Debug\Alliance_for_Life.Migrations.RemoveForiegnKeyPropertiesFromCLTable.resources
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\obj\Debug\Alliance for Life.csproj.GenerateResource.Cache
 C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\obj\Debug\Alliance for Life.dll
 C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\obj\Debug\Alliance for Life.pdb
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\obj\Debug\Alliance_for_Life.Migrations.DropClientListColumns.resources
 C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\obj\Debug\Alliance for Life.csprojResolveAssemblyReference.cache
 C:\Users\Matt\Documents\GitHub\Alliance-for-Life\obj\Debug\Alliance for Life.dll
 C:\Users\Matt\Documents\GitHub\Alliance-for-Life\obj\Debug\Alliance for Life.pdb

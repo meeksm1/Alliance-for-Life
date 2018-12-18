@@ -22,6 +22,15 @@ namespace Alliance_for_Life.Controllers
             return View(viewModel);
         }
 
+        public ActionResult Reports()
+        {
+            var viewModel = new AFLFormViewModel
+            {
+
+            };
+            return View(viewModel);
+        }
+
         public ActionResult Index()
         {
             return View();

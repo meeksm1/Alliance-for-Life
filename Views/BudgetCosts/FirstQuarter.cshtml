@@ -1,0 +1,255 @@
+﻿@model IEnumerable<Alliance_for_Life.Models.BudgetCosts>
+
+@{
+    ViewBag.Title = "First Quarter Budget Costs Report";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>First Quarter Budget Costs Report</h2>
+
+<table class="table">
+    <tr>
+        <th>
+
+        </th>
+        <th>
+            Organization
+        </th>
+        <th>
+            Month
+        </th>
+        <th>
+            Region&nbsp;&nbsp;&nbsp;&nbsp;    
+        </th>
+        <th>
+            Salaries and Wages
+        </th>
+        <th>
+            Employee Benefits
+        </th>
+        <th>
+            Employee Travel
+        </th>
+        <th>
+            Employee Training
+        </th>
+        <th>
+            Office Rent
+        </th>
+        <th>
+            Office Utilities
+        </th>
+        <th>
+            Facility Insurance
+        </th>
+        <th>
+            Office Supplies
+        </th>
+        <th>
+            Equipment
+        </th>
+        <th>
+            Office Communications
+        </th>
+        <th>
+            Office Maintenance
+        </th>
+        <th>
+            Consulting Fee's
+        </th>
+        <th>
+            EFT Fee's
+        </th>
+        <th>
+            Background Check's
+        </th>
+        <th>
+            Other
+        </th>
+        <th>
+            Janitor Services
+        </th>
+        <th>
+            Depreciation
+        </th>
+        <th>
+            Tech Support
+        </th>
+        <th>
+            Security Services
+        </th>
+        <th>
+            Admininstration Totals
+        </th>
+        <th>
+            Administration Fee
+        </th>
+        <th>
+            Transportation
+        </th>
+        <th>
+            Job Training
+        </th>
+        <th>
+            Tuition Assistance
+        </th>
+        <th>
+            Contracted Residential Care
+        </th>
+        <th>
+            Utility Assistance
+        </th>
+        <th>
+            Emergency Shelter
+        </th>
+        <th>
+            Housing Assistance
+        </th>
+        <th>
+            Childcare
+        </th>
+        <th>
+            Clothing
+        </th>
+        <th>
+            Food
+        </th>
+        <th>
+            Supplies
+        </th>
+        <th>
+            RFO Costs
+        </th>
+        <th>
+            Participation Total Costs
+        </th>
+        <th>
+            Direct and Participation Total Costs
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.ActionLink("Details", "Details", new { id = item.BudgetInvoiceId })
+            </td>
+            <td>
+                @item.Subcontractor.OrgName
+            </td>
+            <td>
+                @item.Month.Months
+            </td>
+            <td>
+                @item.Region.Regions
+            </td>
+            <td>
+                @item.ASalandWages.ToString("C")
+            </td>
+            <td>
+                @item.AEmpBenefits.ToString("C")
+            </td>
+            <td>
+                @item.AEmpTravel.ToString("C")
+            </td>
+            <td>
+                @item.AEmpTraining.ToString("C")
+            </td>
+            <td>
+                @item.AOfficeRent.ToString("C")
+            </td>
+            <td>
+                @item.AOfficeUtilities.ToString("C")
+            </td>
+            <td>
+                @item.AFacilityIns.ToString("C")
+            </td>
+            <td>
+                @item.AOfficeSupplies.ToString("C")
+            </td>
+            <td>
+                @item.AEquipment.ToString("C")
+            </td>
+            <td>
+                @item.AOfficeCommunications.ToString("C")
+            </td>
+            <td>
+                @item.AOfficeMaint.ToString("C")
+            </td>
+            <td>
+                @item.AConsulting.ToString("C")
+            </td>
+            <td>
+                @item.SubConPayCost.ToString("C")
+            </td>
+            <td>
+                @item.BackgrounCheck.ToString("C")
+            </td>
+            <td>
+                @item.Other.ToString("C")
+            </td>
+            <td>
+                @item.AJanitorServices.ToString("C")
+            </td>
+            <td>
+                @item.ADepreciation.ToString("C")
+            </td>
+            <td>
+                @item.ATechSupport.ToString("C")
+            </td>
+            <td>
+                @item.ASecurityServices.ToString("C")
+            </td>
+            <td>
+                @item.ATotCosts.ToString("C")
+            </td>
+            <td>
+                @item.AdminFee.ToString("C")
+            </td>
+            <td>
+                @item.Trasportation.ToString("C")
+            </td>
+            <td>
+                @item.JobTraining.ToString("C")
+            </td>
+            <td>
+                @item.TuitionAssistance.ToString("C")
+            </td>
+            <td>
+                @item.ContractedResidential.ToString("C")
+            </td>
+            <td>
+                @item.UtilityAssistance.ToString("C")
+            </td>
+            <td>
+                @item.EmergencyShelter.ToString("C")
+            </td>
+            <td>
+                @item.HousingAssistance.ToString("C")
+            </td>
+            <td>
+                @item.Childcare.ToString("C")
+            </td>
+            <td>
+                @item.Clothing.ToString("C")
+            </td>
+            <td>
+                @item.Food.ToString("C")
+            </td>
+            <td>
+                @item.Supplies.ToString("C")
+            </td>
+            <td>
+                @item.RFO.ToString("C")
+            </td>
+            <td>
+                @item.BTotal.ToString("C")
+            </td>
+            <td>
+                @item.Maxtot.ToString("C")
+            </td>
+        </tr>
+    }
+
+</table>

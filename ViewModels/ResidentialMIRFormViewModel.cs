@@ -22,39 +22,39 @@ namespace Alliance_for_Life.ViewModels
         public IEnumerable<Month> Months { get; set; }
 
         [Required]
-        [Display(Name = "Total of overall Client bed nights for the month.")]
+        [Display(Name = "Total of overall Client bed nights for the month")]
         public int TotBedNights { get; set; }
 
         [Required]
-        [Display(Name = "Total current A2A enrollment.")]
+        [Display(Name = "Total current A2A enrollment")]
         public int TotA2AEnrollment { get; set; }
 
         [Required]
-        [Display(Name = "Total A2A Client bed nights.")]
+        [Display(Name = "Total A2A Client bed nights")]
         public int TotA2ABedNights { get; set; }
 
-        [Display(Name = "Monthly A2A Clients served.")]
+        [Display(Name = "Monthly A2A Clients served")]
         public double MA2Apercent { get; set; }
 
-        [Display(Name = "Total Clients engaged in Job Training/Placement or Educational Services.")]
+        [Display(Name = "Total Clients engaged in Job Training/Placement or Educational Services")]
         public int ClientsJobEduServ { get; set; }
 
-        [Display(Name = "Total fathers who participated in the A2A program.")]
+        [Display(Name = "Total fathers who participated in the A2A program")]
         public int ParticipatingFathers { get; set; }
 
-        [Display(Name = "Total prenatal & parenting education classes.")]
+        [Display(Name = "Total prenatal & parenting education classes")]
         public int TotEduClasses { get; set; }
 
-        [Display(Name = "Total Clients who attended prenatal and parenting education classes.")]
+        [Display(Name = "Total Clients who attended prenatal and parenting education classes")]
         public int TotClientsinEduClasses { get; set; }
 
-        [Display(Name = "Total case management hours provided.")]
+        [Display(Name = "Total case management hours provided")]
         public int TotCaseHrs { get; set; }
 
-        [Display(Name = "Total Clients who participated in case management.")]
+        [Display(Name = "Total Clients who participated in case management")]
         public int TotClientsCaseHrs { get; set; }
 
-        [Display(Name = "Total of other classes offered.")]
+        [Display(Name = "Total of other classes offered")]
         public int TotOtherClasses { get; set; }
 
     }

@@ -1,0 +1,56 @@
+﻿
+@{
+    ViewBag.Title = "View";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Subcontractor Reports</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Subcontractor Id
+        </th>
+
+        <th>
+            Organization    
+        </th>
+
+        <th>
+            Region
+        </th>
+
+        <th>
+            Active
+        </th>
+        <th></th>
+    </tr>
+    @foreach (var subcontractors in Model)
+    {
+        <tr>
+            <td>
+                <div class="clientid">@subcontractors.SubcontractorId</div>
+            </td>
+
+            <td>
+                <div class="clientid">@subcontractors.OrgName</div>
+            </td>
+
+            <td>
+                <div class="fname">@subcontractors.Region</div>
+            </td>
+
+            <td>
+                <div class="lname">@subcontractors.Active</div>
+            </td>          
+        </tr>
+    }
+    <tr></tr>
+</table>
+
+<br />
+@using (Html.BeginForm("Export", "SubContractor", FormMethod.Post))
+{
+    <input type="submit" value="Export to Excel" class="btn btn-primary" />
+}
+

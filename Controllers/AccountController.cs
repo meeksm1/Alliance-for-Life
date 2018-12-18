@@ -165,10 +165,14 @@ namespace Alliance_for_Life.Controllers
                 var user = new ApplicationUser
                 {
                     SubcontractorId = viewModel.SubcontractorId,
-                    UserName = viewModel.Email,
                     Email = viewModel.Email,
-                    Name = viewModel.Name
+                    FirstName = viewModel.FirstName,
+                    LastName = viewModel.LastName,
+                    UserName = viewModel.Email
+
                 };
+
+                _context.Users.Add(user);
 
                 var result = await UserManager.CreateAsync(user, viewModel.Password);
                 if (result.Succeeded)
@@ -189,6 +193,35 @@ namespace Alliance_for_Life.Controllers
             // If we got this far, something failed, redisplay form
             return View(viewModel);
         }
+
+        [AllowAnonymous]
+        [HttpGet]
+        public ActionResult RegisterRole()
+        {
+            ViewBag.RoleName = new SelectList(_context.Roles.ToList(), "Name", "Name");
+            ViewBag.UserName = new SelectList(_context.Users.ToList(), "UserName", "UserName");
+            return View();
+        }
+
+        //
+        //POST: /Account/Register
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> RegisterRole(RegisterViewModel model, ApplicationUser user)
+        {
+            var userId = _context.Users.Where(i => i.UserName == user.UserName).Select(s => s.Id);
+            string updateId = "";
+            foreach(var i in userId)
+            {
+                updateId = i.ToString();
+            }
+            //Assign Role to user here
+            await this.UserManager.AddToRoleAsync(updateId, model.RoleName);
+
+            return RedirectToAction("Index", "Home");
+        }
+
 
         //
         // GET: /Account/ConfirmEmail

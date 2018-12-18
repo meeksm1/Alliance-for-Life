@@ -14,9 +14,16 @@ namespace Alliance_for_Life.ViewModels
 
         public IEnumerable<SubContractor> Subcontractors { get; set; }
 
-        [Required]
         [StringLength(100)]
-        public string Name { get; set; }
+        public string RoleName { get; set; }
+
+        [Required]
+        [Display(Name = "First Name")]
+        public string FirstName { get; set; }
+
+        [Required]
+        [Display(Name = "Last Name")]
+        public string LastName { get; set; }
 
         [Required]
         [EmailAddress]

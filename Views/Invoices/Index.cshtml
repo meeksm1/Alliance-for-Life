@@ -1,0 +1,100 @@
+﻿@model IEnumerable<Alliance_for_Life.Models.Invoice>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Invoice Details</h2>
+
+<table class="table">
+    <tr>
+        <th>
+
+        </th>
+        <th>
+            Organization
+        </th>
+        <th>
+            Direct Admin Cost
+        </th>
+
+        <th>
+            Participant Services
+        </th>
+
+        <th>
+            Grand Total
+        </th>
+
+        <th>
+            Less Management Fee
+        </th>
+
+        <th>
+            Deposit Amount
+        </th>
+
+        <th>
+            Beginning Allocation
+        </th>
+
+        <th>
+            Adjusted Allocation
+        </th>
+
+        <th>
+            Billing Date
+        </th>
+
+        <th>
+            Balance Remaining
+        </th>
+        <th></th>
+    </tr>
+    @foreach (var invoice in Model)
+    {
+        <tr>
+            <td>
+                @Html.ActionLink("Details", "Details", new { id = invoice.InvoiceId })
+            </td>
+            <td>
+                <div class="clientid">@invoice.OrgName</div>
+            </td>
+            <td>
+                <div class="clientid">@invoice.DirectAdminCost.ToString("C")</div>
+            </td>
+
+            <td>
+                <div class="clientid">@invoice.ParticipantServices.ToString("C")</div>
+            </td>
+
+            <td>
+                <div class="fname">@invoice.GrandTotal.ToString("C")</div>
+            </td>
+
+            <td>
+                <div class="lname">@invoice.LessManagementFee.ToString("C")</div>
+            </td>
+
+            <td>
+                <div class="due">@invoice.DepositAmount.ToString("C")</div>
+            </td>
+
+            <td>
+                <div class="due">@invoice.BeginningAllocation.ToString("C")</div>
+            </td>
+            <td>
+                <div class="lname">@invoice.AdjustedAllocation.ToString("C")</div>
+            </td>
+
+            <td>
+                <div class="due">@invoice.BillingDate.ToShortDateString()</div>
+            </td>
+
+            <td>
+                <div class="due">@invoice.BalanceRemaining.ToString("C")</div>
+            </td>
+        </tr>
+    }
+</table>
