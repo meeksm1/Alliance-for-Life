@@ -17,6 +17,11 @@ namespace Alliance_for_Life.Models
         public string OrgName { get; set; }
 
         [Required]
+        [StringLength(100)]
+        public string Director { get; set; }
+
+
+        [Required]
         [StringLength(255)]
         public string City { get; set; }
 

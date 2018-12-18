@@ -101,10 +101,12 @@ C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\obj\Debug\Alli
 C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\obj\Debug\Alliance_for_Life.Migrations.addedUserNavProptoClientList.resources
 C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\obj\Debug\Alliance_for_Life.Migrations.AddForeignKeyPropertiestoCL.resources
 C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\obj\Debug\Alliance_for_Life.Migrations.RemoveForiegnKeyPropertiesFromCLTable.resources
+C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\obj\Debug\Alliance_for_Life.Migrations.DropClientListColumns.resources
+C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\obj\Debug\Alliance_for_Life.Migrations.CreateBudgetTable.resources
+C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\obj\Debug\Alliance_for_Life.Migrations.CreateAdminTable.resources
+C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\obj\Debug\Alliance_for_Life.Migrations.Createcascadepaths.resources
+C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\obj\Debug\Alliance_for_Life.Migrations.CreateBudgetTable1.resources
 C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\obj\Debug\Alliance for Life.csproj.GenerateResource.Cache
 C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\obj\Debug\Alliance for Life.dll
 C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\obj\Debug\Alliance for Life.pdb
-C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\obj\Debug\Alliance_for_Life.Migrations.DropClientListColumns.resources
 C:\Users\matthew.meeks\Source\Alliance for Life\Alliance-for-Life\obj\Debug\Alliance for Life.csprojResolveAssemblyReference.cache
-C:\Users\Matt\Documents\GitHub\Alliance-for-Life\obj\Debug\Alliance for Life.dll
-C:\Users\Matt\Documents\GitHub\Alliance-for-Life\obj\Debug\Alliance for Life.pdb

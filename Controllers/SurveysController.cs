@@ -1,5 +1,8 @@
 ﻿using Alliance_for_Life.Models;
+using ClosedXML.Excel;
+using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
@@ -25,7 +28,10 @@ namespace Alliance_for_Life.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Surveys surveys = db.Surveys.Find(id);
+            Surveys surveys = db.Surveys
+                .Include(s => s.Subcontractors)
+                .Include(s => s.Months)
+                .SingleOrDefault(s => s.SurveyId == id);
             if (surveys == null)
             {
                 return HttpNotFound();
@@ -129,6 +135,45 @@ namespace Alliance_for_Life.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        [HttpPost]
+        public FileResult Export()
+        {
+            DataTable dt = new DataTable("Grid");
+            dt.Columns.AddRange(new DataColumn[4]
+            {
+                new DataColumn ("Survey ID"),
+                new DataColumn ("Month"),
+                new DataColumn ("Organization"),
+                new DataColumn ("Surveys Returned")
+            });
+
+            var query = from s in db.Surveys
+                        join sc in db.SubContractors on s.SubcontractorId equals sc.SubcontractorId
+                        join m in db.Months on s.MonthId equals m.Id
+                        select new SurveyReport
+                        {
+                            SurveyId = s.SurveyId,
+                            Month = m.Months,
+                            Orgname = sc.OrgName,
+                            SurveysCompleted = s.SurveysCompleted,
+                        };
+
+            foreach (var item in query)
+            {
+                dt.Rows.Add(item.SurveyId, item.Month, item.Orgname, item.SurveysCompleted);
+            }
+
+            using (XLWorkbook wb = new XLWorkbook())
+            {
+                wb.Worksheets.Add(dt);
+                using (MemoryStream stream = new MemoryStream())
+                {
+                    wb.SaveAs(stream);
+                    return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Grid.xlsx");
+                }
+            }
         }
     }
 }

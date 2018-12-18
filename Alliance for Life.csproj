@@ -1,6 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" />
@@ -28,7 +27,6 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <TypeScriptToolsVersion>2.9</TypeScriptToolsVersion>
-    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -54,14 +52,6 @@
     </Reference>
     <Reference Include="DocumentFormat.OpenXml, Version=2.7.2.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
       <HintPath>..\packages\DocumentFormat.OpenXml.2.7.2\lib\net40\DocumentFormat.OpenXml.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="EntityFramework">
-      <HintPath>packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer">
-      <HintPath>packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="ExcelNumberFormat, Version=1.0.3.0, Culture=neutral, PublicKeyToken=23c6f5d73be07eca, processorArchitecture=MSIL">
@@ -100,30 +90,14 @@
       <HintPath>..\packages\Microsoft.ApplicationInsights.2.0.0\lib\net45\Microsoft.ApplicationInsights.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.AspNet.Identity.Core">
-      <HintPath>packages\Microsoft.AspNet.Identity.Core.2.2.2\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
-      <HintPath>packages\Microsoft.AspNet.Identity.EntityFramework.2.2.2\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
-      <HintPath>packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Office.Interop.Word, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
       <EmbedInteropTypes>True</EmbedInteropTypes>
       <HintPath>..\packages\Microsoft.Office.Interop.Word.15.0.4797.1003\lib\net20\Microsoft.Office.Interop.Word.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Microsoft.Owin">
-      <HintPath>packages\Microsoft.Owin.4.0.0\lib\net451\Microsoft.Owin.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Owin">
-      <HintPath>packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -205,8 +179,26 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Owin">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.1\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin">
+      <HintPath>..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Owin.Host.SystemWeb">
       <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.3.0.1\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
@@ -241,19 +233,26 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\AdminCostsController.cs" />
+    <Compile Include="Controllers\AdministrationCostController.cs" />
     <Compile Include="Controllers\AFLFormController.cs" />
-    <Compile Include="Controllers\AssetController.cs" />
-    <Compile Include="Controllers\BudgetCostController.cs" />
+    <Compile Include="Controllers\BudgetCostsController.cs" />
     <Compile Include="Controllers\ClientListController.cs" />
     <Compile Include="Controllers\ContractorFormController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\NonResidentialMIRController.cs" />
-    <Compile Include="Controllers\ParticipationServicesController.cs" />
+    <Compile Include="Controllers\ParticipationCostController.cs" />
     <Compile Include="Controllers\ResidentialMIRController.cs" />
+    <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\SubContractorController.cs" />
     <Compile Include="Controllers\SurveysController.cs" />
+    <Compile Include="DTO\AdminReport.cs" />
+    <Compile Include="DTO\AExpenseVsBExpense.cs" />
+    <Compile Include="DTO\BudgetReport.cs" />
+    <Compile Include="DTO\Invoice.cs" />
+    <Compile Include="DTO\MIRReport.cs" />
+    <Compile Include="DTO\ParticipationServiceReport.cs" />
+    <Compile Include="DTO\SubcontractorReport.cs" />
     <Compile Include="DTO\SurveyReport.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -306,13 +305,28 @@
     <Compile Include="Migrations\201810181937004_DropClientListColumns.Designer.cs">
       <DependentUpon>201810181937004_DropClientListColumns.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201810301312401_CreateBudgetTable.cs" />
+    <Compile Include="Migrations\201810301312401_CreateBudgetTable.Designer.cs">
+      <DependentUpon>201810301312401_CreateBudgetTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811261438538_CreateAdminTable.cs" />
+    <Compile Include="Migrations\201811261438538_CreateAdminTable.Designer.cs">
+      <DependentUpon>201811261438538_CreateAdminTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811261544362_Createcascadepaths.cs" />
+    <Compile Include="Migrations\201811261544362_Createcascadepaths.Designer.cs">
+      <DependentUpon>201811261544362_Createcascadepaths.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812101758180_CreateBudgetTable1.cs" />
+    <Compile Include="Migrations\201812101758180_CreateBudgetTable1.Designer.cs">
+      <DependentUpon>201812101758180_CreateBudgetTable1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AdminCost.cs" />
     <Compile Include="Models\AFLForm.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
-    <Compile Include="Models\Asset.cs" />
-    <Compile Include="Models\BudgetCosts.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
+    <Compile Include="Models\BudgetCosts.cs" />
     <Compile Include="Models\ClientList.cs" />
     <Compile Include="Models\ContractorForm.cs" />
     <Compile Include="Models\Month.cs" />
@@ -325,7 +339,7 @@
     <Compile Include="DTO\ClientListReport.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReportControllers\ClientListReportController.cs" />
-    <Compile Include="ReportControllers\SurveyReportController.cs" />
+    <Compile Include="ReportControllers\InvoicesController.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\AddPhoneNumberViewModel.cs" />
     <Compile Include="ViewModels\AdminCostsViewModel.cs" />
@@ -513,6 +527,7 @@
     <Content Include="Content\DataTables\css\select.jqueryui.min.css" />
     <Content Include="Content\DataTables\css\select.semanticui.css" />
     <Content Include="Content\DataTables\css\select.semanticui.min.css" />
+    <Content Include="Content\DataTables\images\afllogo.png" />
     <Content Include="Content\DataTables\images\details_close.png" />
     <Content Include="Content\DataTables\images\details_open.png" />
     <Content Include="Content\DataTables\images\sort_asc.png" />
@@ -630,7 +645,11 @@
     <Content Include="Content\DataTables\css\semanticui.scss" />
     <Content Include="Content\DataTables\css\mixins.scss" />
     <Content Include="Content\DataTables\css\common.scss" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
     <None Include="Scripts\jquery-3.0.0-vsdoc.js" />
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\jquery-3.0.0.js" />
     <Content Include="Scripts\jquery-3.0.0.min.js" />
     <Content Include="Scripts\jquery-3.0.0.slim.js" />
@@ -654,6 +673,12 @@
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
+    <None Include="Scripts\_references.js" />
+    <Content Include="Views\BudgetCosts\Create.cshtml" />
+    <Content Include="Views\BudgetCosts\Delete.cshtml" />
+    <Content Include="Views\BudgetCosts\Details.cshtml" />
+    <Content Include="Views\BudgetCosts\Edit.cshtml" />
+    <Content Include="Views\BudgetCosts\Index.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -702,22 +727,48 @@
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\NonResidentialMIR\Create.cshtml" />
     <Content Include="Views\ContractorForm\Create.cshtml" />
-    <Content Include="Views\AdminCosts\AdminCostsForm.cshtml" />
-    <Content Include="Views\ParticipationServices\Create.cshtml" />
     <Content Include="Views\ClientListReport\ActiveClients.cshtml" />
     <Content Include="Views\ClientListReport\NonActiveClients.cshtml" />
     <Content Include="Views\ClientListReport\Reports.cshtml" />
     <Content Include="Views\AflForm\Create.cshtml" />
-    <Content Include="Views\BudgetCost\BudgetCostForm.cshtml" />
-    <Content Include="Views\Asset\Index.cshtml" />
     <Content Include="Views\Surveys\Create.cshtml" />
     <Content Include="Views\Surveys\Delete.cshtml" />
     <Content Include="Views\Surveys\Details.cshtml" />
     <Content Include="Views\Surveys\Edit.cshtml" />
     <Content Include="Views\Surveys\Index.cshtml" />
-    <Content Include="Views\SurveyReport\Index.cshtml" />
     <Content Include="Views\ClientListReport\AllNonActiveClients.cshtml" />
     <Content Include="Views\ClientListReport\AllActiveClients.cshtml" />
+    <Content Include="Views\Role\AssignRoleToUser.cshtml" />
+    <Content Include="Views\Role\Index.cshtml" />
+    <Content Include="Views\Role\Create.cshtml" />
+    <Content Include="Views\Account\RegisterRole.cshtml" />
+    <Content Include="Views\AflForm\Reports.cshtml" />
+    <Content Include="Views\ClientListReport\Edit.cshtml" />
+    <Content Include="Views\SubContractor\Reports.cshtml" />
+    <Content Include="Views\ResidentialMIR\Reports.cshtml" />
+    <Content Include="Views\NonResidentialMIR\Reports.cshtml" />
+    <Content Include="Views\Shared\_LayoutWord.cshtml" />
+    <Content Include="Views\Invoices\Create.cshtml" />
+    <Content Include="Views\Invoices\Delete.cshtml" />
+    <Content Include="Views\Invoices\Details.cshtml" />
+    <Content Include="Views\Invoices\Edit.cshtml" />
+    <Content Include="Views\Invoices\Index.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\Currency.cshtml" />
+    <Content Include="Views\AdministrationCost\Create.cshtml" />
+    <Content Include="Views\AdministrationCost\Delete.cshtml" />
+    <Content Include="Views\AdministrationCost\Details.cshtml" />
+    <Content Include="Views\AdministrationCost\Edit.cshtml" />
+    <Content Include="Views\AdministrationCost\Index.cshtml" />
+    <Content Include="Views\BudgetCosts\FirstQuarter.cshtml" />
+    <Content Include="Views\BudgetCosts\SecondQuarter.cshtml" />
+    <Content Include="Views\BudgetCosts\FourthQuarter.cshtml" />
+    <Content Include="Views\BudgetCosts\ThirdQuarter.cshtml" />
+    <Content Include="Views\ParticipationCost\Create.cshtml" />
+    <Content Include="Views\ParticipationCost\Delete.cshtml" />
+    <Content Include="Views\ParticipationCost\Details.cshtml" />
+    <Content Include="Views\ParticipationCost\Edit.cshtml" />
+    <Content Include="Views\ParticipationCost\Index.cshtml" />
+    <Content Include="Views\BudgetCosts\AExpenseVSBExpense.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -774,6 +825,18 @@
     <EmbeddedResource Include="Migrations\201810181937004_DropClientListColumns.resx">
       <DependentUpon>201810181937004_DropClientListColumns.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810301312401_CreateBudgetTable.resx">
+      <DependentUpon>201810301312401_CreateBudgetTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811261438538_CreateAdminTable.resx">
+      <DependentUpon>201811261438538_CreateAdminTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811261544362_Createcascadepaths.resx">
+      <DependentUpon>201811261544362_Createcascadepaths.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812101758180_CreateBudgetTable1.resx">
+      <DependentUpon>201812101758180_CreateBudgetTable1.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -810,7 +873,6 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props'))" />
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
-    <Error Condition="!Exists('packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
   </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.

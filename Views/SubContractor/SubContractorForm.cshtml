@@ -16,6 +16,11 @@
         @Html.ValidationMessageFor(m => m.OrgName)
     </div>
     <div class="form-group">
+        @Html.LabelFor(m => m.Director)
+        @Html.TextBoxFor(m => m.Director, new { @class = "form-control", autofocus = "autofocus" })
+        @Html.ValidationMessageFor(m => m.Director)
+    </div>
+    <div class="form-group">
         @Html.LabelFor(m => m.City)
         @Html.TextBoxFor(m => m.City, new { @class = "form-control" })
         @Html.ValidationMessageFor(m => m.City)

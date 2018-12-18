@@ -1,6 +1,9 @@
 ﻿using Alliance_for_Life.Models;
 using Alliance_for_Life.ViewModels;
+using ClosedXML.Excel;
 using Microsoft.AspNet.Identity;
+using System.Data;
+using System.IO;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -43,6 +46,7 @@ namespace Alliance_for_Life.Controllers
                 AdministratorId = User.Identity.GetUserId(),
                 RegionId = viewModel.Region,
                 OrgName = viewModel.OrgName,
+                Director = viewModel.Director,
                 City = viewModel.City,
                 State = viewModel.State,
                 County = viewModel.County,
@@ -76,6 +80,7 @@ namespace Alliance_for_Life.Controllers
             var contractor = _context.SubContractors.Single(s => s.SubcontractorId == viewModel.Id && s.AdministratorId == userId);
             contractor.RegionId = viewModel.Region;
             contractor.OrgName = viewModel.OrgName;
+            contractor.Director = viewModel.Director;
             contractor.City = viewModel.City;
             contractor.State = viewModel.State;
             contractor.County = viewModel.County;
@@ -102,6 +107,7 @@ namespace Alliance_for_Life.Controllers
                 Heading = "Edit Subcontractor Information",
                 Id = org.SubcontractorId,
                 Regions = _context.Regions.ToList(),
+                Director = org.Director,
                 City = org.City,
                 State = org.State,
                 County = org.County,
@@ -116,6 +122,71 @@ namespace Alliance_for_Life.Controllers
                 Region = org.RegionId
             };
             return View("SubContractorForm", viewModel);
+        }
+
+        // GET: BudgetReports
+        public ActionResult Index()
+        {
+            return View(_context.SubContractors.ToList());
+        }
+
+        public ActionResult Reports()
+        {
+            var subcontractors = from s in _context.SubContractors
+                          join r in _context.Regions on s.Regions.Id equals r.Id
+                          where s.SubcontractorId > 0
+                          select new SubcontractorReport
+                          {
+                              EIN = s.EIN,
+                              OrgName = s.OrgName,
+                              Director = s.Director,
+                              Region = r.Regions,
+                              Active = s.Active
+                          };
+
+            return View(subcontractors);
+        }
+
+        [HttpPost]
+        public FileResult Export()
+        {
+            DataTable dt = new DataTable("Grid");
+            dt.Columns.AddRange(new DataColumn[5]
+            {
+                new DataColumn ("EIN"),
+                new DataColumn ("Organization"),
+                new DataColumn ("Director"),
+                new DataColumn ("Region"),
+                new DataColumn ("Active")
+            });
+
+            var subcontractors = from s in _context.SubContractors
+                                 join r in _context.Regions on s.Regions.Id equals r.Id
+                                 where s.SubcontractorId > 0
+                                 select new SubcontractorReport
+                                 {
+                                     EIN = s.EIN,
+                                     OrgName = s.OrgName,
+                                     Director = s.Director,
+                                     Region = r.Regions,
+                                     Active = s.Active
+                                 };
+
+
+            foreach (var item in subcontractors)
+            {
+                dt.Rows.Add(item.EIN, item.OrgName, item.Director, item.Region, item.Active);
+            }
+
+            using (XLWorkbook wb = new XLWorkbook())
+            {
+                wb.Worksheets.Add(dt);
+                using (MemoryStream stream = new MemoryStream())
+                {
+                    wb.SaveAs(stream);
+                    return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Grid.xlsx");
+                }
+            }
         }
     }
 }

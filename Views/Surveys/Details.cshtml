@@ -16,7 +16,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.MonthId)
+            @Html.DisplayFor(model => model.Months.Months)
         </dd>
 
         <dt>
@@ -25,14 +25,6 @@
 
         <dd>
             @Html.DisplayFor(model => model.Subcontractors.OrgName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Date)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Date)
         </dd>
 
         <dt>
@@ -49,3 +41,8 @@
     @Html.ActionLink("Edit", "Edit", new { id = Model.SurveyId }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
+
+@using (Html.BeginForm("Export", "Surveys", FormMethod.Post))
+{
+    <input type="submit" value="Export to Excel" class="btn-primary" />
+}

@@ -23,13 +23,31 @@
                 @Html.ActionLink("Alternatives to Abortion Users", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li><a href="@Url.Action("Create", "AFLForm")">AFL Forms</a></li>
-                    <li><a href="@Url.Action("Create", "ContractorForm")">Subcontractor Forms</a></li>
-                    <li><a href="@Url.Action("Reports", "ClientListReport")">Client Reports</a></li>
-                    <li><a href="@Url.Action("Index", "Asset")">Asset Grid View</a></li>
-                </ul>
-                @Html.Partial("_LoginPartial")
+
+                        @if (ViewContext.HttpContext.User.IsInRole("Admin"))
+                        {
+                            @Html.ActionLink("Forms", "Create", "AFLForm", new { area = "" }, new { @class = "navbar-brand" })
+                            @Html.ActionLink("Reports", "Reports", "AFLForm", new { area = "" }, new { @class = "navbar-brand" })
+                            @Html.ActionLink("Invoices", "Index", "Invoices", new { area = "" }, new { @class = "navbar-brand" })
+
+                            @Html.Partial("_LoginPartial")
+                        }
+
+                        else if (ViewContext.HttpContext.User.IsInRole("Manager"))
+                        {
+                            @Html.ActionLink("Contractor Forms", "Create", "ContractorForm", new { area = "" }, new { @class = "navbar-brand" })
+                            @Html.ActionLink("Reports", "Reports", "ClientListReport", new { area = "" }, new { @class = "navbar-brand" })
+                            @Html.ActionLink("Invoices", "Index", "Invoices", new { area = "" }, new { @class = "navbar-brand" })
+                            @Html.Partial("_LoginPartial")
+                        }
+
+                        else if (ViewContext.HttpContext.User.IsInRole("user"))
+                        {
+                            @Html.ActionLink("Reports", "Reports", "ClientListReport", new { area = "" }, new { @class = "navbar-brand" })
+                            @Html.Partial("_LoginPartial")
+                        }
+
+                        else { @Html.Partial("_LoginPartial") }
             </div>
         </div>
     </div>
@@ -37,16 +55,18 @@
         @RenderBody()
     </div>
 
-
+    <br />
+    <br />
     <footer>
         <div class="footer-alignment">
-            &copy; @DateTime.Now.Year <a href="http://www.CornerstoneMarketingStrategies.com" style="color:#000">Cornerstone Marketing Strategies</a>
+            &copy; @DateTime.Now.Year <a href="https://www.CornerstoneMarketingStrategies.com" style="color:#000">Cornerstone Marketing Strategies</a>
         </div>
     </footer>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+        @RenderSection("scripts", required: false)
+        <script src="~/Scripts/MyScripts.js"></script>
 </body>
 </html>
 
