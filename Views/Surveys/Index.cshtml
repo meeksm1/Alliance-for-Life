@@ -19,6 +19,9 @@
             @Html.DisplayNameFor(model => model.Subcontractors.OrgName)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.SurveysCompleted)
         </th>
         <th></th>
@@ -34,6 +37,9 @@
                 @item.Subcontractors.OrgName
             </td>
             <td>
+                @item.Date.ToShortDateString()
+            </td>
+            <td>
                 @item.SurveysCompleted
             </td>
             <td>
@@ -43,4 +49,10 @@
             </td>
         </tr>
     }
+    <tr>
+        <td colspan="12">
+            <br />
+            <a href="@Url.Action("Index", "SurveyReport")">Export to Excel</a>
+        </td>
+    </tr>
 </table>

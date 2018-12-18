@@ -10,6 +10,8 @@
             <a class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 @User.Identity.GetUserName() <span class="caret"></span></a>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <li><a href="@Url.Action("Create", "Expenditures")">Client Forms</a></li>
+                    <li role="separator" class="divider"></li>
                     <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
                 </ul>
         </li>

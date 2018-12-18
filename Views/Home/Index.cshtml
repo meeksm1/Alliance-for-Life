@@ -2,8 +2,7 @@
 @{
     ViewBag.Title = "Home Page";
 }
-<h1>Welcome to the Alternative to Abortion Database System</h1>
-<h3>Organazations we work with:</h3>
+
 <ul class="subcontractor">
     @foreach (var subcontractor in Model)
     {
@@ -15,11 +14,7 @@
                 <div class="state">@subcontractor.State</div>
             </div>
             <div class="actions">
-                @if (ViewContext.HttpContext.User.IsInRole("Admin"))
-                {
-                    <a href="@Url.Action("Edit", "SubContractor", new { id = subcontractor.SubcontractorId })">Edit</a>
-                }
-                
+                <a href="@Url.Action("Edit", "SubContractor", new { id = subcontractor.SubcontractorId })">Edit</a>
             </div>
         </li>
     }

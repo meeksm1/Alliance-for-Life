@@ -1,12 +1,10 @@
 ﻿using Alliance_for_Life.Models;
-using Alliance_for_Life.ViewModels;
 using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
 
 namespace Alliance_for_Life.Controllers
 {
-    [Authorize]
     public class HomeController : Controller
     {
         private ApplicationDbContext _context;
@@ -25,19 +23,11 @@ namespace Alliance_for_Life.Controllers
             return View(subcontractors);
         }
 
- 
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
 
             return View();
-        }
-
-        [WordDocument]
-        public ActionResult Print()
-        {
-            ViewBag.WordDocumentFilename = "AboutMeDocument";
-            return View("About");
         }
 
         public ActionResult Contact()

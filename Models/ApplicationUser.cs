@@ -12,16 +12,12 @@ namespace Alliance_for_Life.Models
     {
         [Required]
         [StringLength(100)]
-        public string FirstName { get; set; }
-
-        [Required]
-        [StringLength(100)]
-        public string LastName { get; set; }
+        public string Name { get; set; }
 
         [Required]
         [Display(Name ="Organization")]
         public int SubcontractorId { get; set; }
-        
+
         public IEnumerable<SubContractor> Subcontractors { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)

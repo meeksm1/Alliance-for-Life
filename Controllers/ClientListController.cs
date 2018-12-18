@@ -46,7 +46,7 @@ namespace Alliance_for_Life.Controllers
                 Active = viewModel.Active
             };
 
-            _context.User.Add(client);
+            _context.ClientLists.Add(client);
             _context.SaveChanges();
 
             return RedirectToAction("Index", "Home");
@@ -63,7 +63,7 @@ namespace Alliance_for_Life.Controllers
                 return View("ClientListForm", viewModel);
             }
 
-            var client = _context.User.Single(s => s.Id == viewModel.Id);
+            var client = _context.ClientLists.Single(s => s.Id == viewModel.Id);
             {
                 client.SubcontractorId = viewModel.SubcontractorId;
                 client.FirstName = viewModel.FirstName;
@@ -81,7 +81,7 @@ namespace Alliance_for_Life.Controllers
         [Authorize]
         public ActionResult Edit(int id)
         {
-            var client = _context.User.Single(s => s.Id == id);
+            var client = _context.ClientLists.Single(s => s.Id == id);
             var viewModel = new ClientListFormViewModel
             {
                 Heading = "Edit Client Information",

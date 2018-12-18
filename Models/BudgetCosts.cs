@@ -1,11 +1,27 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Web;
 
 namespace Alliance_for_Life.Models
 {
     public class BudgetCosts
     {
+        [Required]
         [Key]
-        public int BudgetInvoiceId { get; set; }
+        public int MonthId { get; set; }
+
+        //[Required]
+        //[Key]
+
+        //public int Year { get; set; }
+
+        public int RegionId { get; set; }
+
+        public Region Region { get; set; }
+
+        public Month Months { get; set; }
 
         public int ASalandWages { get; set; }
 
@@ -73,21 +89,11 @@ namespace Alliance_for_Life.Models
 
         public int RFO { get; set; }
 
-        public double BTotal { get; set; }
+        public int BTotal { get; set; }
 
         public double Maxtot { get; set; }
 
-        // Navigation Properties
 
-        public Month Month { get; set; }
-        public Region Region { get; set; }
-        public SubContractor Subcontractor { get; set; }
-        public ApplicationUser User { get; set; }
-        public AdminCosts AdminCost { get; set; }
-        public ParticipationService ParticipationCost { get; set; }
-        public int RegionId { get; set; }
-        public int MonthId { get; set; }
-        public int SubcontractorId { get; set; }
 
     }
 }

@@ -1,6 +1,9 @@
 ﻿using Alliance_for_Life.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Web;
 
 namespace Alliance_for_Life.ViewModels
 
@@ -52,20 +55,9 @@ namespace Alliance_for_Life.ViewModels
         [Display(Name = "Participation Totals")]
         public int PTotals { get; set; }
 
-        public int Id { get; internal set; }
-
-        //Navigation Properties
-        public int SubcontractorId { get; set; }
-        public IEnumerable<SubContractor> Subcontractors { get; set; }
-
         [Required]
         public int Month { get; set; }
 
         public IEnumerable<Month> Months { get; set; }
-
-        [Required]
-        public int Region { get; set; }
-
-        public IEnumerable<Region> Regions { get; set; }
     }
 }

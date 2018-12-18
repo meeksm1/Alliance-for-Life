@@ -1,11 +1,21 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Web;
 
 namespace Alliance_for_Life.Models
 {
     public class ParticipationService
     {
+        [Required]
         [Key]
-        public int PSId { get; set; }
+        public int MonthId { get; set; }
+
+        //[Required]
+        //[Key]
+
+        //public int Year { get; set; }
 
         public int PTranspotation { get; set; }
 
@@ -36,16 +46,5 @@ namespace Alliance_for_Life.Models
         public int POther3 { get; set; }
 
         public int PTotals { get; set; }
-
-        //Navigation Properties
-        public Region Region { get; set; }
-
-        public Month Month { get; set; }
-
-        public SubContractor Subcontractor { get; set; }
-
-        public int RegionId { get; set; }
-        public int MonthId { get; set; }
-        public int SubcontractorId { get; set; }
     }
 }

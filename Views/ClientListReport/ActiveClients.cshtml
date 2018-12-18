@@ -1,5 +1,4 @@
 ﻿@model IEnumerable<Alliance_for_Life.Models.ClientListReport>
-
 @{
     ViewBag.Title = "All Clients";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -71,5 +70,5 @@
 <br />
 @using (Html.BeginForm("ExportActive", "ClientListReport", FormMethod.Post))
 {
-    <input type="submit" value="Export to Excel" class="btn btn-primary" />
+    <input type="submit" value="Export to Excel" class="button" />
 }
