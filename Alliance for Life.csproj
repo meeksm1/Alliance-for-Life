@@ -242,12 +242,13 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\NonResidentialMIRController.cs" />
     <Compile Include="Controllers\ParticipationCostController.cs" />
+    <Compile Include="Controllers\QuarterlyStatesController.cs" />
     <Compile Include="Controllers\ResidentialMIRController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\SubContractorController.cs" />
     <Compile Include="Controllers\SurveysController.cs" />
     <Compile Include="DTO\AdminReport.cs" />
-    <Compile Include="DTO\AExpenseVsBExpense.cs" />
+    <Compile Include="Models\QuarterlyState.cs" />
     <Compile Include="DTO\BudgetReport.cs" />
     <Compile Include="DTO\Invoice.cs" />
     <Compile Include="DTO\MIRReport.cs" />
@@ -769,6 +770,12 @@
     <Content Include="Views\ParticipationCost\Edit.cshtml" />
     <Content Include="Views\ParticipationCost\Index.cshtml" />
     <Content Include="Views\BudgetCosts\AExpenseVSBExpense.cshtml" />
+    <Content Include="Views\QuarterlyStates\Create.cshtml" />
+    <Content Include="Views\QuarterlyStates\Delete.cshtml" />
+    <Content Include="Views\QuarterlyStates\Details.cshtml" />
+    <Content Include="Views\QuarterlyStates\Edit.cshtml" />
+    <Content Include="Views\QuarterlyStates\Index.cshtml" />
+    <Content Include="Views\QuarterlyStates\Report.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

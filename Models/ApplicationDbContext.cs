@@ -29,6 +29,8 @@ namespace Alliance_for_Life.Models
 
         public System.Data.Entity.DbSet<Alliance_for_Life.ViewModels.ParticipationServicesViewModel> ParticipationServicesViewModels { get; set; }
 
+        public System.Data.Entity.DbSet<Alliance_for_Life.Models.QuarterlyState> QuarterlyStates { get; set; }
+
         //protected override void OnModelCreating(DbModelBuilder modelBuilder)
         //{
         //    modelBuilder.Entity<ClientList>()

@@ -3,15 +3,15 @@
     ViewBag.Title = "Home Page";
 }
 <h1>Welcome to the Alternative to Abortion Database System</h1>
-<h3>Organazations we work with:</h3>
+<h3>Centers we work with:</h3>
 <ul class="subcontractor">
     @foreach (var subcontractor in Model)
     {
-        <li class="col-sm-3">
+        <li class="col-sm-4">
             <div class="details">
                 <div class="orgname">@subcontractor.OrgName</div>
-                <div class="address1">@subcontractor.Director</div>
-                <div class="address1">@subcontractor.Address1</div>
+                <div class="address1"><strong>Director: </strong> @subcontractor.Director</div>
+                <div class="address1"><strong>Address: </strong> @subcontractor.Address1</div>
                 <div class="city">@subcontractor.City</div>
                 <div class="state">@subcontractor.State</div>
             </div>
