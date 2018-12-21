@@ -73,7 +73,7 @@ namespace Alliance_for_Life.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "QuraterlyStateId,TotPSforQuarter,TotDAforQuarter,StateFeeQuarter,TotDAandPSQuarter")] QuarterlyState quarterlyState)
+        public ActionResult Create([Bind(Include = "QuraterlyStateId,TotPSforQuarter,TotDAforQuarter,StateFeeQuarter,TotDAandPSQuarter,AdminCostId,MonthId,SubcontractorId,ParticipationCostId,TotDAandPSMonthly,StateFee")] QuarterlyState quarterlyState)
         {
             if (ModelState.IsValid)
             {
@@ -105,7 +105,7 @@ namespace Alliance_for_Life.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "QuraterlyStateId,TotPSforQuarter,TotDAforQuarter,StateFeeQuarter,TotDAandPSQuarter")] QuarterlyState quarterlyState)
+        public ActionResult Edit([Bind(Include = "QuraterlyStateId,TotPSforQuarter,TotDAforQuarter,StateFeeQuarter,TotDAandPSQuarter,AdminCostId,MonthId,SubcontractorId,ParticipationCostId,TotDAandPSMonthly,StateFee")] QuarterlyState quarterlyState)
         {
             if (ModelState.IsValid)
             {

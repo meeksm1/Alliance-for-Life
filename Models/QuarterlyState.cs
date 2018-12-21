@@ -11,8 +11,8 @@ namespace Alliance_for_Life.Models
 
         public double TotDAforQuarter { get; set; }
 
-        public double StateFee { get {
-                var statefee = AdminCost.ATotCosts * .1; return statefee; } }
+        public double StateFee { get; set; }
+
         public double StateFeeQuarter { get; set; }
 
         public double TotDACandPSMonthly { get; set; }
