@@ -248,6 +248,11 @@
     <Compile Include="Controllers\SubContractorController.cs" />
     <Compile Include="Controllers\SurveysController.cs" />
     <Compile Include="DTO\AdminReport.cs" />
+    <Compile Include="DTO\QuarterlyStateReport.cs" />
+    <Compile Include="Migrations\201812211732154_QuarterlyStateReport.cs" />
+    <Compile Include="Migrations\201812211732154_QuarterlyStateReport.Designer.cs">
+      <DependentUpon>201812211732154_QuarterlyStateReport.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\QuarterlyState.cs" />
     <Compile Include="DTO\BudgetReport.cs" />
     <Compile Include="DTO\Invoice.cs" />
@@ -775,7 +780,7 @@
     <Content Include="Views\QuarterlyStates\Details.cshtml" />
     <Content Include="Views\QuarterlyStates\Edit.cshtml" />
     <Content Include="Views\QuarterlyStates\Index.cshtml" />
-    <Content Include="Views\QuarterlyStates\Report.cshtml" />
+    <Content Include="Views\QuarterlyStates\FirstQuarterReport.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -843,6 +848,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812101758180_CreateBudgetTable1.resx">
       <DependentUpon>201812101758180_CreateBudgetTable1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812211732154_QuarterlyStateReport.resx">
+      <DependentUpon>201812211732154_QuarterlyStateReport.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

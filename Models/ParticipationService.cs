@@ -7,35 +7,39 @@ namespace Alliance_for_Life.Models
         [Key]
         public int PSId { get; set; }
 
-        public int PTranspotation { get; set; }
+        public double BackgroudCheck { get; set; }
 
-        public int PJobTrain { get; set; }
+        public double PTranspotation { get; set; }
 
-        public int PEducationAssistance { get; set; }
+        public double PJobTrain { get; set; }
 
-        public int PResidentialCare { get; set; }
+        public double PEducationAssistance { get; set; }
 
-        public int PUtilities { get; set; }
+        public double PBirthCerts { get; set; }
+        
+        public double PResidentialCare { get; set; }
 
-        public int PHousingEmergency { get; set; }
+        public double PUtilities { get; set; }
 
-        public int PHousingAssistance { get; set; }
+        public double PHousingEmergency { get; set; }
 
-        public int PChildCare { get; set; }
+        public double PHousingAssistance { get; set; }
 
-        public int PClothing { get; set; }
+        public double PChildCare { get; set; }
 
-        public int PFood { get; set; }
+        public double PClothing { get; set; }
 
-        public int PSupplies { get; set; }
+        public double PFood { get; set; }
 
-        public int POther { get; set; }
+        public double PSupplies { get; set; }
 
-        public int POther2 { get; set; }
+        public double POther { get; set; }
 
-        public int POther3 { get; set; }
+        public double POther2 { get; set; }
 
-        public int PTotals { get; set; }
+        public double POther3 { get; set; }
+
+        public double PTotals { get; set; }
 
         //Navigation Properties
         public Region Region { get; set; }

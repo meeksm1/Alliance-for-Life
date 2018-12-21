@@ -37,7 +37,7 @@ namespace Alliance_for_Life.Controllers
                 .Include(b => b.Subcontractor)
                 .Include(b => b.User)
                 //.Where(b => b.User.Id == b.Subcontractor.AdministratorId)
-                .Where(b => b.MonthId >= 1 && b.MonthId <= 3);
+                .Where(b => b.MonthId <= 3);
 
                 return View(budgetCosts.ToList());    
         }
@@ -74,7 +74,7 @@ namespace Alliance_for_Life.Controllers
             .Include(b => b.Subcontractor)
             .Include(b => b.User)
             //.Where(b => b.User.Id == b.Subcontractor.AdministratorId)
-            .Where(b => b.MonthId >= 10 && b.MonthId <= 12);
+            .Where(b => b.MonthId >= 10);
             return View(budgetCosts.ToList());
         }
 
