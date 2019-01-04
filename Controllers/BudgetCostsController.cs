@@ -212,8 +212,9 @@ namespace Alliance_for_Life.Controllers
         public FileResult Export()
         {
             DataTable dt = new DataTable("Grid");
-            dt.Columns.AddRange(new DataColumn[38]
+            dt.Columns.AddRange(new DataColumn[39]
             {
+                new DataColumn ("Budget Report Id"),
                 new DataColumn ("Organization"),
                 new DataColumn ("Month"),
                 new DataColumn ("Region"),

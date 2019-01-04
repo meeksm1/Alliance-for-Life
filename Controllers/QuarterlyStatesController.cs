@@ -18,11 +18,14 @@ namespace Alliance_for_Life.Controllers
 
         public ActionResult FirstQuarterReport()
         {
+            var montot1 = from x in db.AdminCosts where x.MonthId == 1 select x.ATotCosts;
+
             var firstquarter = from qs in db.QuarterlyStates
                                join m in db.Months on qs.MonthId equals m.Id
                                join s in db.SubContractors on qs.SubcontractorId equals s.SubcontractorId
                                join a in db.AdminCosts on qs.AdminCostId equals a.AdminCostId
                                join p in db.ParticipationServices on qs.ParticipationCostId equals p.PSId
+                               where m.Id < 3
   
                                select new QuarterlyStateReport
                                {
