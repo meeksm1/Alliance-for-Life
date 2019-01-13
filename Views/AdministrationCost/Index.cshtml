@@ -1,4 +1,5 @@
-﻿@model IEnumerable<Alliance_for_Life.Models.AdminCosts>
+﻿@*Change from IEnumerable to List to allow Linq extention methods.*@
+@model List<Alliance_for_Life.Models.AdminCosts>
 
 @{
     ViewBag.Title = "Administrative Fee's";
@@ -161,5 +162,9 @@
         
     </tr>
 }
+    @*This is how you do a Sum in Linq to apply a total based on a model property*@
+    <tr>
+        <td>@Model.Sum(m => m.ATotCosts)</td>
+    </tr>
 
 </table>
