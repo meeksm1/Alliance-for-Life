@@ -24,7 +24,7 @@ namespace Alliance_for_Life.Controllers
                                join m in db.Months on qs.MonthId equals m.Id
                                join s in db.SubContractors on qs.SubcontractorId equals s.SubcontractorId
                                join a in db.AdminCosts on qs.AdminCostId equals a.AdminCostId
-                               join p in db.ParticipationServices on qs.ParticipationCostId equals p.PSId
+                               join p in db.ParticipationServices on qs.ParticipationServiceId equals p.PSId
                                where m.Id < 3
   
                                select new QuarterlyStateReport
@@ -43,7 +43,7 @@ namespace Alliance_for_Life.Controllers
                                    PHousingAssistance = p.PHousingAssistance, PChildCare = p.PChildCare, PClothing = p.PClothing,
                                    PFood = p.PFood, PSupplies = p.PSupplies, RFOCarRepairs = p.POther, RFOCarPayments = p.POther2,
                                    RFOCarIns = p.POther3, RFOBackgroundCheck = p.BackgroudCheck, BirthCerts = p.PBirthCerts,
-                                   PTotals = p.PTotals, TotPSforQuarter = qs.TotPSforQuarter, TotDAandPSMonth = qs.TotDACandPSMonthly,
+                                   PTotals = p.PTotals, TotPSforQuarter = qs.TotPSforQuarter(), TotDAandPSMonth = qs.TotDACandPSMonthly(),
                                    TotDAandPSQuarter = qs.TotDAandPSQuarter
                                };
 

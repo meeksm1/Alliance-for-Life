@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Alliance_for_Life.Models.QuarterlyStateReport>
+﻿@model List<Alliance_for_Life.Models.QuarterlyStateReport>
 
 
     <h2>First Quarter Report</h2>
@@ -266,7 +266,7 @@
                 @item.PTotals.ToString("C")
             </td>
             <td>
-                @item.TotPSforQuarter.ToString("C")
+                @item.TotPSforQuarter.ToString("C").Sum()
             </td>
             <td>
                 @item.TotDAandPSMonth.ToString("C")
