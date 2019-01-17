@@ -1,12 +1,17 @@
-﻿@model IEnumerable<Alliance_for_Life.Models.QuarterlyStateReport>
+﻿@model List<Alliance_for_Life.Models.QuarterlyStateReport>
 
 
     <h2>First Quarter Report</h2>
 
 <table class="table">
+    <h3>Direct Administration Costs</h3>
     <tr>
+        <th>Organization</th>
         <th>
-            DIRECT ADMIN COSTS:
+            TOTAL Admin Costs
+        </th>
+        <th>
+            10% From State for Administration Fee
         </th>
         <th>
             Salaries and Wages
@@ -61,21 +66,86 @@
         </th>
         <th>
             Background Check's
+        </th>   
+    </tr>
+    @foreach (var item in Model)
+    {
+    <tr>
+        <td>
+            @item.OrgName
+        </td>
+        <td>
+            @item.ATotCosts.ToString("C")
+        </td>
+        <td>
+            @item.StateAdminFee.ToString("C")
+        </td>
+        <td>
+            @item.ASalandWages.ToString("C")
+        </td>
+        <td>
+            @item.AEmpBenefits.ToString("C")
+        </td>
+        <td>
+            @item.AEmpTravel.ToString("C")
+        </td>
+        <td>
+            @item.AEmpTraining.ToString("C")
+        </td>
+        <td>
+            @item.AOfficeRent.ToString("C")
+        </td>
+        <td>
+            @item.AOfficeUtilities.ToString("C")
+        </td>
+        <td>
+            @item.AFacilityIns.ToString("C")
+        </td>
+        <td>
+            @item.AOfficeSupplies.ToString("C")
+        </td>
+        <td>
+            @item.AEquipment.ToString("C")
+        </td>
+        <td>
+            @item.AOfficeCommunications.ToString("C")
+        </td>
+        <td>
+            @item.AOfficeMaint.ToString("C")
+        </td>
+        <td>
+            @item.AConsulting.ToString("C")
+        </td>
+        <td>
+            @item.EFTFees.ToString("C")
+        </td>
+        <td>
+            @item.AJanitorServices.ToString("C")
+        </td>
+        <td>
+            @item.ADepreciation.ToString("C")
+        </td>
+        <td>
+            @item.ATechSupport.ToString("C")
+        </td>
+        <td>
+            @item.ASecurityServices.ToString("C")
+        </td>
+        <td>
+            @item.ABackgroundCheck.ToString("C")
+        </td>
+    </tr>
+    }
+</table>
+<br />
+<table class="table">
+    <h3>Direct Participation Costs</h3>
+    <tr>
+        <th>
+            Organization
         </th>
         <th>
-            TOTAL Admin Costs
-        </th>
-        <th>
-            10% From State for Administration Fee
-        </th>
-        <th>
-            Total Direct Admin Cost for Quarter
-        </th>
-        <th>
-            Total State Admin Fee for Quarter
-        </th>
-        <th>
-            PARTICIPANT SERVICES:
+            Total Participant Services
         </th>
         <th>
             Transportation
@@ -125,155 +195,96 @@
         <th>
             Birth Certificate
         </th>
-        <th>
-            Total Participant Services
-        </th>
-        <th>
-            Total Participant Services for the Quarter
-        </th>
-        <th>
-            Direct and Participation Total Costs per Month
-        </th>
-        <th>
-            Direct and Participation Total Costs per Quarter
-        </th>
-        <th></th>
     </tr>
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @item.OrgName
-            </td>
-            <td>
-                @item.ASalandWages.ToString("C")
-            </td>
-            <td>
-                @item.AEmpBenefits.ToString("C")
-            </td>
-            <td>
-                @item.AEmpTravel.ToString("C")
-            </td>
-            <td>
-                @item.AEmpTraining.ToString("C")
-            </td>
-            <td>
-                @item.AOfficeRent.ToString("C")
-            </td>
-            <td>
-                @item.AOfficeUtilities.ToString("C")
-            </td>
-            <td>
-                @item.AFacilityIns.ToString("C")
-            </td>
-            <td>
-                @item.AOfficeSupplies.ToString("C")
-            </td>
-            <td>
-                @item.AEquipment.ToString("C")
-            </td>
-            <td>
-                @item.AOfficeCommunications.ToString("C")
-            </td>
-            <td>
-                @item.AOfficeMaint.ToString("C")
-            </td>
-            <td>
-                @item.AConsulting.ToString("C")
-            </td>
-            <td>
-                @item.EFTFees.ToString("C")
-            </td>
-            <td>
-                @item.AJanitorServices.ToString("C")
-            </td>
-            <td>
-                @item.ADepreciation.ToString("C")
-            </td>
-            <td>
-                @item.ATechSupport.ToString("C")
-            </td>
-            <td>
-                @item.ASecurityServices.ToString("C")
-            </td>
-            <td>
-                @item.ABackgroundCheck.ToString("C")
-            </td>
-            <td>
-                @item.ATotCosts.ToString("C")
-            </td>
-            <td>
-                @item.StateAdminFee.ToString("C")
-            </td>
-            <td>
-                @item.TotDAforQuarter.ToString("C")
-            </td>
-            <td>
-                @item.StateFeeQuarter.ToString("C")
-            </td>
-            <td>
-                @item.OrgName
-            </td>
-            <td>
-                @item.PTranspotation.ToString("C")
-            </td>
-            <td>
-                @item.PJobTrain.ToString("C")
-            </td>
-            <td>
-                @item.PEducationAssistance.ToString("C")
-            </td>
-            <td>
-                @item.PResidentialCare.ToString("C")
-            </td>
-            <td>
-                @item.PUtilities.ToString("C")
-            </td>
-            <td>
-                @item.PHousingEmergency.ToString("C")
-            </td>
-            <td>
-                @item.PHousingAssistance.ToString("C")
-            </td>
-            <td>
-                @item.PChildCare.ToString("C")
-            </td>
-            <td>
-                @item.PClothing.ToString("C")
-            </td>
-            <td>
-                @item.PFood.ToString("C")
-            </td>
-            <td>
-                @item.PSupplies.ToString("C")
-            </td>
-            <td>
-                @item.RFOCarRepairs.ToString("C")
-            </td>
-            <td>
-                @item.RFOCarPayments.ToString("C")
-            </td>
-            <td>
-                @item.RFOCarIns.ToString("c")
-            </td>
-            <td>
-                @item.RFOBackgroundCheck.ToString("C")
-            </td>
-            <td>
-                @item.BirthCerts.ToString("C")
-            </td>
-            <td>
-                @item.PTotals.ToString("C")
-            </td>
-            <td>
-                @item.TotPSforQuarter.ToString("C")
-            </td>
-            <td>
-                @item.TotDAandPSMonth.ToString("C")
-            </td>
-            <td>
-                @item.TotDAandPSQuarter.ToString("C")
-            </td>
-        </tr>
+    <tr>
+        <td>
+            @item.OrgName
+        </td>
+        <td>
+            @item.PTotals.ToString("C")
+        </td>
+        <td>
+            @item.PTranspotation.ToString("C")
+        </td>
+        <td>
+            @item.PJobTrain.ToString("C")
+        </td>
+        <td>
+            @item.PEducationAssistance.ToString("C")
+        </td>
+        <td>
+            @item.PResidentialCare.ToString("C")
+        </td>
+        <td>
+            @item.PUtilities.ToString("C")
+        </td>
+        <td>
+            @item.PHousingEmergency.ToString("C")
+        </td>
+        <td>
+            @item.PHousingAssistance.ToString("C")
+        </td>
+        <td>
+            @item.PChildCare.ToString("C")
+        </td>
+        <td>
+            @item.PClothing.ToString("C")
+        </td>
+        <td>
+            @item.PFood.ToString("C")
+        </td>
+        <td>
+            @item.PSupplies.ToString("C")
+        </td>
+        <td>
+            @item.RFOCarRepairs.ToString("C")
+        </td>
+        <td>
+            @item.RFOCarPayments.ToString("C")
+        </td>
+        <td>
+            @item.RFOCarIns.ToString("c")
+        </td>
+        <td>
+            @item.RFOBackgroundCheck.ToString("C")
+        </td>
+        <td>
+            @item.BirthCerts.ToString("C")
+        </td>
+    </tr>
     }
+</table>
+<br />
+<table class="table">
+    <h2>Quarterly Totals</h2>
+    <tr>
+        <th>
+            Direct Admin for Quarter
+        </th>
+        <th>
+            State Admin Fee for Quarter
+        </th>
+        <th>
+            Participant Services for Quarter
+        </th>
+        <th>
+            Combined Totals for Quarter
+        </th>
+    </tr>
+    <tr>
+        <td>
+            @Model.Sum(m => m.ATotCosts).ToString("c")
+        </td>
+        <td>
+            @Model.Sum(m => m.StateAdminFee).ToString("c")
+        </td>
+        <td>
+            @Model.Sum(m => m.PTotals).ToString("c")
+        </td>
+        <td>
+            @Model.Sum(m => m.PTotals+m.ATotCosts).ToString("c")
+        </td>
+    </tr>
 </table>
