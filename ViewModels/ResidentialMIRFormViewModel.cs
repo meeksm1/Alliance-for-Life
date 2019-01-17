@@ -23,39 +23,39 @@ namespace Alliance_for_Life.ViewModels
 
         [Required]
         [Display(Name = "Total of overall Client bed nights for the month")]
-        public int TotBedNights { get; set; }
+        public decimal TotBedNights { get; set; }
 
         [Required]
         [Display(Name = "Total current A2A enrollment")]
-        public int TotA2AEnrollment { get; set; }
+        public decimal TotA2AEnrollment { get; set; }
 
         [Required]
         [Display(Name = "Total A2A Client bed nights")]
-        public int TotA2ABedNights { get; set; }
+        public decimal TotA2ABedNights { get; set; }
 
         [Display(Name = "Monthly A2A Clients served")]
-        public double MA2Apercent { get; set; }
+        public decimal MA2Apercent { get; set; }
 
         [Display(Name = "Total Clients engaged in Job Training/Placement or Educational Services")]
-        public int ClientsJobEduServ { get; set; }
+        public decimal ClientsJobEduServ { get; set; }
 
         [Display(Name = "Total fathers who participated in the A2A program")]
-        public int ParticipatingFathers { get; set; }
+        public decimal ParticipatingFathers { get; set; }
 
         [Display(Name = "Total prenatal & parenting education classes")]
-        public int TotEduClasses { get; set; }
+        public decimal TotEduClasses { get; set; }
 
         [Display(Name = "Total Clients who attended prenatal and parenting education classes")]
-        public int TotClientsinEduClasses { get; set; }
+        public decimal TotClientsinEduClasses { get; set; }
 
         [Display(Name = "Total case management hours provided")]
-        public int TotCaseHrs { get; set; }
+        public decimal TotCaseHrs { get; set; }
 
         [Display(Name = "Total Clients who participated in case management")]
-        public int TotClientsCaseHrs { get; set; }
+        public decimal TotClientsCaseHrs { get; set; }
 
         [Display(Name = "Total of other classes offered")]
-        public int TotOtherClasses { get; set; }
+        public decimal TotOtherClasses { get; set; }
 
     }
 }

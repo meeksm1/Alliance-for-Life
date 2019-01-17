@@ -19,7 +19,7 @@ namespace Alliance_for_Life.Models
         public decimal GrandTotal { get; set; }
 
 
-        public double LessManagementFee { get; set; }
+        public decimal LessManagementFee { get; set; }
 
         [UIHint("Currency")]
         public decimal DepositAmount { get; set; }

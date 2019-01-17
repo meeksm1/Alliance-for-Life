@@ -45,10 +45,10 @@ namespace Alliance_for_Life.ViewModels
 
         [Required]
         [Display(Name = "Allocated Contract Amount")]
-        public int AllocatedContractAmount { get; set; }
+        public decimal AllocatedContractAmount { get; set; }
 
         [Display(Name = "Allocated Adjustments")]
-        public int AllocatedAdjustments { get; set; }
+        public decimal AllocatedAdjustments { get; set; }
 
         [Required]
         [Display(Name = "Street Address")]

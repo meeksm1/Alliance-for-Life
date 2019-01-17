@@ -10,29 +10,16 @@ namespace Alliance_for_Life.Models
         [Key]
         public int QuraterlyStateId { get; set; }
 
-        public double TotPSforQuarter()
-        {
-            ApplicationDbContext db = new ApplicationDbContext();
-            var quarterTotalList = db.ParticipationServices.ToString();
-            var quarterTotal = 1;
+        public decimal TotPSforQuarter { get; set; }
+        public decimal TotDAforQuarter { get; set; }
 
-            return quarterTotal;
-        }
+        public decimal StateFee { get; set; }
 
-        public double TotDAforQuarter { get; set; }
+        public decimal StateFeeQuarter { get; set; }
 
-        public double StateFee { get; set; }
+        public decimal TotDACandPSMonthly { get; set; }
 
-        public double StateFeeQuarter { get; set; }
-
-        public double TotDACandPSMonthly()
-        {
-            var total = AdminCost.ATotCosts + ParticipationService.PTotals;
-
-            return total;
-        }
-
-        public double TotDAandPSQuarter { get; set; }
+        public decimal TotDAandPSQuarter { get; set; }
 
         //Navigation Properties
 

@@ -36,14 +36,14 @@ namespace Alliance_for_Life.Controllers
                                    AOfficeCommunications = a.AOfficeCommunications, AOfficeMaint = a.AOfficeMaint,
                                    AConsulting = a.AConsulting, EFTFees = a.EFTFees, AJanitorServices = a.AJanitorServices,
                                    ADepreciation = a.ADepreciation, ATechSupport = a.ATechSupport, ASecurityServices = a.ASecurityServices,
-                                   ABackgroundCheck = a.ABackgroundCheck, ATotCosts = a.ATotCosts, StateAdminFee = a.ATotCosts * .1,
+                                   ABackgroundCheck = a.ABackgroundCheck, ATotCosts = a.ATotCosts, StateAdminFee = a.ATotCosts,
                                    TotDAforQuarter = qs.TotDAforQuarter, StateFeeQuarter = qs.StateFeeQuarter,
                                    PTranspotation = p.PTranspotation, PJobTrain = p.PJobTrain, PEducationAssistance = p.PEducationAssistance,
                                    PResidentialCare = p.PResidentialCare, PUtilities = p.PUtilities, PHousingEmergency = p.PHousingEmergency,
                                    PHousingAssistance = p.PHousingAssistance, PChildCare = p.PChildCare, PClothing = p.PClothing,
                                    PFood = p.PFood, PSupplies = p.PSupplies, RFOCarRepairs = p.POther, RFOCarPayments = p.POther2,
                                    RFOCarIns = p.POther3, RFOBackgroundCheck = p.BackgroudCheck, BirthCerts = p.PBirthCerts,
-                                   PTotals = p.PTotals, TotPSforQuarter = qs.TotPSforQuarter(), TotDAandPSMonth = qs.TotDACandPSMonthly(),
+                                   PTotals = p.PTotals, TotPSforQuarter = qs.TotPSforQuarter, TotDAandPSMonth = qs.TotDACandPSMonthly,
                                    TotDAandPSQuarter = qs.TotDAandPSQuarter
                                };
 

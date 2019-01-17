@@ -18,122 +18,105 @@ namespace Alliance_for_Life.ViewModels
         public IEnumerable<Region> Regions { get; set; }
 
         [Display(Name = "Salaries and Wages")]
-        public int ASalandWages { get; set; }
+        public decimal ASalandWages { get; set; }
 
         [Display(Name = "Employee Benefits")]
-        public int AEmpBenefits { get; set; }
+        public decimal AEmpBenefits { get; set; }
 
         [Display(Name = "Employe Travel")]
-        public int AEmpTravel { get; set; }
+        public decimal AEmpTravel { get; set; }
 
         [Display(Name = "Employee Training")]
-        public int AEmpTraining { get; set; }
+        public decimal AEmpTraining { get; set; }
 
         [Display(Name = "Office Rent")]
-        public int AOfficeRent { get; set; }
+        public decimal AOfficeRent { get; set; }
 
         [Display(Name = "Office Utilities")]
-        public int AOfficeUtilities { get; set; }
+        public decimal AOfficeUtilities { get; set; }
 
         [Display(Name = "Facility Insurance")]
-        public int AFacilityIns { get; set; }
+        public decimal AFacilityIns { get; set; }
 
         [Display(Name = "Office Supplies")]
-        public int AOfficeSupplies { get; set; }
+        public decimal AOfficeSupplies { get; set; }
 
         [Display(Name = "Equipment")]
-        public int AEquipment { get; set; }
+        public decimal AEquipment { get; set; }
 
         [Display(Name = "Office Communications")]
-        public int AOfficeCommunications { get; set; }
+        public decimal AOfficeCommunications { get; set; }
 
         [Display(Name = "Office Maintenance")]
-        public int AOfficeMaint { get; set; }
+        public decimal AOfficeMaint { get; set; }
 
         [Display(Name = "Consulting Fees")]
-        public int AConsulting { get; set; }
+        public decimal AConsulting { get; set; }
 
         [Display(Name = "Subcontractor Payment Costs")]
-        public int SubConPayCost { get; set; }
+        public decimal SubConPayCost { get; set; }
 
         [Display(Name = "Background Checks")]
-        public int BackgrounCheck { get; set; }
+        public decimal BackgrounCheck { get; set; }
 
-        public int Other { get; set; }
+        public decimal Other { get; set; }
 
         [Display(Name = "Janitorial Services")]
-        public int AJanitorServices { get; set; }
+        public decimal AJanitorServices { get; set; }
 
         [Display(Name = "Depreciation")]
-        public int ADepreciation { get; set; }
+        public decimal ADepreciation { get; set; }
 
         [Display(Name = "Technical Support")]
-        public int ATechSupport { get; set; }
+        public decimal ATechSupport { get; set; }
 
         [Display(Name = "Security Services")]
-        public int ASecurityServices { get; set; }
+        public decimal ASecurityServices { get; set; }
 
         [Display(Name = "Total")]
-        public double ATotCosts { get; set; }
+        public decimal ATotCosts { get; set; }
 
         [Display(Name = "Administration Fee's")]
-        public double AdminFee { get; set; }
+        public decimal AdminFee { get; set; }
 
         //used to set the heading of the page
         public string Heading { get; set; }
 
-        //used to switch between actions in the controller
-        //public string Action
-        //{
-        //    get
-        //    {
-        //        Expression<Func<BudgetCostController, ActionResult>> update =
-        //            (c => c.Update(this));
-
-        //        Expression<Func<BudgetCostController, ActionResult>> create =
-        //            (c => c.Create(this));
-
-        //        var action = (Month != 0 && Region != 0) ? update : create;
-        //        return (action.Body as MethodCallExpression).Method.Name;
-        //    }
-
-        //}
-
-        public int Trasportation { get; set; }
+        public decimal Trasportation { get; set; }
 
         [Display(Name = "Job Training")]
-        public int JobTraining { get; set; }
+        public decimal JobTraining { get; set; }
 
         [Display(Name = "Tuition Assistance")]
-        public int TuitionAssistance { get; set; }
+        public decimal TuitionAssistance { get; set; }
 
         [Display(Name = "Contracted Residential")]
-        public int ContractedResidential { get; set; }
+        public decimal ContractedResidential { get; set; }
 
         [Display(Name = "Utility Assistance")]
-        public int UtilityAssistance { get; set; }
+        public decimal UtilityAssistance { get; set; }
 
         [Display(Name = "Emergency Shelter")]
-        public int EmergencyShelter { get; set; }
+        public decimal EmergencyShelter { get; set; }
 
         [Display(Name = "Housing Assistance")]
-        public int HousingAssistance { get; set; }
+        public decimal HousingAssistance { get; set; }
 
-        public int Childcare { get; set; }
+        public decimal Childcare { get; set; }
 
-        public int Clothing { get; set; }
+        public decimal Clothing { get; set; }
 
-        public int Food { get; set; }
+        public decimal Food { get; set; }
 
-        public int Supplies { get; set; }
+        public decimal Supplies { get; set; }
 
-        public int RFO { get; set; }
+        public decimal RFO { get; set; }
 
         [Display(Name = "Total")]
-        public double BTotal { get; set; }
+        public decimal BTotal { get; set; }
 
         [Display(Name = "Maximum Annual Total Price")]
-        public double Maxtot { get; set; }
+        public decimal Maxtot { get; set; }
 
         public int Id { get; internal set; }
     }
