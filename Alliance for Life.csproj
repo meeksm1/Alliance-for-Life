@@ -248,6 +248,10 @@
     <Compile Include="Migrations\201812211732154_QuarterlyStateReport.Designer.cs">
       <DependentUpon>201812211732154_QuarterlyStateReport.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201901171706249_ChangedInttoDecimal.cs" />
+    <Compile Include="Migrations\201901171706249_ChangedInttoDecimal.Designer.cs">
+      <DependentUpon>201901171706249_ChangedInttoDecimal.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\QuarterlyState.cs" />
     <Compile Include="DTO\BudgetReport.cs" />
     <Compile Include="DTO\Invoice.cs" />
@@ -846,6 +850,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812211732154_QuarterlyStateReport.resx">
       <DependentUpon>201812211732154_QuarterlyStateReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901171706249_ChangedInttoDecimal.resx">
+      <DependentUpon>201901171706249_ChangedInttoDecimal.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
