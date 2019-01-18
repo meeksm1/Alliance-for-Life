@@ -530,6 +530,7 @@
     <Content Include="Content\DataTables\css\select.jqueryui.min.css" />
     <Content Include="Content\DataTables\css\select.semanticui.css" />
     <Content Include="Content\DataTables\css\select.semanticui.min.css" />
+    <Content Include="Content\DataTables\images\AFL-2015LOGO-CMYK[1].jpg" />
     <Content Include="Content\DataTables\images\afllogo.png" />
     <Content Include="Content\DataTables\images\details_close.png" />
     <Content Include="Content\DataTables\images\details_open.png" />
