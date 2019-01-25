@@ -13,13 +13,13 @@
     });
 });
 
-$(function () {
+$(function addAdministrationTotals() {
     $('.numAdd').change(function () {
 
         // Loop through all input's and re-calculate the total
         var total = 0;
         $('.numAdd').each(function () {
-            total += parseFloat(this.value);
+            total += +$(this).val();
         });
 
         // Update the total
@@ -32,19 +32,33 @@ $(function () {
 });
 
 
-$(function () {
+$(function addBudgetFormTotals() {
     $('.numAdd2').change(function () {
+
         // Loop through all input's and re-calculate the total
         var total = 0;
         $('.numAdd2').each(function () {
-            total += parseFloat(this.value);
+            total += +$(this).val();
         });
 
         // Update the total
         $("#BTotal").val(total.toFixed(2));
-
         var maxtot = (parseFloat($("#ATotCosts").val()) + parseFloat($("#AdminFee").val()) + parseFloat($("#BTotal").val())).toFixed(2)
         $("#Maxtot").val(maxtot)
     });
 });
 
+
+$(function addParticipationServicesForm() {
+    $('.numAdd3').change(function () {
+
+        // Loop through all input's and re-calculate the total
+        var total = 0;
+        $('.numAdd3').each(function () {
+            total += +$(this).val();
+        });
+
+        // Update the total
+        $("#PTotals").val(total.toFixed(2));
+    });
+});

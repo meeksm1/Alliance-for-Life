@@ -19,7 +19,7 @@
             Month
         </th>
         <th>
-            Region&nbsp;&nbsp;&nbsp;&nbsp;    
+            Region&nbsp;&nbsp;&nbsp;&nbsp;
         </th>
         <th>
             Salaries and Wages
@@ -129,8 +129,8 @@
         <th></th>
     </tr>
 
-    @foreach (var item in Model)
-    {
+        @foreach (var item in Model)
+        {
         <tr>
             <td>
                 @Html.ActionLink("Details", "Details", new { id = item.BudgetInvoiceId })
@@ -252,4 +252,117 @@
         </tr>
     }
 
+    </table>
+<table class="table">
+    <h4>Totals</h4>
+    <tr>
+        <td>
+
+        </td>
+        <td>
+            @Model.Sum(m => m.ASalandWages).ToString("c")
+        </td>
+        <td>
+            @Model.Sum(m => m.ASalandWages).ToString("c")
+        </td>
+        <td>
+            @Model.Sum(m => m.ASalandWages).ToString("c")
+        </td>
+        <td>
+            @Model.Sum(m => m.AEmpBenefits).ToString("c")
+        </td>
+        <td>
+            @Model.Sum(m => m.AEmpTravel).ToString("c")
+        </td>
+        <td>
+            @Model.Sum(m => m.AEmpTraining).ToString("c")
+        </td>
+        <td>
+            @Model.Sum(m => m.AOfficeRent).ToString("c")
+        </td>
+        <td>
+            @Model.Sum(m => m.AOfficeUtilities).ToString("c")
+        </td>
+        <td>
+            @Model.Sum(m => m.AFacilityIns).ToString("c")
+        </td>
+        <td>
+            @Model.Sum(m => m.AOfficeSupplies).ToString("c")
+        </td>
+        <td>
+            @Model.Sum(m => m.AEquipment).ToString("c")
+        </td>
+        <td>
+            @Model.Sum(m => m.AOfficeCommunications).ToString("c")
+        </td>
+        <td>
+            @Model.Sum(m => m.AOfficeMaint).ToString("c")
+        </td>
+        <td>
+            @Model.Sum(m => m.AConsulting).ToString("c")
+        </td>
+        <td>
+            @Model.Sum(m => m.SubConPayCost).ToString("c")
+        </td>
+        <td>
+            @Model.Sum(m => m.BackgrounCheck).ToString("c")
+        </td>
+        <td>
+            @Model.Sum(m => m.Other).ToString("c")
+        </td>
+        <td>
+            @Model.Sum(m => m.AJanitorServices).ToString("c")
+        </td>
+        <td>
+            @Model.Sum(m => m.ADepreciation).ToString("c")
+        </td>
+        <td>
+            @Model.Sum(m => m.ATechSupport).ToString("c")
+        </td>
+        <td>
+            @Model.Sum(m => m.ASecurityServices).ToString("c")
+        </td>
+        <td>
+            @Model.Sum(m => m.ATotCosts).ToString("c")
+        </td>
+        <td>
+            @Model.Sum(m => m.AdminFee).ToString("c")
+        </td>
+        <td>
+            @Model.Sum(m => m.Trasportation).ToString("c")
+        </td>
+        <td>
+            @Model.Sum(m => m.TuitionAssistance).ToString("c")
+        </td>
+        <td>
+            @Model.Sum(m => m.ContractedResidential).ToString("c")
+        </td>
+        <td>
+            @Model.Sum(m => m.UtilityAssistance).ToString("c")
+        </td>
+        <td>
+            @Model.Sum(m => m.EmergencyShelter).ToString("c")
+        </td>
+        <td>
+            @Model.Sum(m => m.HousingAssistance).ToString("c")
+        </td>
+        <td>
+            @Model.Sum(m => m.Childcare).ToString("c")
+        </td>
+        <td>
+            @Model.Sum(m => m.Clothing).ToString("c")
+        </td>
+        <td>
+            @Model.Sum(m => m.Food).ToString("c")
+        </td>
+        <td>
+            @Model.Sum(m => m.RFO).ToString("c")
+        </td>
+        <td>
+            @Model.Sum(m => m.BTotal).ToString("c")
+        </td>
+        <td>
+            @Model.Sum(m => m.Maxtot).ToString("c")
+        </td>
+    </tr>
 </table>
