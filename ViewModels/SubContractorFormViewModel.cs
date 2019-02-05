@@ -17,7 +17,7 @@ namespace Alliance_for_Life.ViewModels
         [Display(Name = "Organization Name")]
         public string OrgName { get; set; }
 
-        [Display(Name = "Center Director")]
+        [Display(Name = "Key Contact")]
         [Required]
         public string Director { get; set; }
 
