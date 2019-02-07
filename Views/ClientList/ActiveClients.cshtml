@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<Alliance_for_Life.Models.ClientListReport>
+
 @{
     ViewBag.Title = "All Clients";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -31,31 +32,35 @@
         <th></th>
     </tr>
 
-    @foreach (var allactive in Model)
+    @foreach (var activeclients in Model)
     {
         <tr>
             <td>
-                <div class="clientid">@allactive.Id</div>
+                <div class="clientid">@activeclients.Id</div>
             </td>
 
             <td>
-                <div class="clientid">@allactive.Orgname</div>
+                <div class="clientid">@activeclients.Orgname</div>
             </td>
 
             <td>
-                <div class="fname">@allactive.FirstName</div>
+                <div class="fname">@activeclients.FirstName</div>
             </td>
 
             <td>
-                <div class="lname">@allactive.LastName</div>
+                <div class="lname">@activeclients.LastName</div>
             </td>
 
             <td>
-                <div class="due">@allactive.DueDate.ToShortDateString()</div>
+                <div class="due">@activeclients.DueDate.ToShortDateString()</div>
             </td>
 
             <td>
-                <div class="due">@allactive.DOB.ToShortDateString()</div>
+                <div class="due">@activeclients.DOB.ToShortDateString()</div>
+            </td>
+
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = activeclients.Id })
             </td>
         </tr>
     }
@@ -66,7 +71,7 @@
 <h3>Total Active Clients @Model.Count()</h3>
 
 <br />
-@using (Html.BeginForm("ExportAllActive", "ClientListReport", FormMethod.Post))
+@using (Html.BeginForm("ExportActive", "ClientList", FormMethod.Post))
 {
     <input type="submit" value="Export to Excel" class="btn btn-primary" />
 }

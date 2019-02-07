@@ -196,3 +196,4 @@ C:\Users\meeksm1\Documents\GitHub\Alliance-for-Life\obj\Debug\Alliance for Life.
 C:\Users\meeksm1\Documents\GitHub\Alliance-for-Life\obj\Debug\Alliance for Life.dll
 C:\Users\meeksm1\Documents\GitHub\Alliance-for-Life\obj\Debug\Alliance for Life.pdb
 C:\Users\meeksm1\Documents\GitHub\Alliance-for-Life\obj\Debug\Alliance for Life.csprojAssemblyReference.cache
+C:\Users\meeksm1\Documents\GitHub\Alliance-for-Life\obj\Debug\Alliance_for_Life.Migrations.PopulateYearTable.resources

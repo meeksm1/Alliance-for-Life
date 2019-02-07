@@ -8,10 +8,6 @@
 <h2>Quarterly State Reports</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-
-<p>
     @Html.ActionLink("First Quarter Reports", "FirstQuarterReport")
 </p>
 <p>
@@ -23,44 +19,3 @@
 <p>
     @Html.ActionLink("Fourth Quarter Reports", "FourthQuarterReport")
 </p>
-@*<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.TotPSforQuarter)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TotDAforQuarter)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.StateFeeQuarter)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TotDAandPSQuarter)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.TotPSforQuarter)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TotDAforQuarter)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.StateFeeQuarter)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TotDAandPSQuarter)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.QuraterlyStateId }) |
-                @Html.ActionLink("Details", "Details", new { id = item.QuraterlyStateId }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.QuraterlyStateId })
-            </td>
-        </tr>
-    }
-
-</table>*@

@@ -16,6 +16,7 @@ namespace Alliance_for_Life.Models
         public DbSet<BudgetCosts> BudgetCosts { get; set; }
         public DbSet<Surveys> Surveys { get; set; }
         public DbSet<Invoice> Invoices { get; set; }
+        public DbSet<Year> Years { get; set; }
 
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)

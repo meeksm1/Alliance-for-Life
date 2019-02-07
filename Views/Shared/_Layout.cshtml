@@ -33,7 +33,7 @@
                     @Html.ActionLink("Reports", "Reports", "AFLForm", new { area = "" }, new { @class = "navbar-brand" })
                     @Html.ActionLink("Invoices", "Index", "Invoices", new { area = "" }, new { @class = "navbar-brand" })
                     @Html.ActionLink("Contractor Forms", "Create", "ContractorForm", new { area = "" }, new { @class = "navbar-brand" })
-                    @Html.ActionLink("Reports", "Reports", "ClientListReport", new { area = "" }, new { @class = "navbar-brand" })
+                    @Html.ActionLink("Reports", "Reports", "ClientList", new { area = "" }, new { @class = "navbar-brand" })
                     @Html.ActionLink("Register User Roles", "Index", "Role", new { area = "" }, new { @class = "navbar-brand" })
 
                     @Html.Partial("_LoginPartial")
@@ -42,14 +42,14 @@
                 else if (ViewContext.HttpContext.User.IsInRole("Manager"))
                 {
                     @Html.ActionLink("Contractor Forms", "Create", "ContractorForm", new { area = "" }, new { @class = "navbar-brand" })
-                    @Html.ActionLink("Reports", "Reports", "ClientListReport", new { area = "" }, new { @class = "navbar-brand" })
+                    @Html.ActionLink("Reports", "Reports", "ClientList", new { area = "" }, new { @class = "navbar-brand" })
                     @Html.ActionLink("Invoices", "Index", "Invoices", new { area = "" }, new { @class = "navbar-brand" })
                     @Html.Partial("_LoginPartial")
                 }
 
                 else if (ViewContext.HttpContext.User.IsInRole("user"))
                 {
-                    @Html.ActionLink("Reports", "Reports", "ClientListReport", new { area = "" }, new { @class = "navbar-brand" })
+                    @Html.ActionLink("Reports", "Reports", "ClientList", new { area = "" }, new { @class = "navbar-brand" })
                     @Html.Partial("_LoginPartial")
                 }
                 else if (ViewContext.HttpContext.User.IsInRole(null))

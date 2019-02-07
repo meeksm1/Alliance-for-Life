@@ -78,16 +78,17 @@ namespace Alliance_for_Life.Models
         public double Maxtot { get; set; }
 
         // Navigation Properties
-
         public Month Month { get; set; }
         public Region Region { get; set; }
-        public SubContractor Subcontractor { get; set; }
+        //public SubContractor Subcontractor { get; set; }
         public ApplicationUser User { get; set; }
         public AdminCosts AdminCost { get; set; }
         public ParticipationService ParticipationCost { get; set; }
+        public Year Year { get; set; }
+
         public int RegionId { get; set; }
         public int MonthId { get; set; }
-        public int SubcontractorId { get; set; }
-
+        //public int SubcontractorId { get; set; }
+        public int YearId { get; set; }
     }
 }

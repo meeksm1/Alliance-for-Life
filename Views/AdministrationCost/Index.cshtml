@@ -85,86 +85,87 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.ActionLink("Details", "Details", new { id = item.AdminCostId })
-        </td>
-        <td>
-            @item.Subcontractor.OrgName
-        </td>
-        <td>
-            @item.Month.Months
-        </td>
-        <td>
-            @item.Region.Regions
-        </td>
-        <td>
-            @item.ASalandWages.ToString("C")
-        </td>
-        <td>
-            @item.AEmpBenefits.ToString("C")
-        </td>
-        <td>
-            @item.AEmpTravel.ToString("C")
-        </td>
-        <td>
-            @item.AEmpTraining.ToString("C")
-        </td>
-        <td>
-            @item.AOfficeRent.ToString("C")
-        </td>
-        <td>
-            @item.AOfficeUtilities.ToString("C")
-        </td>
-        <td>
-            @item.AFacilityIns.ToString("C")
-        </td>
-        <td>
-            @item.AOfficeSupplies.ToString("C")
-        </td>
-        <td>
-            @item.AEquipment.ToString("C")
-        </td>
-        <td>
-            @item.AOfficeCommunications.ToString("C")
-        </td>
-        <td>
-            @item.AOfficeMaint.ToString("C")
-        </td>
-        <td>
-            @item.AConsulting.ToString("C")
-        </td>
-        <td>
-            @item.AJanitorServices.ToString("C")
-        </td>
-        <td>
-            @item.ADepreciation.ToString("C")
-        </td>
-        <td>
-            @item.ATechSupport.ToString("C")
-        </td>
-        <td>
-            @item.ASecurityServices.ToString("C")
-        </td>
-        <td>
-            @item.AOther.ToString("C")
-        </td>
-        <td>
-            @item.AOther2.ToString("C")
-        </td>
-        <td>
-            @item.AOther3.ToString("C")
-        </td>
-        <td>
-            @item.ATotCosts.ToString("C")
-        </td>
-        
-    </tr>
-}
-    @*This is how you do a Sum in Linq to apply a total based on a model property*@
-    <tr>
-        <td>@Model.Sum(m => m.ATotCosts)</td>
-    </tr>
-
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.ActionLink("Details", "Details", new { id = item.AdminCostId })
+            </td>
+            <td>
+                @item.Subcontractor.OrgName
+            </td>
+            <td>
+                @item.Month.Months
+            </td>
+            <td>
+                @item.Region.Regions
+            </td>
+            <td>
+                @item.ASalandWages.ToString("C")
+            </td>
+            <td>
+                @item.AEmpBenefits.ToString("C")
+            </td>
+            <td>
+                @item.AEmpTravel.ToString("C")
+            </td>
+            <td>
+                @item.AEmpTraining.ToString("C")
+            </td>
+            <td>
+                @item.AOfficeRent.ToString("C")
+            </td>
+            <td>
+                @item.AOfficeUtilities.ToString("C")
+            </td>
+            <td>
+                @item.AFacilityIns.ToString("C")
+            </td>
+            <td>
+                @item.AOfficeSupplies.ToString("C")
+            </td>
+            <td>
+                @item.AEquipment.ToString("C")
+            </td>
+            <td>
+                @item.AOfficeCommunications.ToString("C")
+            </td>
+            <td>
+                @item.AOfficeMaint.ToString("C")
+            </td>
+            <td>
+                @item.AConsulting.ToString("C")
+            </td>
+            <td>
+                @item.AJanitorServices.ToString("C")
+            </td>
+            <td>
+                @item.ADepreciation.ToString("C")
+            </td>
+            <td>
+                @item.ATechSupport.ToString("C")
+            </td>
+            <td>
+                @item.ASecurityServices.ToString("C")
+            </td>
+            <td>
+                @item.AOther.ToString("C")
+            </td>
+            <td>
+                @item.AOther2.ToString("C")
+            </td>
+            <td>
+                @item.AOther3.ToString("C")
+            </td>
+            <td>
+                @item.ATotCosts.ToString("C")
+            </td>
+        </tr>
+    }
 </table>
+
+@*This is how you do a Sum in Linq to apply a total based on a model property*@
+<h3>Total Administrative Cost</h3>
+<tr>
+    <td>@Model.Sum(m => m.ATotCosts).ToString("c")</td>
+</tr>

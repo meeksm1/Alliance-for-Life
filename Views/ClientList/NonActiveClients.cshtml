@@ -5,12 +5,12 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Current Active Clients</h2>
+<h2>History view of Non-Active Clients</h2>
 
 <table class="table">
     <tr>
         <th>
-           Client Id
+            Client Id
         </th>
 
         <th>
@@ -32,35 +32,35 @@
         <th></th>
     </tr>
 
-    @foreach (var activeclients in Model)
+    @foreach (var nonactiveclients in Model)
     {
         <tr>
             <td>
-                <div class="clientid">@activeclients.Id</div>
+                <div class="clientid">@nonactiveclients.Id</div>
             </td>
 
             <td>
-                <div class="clientid">@activeclients.Orgname</div>
+                <div class="clientid">@nonactiveclients.Orgname</div>
             </td>
 
             <td>
-                <div class="fname">@activeclients.FirstName</div>
+                <div class="fname">@nonactiveclients.FirstName</div>
             </td>
 
             <td>
-                <div class="lname">@activeclients.LastName</div>
+                <div class="lname">@nonactiveclients.LastName</div>
             </td>
 
             <td>
-                <div class="due">@activeclients.DueDate.ToShortDateString()</div>
+                <div class="due">@nonactiveclients.DueDate.ToShortDateString()</div>
             </td>
 
             <td>
-                <div class="due">@activeclients.DOB.ToShortDateString()</div>
+                <div class="due">@nonactiveclients.DOB.ToShortDateString()</div>
             </td>
 
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = activeclients.Id })
+                @Html.ActionLink("Edit", "Edit", new { id = nonactiveclients.Id })
             </td>
         </tr>
     }
@@ -68,10 +68,10 @@
 </tr>
 </table>
 
-<h3>Total Active Clients @Model.Count()</h3>
+<h3>Total Non-Active Clients @Model.Count()</h3>
 
 <br />
-@using (Html.BeginForm("ExportActive", "ClientListReport", FormMethod.Post))
+@using (Html.BeginForm("ExportNonActive", "ClientList", FormMethod.Post))
 {
     <input type="submit" value="Export to Excel" class="btn btn-primary" />
 }

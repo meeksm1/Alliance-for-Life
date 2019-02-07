@@ -69,66 +69,71 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.ActionLink("Details", "Details", new { id = item.PSId })|
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Subcontractor.OrgName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Month.Months)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Region.Regions)
-        </td>
-        <td>
-            @item.PTranspotation.ToString("C")
-        </td>
-        <td>
-            @item.PJobTrain.ToString("C")
-        </td>
-        <td>
-            @item.PEducationAssistance.ToString("C")
-        </td>
-        <td>
-            @item.PResidentialCare.ToString("C")
-        </td>
-        <td>
-            @item.PUtilities.ToString("C")
-        </td>
-        <td>
-            @item.PHousingEmergency.ToString("C")
-        </td>
-        <td>
-            @item.PHousingAssistance.ToString("C")
-        </td>
-        <td>
-            @item.PChildCare.ToString("C")
-        </td>
-        <td>
-            @item.PClothing.ToString("C")
-        </td>
-        <td>
-            @item.PFood.ToString("C")
-        </td>
-        <td>
-            @item.PSupplies.ToString("C")
-        </td>
-        <td>
-            @item.POther.ToString("C")
-        </td>
-        <td>
-            @item.POther2.ToString("C")
-        </td>
-        <td>
-            @item.POther3.ToString("C")
-        </td>
-        <td>
-            @item.PTotals.ToString("C")
-        </td>
-    </tr>
-}
-
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.ActionLink("Details", "Details", new { id = item.PSId })|
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Subcontractor.OrgName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Month.Months)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Region.Regions)
+            </td>
+            <td>
+                @item.PTranspotation.ToString("C")
+            </td>
+            <td>
+                @item.PJobTrain.ToString("C")
+            </td>
+            <td>
+                @item.PEducationAssistance.ToString("C")
+            </td>
+            <td>
+                @item.PResidentialCare.ToString("C")
+            </td>
+            <td>
+                @item.PUtilities.ToString("C")
+            </td>
+            <td>
+                @item.PHousingEmergency.ToString("C")
+            </td>
+            <td>
+                @item.PHousingAssistance.ToString("C")
+            </td>
+            <td>
+                @item.PChildCare.ToString("C")
+            </td>
+            <td>
+                @item.PClothing.ToString("C")
+            </td>
+            <td>
+                @item.PFood.ToString("C")
+            </td>
+            <td>
+                @item.PSupplies.ToString("C")
+            </td>
+            <td>
+                @item.POther.ToString("C")
+            </td>
+            <td>
+                @item.POther2.ToString("C")
+            </td>
+            <td>
+                @item.POther3.ToString("C")
+            </td>
+            <td>
+                @item.PTotals.ToString("C")
+            </td>
+        </tr>
+    }
 </table>
+
+<h3>Total Participation Cost</h3>
+<tr>
+    <td>@Model.Sum(m => m.PTotals).ToString("c")</td>
+</tr>

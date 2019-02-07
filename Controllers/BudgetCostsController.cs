@@ -16,7 +16,7 @@ namespace Alliance_for_Life.Controllers
         // GET: BudgetCosts
         public ActionResult Index()
         {
-            var budgetCosts = db.BudgetCosts.Include(b => b.Month).Include(b => b.Region).Include(b => b.Subcontractor);
+            var budgetCosts = db.BudgetCosts.Include(b => b.Month).Include(b => b.Year).Include(b => b.Region);
             return View(budgetCosts.ToList());
         }
 
@@ -34,9 +34,7 @@ namespace Alliance_for_Life.Controllers
                 var budgetCosts = db.BudgetCosts
                 .Include(b => b.Month)
                 .Include(b => b.Region)
-                .Include(b => b.Subcontractor)
                 .Include(b => b.User)
-                //.Where(b => b.User.Id == b.Subcontractor.AdministratorId)
                 .Where(b => b.MonthId <= 3);
 
                 return View(budgetCosts.ToList());    
@@ -47,9 +45,7 @@ namespace Alliance_for_Life.Controllers
             var budgetCosts = db.BudgetCosts
             .Include(b => b.Month)
             .Include(b => b.Region)
-            .Include(b => b.Subcontractor)
             .Include(b => b.User)
-            //.Where(b => b.User.Id == b.Subcontractor.AdministratorId)
             .Where(b => b.MonthId >= 4 && b.MonthId <= 6);
             return View(budgetCosts.ToList());
         }
@@ -59,9 +55,7 @@ namespace Alliance_for_Life.Controllers
             var budgetCosts = db.BudgetCosts
             .Include(b => b.Month)
             .Include(b => b.Region)
-            .Include(b => b.Subcontractor)
             .Include(b => b.User)
-            //.Where(b => b.User.Id == b.Subcontractor.AdministratorId)
             .Where(b => b.MonthId >= 7 && b.MonthId <= 9);
             return View(budgetCosts.ToList());
         }
@@ -71,9 +65,7 @@ namespace Alliance_for_Life.Controllers
             var budgetCosts = db.BudgetCosts
             .Include(b => b.Month)
             .Include(b => b.Region)
-            .Include(b => b.Subcontractor)
             .Include(b => b.User)
-            //.Where(b => b.User.Id == b.Subcontractor.AdministratorId)
             .Where(b => b.MonthId >= 10);
             return View(budgetCosts.ToList());
         }
@@ -88,7 +80,7 @@ namespace Alliance_for_Life.Controllers
             BudgetCosts budgetCosts = db.BudgetCosts
                 .Include(a => a.Month)
                 .Include(a => a.Region)
-                .Include(a => a.Subcontractor)
+                .Include(a => a.Year)
                 .SingleOrDefault(a => a.BudgetInvoiceId == id);
             if (budgetCosts == null)
             {
@@ -101,8 +93,8 @@ namespace Alliance_for_Life.Controllers
         public ActionResult Create()
         {
             ViewBag.MonthId = new SelectList(db.Months, "Id", "Months");
+            ViewBag.YearId = new SelectList(db.Years, "Id", "Years");
             ViewBag.RegionId = new SelectList(db.Regions, "Id", "Regions");
-            ViewBag.SubcontractorId = new SelectList(db.SubContractors, "SubcontractorId", "OrgName");
             return View();
         }
 
@@ -111,7 +103,7 @@ namespace Alliance_for_Life.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "BudgetInvoiceId,ASalandWages,AEmpBenefits,AEmpTravel,AEmpTraining,AOfficeRent,AOfficeUtilities,AFacilityIns,AOfficeSupplies,AEquipment,AOfficeCommunications,AOfficeMaint,AConsulting,SubConPayCost,BackgrounCheck,Other,AJanitorServices,ADepreciation,ATechSupport,ASecurityServices,ATotCosts,AdminFee,Trasportation,JobTraining,TuitionAssistance,ContractedResidential,UtilityAssistance,EmergencyShelter,HousingAssistance,Childcare,Clothing,Food,Supplies,RFO,BTotal,Maxtot,RegionId,MonthId,SubcontractorId")] BudgetCosts budgetCosts)
+        public ActionResult Create([Bind(Include = "BudgetInvoiceId,ASalandWages,AEmpBenefits,AEmpTravel,AEmpTraining,AOfficeRent,AOfficeUtilities,AFacilityIns,AOfficeSupplies,AEquipment,AOfficeCommunications,AOfficeMaint,AConsulting,SubConPayCost,BackgrounCheck,Other,AJanitorServices,ADepreciation,ATechSupport,ASecurityServices,ATotCosts,AdminFee,Trasportation,JobTraining,TuitionAssistance,ContractedResidential,UtilityAssistance,EmergencyShelter,HousingAssistance,Childcare,Clothing,Food,Supplies,RFO,BTotal,Maxtot,RegionId,MonthId,YearId")] BudgetCosts budgetCosts)
         {
             if (ModelState.IsValid)
             {
@@ -121,8 +113,8 @@ namespace Alliance_for_Life.Controllers
             }
 
             ViewBag.MonthId = new SelectList(db.Months, "Id", "Months", budgetCosts.MonthId);
+            ViewBag.YearId = new SelectList(db.Years, "Id", "Years", budgetCosts.YearId);
             ViewBag.RegionId = new SelectList(db.Regions, "Id", "Regions", budgetCosts.RegionId);
-            ViewBag.SubcontractorId = new SelectList(db.SubContractors, "SubcontractorId", "OrgName", budgetCosts.SubcontractorId);
             return View(budgetCosts);
         }
 
@@ -140,7 +132,7 @@ namespace Alliance_for_Life.Controllers
             }
             ViewBag.MonthId = new SelectList(db.Months, "Id", "Months", budgetCosts.MonthId);
             ViewBag.RegionId = new SelectList(db.Regions, "Id", "Regions", budgetCosts.RegionId);
-            ViewBag.SubcontractorId = new SelectList(db.SubContractors, "SubcontractorId", "OrgName", budgetCosts.SubcontractorId);
+            ViewBag.YearId = new SelectList(db.Years, "Id", "Years", budgetCosts.YearId);
             return View(budgetCosts);
         }
 
@@ -149,7 +141,7 @@ namespace Alliance_for_Life.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "BudgetInvoiceId,ASalandWages,AEmpBenefits,AEmpTravel,AEmpTraining,AOfficeRent,AOfficeUtilities,AFacilityIns,AOfficeSupplies,AEquipment,AOfficeCommunications,AOfficeMaint,AConsulting,SubConPayCost,BackgrounCheck,Other,AJanitorServices,ADepreciation,ATechSupport,ASecurityServices,ATotCosts,AdminFee,Trasportation,JobTraining,TuitionAssistance,ContractedResidential,UtilityAssistance,EmergencyShelter,HousingAssistance,Childcare,Clothing,Food,Supplies,RFO,BTotal,Maxtot,RegionId,MonthId,SubcontractorId")] BudgetCosts budgetCosts)
+        public ActionResult Edit([Bind(Include = "BudgetInvoiceId,ASalandWages,AEmpBenefits,AEmpTravel,AEmpTraining,AOfficeRent,AOfficeUtilities,AFacilityIns,AOfficeSupplies,AEquipment,AOfficeCommunications,AOfficeMaint,AConsulting,SubConPayCost,BackgrounCheck,Other,AJanitorServices,ADepreciation,ATechSupport,ASecurityServices,ATotCosts,AdminFee,Trasportation,JobTraining,TuitionAssistance,ContractedResidential,UtilityAssistance,EmergencyShelter,HousingAssistance,Childcare,Clothing,Food,Supplies,RFO,BTotal,Maxtot,RegionId,MonthId,YearId")] BudgetCosts budgetCosts)
         {
             if (ModelState.IsValid)
             {
@@ -159,7 +151,7 @@ namespace Alliance_for_Life.Controllers
             }
             ViewBag.MonthId = new SelectList(db.Months, "Id", "Months", budgetCosts.MonthId);
             ViewBag.RegionId = new SelectList(db.Regions, "Id", "Regions", budgetCosts.RegionId);
-            ViewBag.SubcontractorId = new SelectList(db.SubContractors, "SubcontractorId", "OrgName", budgetCosts.SubcontractorId);
+            ViewBag.YearId = new SelectList(db.Years, "Id", "Years", budgetCosts.YearId);
             return View(budgetCosts);
         }
 
@@ -173,7 +165,7 @@ namespace Alliance_for_Life.Controllers
             BudgetCosts budgetCosts = db.BudgetCosts
                 .Include(a => a.Month)
                 .Include(a => a.Region)
-                .Include(a => a.Subcontractor)
+                .Include(a => a.Year)
                 .SingleOrDefault(a => a.BudgetInvoiceId == id);
 
             if (budgetCosts == null)
@@ -191,7 +183,7 @@ namespace Alliance_for_Life.Controllers
             BudgetCosts budgetCosts = db.BudgetCosts
                 .Include(a => a.Month)
                 .Include(a => a.Region)
-                .Include(a => a.Subcontractor)
+                .Include(a => a.Year)
                 .SingleOrDefault(a => a.BudgetInvoiceId == id);
 
             db.BudgetCosts.Remove(budgetCosts);
@@ -212,10 +204,9 @@ namespace Alliance_for_Life.Controllers
         public FileResult Export()
         {
             DataTable dt = new DataTable("Grid");
-            dt.Columns.AddRange(new DataColumn[39]
+            dt.Columns.AddRange(new DataColumn[38]
             {
                 new DataColumn ("Budget Report Id"),
-                new DataColumn ("Organization"),
                 new DataColumn ("Month"),
                 new DataColumn ("Region"),
                 new DataColumn ("Salary/Wages"),
@@ -258,12 +249,9 @@ namespace Alliance_for_Life.Controllers
             var costs = from a in db.BudgetCosts
                         join m in db.Months on a.MonthId equals m.Id
                         join r in db.Regions on a.RegionId equals r.Id
-                        join s in db.SubContractors on a.SubcontractorId equals s.SubcontractorId
-                        where a.SubcontractorId == s.SubcontractorId
                         select new BudgetReport
                         {
                             BudgetInvoiceId = a.BudgetInvoiceId,
-                            OrgName = s.OrgName,
                             MonthName = m.Months,
                             RegionName = r.Regions,
                             ASalandWages = a.ASalandWages,
@@ -304,7 +292,7 @@ namespace Alliance_for_Life.Controllers
 
             foreach (var item in costs)
             {
-                dt.Rows.Add(item.BudgetInvoiceId, item.OrgName, item.MonthName, item.RegionName, item.ASalandWages, item.AEmpBenefits, 
+                dt.Rows.Add(item.BudgetInvoiceId, item.MonthName, item.RegionName, item.ASalandWages, item.AEmpBenefits, 
                     item.AEmpTravel, item.AEmpTraining, item.AOfficeRent, item.AOfficeUtilities, item.AFacilityIns, item.AOfficeSupplies, 
                     item.AEquipment, item.AOfficeCommunications, item.AOfficeMaint, item.AConsulting, item.SubConPayCost, item.BackgrounCheck,
                     item.Other, item.AJanitorServices, item.ADepreciation, item.ATechSupport, item.ASecurityServices, item.ATotCosts, 

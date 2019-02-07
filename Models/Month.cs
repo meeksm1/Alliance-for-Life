@@ -12,5 +12,6 @@ namespace Alliance_for_Life.Models
         [StringLength(25)]
         [Display(Name = "Month")]
         public string Months { get; set; }
+
     }
 }

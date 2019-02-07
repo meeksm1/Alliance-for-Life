@@ -31,31 +31,31 @@
         <th></th>
     </tr>
 
-    @foreach (var allnonactive in Model)
+    @foreach (var allactive in Model)
     {
         <tr>
             <td>
-                <div class="clientid">@allnonactive.Id</div>
+                <div class="clientid">@allactive.Id</div>
             </td>
 
             <td>
-                <div class="clientid">@allnonactive.Orgname</div>
+                <div class="clientid">@allactive.Orgname</div>
             </td>
 
             <td>
-                <div class="fname">@allnonactive.FirstName</div>
+                <div class="fname">@allactive.FirstName</div>
             </td>
 
             <td>
-                <div class="lname">@allnonactive.LastName</div>
+                <div class="lname">@allactive.LastName</div>
             </td>
 
             <td>
-                <div class="due">@allnonactive.DueDate.ToShortDateString()</div>
+                <div class="due">@allactive.DueDate.ToShortDateString()</div>
             </td>
 
             <td>
-                <div class="due">@allnonactive.DOB.ToShortDateString()</div>
+                <div class="due">@allactive.DOB.ToShortDateString()</div>
             </td>
         </tr>
     }
@@ -63,10 +63,10 @@
 </tr>
 </table>
 
-<h3>Total Non-Active Clients @Model.Count()</h3>
+<h3>Total Active Clients @Model.Count()</h3>
 
 <br />
-@using (Html.BeginForm("ExportAllNonActive", "ClientListReport", FormMethod.Post))
+@using (Html.BeginForm("ExportAllActive", "ClientList", FormMethod.Post))
 {
     <input type="submit" value="Export to Excel" class="btn btn-primary" />
 }

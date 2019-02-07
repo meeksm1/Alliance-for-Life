@@ -250,6 +250,10 @@
     <Compile Include="Migrations\201812211732154_QuarterlyStateReport.Designer.cs">
       <DependentUpon>201812211732154_QuarterlyStateReport.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201902071629575_PopulateYearTable.cs" />
+    <Compile Include="Migrations\201902071629575_PopulateYearTable.Designer.cs">
+      <DependentUpon>201902071629575_PopulateYearTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\QuarterlyState.cs" />
     <Compile Include="DTO\BudgetReport.cs" />
     <Compile Include="DTO\Invoice.cs" />
@@ -340,9 +344,9 @@
     <Compile Include="Models\SubContrator.cs" />
     <Compile Include="Models\Surveys.cs" />
     <Compile Include="DTO\ClientListReport.cs" />
+    <Compile Include="Models\Year.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ReportControllers\ClientListReportController.cs" />
-    <Compile Include="ReportControllers\InvoicesController.cs" />
+    <Compile Include="Controllers\InvoicesController.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\AddPhoneNumberViewModel.cs" />
     <Compile Include="ViewModels\AdminCostsViewModel.cs" />
@@ -733,23 +737,22 @@
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\NonResidentialMIR\Create.cshtml" />
     <Content Include="Views\ContractorForm\Create.cshtml" />
-    <Content Include="Views\ClientListReport\ActiveClients.cshtml" />
-    <Content Include="Views\ClientListReport\NonActiveClients.cshtml" />
-    <Content Include="Views\ClientListReport\Reports.cshtml" />
+    <Content Include="Views\ClientList\ActiveClients.cshtml" />
+    <Content Include="Views\ClientList\NonActiveClients.cshtml" />
+    <Content Include="Views\ClientList\Reports.cshtml" />
     <Content Include="Views\AflForm\Create.cshtml" />
     <Content Include="Views\Surveys\Create.cshtml" />
     <Content Include="Views\Surveys\Delete.cshtml" />
     <Content Include="Views\Surveys\Details.cshtml" />
     <Content Include="Views\Surveys\Edit.cshtml" />
     <Content Include="Views\Surveys\Index.cshtml" />
-    <Content Include="Views\ClientListReport\AllNonActiveClients.cshtml" />
-    <Content Include="Views\ClientListReport\AllActiveClients.cshtml" />
+    <Content Include="Views\ClientList\AllNonActiveClients.cshtml" />
+    <Content Include="Views\ClientList\AllActiveClients.cshtml" />
     <Content Include="Views\Role\AssignRoleToUser.cshtml" />
     <Content Include="Views\Role\Index.cshtml" />
     <Content Include="Views\Role\Create.cshtml" />
     <Content Include="Views\Account\RegisterRole.cshtml" />
     <Content Include="Views\AflForm\Reports.cshtml" />
-    <Content Include="Views\ClientListReport\Edit.cshtml" />
     <Content Include="Views\SubContractor\Reports.cshtml" />
     <Content Include="Views\ResidentialMIR\Reports.cshtml" />
     <Content Include="Views\NonResidentialMIR\Reports.cshtml" />
@@ -775,7 +778,6 @@
     <Content Include="Views\ParticipationCost\Edit.cshtml" />
     <Content Include="Views\ParticipationCost\Index.cshtml" />
     <Content Include="Views\BudgetCosts\AExpenseVSBExpense.cshtml" />
-    <Content Include="Views\QuarterlyStates\Create.cshtml" />
     <Content Include="Views\QuarterlyStates\Delete.cshtml" />
     <Content Include="Views\QuarterlyStates\Details.cshtml" />
     <Content Include="Views\QuarterlyStates\Edit.cshtml" />
@@ -852,6 +854,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812211732154_QuarterlyStateReport.resx">
       <DependentUpon>201812211732154_QuarterlyStateReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902071629575_PopulateYearTable.resx">
+      <DependentUpon>201902071629575_PopulateYearTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
