@@ -16,7 +16,7 @@ namespace Alliance_for_Life.Controllers
         // GET: ParticipationCost
         public ActionResult Index()
         {
-            var participationServices = db.ParticipationServices.Include(p => p.Month).Include(p => p.Region).Include(p => p.Subcontractor);
+            var participationServices = db.ParticipationServices.Include(p => p.Month).Include(p => p.Year).Include(p => p.Region).Include(p => p.Subcontractor);
             return View(participationServices.ToList());
         }
 
@@ -30,6 +30,7 @@ namespace Alliance_for_Life.Controllers
             ParticipationService participationService = db.ParticipationServices
                 .Include(a => a.Month)
                 .Include(a => a.Region)
+                .Include(p => p.Year)
                 .Include(a => a.Subcontractor)
                 .SingleOrDefault(a => a.PSId == id);
 
@@ -45,6 +46,7 @@ namespace Alliance_for_Life.Controllers
         {
             ViewBag.MonthId = new SelectList(db.Months, "Id", "Months");
             ViewBag.RegionId = new SelectList(db.Regions, "Id", "Regions");
+            ViewBag.YearId = new SelectList(db.Years, "Id", "Years");
             ViewBag.SubcontractorId = new SelectList(db.SubContractors, "SubcontractorId", "OrgName");
             return View();
         }
@@ -54,7 +56,7 @@ namespace Alliance_for_Life.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "PSId,PTranspotation,PJobTrain,PEducationAssistance,PResidentialCare,PUtilities,PHousingEmergency,PHousingAssistance,PChildCare,PClothing,PFood,PSupplies,POther,POther2,POther3,PTotals,RegionId,MonthId,SubcontractorId")] ParticipationService participationService)
+        public ActionResult Create([Bind(Include = "PSId,PTranspotation,PJobTrain,PEducationAssistance,PResidentialCare,PUtilities,PHousingEmergency,PHousingAssistance,PChildCare,PClothing,PFood,PSupplies,POther,POther2,POther3,PTotals,RegionId,MonthId,SubcontractorId,YearId")] ParticipationService participationService)
         {
             if (ModelState.IsValid)
             {
@@ -65,6 +67,7 @@ namespace Alliance_for_Life.Controllers
 
             ViewBag.MonthId = new SelectList(db.Months, "Id", "Months", participationService.MonthId);
             ViewBag.RegionId = new SelectList(db.Regions, "Id", "Regions", participationService.RegionId);
+            ViewBag.YearId = new SelectList(db.Years, "Id", "Years", participationService.YearId);
             ViewBag.SubcontractorId = new SelectList(db.SubContractors, "SubcontractorId", "OrgName", participationService.SubcontractorId);
             return View(participationService);
         }
@@ -83,6 +86,7 @@ namespace Alliance_for_Life.Controllers
             }
             ViewBag.MonthId = new SelectList(db.Months, "Id", "Months", participationService.MonthId);
             ViewBag.RegionId = new SelectList(db.Regions, "Id", "Regions", participationService.RegionId);
+            ViewBag.YearId = new SelectList(db.Years, "Id", "Years", participationService.YearId);
             ViewBag.SubcontractorId = new SelectList(db.SubContractors, "SubcontractorId", "OrgName", participationService.SubcontractorId);
             return View(participationService);
         }
@@ -92,7 +96,7 @@ namespace Alliance_for_Life.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "PSId,PTranspotation,PJobTrain,PEducationAssistance,PResidentialCare,PUtilities,PHousingEmergency,PHousingAssistance,PChildCare,PClothing,PFood,PSupplies,POther,POther2,POther3,PTotals,RegionId,MonthId,SubcontractorId")] ParticipationService participationService)
+        public ActionResult Edit([Bind(Include = "PSId,PTranspotation,PJobTrain,PEducationAssistance,PResidentialCare,PUtilities,PHousingEmergency,PHousingAssistance,PChildCare,PClothing,PFood,PSupplies,POther,POther2,POther3,PTotals,RegionId,MonthId,SubcontractorId,YearId")] ParticipationService participationService)
         {
             if (ModelState.IsValid)
             {
@@ -102,6 +106,7 @@ namespace Alliance_for_Life.Controllers
             }
             ViewBag.MonthId = new SelectList(db.Months, "Id", "Months", participationService.MonthId);
             ViewBag.RegionId = new SelectList(db.Regions, "Id", "Regions", participationService.RegionId);
+            ViewBag.YearId = new SelectList(db.Years, "Id", "Years", participationService.YearId);
             ViewBag.SubcontractorId = new SelectList(db.SubContractors, "SubcontractorId", "OrgName", participationService.SubcontractorId);
             return View(participationService);
         }
@@ -116,6 +121,7 @@ namespace Alliance_for_Life.Controllers
             ParticipationService participationService = db.ParticipationServices
                 .Include(a => a.Month)
                 .Include(a => a.Region)
+                .Include(p => p.Year)
                 .Include(a => a.Subcontractor)
                 .SingleOrDefault(a => a.PSId == id);
 
@@ -134,6 +140,7 @@ namespace Alliance_for_Life.Controllers
             ParticipationService participationService = db.ParticipationServices
                 .Include(a => a.Month)
                 .Include(a => a.Region)
+                .Include(p => p.Year)
                 .Include(a => a.Subcontractor)
                 .SingleOrDefault(a => a.PSId == id);
 
@@ -155,12 +162,13 @@ namespace Alliance_for_Life.Controllers
         public FileResult Export()
         {
             DataTable dt = new DataTable("Grid");
-            dt.Columns.AddRange(new DataColumn[20]
+            dt.Columns.AddRange(new DataColumn[21]
             {
                 new DataColumn ("Participation Invoice Id"),
                 new DataColumn ("Organization"),
                 new DataColumn ("Month"),
                 new DataColumn ("Region"),
+                new DataColumn ("Year"),
                 new DataColumn ("Transportation"),
                 new DataColumn ("Job Training"),
                 new DataColumn ("Education"),
@@ -182,6 +190,7 @@ namespace Alliance_for_Life.Controllers
             var costs = from a in db.ParticipationServices
                         join m in db.Months on a.MonthId equals m.Id
                         join r in db.Regions on a.RegionId equals r.Id
+                        join y in db.Years on a.YearId equals y.Id
                         join s in db.SubContractors on a.SubcontractorId equals s.SubcontractorId
                         where a.SubcontractorId == s.SubcontractorId
                         select new ParticipationServiceReport
@@ -190,6 +199,7 @@ namespace Alliance_for_Life.Controllers
                             OrgName = s.OrgName,
                             MonthName = m.Months,
                             RegionName = r.Regions,
+                            YearName = y.Years,
                             EIN = s.EIN,
                             PTranspotation = a.PTranspotation,
                             PJobTrain = a.PJobTrain,
@@ -210,7 +220,7 @@ namespace Alliance_for_Life.Controllers
 
             foreach (var item in costs)
             {
-                dt.Rows.Add(item.PSId, item.MonthName, item.RegionName, item.EIN, item.PTranspotation, item.PJobTrain,
+                dt.Rows.Add(item.PSId, item.MonthName, item.RegionName, item.YearName, item.EIN, item.PTranspotation, item.PJobTrain,
                     item.PJobTrain, item.PResidentialCare, item.PUtilities, item.PHousingEmergency, item.PHousingAssistance, item.PChildCare,
                     item.PClothing, item.PFood, item.PSupplies, item.POther, item.POther2, item.POther3, item.PTotals);
             }

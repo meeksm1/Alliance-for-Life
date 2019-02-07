@@ -1,8 +1,8 @@
 ﻿@model Alliance_for_Life.ViewModels.ResidentialMIRFormViewModel
 
 @{
-    ViewBag.Title = "Create";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+     ViewBag.Title = "Create";
+     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Residential Monthly Invoice Report</h2>
@@ -12,32 +12,37 @@
 
     <div class="form-group">
         @Html.LabelFor(m => m.Subcontractor)
-        @Html.DropDownListFor(m => m.Subcontractor, new SelectList(Model.Subcontractors, "SubcontractorId", "OrgName"), "", new {@class = "form-control" })
+        @Html.DropDownListFor(m => m.Subcontractor, new SelectList(Model.Subcontractors, "SubcontractorId", "OrgName"), "", new { @class = "form-control" })
         @Html.ValidationMessageFor(m => m.Subcontractor)
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.Month)
-        @Html.DropDownListFor(m=> m.Month, new SelectList(Model.Months, "Id", "Months"),"", new { @class = "form-control"})
+        @Html.DropDownListFor(m => m.Month, new SelectList(Model.Months, "Id", "Months"), "", new { @class = "form-control" })
         @Html.ValidationMessageFor(m => m.Month)
     </div>
     <div class="form-group">
+        @Html.LabelFor(m => m.Year)
+        @Html.DropDownListFor(m => m.Year, new SelectList(Model.Years, "Id", "Years"), "", new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Year, "", new { @class = "text-danger" })
+    </div>
+    <div class="form-group">
         @Html.LabelFor(m => m.TotBedNights)
-        @Html.TextBoxFor(m => m.TotBedNights, new { @class = "form-control"})
+        @Html.TextBoxFor(m => m.TotBedNights, new { @class = "form-control" })
         @Html.ValidationMessageFor(m => m.TotBedNights)
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.TotA2AEnrollment)
-        @Html.TextBoxFor(m => m.TotA2AEnrollment, new { @class = "form-control"})
+        @Html.TextBoxFor(m => m.TotA2AEnrollment, new { @class = "form-control" })
         @Html.ValidationMessageFor(m => m.TotA2AEnrollment)
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.TotA2ABedNights)
-        @Html.TextBoxFor(m => m.TotA2ABedNights, new { @class = "form-control"})
+        @Html.TextBoxFor(m => m.TotA2ABedNights, new { @class = "form-control" })
         @Html.ValidationMessageFor(m => m.TotA2ABedNights)
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.MA2Apercent)
-        @Html.TextBoxFor(m => m.MA2Apercent, new { @class = "form-control"})
+        @Html.TextBoxFor(m => m.MA2Apercent, new { @class = "form-control" })
         @Html.ValidationMessageFor(m => m.MA2Apercent)
     </div>
     <div class="form-group">
@@ -81,9 +86,9 @@
     <br />
     <br />
 }
-   
+
 @section scripts
     {
-        @Scripts.Render("~/bundles/jqueryval")
-        <script src="~/Scripts/MyScripts.js"></script>
-    }
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/MyScripts.js"></script>
+}

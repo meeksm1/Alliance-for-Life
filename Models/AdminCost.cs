@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Alliance_for_Life.Models
 {
@@ -52,6 +53,8 @@ namespace Alliance_for_Life.Models
         public double StateAdminFee { get; set; }
         
         public double ATotCosts { get; set; }
+
+        public DateTime SubmittedDate { get; set; }
 
 
         //Navigation Properties

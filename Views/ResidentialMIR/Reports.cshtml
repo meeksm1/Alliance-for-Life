@@ -21,6 +21,10 @@
         </th>
 
         <th>
+            Year
+        </th>
+
+        <th>
             Client Bed Nights
         </th>
 
@@ -66,63 +70,67 @@
     </tr>
     @foreach (var report in Model)
     {
-        <tr>
-            <td>
-                @report.Id
-            </td>
+    <tr>
+        <td>
+            @report.Id
+        </td>
 
-            <td>
-                @report.OrgName
-            </td>
+        <td>
+            @report.OrgName
+        </td>
 
-            <td>
-                @report.Month
-            </td>
+        <td>
+            @report.Month
+        </td>
 
-            <td>
-                @report.TotBedNights
-            </td>
+        <td>
+            @report.YearName
+        </td>
 
-            <td>
-                @report.TotA2AEnrollment
-            </td>
+        <td>
+            @report.TotBedNights
+        </td>
 
-            <td>
-                @report.TotA2ABedNights
-            </td>
+        <td>
+            @report.TotA2AEnrollment
+        </td>
 
-            <td>
-                @report.MA2Apercent
-            </td>
+        <td>
+            @report.TotA2ABedNights
+        </td>
 
-            <td>
-                @report.ClientsJobEduServ
-            </td>
+        <td>
+            @report.MA2Apercent
+        </td>
 
-            <td>
-                @report.ParticipatingFathers
-            </td>
+        <td>
+            @report.ClientsJobEduServ
+        </td>
 
-            <td>
-                @report.TotEduClasses
-            </td>
+        <td>
+            @report.ParticipatingFathers
+        </td>
 
-            <td>
-                @report.TotClientsinEduClasses
-            </td>
+        <td>
+            @report.TotEduClasses
+        </td>
 
-            <td>
-                @report.TotCaseHrs
-            </td>
+        <td>
+            @report.TotClientsinEduClasses
+        </td>
 
-            <td>
-                @report.TotClientsCaseHrs
-            </td>
+        <td>
+            @report.TotCaseHrs
+        </td>
 
-            <td>
-                @report.TotOtherClasses
-            </td>
-        </tr>
+        <td>
+            @report.TotClientsCaseHrs
+        </td>
+
+        <td>
+            @report.TotOtherClasses
+        </td>
+    </tr>
     }
     <tr></tr>
 </table>

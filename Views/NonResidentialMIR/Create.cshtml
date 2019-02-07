@@ -21,6 +21,11 @@
         @Html.ValidationMessageFor(m => m.Month)
     </div>
     <div class="form-group">
+        @Html.LabelFor(m => m.Year)
+        @Html.DropDownListFor(m => m.Year, new SelectList(Model.Years, "Id", "Years"), "", new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Year, "", new { @class = "text-danger" })
+    </div>
+    <div class="form-group">
         @Html.LabelFor(m => m.TotBedNights)
         @Html.TextBoxFor(m => m.TotBedNights, new { @class = "form-control" })
         @Html.ValidationMessageFor(m => m.TotBedNights)

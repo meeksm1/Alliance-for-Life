@@ -18,11 +18,6 @@ namespace Alliance_for_Life.Models
         [Required]
         public int TotA2ABedNights { get; set; }
 
-        [Required]
-        public int MonthId { get; set; }
-
-        public Month Months { get; set; }
-
         public double MA2Apercent { get; set; }
 
         public int ClientsJobEduServ { get; set; }
@@ -39,5 +34,12 @@ namespace Alliance_for_Life.Models
 
         public int TotOtherClasses { get; set; }
 
+
+        /*Navigation Properties*/
+        public Month Months { get; set; }
+        public Year Years { get; set; }
+
+        public int YearId { get; set; }
+        public int MonthId { get; set; }
     }
 }

@@ -11,16 +11,6 @@ namespace Alliance_for_Life.ViewModels
         public int Id { get; set; }
 
         [Required]
-        public int Subcontractor { get; set; }
-
-        public IEnumerable<SubContractor> Subcontractors { get; set; }
-
-        [Required]
-        public int Month { get; set; }
-
-        public IEnumerable<Month> Months { get; set; }
-
-        [Required]
         [Display(Name = "Total of overall Client bed nights for the month.")]
         public int TotBedNights { get; set; }
 
@@ -55,5 +45,14 @@ namespace Alliance_for_Life.ViewModels
 
         [Display(Name = "Total of other classes offered.")]
         public int TotOtherClasses { get; set; }
+
+        /*Navigation Properties*/
+        public IEnumerable<Year> Years { get; set; }
+        public IEnumerable<SubContractor> Subcontractors { get; set; }
+        public IEnumerable<Month> Months { get; set; }
+
+        public int Month { get; set; }
+        public int Subcontractor { get; set; }
+        public int Year { get; set; }
     }
 }

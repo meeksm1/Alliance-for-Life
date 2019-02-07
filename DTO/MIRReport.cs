@@ -6,6 +6,8 @@
 
         public string OrgName { get; set; }
 
+        public string YearName { get; set; }
+
         public int TotBedNights { get; set; }
 
         public int TotA2AEnrollment { get; set; }

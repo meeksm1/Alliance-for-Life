@@ -21,6 +21,7 @@ namespace Alliance_for_Life.Controllers
         {
             var viewModel = new NonResidentialMIRFormViewModel
             {
+                Years = _context.Years.ToList(),
                 Months = _context.Months.ToList(),
                 Subcontractors = _context.SubContractors.ToList()
             };
@@ -39,6 +40,7 @@ namespace Alliance_for_Life.Controllers
         {
             if (!ModelState.IsValid)
             {
+                viewModel.Years = _context.Years.ToList();
                 viewModel.Months = _context.Months.ToList();
                 viewModel.Subcontractors = _context.SubContractors.ToList();
                 return View("Create", viewModel);
@@ -49,6 +51,7 @@ namespace Alliance_for_Life.Controllers
             {
                 Subcontractor = viewModel.Subcontractor,
                 MonthId = viewModel.Month,
+                YearId = viewModel.Year,
                 TotBedNights = viewModel.TotBedNights,
                 TotA2AEnrollment = viewModel.TotA2AEnrollment,
                 TotA2ABedNights = viewModel.TotA2ABedNights,
@@ -67,12 +70,14 @@ namespace Alliance_for_Life.Controllers
             var report = from res in _context.NonResidentialMIRs
                          join s in _context.SubContractors on res.Subcontractor equals s.SubcontractorId
                          join m in _context.Months on res.Months.Id equals m.Id
+                         join y in _context.Years on res.YearId equals y.Id
                          where res.Id > 0
                          select new MIRReport
                          {
                              Id = res.Id,
                              OrgName = s.OrgName,
                              Month = m.Months,
+                             YearName = y.Years,
                              TotBedNights = res.TotBedNights,
                              TotA2AEnrollment = res.TotA2AEnrollment,
                              TotA2ABedNights = res.TotA2ABedNights,
@@ -94,11 +99,12 @@ namespace Alliance_for_Life.Controllers
         public FileResult Export()
         {
             DataTable dt = new DataTable("Grid");
-            dt.Columns.AddRange(new DataColumn[14]
+            dt.Columns.AddRange(new DataColumn[15]
             {
                 new DataColumn ("Report Id"),
                 new DataColumn ("Organization"),
                 new DataColumn ("Month"),
+                new DataColumn ("Year"),
                 new DataColumn ("Client Bed Nights"),
                 new DataColumn ("A2A Enrollment"),
                 new DataColumn ("Total A2A Bed Nights"),
@@ -115,12 +121,14 @@ namespace Alliance_for_Life.Controllers
             var report = from res in _context.NonResidentialMIRs
                          join s in _context.SubContractors on res.Subcontractor equals s.SubcontractorId
                          join m in _context.Months on res.Months.Id equals m.Id
+                         join y in _context.Years on res.YearId equals y.Id
                          where res.Id > 0
                          select new MIRReport
                          {
                              Id = res.Id,
                              OrgName = s.OrgName,
                              Month = m.Months,
+                             YearName = y.Years,
                              TotBedNights = res.TotBedNights,
                              TotA2AEnrollment = res.TotA2AEnrollment,
                              TotA2ABedNights = res.TotA2ABedNights,
@@ -136,7 +144,7 @@ namespace Alliance_for_Life.Controllers
 
             foreach (var item in report)
             {
-                dt.Rows.Add(item.Id, item.OrgName, item.Month, item.TotBedNights, item.TotA2AEnrollment, item.TotA2ABedNights,
+                dt.Rows.Add(item.Id, item.OrgName, item.Month, item.YearName, item.TotBedNights, item.TotA2AEnrollment, item.TotA2ABedNights,
                     item.MA2Apercent, item.ClientsJobEduServ, item.ParticipatingFathers, item.TotEduClasses,
                     item.TotClientsinEduClasses, item.TotCaseHrs, item.TotClientsCaseHrs, item.TotOtherClasses);
             }
