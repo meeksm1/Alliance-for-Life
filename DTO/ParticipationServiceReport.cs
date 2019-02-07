@@ -6,6 +6,7 @@
         public string OrgName { get; set; }
         public string MonthName { get; set; }
         public string RegionName { get; set; }
+        public string YearName { get; set; }
         public int EIN { get; set; }
         public double PTranspotation { get; set; }
         public double PJobTrain { get; set; }

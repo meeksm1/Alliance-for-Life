@@ -16,7 +16,7 @@ namespace Alliance_for_Life.Controllers
         // GET: AdministrationCost
         public ActionResult Index()
         {
-            var adminCosts = db.AdminCosts.Include(a => a.Month).Include(a => a.Region).Include(a => a.Subcontractor);
+            var adminCosts = db.AdminCosts.Include(a => a.Month).Include(a => a.Region).Include(a => a.Year).Include(a => a.Subcontractor);
             return View(adminCosts.ToList());
         }
 
@@ -30,6 +30,7 @@ namespace Alliance_for_Life.Controllers
             AdminCosts adminCosts = db.AdminCosts
                 .Include(a => a.Month)
                 .Include(a => a.Region)
+                .Include(a => a.Year)
                 .Include(a => a.Subcontractor)
                 .SingleOrDefault(a => a.AdminCostId == id);
             if (adminCosts == null)
@@ -44,6 +45,7 @@ namespace Alliance_for_Life.Controllers
         {
             ViewBag.MonthId = new SelectList(db.Months, "Id", "Months");
             ViewBag.RegionId = new SelectList(db.Regions, "Id", "Regions");
+            ViewBag.YearId = new SelectList(db.Years, "Id", "Years");
             ViewBag.SubcontractorId = new SelectList(db.SubContractors, "SubcontractorId", "OrgName");
             return View();
         }
@@ -53,7 +55,7 @@ namespace Alliance_for_Life.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "AdminCostId,ASalandWages,AEmpBenefits,AEmpTravel,AEmpTraining,AOfficeRent,AOfficeUtilities,AFacilityIns,AOfficeSupplies,AEquipment,AOfficeCommunications,AOfficeMaint,AConsulting,AJanitorServices,ADepreciation,ATechSupport,ASecurityServices,AOther,AOther2,AOther3,ATotCosts,RegionId,MonthId,SubcontractorId")] AdminCosts adminCosts)
+        public ActionResult Create([Bind(Include = "AdminCostId,ASalandWages,AEmpBenefits,AEmpTravel,AEmpTraining,AOfficeRent,AOfficeUtilities,AFacilityIns,AOfficeSupplies,AEquipment,AOfficeCommunications,AOfficeMaint,AConsulting,AJanitorServices,ADepreciation,ATechSupport,ASecurityServices,AOther,AOther2,AOther3,ATotCosts,RegionId,MonthId,SubcontractorId,YearId")] AdminCosts adminCosts)
         {
             if (ModelState.IsValid)
             {
@@ -64,6 +66,7 @@ namespace Alliance_for_Life.Controllers
 
             ViewBag.MonthId = new SelectList(db.Months, "Id", "Months", adminCosts.MonthId);
             ViewBag.RegionId = new SelectList(db.Regions, "Id", "Regions", adminCosts.RegionId);
+            ViewBag.YearId = new SelectList(db.Years, "Id", "Years", adminCosts.YearId);
             ViewBag.SubcontractorId = new SelectList(db.SubContractors, "SubcontractorId", "OrgName", adminCosts.SubcontractorId);
             return View(adminCosts);
         }
@@ -82,6 +85,7 @@ namespace Alliance_for_Life.Controllers
             }
             ViewBag.MonthId = new SelectList(db.Months, "Id", "Months", adminCosts.MonthId);
             ViewBag.RegionId = new SelectList(db.Regions, "Id", "Regions", adminCosts.RegionId);
+            ViewBag.YearId = new SelectList(db.Years, "Id", "Years", adminCosts.YearId);
             ViewBag.SubcontractorId = new SelectList(db.SubContractors, "SubcontractorId", "OrgName", adminCosts.SubcontractorId);
             return View(adminCosts);
         }
@@ -91,7 +95,7 @@ namespace Alliance_for_Life.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "AdminCostId,ASalandWages,AEmpBenefits,AEmpTravel,AEmpTraining,AOfficeRent,AOfficeUtilities,AFacilityIns,AOfficeSupplies,AEquipment,AOfficeCommunications,AOfficeMaint,AConsulting,AJanitorServices,ADepreciation,ATechSupport,ASecurityServices,AOther,AOther2,AOther3,ATotCosts,RegionId,MonthId,SubcontractorId")] AdminCosts adminCosts)
+        public ActionResult Edit([Bind(Include = "AdminCostId,ASalandWages,AEmpBenefits,AEmpTravel,AEmpTraining,AOfficeRent,AOfficeUtilities,AFacilityIns,AOfficeSupplies,AEquipment,AOfficeCommunications,AOfficeMaint,AConsulting,AJanitorServices,ADepreciation,ATechSupport,ASecurityServices,AOther,AOther2,AOther3,ATotCosts,RegionId,MonthId,SubcontractorId,YearId")] AdminCosts adminCosts)
         {
             if (ModelState.IsValid)
             {
@@ -101,6 +105,7 @@ namespace Alliance_for_Life.Controllers
             }
             ViewBag.MonthId = new SelectList(db.Months, "Id", "Months", adminCosts.MonthId);
             ViewBag.RegionId = new SelectList(db.Regions, "Id", "Regions", adminCosts.RegionId);
+            ViewBag.YearId = new SelectList(db.Years, "Id", "Years", adminCosts.YearId);
             ViewBag.SubcontractorId = new SelectList(db.SubContractors, "SubcontractorId", "OrgName", adminCosts.SubcontractorId);
             return View(adminCosts);
         }
@@ -115,6 +120,7 @@ namespace Alliance_for_Life.Controllers
             AdminCosts adminCosts = db.AdminCosts
                 .Include(a => a.Month)
                 .Include(a => a.Region)
+                .Include(a => a.Year)
                 .Include(a => a.Subcontractor)
                 .SingleOrDefault(a => a.AdminCostId == id);
 
@@ -133,6 +139,7 @@ namespace Alliance_for_Life.Controllers
             AdminCosts adminCosts = db.AdminCosts
                 .Include(a => a.Month)
                 .Include(a => a.Region)
+                .Include(a => a.Year)
                 .Include(a => a.Subcontractor)
                 .SingleOrDefault(a => a.AdminCostId == id);
 
@@ -154,12 +161,13 @@ namespace Alliance_for_Life.Controllers
         public FileResult Export()
         {
             DataTable dt = new DataTable("Grid");
-            dt.Columns.AddRange(new DataColumn[24]
+            dt.Columns.AddRange(new DataColumn[25]
             {
                 new DataColumn ("Administration Invoice Id"),
                 new DataColumn ("Organization"),
                 new DataColumn ("Month"),
                 new DataColumn ("Region"),
+                new DataColumn ("Year"),
                 new DataColumn ("Salary/Wages"),
                 new DataColumn ("Employee Benefits"),
                 new DataColumn ("Employee Travel"),
@@ -185,6 +193,7 @@ namespace Alliance_for_Life.Controllers
             var costs = from a in db.AdminCosts
                         join m in db.Months on a.MonthId equals m.Id
                         join r in db.Regions on a.RegionId equals r.Id
+                        join y in db.Years on a.YearId equals y.Id
                         join s in db.SubContractors on a.SubcontractorId equals s.SubcontractorId
                         where a.SubcontractorId == s.SubcontractorId
                         select new AdminReport
@@ -193,6 +202,7 @@ namespace Alliance_for_Life.Controllers
                             OrgName = s.OrgName,
                             MonthName = m.Months,
                             RegionName = r.Regions,
+                            YearName = y.Years,
                             ASalandWages = a.ASalandWages,
                             AEmpBenefits = a.AEmpBenefits,
                             AEmpTravel = a.AEmpTravel,
@@ -217,7 +227,7 @@ namespace Alliance_for_Life.Controllers
 
             foreach (var item in costs)
             {
-                dt.Rows.Add(item.AdminCostId, item.OrgName, item.MonthName, item.RegionName, item.ASalandWages, item.AEmpBenefits, item.AEmpTravel,
+                dt.Rows.Add(item.AdminCostId, item.OrgName, item.MonthName, item.RegionName, item.YearName, item.ASalandWages, item.AEmpBenefits, item.AEmpTravel,
                     item.AEmpTraining, item.AOfficeRent, item.AOfficeUtilities, item.AFacilityIns, item.AOfficeSupplies, item.AEquipment, 
                     item.AOfficeCommunications, item.AOfficeMaint, item.AConsulting, item.AJanitorServices, item.ADepreciation,
                     item.ATechSupport, item.ASecurityServices, item.AOther, item.AOther2, item.AOther3, item.ATotCosts);

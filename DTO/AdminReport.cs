@@ -3,6 +3,7 @@
     public class AdminReport
     {
         public int AdminCostId { get; set; }
+        public string YearName { get; set; }
         public string OrgName { get; set; }
         public string MonthName { get; set; }
         public double ATotCosts { get; set; }
