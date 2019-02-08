@@ -55,10 +55,11 @@ namespace Alliance_for_Life.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "AdminCostId,ASalandWages,AEmpBenefits,AEmpTravel,AEmpTraining,AOfficeRent,AOfficeUtilities,AFacilityIns,AOfficeSupplies,AEquipment,AOfficeCommunications,AOfficeMaint,AConsulting,AJanitorServices,ADepreciation,ATechSupport,ASecurityServices,AOther,AOther2,AOther3,ATotCosts,RegionId,MonthId,SubcontractorId,YearId")] AdminCosts adminCosts)
+        public ActionResult Create([Bind(Include = "AdminCostId,ASalandWages,AEmpBenefits,AEmpTravel,AEmpTraining,AOfficeRent,AOfficeUtilities,AFacilityIns,AOfficeSupplies,AEquipment,AOfficeCommunications,AOfficeMaint,AConsulting,AJanitorServices,ADepreciation,ATechSupport,ASecurityServices,AOther,AOther2,AOther3,ATotCosts,RegionId,MonthId,SubcontractorId,YearId,SubmittedDate")] AdminCosts adminCosts)
         {
             if (ModelState.IsValid)
             {
+                adminCosts.SubmittedDate = System.DateTime.Now;
                 db.AdminCosts.Add(adminCosts);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -95,10 +96,11 @@ namespace Alliance_for_Life.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "AdminCostId,ASalandWages,AEmpBenefits,AEmpTravel,AEmpTraining,AOfficeRent,AOfficeUtilities,AFacilityIns,AOfficeSupplies,AEquipment,AOfficeCommunications,AOfficeMaint,AConsulting,AJanitorServices,ADepreciation,ATechSupport,ASecurityServices,AOther,AOther2,AOther3,ATotCosts,RegionId,MonthId,SubcontractorId,YearId")] AdminCosts adminCosts)
+        public ActionResult Edit([Bind(Include = "AdminCostId,ASalandWages,AEmpBenefits,AEmpTravel,AEmpTraining,AOfficeRent,AOfficeUtilities,AFacilityIns,AOfficeSupplies,AEquipment,AOfficeCommunications,AOfficeMaint,AConsulting,AJanitorServices,ADepreciation,ATechSupport,ASecurityServices,AOther,AOther2,AOther3,ATotCosts,RegionId,MonthId,SubcontractorId,YearId,SubmittedDate")] AdminCosts adminCosts)
         {
             if (ModelState.IsValid)
             {
+                adminCosts.SubmittedDate = System.DateTime.Now;
                 db.Entry(adminCosts).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -161,9 +163,10 @@ namespace Alliance_for_Life.Controllers
         public FileResult Export()
         {
             DataTable dt = new DataTable("Grid");
-            dt.Columns.AddRange(new DataColumn[25]
+            dt.Columns.AddRange(new DataColumn[26]
             {
                 new DataColumn ("Administration Invoice Id"),
+                new DataColumn ("Date Submitted"),
                 new DataColumn ("Organization"),
                 new DataColumn ("Month"),
                 new DataColumn ("Region"),
@@ -199,6 +202,7 @@ namespace Alliance_for_Life.Controllers
                         select new AdminReport
                         {
                             AdminCostId = a.AdminCostId,
+                            SubmittedDate = a.SubmittedDate,
                             OrgName = s.OrgName,
                             MonthName = m.Months,
                             RegionName = r.Regions,
@@ -227,8 +231,8 @@ namespace Alliance_for_Life.Controllers
 
             foreach (var item in costs)
             {
-                dt.Rows.Add(item.AdminCostId, item.OrgName, item.MonthName, item.RegionName, item.YearName, item.ASalandWages, item.AEmpBenefits, item.AEmpTravel,
-                    item.AEmpTraining, item.AOfficeRent, item.AOfficeUtilities, item.AFacilityIns, item.AOfficeSupplies, item.AEquipment, 
+                dt.Rows.Add(item.AdminCostId, item.SubmittedDate, item.OrgName, item.MonthName, item.RegionName, item.YearName, item.ASalandWages, item.AEmpBenefits,
+                    item.AEmpTravel, item.AEmpTraining, item.AOfficeRent, item.AOfficeUtilities, item.AFacilityIns, item.AOfficeSupplies, item.AEquipment, 
                     item.AOfficeCommunications, item.AOfficeMaint, item.AConsulting, item.AJanitorServices, item.ADepreciation,
                     item.ATechSupport, item.ASecurityServices, item.AOther, item.AOther2, item.AOther3, item.ATotCosts);
             }

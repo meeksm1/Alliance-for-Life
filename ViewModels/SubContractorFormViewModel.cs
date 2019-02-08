@@ -59,6 +59,8 @@ namespace Alliance_for_Life.ViewModels
 
         public bool Active { get; set; }
 
+        public DateTime SubmittedDate { get; set; }
+
         //used to set the heading of the page
         public string Heading { get; set; }
 

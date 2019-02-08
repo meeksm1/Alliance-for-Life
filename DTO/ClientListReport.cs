@@ -20,5 +20,7 @@ namespace Alliance_for_Life.Models
         public bool Active { get; set; }
 
         public string Orgname { get; set; }
+
+        public DateTime SubmittedDate { get; set; }
     }
 }

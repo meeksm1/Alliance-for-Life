@@ -1,8 +1,11 @@
-﻿namespace Alliance_for_Life.Models
+﻿using System;
+namespace Alliance_for_Life.Models
+    
 {
     public class AdminReport
     {
         public int AdminCostId { get; set; }
+        public DateTime SubmittedDate{ get; set; }
         public string YearName { get; set; }
         public string OrgName { get; set; }
         public string MonthName { get; set; }

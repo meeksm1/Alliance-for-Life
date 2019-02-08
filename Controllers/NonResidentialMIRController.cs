@@ -1,6 +1,7 @@
 ﻿using Alliance_for_Life.Models;
 using Alliance_for_Life.ViewModels;
 using ClosedXML.Excel;
+using System;
 using System.Data;
 using System.IO;
 using System.Linq;
@@ -40,6 +41,7 @@ namespace Alliance_for_Life.Controllers
         {
             if (!ModelState.IsValid)
             {
+                viewModel.SubmittedDate = DateTime.Now;
                 viewModel.Years = _context.Years.ToList();
                 viewModel.Months = _context.Months.ToList();
                 viewModel.Subcontractors = _context.SubContractors.ToList();
@@ -75,6 +77,7 @@ namespace Alliance_for_Life.Controllers
                          select new MIRReport
                          {
                              Id = res.Id,
+                             SubmittedDate = res.SubmittedDate,
                              OrgName = s.OrgName,
                              Month = m.Months,
                              YearName = y.Years,
@@ -99,9 +102,10 @@ namespace Alliance_for_Life.Controllers
         public FileResult Export()
         {
             DataTable dt = new DataTable("Grid");
-            dt.Columns.AddRange(new DataColumn[15]
+            dt.Columns.AddRange(new DataColumn[16]
             {
                 new DataColumn ("Report Id"),
+                new DataColumn ("Date Submitted"),
                 new DataColumn ("Organization"),
                 new DataColumn ("Month"),
                 new DataColumn ("Year"),
@@ -126,6 +130,7 @@ namespace Alliance_for_Life.Controllers
                          select new MIRReport
                          {
                              Id = res.Id,
+                             SubmittedDate = res.SubmittedDate,
                              OrgName = s.OrgName,
                              Month = m.Months,
                              YearName = y.Years,
@@ -144,7 +149,7 @@ namespace Alliance_for_Life.Controllers
 
             foreach (var item in report)
             {
-                dt.Rows.Add(item.Id, item.OrgName, item.Month, item.YearName, item.TotBedNights, item.TotA2AEnrollment, item.TotA2ABedNights,
+                dt.Rows.Add(item.Id,item.SubmittedDate, item.OrgName, item.Month, item.YearName, item.TotBedNights, item.TotA2AEnrollment, item.TotA2ABedNights,
                     item.MA2Apercent, item.ClientsJobEduServ, item.ParticipatingFathers, item.TotEduClasses,
                     item.TotClientsinEduClasses, item.TotCaseHrs, item.TotClientsCaseHrs, item.TotOtherClasses);
             }

@@ -2,6 +2,7 @@
 using Alliance_for_Life.ViewModels;
 using ClosedXML.Excel;
 using Microsoft.AspNet.Identity;
+using System;
 using System.Data;
 using System.IO;
 using System.Linq;
@@ -56,7 +57,8 @@ namespace Alliance_for_Life.Controllers
                 PoBox = viewModel.PoBox,
                 AllocatedContractAmount = viewModel.AllocatedContractAmount,
                 AllocatedAdjustments = viewModel.AllocatedAdjustments,
-                Active = viewModel.Active
+                Active = viewModel.Active,
+                SubmittedDate = DateTime.Now
             };
 
             _context.SubContractors.Add(contractor);
@@ -119,7 +121,8 @@ namespace Alliance_for_Life.Controllers
                 Active = org.Active,
                 AllocatedContractAmount = org.AllocatedContractAmount,
                 AllocatedAdjustments = org.AllocatedAdjustments,
-                Region = org.RegionId
+                Region = org.RegionId,
+                SubmittedDate = DateTime.Now
             };
             return View("SubContractorForm", viewModel);
         }
@@ -141,7 +144,8 @@ namespace Alliance_for_Life.Controllers
                               OrgName = s.OrgName,
                               Director = s.Director,
                               Region = r.Regions,
-                              Active = s.Active
+                              Active = s.Active,
+                              SubmittedDate = DateTime.Now
                           };
 
             return View(subcontractors);
@@ -151,13 +155,14 @@ namespace Alliance_for_Life.Controllers
         public FileResult Export()
         {
             DataTable dt = new DataTable("Grid");
-            dt.Columns.AddRange(new DataColumn[5]
+            dt.Columns.AddRange(new DataColumn[6]
             {
                 new DataColumn ("EIN"),
                 new DataColumn ("Organization"),
                 new DataColumn ("Director"),
                 new DataColumn ("Region"),
-                new DataColumn ("Active")
+                new DataColumn ("Active"),
+                new DataColumn ("Date Submitted")
             });
 
             var subcontractors = from s in _context.SubContractors
@@ -169,13 +174,14 @@ namespace Alliance_for_Life.Controllers
                                      OrgName = s.OrgName,
                                      Director = s.Director,
                                      Region = r.Regions,
-                                     Active = s.Active
+                                     Active = s.Active,
+                                     SubmittedDate = DateTime.Now
                                  };
 
 
             foreach (var item in subcontractors)
             {
-                dt.Rows.Add(item.EIN, item.OrgName, item.Director, item.Region, item.Active);
+                dt.Rows.Add(item.EIN, item.OrgName, item.Director, item.Region, item.Active, item.SubmittedDate);
             }
 
             using (XLWorkbook wb = new XLWorkbook())

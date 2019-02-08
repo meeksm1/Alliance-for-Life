@@ -1,5 +1,6 @@
 ﻿using Alliance_for_Life.Models;
 using ClosedXML.Excel;
+using System;
 using System.Data;
 using System.Data.Entity;
 using System.IO;
@@ -103,10 +104,11 @@ namespace Alliance_for_Life.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "BudgetInvoiceId,ASalandWages,AEmpBenefits,AEmpTravel,AEmpTraining,AOfficeRent,AOfficeUtilities,AFacilityIns,AOfficeSupplies,AEquipment,AOfficeCommunications,AOfficeMaint,AConsulting,SubConPayCost,BackgrounCheck,Other,AJanitorServices,ADepreciation,ATechSupport,ASecurityServices,ATotCosts,AdminFee,Trasportation,JobTraining,TuitionAssistance,ContractedResidential,UtilityAssistance,EmergencyShelter,HousingAssistance,Childcare,Clothing,Food,Supplies,RFO,BTotal,Maxtot,RegionId,MonthId,YearId")] BudgetCosts budgetCosts)
+        public ActionResult Create([Bind(Include = "BudgetInvoiceId,ASalandWages,AEmpBenefits,AEmpTravel,AEmpTraining,AOfficeRent,AOfficeUtilities,AFacilityIns,AOfficeSupplies,AEquipment,AOfficeCommunications,AOfficeMaint,AConsulting,SubConPayCost,BackgrounCheck,Other,AJanitorServices,ADepreciation,ATechSupport,ASecurityServices,ATotCosts,AdminFee,Trasportation,JobTraining,TuitionAssistance,ContractedResidential,UtilityAssistance,EmergencyShelter,HousingAssistance,Childcare,Clothing,Food,Supplies,RFO,BTotal,Maxtot,RegionId,MonthId,YearId,SubmittedDate")] BudgetCosts budgetCosts)
         {
             if (ModelState.IsValid)
             {
+                budgetCosts.SubmittedDate = DateTime.Now;
                 db.BudgetCosts.Add(budgetCosts);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -141,10 +143,11 @@ namespace Alliance_for_Life.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "BudgetInvoiceId,ASalandWages,AEmpBenefits,AEmpTravel,AEmpTraining,AOfficeRent,AOfficeUtilities,AFacilityIns,AOfficeSupplies,AEquipment,AOfficeCommunications,AOfficeMaint,AConsulting,SubConPayCost,BackgrounCheck,Other,AJanitorServices,ADepreciation,ATechSupport,ASecurityServices,ATotCosts,AdminFee,Trasportation,JobTraining,TuitionAssistance,ContractedResidential,UtilityAssistance,EmergencyShelter,HousingAssistance,Childcare,Clothing,Food,Supplies,RFO,BTotal,Maxtot,RegionId,MonthId,YearId")] BudgetCosts budgetCosts)
+        public ActionResult Edit([Bind(Include = "BudgetInvoiceId,ASalandWages,AEmpBenefits,AEmpTravel,AEmpTraining,AOfficeRent,AOfficeUtilities,AFacilityIns,AOfficeSupplies,AEquipment,AOfficeCommunications,AOfficeMaint,AConsulting,SubConPayCost,BackgrounCheck,Other,AJanitorServices,ADepreciation,ATechSupport,ASecurityServices,ATotCosts,AdminFee,Trasportation,JobTraining,TuitionAssistance,ContractedResidential,UtilityAssistance,EmergencyShelter,HousingAssistance,Childcare,Clothing,Food,Supplies,RFO,BTotal,Maxtot,RegionId,MonthId,YearId,SubmittedDate")] BudgetCosts budgetCosts)
         {
             if (ModelState.IsValid)
             {
+                budgetCosts.SubmittedDate = DateTime.Now;
                 db.Entry(budgetCosts).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -204,9 +207,10 @@ namespace Alliance_for_Life.Controllers
         public FileResult Export()
         {
             DataTable dt = new DataTable("Grid");
-            dt.Columns.AddRange(new DataColumn[39]
+            dt.Columns.AddRange(new DataColumn[40]
             {
                 new DataColumn ("Budget Report Id"),
+                new DataColumn ("Date Submitted"),
                 new DataColumn ("Month"),
                 new DataColumn ("Region"),
                 new DataColumn ("Year"),
@@ -254,6 +258,7 @@ namespace Alliance_for_Life.Controllers
                         select new BudgetReport
                         {
                             BudgetInvoiceId = a.BudgetInvoiceId,
+                            SubmittedDate = a.SubmittedDate,
                             MonthName = m.Months,
                             RegionName = r.Regions,
                             YearName = y.Years,
@@ -295,7 +300,7 @@ namespace Alliance_for_Life.Controllers
 
             foreach (var item in costs)
             {
-                dt.Rows.Add(item.BudgetInvoiceId, item.MonthName, item.RegionName, item.YearName, item.ASalandWages, item.AEmpBenefits, 
+                dt.Rows.Add(item.BudgetInvoiceId, item.SubmittedDate, item.MonthName, item.RegionName, item.YearName, item.ASalandWages, item.AEmpBenefits, 
                     item.AEmpTravel, item.AEmpTraining, item.AOfficeRent, item.AOfficeUtilities, item.AFacilityIns, item.AOfficeSupplies, 
                     item.AEquipment, item.AOfficeCommunications, item.AOfficeMaint, item.AConsulting, item.SubConPayCost, item.BackgrounCheck,
                     item.Other, item.AJanitorServices, item.ADepreciation, item.ATechSupport, item.ASecurityServices, item.ATotCosts, 

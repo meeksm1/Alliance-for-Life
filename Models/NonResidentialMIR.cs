@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Alliance_for_Life.Models
 {
@@ -17,6 +18,8 @@ namespace Alliance_for_Life.Models
 
         [Required]
         public int TotA2ABedNights { get; set; }
+
+        public DateTime SubmittedDate { get; set; }
 
         public double MA2Apercent { get; set; }
 

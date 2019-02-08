@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Alliance_for_Life.Models
 {
@@ -76,6 +77,9 @@ namespace Alliance_for_Life.Models
         public double BTotal { get; set; }
 
         public double Maxtot { get; set; }
+
+        public DateTime SubmittedDate { get; set; }
+
 
         // Navigation Properties
         public Month Month { get; set; }

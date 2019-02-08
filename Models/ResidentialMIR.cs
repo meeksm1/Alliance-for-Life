@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Alliance_for_Life.Models
 {
@@ -6,6 +7,8 @@ namespace Alliance_for_Life.Models
     { 
         [Required]
         public int Id { get; set; }
+
+        public DateTime SubmittedDate { get; set; }
 
         public int Subcontractor { get; set; }
 

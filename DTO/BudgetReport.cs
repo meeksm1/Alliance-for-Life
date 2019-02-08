@@ -1,8 +1,11 @@
-﻿namespace Alliance_for_Life.Models
+﻿using System;
+
+namespace Alliance_for_Life.Models
 {
     public class BudgetReport
     {
         public int BudgetInvoiceId { get; set; }
+        public DateTime SubmittedDate { get; set; }
         public string MonthName { get; set; }
         public string YearName { get; set; }
         public double ATotCosts { get; set; }

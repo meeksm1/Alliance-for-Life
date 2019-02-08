@@ -1,5 +1,6 @@
 ﻿using Alliance_for_Life.Models;
 using ClosedXML.Excel;
+using System;
 using System.Data;
 using System.Data.Entity;
 using System.IO;
@@ -52,10 +53,11 @@ namespace Alliance_for_Life.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "SurveyId,SubcontractorId,MonthId,Date,SurveysCompleted")] Surveys surveys)
+        public ActionResult Create([Bind(Include = "SurveyId,SubcontractorId,MonthId,Date,SurveysCompleted,SubmittedDate")] Surveys surveys)
         {
             if (ModelState.IsValid)
             {
+                surveys.SubmittedDate = DateTime.Now;
                 db.Surveys.Add(surveys);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -89,10 +91,11 @@ namespace Alliance_for_Life.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "SurveyId,SubcontractorId,MonthId,Date,SurveysCompleted")] Surveys surveys)
+        public ActionResult Edit([Bind(Include = "SurveyId,SubcontractorId,MonthId,Date,SurveysCompleted,SubmittedDate")] Surveys surveys)
         {
             if (ModelState.IsValid)
             {
+                surveys.SubmittedDate = DateTime.Now;
                 db.Entry(surveys).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -141,12 +144,13 @@ namespace Alliance_for_Life.Controllers
         public FileResult Export()
         {
             DataTable dt = new DataTable("Grid");
-            dt.Columns.AddRange(new DataColumn[4]
+            dt.Columns.AddRange(new DataColumn[5]
             {
                 new DataColumn ("Survey ID"),
                 new DataColumn ("Month"),
                 new DataColumn ("Organization"),
-                new DataColumn ("Surveys Returned")
+                new DataColumn ("Surveys Returned"),
+                new DataColumn ("Date Submitted")
             });
 
             var query = from s in db.Surveys
@@ -158,11 +162,12 @@ namespace Alliance_for_Life.Controllers
                             Month = m.Months,
                             Orgname = sc.OrgName,
                             SurveysCompleted = s.SurveysCompleted,
+                            SubmittedDate = DateTime.Now
                         };
 
             foreach (var item in query)
             {
-                dt.Rows.Add(item.SurveyId, item.Month, item.Orgname, item.SurveysCompleted);
+                dt.Rows.Add(item.SurveyId, item.Month, item.Orgname, item.SurveysCompleted, item.SubmittedDate);
             }
 
             using (XLWorkbook wb = new XLWorkbook())

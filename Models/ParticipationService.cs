@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Alliance_for_Life.Models
 {
@@ -41,13 +42,13 @@ namespace Alliance_for_Life.Models
 
         public double PTotals { get; set; }
 
+        public DateTime SubmittedDate { get; set; }
+
+
         //Navigation Properties
         public Region Region { get; set; }
-
         public Month Month { get; set; }
-
         public SubContractor Subcontractor { get; set; }
-
         public Year Year { get; set; }
 
         public int YearId { get; set; }

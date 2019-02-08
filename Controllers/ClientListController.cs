@@ -2,6 +2,7 @@
 using Alliance_for_Life.ViewModels;
 using ClosedXML.Excel;
 using Microsoft.AspNet.Identity;
+using System;
 using System.Data;
 using System.IO;
 using System.Linq;
@@ -52,7 +53,8 @@ namespace Alliance_for_Life.Controllers
                 LastName = viewModel.LastName,
                 DOB = viewModel.GetDateTimeDOB(),
                 DueDate = viewModel.GetDateTimeDueDate(),
-                Active = viewModel.Active
+                Active = viewModel.Active,
+                SubmittedDate = DateTime.Now
             };
 
             _context.User.Add(client);
@@ -100,7 +102,8 @@ namespace Alliance_for_Life.Controllers
                 LastName = client.LastName,
                 DOB = client.DOB.ToString("mm/dd/yyyy"),
                 DueDate = client.DueDate.ToString("mm/dd/yyyy"),
-                Active = client.Active
+                Active = client.Active,
+                SubmittedDate = DateTime.Now
             };
             return View("ClientListForm", viewModel);
         }
@@ -117,7 +120,8 @@ namespace Alliance_for_Life.Controllers
                                 FirstName = cl.FirstName,
                                 LastName = cl.LastName,
                                 DOB = cl.DOB,
-                                DueDate = cl.DueDate
+                                DueDate = cl.DueDate,
+                                SubmittedDate = cl.SubmittedDate
                             };
             return View(allactive);
         }
@@ -125,14 +129,15 @@ namespace Alliance_for_Life.Controllers
         public FileResult ExportAllActive()
         {
             DataTable dt = new DataTable("Grid");
-            dt.Columns.AddRange(new DataColumn[6]
+            dt.Columns.AddRange(new DataColumn[7]
             {
                 new DataColumn ("Client ID"),
                 new DataColumn ("Organization"),
                 new DataColumn ("First Name"),
                 new DataColumn ("Last Name"),
                 new DataColumn ("Due Date"),
-                new DataColumn ("Birthday")
+                new DataColumn ("Birthday"),
+                new DataColumn ("Date Submitted")
             });
 
             var user1 = User.Identity.GetUserId();
@@ -146,12 +151,13 @@ namespace Alliance_for_Life.Controllers
                             FirstName = cl.FirstName,
                             LastName = cl.LastName,
                             DOB = cl.DOB,
-                            DueDate = cl.DueDate
+                            DueDate = cl.DueDate,
+                            SubmittedDate = cl.SubmittedDate
                         };
 
             foreach (var item in query)
             {
-                dt.Rows.Add(item.Id, item.Orgname, item.FirstName, item.LastName, item.DOB.ToShortDateString(), item.DueDate.ToShortDateString());
+                dt.Rows.Add(item.Id, item.Orgname, item.FirstName, item.LastName, item.DOB.ToShortDateString(), item.DueDate.ToShortDateString(), item.SubmittedDate);
             }
 
             using (XLWorkbook wb = new XLWorkbook())

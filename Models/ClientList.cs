@@ -23,6 +23,8 @@ namespace Alliance_for_Life.Models
 
         public bool Active { get; set; }
 
+        public DateTime SubmittedDate { get; set; }
+
         //Navigation Properties
 
         public SubContractor Subcontractors { get; set; }

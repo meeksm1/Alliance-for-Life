@@ -50,6 +50,8 @@ namespace Alliance_for_Life.ViewModels
 
         public bool Active { get; set; }
 
+        public DateTime SubmittedDate { get; set; }
+
         //Used for Navigation Properties
         public IEnumerable<SubContractor> Subcontractors { get; set; }
 

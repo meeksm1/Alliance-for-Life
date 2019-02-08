@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Alliance_for_Life.Models
 {
@@ -55,6 +56,8 @@ namespace Alliance_for_Life.Models
         public string PoBox { get; set; }
 
         public bool Active { get; set; }
+
+        public DateTime SubmittedDate { get; set; }
 
     }
 }

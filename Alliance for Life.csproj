@@ -246,6 +246,7 @@
     <Compile Include="Controllers\SurveysController.cs" />
     <Compile Include="DTO\AdminReport.cs" />
     <Compile Include="DTO\QuarterlyStateReport.cs" />
+    <Compile Include="DTO\SurveyReport.cs" />
     <Compile Include="Migrations\201812211732154_QuarterlyStateReport.cs" />
     <Compile Include="Migrations\201812211732154_QuarterlyStateReport.Designer.cs">
       <DependentUpon>201812211732154_QuarterlyStateReport.cs</DependentUpon>
@@ -260,7 +261,6 @@
     <Compile Include="DTO\MIRReport.cs" />
     <Compile Include="DTO\ParticipationServiceReport.cs" />
     <Compile Include="DTO\SubcontractorReport.cs" />
-    <Compile Include="DTO\SurveyReport.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -374,7 +374,6 @@
     <Compile Include="ViewModels\SendCodeViewModel.cs" />
     <Compile Include="ViewModels\SetPasswordViewModel.cs" />
     <Compile Include="ViewModels\SubContractorFormViewModel.cs" />
-    <Compile Include="ViewModels\SurveysViewModel.cs" />
     <Compile Include="ViewModels\VerifyCodeViewModel.cs" />
     <Compile Include="ViewModels\VerifyPhoneNumberViewModel.cs" />
   </ItemGroup>

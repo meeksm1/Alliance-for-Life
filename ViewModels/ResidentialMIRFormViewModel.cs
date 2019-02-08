@@ -1,4 +1,5 @@
 ﻿using Alliance_for_Life.Models;
+using System;
 using System.Collections.Generic;
 
 using System.ComponentModel.DataAnnotations;
@@ -10,6 +11,8 @@ namespace Alliance_for_Life.ViewModels
     {
         [Required]
         public int Id { get; set; }
+
+        public DateTime SubmittedDate { get; set; }
 
         [Required]
         [Display(Name = "Total of overall Client bed nights for the month")]
