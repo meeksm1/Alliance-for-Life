@@ -17,10 +17,6 @@ namespace Alliance_for_Life.ReportControllers
             return View(db.Invoices.ToList());
         }
 
-        //public ActionResult SubIndex()
-        //{
-        //    return View(db.Invoices.ToList());
-        //}
         // GET: Invoices/Details/5
         public ActionResult Details(int? id)
         {
@@ -39,6 +35,10 @@ namespace Alliance_for_Life.ReportControllers
         // GET: Invoices/Create
         public ActionResult Create()
         {
+            ViewBag.MonthId = new SelectList(db.Months, "Id", "Months");
+            ViewBag.RegionId = new SelectList(db.Regions, "Id", "Regions");
+            ViewBag.YearId = new SelectList(db.Years, "Id", "Years");
+            ViewBag.SubcontractorId = new SelectList(db.SubContractors, "SubcontractorId", "OrgName");
             return View();
         }
 
@@ -87,6 +87,10 @@ namespace Alliance_for_Life.ReportControllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.MonthId = new SelectList(db.Months, "Id", "Months");
+            ViewBag.RegionId = new SelectList(db.Regions, "Id", "Regions");
+            ViewBag.YearId = new SelectList(db.Years, "Id", "Years");
+            ViewBag.SubcontractorId = new SelectList(db.SubContractors, "SubcontractorId", "OrgName");
             return View(invoice);
         }
 

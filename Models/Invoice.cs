@@ -18,7 +18,6 @@ namespace Alliance_for_Life.Models
         [UIHint("Currency")]
         public decimal GrandTotal { get; set; }
 
-
         public double LessManagementFee { get; set; }
 
         [UIHint("Currency")]
@@ -34,6 +33,18 @@ namespace Alliance_for_Life.Models
 
         [UIHint("Currency")]
         public decimal BalanceRemaining { get; set; }
+
+
+        /*Navigation Properties*/
+        public Region Region { get; set; }
+        public Month Month { get; set; }
+        public SubContractor Subcontractor { get; set; }
+        public Year Year { get; set; }
+
+        public int YearId { get; set; }
+        public int RegionId { get; set; }
+        public int MonthId { get; set; }
+        public int SubcontractorId { get; set; }
 
     }
 }

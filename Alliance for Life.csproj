@@ -255,9 +255,17 @@
     <Compile Include="Migrations\201902071629575_PopulateYearTable.Designer.cs">
       <DependentUpon>201902071629575_PopulateYearTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201902081948002_UpdateInvoiceTable.cs" />
+    <Compile Include="Migrations\201902081948002_UpdateInvoiceTable.Designer.cs">
+      <DependentUpon>201902081948002_UpdateInvoiceTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902082003052_UpdateInvoiceTable1.cs" />
+    <Compile Include="Migrations\201902082003052_UpdateInvoiceTable1.Designer.cs">
+      <DependentUpon>201902082003052_UpdateInvoiceTable1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\QuarterlyState.cs" />
     <Compile Include="DTO\BudgetReport.cs" />
-    <Compile Include="DTO\Invoice.cs" />
+    <Compile Include="Models\Invoice.cs" />
     <Compile Include="DTO\MIRReport.cs" />
     <Compile Include="DTO\ParticipationServiceReport.cs" />
     <Compile Include="DTO\SubcontractorReport.cs" />
@@ -856,6 +864,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201902071629575_PopulateYearTable.resx">
       <DependentUpon>201902071629575_PopulateYearTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902081948002_UpdateInvoiceTable.resx">
+      <DependentUpon>201902081948002_UpdateInvoiceTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902082003052_UpdateInvoiceTable1.resx">
+      <DependentUpon>201902082003052_UpdateInvoiceTable1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

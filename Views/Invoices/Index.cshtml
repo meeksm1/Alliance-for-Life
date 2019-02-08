@@ -59,7 +59,7 @@
                 @Html.ActionLink("Details", "Details", new { id = invoice.InvoiceId })
             </td>
             <td>
-                <div class="clientid">@invoice.OrgName</div>
+                <div class="clientid">@invoice.Subcontractor.OrgName</div>
             </td>
             <td>
                 <div class="clientid">@invoice.DirectAdminCost.ToString("C")</div>
