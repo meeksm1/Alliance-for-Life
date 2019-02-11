@@ -17,7 +17,7 @@ namespace Alliance_for_Life.Controllers
         }
 
         public ActionResult FirstQuarterReport()
-        {
+        { 
             var montot1 = from x in db.AdminCosts where x.MonthId == 1 select x.ATotCosts;
 
             var firstquarter = from qs in db.QuarterlyStates
@@ -50,7 +50,7 @@ namespace Alliance_for_Life.Controllers
                                    ASecurityServices = a.ASecurityServices,
                                    ABackgroundCheck = a.ABackgroundCheck,
                                    ATotCosts = a.ATotCosts,
-                                   StateAdminFee = a.ATotCosts * .1,
+                                   StateAdminFee = qs.StateFee,
                                    TotDAforQuarter = qs.TotDAforQuarter,
                                    StateFeeQuarter = qs.StateFeeQuarter,
                                    PTranspotation = p.PTranspotation,

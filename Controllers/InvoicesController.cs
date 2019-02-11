@@ -1,5 +1,6 @@
 ﻿using Alliance_for_Life.Models;
 using Alliance_for_Life.ViewModels;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
@@ -14,7 +15,10 @@ namespace Alliance_for_Life.ReportControllers
         // GET: Invoices
         public ActionResult Index()
         {
-            return View(db.Invoices.ToList());
+            var invoices = db.Invoices.Include(a => a.Month).Include(a => a.Region).Include(a => a.Year).Include(a => a.Subcontractor)
+                .Include(a => a.AdminCosts).Include(a => a.ParticipationService);
+
+            return View(invoices.ToList());
         }
 
         // GET: Invoices/Details/5
@@ -24,12 +28,20 @@ namespace Alliance_for_Life.ReportControllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Invoice invoice = db.Invoices.Find(id);
-            if (invoice == null)
+            Invoice invoices = db.Invoices
+                .Include(a => a.Month)
+                .Include(a => a.Region)
+                .Include(a => a.Year)
+                .Include(a => a.Subcontractor)
+                .Include(a => a.AdminCosts)
+                .Include(a => a.ParticipationService)
+                .SingleOrDefault(a => a.InvoiceId == id);
+
+            if (invoices == null)
             {
                 return HttpNotFound();
             }
-            return View(invoice);
+            return View(invoices);
         }
 
         // GET: Invoices/Create
@@ -39,6 +51,9 @@ namespace Alliance_for_Life.ReportControllers
             ViewBag.RegionId = new SelectList(db.Regions, "Id", "Regions");
             ViewBag.YearId = new SelectList(db.Years, "Id", "Years");
             ViewBag.SubcontractorId = new SelectList(db.SubContractors, "SubcontractorId", "OrgName");
+            ViewBag.AdminCostId = new SelectList(db.AdminCosts, "AdminCostId", "AdminCostId");
+            ViewBag.PartServId = new SelectList(db.ParticipationServices, "PSId", "PSId");
+
             return View();
         }
 
@@ -47,14 +62,23 @@ namespace Alliance_for_Life.ReportControllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "InvoiceId,OrgName,DirectAdminCost,ParticipantServices,GrandTotal,LessManagementFee,DepositAmount,BeginningAllocation,AdjustedAllocation,BillingDate,BalanceRemaining")] Invoice invoice)
+        public ActionResult Create([Bind(Include = "InvoiceId,OrgName,MonthId,RegionId,YearId,SubcontractorId,AdminCostId,PartServId,DirectAdminCost,ParticipantServices,GrandTotal,LessManagementFee,DepositAmount,BeginningAllocation,AdjustedAllocation,BillingDate,BalanceRemaining")] Invoice invoice)
         {
             if (ModelState.IsValid)
             {
+                invoice.OrgName = User.Identity.Name;
+                invoice.SubmittedDate = System.DateTime.Now;
                 db.Invoices.Add(invoice);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.MonthId = new SelectList(db.Months, "Id", "Months", invoice.MonthId);
+            ViewBag.RegionId = new SelectList(db.Regions, "Id", "Regions", invoice.RegionId);
+            ViewBag.YearId = new SelectList(db.Years, "Id", "Years", invoice.YearId);
+            ViewBag.SubcontractorId = new SelectList(db.SubContractors, "SubcontractorId", "OrgName", invoice.SubcontractorId);
+            ViewBag.AdminCostId = new SelectList(db.AdminCosts, "AdminCostId", "AdminCostId");
+            ViewBag.PartServId = new SelectList(db.ParticipationServices, "PSId", "PSId");
+
 
             return View(invoice);
         }
@@ -67,10 +91,20 @@ namespace Alliance_for_Life.ReportControllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Invoice invoice = db.Invoices.Find(id);
+
             if (invoice == null)
             {
                 return HttpNotFound();
             }
+
+            ViewBag.MonthId = new SelectList(db.Months, "Id", "Months", invoice.MonthId);
+            ViewBag.RegionId = new SelectList(db.Regions, "Id", "Regions", invoice.RegionId);
+            ViewBag.YearId = new SelectList(db.Years, "Id", "Years", invoice.YearId);
+            ViewBag.SubcontractorId = new SelectList(db.SubContractors, "SubcontractorId", "OrgName", invoice.SubcontractorId);
+            ViewBag.AdminCostId = new SelectList(db.AdminCosts, "AdminCostId", "AdminCosts");
+            ViewBag.PartServId = new SelectList(db.ParticipationServices, "PSId", "PSId");
+
+
             return View(invoice);
         }
 
@@ -79,10 +113,11 @@ namespace Alliance_for_Life.ReportControllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "InvoiceId,OrgName,DirectAdminCost,ParticipantServices,GrandTotal,LessManagementFee,DepositAmount,BeginningAllocation,AdjustedAllocation,BillingDate,BalanceRemaining")] Invoice invoice)
+        public ActionResult Edit([Bind(Include = "InvoiceId,OrgName,MonthId,RegionId,YearId,SubcontractorId,AdminCostId,PartServId,DirectAdminCost,ParticipantServices,GrandTotal,LessManagementFee,DepositAmount,BeginningAllocation,AdjustedAllocation,BillingDate,BalanceRemaining")] Invoice invoice)
         {
             if (ModelState.IsValid)
             {
+                invoice.SubmittedDate = System.DateTime.Now;
                 db.Entry(invoice).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -91,6 +126,9 @@ namespace Alliance_for_Life.ReportControllers
             ViewBag.RegionId = new SelectList(db.Regions, "Id", "Regions");
             ViewBag.YearId = new SelectList(db.Years, "Id", "Years");
             ViewBag.SubcontractorId = new SelectList(db.SubContractors, "SubcontractorId", "OrgName");
+            ViewBag.AdminCostId = new SelectList(db.AdminCosts, "AdminCostId", "AdminCostId");
+            ViewBag.PartServId = new SelectList(db.ParticipationServices, "PSId", "PSId");
+
             return View(invoice);
         }
 
@@ -101,7 +139,15 @@ namespace Alliance_for_Life.ReportControllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Invoice invoice = db.Invoices.Find(id);
+            Invoice invoice = db.Invoices
+                .Include(a => a.Month)
+                .Include(a => a.Region)
+                .Include(a => a.Year)
+                .Include(a => a.Subcontractor)
+                .Include(a => a.AdminCosts)
+                .Include(a => a.ParticipationService)
+                .SingleOrDefault(a => a.InvoiceId == id);
+
             if (invoice == null)
             {
                 return HttpNotFound();
@@ -114,7 +160,15 @@ namespace Alliance_for_Life.ReportControllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Invoice invoice = db.Invoices.Find(id);
+            Invoice invoice = db.Invoices
+                 .Include(a => a.Month)
+                .Include(a => a.Region)
+                .Include(a => a.Year)
+                .Include(a => a.Subcontractor)
+                .Include(a => a.AdminCosts)
+                .Include(a => a.ParticipationService)
+                .SingleOrDefault(a => a.InvoiceId == id);
+
             db.Invoices.Remove(invoice);
             db.SaveChanges();
             return RedirectToAction("Index");
