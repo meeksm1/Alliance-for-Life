@@ -7,43 +7,43 @@ namespace Alliance_for_Life.Models
         public int BudgetInvoiceId { get; set; }
         public DateTime SubmittedDate { get; set; }
         public string MonthName { get; set; }
-        public string YearName { get; set; }
+        public int YearName { get; set; }
         public double ATotCosts { get; set; }
         public double BTotal { get; set; }
         public double Maxtot { get; set; }
         public string RegionName { get; set; }
         public string OrgName { get; set; }
-        public int ASalandWages { get; set; }
-        public int AEmpBenefits { get; set; }
-        public int AEmpTravel { get; set; }
-        public int AEmpTraining { get; set; }
-        public int AOfficeRent { get; set; }
-        public int AOfficeUtilities { get; set; }
-        public int AFacilityIns { get; set; }
-        public int AOfficeSupplies { get; set; }
-        public int AEquipment { get; set; }
-        public int AOfficeCommunications { get; set; }
-        public int AOfficeMaint { get; set; }
-        public int AConsulting { get; set; }
-        public int SubConPayCost { get; set; }
-        public int BackgrounCheck { get; set; }
-        public int Other { get; set; }
-        public int AJanitorServices { get; set; }
-        public int ADepreciation { get; set; }
-        public int ATechSupport { get; set; }
-        public int ASecurityServices { get; set; }
+        public double ASalandWages { get; set; }
+        public double AEmpBenefits { get; set; }
+        public double AEmpTravel { get; set; }
+        public double AEmpTraining { get; set; }
+        public double AOfficeRent { get; set; }
+        public double AOfficeUtilities { get; set; }
+        public double AFacilityIns { get; set; }
+        public double AOfficeSupplies { get; set; }
+        public double AEquipment { get; set; }
+        public double AOfficeCommunications { get; set; }
+        public double AOfficeMaint { get; set; }
+        public double AConsulting { get; set; }
+        public double SubConPayCost { get; set; }
+        public double BackgrounCheck { get; set; }
+        public double Other { get; set; }
+        public double AJanitorServices { get; set; }
+        public double ADepreciation { get; set; }
+        public double ATechSupport { get; set; }
+        public double ASecurityServices { get; set; }
         public double AdminFee { get; set; }
-        public int Trasportation { get; set; }
-        public int JobTraining { get; set; }
-        public int TuitionAssistance { get; set; }
-        public int ContractedResidential { get; set; }
-        public int UtilityAssistance { get; set; }
-        public int EmergencyShelter { get; set; }
-        public int HousingAssistance { get; set; }
-        public int Childcare { get; set; }
-        public int Clothing { get; set; }
-        public int Food { get; set; }
-        public int Supplies { get; set; }
-        public int RFO { get; set; }
+        public double Trasportation { get; set; }
+        public double JobTraining { get; set; }
+        public double TuitionAssistance { get; set; }
+        public double ContractedResidential { get; set; }
+        public double UtilityAssistance { get; set; }
+        public double EmergencyShelter { get; set; }
+        public double HousingAssistance { get; set; }
+        public double Childcare { get; set; }
+        public double Clothing { get; set; }
+        public double Food { get; set; }
+        public double Supplies { get; set; }
+        public double RFO { get; set; }
    }
 }

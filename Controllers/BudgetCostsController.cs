@@ -17,7 +17,7 @@ namespace Alliance_for_Life.Controllers
         // GET: BudgetCosts
         public ActionResult Index()
         {
-            var budgetCosts = db.BudgetCosts.Include(b => b.Month).Include(b => b.Year).Include(b => b.Region);
+            var budgetCosts = db.BudgetCosts.Include(b => b.Month).Include(b => b.Region);
             return View(budgetCosts.ToList());
         }
 
@@ -81,7 +81,6 @@ namespace Alliance_for_Life.Controllers
             BudgetCosts budgetCosts = db.BudgetCosts
                 .Include(a => a.Month)
                 .Include(a => a.Region)
-                .Include(a => a.Year)
                 .SingleOrDefault(a => a.BudgetInvoiceId == id);
             if (budgetCosts == null)
             {
@@ -93,8 +92,10 @@ namespace Alliance_for_Life.Controllers
         // GET: BudgetCosts/Create
         public ActionResult Create()
         {
+            var datelist = Enumerable.Range(System.DateTime.Now.Year, 10).ToList();
+
             ViewBag.MonthId = new SelectList(db.Months, "Id", "Months");
-            ViewBag.YearId = new SelectList(db.Years, "Id", "Years");
+            ViewBag.YearId = new SelectList(datelist);
             ViewBag.RegionId = new SelectList(db.Regions, "Id", "Regions");
             return View();
         }
@@ -114,8 +115,10 @@ namespace Alliance_for_Life.Controllers
                 return RedirectToAction("Index");
             }
 
+            var datelist = Enumerable.Range(System.DateTime.Now.Year, 10).ToList();
+
             ViewBag.MonthId = new SelectList(db.Months, "Id", "Months", budgetCosts.MonthId);
-            ViewBag.YearId = new SelectList(db.Years, "Id", "Years", budgetCosts.YearId);
+            ViewBag.YearId = new SelectList(datelist);
             ViewBag.RegionId = new SelectList(db.Regions, "Id", "Regions", budgetCosts.RegionId);
             return View(budgetCosts);
         }
@@ -168,7 +171,6 @@ namespace Alliance_for_Life.Controllers
             BudgetCosts budgetCosts = db.BudgetCosts
                 .Include(a => a.Month)
                 .Include(a => a.Region)
-                .Include(a => a.Year)
                 .SingleOrDefault(a => a.BudgetInvoiceId == id);
 
             if (budgetCosts == null)
@@ -186,7 +188,6 @@ namespace Alliance_for_Life.Controllers
             BudgetCosts budgetCosts = db.BudgetCosts
                 .Include(a => a.Month)
                 .Include(a => a.Region)
-                .Include(a => a.Year)
                 .SingleOrDefault(a => a.BudgetInvoiceId == id);
 
             db.BudgetCosts.Remove(budgetCosts);
@@ -254,14 +255,13 @@ namespace Alliance_for_Life.Controllers
             var costs = from a in db.BudgetCosts
                         join m in db.Months on a.MonthId equals m.Id
                         join r in db.Regions on a.RegionId equals r.Id
-                        join y in db.Years on a.YearId equals y.Id
                         select new BudgetReport
                         {
                             BudgetInvoiceId = a.BudgetInvoiceId,
                             SubmittedDate = a.SubmittedDate,
                             MonthName = m.Months,
                             RegionName = r.Regions,
-                            YearName = y.Years,
+                            YearName = a.YearId,
                             ASalandWages = a.ASalandWages,
                             AEmpBenefits = a.AEmpBenefits,
                             AEmpTravel = a.AEmpTravel,

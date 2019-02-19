@@ -17,6 +17,7 @@ namespace Alliance_for_Life.Models
         public DbSet<Surveys> Surveys { get; set; }
         public DbSet<Invoice> Invoices { get; set; }
         public DbSet<Year> Years { get; set; }
+        public DbSet<QuarterlyState> QuarterlyStates { get; set; }
 
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
@@ -27,10 +28,6 @@ namespace Alliance_for_Life.Models
         {
             return new ApplicationDbContext();
         }
-
-        public System.Data.Entity.DbSet<Alliance_for_Life.ViewModels.ParticipationServicesViewModel> ParticipationServicesViewModels { get; set; }
-
-        public System.Data.Entity.DbSet<Alliance_for_Life.Models.QuarterlyState> QuarterlyStates { get; set; }
 
         //protected override void OnModelCreating(DbModelBuilder modelBuilder)
         //{

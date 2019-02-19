@@ -47,9 +47,9 @@ namespace Alliance_for_Life.Models
         public int ZipCode { get; set; }
 
         [Required]
-        public int AllocatedContractAmount { get; set; }
+        public double AllocatedContractAmount { get; set; }
 
-        public int AllocatedAdjustments { get; set; }
+        public double AllocatedAdjustments { get; set; }
 
         public string Address1 { get; set; }
 

@@ -11,31 +11,31 @@ namespace Alliance_for_Life.Models
         public int Subcontractor { get; set; }
 
         [Required]
-        public int TotBedNights { get; set; }
+        public double TotBedNights { get; set; }
 
         [Required]
-        public int TotA2AEnrollment { get; set; }
+        public double TotA2AEnrollment { get; set; }
 
         [Required]
-        public int TotA2ABedNights { get; set; }
+        public double TotA2ABedNights { get; set; }
 
         public DateTime SubmittedDate { get; set; }
 
         public double MA2Apercent { get; set; }
 
-        public int ClientsJobEduServ { get; set; }
+        public double ClientsJobEduServ { get; set; }
 
-        public int ParticipatingFathers { get; set; }
+        public double ParticipatingFathers { get; set; }
 
-        public int TotEduClasses { get; set; }
+        public double TotEduClasses { get; set; }
 
-        public int TotClientsinEduClasses { get; set; }
+        public double TotClientsinEduClasses { get; set; }
 
-        public int TotCaseHrs { get; set; }
+        public double TotCaseHrs { get; set; }
 
-        public int TotClientsCaseHrs { get; set; }
+        public double TotClientsCaseHrs { get; set; }
 
-        public int TotOtherClasses { get; set; }
+        public double TotOtherClasses { get; set; }
 
         /*Navigation Properties*/
         public Month Months { get; set; }

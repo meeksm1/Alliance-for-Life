@@ -263,6 +263,14 @@
     <Compile Include="Migrations\201902082003052_UpdateInvoiceTable1.Designer.cs">
       <DependentUpon>201902082003052_UpdateInvoiceTable1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201902191911349_RemoveBudgetProperties.cs" />
+    <Compile Include="Migrations\201902191911349_RemoveBudgetProperties.Designer.cs">
+      <DependentUpon>201902191911349_RemoveBudgetProperties.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902192056018_CleanBudgetTables.cs" />
+    <Compile Include="Migrations\201902192056018_CleanBudgetTables.Designer.cs">
+      <DependentUpon>201902192056018_CleanBudgetTables.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\QuarterlyState.cs" />
     <Compile Include="DTO\BudgetReport.cs" />
     <Compile Include="Models\Invoice.cs" />
@@ -780,11 +788,11 @@
     <Content Include="Views\BudgetCosts\SecondQuarter.cshtml" />
     <Content Include="Views\BudgetCosts\FourthQuarter.cshtml" />
     <Content Include="Views\BudgetCosts\ThirdQuarter.cshtml" />
-    <Content Include="Views\ParticipationCost\Create.cshtml" />
-    <Content Include="Views\ParticipationCost\Delete.cshtml" />
-    <Content Include="Views\ParticipationCost\Details.cshtml" />
-    <Content Include="Views\ParticipationCost\Edit.cshtml" />
-    <Content Include="Views\ParticipationCost\Index.cshtml" />
+    <Content Include="Views\ParticipationService\Create.cshtml" />
+    <Content Include="Views\ParticipationService\Delete.cshtml" />
+    <Content Include="Views\ParticipationService\Details.cshtml" />
+    <Content Include="Views\ParticipationService\Edit.cshtml" />
+    <Content Include="Views\ParticipationService\Index.cshtml" />
     <Content Include="Views\BudgetCosts\AExpenseVSBExpense.cshtml" />
     <Content Include="Views\QuarterlyStates\Delete.cshtml" />
     <Content Include="Views\QuarterlyStates\Details.cshtml" />
@@ -871,6 +879,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201902082003052_UpdateInvoiceTable1.resx">
       <DependentUpon>201902082003052_UpdateInvoiceTable1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902191911349_RemoveBudgetProperties.resx">
+      <DependentUpon>201902191911349_RemoveBudgetProperties.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902192056018_CleanBudgetTables.resx">
+      <DependentUpon>201902192056018_CleanBudgetTables.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
