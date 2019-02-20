@@ -62,3 +62,34 @@ $(function addParticipationServicesForm() {
         $("#PTotals").val(total.toFixed(2));
     });
 });
+
+$(function calcInvoiceGrandTotals() {
+    $('.numAdd4').change(function () {
+
+        // Loop through all input's and re-calculate the total
+        var total = 0;
+        $('.numAdd4').each(function () {
+            total += +$(this).val();
+        });
+
+        // Update the total
+        $("#GrandTotal").val(total.toFixed(2));
+        $("#LessManagementFee").val((total * .03).toFixed(2));
+        $("#DepositAmount").val(((total - (total * .03)).toFixed(2)));
+    });
+});
+
+$(function calcInvoiceAllocatedFunds() {
+
+    $('.numAdd5').change(function () {
+
+        var q = $("#BeginningAllocation").val();
+        var p = $("#AdjustedAllocation").val();
+        var result = "";
+
+        if (q !== "" && p !== "" && $.isNumeric(q) && $.isNumeric(p)) {
+            result = parseFloat(q) - parseFloat(p);
+        }
+        jQuery("#BalanceRemaining").val(result);
+    });
+});
