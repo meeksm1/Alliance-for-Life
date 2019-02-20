@@ -238,7 +238,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\NonResidentialMIRController.cs" />
-    <Compile Include="Controllers\ParticipationCostController.cs" />
+    <Compile Include="Controllers\ParticipationServiceController.cs" />
     <Compile Include="Controllers\QuarterlyStatesController.cs" />
     <Compile Include="Controllers\ResidentialMIRController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
@@ -360,7 +360,6 @@
     <Compile Include="Models\SubContrator.cs" />
     <Compile Include="Models\Surveys.cs" />
     <Compile Include="DTO\ClientListReport.cs" />
-    <Compile Include="Models\Year.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\InvoicesController.cs" />
     <Compile Include="Startup.cs" />

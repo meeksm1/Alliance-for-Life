@@ -59,12 +59,9 @@ namespace Alliance_for_Life.Models
 
         //Navigation Properties
         public Region Region { get; set; }
-
         public Month Month { get; set; }
-
         public SubContractor Subcontractor { get; set; }
 
-        public Year Year { get; set; }
 
 
         public int RegionId { get; set; }

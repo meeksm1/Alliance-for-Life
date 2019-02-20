@@ -25,12 +25,14 @@ namespace Alliance_for_Life.Controllers
 
         public ActionResult Create()
         {
+            var datelist = Enumerable.Range(System.DateTime.Now.Year - 4, 10).ToList();
+            ViewBag.YearId = new SelectList(datelist);
+
             var viewModel = new ResidentialMIRFormViewModel
             {
-                Years = _context.Years.ToList(),
                 Months = _context.Months.ToList(),
                 Subcontractors = _context.SubContractors.ToList()
-        };
+            };
             return View(viewModel);
         }
 
@@ -42,18 +44,19 @@ namespace Alliance_for_Life.Controllers
             if (!ModelState.IsValid)
             {
                 viewModel.SubmittedDate = DateTime.Now;
-                viewModel.Years = _context.Years.ToList();
                 viewModel.Months = _context.Months.ToList();
                 viewModel.Subcontractors = _context.SubContractors.ToList();
                 return View("Create", viewModel);
             }
 
+            var datelist = Enumerable.Range(System.DateTime.Now.Year - 4, 10).ToList();
+            ViewBag.YearId = new SelectList(datelist);
 
             var invoice = new ResidentialMIR
             {
                 Subcontractor = viewModel.Subcontractor,
                 MonthId = viewModel.Month,
-                YearId = viewModel.Year,
+                YearId = viewModel.YearId,
                 TotBedNights = viewModel.TotBedNights,
                 TotA2AEnrollment = viewModel.TotA2AEnrollment,
                 TotA2ABedNights = viewModel.TotA2ABedNights,
@@ -72,7 +75,6 @@ namespace Alliance_for_Life.Controllers
             var report = from res in _context.ResidentialMIRs
                           join s in _context.SubContractors on res.Subcontractor equals s.SubcontractorId  
                           join m in _context.Months on res.Months.Id equals m.Id
-                          join y in _context.Years on res.YearId equals y.Id
                           where res.Id > 0
                           select new MIRReport
                           {
@@ -80,7 +82,7 @@ namespace Alliance_for_Life.Controllers
                                 OrgName = s.OrgName,
                                 SubmittedDate = res.SubmittedDate,
                                 Month = m.Months,
-                                YearName = y.Years,
+                                YearName = res.YearId,
                                 TotBedNights = res.TotBedNights,
                                 TotA2AEnrollment = res.TotA2AEnrollment,
                                 TotA2ABedNights = res.TotA2ABedNights,
@@ -125,7 +127,6 @@ namespace Alliance_for_Life.Controllers
             var report = from res in _context.ResidentialMIRs
                          join s in _context.SubContractors on res.Subcontractor equals s.SubcontractorId
                          join m in _context.Months on res.Months.Id equals m.Id
-                         join y in _context.Years on res.YearId equals y.Id
                          where res.Id > 0
                          select new MIRReport
                          {
@@ -133,7 +134,7 @@ namespace Alliance_for_Life.Controllers
                              SubmittedDate = res.SubmittedDate,
                              OrgName = s.OrgName,
                              Month = m.Months,
-                             YearName = y.Years,
+                             YearName = res.YearId,
                              TotBedNights = res.TotBedNights,
                              TotA2AEnrollment = res.TotA2AEnrollment,
                              TotA2ABedNights = res.TotA2ABedNights,

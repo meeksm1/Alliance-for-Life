@@ -7,7 +7,7 @@ namespace Alliance_for_Life.Models
         public int Id { get; set; }
         public DateTime SubmittedDate { get; set; }
         public string OrgName { get; set; }
-        public string YearName { get; set; }
+        public int YearName { get; set; }
         public double TotBedNights { get; set; }
         public double TotA2AEnrollment { get; set; }
         public double TotA2ABedNights { get; set; }

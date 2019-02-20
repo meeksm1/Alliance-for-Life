@@ -15,7 +15,7 @@ namespace Alliance_for_Life.ReportControllers
         // GET: Invoices
         public ActionResult Index()
         {
-            var invoices = db.Invoices.Include(a => a.Month).Include(a => a.Region).Include(a => a.Year).Include(a => a.Subcontractor)
+            var invoices = db.Invoices.Include(a => a.Month).Include(a => a.Region).Include(a => a.Subcontractor)
                 .Include(a => a.AdminCosts).Include(a => a.ParticipationService);
 
             return View(invoices.ToList());
@@ -31,7 +31,6 @@ namespace Alliance_for_Life.ReportControllers
             Invoice invoices = db.Invoices
                 .Include(a => a.Month)
                 .Include(a => a.Region)
-                .Include(a => a.Year)
                 .Include(a => a.Subcontractor)
                 .Include(a => a.AdminCosts)
                 .Include(a => a.ParticipationService)
@@ -47,9 +46,11 @@ namespace Alliance_for_Life.ReportControllers
         // GET: Invoices/Create
         public ActionResult Create()
         {
+            var datelist = Enumerable.Range(System.DateTime.Now.Year - 4, 10).ToList();
+            
             ViewBag.MonthId = new SelectList(db.Months, "Id", "Months");
             ViewBag.RegionId = new SelectList(db.Regions, "Id", "Regions");
-            ViewBag.YearId = new SelectList(db.Years, "Id", "Years");
+            ViewBag.YearId = new SelectList(datelist);
             ViewBag.SubcontractorId = new SelectList(db.SubContractors, "SubcontractorId", "OrgName");
             ViewBag.AdminCostId = new SelectList(db.AdminCosts, "AdminCostId", "AdminCostId");
             ViewBag.PartServId = new SelectList(db.ParticipationServices, "PSId", "PSId");
@@ -72,9 +73,12 @@ namespace Alliance_for_Life.ReportControllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+
+            var datelist = Enumerable.Range(System.DateTime.Now.Year - 4, 10).ToList();
+
             ViewBag.MonthId = new SelectList(db.Months, "Id", "Months", invoice.MonthId);
             ViewBag.RegionId = new SelectList(db.Regions, "Id", "Regions", invoice.RegionId);
-            ViewBag.YearId = new SelectList(db.Years, "Id", "Years", invoice.YearId);
+            ViewBag.YearId = new SelectList(datelist);
             ViewBag.SubcontractorId = new SelectList(db.SubContractors, "SubcontractorId", "OrgName", invoice.SubcontractorId);
             ViewBag.AdminCostId = new SelectList(db.AdminCosts, "AdminCostId", "AdminCostId");
             ViewBag.PartServId = new SelectList(db.ParticipationServices, "PSId", "PSId");
@@ -97,9 +101,11 @@ namespace Alliance_for_Life.ReportControllers
                 return HttpNotFound();
             }
 
+            var datelist = Enumerable.Range(System.DateTime.Now.Year - 4, 10).ToList();
+
             ViewBag.MonthId = new SelectList(db.Months, "Id", "Months", invoice.MonthId);
             ViewBag.RegionId = new SelectList(db.Regions, "Id", "Regions", invoice.RegionId);
-            ViewBag.YearId = new SelectList(db.Years, "Id", "Years", invoice.YearId);
+            ViewBag.YearId = new SelectList(datelist);
             ViewBag.SubcontractorId = new SelectList(db.SubContractors, "SubcontractorId", "OrgName", invoice.SubcontractorId);
             ViewBag.AdminCostId = new SelectList(db.AdminCosts, "AdminCostId", "AdminCosts");
             ViewBag.PartServId = new SelectList(db.ParticipationServices, "PSId", "PSId");
@@ -122,9 +128,12 @@ namespace Alliance_for_Life.ReportControllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+
+            var datelist = Enumerable.Range(System.DateTime.Now.Year - 4, 10).ToList();
+
             ViewBag.MonthId = new SelectList(db.Months, "Id", "Months");
             ViewBag.RegionId = new SelectList(db.Regions, "Id", "Regions");
-            ViewBag.YearId = new SelectList(db.Years, "Id", "Years");
+            ViewBag.YearId = new SelectList(datelist);
             ViewBag.SubcontractorId = new SelectList(db.SubContractors, "SubcontractorId", "OrgName");
             ViewBag.AdminCostId = new SelectList(db.AdminCosts, "AdminCostId", "AdminCostId");
             ViewBag.PartServId = new SelectList(db.ParticipationServices, "PSId", "PSId");
@@ -142,7 +151,6 @@ namespace Alliance_for_Life.ReportControllers
             Invoice invoice = db.Invoices
                 .Include(a => a.Month)
                 .Include(a => a.Region)
-                .Include(a => a.Year)
                 .Include(a => a.Subcontractor)
                 .Include(a => a.AdminCosts)
                 .Include(a => a.ParticipationService)
@@ -161,9 +169,8 @@ namespace Alliance_for_Life.ReportControllers
         public ActionResult DeleteConfirmed(int id)
         {
             Invoice invoice = db.Invoices
-                 .Include(a => a.Month)
+                .Include(a => a.Month)
                 .Include(a => a.Region)
-                .Include(a => a.Year)
                 .Include(a => a.Subcontractor)
                 .Include(a => a.AdminCosts)
                 .Include(a => a.ParticipationService)

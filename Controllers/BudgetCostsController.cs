@@ -92,7 +92,7 @@ namespace Alliance_for_Life.Controllers
         // GET: BudgetCosts/Create
         public ActionResult Create()
         {
-            var datelist = Enumerable.Range(System.DateTime.Now.Year, 10).ToList();
+            var datelist = Enumerable.Range(System.DateTime.Now.Year - 4, 10).ToList();
 
             ViewBag.MonthId = new SelectList(db.Months, "Id", "Months");
             ViewBag.YearId = new SelectList(datelist);
@@ -115,7 +115,7 @@ namespace Alliance_for_Life.Controllers
                 return RedirectToAction("Index");
             }
 
-            var datelist = Enumerable.Range(System.DateTime.Now.Year, 10).ToList();
+            var datelist = Enumerable.Range(System.DateTime.Now.Year - 4, 10).ToList();
 
             ViewBag.MonthId = new SelectList(db.Months, "Id", "Months", budgetCosts.MonthId);
             ViewBag.YearId = new SelectList(datelist);
@@ -135,9 +135,13 @@ namespace Alliance_for_Life.Controllers
             {
                 return HttpNotFound();
             }
+
+            var datelist = Enumerable.Range(System.DateTime.Now.Year - 4, 10).ToList();
+
             ViewBag.MonthId = new SelectList(db.Months, "Id", "Months", budgetCosts.MonthId);
+            ViewBag.YearId = new SelectList(datelist);
             ViewBag.RegionId = new SelectList(db.Regions, "Id", "Regions", budgetCosts.RegionId);
-            ViewBag.YearId = new SelectList(db.Years, "Id", "Years", budgetCosts.YearId);
+
             return View(budgetCosts);
         }
 
@@ -155,9 +159,13 @@ namespace Alliance_for_Life.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+
+            var datelist = Enumerable.Range(DateTime.Now.Year - 4, 10).ToList();
+
             ViewBag.MonthId = new SelectList(db.Months, "Id", "Months", budgetCosts.MonthId);
+            ViewBag.YearId = new SelectList(datelist);
             ViewBag.RegionId = new SelectList(db.Regions, "Id", "Regions", budgetCosts.RegionId);
-            ViewBag.YearId = new SelectList(db.Years, "Id", "Years", budgetCosts.YearId);
+
             return View(budgetCosts);
         }
 

@@ -40,7 +40,6 @@ namespace Alliance_for_Life.Models
 
         /*Navigation Properties*/
         public Month Months { get; set; }
-        public Year Years { get; set; }
 
         public int YearId { get; set; }
         public int MonthId { get; set; }

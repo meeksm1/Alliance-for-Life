@@ -16,7 +16,7 @@ namespace Alliance_for_Life.Controllers
         // GET: AdministrationCost
         public ActionResult Index()
         {
-            var adminCosts = db.AdminCosts.Include(a => a.Month).Include(a => a.Region).Include(a => a.Year).Include(a => a.Subcontractor);
+            var adminCosts = db.AdminCosts.Include(a => a.Month).Include(a => a.Region).Include(a => a.Subcontractor);
             return View(adminCosts.ToList());
         }
 
@@ -30,7 +30,6 @@ namespace Alliance_for_Life.Controllers
             AdminCosts adminCosts = db.AdminCosts
                 .Include(a => a.Month)
                 .Include(a => a.Region)
-                .Include(a => a.Year)
                 .Include(a => a.Subcontractor)
                 .SingleOrDefault(a => a.AdminCostId == id);
             if (adminCosts == null)
@@ -43,9 +42,11 @@ namespace Alliance_for_Life.Controllers
         // GET: AdministrationCost/Create
         public ActionResult Create()
         {
+            var datelist = Enumerable.Range(System.DateTime.Now.Year - 4, 10).ToList();
+
             ViewBag.MonthId = new SelectList(db.Months, "Id", "Months");
             ViewBag.RegionId = new SelectList(db.Regions, "Id", "Regions");
-            ViewBag.YearId = new SelectList(db.Years, "Id", "Years");
+            ViewBag.YearId = new SelectList(datelist);
             ViewBag.SubcontractorId = new SelectList(db.SubContractors, "SubcontractorId", "OrgName");
             return View();
         }
@@ -65,9 +66,11 @@ namespace Alliance_for_Life.Controllers
                 return RedirectToAction("Index");
             }
 
+            var datelist = Enumerable.Range(System.DateTime.Now.Year - 4, 10).ToList();
+
             ViewBag.MonthId = new SelectList(db.Months, "Id", "Months", adminCosts.MonthId);
             ViewBag.RegionId = new SelectList(db.Regions, "Id", "Regions", adminCosts.RegionId);
-            ViewBag.YearId = new SelectList(db.Years, "Id", "Years", adminCosts.YearId);
+            ViewBag.YearId = new SelectList(datelist);
             ViewBag.SubcontractorId = new SelectList(db.SubContractors, "SubcontractorId", "OrgName", adminCosts.SubcontractorId);
             return View(adminCosts);
         }
@@ -84,9 +87,12 @@ namespace Alliance_for_Life.Controllers
             {
                 return HttpNotFound();
             }
+
+            var datelist = Enumerable.Range(System.DateTime.Now.Year - 4, 10).ToList();
+
             ViewBag.MonthId = new SelectList(db.Months, "Id", "Months", adminCosts.MonthId);
             ViewBag.RegionId = new SelectList(db.Regions, "Id", "Regions", adminCosts.RegionId);
-            ViewBag.YearId = new SelectList(db.Years, "Id", "Years", adminCosts.YearId);
+            ViewBag.YearId = new SelectList(datelist);
             ViewBag.SubcontractorId = new SelectList(db.SubContractors, "SubcontractorId", "OrgName", adminCosts.SubcontractorId);
             return View(adminCosts);
         }
@@ -105,9 +111,12 @@ namespace Alliance_for_Life.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+
+            var datelist = Enumerable.Range(System.DateTime.Now.Year - 4, 10).ToList();
+
             ViewBag.MonthId = new SelectList(db.Months, "Id", "Months", adminCosts.MonthId);
             ViewBag.RegionId = new SelectList(db.Regions, "Id", "Regions", adminCosts.RegionId);
-            ViewBag.YearId = new SelectList(db.Years, "Id", "Years", adminCosts.YearId);
+            ViewBag.YearId = new SelectList(datelist);
             ViewBag.SubcontractorId = new SelectList(db.SubContractors, "SubcontractorId", "OrgName", adminCosts.SubcontractorId);
             return View(adminCosts);
         }
@@ -122,7 +131,6 @@ namespace Alliance_for_Life.Controllers
             AdminCosts adminCosts = db.AdminCosts
                 .Include(a => a.Month)
                 .Include(a => a.Region)
-                .Include(a => a.Year)
                 .Include(a => a.Subcontractor)
                 .SingleOrDefault(a => a.AdminCostId == id);
 
@@ -141,7 +149,6 @@ namespace Alliance_for_Life.Controllers
             AdminCosts adminCosts = db.AdminCosts
                 .Include(a => a.Month)
                 .Include(a => a.Region)
-                .Include(a => a.Year)
                 .Include(a => a.Subcontractor)
                 .SingleOrDefault(a => a.AdminCostId == id);
 
@@ -196,7 +203,6 @@ namespace Alliance_for_Life.Controllers
             var costs = from a in db.AdminCosts
                         join m in db.Months on a.MonthId equals m.Id
                         join r in db.Regions on a.RegionId equals r.Id
-                        join y in db.Years on a.YearId equals y.Id
                         join s in db.SubContractors on a.SubcontractorId equals s.SubcontractorId
                         where a.SubcontractorId == s.SubcontractorId
                         select new AdminReport
@@ -206,7 +212,7 @@ namespace Alliance_for_Life.Controllers
                             OrgName = s.OrgName,
                             MonthName = m.Months,
                             RegionName = r.Regions,
-                            YearName = y.Years,
+                            YearName = a.YearId,
                             ASalandWages = a.ASalandWages,
                             AEmpBenefits = a.AEmpBenefits,
                             AEmpTravel = a.AEmpTravel,

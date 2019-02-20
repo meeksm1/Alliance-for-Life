@@ -34,7 +34,6 @@ namespace Alliance_for_Life.Models
         public Region Region { get; set; }
         public Month Month { get; set; }
         public SubContractor Subcontractor { get; set; }
-        public Year Year { get; set; }
         public AdminCosts AdminCosts { get; set; }
         public ParticipationService ParticipationService { get; set; }
 

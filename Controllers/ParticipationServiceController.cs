@@ -10,14 +10,14 @@ using System.Web.Mvc;
 
 namespace Alliance_for_Life.Controllers
 {
-    public class ParticipationCostController : Controller
+    public class ParticipationServiceController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: ParticipationCost
         public ActionResult Index()
         {
-            var participationServices = db.ParticipationServices.Include(p => p.Month).Include(p => p.Year).Include(p => p.Region).Include(p => p.Subcontractor);
+            var participationServices = db.ParticipationServices.Include(p => p.Month).Include(p => p.Region).Include(p => p.Subcontractor);
             return View(participationServices.ToList());
         }
 
@@ -31,7 +31,6 @@ namespace Alliance_for_Life.Controllers
             ParticipationService participationService = db.ParticipationServices
                 .Include(a => a.Month)
                 .Include(a => a.Region)
-                .Include(p => p.Year)
                 .Include(a => a.Subcontractor)
                 .SingleOrDefault(a => a.PSId == id);
 
@@ -45,9 +44,11 @@ namespace Alliance_for_Life.Controllers
         // GET: ParticipationCost/Create
         public ActionResult Create()
         {
+            var datelist = Enumerable.Range(System.DateTime.Now.Year - 4, 10).ToList();
+
             ViewBag.MonthId = new SelectList(db.Months, "Id", "Months");
             ViewBag.RegionId = new SelectList(db.Regions, "Id", "Regions");
-            ViewBag.YearId = new SelectList(db.Years, "Id", "Years");
+            ViewBag.YearId = new SelectList(datelist);
             ViewBag.SubcontractorId = new SelectList(db.SubContractors, "SubcontractorId", "OrgName");
             return View();
         }
@@ -67,9 +68,11 @@ namespace Alliance_for_Life.Controllers
                 return RedirectToAction("Index");
             }
 
+            var datelist = Enumerable.Range(System.DateTime.Now.Year - 4, 10).ToList();
+
             ViewBag.MonthId = new SelectList(db.Months, "Id", "Months", participationService.MonthId);
             ViewBag.RegionId = new SelectList(db.Regions, "Id", "Regions", participationService.RegionId);
-            ViewBag.YearId = new SelectList(db.Years, "Id", "Years", participationService.YearId);
+            ViewBag.YearId = new SelectList(datelist);
             ViewBag.SubcontractorId = new SelectList(db.SubContractors, "SubcontractorId", "OrgName", participationService.SubcontractorId);
             return View(participationService);
         }
@@ -86,9 +89,12 @@ namespace Alliance_for_Life.Controllers
             {
                 return HttpNotFound();
             }
+
+            var datelist = Enumerable.Range(System.DateTime.Now.Year - 4, 10).ToList();
+
             ViewBag.MonthId = new SelectList(db.Months, "Id", "Months", participationService.MonthId);
             ViewBag.RegionId = new SelectList(db.Regions, "Id", "Regions", participationService.RegionId);
-            ViewBag.YearId = new SelectList(db.Years, "Id", "Years", participationService.YearId);
+            ViewBag.YearId = new SelectList(datelist);
             ViewBag.SubcontractorId = new SelectList(db.SubContractors, "SubcontractorId", "OrgName", participationService.SubcontractorId);
             return View(participationService);
         }
@@ -107,9 +113,12 @@ namespace Alliance_for_Life.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+
+            var datelist = Enumerable.Range(System.DateTime.Now.Year - 4, 10).ToList();
+
             ViewBag.MonthId = new SelectList(db.Months, "Id", "Months", participationService.MonthId);
             ViewBag.RegionId = new SelectList(db.Regions, "Id", "Regions", participationService.RegionId);
-            ViewBag.YearId = new SelectList(db.Years, "Id", "Years", participationService.YearId);
+            ViewBag.YearId = new SelectList(datelist);
             ViewBag.SubcontractorId = new SelectList(db.SubContractors, "SubcontractorId", "OrgName", participationService.SubcontractorId);
             return View(participationService);
         }
@@ -124,7 +133,6 @@ namespace Alliance_for_Life.Controllers
             ParticipationService participationService = db.ParticipationServices
                 .Include(a => a.Month)
                 .Include(a => a.Region)
-                .Include(p => p.Year)
                 .Include(a => a.Subcontractor)
                 .SingleOrDefault(a => a.PSId == id);
 
@@ -143,7 +151,6 @@ namespace Alliance_for_Life.Controllers
             ParticipationService participationService = db.ParticipationServices
                 .Include(a => a.Month)
                 .Include(a => a.Region)
-                .Include(p => p.Year)
                 .Include(a => a.Subcontractor)
                 .SingleOrDefault(a => a.PSId == id);
 
@@ -193,7 +200,6 @@ namespace Alliance_for_Life.Controllers
             var costs = from a in db.ParticipationServices
                         join m in db.Months on a.MonthId equals m.Id
                         join r in db.Regions on a.RegionId equals r.Id
-                        join y in db.Years on a.YearId equals y.Id
                         join s in db.SubContractors on a.SubcontractorId equals s.SubcontractorId
                         where a.SubcontractorId == s.SubcontractorId
                         select new ParticipationServiceReport
@@ -202,7 +208,7 @@ namespace Alliance_for_Life.Controllers
                             OrgName = s.OrgName,
                             MonthName = m.Months,
                             RegionName = r.Regions,
-                            YearName = y.Years,
+                            YearName = a.YearId,
                             EIN = s.EIN,
                             PTranspotation = a.PTranspotation,
                             PJobTrain = a.PJobTrain,
