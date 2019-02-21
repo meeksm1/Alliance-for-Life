@@ -97,7 +97,7 @@ namespace Alliance_for_Life.Controllers
 
             _context.SaveChanges();
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Reports", "Subcontractor");
         }
 
         [Authorize]
@@ -140,6 +140,7 @@ namespace Alliance_for_Life.Controllers
                           where s.SubcontractorId > 0
                           select new SubcontractorReport
                           {
+                              SubcontractorId = s.SubcontractorId,
                               EIN = s.EIN,
                               OrgName = s.OrgName,
                               Director = s.Director,

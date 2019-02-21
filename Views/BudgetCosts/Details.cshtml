@@ -318,7 +318,3 @@
     @Html.ActionLink("Delete", "Delete", new { id = Model.BudgetInvoiceId })|
     @Html.ActionLink("Back to List", "Index")
 </p>
-@using (Html.BeginForm("Export", "BudgetCosts", FormMethod.Post))
-    {
-<input type="submit" value="Export to Excel" class="btn btn-primary" />
-    }

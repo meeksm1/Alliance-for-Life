@@ -25,7 +25,7 @@ namespace Alliance_for_Life.Controllers
 
         public ActionResult Create()
         {
-            var datelist = Enumerable.Range(System.DateTime.Now.Year - 4, 10).ToList();
+            var datelist = Enumerable.Range(DateTime.Now.Year - 4, 10).ToList();
             ViewBag.YearId = new SelectList(datelist);
 
             var viewModel = new ResidentialMIRFormViewModel
@@ -49,7 +49,7 @@ namespace Alliance_for_Life.Controllers
                 return View("Create", viewModel);
             }
 
-            var datelist = Enumerable.Range(System.DateTime.Now.Year - 4, 10).ToList();
+            var datelist = Enumerable.Range(DateTime.Now.Year - 4, 10).ToList();
             ViewBag.YearId = new SelectList(datelist);
 
             var invoice = new ResidentialMIR
@@ -60,7 +60,8 @@ namespace Alliance_for_Life.Controllers
                 TotBedNights = viewModel.TotBedNights,
                 TotA2AEnrollment = viewModel.TotA2AEnrollment,
                 TotA2ABedNights = viewModel.TotA2ABedNights,
-                MA2Apercent = viewModel.MA2Apercent
+                MA2Apercent = viewModel.MA2Apercent,
+                SubmittedDate = DateTime.Now
             }; 
 
             _context.ResidentialMIRs.Add(invoice);

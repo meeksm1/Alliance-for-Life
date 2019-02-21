@@ -57,10 +57,22 @@ namespace Alliance_for_Life.Controllers
         {
             if (ModelState.IsValid)
             {
-                surveys.SubmittedDate = DateTime.Now;
-                db.Surveys.Add(surveys);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                var dataexist = from s in db.Surveys
+                                where
+                                s.SubcontractorId == surveys.SubcontractorId &&
+                                s.MonthId == surveys.MonthId
+                                select s;
+                if (dataexist.Count() >= 1)
+                {
+                    ViewBag.error = "Data already exists. Please change the params or search in the Reports tab for the current Record.";
+                }
+                else
+                {
+                    surveys.SubmittedDate = DateTime.Now;
+                    db.Surveys.Add(surveys);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
             }
 
             ViewBag.MonthId = new SelectList(db.Months, "Id", "Months", surveys.Months);

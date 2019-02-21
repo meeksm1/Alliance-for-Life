@@ -4,6 +4,7 @@ namespace Alliance_for_Life.Models
 {
     public class SubcontractorReport
     {
+        public int SubcontractorId { get; set; }
         public int EIN { get; set; }
         public string OrgName { get; set; }
         public string Director { get; set; }

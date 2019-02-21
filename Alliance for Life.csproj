@@ -271,6 +271,10 @@
     <Compile Include="Migrations\201902192056018_CleanBudgetTables.Designer.cs">
       <DependentUpon>201902192056018_CleanBudgetTables.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201902211601221_UpdateResMir.cs" />
+    <Compile Include="Migrations\201902211601221_UpdateResMir.Designer.cs">
+      <DependentUpon>201902211601221_UpdateResMir.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\QuarterlyState.cs" />
     <Compile Include="DTO\BudgetReport.cs" />
     <Compile Include="Models\Invoice.cs" />
@@ -716,7 +720,6 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
@@ -884,6 +887,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201902192056018_CleanBudgetTables.resx">
       <DependentUpon>201902192056018_CleanBudgetTables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902211601221_UpdateResMir.resx">
+      <DependentUpon>201902211601221_UpdateResMir.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

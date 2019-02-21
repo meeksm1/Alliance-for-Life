@@ -109,10 +109,23 @@ namespace Alliance_for_Life.Controllers
         {
             if (ModelState.IsValid)
             {
-                budgetCosts.SubmittedDate = DateTime.Now;
-                db.BudgetCosts.Add(budgetCosts);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                var dataexist = from s in db.BudgetCosts
+                                where
+                                s.MonthId == budgetCosts.MonthId &&
+                                s.YearId == budgetCosts.YearId &&
+                                s.RegionId == budgetCosts.RegionId
+                                select s;
+                if (dataexist.Count() >= 1)
+                {
+                    ViewBag.error = "Data already exists. Please change the params or search in the Reports tab for the current Record.";
+                }
+                else
+                {
+                    budgetCosts.SubmittedDate = DateTime.Now;
+                    db.BudgetCosts.Add(budgetCosts);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
             }
 
             var datelist = Enumerable.Range(System.DateTime.Now.Year - 4, 10).ToList();
@@ -120,6 +133,7 @@ namespace Alliance_for_Life.Controllers
             ViewBag.MonthId = new SelectList(db.Months, "Id", "Months", budgetCosts.MonthId);
             ViewBag.YearId = new SelectList(datelist);
             ViewBag.RegionId = new SelectList(db.Regions, "Id", "Regions", budgetCosts.RegionId);
+
             return View(budgetCosts);
         }
 

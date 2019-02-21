@@ -175,3 +175,8 @@
 <tr>
     <td>@Model.Sum(m => m.ATotCosts).ToString("c")</td>
 </tr>
+<br/><br />
+@using (Html.BeginForm("Export", "AdministrationCost", FormMethod.Post))
+{
+    <input type="submit" value="Export to Excel" class="btn btn-group-sm btn-primary" />
+}

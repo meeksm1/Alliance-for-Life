@@ -44,3 +44,8 @@
         </tr>
     }
 </table>
+
+@using (Html.BeginForm("Export", "Surveys", FormMethod.Post))
+{
+    <input type="submit" value="Export to Excel" class="btn btn-group-sm btn-primary" />
+}

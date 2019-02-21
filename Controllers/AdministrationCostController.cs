@@ -48,6 +48,7 @@ namespace Alliance_for_Life.Controllers
             ViewBag.RegionId = new SelectList(db.Regions, "Id", "Regions");
             ViewBag.YearId = new SelectList(datelist);
             ViewBag.SubcontractorId = new SelectList(db.SubContractors, "SubcontractorId", "OrgName");
+
             return View();
         }
 
@@ -60,19 +61,32 @@ namespace Alliance_for_Life.Controllers
         {
             if (ModelState.IsValid)
             {
-                adminCosts.SubmittedDate = System.DateTime.Now;
-                db.AdminCosts.Add(adminCosts);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                var dataexist = from s in db.AdminCosts
+                                where s.SubcontractorId == adminCosts.SubcontractorId &&
+                                s.MonthId == adminCosts.MonthId &&
+                                s.YearId == adminCosts.YearId &&
+                                s.RegionId == adminCosts.RegionId
+                                select s;
+                if (dataexist.Count() >= 1)
+                {
+                    ViewBag.error = "Data already exists. Please change the params or search in the Reports tab for the current Record.";
+                }
+                else
+                {
+                    adminCosts.SubmittedDate = System.DateTime.Now;
+                    db.AdminCosts.Add(adminCosts);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
             }
+                var datelist = Enumerable.Range(System.DateTime.Now.Year - 4, 10).ToList();
 
-            var datelist = Enumerable.Range(System.DateTime.Now.Year - 4, 10).ToList();
+                ViewBag.MonthId = new SelectList(db.Months, "Id", "Months", adminCosts.MonthId);
+                ViewBag.RegionId = new SelectList(db.Regions, "Id", "Regions", adminCosts.RegionId);
+                ViewBag.YearId = new SelectList(datelist);
+                ViewBag.SubcontractorId = new SelectList(db.SubContractors, "SubcontractorId", "OrgName", adminCosts.SubcontractorId);
 
-            ViewBag.MonthId = new SelectList(db.Months, "Id", "Months", adminCosts.MonthId);
-            ViewBag.RegionId = new SelectList(db.Regions, "Id", "Regions", adminCosts.RegionId);
-            ViewBag.YearId = new SelectList(datelist);
-            ViewBag.SubcontractorId = new SelectList(db.SubContractors, "SubcontractorId", "OrgName", adminCosts.SubcontractorId);
-            return View(adminCosts);
+                return View(adminCosts);   
         }
 
         // GET: AdministrationCost/Edit/5

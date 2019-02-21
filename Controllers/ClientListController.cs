@@ -12,11 +12,11 @@ namespace Alliance_for_Life.Controllers
 {
     public class ClientListController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly ApplicationDbContext db;
 
         public ClientListController()
         {
-            _context = new ApplicationDbContext();
+            db = new ApplicationDbContext();
         }
 
         public ActionResult Reports()
@@ -29,7 +29,7 @@ namespace Alliance_for_Life.Controllers
         {
             var viewModel = new ClientListFormViewModel
             {
-                Subcontractors = _context.SubContractors.ToList(),
+                Subcontractors = db.SubContractors.ToList(),
                 Heading = "Add Client Information"
             };
             return View("ClientListForm", viewModel);
@@ -42,8 +42,8 @@ namespace Alliance_for_Life.Controllers
         {
             if (!ModelState.IsValid)
             {
-                viewModel.Subcontractors = _context.SubContractors.ToList();
-                return View("ClientListForm", viewModel);
+                    viewModel.Subcontractors = db.SubContractors.ToList();
+                    return View("ClientListForm", viewModel);
             }
 
             var client = new ClientList
@@ -57,8 +57,8 @@ namespace Alliance_for_Life.Controllers
                 SubmittedDate = DateTime.Now
             };
 
-            _context.User.Add(client);
-            _context.SaveChanges();
+            db.User.Add(client);
+            db.SaveChanges();
 
             return RedirectToAction("Index", "Home");
         }
@@ -70,11 +70,11 @@ namespace Alliance_for_Life.Controllers
         {
             if (!ModelState.IsValid)
             {
-                viewModel.Subcontractors = _context.SubContractors.ToList();
+                viewModel.Subcontractors = db.SubContractors.ToList();
                 return View("ClientListForm", viewModel);
             }
 
-            var client = _context.User.Single(s => s.Id == viewModel.Id);
+            var client = db.User.Single(s => s.Id == viewModel.Id);
             {
                 client.SubcontractorId = viewModel.SubcontractorId;
                 client.FirstName = viewModel.FirstName;
@@ -84,7 +84,7 @@ namespace Alliance_for_Life.Controllers
                 client.Active = viewModel.Active;
             };
 
-            _context.SaveChanges();
+            db.SaveChanges();
 
             return RedirectToAction("Index", "Home");
         }
@@ -92,12 +92,12 @@ namespace Alliance_for_Life.Controllers
         [Authorize]
         public ActionResult Edit(int id)
         {
-            var client = _context.User.Single(s => s.Id == id);
+            var client = db.User.Single(s => s.Id == id);
             var viewModel = new ClientListFormViewModel
             {
                 Heading = "Edit Client Information",
                 Id = client.Id,
-                Subcontractors = _context.SubContractors.ToList(),
+                Subcontractors = db.SubContractors.ToList(),
                 FirstName = client.FirstName,
                 LastName = client.LastName,
                 DOB = client.DOB.ToString("mm/dd/yyyy"),
@@ -110,8 +110,8 @@ namespace Alliance_for_Life.Controllers
 
         public ActionResult AllActiveClients()
         {
-            var allactive = from cl in _context.User
-                            join su in _context.SubContractors on cl.SubcontractorId equals su.SubcontractorId
+            var allactive = from cl in db.User
+                            join su in db.SubContractors on cl.SubcontractorId equals su.SubcontractorId
                             where cl.Active == true
                             select new ClientListReport
                             {
@@ -141,8 +141,8 @@ namespace Alliance_for_Life.Controllers
             });
 
             var user1 = User.Identity.GetUserId();
-            var query = from cl in _context.User
-                        join su in _context.SubContractors on cl.SubcontractorId equals su.SubcontractorId
+            var query = from cl in db.User
+                        join su in db.SubContractors on cl.SubcontractorId equals su.SubcontractorId
                         where cl.Active
                         select new ClientListReport
                         {
@@ -174,9 +174,9 @@ namespace Alliance_for_Life.Controllers
         public ActionResult ActiveClients()
         {
             var user1 = User.Identity.GetUserId();
-            var activeclients = from cl in _context.User
-                                join su in _context.SubContractors on cl.SubcontractorId equals su.SubcontractorId
-                                join us in _context.Users on su.SubcontractorId equals us.SubcontractorId
+            var activeclients = from cl in db.User
+                                join su in db.SubContractors on cl.SubcontractorId equals su.SubcontractorId
+                                join us in db.Users on su.SubcontractorId equals us.SubcontractorId
                                 where cl.Active && us.Id == user1
                                 select new ClientListReport
                                 {
@@ -206,9 +206,9 @@ namespace Alliance_for_Life.Controllers
             });
 
             var user1 = User.Identity.GetUserId();
-            var query = from cl in _context.User
-                        join su in _context.SubContractors on cl.SubcontractorId equals su.SubcontractorId
-                        join us in _context.Users on su.SubcontractorId equals us.SubcontractorId
+            var query = from cl in db.User
+                        join su in db.SubContractors on cl.SubcontractorId equals su.SubcontractorId
+                        join us in db.Users on su.SubcontractorId equals us.SubcontractorId
                         where cl.Active && us.Id == user1
                         select new ClientListReport
                         {
@@ -238,8 +238,8 @@ namespace Alliance_for_Life.Controllers
 
         public ActionResult AllNonActiveClients()
         {
-            var allnonactive = from cl in _context.User
-                               join su in _context.SubContractors on cl.SubcontractorId equals su.SubcontractorId
+            var allnonactive = from cl in db.User
+                               join su in db.SubContractors on cl.SubcontractorId equals su.SubcontractorId
                                where cl.Active == false
                                select new ClientListReport
                                {
@@ -268,8 +268,8 @@ namespace Alliance_for_Life.Controllers
             });
 
             var user1 = User.Identity.GetUserId();
-            var query = from cl in _context.User
-                        join su in _context.SubContractors on cl.SubcontractorId equals su.SubcontractorId
+            var query = from cl in db.User
+                        join su in db.SubContractors on cl.SubcontractorId equals su.SubcontractorId
                         where cl.Active == false
                         select new ClientListReport
                         {
@@ -300,9 +300,9 @@ namespace Alliance_for_Life.Controllers
         public ActionResult NonActiveClients()
         {
             var user1 = User.Identity.GetUserId();
-            var nonactiveclients = from cl in _context.User
-                                   join su in _context.SubContractors on cl.SubcontractorId equals su.SubcontractorId
-                                   join us in _context.Users on su.SubcontractorId equals us.SubcontractorId
+            var nonactiveclients = from cl in db.User
+                                   join su in db.SubContractors on cl.SubcontractorId equals su.SubcontractorId
+                                   join us in db.Users on su.SubcontractorId equals us.SubcontractorId
                                    where cl.Active == false && us.Id == user1
                                    select new ClientListReport
                                    {
@@ -332,9 +332,9 @@ namespace Alliance_for_Life.Controllers
             });
 
             var user1 = User.Identity.GetUserId();
-            var query = from cl in _context.User
-                        join su in _context.SubContractors on cl.SubcontractorId equals su.SubcontractorId
-                        join us in _context.Users on su.SubcontractorId equals us.SubcontractorId
+            var query = from cl in db.User
+                        join su in db.SubContractors on cl.SubcontractorId equals su.SubcontractorId
+                        join us in db.Users on su.SubcontractorId equals us.SubcontractorId
                         where cl.Active == false && us.Id == user1
                         select new ClientListReport
                         {

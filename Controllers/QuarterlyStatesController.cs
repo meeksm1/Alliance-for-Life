@@ -107,9 +107,22 @@ namespace Alliance_for_Life.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.QuarterlyStates.Add(quarterlyState);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                var dataexist = from s in db.QuarterlyStates
+                                where
+                                s.SubcontractorId == quarterlyState.SubcontractorId &&
+                                s.MonthId == quarterlyState.MonthId &&
+                                s.AdminCostId == quarterlyState.AdminCostId
+                                select s;
+                if (dataexist.Count() >= 1)
+                {
+                    ViewBag.error = "Data already exists. Please change the params or search in the Reports tab for the current Record.";
+                }
+                else
+                {
+                    db.QuarterlyStates.Add(quarterlyState);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
             }
 
             return View(quarterlyState);

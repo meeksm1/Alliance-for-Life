@@ -11,6 +11,7 @@
     <p class="alert alert-info">All fields are <strong>required</strong>.</p>
     @Html.AntiForgeryToken()
     @Html.HiddenFor(m => m.Id)
+    @Html.HiddenFor(m => m.SubmittedDate)
 
     <div class="form-group">
         @Html.LabelFor(m => m.SubcontractorId)
@@ -42,11 +43,11 @@
         @Html.RadioButtonFor(m => m.Active, "True", new { @class = "form-group" })Yes.
         @Html.RadioButtonFor(m => m.Active, "False", new { @class = "form-group" })No.
     </div>
-    <button type="submit" class="btn btn-primary">Add Client</button>
+    <button type="submit" class="btn btn-group-sm btn-primary">Add Client</button>
 }
 @section scripts
     {
-        @Scripts.Render("~/bundles/jqueryval")
-    }
+    @Scripts.Render("~/bundles/jqueryval")
+}
 
 

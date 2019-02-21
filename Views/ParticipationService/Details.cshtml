@@ -168,8 +168,3 @@
     @Html.ActionLink("Delete", "Delete", new { id = Model.PSId })|  
     @Html.ActionLink("Back to List", "Index")
 </p>
-
-@using (Html.BeginForm("Export", "ParticipationCost", FormMethod.Post))
-{
-    <input type="submit" value="Export to Excel" class="btn btn-primary" />
-}

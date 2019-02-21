@@ -1,6 +1,5 @@
 ﻿using Alliance_for_Life.Models;
 using Alliance_for_Life.ViewModels;
-using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
@@ -52,8 +51,6 @@ namespace Alliance_for_Life.ReportControllers
             ViewBag.RegionId = new SelectList(db.Regions, "Id", "Regions");
             ViewBag.YearId = new SelectList(datelist);
             ViewBag.SubcontractorId = new SelectList(db.SubContractors, "SubcontractorId", "OrgName");
-            ViewBag.AdminCostId = new SelectList(db.AdminCosts, "AdminCostId", "AdminCostId");
-            ViewBag.PartServId = new SelectList(db.ParticipationServices, "PSId", "PSId");
 
             return View();
         }
@@ -63,15 +60,29 @@ namespace Alliance_for_Life.ReportControllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "InvoiceId,OrgName,MonthId,RegionId,YearId,SubcontractorId,AdminCostId,PartServId,DirectAdminCost,ParticipantServices,GrandTotal,LessManagementFee,DepositAmount,BeginningAllocation,AdjustedAllocation,BillingDate,BalanceRemaining")] Invoice invoice)
+        public ActionResult Create([Bind(Include = "InvoiceId,OrgName,MonthId,RegionId,YearId,SubcontractorId,DirectAdminCost,ParticipantServices,GrandTotal,LessManagementFee,DepositAmount,BeginningAllocation,AdjustedAllocation,BillingDate,BalanceRemaining")] Invoice invoice)
         {
             if (ModelState.IsValid)
             {
-                invoice.OrgName = User.Identity.Name;
-                invoice.SubmittedDate = System.DateTime.Now;
-                db.Invoices.Add(invoice);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                var dataexist = from s in db.Invoices
+                                where
+                                s.SubcontractorId == invoice.SubcontractorId &&
+                                s.MonthId == invoice.MonthId &&
+                                s.YearId == invoice.YearId &&
+                                s.RegionId == invoice.RegionId
+                                select s;
+                if (dataexist.Count() >= 1)
+                {
+                    ViewBag.error = "Data already exists. Please change the params or search in the Reports tab for the current Record.";
+                }
+                else
+                {
+                    invoice.OrgName = User.Identity.Name;
+                    invoice.SubmittedDate = System.DateTime.Now;
+                    db.Invoices.Add(invoice);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
             }
 
             var datelist = Enumerable.Range(System.DateTime.Now.Year - 4, 10).ToList();
@@ -80,9 +91,6 @@ namespace Alliance_for_Life.ReportControllers
             ViewBag.RegionId = new SelectList(db.Regions, "Id", "Regions", invoice.RegionId);
             ViewBag.YearId = new SelectList(datelist);
             ViewBag.SubcontractorId = new SelectList(db.SubContractors, "SubcontractorId", "OrgName", invoice.SubcontractorId);
-            ViewBag.AdminCostId = new SelectList(db.AdminCosts, "AdminCostId", "AdminCostId");
-            ViewBag.PartServId = new SelectList(db.ParticipationServices, "PSId", "PSId");
-
 
             return View(invoice);
         }
@@ -107,9 +115,6 @@ namespace Alliance_for_Life.ReportControllers
             ViewBag.RegionId = new SelectList(db.Regions, "Id", "Regions", invoice.RegionId);
             ViewBag.YearId = new SelectList(datelist);
             ViewBag.SubcontractorId = new SelectList(db.SubContractors, "SubcontractorId", "OrgName", invoice.SubcontractorId);
-            ViewBag.AdminCostId = new SelectList(db.AdminCosts, "AdminCostId", "AdminCosts");
-            ViewBag.PartServId = new SelectList(db.ParticipationServices, "PSId", "PSId");
-
 
             return View(invoice);
         }
@@ -119,7 +124,7 @@ namespace Alliance_for_Life.ReportControllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "InvoiceId,OrgName,MonthId,RegionId,YearId,SubcontractorId,AdminCostId,PartServId,DirectAdminCost,ParticipantServices,GrandTotal,LessManagementFee,DepositAmount,BeginningAllocation,AdjustedAllocation,BillingDate,BalanceRemaining")] Invoice invoice)
+        public ActionResult Edit([Bind(Include = "InvoiceId,OrgName,MonthId,RegionId,YearId,SubcontractorId,DirectAdminCost,ParticipantServices,GrandTotal,LessManagementFee,DepositAmount,BeginningAllocation,AdjustedAllocation,BillingDate,BalanceRemaining")] Invoice invoice)
         {
             if (ModelState.IsValid)
             {
@@ -135,8 +140,6 @@ namespace Alliance_for_Life.ReportControllers
             ViewBag.RegionId = new SelectList(db.Regions, "Id", "Regions");
             ViewBag.YearId = new SelectList(datelist);
             ViewBag.SubcontractorId = new SelectList(db.SubContractors, "SubcontractorId", "OrgName");
-            ViewBag.AdminCostId = new SelectList(db.AdminCosts, "AdminCostId", "AdminCostId");
-            ViewBag.PartServId = new SelectList(db.ParticipationServices, "PSId", "PSId");
 
             return View(invoice);
         }

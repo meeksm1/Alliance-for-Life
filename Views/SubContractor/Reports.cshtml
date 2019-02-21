@@ -31,27 +31,44 @@
     </tr>
     @foreach (var subcontractors in Model)
     {
-        <tr>
-            <td>
-                <div class="clientid">@subcontractors.EIN</div>
-            </td>
+    <tr>
+        <td>
+            <div class="clientid">@subcontractors.EIN</div>
+        </td>
 
-            <td>
-                <div class="clientid">@subcontractors.OrgName</div>
-            </td>
+        <td>
+            <div class="clientid">@subcontractors.OrgName</div>
+        </td>
 
-            <td>
-                <div class="clientid">@subcontractors.Director</div>
-            </td>
+        <td>
+            <div class="clientid">@subcontractors.Director</div>
+        </td>
 
-            <td>
-                <div class="fname">@subcontractors.Region</div>
-            </td>
+        <td>
+            <div class="fname">@subcontractors.Region</div>
+        </td>
 
-            <td>
-                <div class="lname">@subcontractors.Active</div>
-            </td>          
-        </tr>
+        <td>
+            @{
+                if (subcontractors.Active == true)
+                {
+
+                    <i class="fa fa-check-circle" style="font-size:24px;color:#2ECC71"></i>
+
+                }
+                if (subcontractors.Active == false)
+                {
+
+                    <i class="fa fa-exclamation-circle" style="font-size:24px;color:#E74C3C"></i>
+                }
+            }
+        </td>
+        <td>
+            <a href="@Url.Action("Edit", "SubContractor", new { id = subcontractors.SubcontractorId }, Request.Url.Scheme)">
+                <i style="font-size:16px; color:#3498DB" class="fa">&#xf044;</i>
+            </a>
+        </td>
+    </tr>
     }
     <tr></tr>
 </table>
@@ -59,6 +76,6 @@
 <br />
 @using (Html.BeginForm("Export", "SubContractor", FormMethod.Post))
 {
-    <input type="submit" value="Export to Excel" class="btn btn-primary" />
+    <input type="submit" value="Export to Excel" class="btn btn-group-sm btn-primary" />
 }
 

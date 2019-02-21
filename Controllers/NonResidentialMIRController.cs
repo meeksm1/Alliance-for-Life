@@ -45,7 +45,7 @@ namespace Alliance_for_Life.Controllers
         {
             if (!ModelState.IsValid)
             {
-                viewModel.SubmittedDate = DateTime.Now;
+                viewModel.SubmittedDate = DateTime.UtcNow;
                 viewModel.Months = _context.Months.ToList();
                 viewModel.Subcontractors = _context.SubContractors.ToList();
                 return View("Create", viewModel);
@@ -61,7 +61,8 @@ namespace Alliance_for_Life.Controllers
                 TotBedNights = viewModel.TotBedNights,
                 TotA2AEnrollment = viewModel.TotA2AEnrollment,
                 TotA2ABedNights = viewModel.TotA2ABedNights,
-                MA2Apercent = viewModel.MA2Apercent
+                MA2Apercent = viewModel.MA2Apercent,
+                SubmittedDate = DateTime.Now
             };
 
             _context.NonResidentialMIRs.Add(invoice);

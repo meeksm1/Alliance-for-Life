@@ -41,8 +41,3 @@
     @Html.ActionLink("Edit", "Edit", new { id = Model.SurveyId }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
-
-@using (Html.BeginForm("Export", "Surveys", FormMethod.Post))
-{
-    <input type="submit" value="Export to Excel" class="btn-primary" />
-}

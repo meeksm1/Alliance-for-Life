@@ -62,10 +62,24 @@ namespace Alliance_for_Life.Controllers
         {
             if (ModelState.IsValid)
             {
-                participationService.SubmittedDate = DateTime.Now;
-                db.ParticipationServices.Add(participationService);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                var dataexist = from s in db.ParticipationServices
+                                where
+                                s.SubcontractorId == participationService.SubcontractorId &&
+                                s.MonthId == participationService.MonthId &&
+                                s.YearId == participationService.YearId &&
+                                s.RegionId == participationService.RegionId
+                                select s;
+                if (dataexist.Count() >= 1)
+                {
+                    ViewBag.error = "Data already exists. Please change the params or search in the Reports tab for the current Record.";
+                }
+                else
+                {
+                    participationService.SubmittedDate = DateTime.Now;
+                    db.ParticipationServices.Add(participationService);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
             }
 
             var datelist = Enumerable.Range(System.DateTime.Now.Year - 4, 10).ToList();

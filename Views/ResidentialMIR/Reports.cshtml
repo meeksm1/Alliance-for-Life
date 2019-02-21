@@ -1,8 +1,11 @@
-﻿
+﻿@model IEnumerable<Alliance_for_Life.Models.MIRReport>
 @{
     ViewBag.Title = "Reports";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+@Html.AntiForgeryToken()
+
 
 <h2>Residential MIR Reports</h2>
 
@@ -70,67 +73,67 @@
     </tr>
     @foreach (var report in Model)
     {
-    <tr>
-        <td>
-            @report.Id
-        </td>
+        <tr>
+            <td>
+                @report.Id
+            </td>
 
-        <td>
-            @report.OrgName
-        </td>
+            <td>
+                @report.OrgName
+            </td>
 
-        <td>
-            @report.Month
-        </td>
+            <td>
+                @report.Month
+            </td>
 
-        <td>
-            @report.YearName
-        </td>
+            <td>
+                @report.YearName
+            </td>
 
-        <td>
-            @report.TotBedNights
-        </td>
+            <td>
+                @report.TotBedNights
+            </td>
 
-        <td>
-            @report.TotA2AEnrollment
-        </td>
+            <td>
+                @report.TotA2AEnrollment
+            </td>
 
-        <td>
-            @report.TotA2ABedNights
-        </td>
+            <td>
+                @report.TotA2ABedNights
+            </td>
 
-        <td>
-            @report.MA2Apercent
-        </td>
+            <td>
+                @report.MA2Apercent
+            </td>
 
-        <td>
-            @report.ClientsJobEduServ
-        </td>
+            <td>
+                @report.ClientsJobEduServ
+            </td>
 
-        <td>
-            @report.ParticipatingFathers
-        </td>
+            <td>
+                @report.ParticipatingFathers
+            </td>
 
-        <td>
-            @report.TotEduClasses
-        </td>
+            <td>
+                @report.TotEduClasses
+            </td>
 
-        <td>
-            @report.TotClientsinEduClasses
-        </td>
+            <td>
+                @report.TotClientsinEduClasses
+            </td>
 
-        <td>
-            @report.TotCaseHrs
-        </td>
+            <td>
+                @report.TotCaseHrs
+            </td>
 
-        <td>
-            @report.TotClientsCaseHrs
-        </td>
+            <td>
+                @report.TotClientsCaseHrs
+            </td>
 
-        <td>
-            @report.TotOtherClasses
-        </td>
-    </tr>
+            <td>
+                @report.TotOtherClasses
+            </td>
+        </tr>
     }
     <tr></tr>
 </table>
