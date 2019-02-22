@@ -1,12 +1,17 @@
 ﻿using Alliance_for_Life.Models;
 using Alliance_for_Life.ViewModels;
 using Microsoft.AspNet.Identity;
+using System.Web.Security;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Security.Principal;
+using System.Data.Entity;
 
 namespace Alliance_for_Life.Controllers
 {
@@ -133,9 +138,16 @@ namespace Alliance_for_Life.Controllers
             }
         }
 
+        public ActionResult IndexforRegisteredUsers()
+        {
+            var current_user_role = Roles.GetRolesForUser(User.Identity.Name);
+
+            return View(current_user_role);
+        }
+
+
         //
         // GET: /Account/Register
-        [AllowAnonymous]
         public ActionResult Register()
         {
             var viewModel = new RegisterViewModel

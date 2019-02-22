@@ -9,6 +9,7 @@ namespace Alliance_for_Life.ViewModels
 {
     public class RegisterViewModel
     {
+        [Key]
         [Required]
         [Display(Name="Organization")]
         public int SubcontractorId { get; set; }
