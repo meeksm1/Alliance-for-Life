@@ -801,6 +801,9 @@
     <Content Include="Views\QuarterlyStates\Edit.cshtml" />
     <Content Include="Views\QuarterlyStates\Index.cshtml" />
     <Content Include="Views\QuarterlyStates\FirstQuarterReport.cshtml" />
+    <Content Include="Views\QuarterlyStates\SecondQuarterReport.cshtml" />
+    <Content Include="Views\QuarterlyStates\FourthQuarterReport.cshtml" />
+    <Content Include="Views\QuarterlyStates\ThirdQuarterReport.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
