@@ -1,23 +1,14 @@
 ﻿@model  Alliance_for_Life.Models.Invoice
 
 @{
-    ViewBag.Title = "Invoice Details";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+                /**/
+
+                ViewBag.Title = "Invoice Details";
+                Layout = "~/Views/Shared/_InvoiceHeader.cshtml";
 }
 
 @if (ViewBag.WordDocumentMode == null || !ViewBag.WordDocumentMode)
 {
-    <br />
-    <br />
-    <head>
-        <img src="~/Content/DataTables/images/afllogo.png" />
-    </head>
-
-    <div class="pull-right">
-        <p>487 SW Ward Road</p>
-        <p>Lee’s Summit, MO  64081</p>
-        <p>816-806-4168</p>
-    </div>
     <br />
     <h3 class="text-center">
         Alternatives to Abortion
@@ -70,8 +61,6 @@
         </h4>
     </div>
     <br />
-    <br />
-    <br />
     <h3 class="text-center">
         Signature:____________________________________________________
     </h3>
@@ -82,12 +71,10 @@
     </h5>
     <br />
     <br />
-    <br />
-    <br />
-    <br />
+    <div class="text-center">
+        @Html.ActionLink(" Back to List", "Index") |
+        <a href="javascript:window.print()">Print Invoice</a>
+    </div>
 }
-<div>
-    @Html.ActionLink(" Back to List", "Index") |
-    <a href="javascript:window.print()">Print Invoice</a>
-</div>
+
 
