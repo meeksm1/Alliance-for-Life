@@ -15,7 +15,7 @@ namespace Alliance_for_Life.ReportControllers
         public ActionResult Index()
         {
             var invoices = db.Invoices.Include(a => a.Month).Include(a => a.Region).Include(a => a.Subcontractor)
-                .Include(a => a.AdminCosts).Include(a => a.ParticipationService);
+                ;
 
             return View(invoices.ToList());
         }
@@ -31,8 +31,6 @@ namespace Alliance_for_Life.ReportControllers
                 .Include(a => a.Month)
                 .Include(a => a.Region)
                 .Include(a => a.Subcontractor)
-                .Include(a => a.AdminCosts)
-                .Include(a => a.ParticipationService)
                 .SingleOrDefault(a => a.InvoiceId == id);
 
             if (invoices == null)
@@ -155,8 +153,6 @@ namespace Alliance_for_Life.ReportControllers
                 .Include(a => a.Month)
                 .Include(a => a.Region)
                 .Include(a => a.Subcontractor)
-                .Include(a => a.AdminCosts)
-                .Include(a => a.ParticipationService)
                 .SingleOrDefault(a => a.InvoiceId == id);
 
             if (invoice == null)
@@ -175,8 +171,6 @@ namespace Alliance_for_Life.ReportControllers
                 .Include(a => a.Month)
                 .Include(a => a.Region)
                 .Include(a => a.Subcontractor)
-                .Include(a => a.AdminCosts)
-                .Include(a => a.ParticipationService)
                 .SingleOrDefault(a => a.InvoiceId == id);
 
             db.Invoices.Remove(invoice);

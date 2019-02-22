@@ -1,4 +1,4 @@
-﻿@model List<Alliance_for_Life.Models.Invoice>
+﻿@model IEnumerable<Alliance_for_Life.Models.Invoice>
 
 @{
     ViewBag.Title = "Index";
@@ -58,21 +58,18 @@
             @Html.ActionLink("Details", "Details", new { id = invoice.InvoiceId })
         </td>
         <td>
-            <div class="clientid">@invoice.AdminCosts.ATotCosts</div>
-        </td>
-        <td>
             <div class="clientid">@invoice.Subcontractor.OrgName</div>
         </td>
         <td>
-            <div class="clientid">@invoice.AdminCosts.ATotCosts.ToString("C")</div>
+            <div class="clientid">@invoice.DirectAdminCost.ToString("C")</div>
         </td>
 
         <td>
-            <div class="clientid">@invoice.ParticipationService.PTotals.ToString("C")</div>
+            <div class="clientid">@invoice.ParticipantServices.ToString("C")</div>
         </td>
 
         <td>
-            <div class="fname">((@invoice.AdminCosts.ATotCosts) + (@invoice.ParticipationService.PTotals)).ToString("C")</div>
+            <div class="fname">@invoice.GrandTotal.ToString("C")</div>
         </td>
 
         <td>
