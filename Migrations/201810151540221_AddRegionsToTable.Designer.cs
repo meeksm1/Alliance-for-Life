@@ -7,18 +7,18 @@ namespace Alliance_for_Life.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class MigrationRestart : IMigrationMetadata
+    public sealed partial class AddRegionsToTable : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(MigrationRestart));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AddRegionsToTable));
         
         string IMigrationMetadata.Id
         {
-            get { return "201902251427483_MigrationRestart"; }
+            get { return "201810151540221_AddRegionsToTable"; }
         }
         
         string IMigrationMetadata.Source
         {
-            get { return null; }
+            get { return Resources.GetString("Source"); }
         }
         
         string IMigrationMetadata.Target
