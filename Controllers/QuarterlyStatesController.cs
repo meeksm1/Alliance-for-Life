@@ -17,20 +17,19 @@ namespace Alliance_for_Life.Controllers
         }
 
         public ActionResult FirstQuarterReport()
-        { 
-            var montot1 = from x in db.AdminCosts where x.MonthId == 1 select x.ATotCosts;
+        {
+            var montot1 = from x in db.AdminCosts where (int)x.Month == 1 select x.ATotCosts;
 
             var firstquarter = from qs in db.QuarterlyStates
-                               join m in db.Months on qs.MonthId equals m.Id
                                join s in db.SubContractors on qs.SubcontractorId equals s.SubcontractorId
                                join a in db.AdminCosts on qs.AdminCostId equals a.AdminCostId
                                join p in db.ParticipationServices on qs.ParticipationCostId equals p.PSId
-                               where m.Id < 3
+                               where (int)qs.Month <= 7 && (int)qs.Month >= 9
 
                                select new QuarterlyStateReport
                                {
                                    OrgName = s.OrgName,
-                                   MonthName = m.Months,
+                                   MonthName = qs.Month.ToString(),
                                    ASalandWages = a.ASalandWages,
                                    AEmpBenefits = a.AEmpBenefits,
                                    AEmpTravel = a.AEmpTravel,
@@ -79,19 +78,18 @@ namespace Alliance_for_Life.Controllers
 
         public ActionResult SecondQuarterReport()
         {
-            var montot1 = from x in db.AdminCosts where x.MonthId == 1 select x.ATotCosts;
+            var montot1 = from x in db.AdminCosts where (int)x.Month == 1 select x.ATotCosts;
 
             var firstquarter = from qs in db.QuarterlyStates
-                               join m in db.Months on qs.MonthId equals m.Id
                                join s in db.SubContractors on qs.SubcontractorId equals s.SubcontractorId
                                join a in db.AdminCosts on qs.AdminCostId equals a.AdminCostId
                                join p in db.ParticipationServices on qs.ParticipationCostId equals p.PSId
-                               where m.Id >= 4 && m.Id >= 6
+                               where (int)qs.Month <= 7 && (int)qs.Month >= 9
 
                                select new QuarterlyStateReport
                                {
                                    OrgName = s.OrgName,
-                                   MonthName = m.Months,
+                                   MonthName = qs.Month.ToString(),
                                    ASalandWages = a.ASalandWages,
                                    AEmpBenefits = a.AEmpBenefits,
                                    AEmpTravel = a.AEmpTravel,
@@ -140,19 +138,18 @@ namespace Alliance_for_Life.Controllers
 
         public ActionResult ThirdQuarterReport()
         {
-            var montot1 = from x in db.AdminCosts where x.MonthId == 1 select x.ATotCosts;
+            var montot1 = from x in db.AdminCosts where (int)x.Month == 1 select x.ATotCosts;
 
             var firstquarter = from qs in db.QuarterlyStates
-                               join m in db.Months on qs.MonthId equals m.Id
                                join s in db.SubContractors on qs.SubcontractorId equals s.SubcontractorId
                                join a in db.AdminCosts on qs.AdminCostId equals a.AdminCostId
                                join p in db.ParticipationServices on qs.ParticipationCostId equals p.PSId
-                               where m.Id <= 7 && m.Id >= 9
+                               where (int) qs.Month <= 7 && (int)qs.Month >= 9
 
                                select new QuarterlyStateReport
                                {
                                    OrgName = s.OrgName,
-                                   MonthName = m.Months,
+                                   MonthName = qs.Month.ToString(),
                                    ASalandWages = a.ASalandWages,
                                    AEmpBenefits = a.AEmpBenefits,
                                    AEmpTravel = a.AEmpTravel,
@@ -201,19 +198,18 @@ namespace Alliance_for_Life.Controllers
 
         public ActionResult FourthQuarterReport()
         {
-            var montot1 = from x in db.AdminCosts where x.MonthId == 1 select x.ATotCosts;
+            var montot1 = from x in db.AdminCosts where (int)x.Month == 1 select x.ATotCosts;
 
             var firstquarter = from qs in db.QuarterlyStates
-                               join m in db.Months on qs.MonthId equals m.Id
                                join s in db.SubContractors on qs.SubcontractorId equals s.SubcontractorId
                                join a in db.AdminCosts on qs.AdminCostId equals a.AdminCostId
                                join p in db.ParticipationServices on qs.ParticipationCostId equals p.PSId
-                               where m.Id >= 10
+                               where (int)qs.Month >= 10
 
                                select new QuarterlyStateReport
                                {
                                    OrgName = s.OrgName,
-                                   MonthName = m.Months,
+                                   MonthName = qs.Month.ToString(),
                                    ASalandWages = a.ASalandWages,
                                    AEmpBenefits = a.AEmpBenefits,
                                    AEmpTravel = a.AEmpTravel,
@@ -293,7 +289,6 @@ namespace Alliance_for_Life.Controllers
                 var dataexist = from s in db.QuarterlyStates
                                 where
                                 s.SubcontractorId == quarterlyState.SubcontractorId &&
-                                s.MonthId == quarterlyState.MonthId &&
                                 s.AdminCostId == quarterlyState.AdminCostId
                                 select s;
                 if (dataexist.Count() >= 1)

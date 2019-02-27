@@ -14,7 +14,7 @@ namespace Alliance_for_Life.ReportControllers
         // GET: Invoices
         public ActionResult Index()
         {
-            var invoices = db.Invoices.Include(a => a.Month).Include(a => a.Region).Include(a => a.Subcontractor)
+            var invoices = db.Invoices.Include(a => a.Region).Include(a => a.Subcontractor)
                 ;
 
             return View(invoices.ToList());
@@ -28,7 +28,6 @@ namespace Alliance_for_Life.ReportControllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Invoice invoices = db.Invoices
-                .Include(a => a.Month)
                 .Include(a => a.Region)
                 .Include(a => a.Subcontractor)
                 .SingleOrDefault(a => a.InvoiceId == id);
@@ -45,7 +44,6 @@ namespace Alliance_for_Life.ReportControllers
         {
             var datelist = Enumerable.Range(System.DateTime.Now.Year - 4, 10).ToList();
             
-            ViewBag.MonthId = new SelectList(db.Months, "Id", "Months");
             ViewBag.RegionId = new SelectList(db.Regions, "Id", "Regions");
             ViewBag.YearId = new SelectList(datelist);
             ViewBag.SubcontractorId = new SelectList(db.SubContractors, "SubcontractorId", "OrgName");
@@ -65,7 +63,6 @@ namespace Alliance_for_Life.ReportControllers
                 var dataexist = from s in db.Invoices
                                 where
                                 s.SubcontractorId == invoice.SubcontractorId &&
-                                s.MonthId == invoice.MonthId &&
                                 s.YearId == invoice.YearId &&
                                 s.RegionId == invoice.RegionId
                                 select s;
@@ -85,7 +82,6 @@ namespace Alliance_for_Life.ReportControllers
 
             var datelist = Enumerable.Range(System.DateTime.Now.Year - 4, 10).ToList();
 
-            ViewBag.MonthId = new SelectList(db.Months, "Id", "Months", invoice.MonthId);
             ViewBag.RegionId = new SelectList(db.Regions, "Id", "Regions", invoice.RegionId);
             ViewBag.YearId = new SelectList(datelist);
             ViewBag.SubcontractorId = new SelectList(db.SubContractors, "SubcontractorId", "OrgName", invoice.SubcontractorId);
@@ -109,7 +105,6 @@ namespace Alliance_for_Life.ReportControllers
 
             var datelist = Enumerable.Range(System.DateTime.Now.Year - 4, 10).ToList();
 
-            ViewBag.MonthId = new SelectList(db.Months, "Id", "Months", invoice.MonthId);
             ViewBag.RegionId = new SelectList(db.Regions, "Id", "Regions", invoice.RegionId);
             ViewBag.YearId = new SelectList(datelist);
             ViewBag.SubcontractorId = new SelectList(db.SubContractors, "SubcontractorId", "OrgName", invoice.SubcontractorId);
@@ -134,7 +129,6 @@ namespace Alliance_for_Life.ReportControllers
 
             var datelist = Enumerable.Range(System.DateTime.Now.Year - 4, 10).ToList();
 
-            ViewBag.MonthId = new SelectList(db.Months, "Id", "Months");
             ViewBag.RegionId = new SelectList(db.Regions, "Id", "Regions");
             ViewBag.YearId = new SelectList(datelist);
             ViewBag.SubcontractorId = new SelectList(db.SubContractors, "SubcontractorId", "OrgName");
@@ -150,7 +144,6 @@ namespace Alliance_for_Life.ReportControllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Invoice invoice = db.Invoices
-                .Include(a => a.Month)
                 .Include(a => a.Region)
                 .Include(a => a.Subcontractor)
                 .SingleOrDefault(a => a.InvoiceId == id);

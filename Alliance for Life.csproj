@@ -247,34 +247,11 @@
     <Compile Include="DTO\AdminReport.cs" />
     <Compile Include="DTO\QuarterlyStateReport.cs" />
     <Compile Include="DTO\SurveyReport.cs" />
-    <Compile Include="Migrations\201812211732154_QuarterlyStateReport.cs" />
-    <Compile Include="Migrations\201812211732154_QuarterlyStateReport.Designer.cs">
-      <DependentUpon>201812211732154_QuarterlyStateReport.cs</DependentUpon>
+    <Compile Include="Migrations\201902272140235_CreateDbTables.cs" />
+    <Compile Include="Migrations\201902272140235_CreateDbTables.Designer.cs">
+      <DependentUpon>201902272140235_CreateDbTables.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201902071629575_PopulateYearTable.cs" />
-    <Compile Include="Migrations\201902071629575_PopulateYearTable.Designer.cs">
-      <DependentUpon>201902071629575_PopulateYearTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201902081948002_UpdateInvoiceTable.cs" />
-    <Compile Include="Migrations\201902081948002_UpdateInvoiceTable.Designer.cs">
-      <DependentUpon>201902081948002_UpdateInvoiceTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201902082003052_UpdateInvoiceTable1.cs" />
-    <Compile Include="Migrations\201902082003052_UpdateInvoiceTable1.Designer.cs">
-      <DependentUpon>201902082003052_UpdateInvoiceTable1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201902191911349_RemoveBudgetProperties.cs" />
-    <Compile Include="Migrations\201902191911349_RemoveBudgetProperties.Designer.cs">
-      <DependentUpon>201902191911349_RemoveBudgetProperties.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201902192056018_CleanBudgetTables.cs" />
-    <Compile Include="Migrations\201902192056018_CleanBudgetTables.Designer.cs">
-      <DependentUpon>201902192056018_CleanBudgetTables.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201902211601221_UpdateResMir.cs" />
-    <Compile Include="Migrations\201902211601221_UpdateResMir.Designer.cs">
-      <DependentUpon>201902211601221_UpdateResMir.cs</DependentUpon>
-    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\QuarterlyState.cs" />
     <Compile Include="DTO\BudgetReport.cs" />
     <Compile Include="Models\Invoice.cs" />
@@ -284,71 +261,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201809191345122_CreateTables.cs" />
-    <Compile Include="Migrations\201809191345122_CreateTables.Designer.cs">
-      <DependentUpon>201809191345122_CreateTables.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201810151540221_AddRegionsToTable.cs" />
-    <Compile Include="Migrations\201810151540221_AddRegionsToTable.Designer.cs">
-      <DependentUpon>201810151540221_AddRegionsToTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201810151618573_PopulateMonthsTable.cs" />
-    <Compile Include="Migrations\201810151618573_PopulateMonthsTable.Designer.cs">
-      <DependentUpon>201810151618573_PopulateMonthsTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201810152042061_UpdateSurveyProperties.cs" />
-    <Compile Include="Migrations\201810152042061_UpdateSurveyProperties.Designer.cs">
-      <DependentUpon>201810152042061_UpdateSurveyProperties.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201810152047094_UpdateSurveyProperties1.cs" />
-    <Compile Include="Migrations\201810152047094_UpdateSurveyProperties1.Designer.cs">
-      <DependentUpon>201810152047094_UpdateSurveyProperties1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201810171501196_updatecolumnids.cs" />
-    <Compile Include="Migrations\201810171501196_updatecolumnids.Designer.cs">
-      <DependentUpon>201810171501196_updatecolumnids.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201810171828192_RemoveClientAdminSubID.cs" />
-    <Compile Include="Migrations\201810171828192_RemoveClientAdminSubID.Designer.cs">
-      <DependentUpon>201810171828192_RemoveClientAdminSubID.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201810171842179_UpdateRegistrationToOrgName.cs" />
-    <Compile Include="Migrations\201810171842179_UpdateRegistrationToOrgName.Designer.cs">
-      <DependentUpon>201810171842179_UpdateRegistrationToOrgName.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201810181320361_addedUserNavProptoClientList.cs" />
-    <Compile Include="Migrations\201810181320361_addedUserNavProptoClientList.Designer.cs">
-      <DependentUpon>201810181320361_addedUserNavProptoClientList.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201810181436175_AddForeignKeyPropertiestoCL.cs" />
-    <Compile Include="Migrations\201810181436175_AddForeignKeyPropertiestoCL.Designer.cs">
-      <DependentUpon>201810181436175_AddForeignKeyPropertiestoCL.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201810181553153_RemoveForiegnKeyPropertiesFromCLTable.cs" />
-    <Compile Include="Migrations\201810181553153_RemoveForiegnKeyPropertiesFromCLTable.Designer.cs">
-      <DependentUpon>201810181553153_RemoveForiegnKeyPropertiesFromCLTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201810181937004_DropClientListColumns.cs" />
-    <Compile Include="Migrations\201810181937004_DropClientListColumns.Designer.cs">
-      <DependentUpon>201810181937004_DropClientListColumns.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201810301312401_CreateBudgetTable.cs" />
-    <Compile Include="Migrations\201810301312401_CreateBudgetTable.Designer.cs">
-      <DependentUpon>201810301312401_CreateBudgetTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201811261438538_CreateAdminTable.cs" />
-    <Compile Include="Migrations\201811261438538_CreateAdminTable.Designer.cs">
-      <DependentUpon>201811261438538_CreateAdminTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201811261544362_Createcascadepaths.cs" />
-    <Compile Include="Migrations\201811261544362_Createcascadepaths.Designer.cs">
-      <DependentUpon>201811261544362_Createcascadepaths.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201812101758180_CreateBudgetTable1.cs" />
-    <Compile Include="Migrations\201812101758180_CreateBudgetTable1.Designer.cs">
-      <DependentUpon>201812101758180_CreateBudgetTable1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AdminCost.cs" />
     <Compile Include="Models\AFLForm.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -672,11 +584,8 @@
     <Content Include="Content\DataTables\css\semanticui.scss" />
     <Content Include="Content\DataTables\css\mixins.scss" />
     <Content Include="Content\DataTables\css\common.scss" />
-    <Content Include="Scripts\jquery-1.10.2.min.map" />
     <None Include="Scripts\jquery-3.0.0-vsdoc.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Scripts\jquery-1.10.2.js" />
-    <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\jquery-3.0.0.js" />
     <Content Include="Scripts\jquery-3.0.0.min.js" />
     <Content Include="Scripts\jquery-3.0.0.slim.js" />
@@ -827,74 +736,8 @@
     <TypeScriptCompile Include="Scripts\index.d.ts" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201809191345122_CreateTables.resx">
-      <DependentUpon>201809191345122_CreateTables.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201810151540221_AddRegionsToTable.resx">
-      <DependentUpon>201810151540221_AddRegionsToTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201810151618573_PopulateMonthsTable.resx">
-      <DependentUpon>201810151618573_PopulateMonthsTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201810152042061_UpdateSurveyProperties.resx">
-      <DependentUpon>201810152042061_UpdateSurveyProperties.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201810152047094_UpdateSurveyProperties1.resx">
-      <DependentUpon>201810152047094_UpdateSurveyProperties1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201810171501196_updatecolumnids.resx">
-      <DependentUpon>201810171501196_updatecolumnids.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201810171828192_RemoveClientAdminSubID.resx">
-      <DependentUpon>201810171828192_RemoveClientAdminSubID.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201810171842179_UpdateRegistrationToOrgName.resx">
-      <DependentUpon>201810171842179_UpdateRegistrationToOrgName.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201810181320361_addedUserNavProptoClientList.resx">
-      <DependentUpon>201810181320361_addedUserNavProptoClientList.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201810181436175_AddForeignKeyPropertiestoCL.resx">
-      <DependentUpon>201810181436175_AddForeignKeyPropertiestoCL.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201810181553153_RemoveForiegnKeyPropertiesFromCLTable.resx">
-      <DependentUpon>201810181553153_RemoveForiegnKeyPropertiesFromCLTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201810181937004_DropClientListColumns.resx">
-      <DependentUpon>201810181937004_DropClientListColumns.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201810301312401_CreateBudgetTable.resx">
-      <DependentUpon>201810301312401_CreateBudgetTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201811261438538_CreateAdminTable.resx">
-      <DependentUpon>201811261438538_CreateAdminTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201811261544362_Createcascadepaths.resx">
-      <DependentUpon>201811261544362_Createcascadepaths.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812101758180_CreateBudgetTable1.resx">
-      <DependentUpon>201812101758180_CreateBudgetTable1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812211732154_QuarterlyStateReport.resx">
-      <DependentUpon>201812211732154_QuarterlyStateReport.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201902071629575_PopulateYearTable.resx">
-      <DependentUpon>201902071629575_PopulateYearTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201902081948002_UpdateInvoiceTable.resx">
-      <DependentUpon>201902081948002_UpdateInvoiceTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201902082003052_UpdateInvoiceTable1.resx">
-      <DependentUpon>201902082003052_UpdateInvoiceTable1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201902191911349_RemoveBudgetProperties.resx">
-      <DependentUpon>201902191911349_RemoveBudgetProperties.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201902192056018_CleanBudgetTables.resx">
-      <DependentUpon>201902192056018_CleanBudgetTables.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201902211601221_UpdateResMir.resx">
-      <DependentUpon>201902211601221_UpdateResMir.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201902272140235_CreateDbTables.resx">
+      <DependentUpon>201902272140235_CreateDbTables.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

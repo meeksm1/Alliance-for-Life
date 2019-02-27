@@ -52,10 +52,9 @@ namespace Alliance_for_Life.ViewModels
 
         /*Navigation Properties*/
         public IEnumerable<SubContractor> Subcontractors { get; set; }
-        public IEnumerable<Month> Months { get; set; }
+        public Months? Month { get; set; }
 
-        public int Month { get; set; }
-        public int Subcontractor { get; set; }
+        public int SubcontractorId { get; set; }
         [Display(Name = "Year")]
         public int YearId { get; set; }
     }

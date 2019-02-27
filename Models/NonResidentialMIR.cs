@@ -8,7 +8,7 @@ namespace Alliance_for_Life.Models
         [Required]
         public int Id { get; set; }
 
-        public int Subcontractor { get; set; }
+        public int SubcontractorId { get; set; }
 
         [Required]
         public double TotBedNights { get; set; }
@@ -37,10 +37,11 @@ namespace Alliance_for_Life.Models
 
         public double TotOtherClasses { get; set; }
 
-        /*Navigation Properties*/
-        public Month Months { get; set; }
-
         public int YearId { get; set; }
-        public int MonthId { get; set; }
+
+        /*Navigation Properties*/
+        public Months? Months { get; set; }
+
+       
     }
 }

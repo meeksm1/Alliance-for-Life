@@ -17,7 +17,7 @@ namespace Alliance_for_Life.Controllers
         // GET: BudgetCosts
         public ActionResult Index()
         {
-            var budgetCosts = db.BudgetCosts.Include(b => b.Month).Include(b => b.Region);
+            var budgetCosts = db.BudgetCosts.Include(b => b.Region);
             return View(budgetCosts.ToList());
         }
 
@@ -33,10 +33,9 @@ namespace Alliance_for_Life.Controllers
         public ActionResult FirstQuarter()
         {
                 var budgetCosts = db.BudgetCosts
-                .Include(b => b.Month)
                 .Include(b => b.Region)
                 .Include(b => b.User)
-                .Where(b => b.MonthId <= 3);
+                .Where(b => (int)b.Month.Value <= 3);
 
                 return View(budgetCosts.ToList());    
         }
@@ -44,30 +43,27 @@ namespace Alliance_for_Life.Controllers
         public ActionResult SecondQuarter()
         {
             var budgetCosts = db.BudgetCosts
-            .Include(b => b.Month)
             .Include(b => b.Region)
             .Include(b => b.User)
-            .Where(b => b.MonthId >= 4 && b.MonthId <= 6);
+            .Where(b => (int)b.Month >= 4 && (int)b.Month <= 6);
             return View(budgetCosts.ToList());
         }
 
         public ActionResult ThirdQuarter()
         {
             var budgetCosts = db.BudgetCosts
-            .Include(b => b.Month)
             .Include(b => b.Region)
             .Include(b => b.User)
-            .Where(b => b.MonthId >= 7 && b.MonthId <= 9);
+            .Where(b => (int)b.Month >= 7 && (int)b.Month <= 9);
             return View(budgetCosts.ToList());
         }
 
         public ActionResult FourthQuarter()
         {
             var budgetCosts = db.BudgetCosts
-            .Include(b => b.Month)
             .Include(b => b.Region)
             .Include(b => b.User)
-            .Where(b => b.MonthId >= 10);
+            .Where(b => (int)b.Month >= 10);
             return View(budgetCosts.ToList());
         }
 
@@ -79,7 +75,6 @@ namespace Alliance_for_Life.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             BudgetCosts budgetCosts = db.BudgetCosts
-                .Include(a => a.Month)
                 .Include(a => a.Region)
                 .SingleOrDefault(a => a.BudgetInvoiceId == id);
             if (budgetCosts == null)
@@ -94,7 +89,6 @@ namespace Alliance_for_Life.Controllers
         {
             var datelist = Enumerable.Range(System.DateTime.Now.Year - 4, 10).ToList();
 
-            ViewBag.MonthId = new SelectList(db.Months, "Id", "Months");
             ViewBag.YearId = new SelectList(datelist);
             ViewBag.RegionId = new SelectList(db.Regions, "Id", "Regions");
             return View();
@@ -111,7 +105,6 @@ namespace Alliance_for_Life.Controllers
             {
                 var dataexist = from s in db.BudgetCosts
                                 where
-                                s.MonthId == budgetCosts.MonthId &&
                                 s.YearId == budgetCosts.YearId &&
                                 s.RegionId == budgetCosts.RegionId
                                 select s;
@@ -130,7 +123,6 @@ namespace Alliance_for_Life.Controllers
 
             var datelist = Enumerable.Range(System.DateTime.Now.Year - 4, 10).ToList();
 
-            ViewBag.MonthId = new SelectList(db.Months, "Id", "Months", budgetCosts.MonthId);
             ViewBag.YearId = new SelectList(datelist);
             ViewBag.RegionId = new SelectList(db.Regions, "Id", "Regions", budgetCosts.RegionId);
 
@@ -152,7 +144,6 @@ namespace Alliance_for_Life.Controllers
 
             var datelist = Enumerable.Range(System.DateTime.Now.Year - 4, 10).ToList();
 
-            ViewBag.MonthId = new SelectList(db.Months, "Id", "Months", budgetCosts.MonthId);
             ViewBag.YearId = new SelectList(datelist);
             ViewBag.RegionId = new SelectList(db.Regions, "Id", "Regions", budgetCosts.RegionId);
 
@@ -176,7 +167,6 @@ namespace Alliance_for_Life.Controllers
 
             var datelist = Enumerable.Range(DateTime.Now.Year - 4, 10).ToList();
 
-            ViewBag.MonthId = new SelectList(db.Months, "Id", "Months", budgetCosts.MonthId);
             ViewBag.YearId = new SelectList(datelist);
             ViewBag.RegionId = new SelectList(db.Regions, "Id", "Regions", budgetCosts.RegionId);
 
@@ -191,7 +181,6 @@ namespace Alliance_for_Life.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             BudgetCosts budgetCosts = db.BudgetCosts
-                .Include(a => a.Month)
                 .Include(a => a.Region)
                 .SingleOrDefault(a => a.BudgetInvoiceId == id);
 
@@ -208,7 +197,6 @@ namespace Alliance_for_Life.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             BudgetCosts budgetCosts = db.BudgetCosts
-                .Include(a => a.Month)
                 .Include(a => a.Region)
                 .SingleOrDefault(a => a.BudgetInvoiceId == id);
 
@@ -275,13 +263,12 @@ namespace Alliance_for_Life.Controllers
             });
 
             var costs = from a in db.BudgetCosts
-                        join m in db.Months on a.MonthId equals m.Id
                         join r in db.Regions on a.RegionId equals r.Id
                         select new BudgetReport
                         {
                             BudgetInvoiceId = a.BudgetInvoiceId,
                             SubmittedDate = a.SubmittedDate,
-                            MonthName = m.Months,
+                            MonthName = a.Month.ToString(),
                             RegionName = r.Regions,
                             YearName = a.YearId,
                             ASalandWages = a.ASalandWages,

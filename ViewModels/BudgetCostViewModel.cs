@@ -7,10 +7,7 @@ namespace Alliance_for_Life.ViewModels
 {
     public class BudgetCostViewModel
     {
-        [Required]
-        public int Month { get; set; }
-
-        public IEnumerable<Month> Months { get; set; }
+        public Months? Month { get; set; }
 
         [Required]
         public int Region { get; set; }

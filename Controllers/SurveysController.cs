@@ -43,7 +43,6 @@ namespace Alliance_for_Life.Controllers
         // GET: Surveys/Create
         public ActionResult Create()
         {
-            ViewBag.MonthId = new SelectList(db.Months, "Id", "Months");
             ViewBag.SubcontractorId = new SelectList(db.SubContractors, "SubcontractorId", "OrgName");
             return View();
         }
@@ -59,8 +58,7 @@ namespace Alliance_for_Life.Controllers
             {
                 var dataexist = from s in db.Surveys
                                 where
-                                s.SubcontractorId == surveys.SubcontractorId &&
-                                s.MonthId == surveys.MonthId
+                                s.SubcontractorId == surveys.SubcontractorId
                                 select s;
                 if (dataexist.Count() >= 1)
                 {
@@ -75,7 +73,6 @@ namespace Alliance_for_Life.Controllers
                 }
             }
 
-            ViewBag.MonthId = new SelectList(db.Months, "Id", "Months", surveys.Months);
             ViewBag.SubcontractorId = new SelectList(db.SubContractors, "SubcontractorId", "OrgName", surveys.Subcontractors);
 
             return View(surveys);
@@ -93,7 +90,7 @@ namespace Alliance_for_Life.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.MonthId = new SelectList(db.Months, "Id", "Months", surveys.MonthId);
+
             ViewBag.SubcontractorId = new SelectList(db.SubContractors, "SubcontractorId", "OrgName", surveys.SubcontractorId);
             return View(surveys);
         }
@@ -112,7 +109,6 @@ namespace Alliance_for_Life.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.MonthId = new SelectList(db.Months, "Id", "Months", surveys.MonthId);
             ViewBag.SubcontractorId = new SelectList(db.SubContractors, "SubcontractorId", "OrgName", surveys.SubcontractorId);
             return View(surveys);
         }
@@ -167,11 +163,11 @@ namespace Alliance_for_Life.Controllers
 
             var query = from s in db.Surveys
                         join sc in db.SubContractors on s.SubcontractorId equals sc.SubcontractorId
-                        join m in db.Months on s.MonthId equals m.Id
+
                         select new SurveyReport
                         {
                             SurveyId = s.SurveyId,
-                            Month = m.Months,
+                            Month = s.Months.ToString(),
                             Orgname = sc.OrgName,
                             SurveysCompleted = s.SurveysCompleted,
                             SubmittedDate = DateTime.Now

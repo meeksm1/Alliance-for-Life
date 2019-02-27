@@ -4,14 +4,21 @@ using System.Web.Mvc;
 
 namespace Alliance_for_Life.Models
 {
-    public class Month
+    public enum Months
     {
-        public int Id { get; set; }
-
-        [Required]
-        [StringLength(25)]
-        [Display(Name = "Month")]
-        public string Months { get; set; }
-
+        January = 1,
+        February = 2,
+        March = 3,
+        April = 4,
+        May = 5,
+        June = 6,
+        July = 7,
+        August = 8,
+        September = 9,
+        October = 10,
+        November = 11,
+        December = 12
     }
+
+
 }

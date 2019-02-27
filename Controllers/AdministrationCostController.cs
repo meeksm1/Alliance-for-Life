@@ -16,7 +16,7 @@ namespace Alliance_for_Life.Controllers
         // GET: AdministrationCost
         public ActionResult Index()
         {
-            var adminCosts = db.AdminCosts.Include(a => a.Month).Include(a => a.Region).Include(a => a.Subcontractor);
+            var adminCosts = db.AdminCosts.Include(a => a.Region).Include(a => a.Subcontractor);
             return View(adminCosts.ToList());
         }
 
@@ -28,7 +28,6 @@ namespace Alliance_for_Life.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             AdminCosts adminCosts = db.AdminCosts
-                .Include(a => a.Month)
                 .Include(a => a.Region)
                 .Include(a => a.Subcontractor)
                 .SingleOrDefault(a => a.AdminCostId == id);
@@ -44,7 +43,7 @@ namespace Alliance_for_Life.Controllers
         {
             var datelist = Enumerable.Range(System.DateTime.Now.Year - 4, 10).ToList();
 
-            ViewBag.MonthId = new SelectList(db.Months, "Id", "Months");
+           
             ViewBag.RegionId = new SelectList(db.Regions, "Id", "Regions");
             ViewBag.YearId = new SelectList(datelist);
             ViewBag.SubcontractorId = new SelectList(db.SubContractors, "SubcontractorId", "OrgName");
@@ -63,7 +62,6 @@ namespace Alliance_for_Life.Controllers
             {
                 var dataexist = from s in db.AdminCosts
                                 where s.SubcontractorId == adminCosts.SubcontractorId &&
-                                s.MonthId == adminCosts.MonthId &&
                                 s.YearId == adminCosts.YearId &&
                                 s.RegionId == adminCosts.RegionId
                                 select s;
@@ -81,7 +79,7 @@ namespace Alliance_for_Life.Controllers
             }
                 var datelist = Enumerable.Range(System.DateTime.Now.Year - 4, 10).ToList();
 
-                ViewBag.MonthId = new SelectList(db.Months, "Id", "Months", adminCosts.MonthId);
+              
                 ViewBag.RegionId = new SelectList(db.Regions, "Id", "Regions", adminCosts.RegionId);
                 ViewBag.YearId = new SelectList(datelist);
                 ViewBag.SubcontractorId = new SelectList(db.SubContractors, "SubcontractorId", "OrgName", adminCosts.SubcontractorId);
@@ -104,7 +102,6 @@ namespace Alliance_for_Life.Controllers
 
             var datelist = Enumerable.Range(System.DateTime.Now.Year - 4, 10).ToList();
 
-            ViewBag.MonthId = new SelectList(db.Months, "Id", "Months", adminCosts.MonthId);
             ViewBag.RegionId = new SelectList(db.Regions, "Id", "Regions", adminCosts.RegionId);
             ViewBag.YearId = new SelectList(datelist);
             ViewBag.SubcontractorId = new SelectList(db.SubContractors, "SubcontractorId", "OrgName", adminCosts.SubcontractorId);
@@ -128,7 +125,6 @@ namespace Alliance_for_Life.Controllers
 
             var datelist = Enumerable.Range(System.DateTime.Now.Year - 4, 10).ToList();
 
-            ViewBag.MonthId = new SelectList(db.Months, "Id", "Months", adminCosts.MonthId);
             ViewBag.RegionId = new SelectList(db.Regions, "Id", "Regions", adminCosts.RegionId);
             ViewBag.YearId = new SelectList(datelist);
             ViewBag.SubcontractorId = new SelectList(db.SubContractors, "SubcontractorId", "OrgName", adminCosts.SubcontractorId);
@@ -143,7 +139,6 @@ namespace Alliance_for_Life.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             AdminCosts adminCosts = db.AdminCosts
-                .Include(a => a.Month)
                 .Include(a => a.Region)
                 .Include(a => a.Subcontractor)
                 .SingleOrDefault(a => a.AdminCostId == id);
@@ -161,7 +156,6 @@ namespace Alliance_for_Life.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             AdminCosts adminCosts = db.AdminCosts
-                .Include(a => a.Month)
                 .Include(a => a.Region)
                 .Include(a => a.Subcontractor)
                 .SingleOrDefault(a => a.AdminCostId == id);
@@ -215,7 +209,6 @@ namespace Alliance_for_Life.Controllers
             });
 
             var costs = from a in db.AdminCosts
-                        join m in db.Months on a.MonthId equals m.Id
                         join r in db.Regions on a.RegionId equals r.Id
                         join s in db.SubContractors on a.SubcontractorId equals s.SubcontractorId
                         where a.SubcontractorId == s.SubcontractorId
@@ -224,7 +217,7 @@ namespace Alliance_for_Life.Controllers
                             AdminCostId = a.AdminCostId,
                             SubmittedDate = a.SubmittedDate,
                             OrgName = s.OrgName,
-                            MonthName = m.Months,
+                            MonthName = a.Month.ToString(),
                             RegionName = r.Regions,
                             YearName = a.YearId,
                             ASalandWages = a.ASalandWages,

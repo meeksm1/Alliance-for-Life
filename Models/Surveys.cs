@@ -18,10 +18,10 @@ namespace Alliance_for_Life.Models
 
         //Navigation Properties
         public SubContractor Subcontractors { get; set; }
-        public Month Months { get; set; }
+        public Months? Months { get; set; }
 
         public int SubcontractorId { get; set; }
-        public int MonthId { get; set; }
+
 
     }
 }

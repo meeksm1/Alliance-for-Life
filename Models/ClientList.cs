@@ -7,8 +7,6 @@ namespace Alliance_for_Life.Models
     {
         public int Id { get; set; }
 
-        public int SubcontractorId { get; set; }
-
         [Required]
         [StringLength(255)]
         public string FirstName { get; set; }
@@ -29,5 +27,6 @@ namespace Alliance_for_Life.Models
 
         public SubContractor Subcontractors { get; set; }
 
+        public int SubcontractorId { get; set; }
     }
 }

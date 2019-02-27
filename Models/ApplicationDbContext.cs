@@ -8,7 +8,6 @@ namespace Alliance_for_Life.Models
         public DbSet<SubContractor> SubContractors { get; set; }
         public DbSet<ClientList> User { get; set; }
         public DbSet<Region> Regions { get; set; }
-        public DbSet<Month> Months { get; set; }
         public DbSet<ResidentialMIR> ResidentialMIRs { get; set; }
         public DbSet<NonResidentialMIR> NonResidentialMIRs { get; set; }
         public DbSet<AdminCosts> AdminCosts { get; set; }
@@ -27,8 +26,6 @@ namespace Alliance_for_Life.Models
         {
             return new ApplicationDbContext();
         }
-
-        public System.Data.Entity.DbSet<Alliance_for_Life.ViewModels.RegisterViewModel> RegisterViewModels { get; set; }
 
         //protected override void OnModelCreating(DbModelBuilder modelBuilder)
         //{
