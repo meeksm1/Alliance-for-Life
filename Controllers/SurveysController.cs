@@ -18,7 +18,7 @@ namespace Alliance_for_Life.Controllers
         // GET: Surveys
         public ActionResult Index()
         {
-            var surveys = db.Surveys.Include(s => s.Months).Include(s => s.Subcontractors);
+            var surveys = db.Surveys.Include(s => s.Month).Include(s => s.Subcontractors);
             return View(surveys.ToList());
         }
 
@@ -31,7 +31,7 @@ namespace Alliance_for_Life.Controllers
             }
             Surveys surveys = db.Surveys
                 .Include(s => s.Subcontractors)
-                .Include(s => s.Months)
+                .Include(s => s.Month)
                 .SingleOrDefault(s => s.SurveyId == id);
             if (surveys == null)
             {
@@ -52,13 +52,14 @@ namespace Alliance_for_Life.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "SurveyId,SubcontractorId,MonthId,Date,SurveysCompleted,SubmittedDate")] Surveys surveys)
+        public ActionResult Create([Bind(Include = "SurveyId,SubcontractorId,Month,Date,SurveysCompleted,SubmittedDate")] Surveys surveys)
         {
             if (ModelState.IsValid)
             {
                 var dataexist = from s in db.Surveys
                                 where
-                                s.SubcontractorId == surveys.SubcontractorId
+                                s.SubcontractorId == surveys.SubcontractorId &&
+                                s.Month == surveys.Month
                                 select s;
                 if (dataexist.Count() >= 1)
                 {
@@ -100,7 +101,7 @@ namespace Alliance_for_Life.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "SurveyId,SubcontractorId,MonthId,Date,SurveysCompleted,SubmittedDate")] Surveys surveys)
+        public ActionResult Edit([Bind(Include = "SurveyId,SubcontractorId,Month,Date,SurveysCompleted,SubmittedDate")] Surveys surveys)
         {
             if (ModelState.IsValid)
             {
@@ -167,7 +168,7 @@ namespace Alliance_for_Life.Controllers
                         select new SurveyReport
                         {
                             SurveyId = s.SurveyId,
-                            Month = s.Months.ToString(),
+                            Month = s.Month,
                             Orgname = sc.OrgName,
                             SurveysCompleted = s.SurveysCompleted,
                             SubmittedDate = DateTime.Now

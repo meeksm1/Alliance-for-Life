@@ -56,7 +56,7 @@ namespace Alliance_for_Life.ReportControllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "InvoiceId,OrgName,MonthId,RegionId,YearId,SubcontractorId,DirectAdminCost,ParticipantServices,GrandTotal,LessManagementFee,DepositAmount,BeginningAllocation,AdjustedAllocation,BillingDate,BalanceRemaining")] Invoice invoice)
+        public ActionResult Create([Bind(Include = "InvoiceId,OrgName,Month,RegionId,YearId,SubcontractorId,DirectAdminCost,ParticipantServices,GrandTotal,LessManagementFee,DepositAmount,BeginningAllocation,AdjustedAllocation,BillingDate,BalanceRemaining")] Invoice invoice)
         {
             if (ModelState.IsValid)
             {
@@ -64,7 +64,8 @@ namespace Alliance_for_Life.ReportControllers
                                 where
                                 s.SubcontractorId == invoice.SubcontractorId &&
                                 s.YearId == invoice.YearId &&
-                                s.RegionId == invoice.RegionId
+                                s.RegionId == invoice.RegionId &&
+                                s.Month == invoice.Month
                                 select s;
                 if (dataexist.Count() >= 1)
                 {
@@ -117,7 +118,7 @@ namespace Alliance_for_Life.ReportControllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "InvoiceId,OrgName,MonthId,RegionId,YearId,SubcontractorId,DirectAdminCost,ParticipantServices,GrandTotal,LessManagementFee,DepositAmount,BeginningAllocation,AdjustedAllocation,BillingDate,BalanceRemaining")] Invoice invoice)
+        public ActionResult Edit([Bind(Include = "InvoiceId,OrgName,Month,RegionId,YearId,SubcontractorId,DirectAdminCost,ParticipantServices,GrandTotal,LessManagementFee,DepositAmount,BeginningAllocation,AdjustedAllocation,BillingDate,BalanceRemaining")] Invoice invoice)
         {
             if (ModelState.IsValid)
             {

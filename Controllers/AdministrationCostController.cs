@@ -56,14 +56,15 @@ namespace Alliance_for_Life.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "AdminCostId,ASalandWages,AEmpBenefits,AEmpTravel,AEmpTraining,AOfficeRent,AOfficeUtilities,AFacilityIns,AOfficeSupplies,AEquipment,AOfficeCommunications,AOfficeMaint,AConsulting,AJanitorServices,ADepreciation,ATechSupport,ASecurityServices,AOther,AOther2,AOther3,ATotCosts,RegionId,MonthId,SubcontractorId,YearId,SubmittedDate")] AdminCosts adminCosts)
+        public ActionResult Create([Bind(Include = "AdminCostId,ASalandWages,AEmpBenefits,AEmpTravel,AEmpTraining,AOfficeRent,AOfficeUtilities,AFacilityIns,AOfficeSupplies,AEquipment,AOfficeCommunications,AOfficeMaint,AConsulting,AJanitorServices,ADepreciation,ATechSupport,ASecurityServices,AOther,AOther2,AOther3,ATotCosts,RegionId,Month,SubcontractorId,YearId,SubmittedDate")] AdminCosts adminCosts)
         {
             if (ModelState.IsValid)
             {
                 var dataexist = from s in db.AdminCosts
                                 where s.SubcontractorId == adminCosts.SubcontractorId &&
                                 s.YearId == adminCosts.YearId &&
-                                s.RegionId == adminCosts.RegionId
+                                s.RegionId == adminCosts.RegionId&&
+                                s.Month == adminCosts.Month
                                 select s;
                 if (dataexist.Count() >= 1)
                 {
@@ -113,7 +114,7 @@ namespace Alliance_for_Life.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "AdminCostId,ASalandWages,AEmpBenefits,AEmpTravel,AEmpTraining,AOfficeRent,AOfficeUtilities,AFacilityIns,AOfficeSupplies,AEquipment,AOfficeCommunications,AOfficeMaint,AConsulting,AJanitorServices,ADepreciation,ATechSupport,ASecurityServices,AOther,AOther2,AOther3,ATotCosts,RegionId,MonthId,SubcontractorId,YearId,SubmittedDate")] AdminCosts adminCosts)
+        public ActionResult Edit([Bind(Include = "AdminCostId,ASalandWages,AEmpBenefits,AEmpTravel,AEmpTraining,AOfficeRent,AOfficeUtilities,AFacilityIns,AOfficeSupplies,AEquipment,AOfficeCommunications,AOfficeMaint,AConsulting,AJanitorServices,ADepreciation,ATechSupport,ASecurityServices,AOther,AOther2,AOther3,ATotCosts,RegionId,Month,SubcontractorId,YearId,SubmittedDate")] AdminCosts adminCosts)
         {
             if (ModelState.IsValid)
             {
