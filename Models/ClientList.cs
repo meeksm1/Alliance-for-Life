@@ -5,9 +5,7 @@ namespace Alliance_for_Life.Models
 {
     public class ClientList
     {
-        public int Id { get; set; }
-
-        public int SubcontractorId { get; set; }
+        public System.Guid Id { get; set; }
 
         [Required]
         [StringLength(255)]
@@ -17,15 +15,21 @@ namespace Alliance_for_Life.Models
         [StringLength(255)]
         public string LastName { get; set; }
 
+        [DataType(DataType.Date)]
         public DateTime DOB { get; set; }
 
+        [DataType(DataType.Date)]
         public DateTime DueDate { get; set; }
 
         public bool Active { get; set; }
+
+        [DataType(DataType.Date)]
+        public DateTime SubmittedDate { get; set; }
 
         //Navigation Properties
 
         public SubContractor Subcontractors { get; set; }
 
+        public System.Guid SubcontractorId { get; set; }
     }
 }

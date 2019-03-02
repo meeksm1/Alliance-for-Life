@@ -1,10 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Alliance_for_Life.Models
 {
     public class SubContractor
     {
-        public int SubcontractorId { get; set; }
+        public System.Guid SubcontractorId { get; set; }
 
         public ApplicationUser Administrator { get; set; }
 
@@ -29,12 +30,8 @@ namespace Alliance_for_Life.Models
         [StringLength(255)]
         public string County { get; set; }
 
-        
-        [StringLength(25)]
-        public Region Regions { get; set; }
-
         [Required]
-        public int RegionId { get; set; }
+        public GeoRegion? Region { get; set; }
 
         public int EIN { get; set; }
 
@@ -46,15 +43,17 @@ namespace Alliance_for_Life.Models
         public int ZipCode { get; set; }
 
         [Required]
-        public decimal AllocatedContractAmount { get; set; }
+        public double AllocatedContractAmount { get; set; }
 
-        public decimal AllocatedAdjustments { get; set; }
+        public double AllocatedAdjustments { get; set; }
 
         public string Address1 { get; set; }
 
         public string PoBox { get; set; }
 
         public bool Active { get; set; }
+
+        public DateTime SubmittedDate { get; set; }
 
     }
 }

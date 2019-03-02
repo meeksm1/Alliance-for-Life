@@ -1,5 +1,6 @@
 ﻿using Alliance_for_Life.Models;
 using ClosedXML.Excel;
+using System;
 using System.Data;
 using System.Data.Entity;
 using System.IO;
@@ -16,7 +17,7 @@ namespace Alliance_for_Life.Controllers
         // GET: BudgetCosts
         public ActionResult Index()
         {
-            var budgetCosts = db.BudgetCosts.Include(b => b.Month).Include(b => b.Region).Include(b => b.Subcontractor);
+            var budgetCosts = db.BudgetCosts;
             return View(budgetCosts.ToList());
         }
 
@@ -31,64 +32,46 @@ namespace Alliance_for_Life.Controllers
 
         public ActionResult FirstQuarter()
         {
-                var budgetCosts = db.BudgetCosts
-                .Include(b => b.Month)
-                .Include(b => b.Region)
-                .Include(b => b.Subcontractor)
-                .Include(b => b.User)
-                //.Where(b => b.User.Id == b.Subcontractor.AdministratorId)
-                .Where(b => b.MonthId <= 3);
+            var budgetCosts = db.BudgetCosts
+            .Include(b => b.User)
+            .Where(b => (int)b.Month.Value <= 3);
 
-                return View(budgetCosts.ToList());    
+            return View(budgetCosts.ToList());
         }
 
         public ActionResult SecondQuarter()
         {
             var budgetCosts = db.BudgetCosts
-            .Include(b => b.Month)
-            .Include(b => b.Region)
-            .Include(b => b.Subcontractor)
             .Include(b => b.User)
-            //.Where(b => b.User.Id == b.Subcontractor.AdministratorId)
-            .Where(b => b.MonthId >= 4 && b.MonthId <= 6);
+            .Where(b => (int)b.Month >= 4 && (int)b.Month <= 6);
             return View(budgetCosts.ToList());
         }
 
         public ActionResult ThirdQuarter()
         {
             var budgetCosts = db.BudgetCosts
-            .Include(b => b.Month)
-            .Include(b => b.Region)
-            .Include(b => b.Subcontractor)
             .Include(b => b.User)
-            //.Where(b => b.User.Id == b.Subcontractor.AdministratorId)
-            .Where(b => b.MonthId >= 7 && b.MonthId <= 9);
+            .Where(b => (int)b.Month >= 7 && (int)b.Month <= 9);
             return View(budgetCosts.ToList());
         }
 
         public ActionResult FourthQuarter()
         {
             var budgetCosts = db.BudgetCosts
-            .Include(b => b.Month)
-            .Include(b => b.Region)
-            .Include(b => b.Subcontractor)
             .Include(b => b.User)
-            //.Where(b => b.User.Id == b.Subcontractor.AdministratorId)
-            .Where(b => b.MonthId >= 10);
+            .Where(b => (int)b.Month >= 10);
             return View(budgetCosts.ToList());
         }
 
         // GET: BudgetCosts/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(Guid? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             BudgetCosts budgetCosts = db.BudgetCosts
-                .Include(a => a.Month)
-                .Include(a => a.Region)
-                .Include(a => a.Subcontractor)
+
                 .SingleOrDefault(a => a.BudgetInvoiceId == id);
             if (budgetCosts == null)
             {
@@ -100,9 +83,8 @@ namespace Alliance_for_Life.Controllers
         // GET: BudgetCosts/Create
         public ActionResult Create()
         {
-            ViewBag.MonthId = new SelectList(db.Months, "Id", "Months");
-            ViewBag.RegionId = new SelectList(db.Regions, "Id", "Regions");
-            ViewBag.SubcontractorId = new SelectList(db.SubContractors, "SubcontractorId", "OrgName");
+            var datelist = Enumerable.Range(System.DateTime.Now.Year - 4, 10).ToList();
+            ViewBag.Year = new SelectList(datelist);
             return View();
         }
 
@@ -111,23 +93,39 @@ namespace Alliance_for_Life.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "BudgetInvoiceId,ASalandWages,AEmpBenefits,AEmpTravel,AEmpTraining,AOfficeRent,AOfficeUtilities,AFacilityIns,AOfficeSupplies,AEquipment,AOfficeCommunications,AOfficeMaint,AConsulting,SubConPayCost,BackgrounCheck,Other,AJanitorServices,ADepreciation,ATechSupport,ASecurityServices,ATotCosts,AdminFee,Trasportation,JobTraining,TuitionAssistance,ContractedResidential,UtilityAssistance,EmergencyShelter,HousingAssistance,Childcare,Clothing,Food,Supplies,RFO,BTotal,Maxtot,RegionId,MonthId,SubcontractorId")] BudgetCosts budgetCosts)
+        public ActionResult Create([Bind(Include = "BudgetInvoiceId,ASalandWages,AEmpBenefits,AEmpTravel,AEmpTraining,AOfficeRent,AOfficeUtilities,AFacilityIns,AOfficeSupplies,AEquipment,AOfficeCommunications,AOfficeMaint,AConsulting,SubConPayCost,BackgrounCheck,Other,AJanitorServices,ADepreciation,ATechSupport,ASecurityServices,ATotCosts,AdminFee,Trasportation,JobTraining,TuitionAssistance,ContractedResidential,UtilityAssistance,EmergencyShelter,HousingAssistance,Childcare,Clothing,Food,Supplies,RFO,BTotal,Maxtot,Region,Month,Year,SubmittedDate")] BudgetCosts budgetCosts)
         {
             if (ModelState.IsValid)
             {
-                db.BudgetCosts.Add(budgetCosts);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                var dataexist = from s in db.BudgetCosts
+                                where
+                                s.Year == budgetCosts.Year &&
+                                s.Region == budgetCosts.Region &&
+                                s.Month == budgetCosts.Month
+                                select s;
+                if (dataexist.Count() >= 1)
+                {
+                    ViewBag.error = "Data already exists. Please change the params or search in the Reports tab for the current Record.";
+                }
+                else
+                {
+                    budgetCosts.BudgetInvoiceId = Guid.NewGuid();
+                    budgetCosts.SubmittedDate = DateTime.Now;
+                    db.BudgetCosts.Add(budgetCosts);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
             }
 
-            ViewBag.MonthId = new SelectList(db.Months, "Id", "Months", budgetCosts.MonthId);
-            ViewBag.RegionId = new SelectList(db.Regions, "Id", "Regions", budgetCosts.RegionId);
-            ViewBag.SubcontractorId = new SelectList(db.SubContractors, "SubcontractorId", "OrgName", budgetCosts.SubcontractorId);
+            var datelist = Enumerable.Range(System.DateTime.Now.Year - 4, 10).ToList();
+
+            ViewBag.Year = new SelectList(datelist);
+
             return View(budgetCosts);
         }
 
         // GET: BudgetCosts/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(Guid? id)
         {
             if (id == null)
             {
@@ -138,9 +136,11 @@ namespace Alliance_for_Life.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.MonthId = new SelectList(db.Months, "Id", "Months", budgetCosts.MonthId);
-            ViewBag.RegionId = new SelectList(db.Regions, "Id", "Regions", budgetCosts.RegionId);
-            ViewBag.SubcontractorId = new SelectList(db.SubContractors, "SubcontractorId", "OrgName", budgetCosts.SubcontractorId);
+
+            var datelist = Enumerable.Range(System.DateTime.Now.Year - 4, 10).ToList();
+
+            ViewBag.Year = new SelectList(datelist);
+
             return View(budgetCosts);
         }
 
@@ -149,31 +149,33 @@ namespace Alliance_for_Life.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "BudgetInvoiceId,ASalandWages,AEmpBenefits,AEmpTravel,AEmpTraining,AOfficeRent,AOfficeUtilities,AFacilityIns,AOfficeSupplies,AEquipment,AOfficeCommunications,AOfficeMaint,AConsulting,SubConPayCost,BackgrounCheck,Other,AJanitorServices,ADepreciation,ATechSupport,ASecurityServices,ATotCosts,AdminFee,Trasportation,JobTraining,TuitionAssistance,ContractedResidential,UtilityAssistance,EmergencyShelter,HousingAssistance,Childcare,Clothing,Food,Supplies,RFO,BTotal,Maxtot,RegionId,MonthId,SubcontractorId")] BudgetCosts budgetCosts)
+        public ActionResult Edit([Bind(Include = "BudgetInvoiceId,ASalandWages,AEmpBenefits,AEmpTravel,AEmpTraining,AOfficeRent,AOfficeUtilities,AFacilityIns,AOfficeSupplies,AEquipment,AOfficeCommunications,AOfficeMaint,AConsulting,SubConPayCost,BackgrounCheck,Other,AJanitorServices,ADepreciation,ATechSupport,ASecurityServices,ATotCosts,AdminFee,Trasportation,JobTraining,TuitionAssistance,ContractedResidential,UtilityAssistance,EmergencyShelter,HousingAssistance,Childcare,Clothing,Food,Supplies,RFO,BTotal,Maxtot,Region,Month,Year,SubmittedDate")] BudgetCosts budgetCosts)
         {
             if (ModelState.IsValid)
             {
+                budgetCosts.SubmittedDate = DateTime.Now;
                 db.Entry(budgetCosts).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.MonthId = new SelectList(db.Months, "Id", "Months", budgetCosts.MonthId);
-            ViewBag.RegionId = new SelectList(db.Regions, "Id", "Regions", budgetCosts.RegionId);
-            ViewBag.SubcontractorId = new SelectList(db.SubContractors, "SubcontractorId", "OrgName", budgetCosts.SubcontractorId);
+
+            var datelist = Enumerable.Range(DateTime.Now.Year - 4, 10).ToList();
+
+            ViewBag.Year = new SelectList(datelist);
+
+
             return View(budgetCosts);
         }
 
         // GET: BudgetCosts/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(Guid? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             BudgetCosts budgetCosts = db.BudgetCosts
-                .Include(a => a.Month)
-                .Include(a => a.Region)
-                .Include(a => a.Subcontractor)
+
                 .SingleOrDefault(a => a.BudgetInvoiceId == id);
 
             if (budgetCosts == null)
@@ -186,12 +188,10 @@ namespace Alliance_for_Life.Controllers
         // POST: BudgetCosts/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(Guid id)
         {
             BudgetCosts budgetCosts = db.BudgetCosts
-                .Include(a => a.Month)
-                .Include(a => a.Region)
-                .Include(a => a.Subcontractor)
+
                 .SingleOrDefault(a => a.BudgetInvoiceId == id);
 
             db.BudgetCosts.Remove(budgetCosts);
@@ -212,12 +212,13 @@ namespace Alliance_for_Life.Controllers
         public FileResult Export()
         {
             DataTable dt = new DataTable("Grid");
-            dt.Columns.AddRange(new DataColumn[39]
+            dt.Columns.AddRange(new DataColumn[40]
             {
                 new DataColumn ("Budget Report Id"),
-                new DataColumn ("Organization"),
+                new DataColumn ("Date Submitted"),
                 new DataColumn ("Month"),
                 new DataColumn ("Region"),
+                new DataColumn ("Year"),
                 new DataColumn ("Salary/Wages"),
                 new DataColumn ("Employee Benefits"),
                 new DataColumn ("Employee Travel"),
@@ -256,16 +257,13 @@ namespace Alliance_for_Life.Controllers
             });
 
             var costs = from a in db.BudgetCosts
-                        join m in db.Months on a.MonthId equals m.Id
-                        join r in db.Regions on a.RegionId equals r.Id
-                        join s in db.SubContractors on a.SubcontractorId equals s.SubcontractorId
-                        where a.SubcontractorId == s.SubcontractorId
                         select new BudgetReport
                         {
                             BudgetInvoiceId = a.BudgetInvoiceId,
-                            OrgName = s.OrgName,
-                            MonthName = m.Months,
-                            RegionName = r.Regions,
+                            SubmittedDate = a.SubmittedDate,
+                            MonthName = a.Month.ToString(),
+                            RegionName = a.Region.ToString(),
+                            YearName = a.Year,
                             ASalandWages = a.ASalandWages,
                             AEmpBenefits = a.AEmpBenefits,
                             AEmpTravel = a.AEmpTravel,
@@ -299,17 +297,17 @@ namespace Alliance_for_Life.Controllers
                             Food = a.Food,
                             RFO = a.RFO,
                             BTotal = a.BTotal,
-                            Maxtot = a.Maxtot           
+                            Maxtot = a.Maxtot
                         };
 
             foreach (var item in costs)
             {
-                dt.Rows.Add(item.BudgetInvoiceId, item.OrgName, item.MonthName, item.RegionName, item.ASalandWages, item.AEmpBenefits, 
-                    item.AEmpTravel, item.AEmpTraining, item.AOfficeRent, item.AOfficeUtilities, item.AFacilityIns, item.AOfficeSupplies, 
+                dt.Rows.Add(item.BudgetInvoiceId, item.SubmittedDate, item.MonthName, item.RegionName, item.YearName, item.ASalandWages, item.AEmpBenefits,
+                    item.AEmpTravel, item.AEmpTraining, item.AOfficeRent, item.AOfficeUtilities, item.AFacilityIns, item.AOfficeSupplies,
                     item.AEquipment, item.AOfficeCommunications, item.AOfficeMaint, item.AConsulting, item.SubConPayCost, item.BackgrounCheck,
-                    item.Other, item.AJanitorServices, item.ADepreciation, item.ATechSupport, item.ASecurityServices, item.ATotCosts, 
+                    item.Other, item.AJanitorServices, item.ADepreciation, item.ATechSupport, item.ASecurityServices, item.ATotCosts,
                     item.AdminFee, item.Trasportation, item.JobTraining, item.TuitionAssistance, item.ContractedResidential,
-                    item.UtilityAssistance, item.EmergencyShelter, item.HousingAssistance, item. Childcare, item.Clothing,
+                    item.UtilityAssistance, item.EmergencyShelter, item.HousingAssistance, item.Childcare, item.Clothing,
                     item.Food, item.RFO, item.BTotal, item.Maxtot);
             }
 

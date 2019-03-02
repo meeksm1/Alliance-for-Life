@@ -1,34 +1,24 @@
-﻿namespace Alliance_for_Life.Models
+﻿using System;
+
+namespace Alliance_for_Life.Models
 {
     public class MIRReport
     {
-        public int Id { get; set; }
-
+        public System.Guid Id { get; set; }
+        public DateTime SubmittedDate { get; set; }
         public string OrgName { get; set; }
-
-        public decimal TotBedNights { get; set; }
-
-        public decimal TotA2AEnrollment { get; set; }
-
-        public decimal TotA2ABedNights { get; set; }
-
+        public int YearName { get; set; }
+        public double TotBedNights { get; set; }
+        public double TotA2AEnrollment { get; set; }
+        public double TotA2ABedNights { get; set; }
         public string Month { get; set; }
-
-        public decimal MA2Apercent { get; set; }
-
-        public decimal ClientsJobEduServ { get; set; }
-
-        public decimal ParticipatingFathers { get; set; }
-
-        public decimal TotEduClasses { get; set; }
-
-        public decimal TotClientsinEduClasses { get; set; }
-
-        public decimal TotCaseHrs { get; set; }
-
-        public decimal TotClientsCaseHrs { get; set; }
-
-        public decimal TotOtherClasses { get; set; }
-
+        public double MA2Apercent { get; set; }
+        public double ClientsJobEduServ { get; set; }
+        public double ParticipatingFathers { get; set; }
+        public double TotEduClasses { get; set; }
+        public double TotClientsinEduClasses { get; set; }
+        public double TotCaseHrs { get; set; }
+        public double TotClientsCaseHrs { get; set; }
+        public double TotOtherClasses { get; set; }
     }
 }

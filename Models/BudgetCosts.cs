@@ -1,93 +1,90 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Alliance_for_Life.Models
 {
     public class BudgetCosts
     {
         [Key]
-        public int BudgetInvoiceId { get; set; }
+         public System.Guid BudgetInvoiceId { get; set; }
+        public double ASalandWages { get; set; }
 
-        public decimal ASalandWages { get; set; }
+        public double AEmpBenefits { get; set; }
 
-        public decimal AEmpBenefits { get; set; }
+        public double AEmpTravel { get; set; }
 
-        public decimal AEmpTravel { get; set; }
+        public double AEmpTraining { get; set; }
 
-        public decimal AEmpTraining { get; set; }
+        public double AOfficeRent { get; set; }
 
-        public decimal AOfficeRent { get; set; }
+        public double AOfficeUtilities { get; set; }
 
-        public decimal AOfficeUtilities { get; set; }
+        public double AFacilityIns { get; set; }
 
-        public decimal AFacilityIns { get; set; }
+        public double AOfficeSupplies { get; set; }
 
-        public decimal AOfficeSupplies { get; set; }
+        public double AEquipment { get; set; }
 
-        public decimal AEquipment { get; set; }
+        public double AOfficeCommunications { get; set; }
 
-        public decimal AOfficeCommunications { get; set; }
+        public double AOfficeMaint { get; set; }
 
-        public decimal AOfficeMaint { get; set; }
+        public double AConsulting { get; set; }
 
-        public decimal AConsulting { get; set; }
+        public double SubConPayCost { get; set; }
 
-        public decimal SubConPayCost { get; set; }
+        public double BackgrounCheck { get; set; }
 
-        public decimal BackgrounCheck { get; set; }
+        public double Other { get; set; }
 
-        public decimal Other { get; set; }
+        public double AJanitorServices { get; set; }
 
-        public decimal AJanitorServices { get; set; }
+        public double ADepreciation { get; set; }
 
-        public decimal ADepreciation { get; set; }
+        public double ATechSupport { get; set; }
 
-        public decimal ATechSupport { get; set; }
+        public double ASecurityServices { get; set; }
 
-        public decimal ASecurityServices { get; set; }
+        public double ATotCosts { get; set; }
 
-        public decimal ATotCosts { get; set; }
-
-        public decimal AdminFee { get; set; }
+        public double AdminFee { get; set; }
         
-        public decimal Trasportation { get; set; }
+        public double Trasportation { get; set; }
 
-        public decimal JobTraining { get; set; }
+        public double JobTraining { get; set; }
 
-        public decimal TuitionAssistance { get; set; }
+        public double TuitionAssistance { get; set; }
 
-        public decimal ContractedResidential { get; set; }
+        public double ContractedResidential { get; set; }
 
-        public decimal UtilityAssistance { get; set; }
+        public double UtilityAssistance { get; set; }
 
-        public decimal EmergencyShelter { get; set; }
+        public double EmergencyShelter { get; set; }
 
-        public decimal HousingAssistance { get; set; }
+        public double HousingAssistance { get; set; }
 
-        public decimal Childcare { get; set; }
+        public double Childcare { get; set; }
 
-        public decimal Clothing { get; set; }
+        public double Clothing { get; set; }
 
-        public decimal Food { get; set; }
+        public double Food { get; set; }
 
-        public decimal Supplies { get; set; }
+        public double Supplies { get; set; }
 
-        public decimal RFO { get; set; }
+        public double RFO { get; set; }
 
-        public decimal BTotal { get; set; }
+        public double BTotal { get; set; }
 
-        public decimal Maxtot { get; set; }
+        public double Maxtot { get; set; }
+
+        public DateTime SubmittedDate { get; set; }
 
         // Navigation Properties
-
-        public Month Month { get; set; }
-        public Region Region { get; set; }
-        public SubContractor Subcontractor { get; set; }
+        public Months? Month { get; set; }
+        public GeoRegion? Region { get; set; }
         public ApplicationUser User { get; set; }
         public AdminCosts AdminCost { get; set; }
         public ParticipationService ParticipationCost { get; set; }
-        public int RegionId { get; set; }
-        public int MonthId { get; set; }
-        public int SubcontractorId { get; set; }
-
+        public int Year { get; set; }
     }
 }

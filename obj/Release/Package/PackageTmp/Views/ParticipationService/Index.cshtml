@@ -1,0 +1,144 @@
+﻿@model IEnumerable<Alliance_for_Life.Models.ParticipationService>
+
+@{
+    ViewBag.Title = "Reports";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Participation Cost Reports</h2>
+
+<table class="table">
+    <tr>
+        <th>
+
+        </th>
+        <th>
+            Organization
+        </th>
+        <th>
+            Month
+        </th>
+        <th>
+            Region&nbsp;&nbsp;&nbsp;&nbsp;
+        </th>
+        <th>
+            Transportation
+        </th>
+        <th>
+            Job Training
+        </th>
+        <th>
+            Eduacation Assistance
+        </th>
+        <th>
+            Residental Care
+        </th>
+        <th>
+            Utilities
+        </th>
+        <th>
+            Housing Emergencies
+        </th>
+        <th>
+            Housing Assistance
+        </th>
+        <th>
+            Child Care
+        </th>
+        <th>
+            Clothing
+        </th>
+        <th>
+            Food
+        </th>
+        <th>
+            Supplies
+        </th>
+        <th>
+            Other
+        </th>
+        <th>
+            Other
+        </th>
+        <th>
+            Other
+        </th>
+        <th>
+            Participation Totals
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.ActionLink("Details", "Details", new { id = item.PSId })|
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Subcontractor.OrgName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Month)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Region)
+            </td>
+            <td>
+                @item.PTranspotation.ToString("C")
+            </td>
+            <td>
+                @item.PJobTrain.ToString("C")
+            </td>
+            <td>
+                @item.PEducationAssistance.ToString("C")
+            </td>
+            <td>
+                @item.PResidentialCare.ToString("C")
+            </td>
+            <td>
+                @item.PUtilities.ToString("C")
+            </td>
+            <td>
+                @item.PHousingEmergency.ToString("C")
+            </td>
+            <td>
+                @item.PHousingAssistance.ToString("C")
+            </td>
+            <td>
+                @item.PChildCare.ToString("C")
+            </td>
+            <td>
+                @item.PClothing.ToString("C")
+            </td>
+            <td>
+                @item.PFood.ToString("C")
+            </td>
+            <td>
+                @item.PSupplies.ToString("C")
+            </td>
+            <td>
+                @item.POther.ToString("C")
+            </td>
+            <td>
+                @item.POther2.ToString("C")
+            </td>
+            <td>
+                @item.POther3.ToString("C")
+            </td>
+            <td>
+                @item.PTotals.ToString("C")
+            </td>
+        </tr>
+    }
+</table>
+
+<h3>Total Participation Cost</h3>
+<tr>
+    <td>@Model.Sum(m => m.PTotals).ToString("c")</td>
+</tr>
+<br /><br />
+@using (Html.BeginForm("Export", "ParticipationCost", FormMethod.Post))
+{
+    <input type="submit" value="Export to Excel" class="btn btn-group-sm btn-primary" />
+}

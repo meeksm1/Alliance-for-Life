@@ -1,0 +1,12 @@
+C:\Users\manoj\Desktop\Alliance-for-Life\bin\ApplicationInsights.config
+C:\Users\manoj\Desktop\Alliance-for-Life\bin\Alliance for Life.dll.config
+C:\Users\manoj\Desktop\Alliance-for-Life\bin\Alliance for Life.dll
+C:\Users\manoj\Desktop\Alliance-for-Life\bin\Alliance for Life.pdb
+C:\Users\manoj\Desktop\Alliance-for-Life\bin\Newtonsoft.Json.dll
+C:\Users\manoj\Desktop\Alliance-for-Life\obj\Release\Alliance for Life.csprojAssemblyReference.cache
+C:\Users\manoj\Desktop\Alliance-for-Life\obj\Release\Alliance_for_Life.Migrations.sqldatabasemigration.resources
+C:\Users\manoj\Desktop\Alliance-for-Life\obj\Release\Alliance for Life.csproj.GenerateResource.cache
+C:\Users\manoj\Desktop\Alliance-for-Life\obj\Release\Alliance for Life.csproj.CoreCompileInputs.cache
+C:\Users\manoj\Desktop\Alliance-for-Life\obj\Release\Alliance for Life.csproj.CopyComplete
+C:\Users\manoj\Desktop\Alliance-for-Life\obj\Release\Alliance for Life.dll
+C:\Users\manoj\Desktop\Alliance-for-Life\obj\Release\Alliance for Life.pdb

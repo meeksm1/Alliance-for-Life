@@ -1,5 +1,6 @@
 ﻿using Alliance_for_Life.Models;
 using ClosedXML.Excel;
+using System;
 using System.Data;
 using System.Data.Entity;
 using System.IO;
@@ -17,7 +18,7 @@ namespace Alliance_for_Life.Controllers
         // GET: Surveys
         public ActionResult Index()
         {
-            var surveys = db.Surveys.Include(s => s.Months).Include(s => s.Subcontractors);
+            var surveys = db.Surveys.Include(s => s.Subcontractors);
             return View(surveys.ToList());
         }
 
@@ -30,7 +31,6 @@ namespace Alliance_for_Life.Controllers
             }
             Surveys surveys = db.Surveys
                 .Include(s => s.Subcontractors)
-                .Include(s => s.Months)
                 .SingleOrDefault(s => s.SurveyId == id);
             if (surveys == null)
             {
@@ -42,7 +42,6 @@ namespace Alliance_for_Life.Controllers
         // GET: Surveys/Create
         public ActionResult Create()
         {
-            ViewBag.MonthId = new SelectList(db.Months, "Id", "Months");
             ViewBag.SubcontractorId = new SelectList(db.SubContractors, "SubcontractorId", "OrgName");
             return View();
         }
@@ -52,16 +51,28 @@ namespace Alliance_for_Life.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "SurveyId,SubcontractorId,MonthId,Date,SurveysCompleted")] Surveys surveys)
+        public ActionResult Create([Bind(Include = "SurveyId,SubcontractorId,Month,Date,SurveysCompleted,SubmittedDate")] Surveys surveys)
         {
             if (ModelState.IsValid)
             {
-                db.Surveys.Add(surveys);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                var dataexist = from s in db.Surveys
+                                where
+                                s.SubcontractorId == surveys.SubcontractorId &&
+                                s.Month == surveys.Month
+                                select s;
+                if (dataexist.Count() >= 1)
+                {
+                    ViewBag.error = "Data already exists. Please change the params or search in the Reports tab for the current Record.";
+                }
+                else
+                {
+                    surveys.SubmittedDate = DateTime.Now;
+                    db.Surveys.Add(surveys);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
             }
 
-            ViewBag.MonthId = new SelectList(db.Months, "Id", "Months", surveys.Months);
             ViewBag.SubcontractorId = new SelectList(db.SubContractors, "SubcontractorId", "OrgName", surveys.Subcontractors);
 
             return View(surveys);
@@ -79,7 +90,7 @@ namespace Alliance_for_Life.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.MonthId = new SelectList(db.Months, "Id", "Months", surveys.MonthId);
+
             ViewBag.SubcontractorId = new SelectList(db.SubContractors, "SubcontractorId", "OrgName", surveys.SubcontractorId);
             return View(surveys);
         }
@@ -89,15 +100,15 @@ namespace Alliance_for_Life.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "SurveyId,SubcontractorId,MonthId,Date,SurveysCompleted")] Surveys surveys)
+        public ActionResult Edit([Bind(Include = "SurveyId,SubcontractorId,Month,Date,SurveysCompleted,SubmittedDate")] Surveys surveys)
         {
             if (ModelState.IsValid)
             {
+                surveys.SubmittedDate = DateTime.Now;
                 db.Entry(surveys).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.MonthId = new SelectList(db.Months, "Id", "Months", surveys.MonthId);
             ViewBag.SubcontractorId = new SelectList(db.SubContractors, "SubcontractorId", "OrgName", surveys.SubcontractorId);
             return View(surveys);
         }
@@ -141,28 +152,30 @@ namespace Alliance_for_Life.Controllers
         public FileResult Export()
         {
             DataTable dt = new DataTable("Grid");
-            dt.Columns.AddRange(new DataColumn[4]
+            dt.Columns.AddRange(new DataColumn[5]
             {
                 new DataColumn ("Survey ID"),
                 new DataColumn ("Month"),
                 new DataColumn ("Organization"),
-                new DataColumn ("Surveys Returned")
+                new DataColumn ("Surveys Returned"),
+                new DataColumn ("Date Submitted")
             });
 
             var query = from s in db.Surveys
                         join sc in db.SubContractors on s.SubcontractorId equals sc.SubcontractorId
-                        join m in db.Months on s.MonthId equals m.Id
+
                         select new SurveyReport
                         {
                             SurveyId = s.SurveyId,
-                            Month = m.Months,
+                            Month = s.Month,
                             Orgname = sc.OrgName,
                             SurveysCompleted = s.SurveysCompleted,
+                            SubmittedDate = DateTime.Now
                         };
 
             foreach (var item in query)
             {
-                dt.Rows.Add(item.SurveyId, item.Month, item.Orgname, item.SurveysCompleted);
+                dt.Rows.Add(item.SurveyId, item.Month, item.Orgname, item.SurveysCompleted, item.SubmittedDate);
             }
 
             using (XLWorkbook wb = new XLWorkbook())

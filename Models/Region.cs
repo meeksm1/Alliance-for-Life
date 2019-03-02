@@ -2,12 +2,16 @@
 
 namespace Alliance_for_Life.Models
 {
-    public class Region
+    public enum GeoRegion
     {
-        [Required]
-        [StringLength(255)]
-        public string Regions { get; set; }
-
-        public int Id { get; set; }
+        Region1  = 1,
+        Region2 = 2,
+        Region3 = 3,
+        Region4 = 4,
+        Region5 = 5,
+        Region6 = 6,
+        Region7 = 7,
+        Region8 = 8,
+        Region9 = 9 
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Alliance_for_Life.Models;
 using Alliance_for_Life.ViewModels;
 using ClosedXML.Excel;
+using System;
 using System.Data;
 using System.IO;
 using System.Linq;
@@ -24,11 +25,13 @@ namespace Alliance_for_Life.Controllers
 
         public ActionResult Create()
         {
+            var datelist = Enumerable.Range(DateTime.Now.Year - 4, 10).ToList();
+            ViewBag.Year = new SelectList(datelist);
+
             var viewModel = new ResidentialMIRFormViewModel
             {
-                Months = _context.Months.ToList(),
                 Subcontractors = _context.SubContractors.ToList()
-        };
+            };
             return View(viewModel);
         }
 
@@ -39,20 +42,24 @@ namespace Alliance_for_Life.Controllers
         {
             if (!ModelState.IsValid)
             {
-                viewModel.Months = _context.Months.ToList();
+                viewModel.SubmittedDate = DateTime.Now;
                 viewModel.Subcontractors = _context.SubContractors.ToList();
                 return View("Create", viewModel);
             }
 
+            var datelist = Enumerable.Range(DateTime.Now.Year - 4, 10).ToList();
+            ViewBag.Year = new SelectList(datelist);
 
             var invoice = new ResidentialMIR
             {
-                Subcontractor = viewModel.Subcontractor,
-                MonthId = viewModel.Month,
+                SubcontractorId = viewModel.SubcontractorId,
+                Months = viewModel.Month,
+                Year = viewModel.Year,
                 TotBedNights = viewModel.TotBedNights,
                 TotA2AEnrollment = viewModel.TotA2AEnrollment,
                 TotA2ABedNights = viewModel.TotA2ABedNights,
-                MA2Apercent = viewModel.MA2Apercent
+                MA2Apercent = viewModel.MA2Apercent,
+                SubmittedDate = DateTime.Now
             }; 
 
             _context.ResidentialMIRs.Add(invoice);
@@ -65,14 +72,14 @@ namespace Alliance_for_Life.Controllers
         public ActionResult Reports()
         {
             var report = from res in _context.ResidentialMIRs
-                          join s in _context.SubContractors on res.Subcontractor equals s.SubcontractorId  
-                          join m in _context.Months on res.Months.Id equals m.Id
-                          where res.Id > 0
+                          join s in _context.SubContractors on res.SubcontractorId equals s.SubcontractorId 
                           select new MIRReport
                           {
                                 Id = res.Id,
                                 OrgName = s.OrgName,
-                                Month = m.Months,
+                                SubmittedDate = res.SubmittedDate,
+                                Month = res.Months.ToString(),
+                                YearName = res.Year,
                                 TotBedNights = res.TotBedNights,
                                 TotA2AEnrollment = res.TotA2AEnrollment,
                                 TotA2ABedNights = res.TotA2ABedNights,
@@ -94,11 +101,13 @@ namespace Alliance_for_Life.Controllers
         public FileResult Export()
         {
             DataTable dt = new DataTable("Grid");
-            dt.Columns.AddRange(new DataColumn[14]
+            dt.Columns.AddRange(new DataColumn[16]
             {
                 new DataColumn ("Report Id"),
                 new DataColumn ("Organization"),
+                new DataColumn ("Date Submitted"),
                 new DataColumn ("Month"),
+                new DataColumn ("Year"),
                 new DataColumn ("Client Bed Nights"),
                 new DataColumn ("A2A Enrollment"),
                 new DataColumn ("Total A2A Bed Nights"),
@@ -113,14 +122,14 @@ namespace Alliance_for_Life.Controllers
             });
 
             var report = from res in _context.ResidentialMIRs
-                         join s in _context.SubContractors on res.Subcontractor equals s.SubcontractorId
-                         join m in _context.Months on res.Months.Id equals m.Id
-                         where res.Id > 0
+                         join s in _context.SubContractors on res.SubcontractorId equals s.SubcontractorId
                          select new MIRReport
                          {
                              Id = res.Id,
+                             SubmittedDate = res.SubmittedDate,
                              OrgName = s.OrgName,
-                             Month = m.Months,
+                             Month = res.Months.ToString(),
+                             YearName = res.Year,
                              TotBedNights = res.TotBedNights,
                              TotA2AEnrollment = res.TotA2AEnrollment,
                              TotA2ABedNights = res.TotA2ABedNights,
@@ -136,7 +145,7 @@ namespace Alliance_for_Life.Controllers
 
             foreach (var item in report)
             {
-                dt.Rows.Add(item.Id, item.OrgName, item.Month, item.TotBedNights, item.TotA2AEnrollment, item.TotA2ABedNights,
+                dt.Rows.Add(item.Id, item.SubmittedDate, item.OrgName, item.Month, item.YearName, item.TotBedNights, item.TotA2AEnrollment, item.TotA2ABedNights,
                     item.MA2Apercent, item.ClientsJobEduServ, item.ParticipatingFathers, item.TotEduClasses, 
                     item.TotClientsinEduClasses, item.TotCaseHrs, item.TotClientsCaseHrs, item.TotOtherClasses);
             }

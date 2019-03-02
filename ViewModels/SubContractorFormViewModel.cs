@@ -11,13 +11,13 @@ namespace Alliance_for_Life.ViewModels
 {
     public class SubContractorFormViewModel
     {
-        public int Id { get; set; }
+        public System.Guid Id { get; set; }
 
         [Required]
         [Display(Name = "Organization Name")]
         public string OrgName { get; set; }
 
-        [Display(Name = "Center Director")]
+        [Display(Name = "Key Contact")]
         [Required]
         public string Director { get; set; }
 
@@ -29,9 +29,7 @@ namespace Alliance_for_Life.ViewModels
         public string County { get; set; }
 
         [Required]
-        public int Region { get; set; }
-
-        public IEnumerable<Region> Regions { get; set; }
+        public GeoRegion? Region { get; set; }
 
         [Required]
         public int EIN { get; set; }
@@ -45,10 +43,10 @@ namespace Alliance_for_Life.ViewModels
 
         [Required]
         [Display(Name = "Allocated Contract Amount")]
-        public decimal AllocatedContractAmount { get; set; }
+        public double AllocatedContractAmount { get; set; }
 
         [Display(Name = "Allocated Adjustments")]
-        public decimal AllocatedAdjustments { get; set; }
+        public double AllocatedAdjustments { get; set; }
 
         [Required]
         [Display(Name = "Street Address")]
@@ -59,21 +57,23 @@ namespace Alliance_for_Life.ViewModels
 
         public bool Active { get; set; }
 
+        public DateTime SubmittedDate { get; set; }
+
         //used to set the heading of the page
         public string Heading { get; set; }
 
-        //used to switch between actions in the controller
+      //  used to switch between actions in the controller
         public string Action
         {
             get
             {
-                Expression<Func<SubContractorController, ActionResult>> update = 
+                Expression<Func<SubContractorController, ActionResult>> update =
                     (c => c.Update(this));
 
                 Expression<Func<SubContractorController, ActionResult>> create =
                     (c => c.Create(this));
 
-                var action = (Id != 0) ? update : create;
+                var action = (Id != Guid.Empty) ? update : create;
                 return (action.Body as MethodCallExpression).Method.Name;
             }
 

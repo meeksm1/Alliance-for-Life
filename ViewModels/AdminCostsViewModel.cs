@@ -7,77 +7,72 @@ namespace Alliance_for_Life.ViewModels
 {
     public class AdminCostsViewModel
     {
-        public int SubcontractorId { get; set; }
+        public System.Guid SubcontractorId { get; set; }
         public IEnumerable<SubContractor> Subcontractors { get; set; }
 
-        [Required]
-        public int Month { get; set; }
-
-        public IEnumerable<Month> Months { get; set; }
+        public Months? Month { get; set; }
 
         [Required]
-        public int Region { get; set; }
-
-        public IEnumerable<Region> Regions { get; set; }
+        public GeoRegion? Region { get; set; }
 
         [Display(Name = "Salaries and Wages")]
-        public decimal ASalandWages { get; set; }
+        public int ASalandWages { get; set; }
 
         [Display(Name = "Employee Benefits")]
-        public decimal AEmpBenefits { get; set; }
+        public int AEmpBenefits { get; set; }
 
         [Display(Name = "Employe Travel")]
-        public decimal AEmpTravel { get; set; }
+        public int AEmpTravel { get; set; }
 
         [Display(Name = "Employee Training")]
-        public decimal AEmpTraining { get; set; }
+        public int AEmpTraining { get; set; }
 
         [Display(Name = "Office Rent")]
-        public decimal AOfficeRent { get; set; }
+        public int AOfficeRent { get; set; }
 
         [Display(Name = "Office Utilities")]
-        public decimal AOfficeUtilities { get; set; }
+        public int AOfficeUtilities { get; set; }
 
         [Display(Name = "Facility Insurance")]
-        public decimal AFacilityIns { get; set; }
+        public int AFacilityIns { get; set; }
 
         [Display(Name = "Office Supplies")]
-        public decimal AOfficeSupplies { get; set; }
+        public int AOfficeSupplies { get; set; }
 
         [Display(Name = "Equipment")]
-        public decimal AEquipment { get; set; }
+        public int AEquipment { get; set; }
 
         [Display(Name = "Office Communications")]
-        public decimal AOfficeCommunications { get; set; }
+        public int AOfficeCommunications { get; set; }
 
         [Display(Name = "Office Maintenance")]
-        public decimal AOfficeMaint { get; set; }
+        public int AOfficeMaint { get; set; }
 
         [Display(Name = "Consulting Fees")]
-        public decimal AConsulting { get; set; }
+        public int AConsulting { get; set; }
 
         [Display(Name = "Janitorial Services")]
-        public decimal AJanitorServices { get; set; }
+        public int AJanitorServices { get; set; }
 
         [Display(Name = "Depreciation")]
-        public decimal ADepreciation { get; set; }
+        public int ADepreciation { get; set; }
 
         [Display(Name = "Technical Support")]
-        public decimal ATechSupport { get; set; }
+        public int ATechSupport { get; set; }
 
         [Display(Name = "Security Services")]
-        public decimal ASecurityServices { get; set; }
+        public int ASecurityServices { get; set; }
 
         [Display(Name = "Other")]
-        public decimal AOther { get; set; }
+        public int AOther { get; set; }
 
         [Display(Name = "Other")]
-        public decimal AOther2 { get; set; }
+        public int AOther2 { get; set; }
 
         [Display(Name = "Other")]
-        public decimal AOther3 { get; set; }
+        public int AOther3 { get; set; }
 
         [Display(Name = "Total Administative Costs")]
-        public decimal ATotCosts { get; set; }
+        public int ATotCosts { get; set; }
     }
 }

@@ -1,43 +1,47 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Alliance_for_Life.Models
 {
     public class ResidentialMIR
     { 
         [Required]
-        public int Id { get; set; }
+        public System.Guid Id { get; set; }
 
-        public int Subcontractor { get; set; }
+        public DateTime SubmittedDate { get; set; }
 
-        [Required]
-        public decimal TotBedNights { get; set; }
-
-        [Required]
-        public decimal TotA2AEnrollment { get; set; }
+        public System.Guid SubcontractorId { get; set; }
 
         [Required]
-        public decimal TotA2ABedNights { get; set; }
+        public double TotBedNights { get; set; }
 
         [Required]
-        public int MonthId { get; set; }
+        public double TotA2AEnrollment { get; set; }
 
-        public Month Months { get; set; }
+        [Required]
+        public double TotA2ABedNights { get; set; }
 
-        public decimal MA2Apercent { get; set; }
+        public double MA2Apercent { get; set; }
 
-        public decimal ClientsJobEduServ { get; set; }
+        public double ClientsJobEduServ { get; set; }
 
-        public decimal ParticipatingFathers { get; set; }
+        public double ParticipatingFathers { get; set; }
 
-        public decimal TotEduClasses { get; set; }
+        public double TotEduClasses { get; set; }
 
-        public decimal TotClientsinEduClasses { get; set; }
+        public double TotClientsinEduClasses { get; set; }
 
-        public decimal TotCaseHrs { get; set; }
+        public double TotCaseHrs { get; set; }
 
-        public decimal TotClientsCaseHrs { get; set; }
+        public double TotClientsCaseHrs { get; set; }
 
-        public decimal TotOtherClasses { get; set; }
+        public double TotOtherClasses { get; set; }
+
+        public int Year { get; set; }
+
+
+        /*Navigation Properties*/
+        public Months? Months { get; set; }
 
     }
 }

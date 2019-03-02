@@ -1,4 +1,5 @@
 ﻿using Alliance_for_Life.Models;
+using System;
 using System.Collections.Generic;
 
 using System.ComponentModel.DataAnnotations;
@@ -9,53 +10,52 @@ namespace Alliance_for_Life.ViewModels
     public class ResidentialMIRFormViewModel
     {
         [Required]
-        public int Id { get; set; }
+        public System.Guid Id { get; set; }
 
-        [Required]
-        public int Subcontractor { get; set; }
-
-        public IEnumerable<SubContractor> Subcontractors { get; set; }
-
-        [Required]
-        public int Month { get; set; }
-
-        public IEnumerable<Month> Months { get; set; }
+        public DateTime SubmittedDate { get; set; }
 
         [Required]
         [Display(Name = "Total of overall Client bed nights for the month")]
-        public decimal TotBedNights { get; set; }
+        public int TotBedNights { get; set; }
 
         [Required]
         [Display(Name = "Total current A2A enrollment")]
-        public decimal TotA2AEnrollment { get; set; }
+        public int TotA2AEnrollment { get; set; }
 
         [Required]
         [Display(Name = "Total A2A Client bed nights")]
-        public decimal TotA2ABedNights { get; set; }
+        public int TotA2ABedNights { get; set; }
 
         [Display(Name = "Monthly A2A Clients served")]
-        public decimal MA2Apercent { get; set; }
+        public double MA2Apercent { get; set; }
 
-        [Display(Name = "Total Clients engaged in Job Training/Placement or Educational Services")]
-        public decimal ClientsJobEduServ { get; set; }
+        [Display(Name = "Clients in Job Training/Placement or Educational Services")]
+        public int ClientsJobEduServ { get; set; }
 
         [Display(Name = "Total fathers who participated in the A2A program")]
-        public decimal ParticipatingFathers { get; set; }
+        public int ParticipatingFathers { get; set; }
 
         [Display(Name = "Total prenatal & parenting education classes")]
-        public decimal TotEduClasses { get; set; }
+        public int TotEduClasses { get; set; }
 
         [Display(Name = "Total Clients who attended prenatal and parenting education classes")]
-        public decimal TotClientsinEduClasses { get; set; }
+        public int TotClientsinEduClasses { get; set; }
 
         [Display(Name = "Total case management hours provided")]
-        public decimal TotCaseHrs { get; set; }
+        public int TotCaseHrs { get; set; }
 
         [Display(Name = "Total Clients who participated in case management")]
-        public decimal TotClientsCaseHrs { get; set; }
+        public int TotClientsCaseHrs { get; set; }
 
         [Display(Name = "Total of other classes offered")]
-        public decimal TotOtherClasses { get; set; }
+        public int TotOtherClasses { get; set; }
 
+        /*Navigation Properties*/
+        public IEnumerable<SubContractor> Subcontractors { get; set; }
+        public Months? Month { get; set; }
+
+        public System.Guid SubcontractorId { get; set; }
+        [Display(Name = "Year")]
+        public int Year { get; set; }
     }
 }

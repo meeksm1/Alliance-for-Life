@@ -1,0 +1,174 @@
+﻿@model Alliance_for_Life.Models.ParticipationService
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete Participation Service Record</h2>
+
+<div>
+
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Organization
+        </dt>
+        <dd>
+            @Model.Subcontractor.OrgName
+        </dd>
+
+        <dt>
+            Month
+        </dt>
+        <dd>
+            @Model.Month
+        </dd>
+
+        <dt>
+            Year
+        </dt>
+        <dd>
+            @Model.Year
+        </dd>
+
+        <dt>
+            Region
+        </dt>
+        <dd>
+            @Model.Region
+        </dd>
+
+        <dt>
+            Transportation
+        </dt>
+
+        <dd>
+            @Model.PTranspotation.ToString("C")
+        </dd>
+
+        <dt>
+            Job Training
+        </dt>
+
+        <dd>
+            @Model.PJobTrain.ToString("C")
+        </dd>
+
+        <dt>
+            Eduacation Assistance
+        </dt>
+
+        <dd>
+            @Model.PEducationAssistance.ToString("C")
+        </dd>
+
+        <dt>
+            Residental Care
+        </dt>
+
+        <dd>
+            @Model.PResidentialCare.ToString("C")
+        </dd>
+
+        <dt>
+            Utilities
+        </dt>
+
+        <dd>
+            @Model.PUtilities.ToString("C")
+        </dd>
+
+        <dt>
+            Housing Emergencies
+        </dt>
+
+        <dd>
+            @Model.PHousingEmergency.ToString("C")
+        </dd>
+
+        <dt>
+            Housing Assistance
+        </dt>
+
+        <dd>
+            @Model.PHousingAssistance.ToString("C")
+        </dd>
+
+        <dt>
+            Child Care
+        </dt>
+
+        <dd>
+            @Model.PChildCare.ToString("C")
+        </dd>
+
+        <dt>
+            Clothing
+        </dt>
+
+        <dd>
+            @Model.PClothing.ToString("C")
+        </dd>
+
+        <dt>
+            Food
+        </dt>
+
+        <dd>
+            @Model.PFood.ToString("C")
+        </dd>
+
+        <dt>
+            Supplies
+        </dt>
+
+        <dd>
+            @Model.PSupplies.ToString("C")
+        </dd>
+
+        <dt>
+            Other
+        </dt>
+
+        <dd>
+            @Model.POther.ToString("C")
+        </dd>
+
+        <dt>
+            Other
+        </dt>
+
+        <dd>
+            @Model.POther2.ToString("C")
+        </dd>
+
+        <dt>
+            Other
+        </dt>
+
+        <dd>
+            @Model.POther3.ToString("C")
+        </dd>
+
+        <dt>
+            Participation Totals
+        </dt>
+
+        <dd>
+            @Model.PTotals.ToString("C")
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <hr />
+        <h3>Are you sure you want to delete this?</h3>
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-danger" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

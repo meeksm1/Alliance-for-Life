@@ -1,4 +1,5 @@
 ﻿using Alliance_for_Life.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -8,9 +9,10 @@ namespace Alliance_for_Life.ViewModels
 {
     public class RegisterViewModel
     {
-        [Required]
-        [Display(Name="Organization")]
-        public int SubcontractorId { get; set; }
+        
+        //[Required]
+        //[Display(Name="Organization")]
+        //public int SubcontractorId { get; set; }
 
         public IEnumerable<SubContractor> Subcontractors { get; set; }
 
@@ -25,6 +27,7 @@ namespace Alliance_for_Life.ViewModels
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
 
+        [Key]
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]

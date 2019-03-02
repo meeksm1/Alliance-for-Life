@@ -1,0 +1,16 @@
+﻿@{
+    ViewBag.Title = "About";
+}
+
+@if (ViewBag.WordDocumentMode == null || !ViewBag.WordDocumentMode)
+{
+    <h2>@ViewBag.Title.</h2>
+    <h3>@ViewBag.Message</h3>
+}
+
+<header>
+    <a src='<%= Url.Content( "~/Content/DataTables/images/afllogo.png" ) %>' alt="Banner" />
+    <p>www.allianceforlifemissouri.com</p>
+    <address>487 SW Ward Road Lee's Summit, MO 64081 816-806-4168</address>
+</header>
+

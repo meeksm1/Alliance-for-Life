@@ -21,7 +21,7 @@ namespace Alliance_for_Life.ViewModels
         public int MonthId { get; set; }
 
         [Required]
-        public Month Months { get; set; }
+        public Months Month { get; set; }
 
         [Required]
         public DateTime Date { get; set; }

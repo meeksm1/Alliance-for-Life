@@ -18,32 +18,238 @@ namespace Alliance_for_Life.Controllers
 
         public ActionResult FirstQuarterReport()
         {
-            var montot1 = from x in db.AdminCosts where x.MonthId == 1 select x.ATotCosts;
+            var montot1 = from x in db.AdminCosts where (int)x.Month == 1 select x.ATotCosts;
 
             var firstquarter = from qs in db.QuarterlyStates
-                               join m in db.Months on qs.MonthId equals m.Id
                                join s in db.SubContractors on qs.SubcontractorId equals s.SubcontractorId
                                join a in db.AdminCosts on qs.AdminCostId equals a.AdminCostId
-                               join p in db.ParticipationServices on qs.ParticipationServiceId equals p.PSId
-                               where m.Id < 3
-  
+                               join p in db.ParticipationServices on qs.ParticipationCostId equals p.PSId
+                               where (int)qs.Month <= 7 && (int)qs.Month >= 9
+
                                select new QuarterlyStateReport
                                {
-                                   OrgName = s.OrgName, MonthName = m.Months, ASalandWages = a.ASalandWages,
-                                   AEmpBenefits = a.AEmpBenefits, AEmpTravel = a.AEmpTravel, AEmpTraining = a.AEmpTraining,
-                                   AOfficeRent = a.AOfficeRent, AOfficeUtilities = a.AOfficeUtilities, AFacilityIns = a.AFacilityIns,
-                                   AOfficeSupplies = a.AOfficeSupplies, AEquipment = a.AEquipment,
-                                   AOfficeCommunications = a.AOfficeCommunications, AOfficeMaint = a.AOfficeMaint,
-                                   AConsulting = a.AConsulting, EFTFees = a.EFTFees, AJanitorServices = a.AJanitorServices,
-                                   ADepreciation = a.ADepreciation, ATechSupport = a.ATechSupport, ASecurityServices = a.ASecurityServices,
-                                   ABackgroundCheck = a.ABackgroundCheck, ATotCosts = a.ATotCosts, StateAdminFee = a.ATotCosts,
-                                   TotDAforQuarter = qs.TotDAforQuarter, StateFeeQuarter = qs.StateFeeQuarter,
-                                   PTranspotation = p.PTranspotation, PJobTrain = p.PJobTrain, PEducationAssistance = p.PEducationAssistance,
-                                   PResidentialCare = p.PResidentialCare, PUtilities = p.PUtilities, PHousingEmergency = p.PHousingEmergency,
-                                   PHousingAssistance = p.PHousingAssistance, PChildCare = p.PChildCare, PClothing = p.PClothing,
-                                   PFood = p.PFood, PSupplies = p.PSupplies, RFOCarRepairs = p.POther, RFOCarPayments = p.POther2,
-                                   RFOCarIns = p.POther3, RFOBackgroundCheck = p.BackgroudCheck, BirthCerts = p.PBirthCerts,
-                                   PTotals = p.PTotals, TotPSforQuarter = qs.TotPSforQuarter, TotDAandPSMonth = qs.TotDACandPSMonthly,
+                                   OrgName = s.OrgName,
+                                   MonthName = qs.Month.ToString(),
+                                   ASalandWages = a.ASalandWages,
+                                   AEmpBenefits = a.AEmpBenefits,
+                                   AEmpTravel = a.AEmpTravel,
+                                   AEmpTraining = a.AEmpTraining,
+                                   AOfficeRent = a.AOfficeRent,
+                                   AOfficeUtilities = a.AOfficeUtilities,
+                                   AFacilityIns = a.AFacilityIns,
+                                   AOfficeSupplies = a.AOfficeSupplies,
+                                   AEquipment = a.AEquipment,
+                                   AOfficeCommunications = a.AOfficeCommunications,
+                                   AOfficeMaint = a.AOfficeMaint,
+                                   AConsulting = a.AConsulting,
+                                   EFTFees = a.EFTFees,
+                                   AJanitorServices = a.AJanitorServices,
+                                   ADepreciation = a.ADepreciation,
+                                   ATechSupport = a.ATechSupport,
+                                   ASecurityServices = a.ASecurityServices,
+                                   ABackgroundCheck = a.ABackgroundCheck,
+                                   ATotCosts = a.ATotCosts,
+                                   StateAdminFee = qs.StateFee,
+                                   TotDAforQuarter = qs.TotDAforQuarter,
+                                   StateFeeQuarter = qs.StateFeeQuarter,
+                                   PTranspotation = p.PTranspotation,
+                                   PJobTrain = p.PJobTrain,
+                                   PEducationAssistance = p.PEducationAssistance,
+                                   PResidentialCare = p.PResidentialCare,
+                                   PUtilities = p.PUtilities,
+                                   PHousingEmergency = p.PHousingEmergency,
+                                   PHousingAssistance = p.PHousingAssistance,
+                                   PChildCare = p.PChildCare,
+                                   PClothing = p.PClothing,
+                                   PFood = p.PFood,
+                                   PSupplies = p.PSupplies,
+                                   RFOCarRepairs = p.POther,
+                                   RFOCarPayments = p.POther2,
+                                   RFOCarIns = p.POther3,
+                                   RFOBackgroundCheck = p.BackgroudCheck,
+                                   BirthCerts = p.PBirthCerts,
+                                   PTotals = p.PTotals,
+                                   TotDAandPSMonth = qs.TotDACandPSMonthly,
+                                   TotDAandPSQuarter = qs.TotDAandPSQuarter
+                               };
+
+            return View(firstquarter);
+        }
+
+        public ActionResult SecondQuarterReport()
+        {
+            var montot1 = from x in db.AdminCosts where (int)x.Month == 1 select x.ATotCosts;
+
+            var firstquarter = from qs in db.QuarterlyStates
+                               join s in db.SubContractors on qs.SubcontractorId equals s.SubcontractorId
+                               join a in db.AdminCosts on qs.AdminCostId equals a.AdminCostId
+                               join p in db.ParticipationServices on qs.ParticipationCostId equals p.PSId
+                               where (int)qs.Month <= 7 && (int)qs.Month >= 9
+
+                               select new QuarterlyStateReport
+                               {
+                                   OrgName = s.OrgName,
+                                   MonthName = qs.Month.ToString(),
+                                   ASalandWages = a.ASalandWages,
+                                   AEmpBenefits = a.AEmpBenefits,
+                                   AEmpTravel = a.AEmpTravel,
+                                   AEmpTraining = a.AEmpTraining,
+                                   AOfficeRent = a.AOfficeRent,
+                                   AOfficeUtilities = a.AOfficeUtilities,
+                                   AFacilityIns = a.AFacilityIns,
+                                   AOfficeSupplies = a.AOfficeSupplies,
+                                   AEquipment = a.AEquipment,
+                                   AOfficeCommunications = a.AOfficeCommunications,
+                                   AOfficeMaint = a.AOfficeMaint,
+                                   AConsulting = a.AConsulting,
+                                   EFTFees = a.EFTFees,
+                                   AJanitorServices = a.AJanitorServices,
+                                   ADepreciation = a.ADepreciation,
+                                   ATechSupport = a.ATechSupport,
+                                   ASecurityServices = a.ASecurityServices,
+                                   ABackgroundCheck = a.ABackgroundCheck,
+                                   ATotCosts = a.ATotCosts,
+                                   StateAdminFee = qs.StateFee,
+                                   TotDAforQuarter = qs.TotDAforQuarter,
+                                   StateFeeQuarter = qs.StateFeeQuarter,
+                                   PTranspotation = p.PTranspotation,
+                                   PJobTrain = p.PJobTrain,
+                                   PEducationAssistance = p.PEducationAssistance,
+                                   PResidentialCare = p.PResidentialCare,
+                                   PUtilities = p.PUtilities,
+                                   PHousingEmergency = p.PHousingEmergency,
+                                   PHousingAssistance = p.PHousingAssistance,
+                                   PChildCare = p.PChildCare,
+                                   PClothing = p.PClothing,
+                                   PFood = p.PFood,
+                                   PSupplies = p.PSupplies,
+                                   RFOCarRepairs = p.POther,
+                                   RFOCarPayments = p.POther2,
+                                   RFOCarIns = p.POther3,
+                                   RFOBackgroundCheck = p.BackgroudCheck,
+                                   BirthCerts = p.PBirthCerts,
+                                   PTotals = p.PTotals,
+                                   TotDAandPSMonth = qs.TotDACandPSMonthly,
+                                   TotDAandPSQuarter = qs.TotDAandPSQuarter
+                               };
+
+            return View(firstquarter);
+        }
+
+        public ActionResult ThirdQuarterReport()
+        {
+            var montot1 = from x in db.AdminCosts where (int)x.Month == 1 select x.ATotCosts;
+
+            var firstquarter = from qs in db.QuarterlyStates
+                               join s in db.SubContractors on qs.SubcontractorId equals s.SubcontractorId
+                               join a in db.AdminCosts on qs.AdminCostId equals a.AdminCostId
+                               join p in db.ParticipationServices on qs.ParticipationCostId equals p.PSId
+                               where (int) qs.Month <= 7 && (int)qs.Month >= 9
+
+                               select new QuarterlyStateReport
+                               {
+                                   OrgName = s.OrgName,
+                                   MonthName = qs.Month.ToString(),
+                                   ASalandWages = a.ASalandWages,
+                                   AEmpBenefits = a.AEmpBenefits,
+                                   AEmpTravel = a.AEmpTravel,
+                                   AEmpTraining = a.AEmpTraining,
+                                   AOfficeRent = a.AOfficeRent,
+                                   AOfficeUtilities = a.AOfficeUtilities,
+                                   AFacilityIns = a.AFacilityIns,
+                                   AOfficeSupplies = a.AOfficeSupplies,
+                                   AEquipment = a.AEquipment,
+                                   AOfficeCommunications = a.AOfficeCommunications,
+                                   AOfficeMaint = a.AOfficeMaint,
+                                   AConsulting = a.AConsulting,
+                                   EFTFees = a.EFTFees,
+                                   AJanitorServices = a.AJanitorServices,
+                                   ADepreciation = a.ADepreciation,
+                                   ATechSupport = a.ATechSupport,
+                                   ASecurityServices = a.ASecurityServices,
+                                   ABackgroundCheck = a.ABackgroundCheck,
+                                   ATotCosts = a.ATotCosts,
+                                   StateAdminFee = qs.StateFee,
+                                   TotDAforQuarter = qs.TotDAforQuarter,
+                                   StateFeeQuarter = qs.StateFeeQuarter,
+                                   PTranspotation = p.PTranspotation,
+                                   PJobTrain = p.PJobTrain,
+                                   PEducationAssistance = p.PEducationAssistance,
+                                   PResidentialCare = p.PResidentialCare,
+                                   PUtilities = p.PUtilities,
+                                   PHousingEmergency = p.PHousingEmergency,
+                                   PHousingAssistance = p.PHousingAssistance,
+                                   PChildCare = p.PChildCare,
+                                   PClothing = p.PClothing,
+                                   PFood = p.PFood,
+                                   PSupplies = p.PSupplies,
+                                   RFOCarRepairs = p.POther,
+                                   RFOCarPayments = p.POther2,
+                                   RFOCarIns = p.POther3,
+                                   RFOBackgroundCheck = p.BackgroudCheck,
+                                   BirthCerts = p.PBirthCerts,
+                                   PTotals = p.PTotals,
+                                   TotDAandPSMonth = qs.TotDACandPSMonthly,
+                                   TotDAandPSQuarter = qs.TotDAandPSQuarter
+                               };
+
+            return View(firstquarter);
+        }
+
+        public ActionResult FourthQuarterReport()
+        {
+            var montot1 = from x in db.AdminCosts where (int)x.Month == 1 select x.ATotCosts;
+
+            var firstquarter = from qs in db.QuarterlyStates
+                               join s in db.SubContractors on qs.SubcontractorId equals s.SubcontractorId
+                               join a in db.AdminCosts on qs.AdminCostId equals a.AdminCostId
+                               join p in db.ParticipationServices on qs.ParticipationCostId equals p.PSId
+                               where (int)qs.Month >= 10
+
+                               select new QuarterlyStateReport
+                               {
+                                   OrgName = s.OrgName,
+                                   MonthName = qs.Month.ToString(),
+                                   ASalandWages = a.ASalandWages,
+                                   AEmpBenefits = a.AEmpBenefits,
+                                   AEmpTravel = a.AEmpTravel,
+                                   AEmpTraining = a.AEmpTraining,
+                                   AOfficeRent = a.AOfficeRent,
+                                   AOfficeUtilities = a.AOfficeUtilities,
+                                   AFacilityIns = a.AFacilityIns,
+                                   AOfficeSupplies = a.AOfficeSupplies,
+                                   AEquipment = a.AEquipment,
+                                   AOfficeCommunications = a.AOfficeCommunications,
+                                   AOfficeMaint = a.AOfficeMaint,
+                                   AConsulting = a.AConsulting,
+                                   EFTFees = a.EFTFees,
+                                   AJanitorServices = a.AJanitorServices,
+                                   ADepreciation = a.ADepreciation,
+                                   ATechSupport = a.ATechSupport,
+                                   ASecurityServices = a.ASecurityServices,
+                                   ABackgroundCheck = a.ABackgroundCheck,
+                                   ATotCosts = a.ATotCosts,
+                                   StateAdminFee = qs.StateFee,
+                                   TotDAforQuarter = qs.TotDAforQuarter,
+                                   StateFeeQuarter = qs.StateFeeQuarter,
+                                   PTranspotation = p.PTranspotation,
+                                   PJobTrain = p.PJobTrain,
+                                   PEducationAssistance = p.PEducationAssistance,
+                                   PResidentialCare = p.PResidentialCare,
+                                   PUtilities = p.PUtilities,
+                                   PHousingEmergency = p.PHousingEmergency,
+                                   PHousingAssistance = p.PHousingAssistance,
+                                   PChildCare = p.PChildCare,
+                                   PClothing = p.PClothing,
+                                   PFood = p.PFood,
+                                   PSupplies = p.PSupplies,
+                                   RFOCarRepairs = p.POther,
+                                   RFOCarPayments = p.POther2,
+                                   RFOCarIns = p.POther3,
+                                   RFOBackgroundCheck = p.BackgroudCheck,
+                                   BirthCerts = p.PBirthCerts,
+                                   PTotals = p.PTotals,
+                                   TotDAandPSMonth = qs.TotDACandPSMonthly,
                                    TotDAandPSQuarter = qs.TotDAandPSQuarter
                                };
 
@@ -76,13 +282,26 @@ namespace Alliance_for_Life.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "QuraterlyStateId,TotPSforQuarter,TotDAforQuarter,StateFeeQuarter,TotDAandPSQuarter,AdminCostId,MonthId,SubcontractorId,ParticipationCostId,TotDAandPSMonthly,StateFee")] QuarterlyState quarterlyState)
+        public ActionResult Create([Bind(Include = "QuraterlyStateId,TotPSforQuarter,TotDAforQuarter,StateFeeQuarter,TotDAandPSQuarter,AdminCostId,Month,SubcontractorId,ParticipationCostId,TotDAandPSMonthly,StateFee")] QuarterlyState quarterlyState)
         {
             if (ModelState.IsValid)
             {
-                db.QuarterlyStates.Add(quarterlyState);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                var dataexist = from s in db.QuarterlyStates
+                                where
+                                s.SubcontractorId == quarterlyState.SubcontractorId &&
+                                s.AdminCostId == quarterlyState.AdminCostId &&
+                                s.Month == quarterlyState.Month
+                                select s;
+                if (dataexist.Count() >= 1)
+                {
+                    ViewBag.error = "Data already exists. Please change the params or search in the Reports tab for the current Record.";
+                }
+                else
+                {
+                    db.QuarterlyStates.Add(quarterlyState);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
             }
 
             return View(quarterlyState);
@@ -108,7 +327,7 @@ namespace Alliance_for_Life.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "QuraterlyStateId,TotPSforQuarter,TotDAforQuarter,StateFeeQuarter,TotDAandPSQuarter,AdminCostId,MonthId,SubcontractorId,ParticipationCostId,TotDAandPSMonthly,StateFee")] QuarterlyState quarterlyState)
+        public ActionResult Edit([Bind(Include = "QuraterlyStateId,TotPSforQuarter,TotDAforQuarter,StateFeeQuarter,TotDAandPSQuarter,AdminCostId,Month,SubcontractorId,ParticipationCostId,TotDAandPSMonthly,StateFee")] QuarterlyState quarterlyState)
         {
             if (ModelState.IsValid)
             {

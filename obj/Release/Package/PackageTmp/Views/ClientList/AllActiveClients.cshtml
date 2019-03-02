@@ -1,0 +1,72 @@
+﻿@model IEnumerable<Alliance_for_Life.Models.ClientListReport>
+@{
+    ViewBag.Title = "All Clients";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Current Active Clients</h2>
+
+<table class="table">
+    <tr>
+        <th>
+           Client Id
+        </th>
+
+        <th>
+            Organization Name
+        </th>
+
+        <th>
+            First Name
+        </th>
+        <th>
+            Last Name
+        </th>
+        <th>
+            Due Date
+        </th>
+        <th>
+            Birthday
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var allactive in Model)
+    {
+        <tr>
+            <td>
+                <div class="clientid">@allactive.Id</div>
+            </td>
+
+            <td>
+                <div class="clientid">@allactive.Orgname</div>
+            </td>
+
+            <td>
+                <div class="fname">@allactive.FirstName</div>
+            </td>
+
+            <td>
+                <div class="lname">@allactive.LastName</div>
+            </td>
+
+            <td>
+                <div class="due">@allactive.DueDate.ToShortDateString()</div>
+            </td>
+
+            <td>
+                <div class="due">@allactive.DOB.ToShortDateString()</div>
+            </td>
+        </tr>
+    }
+    <tr>
+</tr>
+</table>
+
+<h3>Total Active Clients @Model.Count()</h3>
+
+<br />
+@using (Html.BeginForm("ExportAllActive", "ClientList", FormMethod.Post))
+{
+    <input type="submit" value="Export to Excel" class="btn btn-primary" />
+}

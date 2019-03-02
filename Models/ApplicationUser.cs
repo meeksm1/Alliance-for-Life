@@ -20,9 +20,10 @@ namespace Alliance_for_Life.Models
 
         [Required]
         [Display(Name ="Organization")]
-        public int SubcontractorId { get; set; }
+        public System.Guid SubcontractorId { get; set; }
         
         public IEnumerable<SubContractor> Subcontractors { get; set; }
+
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {

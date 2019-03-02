@@ -7,10 +7,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace Alliance_for_Life.Controllers
 {
-    [Authorize]
     public class AccountController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -22,7 +22,7 @@ namespace Alliance_for_Life.Controllers
             _context = new ApplicationDbContext();
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
@@ -34,9 +34,9 @@ namespace Alliance_for_Life.Controllers
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set 
-            { 
-                _signInManager = value; 
+            private set
+            {
+                _signInManager = value;
             }
         }
 
@@ -75,7 +75,7 @@ namespace Alliance_for_Life.Controllers
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: true);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -120,7 +120,7 @@ namespace Alliance_for_Life.Controllers
             // If a user enters incorrect codes for a specified amount of time then the user account 
             // will be locked out for a specified amount of time. 
             // You can configure the account lockout settings in IdentityConfig
-            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent:  model.RememberMe, rememberBrowser: model.RememberBrowser);
+            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent: model.RememberMe, rememberBrowser: model.RememberBrowser);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -134,9 +134,16 @@ namespace Alliance_for_Life.Controllers
             }
         }
 
+        public ActionResult IndexforRegisteredUsers()
+        {
+            var current_user_role = Roles.GetRolesForUser(User.Identity.Name);
+
+            return View(current_user_role);
+        }
+
+
         //
         // GET: /Account/Register
-        [AllowAnonymous]
         public ActionResult Register()
         {
             var viewModel = new RegisterViewModel
@@ -160,15 +167,15 @@ namespace Alliance_for_Life.Controllers
                 return View("Create", viewModel);
             }
             {
-                var subcontractorId = _context.SubContractors.Single(s => s.SubcontractorId == viewModel.SubcontractorId);
+                //var subcontractorId = _context.SubContractors.Single(s => s.SubcontractorId == viewModel.SubcontractorId);
 
                 var user = new ApplicationUser
                 {
-                    SubcontractorId = viewModel.SubcontractorId,
+                    //SubcontractorId = viewModel.SubcontractorId,
                     Email = viewModel.Email,
                     FirstName = viewModel.FirstName,
                     LastName = viewModel.LastName,
-                    UserName = viewModel.Email
+                    UserName = viewModel.Email,
 
                 };
 
@@ -177,8 +184,8 @@ namespace Alliance_for_Life.Controllers
                 var result = await UserManager.CreateAsync(user, viewModel.Password);
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
@@ -212,7 +219,7 @@ namespace Alliance_for_Life.Controllers
         {
             var userId = _context.Users.Where(i => i.UserName == user.UserName).Select(s => s.Id);
             string updateId = "";
-            foreach(var i in userId)
+            foreach (var i in userId)
             {
                 updateId = i.ToString();
             }

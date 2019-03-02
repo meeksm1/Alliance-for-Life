@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Alliance_for_Life.Models
 {
@@ -8,17 +9,19 @@ namespace Alliance_for_Life.Models
         [Required]
         public int SurveyId { get; set; }
 
-        public int SubcontractorId { get; set; }
-
-        public int MonthId { get; set; }
+        public DateTime SubmittedDate { get; set; }
 
         [Required]
         [Display(Name = "Surveys Returned")]
         public int SurveysCompleted { get; set; }
 
+
         //Navigation Properties
         public SubContractor Subcontractors { get; set; }
+        public Months? Month { get; set; }
 
-        public Month Months { get; set; }
+        public System.Guid SubcontractorId { get; set; }
+
+
     }
 }

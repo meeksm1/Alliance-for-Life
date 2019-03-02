@@ -1,5 +1,6 @@
 ﻿using Alliance_for_Life.Models;
 using Alliance_for_Life.ViewModels;
+using Microsoft.AspNet.Identity;
 using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
@@ -19,8 +20,17 @@ namespace Alliance_for_Life.Controllers
         public ActionResult Index()
         {
             var subcontractors = _context.SubContractors
-                .Include(s => s.Administrator)
-                .Where(s => s.Active);
+             .Include(s => s.Administrator)
+             .Where(s => s.Active);
+
+            if (!User.IsInRole("Admin"))
+            {
+                var id = User.Identity.GetUserId();
+                subcontractors = from s in _context.SubContractors
+                                        join a in _context.Users on s.SubcontractorId equals a.SubcontractorId
+                                        where id == a.Id
+                                        select s;
+            }
 
             return View(subcontractors);
         }
