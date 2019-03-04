@@ -179,3 +179,5 @@ C:\Users\meeksm1\Documents\GitHub\Alliance-for-Life\obj\Debug\Alliance for Life.
 C:\Users\meeksm1\Documents\GitHub\Alliance-for-Life\obj\Debug\Alliance for Life.pdb
 C:\Users\meeksm1\Documents\GitHub\Alliance-for-Life\obj\Debug\Alliance_for_Life.Migrations.CreateDbTables.resources
 C:\Users\meeksm1\Documents\GitHub\Alliance-for-Life\obj\Debug\Alliance for Life.csproj.GenerateResource.cache
+C:\Users\meeksm1\Documents\GitHub\Alliance-for-Life\obj\Debug\Alliance for Life.csprojAssemblyReference.cache
+C:\Users\meeksm1\Documents\GitHub\Alliance-for-Life\obj\Debug\Alliance_for_Life.Migrations.Update.resources
