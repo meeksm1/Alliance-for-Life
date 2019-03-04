@@ -207,7 +207,7 @@ namespace Alliance_for_Life.Controllers
 
             var costs = from a in db.AdminCosts
                         join s in db.SubContractors on a.SubcontractorId equals s.SubcontractorId
-                        where a.SubcontractorId == s.SubcontractorId && a.Region == s.Region
+                        where a.SubcontractorId == s.SubcontractorId
                         select new AdminReport
                         {
                             AdminCostId = a.AdminCostId,

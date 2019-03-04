@@ -1,4 +1,5 @@
-﻿using Alliance_for_Life.Models;
+﻿
+using Alliance_for_Life.Models;
 using Alliance_for_Life.ViewModels;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
@@ -136,9 +137,25 @@ namespace Alliance_for_Life.Controllers
 
         public ActionResult IndexforRegisteredUsers()
         {
-            var current_user_role = Roles.GetRolesForUser(User.Identity.Name);
+            
 
-            return View(current_user_role);
+            //var roleId = _context.Users.FirstOrDefault().Roles.SingleOrDefault().RoleId;
+
+            //var rolename = _context.Roles.Where(s => s.Id == roleId).Select(a => a.Name);
+
+            var userinfo = from s in _context.Users
+                           select new Userinformation
+            {
+                Firstname = s.FirstName,
+                Lastname = s.LastName,
+                Email = s.Email,
+                Role = Roles.GetRolesForUser().ToString()
+            };
+            //var userinfo = from s in _context.Users
+            //               join a in _context.Roles on s.Roles.FirstOrDefault().RoleId equals a.Id
+            //               select s;
+
+            return View(userinfo);
         }
 
 

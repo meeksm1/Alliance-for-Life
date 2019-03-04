@@ -45,8 +45,7 @@ namespace Alliance_for_Life.Models
 
         public int Year { get; set; }
         public System.Guid SubcontractorId { get; set; }
-        public System.Guid AdminCostId { get; set; }
-        public int PartServId { get; set; }
+  
       
     }
 }

@@ -168,35 +168,6 @@ C:\Users\arumford\source\repos\Alliance-for-Life\obj\Debug\Alliance_for_Life.Mig
 C:\Users\arumford\source\repos\Alliance-for-Life\obj\Debug\Alliance_for_Life.Migrations.CreateBudgetTable1.resources
 C:\Users\arumford\source\repos\Alliance-for-Life\obj\Debug\Alliance_for_Life.Migrations.QuarterlyStateReport.resources
 C:\Users\arumford\source\repos\Alliance-for-Life\obj\Debug\Alliance for Life.csproj.GenerateResource.Cache
-C:\Users\meeksm1\Documents\GitHub\Alliance-for-Life\bin\ApplicationInsights.config
-C:\Users\meeksm1\Documents\GitHub\Alliance-for-Life\bin\Alliance for Life.dll.config
-C:\Users\meeksm1\Documents\GitHub\Alliance-for-Life\bin\Alliance for Life.dll
-C:\Users\meeksm1\Documents\GitHub\Alliance-for-Life\bin\Alliance for Life.pdb
-C:\Users\meeksm1\Documents\GitHub\Alliance-for-Life\bin\Newtonsoft.Json.dll
-C:\Users\meeksm1\Documents\GitHub\Alliance-for-Life\obj\Debug\Alliance_for_Life.Migrations.CreateTables.resources
-C:\Users\meeksm1\Documents\GitHub\Alliance-for-Life\obj\Debug\Alliance_for_Life.Migrations.AddRegionsToTable.resources
-C:\Users\meeksm1\Documents\GitHub\Alliance-for-Life\obj\Debug\Alliance_for_Life.Migrations.PopulateMonthsTable.resources
-C:\Users\meeksm1\Documents\GitHub\Alliance-for-Life\obj\Debug\Alliance_for_Life.Migrations.UpdateSurveyProperties.resources
-C:\Users\meeksm1\Documents\GitHub\Alliance-for-Life\obj\Debug\Alliance_for_Life.Migrations.UpdateSurveyProperties1.resources
-C:\Users\meeksm1\Documents\GitHub\Alliance-for-Life\obj\Debug\Alliance_for_Life.Migrations.updatecolumnids.resources
-C:\Users\meeksm1\Documents\GitHub\Alliance-for-Life\obj\Debug\Alliance_for_Life.Migrations.RemoveClientAdminSubID.resources
-C:\Users\meeksm1\Documents\GitHub\Alliance-for-Life\obj\Debug\Alliance_for_Life.Migrations.UpdateRegistrationToOrgName.resources
-C:\Users\meeksm1\Documents\GitHub\Alliance-for-Life\obj\Debug\Alliance_for_Life.Migrations.addedUserNavProptoClientList.resources
-C:\Users\meeksm1\Documents\GitHub\Alliance-for-Life\obj\Debug\Alliance_for_Life.Migrations.AddForeignKeyPropertiestoCL.resources
-C:\Users\meeksm1\Documents\GitHub\Alliance-for-Life\obj\Debug\Alliance_for_Life.Migrations.RemoveForiegnKeyPropertiesFromCLTable.resources
-C:\Users\meeksm1\Documents\GitHub\Alliance-for-Life\obj\Debug\Alliance_for_Life.Migrations.DropClientListColumns.resources
-C:\Users\meeksm1\Documents\GitHub\Alliance-for-Life\obj\Debug\Alliance_for_Life.Migrations.CreateBudgetTable.resources
-C:\Users\meeksm1\Documents\GitHub\Alliance-for-Life\obj\Debug\Alliance_for_Life.Migrations.CreateAdminTable.resources
-C:\Users\meeksm1\Documents\GitHub\Alliance-for-Life\obj\Debug\Alliance_for_Life.Migrations.Createcascadepaths.resources
-C:\Users\meeksm1\Documents\GitHub\Alliance-for-Life\obj\Debug\Alliance_for_Life.Migrations.CreateBudgetTable1.resources
-C:\Users\meeksm1\Documents\GitHub\Alliance-for-Life\obj\Debug\Alliance_for_Life.Migrations.QuarterlyStateReport.resources
-C:\Users\meeksm1\Documents\GitHub\Alliance-for-Life\obj\Debug\Alliance for Life.csproj.GenerateResource.cache
-C:\Users\meeksm1\Documents\GitHub\Alliance-for-Life\obj\Debug\Alliance for Life.csproj.CoreCompileInputs.cache
-C:\Users\meeksm1\Documents\GitHub\Alliance-for-Life\obj\Debug\Alliance for Life.csproj.CopyComplete
-C:\Users\meeksm1\Documents\GitHub\Alliance-for-Life\obj\Debug\Alliance for Life.dll
-C:\Users\meeksm1\Documents\GitHub\Alliance-for-Life\obj\Debug\Alliance for Life.pdb
-C:\Users\meeksm1\Documents\GitHub\Alliance-for-Life\obj\Debug\Alliance for Life.csprojAssemblyReference.cache
-C:\Users\meeksm1\Documents\GitHub\Alliance-for-Life\obj\Debug\Alliance_for_Life.Migrations.PopulateYearTable.resources
 C:\Users\manoj\Desktop\Alliance-for-Life\obj\Debug\Alliance for Life.csproj.CoreCompileInputs.cache
 C:\Users\manoj\Desktop\Alliance-for-Life\bin\ApplicationInsights.config
 C:\Users\manoj\Desktop\Alliance-for-Life\bin\Alliance for Life.dll.config
@@ -208,3 +179,16 @@ C:\Users\manoj\Desktop\Alliance-for-Life\obj\Debug\Alliance for Life.dll
 C:\Users\manoj\Desktop\Alliance-for-Life\obj\Debug\Alliance for Life.pdb
 C:\Users\manoj\Desktop\Alliance-for-Life\obj\Debug\Alliance_for_Life.Migrations.sqldatabasemigration.resources
 C:\Users\manoj\Desktop\Alliance-for-Life\obj\Debug\Alliance for Life.csproj.GenerateResource.cache
+C:\Users\meeksm1\Documents\GitHub\Alliance-for-Life\bin\ApplicationInsights.config
+C:\Users\meeksm1\Documents\GitHub\Alliance-for-Life\bin\Alliance for Life.dll.config
+C:\Users\meeksm1\Documents\GitHub\Alliance-for-Life\bin\Alliance for Life.dll
+C:\Users\meeksm1\Documents\GitHub\Alliance-for-Life\bin\Alliance for Life.pdb
+C:\Users\meeksm1\Documents\GitHub\Alliance-for-Life\bin\Newtonsoft.Json.dll
+C:\Users\meeksm1\Documents\GitHub\Alliance-for-Life\obj\Debug\Alliance_for_Life.Migrations.InitialCreate.resources
+C:\Users\meeksm1\Documents\GitHub\Alliance-for-Life\obj\Debug\Alliance_for_Life.Migrations.RemoveAdminandPartIdsForInvoice.resources
+C:\Users\meeksm1\Documents\GitHub\Alliance-for-Life\obj\Debug\Alliance for Life.csproj.GenerateResource.cache
+C:\Users\meeksm1\Documents\GitHub\Alliance-for-Life\obj\Debug\Alliance for Life.csproj.CoreCompileInputs.cache
+C:\Users\meeksm1\Documents\GitHub\Alliance-for-Life\obj\Debug\Alliance for Life.csproj.CopyComplete
+C:\Users\meeksm1\Documents\GitHub\Alliance-for-Life\obj\Debug\Alliance for Life.dll
+C:\Users\meeksm1\Documents\GitHub\Alliance-for-Life\obj\Debug\Alliance for Life.pdb
+C:\Users\meeksm1\Documents\GitHub\Alliance-for-Life\obj\Debug\Alliance for Life.csprojAssemblyReference.cache

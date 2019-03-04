@@ -17,7 +17,7 @@ namespace Alliance_for_Life.Models
         public DbSet<QuarterlyState> QuarterlyStates { get; set; }
 
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("LocalConnection", throwIfV1Schema: false)
         {
         }
 

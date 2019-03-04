@@ -9,11 +9,6 @@ namespace Alliance_for_Life.ViewModels
 {
     public class RegisterViewModel
     {
-        
-        //[Required]
-        //[Display(Name="Organization")]
-        //public int SubcontractorId { get; set; }
-
         public IEnumerable<SubContractor> Subcontractors { get; set; }
 
         [StringLength(100)]

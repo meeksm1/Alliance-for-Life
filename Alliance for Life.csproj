@@ -247,9 +247,14 @@
     <Compile Include="Controllers\SurveysController.cs" />
     <Compile Include="DTO\AdminReport.cs" />
     <Compile Include="DTO\QuarterlyStateReport.cs" />
-    <Compile Include="Migrations\201903021730589_sqldatabasemigration.cs" />
-    <Compile Include="Migrations\201903021730589_sqldatabasemigration.Designer.cs">
-      <DependentUpon>201903021730589_sqldatabasemigration.cs</DependentUpon>
+    <Compile Include="DTO\Userinformation.cs" />
+    <Compile Include="Migrations\201903041941588_InitialCreate.cs" />
+    <Compile Include="Migrations\201903041941588_InitialCreate.Designer.cs">
+      <DependentUpon>201903041941588_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903042027161_RemoveAdminandPartIdsForInvoice.cs" />
+    <Compile Include="Migrations\201903042027161_RemoveAdminandPartIdsForInvoice.Designer.cs">
+      <DependentUpon>201903042027161_RemoveAdminandPartIdsForInvoice.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\QuarterlyState.cs" />
@@ -311,6 +316,10 @@
     <Compile Include="ViewModels\VerifyPhoneNumberViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\LocalConnection.mdf" />
+    <Content Include="App_Data\LocalConnection_log.ldf">
+      <DependentUpon>LocalConnection.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-reboot.css" />
@@ -717,6 +726,7 @@
     <Content Include="Views\ParticipationService\Details.cshtml" />
     <Content Include="Views\ParticipationService\Edit.cshtml" />
     <Content Include="Views\ParticipationService\Index.cshtml" />
+    <Content Include="Views\Account\IndexforRegisteredUsers.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config">
@@ -734,12 +744,13 @@
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\index.d.ts" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201903021730589_sqldatabasemigration.resx">
-      <DependentUpon>201903021730589_sqldatabasemigration.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201903041941588_InitialCreate.resx">
+      <DependentUpon>201903041941588_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903042027161_RemoveAdminandPartIdsForInvoice.resx">
+      <DependentUpon>201903042027161_RemoveAdminandPartIdsForInvoice.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

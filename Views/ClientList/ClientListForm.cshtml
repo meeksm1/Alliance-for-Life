@@ -32,7 +32,7 @@
       </div>
         <div class="form-group">
             @Html.LabelFor(m => m.DueDate)
-            @Html.TextBoxFor(m => m.DueDate, new { @class = "form-control ",type="datetime-local",placeholder = "eg 12/18/2018" })
+            @Html.TextBoxFor(m => m.DueDate, new { @class = "form-control ",type="date",placeholder = "eg 12/18/2018" })
             @Html.ValidationMessageFor(m => m.DueDate)
         </div>
     <div class="form-group">

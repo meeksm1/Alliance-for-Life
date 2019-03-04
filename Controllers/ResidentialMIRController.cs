@@ -52,6 +52,7 @@ namespace Alliance_for_Life.Controllers
 
             var invoice = new ResidentialMIR
             {
+                Id= Guid.NewGuid(),
                 SubcontractorId = viewModel.SubcontractorId,
                 Months = viewModel.Month,
                 Year = viewModel.Year,
@@ -65,7 +66,7 @@ namespace Alliance_for_Life.Controllers
             _context.ResidentialMIRs.Add(invoice);
             _context.SaveChanges();
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Create", "ContractorForm");
         }
 
         //Get Report Data
