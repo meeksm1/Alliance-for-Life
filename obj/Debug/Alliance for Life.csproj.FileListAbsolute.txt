@@ -192,3 +192,16 @@ C:\Users\meeksm1\Documents\GitHub\Alliance-for-Life\obj\Debug\Alliance for Life.
 C:\Users\meeksm1\Documents\GitHub\Alliance-for-Life\obj\Debug\Alliance for Life.dll
 C:\Users\meeksm1\Documents\GitHub\Alliance-for-Life\obj\Debug\Alliance for Life.pdb
 C:\Users\meeksm1\Documents\GitHub\Alliance-for-Life\obj\Debug\Alliance for Life.csprojAssemblyReference.cache
+C:\Users\Ghimim\Documents\GitHub\Alliance-for-Life\bin\ApplicationInsights.config
+C:\Users\Ghimim\Documents\GitHub\Alliance-for-Life\bin\Alliance for Life.dll.config
+C:\Users\Ghimim\Documents\GitHub\Alliance-for-Life\bin\Alliance for Life.dll
+C:\Users\Ghimim\Documents\GitHub\Alliance-for-Life\bin\Alliance for Life.pdb
+C:\Users\Ghimim\Documents\GitHub\Alliance-for-Life\bin\Newtonsoft.Json.dll
+C:\Users\Ghimim\Documents\GitHub\Alliance-for-Life\obj\Debug\Alliance for Life.csprojAssemblyReference.cache
+C:\Users\Ghimim\Documents\GitHub\Alliance-for-Life\obj\Debug\Alliance_for_Life.Migrations.InitialCreate.resources
+C:\Users\Ghimim\Documents\GitHub\Alliance-for-Life\obj\Debug\Alliance_for_Life.Migrations.RemoveAdminandPartIdsForInvoice.resources
+C:\Users\Ghimim\Documents\GitHub\Alliance-for-Life\obj\Debug\Alliance for Life.csproj.GenerateResource.cache
+C:\Users\Ghimim\Documents\GitHub\Alliance-for-Life\obj\Debug\Alliance for Life.csproj.CoreCompileInputs.cache
+C:\Users\Ghimim\Documents\GitHub\Alliance-for-Life\obj\Debug\Alliance for Life.csproj.CopyComplete
+C:\Users\Ghimim\Documents\GitHub\Alliance-for-Life\obj\Debug\Alliance for Life.dll
+C:\Users\Ghimim\Documents\GitHub\Alliance-for-Life\obj\Debug\Alliance for Life.pdb

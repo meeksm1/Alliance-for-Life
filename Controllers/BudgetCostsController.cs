@@ -21,6 +21,18 @@ namespace Alliance_for_Life.Controllers
             return View(budgetCosts.ToList());
         }
 
+        //#############################################################################################
+        //Graphing the data
+        public ActionResult GraphIndex()
+        {
+            return View();
+        }
+        public ActionResult GraphDataIndex()
+        {
+            var costlist = db.BudgetCosts.ToList();
+            return Json(costlist, JsonRequestBehavior.AllowGet);
+        }
+        //#############################################################################################
         public ActionResult AExpenseVSBExpense()
         {
             var expensereport = db.BudgetCosts

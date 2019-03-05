@@ -727,6 +727,7 @@
     <Content Include="Views\ParticipationService\Edit.cshtml" />
     <Content Include="Views\ParticipationService\Index.cshtml" />
     <Content Include="Views\Account\IndexforRegisteredUsers.cshtml" />
+    <Content Include="Views\BudgetCosts\GraphIndex.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config">
