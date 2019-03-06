@@ -1,0 +1,16 @@
+﻿@model Alliance_for_Life.ViewModels.ClientListFormViewModel
+@{
+    ViewBag.Title = "Client Report";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Client Reports</h2>
+
+<li><a href="@Url.Action("ActiveClients", "ClientListReport")">Active Client Report</a></li>
+<li><a href="@Url.Action("NonActiveClients", "ClientListReport")">Non-Active Client Report</a></li>
+
+@section scripts
+    {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/MyScripts.js"></script>
+}

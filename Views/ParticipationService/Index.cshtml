@@ -19,6 +19,9 @@
             Month
         </th>
         <th>
+            Region&nbsp;&nbsp;&nbsp;&nbsp;
+        </th>
+        <th>
             Transportation
         </th>
         <th>
@@ -77,6 +80,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Month)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Region)
             </td>
             <td>
                 @item.PTranspotation.ToString("C")

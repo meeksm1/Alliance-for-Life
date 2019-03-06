@@ -7,30 +7,19 @@
 
 <h2>Budgeted Fee's</h2>
 
-@using (Html.BeginForm())
-{
-    <p>
-        Find by name: @Html.TextBox("SearchString")
-        <input type="submit" value="Search" />
-    </p>
-}
-
 <table class="table">
     <tr>
         <th>
 
         </th>
         <th>
-            @Html.ActionLink("Invoice Id", "Index", new { sortOrder = ViewBag.NameSortParm })
+            Year
         </th>
         <th>
-            @Html.ActionLink("Year", "Index", new { sortOrder = ViewBag.YearSortParm })
+            Month
         </th>
         <th>
-            @Html.ActionLink("Month", "Index", new { sortOrder = ViewBag.MonthSortParm })
-        </th>
-        <th>
-            @Html.ActionLink("Region", "Index", new { sortOrder = ViewBag.RegionSortParm })
+            Region&nbsp;&nbsp;&nbsp;&nbsp;
         </th>
         <th>
             Salaries and Wages
@@ -147,16 +136,13 @@
                 @Html.ActionLink("Details", "Details", new { id = item.BudgetInvoiceId })
             </td>
             <td>
-                @item.BudgetInvoiceId
-            </td>
-            <td>
                 @item.Year
             </td>
             <td>
                 @item.Month
             </td>
             <td>
-                @item.Region
+               @item.Region
             </td>
             <td>
                 @item.ASalandWages.ToString("C")

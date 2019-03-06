@@ -1,0 +1,77 @@
+﻿@model IEnumerable<Alliance_for_Life.Models.ClientListReport>
+
+@{
+    ViewBag.Title = "All Clients";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>History view of Non-Active Clients</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Client Id
+        </th>
+
+        <th>
+            Organization Name
+        </th>
+
+        <th>
+            First Name
+        </th>
+        <th>
+            Last Name
+        </th>
+        <th>
+            Due Date
+        </th>
+        <th>
+            Birthday
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var nonactiveclients in Model)
+    {
+        <tr>
+            <td>
+                <div class="clientid">@nonactiveclients.Id</div>
+            </td>
+
+            <td>
+                <div class="clientid">@nonactiveclients.Orgname</div>
+            </td>
+
+            <td>
+                <div class="fname">@nonactiveclients.FirstName</div>
+            </td>
+
+            <td>
+                <div class="lname">@nonactiveclients.LastName</div>
+            </td>
+
+            <td>
+                <div class="due">@nonactiveclients.DueDate.ToShortDateString()</div>
+            </td>
+
+            <td>
+                <div class="due">@nonactiveclients.DOB.ToShortDateString()</div>
+            </td>
+
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = nonactiveclients.Id })
+            </td>
+        </tr>
+    }
+    <tr>
+</tr>
+</table>
+
+<h3>Total Non-Active Clients @Model.Count()</h3>
+
+<br />
+@using (Html.BeginForm("ExportNonActive", "ClientListReport", FormMethod.Post))
+{
+    <input type="submit" value="Export to Excel" class="btn btn-primary" />
+}

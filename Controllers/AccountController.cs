@@ -153,9 +153,9 @@ namespace Alliance_for_Life.Controllers
                     {
                        Firstname = usr.FirstName,
                        Lastname = usr.LastName,
-                       Email = usr.Email,
-                       Role = r.Name,
-                       organization = _context.SubContractors.Find(usr.SubcontractorId).OrgName
+                        Email = usr.Email,
+                        Role = r.Name,
+                        organization = _context.SubContractors.Find(usr.SubcontractorId).OrgName
                     };
                    
                     modelLst.Add(obj);

@@ -10,6 +10,10 @@
 <table class="table">
     <tr>
         <th>
+           Client Id
+        </th>
+
+        <th>
             Organization Name
         </th>
 
@@ -31,6 +35,10 @@
     @foreach (var activeclients in Model)
     {
         <tr>
+            <td>
+                <div class="clientid">@activeclients.Id</div>
+            </td>
+
             <td>
                 <div class="clientid">@activeclients.Orgname</div>
             </td>

@@ -62,6 +62,7 @@ namespace Alliance_for_Life.Controllers
                                 where
                                 s.SubcontractorId == participationService.SubcontractorId &&
                                 s.Year == participationService.Year &&
+                                s.Region == participationService.Region &&
                                 s.Month == participationService.Month
                                 select s;
                 if (dataexist.Count() >= 1)
@@ -204,7 +205,7 @@ namespace Alliance_for_Life.Controllers
                             PSId = a.PSId,
                             OrgName = s.OrgName,
                             MonthName = a.Month.ToString(),
-                            RegionName = s.Region.ToString(),
+                            RegionName = a.Region.ToString(),
                             YearName = a.Year,
                             EIN = s.EIN,
                             PTranspotation = a.PTranspotation,

@@ -48,6 +48,7 @@ namespace Alliance_for_Life.Models
 
 
         //Navigation Properties
+        public GeoRegion? Region { get; set; }
         public Months? Month { get; set; }
         public SubContractor Subcontractor { get; set; }
 
