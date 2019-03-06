@@ -26,44 +26,32 @@
         <th>
             @Html.DisplayNameFor(model => model.Role)
         </th>
-        @*<th>
-            @Html.DisplayNameFor(model => model.Password)
-        </th>
         <th>
-            @Html.DisplayNameFor(model => model.ConfirmPassword)
-        </th>*@
+            @Html.DisplayName("Organization")
+        </th>
+
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-
-  
-
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Firstname)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Lastname)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Role)
-        </td>
-        @*<td>
-            @Html.DisplayFor(modelItem => item.Password)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ConfirmPassword)
-        </td>*@
-        @*<td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.SubcontractorId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.SubcontractorId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.SubcontractorId })
-        </td>*@
-    </tr>
-}
+    @foreach (var item in Model)
+    {  
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Firstname)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Lastname)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Email)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Role)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.organization)
+    </td>
+</tr>
+    }
 
 </table>

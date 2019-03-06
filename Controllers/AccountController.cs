@@ -4,6 +4,8 @@ using Alliance_for_Life.ViewModels;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -135,27 +137,31 @@ namespace Alliance_for_Life.Controllers
             }
         }
 
+        //list user information
+
         public ActionResult IndexforRegisteredUsers()
-        {
-            
+        { 
+            List<Userinformation> modelLst = new List<Userinformation>();
+            var role = _context.Roles.Include(x => x.Users).ToList();
 
-            //var roleId = _context.Users.FirstOrDefault().Roles.SingleOrDefault().RoleId;
-
-            //var rolename = _context.Roles.Where(s => s.Id == roleId).Select(a => a.Name);
-
-            var userinfo = from s in _context.Users
-                           select new Userinformation
+            foreach (var r in role)
             {
-                Firstname = s.FirstName,
-                Lastname = s.LastName,
-                Email = s.Email,
-                Role = Roles.GetRolesForUser().ToString()
-            };
-            //var userinfo = from s in _context.Users
-            //               join a in _context.Roles on s.Roles.FirstOrDefault().RoleId equals a.Id
-            //               select s;
-
-            return View(userinfo);
+                foreach (var u in r.Users)
+                {
+                    var usr = _context.Users.Find(u.UserId);
+                    var obj = new Userinformation
+                    {
+                       Firstname = usr.FirstName,
+                       Lastname = usr.LastName,
+                        Email = usr.Email,
+                        Role = r.Name,
+                        organization = _context.SubContractors.Find(usr.SubcontractorId).OrgName
+                    };
+                   
+                    modelLst.Add(obj);
+                }
+            }
+            return View(modelLst); 
         }
 
 
