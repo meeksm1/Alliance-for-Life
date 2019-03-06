@@ -726,6 +726,9 @@
     <Content Include="Views\ParticipationService\Index.cshtml" />
     <Content Include="Views\Account\IndexforRegisteredUsers.cshtml" />
     <Content Include="Views\BudgetCosts\GraphIndex.cshtml" />
+    <Content Include="Views\QuarterlyStates\FourthQuarterReport.cshtml" />
+    <Content Include="Views\QuarterlyStates\SecondQuarterReport.cshtml" />
+    <Content Include="Views\QuarterlyStates\ThirdQuarterReport.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config">

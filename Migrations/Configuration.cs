@@ -9,7 +9,7 @@ namespace Alliance_for_Life.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = false;//make sure to change this to false before pushed to live
         }
 
         protected override void Seed(Alliance_for_Life.Models.ApplicationDbContext context)

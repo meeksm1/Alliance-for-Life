@@ -62,7 +62,6 @@ namespace Alliance_for_Life.Controllers
                 var dataexist = from s in db.AdminCosts
                                 where s.SubcontractorId == adminCosts.SubcontractorId &&
                                 s.Year == adminCosts.Year &&
-                                s.Region == adminCosts.Region &&
                                 s.Month == adminCosts.Month
                                 select s;
                 if (dataexist.Count() >= 1)
