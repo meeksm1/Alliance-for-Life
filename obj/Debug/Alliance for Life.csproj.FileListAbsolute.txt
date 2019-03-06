@@ -217,3 +217,7 @@ C:\Users\manoj\Documents\GitHub\Alliance-for-Life\obj\Debug\Alliance for Life.cs
 C:\Users\manoj\Documents\GitHub\Alliance-for-Life\obj\Debug\Alliance for Life.csproj.CopyComplete
 C:\Users\manoj\Documents\GitHub\Alliance-for-Life\obj\Debug\Alliance for Life.dll
 C:\Users\manoj\Documents\GitHub\Alliance-for-Life\obj\Debug\Alliance for Life.pdb
+C:\Users\meeksm1\Documents\GitHub\Alliance-for-Life\bin\PagedList.dll
+C:\Users\meeksm1\Documents\GitHub\Alliance-for-Life\bin\PagedList.Mvc.dll
+C:\Users\meeksm1\Documents\GitHub\Alliance-for-Life\bin\PagedList.xml
+C:\Users\meeksm1\Documents\GitHub\Alliance-for-Life\bin\PagedList.Mvc.xml
