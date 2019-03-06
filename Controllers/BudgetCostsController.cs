@@ -64,6 +64,10 @@ namespace Alliance_for_Life.Controllers
         //Graphing the data
         public ActionResult GraphIndex()
         {
+            var datelist = Enumerable.Range(System.DateTime.Now.Year - 4, 10).ToList();
+            ViewBag.Year = new SelectList(datelist, "Year");
+            ViewBag.Region = new SelectList(Enum.GetNames(typeof(GeoRegion)), "Region");
+            ViewBag.ContractorID = new SelectList(db.SubContractors, "SubcontractorId", "OrgName");
             return View();
         }
         public ActionResult GraphDataIndex()

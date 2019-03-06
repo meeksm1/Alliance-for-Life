@@ -7,127 +7,40 @@
 <script src="~/Scripts/jquery-1.10.2.js"></script>
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+<link href="~/Scripts/ReportandGraph/chart.css" rel="stylesheet" />
+<script src="~/Scripts/ReportandGraph/chart.js"></script>
 
-<style>
-    #chart_display {
-        height: 400px;
-        width: 650px;
-    }
-</style>
-<script>  google.load("visualization", "1", { packages: ["corechart"] }); </script>
-<script>
-    $(document).ready(function () {
-        $.ajax({
-            url: "/BudgetCosts/GraphDataIndex",
-            data: "{}",
-            dataType: "json",
-            type: "POST",
-            contentType: "application/json; chartset=utf-8",
-            success: function (responses) {
-                var data = new google.visualization.DataTable();
-
-                var data = new google.visualization.arrayToDataTable(
-                    [
-                        ['Cost Type', 'Sales', 'Expenses', 'Profit'],
-                        ['Admin Cost', responses[0].ASalandWages, responses[0].AEmpBenefits, responses[0].AEmpTravel],
-                        ['Participation Cost', 1170, 460, 250]
-
-                    ]
-                );
-
-                // Adding columns to data table to insert the chart data
-
-                //data.addColumn('string', 'CostType');
-                //data.addColumn('number', 'Amount');
-                ////bind the data to the data table using for loop
-                //// for (var i = 0; i < responses.length; i++) {
-                //data.addRow(["Salary/Wages", responses[0].ASalandWages]);
-                //data.addRow(["Employment Benefit", responses[0].AEmpBenefits]);
-                //data.addRow(["Employment Travel", responses[0].AEmpTravel]);
-                //data.addRow(["Employment Training", responses[0].AEmpTraining]);
-                //data.addRow(["Office Rent", responses[0].AOfficeRent]);
-                //data.addRow(["Office Utilities", responses[0].AOfficeUtilities]);
-                //data.addRow(["Facilities", responses[0].AFacilityIns]);
-                //data.addRow(["Office Supplies", responses[0].AOfficeSupplies]);
-                //data.addRow(["Office Equipments", responses[0].AEquipment]);
-                //data.addRow(["Office Communications", responses[0].AOfficeCommunications]);
-                //data.addRow(["Office Maintenance", responses[0].AOfficeMaint]);
-                //data.addRow(["Consulting", responses[0].AConsulting]);
-                //data.addRow(["Name", responses[0].SubConPayCost]);
-                //data.addRow(["Background Check", responses[0].BackgrounCheck]);
-                //data.addRow(["Other", responses[0].Other]);
-                //data.addRow(["Janitor Services", responses[0].AJanitorServices]);
-                //data.addRow(["Depreciation", responses[0].ADepreciation]);
-                //data.addRow(["Technical Support", responses[0].ATechSupport]);
-                //data.addRow(["Security Services", responses[0].ASecurityServices]);
-                //data.addRow(["Name", responses[0].ATotCosts]);
-                // data.addRow(["Name", responses[0].AdminFee]);
-
-                //data.addRow(["Name", responses[i].Trasportation]);
-                //data.addRow(["Name", responses[i].JobTraining]);
-                //data.addRow(["Name", responses[i].TuitionAssistance]);
-                //data.addRow(["Name", responses[i].ContractedResidential]);
-                //data.addRow(["Name", responses[i].UtilityAssistance]);
-                //data.addRow(["Name", responses[i].EmergencyShelter]);
-                //data.addRow(["Name", responses[i].HousingAssistance]);
-                //data.addRow(["Name", responses[i].Childcare]);
-                //data.addRow(["Name", responses[i].Clothing]);
-                //data.addRow(["Name", responses[i].Food]);
-                //data.addRow(["Name", responses[i].Supplies]);
-                //data.addRow(["Name", responses[i].RFO]);
-                //data.addRow(["Name", responses[i].BTotal]);
-                //data.addRow(["Name", responses[i].Maxtot]);
-                //  }
-
-
-                // Instantiate and draw our chart, passing in some options
-                var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
-                chart.draw(data,
-                    {
-                        title: "Administrative Cost", //title of the pie chart
-                        position: "Buttom",
-                        fontsize: "14px",
-                        chartArea: { width: '50%' },
-                        legend: 'none',
-                        pieHole: 0.6,
-
-                    });
-            },
-
-            // ajax error display
-            error: function () {
-                alert("Error loading data! Please try again.");
-            }
-        });
-    });
-</script>
-
-
-
-<center>
-
-    <div class="row">
-        <div class="col-lg">
-            <div id="donutchart" style="width: 500px; height: 500px;"></div>
-        </div>
-        <div class="col-lg">
-            <div class="container">
-                <h2>Beautiful Google Charts</h2>
-                <h5>Daily Page Hits</h5>
-                <div id="bar-chart"></div>
-                <h5>Traffic Over Time</h5>
-                <div id="line-chart"></div>
-                <h5>Page Hits per Country</h5>
-                <div id="pie-chart"></div>
-
-            </div>
-        </div>
+<div class="row">
+    <div class="col-sm-2">
+        @Html.DropDownList("ContractorID", null, htmlAttributes: new { @class = "form-control" })
     </div>
-    <div class="container">
-        <div class="panel-heading">
-          
-        </div>
+    <div class="col-sm-2">
+        @Html.DropDownList("Region", null, htmlAttributes: new { @class = "form-control" })
     </div>
+    <div class="col-sm-2">
+        @Html.DropDownList("Year", null, htmlAttributes: new { @class = "form-control" })
+    </div>
+    <div class="col-sm-2">
+       <button type="submit" class="btn btn-primary"> Go</button>
+    </div>
+</div>
+
+<p>
+
+</p>
+<div class="row">
+    <div class="col-md-4">
+        <h5>Daily Page Hits</h5>
+        <div id="bar-chart"></div>
+    </div>
+    <div class="col-md-4">
+        <h5>Traffic Over Time</h5>
+        <div id="line-chart"></div>
+    </div>
+    <div class="col-md-4">
+        <h5>Page Hits per Country</h5>
+        <div id="pie-chart"></div>
+    </div>
+</div>
+
    
-</center>
-
