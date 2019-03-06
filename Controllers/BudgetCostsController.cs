@@ -1,6 +1,7 @@
 ﻿using Alliance_for_Life.Models;
 using ClosedXML.Excel;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.IO;
@@ -25,11 +26,16 @@ namespace Alliance_for_Life.Controllers
         //Graphing the data
         public ActionResult GraphIndex()
         {
+          
+            var datelist = Enumerable.Range(System.DateTime.Now.Year - 4, 10).ToList();
+            ViewBag.Year = new SelectList(datelist, "Year");
+            ViewBag.Region = new SelectList(Enum.GetNames(typeof(GeoRegion)),"Region");
+            ViewBag.ContractorID = new SelectList(db.SubContractors, "SubcontractorId", "OrgName");
             return View();
         }
         public ActionResult GraphDataIndex()
         {
-            var costlist = db.BudgetCosts.ToList();
+            var costlist = db.BudgetCosts.OrderBy(a=>a.Month).ToList();
             return Json(costlist, JsonRequestBehavior.AllowGet);
         }
         //#############################################################################################
