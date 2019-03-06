@@ -1,12 +1,12 @@
 ﻿using Alliance_for_Life.Models;
 using ClosedXML.Excel;
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.IO;
 using System.Linq;
 using System.Net;
+using PagedList;
 using System.Web.Mvc;
 
 namespace Alliance_for_Life.Controllers
@@ -16,26 +16,59 @@ namespace Alliance_for_Life.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: BudgetCosts
-        public ActionResult Index()
+        public ViewResult Index(string sortOrder, string searchString)
         {
-            var budgetCosts = db.BudgetCosts;
-            return View(budgetCosts.ToList());
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.YearSortParm = sortOrder == "Year" ? "year_desc" : "Year";
+            ViewBag.MonthSortParm = sortOrder == "Month" ? "month_desc" : "Month";
+            ViewBag.RegionSortParm = sortOrder == "Region" ? "region_desc" : "Region";
+
+            var budgetsearch = from s in db.BudgetCosts
+                           select s;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                budgetsearch = budgetsearch.OrderBy(s => s.BudgetInvoiceId.ToString(searchString));
+            }                      
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    budgetsearch = budgetsearch.OrderByDescending(s => s.BudgetInvoiceId);
+                    break;
+                case "Year":
+                    budgetsearch = budgetsearch.OrderBy(s => s.Year);
+                    break;
+                case "Month":
+                    budgetsearch = budgetsearch.OrderBy(s => s.Month);
+                    break;
+                case "Region":
+                    budgetsearch = budgetsearch.OrderBy(s => s.Region);
+                    break;
+                case "year_desc":
+                    budgetsearch = budgetsearch.OrderByDescending(s => s.Year);
+                    break;
+                case "month_desc":
+                    budgetsearch = budgetsearch.OrderByDescending(s => s.Month);
+                    break;
+                case "region_desc":
+                    budgetsearch = budgetsearch.OrderByDescending(s => s.Region);
+                    break;
+                default:
+                    budgetsearch = budgetsearch.OrderBy(s => s.BudgetInvoiceId);
+                    break;
+            }
+            return View(budgetsearch.ToList());
         }
 
         //#############################################################################################
         //Graphing the data
         public ActionResult GraphIndex()
         {
-          
-            var datelist = Enumerable.Range(System.DateTime.Now.Year - 4, 10).ToList();
-            ViewBag.Year = new SelectList(datelist, "Year");
-            ViewBag.Region = new SelectList(Enum.GetNames(typeof(GeoRegion)),"Region");
-            ViewBag.ContractorID = new SelectList(db.SubContractors, "SubcontractorId", "OrgName");
             return View();
         }
         public ActionResult GraphDataIndex()
         {
-            var costlist = db.BudgetCosts.OrderBy(a=>a.Month).ToList();
+            var costlist = db.BudgetCosts.ToList();
             return Json(costlist, JsonRequestBehavior.AllowGet);
         }
         //#############################################################################################
@@ -339,5 +372,6 @@ namespace Alliance_for_Life.Controllers
                 }
             }
         }
+
     }
 }
