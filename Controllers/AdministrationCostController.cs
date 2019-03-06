@@ -15,10 +15,37 @@ namespace Alliance_for_Life.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: AdministrationCost
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder, string searchString)
         {
-            var adminCosts = db.AdminCosts.Include(a => a.Subcontractor);
-            return View(adminCosts.ToList());
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
+
+            var adminSearch = from s in db.AdminCosts
+                              join d in db.SubContractors on s.SubcontractorId equals d.SubcontractorId
+                              select s;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                adminSearch = adminSearch.Where(s => s.OrgName.Contains(searchString)
+                                       || s.Subcontractor.SubmittedDate.ToString().Contains(searchString));
+            }
+
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    adminSearch = adminSearch.OrderByDescending(s => s.OrgName);
+                    break;
+                case "Date":
+                    adminSearch = adminSearch.OrderBy(s => s.Month);
+                    break;
+                case "date_desc":
+                    adminSearch = adminSearch.OrderByDescending(s => s.Month);
+                    break;
+                default:
+                    adminSearch = adminSearch.OrderBy(s => s.OrgName);
+                    break;
+            }
+            return View(adminSearch.ToList());
         }
 
         // GET: AdministrationCost/Details/5

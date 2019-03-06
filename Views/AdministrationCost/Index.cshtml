@@ -1,5 +1,4 @@
-﻿@*Change from IEnumerable to List to allow Linq extention methods.*@
-@model List<Alliance_for_Life.Models.AdminCosts>
+﻿@model IEnumerable<Alliance_for_Life.Models.AdminCosts>
 
 @{
     ViewBag.Title = "Administrative Fee's";
@@ -8,20 +7,28 @@
 
 <h2>Administrative Cost Reports</h2>
 
+@using (Html.BeginForm())
+{
+    <p>
+        Find by Organization or Submitted Date: @Html.TextBox("SearchString")
+        <input type="submit" value="Search" />
+    </p>
+}
+
 <table class="table">
     <tr>
         <th>
 
         </th>
         <th>
-            Organization
+            @Html.ActionLink("Organization", "Index", new { sortOrder = ViewBag.NameSortParm })
         </th>
         <th>
-            Month
+            @Html.ActionLink("Submitted Date", "Index", new { sortOrder = ViewBag.DateSortParm })
         </th>
-        <th>
-            Year
-        </th>
+        @*<th>
+                Year
+            </th>*@
         <th>
             Salaries and Wages
         </th>
@@ -92,14 +99,14 @@
                 @Html.ActionLink("Details", "Details", new { id = item.AdminCostId })
             </td>
             <td>
-                @item.Subcontractor.OrgName
+                @Html.DisplayFor(modelItem => item.OrgName)
             </td>
             <td>
-                @item.Month
+                @item.SubmittedDate.ToShortDateString()
             </td>
-            <td>
-                @item.Year
-            </td>
+            @*<td>
+                    @item.Year
+                </td>*@
             <td>
                 @item.ASalandWages.ToString("C")
             </td>
@@ -169,7 +176,7 @@
 <tr>
     <td>@Model.Sum(m => m.ATotCosts).ToString("c")</td>
 </tr>
-<br/><br />
+<br /><br />
 @using (Html.BeginForm("Export", "AdministrationCost", FormMethod.Post))
 {
     <input type="submit" value="Export to Excel" class="btn btn-group-sm btn-primary" />

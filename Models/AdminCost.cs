@@ -55,6 +55,9 @@ namespace Alliance_for_Life.Models
 
         public DateTime SubmittedDate { get; set; }
 
+        public string OrgName { get; set; }
+
+
 
         //Navigation Properties
         public Months? Month { get; set; }

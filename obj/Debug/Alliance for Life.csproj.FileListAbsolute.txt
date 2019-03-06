@@ -224,3 +224,4 @@ C:\Users\Ghimim\Documents\GitHub\Alliance-for-Life\obj\Debug\Alliance for Life.c
 C:\Users\Ghimim\Documents\GitHub\Alliance-for-Life\obj\Debug\Alliance for Life.csproj.CopyComplete
 C:\Users\Ghimim\Documents\GitHub\Alliance-for-Life\obj\Debug\Alliance for Life.dll
 C:\Users\Ghimim\Documents\GitHub\Alliance-for-Life\obj\Debug\Alliance for Life.pdb
+C:\Users\meeksm1\Documents\GitHub\Alliance-for-Life\obj\Debug\Alliance_for_Life.Migrations.AdminCostAddedOrgNameProp.resources
