@@ -1,6 +1,4 @@
-﻿
-
-@{
+﻿@{
     ViewBag.Title = "Report";
 }
 
@@ -11,23 +9,20 @@
 <script src="~/Scripts/ReportandGraph/chart.js"></script>
 
 <div class="row">
+    @*<div class="col-sm-2">
+        @Html.DropDownList("ContractorID", null, htmlAttributes: new { @class = "form-control",id="OrgSearch" })
+    </div>*@
     <div class="col-sm-2">
-        @Html.DropDownList("ContractorID", null, htmlAttributes: new { @class = "form-control" })
+        @Html.DropDownList("Region", null, htmlAttributes: new { @class = "form-control",id="RegionSearch" })
     </div>
     <div class="col-sm-2">
-        @Html.DropDownList("Region", null, htmlAttributes: new { @class = "form-control" })
+        @Html.DropDownList("Year",null, DateTime.Now.Year.ToString(),htmlAttributes: new { @class = "form-control" , id="YearSearch",  value=DateTime.Now.Year.ToString()})
     </div>
     <div class="col-sm-2">
-        @Html.DropDownList("Year", null, htmlAttributes: new { @class = "form-control" })
-    </div>
-    <div class="col-sm-2">
-       <button type="submit" class="btn btn-primary"> Go</button>
+        <button id="submit" type="submit" class="btn btn-primary"> Go</button>
     </div>
 </div>
 
-<p>
-
-</p>
 <div class="row">
     <div class="col-md-4">
         <h5>Daily Page Hits</h5>
@@ -43,4 +38,7 @@
     </div>
 </div>
 
-   
+
+<script>
+    
+</script>

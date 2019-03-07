@@ -6,7 +6,6 @@ using System.Data.Entity;
 using System.IO;
 using System.Linq;
 using System.Net;
-using PagedList;
 using System.Web.Mvc;
 
 namespace Alliance_for_Life.Controllers
@@ -24,12 +23,12 @@ namespace Alliance_for_Life.Controllers
             ViewBag.RegionSortParm = sortOrder == "Region" ? "region_desc" : "Region";
 
             var budgetsearch = from s in db.BudgetCosts
-                           select s;
+                               select s;
 
             if (!String.IsNullOrEmpty(searchString))
             {
                 budgetsearch = budgetsearch.OrderBy(s => s.BudgetInvoiceId.ToString(searchString));
-            }                      
+            }
             switch (sortOrder)
             {
                 case "name_desc":
@@ -70,10 +69,42 @@ namespace Alliance_for_Life.Controllers
             ViewBag.ContractorID = new SelectList(db.SubContractors, "SubcontractorId", "OrgName");
             return View();
         }
-        public ActionResult GraphDataIndex()
+
+        //populate graph based on the user 
+
+        public JsonResult GraphDataIndex(string yearsearch)
         {
-            var costlist = db.BudgetCosts.ToList();
-            return Json(costlist, JsonRequestBehavior.AllowGet);
+            int thisyear = DateTime.Now.Year;
+            var region = 1;
+
+            if (!String.IsNullOrEmpty(yearsearch))
+            {
+                region = Int32.Parse(yearsearch.Substring(10, 1));
+                thisyear = Int32.Parse(yearsearch.Substring(0, 4));
+            }
+
+            var costlist = db.BudgetCosts
+                .Where(s => s.Year == thisyear && (int)s.Region.Value == region)
+                .OrderBy(s => s.Month);
+
+            return Json(costlist.ToList(), JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult GraphDataIndexTest(string yearsearch)
+        {
+            int thisyear = DateTime.Now.Year;
+            var region = 1;
+
+            if (!String.IsNullOrEmpty(yearsearch))
+            {
+                //region = Int32.Parse(yearsearch.Substring(10, 1));
+                thisyear = Int32.Parse(yearsearch.Substring(0, 4));
+            }
+
+            var costlist = db.BudgetCosts
+                .Where(s => s.Year == thisyear && (int)s.Region.Value == region)
+                .OrderBy(s => s.Month);
+
+            return Json(costlist.ToList(), JsonRequestBehavior.AllowGet);
         }
         //#############################################################################################
         public ActionResult AExpenseVSBExpense()
