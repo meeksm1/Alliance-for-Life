@@ -6,11 +6,11 @@ namespace Alliance_for_Life.Controllers
 {
     public class ContractorFormController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly ApplicationDbContext db;
 
         public ContractorFormController()
         {
-            _context = new ApplicationDbContext();
+            db = new ApplicationDbContext();
         }
 
         public ActionResult Create()

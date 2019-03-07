@@ -11,11 +11,11 @@ namespace Alliance_for_Life.Controllers
 {
     public class NonResidentialMIRController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly ApplicationDbContext db;
 
         public NonResidentialMIRController()
         {
-            _context = new ApplicationDbContext();
+            db = new ApplicationDbContext();
         }
 
         public ActionResult Index()
@@ -31,7 +31,7 @@ namespace Alliance_for_Life.Controllers
 
             var viewModel = new NonResidentialMIRFormViewModel
             {
-                Subcontractors = _context.SubContractors.ToList()
+                Subcontractors = db.SubContractors.ToList()
             };
             return View(viewModel);
         }
@@ -45,7 +45,7 @@ namespace Alliance_for_Life.Controllers
             if (!ModelState.IsValid)
             {
                 viewModel.SubmittedDate = DateTime.UtcNow;
-                viewModel.Subcontractors = _context.SubContractors.ToList();
+                viewModel.Subcontractors = db.SubContractors.ToList();
                 return View("Create", viewModel);
             }
 
@@ -63,8 +63,8 @@ namespace Alliance_for_Life.Controllers
                 SubmittedDate = DateTime.Now
             };
 
-            _context.NonResidentialMIRs.Add(invoice);
-            _context.SaveChanges();
+            db.NonResidentialMIRs.Add(invoice);
+            db.SaveChanges();
 
             return RedirectToAction("Index", "Home");
         }
@@ -72,8 +72,8 @@ namespace Alliance_for_Life.Controllers
         //Get Report Data
         public ActionResult Reports()
         {
-            var report = from res in _context.NonResidentialMIRs
-                         join s in _context.SubContractors on res.SubcontractorId equals s.SubcontractorId
+            var report = from res in db.NonResidentialMIRs
+                         join s in db.SubContractors on res.SubcontractorId equals s.SubcontractorId
                          select new MIRReport
                          {
                              Id = res.Id,
@@ -122,8 +122,8 @@ namespace Alliance_for_Life.Controllers
                 new DataColumn ("Other Classes Offered")
             });
 
-            var report = from res in _context.NonResidentialMIRs
-                         join s in _context.SubContractors on res.SubcontractorId equals s.SubcontractorId
+            var report = from res in db.NonResidentialMIRs
+                         join s in db.SubContractors on res.SubcontractorId equals s.SubcontractorId
                          select new MIRReport
                          {
                              Id = res.Id,

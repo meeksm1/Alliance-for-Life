@@ -16,13 +16,13 @@ namespace Alliance_for_Life.Controllers
 {
     public class AccountController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly ApplicationDbContext db;
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
         public AccountController()
         {
-            _context = new ApplicationDbContext();
+            db = new ApplicationDbContext();
         }
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
@@ -142,20 +142,20 @@ namespace Alliance_for_Life.Controllers
         public ActionResult IndexforRegisteredUsers()
         { 
             List<Userinformation> modelLst = new List<Userinformation>();
-            var role = _context.Roles.Include(x => x.Users).ToList();
+            var role = db.Roles.Include(x => x.Users).ToList();
 
             foreach (var r in role)
             {
                 foreach (var u in r.Users)
                 {
-                    var usr = _context.Users.Find(u.UserId);
+                    var usr = db.Users.Find(u.UserId);
                     var obj = new Userinformation
                     {
                        Firstname = usr.FirstName,
                        Lastname = usr.LastName,
                        Email = usr.Email,
                        Role = r.Name,
-                       organization = _context.SubContractors.Find(usr.SubcontractorId).OrgName
+                       organization = db.SubContractors.Find(usr.SubcontractorId).OrgName
                     };
                    
                     modelLst.Add(obj);
@@ -171,7 +171,7 @@ namespace Alliance_for_Life.Controllers
         {
             var viewModel = new RegisterViewModel
             {
-                Subcontractors = _context.SubContractors.ToList()
+                Subcontractors = db.SubContractors.ToList()
             };
             return View(viewModel);
         }
@@ -185,8 +185,8 @@ namespace Alliance_for_Life.Controllers
         {
             if (!ModelState.IsValid)
             {
-                var contractor = _context.SubContractors.Select(c => c.OrgName);
-                viewModel.Subcontractors = _context.SubContractors.ToList();
+                var contractor = db.SubContractors.Select(c => c.OrgName);
+                viewModel.Subcontractors = db.SubContractors.ToList();
                 return View("Create", viewModel);
             }
             {
@@ -202,7 +202,7 @@ namespace Alliance_for_Life.Controllers
 
                 };
 
-                _context.Users.Add(user);
+                db.Users.Add(user);
 
                 var result = await UserManager.CreateAsync(user, viewModel.Password);
                 if (result.Succeeded)
@@ -228,8 +228,8 @@ namespace Alliance_for_Life.Controllers
         [HttpGet]
         public ActionResult RegisterRole()
         {
-            ViewBag.RoleName = new SelectList(_context.Roles.ToList(), "Name", "Name");
-            ViewBag.UserName = new SelectList(_context.Users.ToList(), "UserName", "UserName");
+            ViewBag.RoleName = new SelectList(db.Roles.ToList(), "Name", "Name");
+            ViewBag.UserName = new SelectList(db.Users.ToList(), "UserName", "UserName");
             return View();
         }
 
@@ -240,7 +240,7 @@ namespace Alliance_for_Life.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> RegisterRole(RegisterViewModel model, ApplicationUser user)
         {
-            var userId = _context.Users.Where(i => i.UserName == user.UserName).Select(s => s.Id);
+            var userId = db.Users.Where(i => i.UserName == user.UserName).Select(s => s.Id);
             string updateId = "";
             foreach (var i in userId)
             {
