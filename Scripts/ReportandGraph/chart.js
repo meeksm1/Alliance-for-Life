@@ -411,7 +411,7 @@ function drawTable(responses) {
                 + responses[i].Food + responses[i].Supplies + responses[i].RFO;
 
         }
-          third quater
+          //third quater
        if (7 <= responses[i].Month <= 9) {
             thirdquaterlyadmincost += thirdquaterlyadmincost;
             thirdquaterlyparticost += thirdquaterlyparticost;
