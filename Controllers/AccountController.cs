@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -175,6 +176,7 @@ namespace Alliance_for_Life.Controllers
                 Id = new Guid(client.Id),
                 Firstname = client.FirstName,
                 Lastname = client.LastName,
+                Email = client.Email,
                 organization = db.SubContractors.Find(client.SubcontractorId).OrgName,
                 Role = db.Roles.Find(clienrole).Name
             };
@@ -183,6 +185,26 @@ namespace Alliance_for_Life.Controllers
             ViewBag.Role = new SelectList(db.Roles.ToList(), "Id", "Name", clienrole);
 
             return View("Edit", viewModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include = "Id,Firstname,Lastname,Email,organization,Role")] RegisterViewModel applicationUser)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(applicationUser).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("IndexofRegisteredUsers");
+            }
+
+            var client = db.Users.Find();
+            var clienrole = client.Roles.FirstOrDefault().RoleId;
+
+            ViewBag.SubcontractorId = new SelectList(db.SubContractors.ToList(), "SubcontractorId", "OrgName", applicationUser.Subcontractors);
+            ViewBag.Role = new SelectList(db.Roles.ToList(), "Id", "Name", clienrole);
+
+            return View("Register",applicationUser);
         }
 
 
