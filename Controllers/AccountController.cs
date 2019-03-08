@@ -4,13 +4,13 @@ using Alliance_for_Life.ViewModels;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using System.Web.Security;
 
 namespace Alliance_for_Life.Controllers
 {
@@ -140,7 +140,7 @@ namespace Alliance_for_Life.Controllers
         //list user information
 
         public ActionResult IndexforRegisteredUsers()
-        { 
+        {
             List<Userinformation> modelLst = new List<Userinformation>();
             var role = db.Roles.Include(x => x.Users).ToList();
 
@@ -151,17 +151,38 @@ namespace Alliance_for_Life.Controllers
                     var usr = db.Users.Find(u.UserId);
                     var obj = new Userinformation
                     {
-                       Firstname = usr.FirstName,
-                       Lastname = usr.LastName,
-                       Email = usr.Email,
-                       Role = r.Name,
-                       organization = db.SubContractors.Find(usr.SubcontractorId).OrgName
+                        Id = new Guid(usr.Id),
+                        Firstname = usr.FirstName,
+                        Lastname = usr.LastName,
+                        Email = usr.Email,
+                        Role = r.Name,
+                        organization = db.SubContractors.Find(usr.SubcontractorId).OrgName
                     };
-                   
+
                     modelLst.Add(obj);
                 }
             }
-            return View(modelLst); 
+            return View(modelLst);
+        }
+
+        public ActionResult Edit(Guid? id)
+        {
+            var client = db.Users.Find(id.ToString());
+            var clienrole = client.Roles.FirstOrDefault().RoleId;
+
+            var viewModel = new Userinformation
+            {
+                Id = new Guid(client.Id),
+                Firstname = client.FirstName,
+                Lastname = client.LastName,
+                organization = db.SubContractors.Find(client.SubcontractorId).OrgName,
+                Role = db.Roles.Find(clienrole).Name
+            };
+
+            ViewBag.SubcontractorId = new SelectList(db.SubContractors.ToList(), "SubcontractorId", "OrgName", client.SubcontractorId);
+            ViewBag.Role = new SelectList(db.Roles.ToList(), "Id", "Name", clienrole);
+
+            return View("Edit", viewModel);
         }
 
 
@@ -215,7 +236,7 @@ namespace Alliance_for_Life.Controllers
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Create", "AFLForm");
                 }
                 AddErrors(result);
             }

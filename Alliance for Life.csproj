@@ -743,6 +743,7 @@
     <Content Include="Views\QuarterlyStates\FourthQuarterReport.cshtml" />
     <Content Include="Views\QuarterlyStates\SecondQuarterReport.cshtml" />
     <Content Include="Views\QuarterlyStates\ThirdQuarterReport.cshtml" />
+    <Content Include="Views\Account\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config">
