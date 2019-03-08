@@ -10,24 +10,24 @@ namespace Alliance_for_Life.Controllers
     [Authorize]
     public class HomeController : Controller
     {
-        private ApplicationDbContext _context;
+        private ApplicationDbContext db;
 
         public HomeController()
         {
-            _context = new ApplicationDbContext();
+            db = new ApplicationDbContext();
         }
 
         public ActionResult Index()
         {
-            var subcontractors = _context.SubContractors
+            var subcontractors = db.SubContractors
              .Include(s => s.Administrator)
              .Where(s => s.Active);
 
             if (!User.IsInRole("Admin"))
             {
                 var id = User.Identity.GetUserId();
-                subcontractors = from s in _context.SubContractors
-                                        join a in _context.Users on s.SubcontractorId equals a.SubcontractorId
+                subcontractors = from s in db.SubContractors
+                                        join a in db.Users on s.SubcontractorId equals a.SubcontractorId
                                         where id == a.Id
                                         select s;
             }

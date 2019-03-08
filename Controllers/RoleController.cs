@@ -10,16 +10,16 @@ namespace Alliance_for_Life.Controllers
 {
     public class RoleController : Controller
     {
-        ApplicationDbContext _context;
+        ApplicationDbContext db;
 
         public RoleController()
         {
-            _context = new ApplicationDbContext();
+            db = new ApplicationDbContext();
         }
 
         public ActionResult Index()
         {
-            var Roles = _context.Roles.ToList();
+            var Roles = db.Roles.ToList();
             return View(Roles);
         }
 
@@ -32,8 +32,8 @@ namespace Alliance_for_Life.Controllers
         [HttpPost]
         public ActionResult Create(IdentityRole Role)
         {
-            _context.Roles.Add(Role);
-            _context.SaveChanges();
+            db.Roles.Add(Role);
+            db.SaveChanges();
 
             return RedirectToAction("Index");
         }

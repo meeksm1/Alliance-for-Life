@@ -12,11 +12,11 @@ namespace Alliance_for_Life.Controllers
 {
     public class SubContractorController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly ApplicationDbContext db;
 
         public SubContractorController()
         {
-            _context = new ApplicationDbContext();
+            db = new ApplicationDbContext();
         }
 
 
@@ -60,8 +60,8 @@ namespace Alliance_for_Life.Controllers
                 SubmittedDate = DateTime.Now
             };
 
-            _context.SubContractors.Add(contractor);
-            _context.SaveChanges();
+            db.SubContractors.Add(contractor);
+            db.SaveChanges();
 
             return RedirectToAction("Index", "Home");
         }
@@ -78,7 +78,7 @@ namespace Alliance_for_Life.Controllers
             }
 
             var userId = User.Identity.GetUserId();
-            var contractor = _context.SubContractors.Single(s => s.SubcontractorId == viewModel.Id && s.AdministratorId == userId);
+            var contractor = db.SubContractors.Single(s => s.SubcontractorId == viewModel.Id && s.AdministratorId == userId);
             contractor.Region = viewModel.Region;
             contractor.OrgName = viewModel.OrgName;
             contractor.Director = viewModel.Director;
@@ -94,7 +94,7 @@ namespace Alliance_for_Life.Controllers
             contractor.Active = viewModel.Active;
 
 
-            _context.SaveChanges();
+            db.SaveChanges();
 
             return RedirectToAction("Reports", "Subcontractor");
         }
@@ -102,7 +102,7 @@ namespace Alliance_for_Life.Controllers
         [Authorize(Roles = "Admin")]
         public ActionResult Edit(Guid id)
         {
-            var org = _context.SubContractors.Single(s => s.SubcontractorId == id);
+            var org = db.SubContractors.Single(s => s.SubcontractorId == id);
             var viewModel = new SubContractorFormViewModel
             {
                 Heading = "Edit Subcontractor Information",
@@ -128,12 +128,12 @@ namespace Alliance_for_Life.Controllers
         // GET: BudgetReports
         public ActionResult Index()
         {
-            return View(_context.SubContractors.ToList());
+            return View(db.SubContractors.ToList());
         }
 
         public ActionResult Reports()
         {
-            var subcontractors = from s in _context.SubContractors
+            var subcontractors = from s in db.SubContractors
                                  select new SubcontractorReport
                                  {
                                      SubcontractorId = s.SubcontractorId,
@@ -162,7 +162,7 @@ namespace Alliance_for_Life.Controllers
                 new DataColumn ("Date Submitted")
             });
 
-            var subcontractors = from s in _context.SubContractors
+            var subcontractors = from s in db.SubContractors
                                  select new SubcontractorReport
                                  {
                                      EIN = s.EIN,
