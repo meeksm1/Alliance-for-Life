@@ -94,10 +94,18 @@ namespace Alliance_for_Life.Controllers
             int thisyear = DateTime.Now.Year;
             var region = 1;
 
+            //checking the url string for the returned value
             if (!String.IsNullOrEmpty(yearsearch))
             {
-                //region = Int32.Parse(yearsearch.Substring(10, 1));
-                thisyear = Int32.Parse(yearsearch.Substring(0, 4));
+                if(yearsearch.Length > 7)
+                {
+                    thisyear = Int32.Parse(yearsearch.Substring(0, 4));
+                    region = Int32.Parse(yearsearch.Substring(10, 1));
+                }
+                else
+                {
+                    region = Int32.Parse(yearsearch.Substring(6, 1));
+                }
             }
 
             var costlist = db.BudgetCosts

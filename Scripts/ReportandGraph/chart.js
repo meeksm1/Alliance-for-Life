@@ -1,6 +1,6 @@
 ﻿
-    google.load("visualization", "1", {packages: ["corechart"] });
-    google.setOnLoadCallback(drawCharts);
+google.load("visualization", "1", { packages: ["corechart", "table"] });
+google.setOnLoadCallback(drawCharts);
 
  //fetching the graph data on load
 $(document).ready(function () {
@@ -26,15 +26,6 @@ $(document).ready(function () {
     $('#submit').click(function (e) {
         var yearsearch = $("#YearSearch").val();
         var regionsearch = $("#RegionSearch").val();
-        //for the default dropdown value.
-        if (yearsearch == null) {
-            var date = new Date();
-            yearsearch = date.getFullYear();
-        }
-        if (regionsearch == null) {
-            yearsearch = "Region1";
-        }
-        //var Orgnamesearch = $("#OrgSearch").val();
         $.ajax({
             url: "/BudgetCosts/GraphDataIndexTest?YearSearch=" + yearsearch + regionsearch,
             data: "{}",
@@ -92,10 +83,13 @@ function drawCharts(responses) {
     barChart(responses);
 
     //otherchart
-    lineChart();
+    lineChart(responses);
 
     //pie chart
-    piechart()
+    piechart(responses);
+
+    //table view
+    drawTable(responses);
 }
 
 
@@ -192,30 +186,37 @@ function barChart(responses) {
 
 
 //linechart
-function lineChart() {
-
-
-    function randomNumber(base, step) {
-        return Math.floor((Math.random() * step) + base);
-    }
-
-    function createData(year, start1, start2, step, offset) {
-        var ar = [];
-        for (var i = 0; i < 12; i++) {
-            ar.push([new Date(year, i), randomNumber(start1, step) + offset, randomNumber(start2, step) + offset]);
-        }
-        return ar;
-    }
+function lineChart(responses) {
 
     var randomLineData = [
-        ['Year', 'Page Views', 'Unique Views']
+        [{ label: 'Month', type: 'string' },
+        { label: 'Admin Cost', type: 'number' },
+        { label: 'Participation Cost', type: 'number' }]
     ];
 
-    for (var x = 0; x < 7; x++) {
-        var newYear = createData(2007 + x, 10000, 5000, 4000, 800 * Math.pow(x, 2));
-        for (var n = 0; n < 12; n++) {
-            randomLineData.push(newYear.shift());
-        }
+    for (var i = 0; i < responses.length; i++) {
+
+        //calculating total admin cost
+        var admintotal = responses[i].ASalandWages + responses[i].AEmpBenefits + responses[i].AEmpTravel
+            + responses[i].AEmpTraining + responses[i].AOfficeRent + responses[i].AOfficeUtilities
+            + responses[i].AFacilityIns + responses[i].AOfficeSupplies + responses[i].AEquipment
+            + responses[i].AOfficeCommunications + responses[i].AOfficeMaint + responses[i].AConsulting
+            + responses[i].SubConPayCost + responses[i].BackgrounCheck + responses[i].Other
+            + responses[i].AJanitorServices + responses[i].ADepreciation + responses[i].ATechSupport
+            + responses[i].ASecurityServices + responses[i].ATotCosts + responses[i].AdminFee;
+
+        //calculating total participation cost
+        var partitotal = responses[i].Trasportation + responses[i].JobTraining + responses[i].TuitionAssistance
+            + responses[i].ContractedResidential + responses[i].UtilityAssistance + responses[i].EmergencyShelter
+            + responses[i].HousingAssistance + responses[i].Childcare + responses[i].Clothing
+            + responses[i].Food + responses[i].Supplies + responses[i].RFO;
+
+
+        //pushing data to the table
+        var month = monthreturn(responses[i].Month);
+
+        //adding to the table
+        randomLineData.push([month, admintotal, partitotal]);
     }
 
     var lineData = new google.visualization.arrayToDataTable(randomLineData);
@@ -272,16 +273,47 @@ function lineChart() {
 }
 
 //piechart
-function piechart() {
-    var pieData = google.visualization.arrayToDataTable([
-        ['Country', 'Page Hits'],
-        ['USA', 7242],
-        ['Canada', 4563],
-        ['Mexico', 1345],
-        ['Sweden', 946],
-        ['Germany', 2150]
-    ]);
+function piechart(responses) {
 
+
+    var PieChartData = [
+        [{ label: 'Cost Type', type: 'string' },
+        { label: 'Cost', type: 'number' }]
+    ];
+
+
+    //declare variables for the pie chart
+    var admincost = 0;
+    var particost = 0;
+    var i = 0;
+    while (i < responses.length) {
+
+        admincost += admincost;
+        particost += particost;
+
+        //adding all the admin costs
+        admincost = responses[i].ASalandWages + responses[i].AEmpBenefits + responses[i].AEmpTravel
+            + responses[i].AEmpTraining + responses[i].AOfficeRent + responses[i].AOfficeUtilities
+            + responses[i].AFacilityIns + responses[i].AOfficeSupplies + responses[i].AEquipment
+            + responses[i].AOfficeCommunications + responses[i].AOfficeMaint + responses[i].AConsulting
+            + responses[i].SubConPayCost + responses[i].BackgrounCheck + responses[i].Other
+            + responses[i].AJanitorServices + responses[i].ADepreciation + responses[i].ATechSupport
+            + responses[i].ASecurityServices + responses[i].ATotCosts + responses[i].AdminFee;
+
+        //adding the participation costs
+        particost = responses[i].Trasportation + responses[i].JobTraining + responses[i].TuitionAssistance
+            + responses[i].ContractedResidential + responses[i].UtilityAssistance + responses[i].EmergencyShelter
+            + responses[i].HousingAssistance + responses[i].Childcare + responses[i].Clothing
+            + responses[i].Food + responses[i].Supplies + responses[i].RFO;
+
+        //adding the costs saperately
+        i++;
+    }
+    //push admin cost
+    //push parti cost
+    PieChartData.push(['Admin Cost', admincost]);
+    PieChartData.push(['Participation Cost', particost]);
+    var pieData = google.visualization.arrayToDataTable(PieChartData);
     var pieOptions = {
         backgroundColor: 'transparent',
         pieHole: 0.4,
@@ -313,4 +345,133 @@ function piechart() {
 
     var pieChart = new google.visualization.PieChart(document.getElementById('pie-chart'));
     pieChart.draw(pieData, pieOptions);
+}
+
+//table
+function drawTable(responses) {
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Name');
+    data.addColumn('number', 'Admin Cost');
+    data.addColumn('number', 'Participation Cost');
+    data.addColumn('number', 'Total');
+
+    var firstquaterlyparticost = 0;
+    var firstquaterlyadmincost = 0;
+    var secondquaterlyparticost = 0;
+    var secondquaterlyadmincost = 0;
+    var thirdquaterlyparticost = 0;
+    var thirdquaterlyadmincost = 0;
+    var fourthquaterlyparticost = 0;
+    var fourthquaterlyadmincost = 0;
+
+    var i = 0;
+
+    while (i < responses.length) {
+
+        //calculate the first quater price
+
+        if (1 <= responses[i].Month <= 3) {
+            //increment the cost
+            firstquaterlyadmincost += firstquaterlyadmincost;
+            firstquaterlyparticost += firstquaterlyparticost;
+
+              firstquaterlyadmincost = responses[i].ASalandWages + responses[i].AEmpBenefits + responses[i].AEmpTravel
+                + responses[i].AEmpTraining + responses[i].AOfficeRent + responses[i].AOfficeUtilities
+                + responses[i].AFacilityIns + responses[i].AOfficeSupplies + responses[i].AEquipment
+                + responses[i].AOfficeCommunications + responses[i].AOfficeMaint + responses[i].AConsulting
+                + responses[i].SubConPayCost + responses[i].BackgrounCheck + responses[i].Other
+                + responses[i].AJanitorServices + responses[i].ADepreciation + responses[i].ATechSupport
+                + responses[i].ASecurityServices + responses[i].ATotCosts + responses[i].AdminFee;
+
+            ////adding the participation costs
+              firstquaterlyparticost = responses[i].Trasportation + responses[i].JobTraining + responses[i].TuitionAssistance
+                + responses[i].ContractedResidential + responses[i].UtilityAssistance + responses[i].EmergencyShelter
+                + responses[i].HousingAssistance + responses[i].Childcare + responses[i].Clothing
+                + responses[i].Food + responses[i].Supplies + responses[i].RFO;
+        }
+       // second quarter
+         if (4 <= responses[i].Month <= 6) {
+
+            secondquaterlyadmincost += secondquaterlyadmincost;
+            secondquaterlyparticost += secondquaterlyparticost;
+
+            //adding them
+            secondquaterlyadmincost = responses[i].ASalandWages + responses[i].AEmpBenefits + responses[i].AEmpTravel
+                + responses[i].AEmpTraining + responses[i].AOfficeRent + responses[i].AOfficeUtilities
+                + responses[i].AFacilityIns + responses[i].AOfficeSupplies + responses[i].AEquipment
+                + responses[i].AOfficeCommunications + responses[i].AOfficeMaint + responses[i].AConsulting
+                + responses[i].SubConPayCost + responses[i].BackgrounCheck + responses[i].Other
+                + responses[i].AJanitorServices + responses[i].ADepreciation + responses[i].ATechSupport
+                + responses[i].ASecurityServices + responses[i].ATotCosts + responses[i].AdminFee;
+
+            ////adding the participation costs
+            secondquaterlyparticost = responses[i].Trasportation + responses[i].JobTraining + responses[i].TuitionAssistance
+                + responses[i].ContractedResidential + responses[i].UtilityAssistance + responses[i].EmergencyShelter
+                + responses[i].HousingAssistance + responses[i].Childcare + responses[i].Clothing
+                + responses[i].Food + responses[i].Supplies + responses[i].RFO;
+
+        }
+          third quater
+       if (7 <= responses[i].Month <= 9) {
+            thirdquaterlyadmincost += thirdquaterlyadmincost;
+            thirdquaterlyparticost += thirdquaterlyparticost;
+
+            thirdquaterlyadmincost = responses[i].ASalandWages + responses[i].AEmpBenefits + responses[i].AEmpTravel
+                + responses[i].AEmpTraining + responses[i].AOfficeRent + responses[i].AOfficeUtilities
+                + responses[i].AFacilityIns + responses[i].AOfficeSupplies + responses[i].AEquipment
+                + responses[i].AOfficeCommunications + responses[i].AOfficeMaint + responses[i].AConsulting
+                + responses[i].SubConPayCost + responses[i].BackgrounCheck + responses[i].Other
+                + responses[i].AJanitorServices + responses[i].ADepreciation + responses[i].ATechSupport
+                + responses[i].ASecurityServices + responses[i].ATotCosts + responses[i].AdminFee;
+
+            ////adding the participation costs
+            thirdquaterlyparticost = responses[i].Trasportation + responses[i].JobTraining + responses[i].TuitionAssistance
+                + responses[i].ContractedResidential + responses[i].UtilityAssistance + responses[i].EmergencyShelter
+                + responses[i].HousingAssistance + responses[i].Childcare + responses[i].Clothing
+                + responses[i].Food + responses[i].Supplies + responses[i].RFO;
+
+        }
+            //fourthquater
+       if (10 <= responses[i].Month <= 12) {
+            fourthquaterlyadmincost += fourthquaterlyadmincost;
+            fourthquaterlyparticost += fourthquaterlyparticost;
+
+            fourthquaterlyadmincost = responses[i].ASalandWages + responses[i].AEmpBenefits + responses[i].AEmpTravel
+                + responses[i].AEmpTraining + responses[i].AOfficeRent + responses[i].AOfficeUtilities
+                + responses[i].AFacilityIns + responses[i].AOfficeSupplies + responses[i].AEquipment
+                + responses[i].AOfficeCommunications + responses[i].AOfficeMaint + responses[i].AConsulting
+                + responses[i].SubConPayCost + responses[i].BackgrounCheck + responses[i].Other
+                + responses[i].AJanitorServices + responses[i].ADepreciation + responses[i].ATechSupport
+                + responses[i].ASecurityServices + responses[i].ATotCosts + responses[i].AdminFee;
+
+            ////adding the participation costs
+            fourthquaterlyparticost = responses[i].Trasportation + responses[i].JobTraining + responses[i].TuitionAssistance
+                + responses[i].ContractedResidential + responses[i].UtilityAssistance + responses[i].EmergencyShelter
+                + responses[i].HousingAssistance + responses[i].Childcare + responses[i].Clothing
+                + responses[i].Food + responses[i].Supplies + responses[i].RFO;
+        }
+        i++;
+    }
+
+    var totalyearcost = fourthquaterlyadmincost + fourthquaterlyparticost
+        + firstquaterlyparticost + firstquaterlyadmincost
+        + secondquaterlyparticost + secondquaterlyadmincost
+        + thirdquaterlyparticost + thirdquaterlyadmincost;
+
+    data.addRows([
+        ['First Quater', { v: firstquaterlyadmincost, f: '$' + firstquaterlyadmincost }, { v: firstquaterlyparticost, f: '$' + firstquaterlyparticost }, { v: firstquaterlyadmincost + firstquaterlyparticost, f: '$' + (firstquaterlyadmincost + firstquaterlyparticost) }],
+        ['Second Quater', { v: secondquaterlyadmincost, f: '$' + secondquaterlyadmincost }, { v: secondquaterlyparticost, f: '$' + secondquaterlyparticost }, { v: secondquaterlyadmincost + secondquaterlyparticost, f: '$' + (secondquaterlyadmincost + secondquaterlyparticost) }],
+        ['Third Quater', { v: thirdquaterlyadmincost, f: '$' + thirdquaterlyadmincost }, { v: thirdquaterlyparticost, f: '$' + thirdquaterlyparticost }, { v: thirdquaterlyadmincost + thirdquaterlyparticost, f: '$' + (thirdquaterlyadmincost + thirdquaterlyparticost) }],
+        ['Fourth Quater', { v: fourthquaterlyadmincost, f: '$' + fourthquaterlyadmincost }, { v: fourthquaterlyparticost, f: '$' + fourthquaterlyparticost }, { v: fourthquaterlyadmincost + fourthquaterlyparticost, f: '$' + (fourthquaterlyadmincost + fourthquaterlyparticost) }],
+        ['Total', , , { v: totalyearcost, f: '$' + (totalyearcost) }],
+
+    ]);
+
+    //calculating total cost
+   
+ 
+
+    var table = new google.visualization.Table(document.getElementById('table_div'));
+
+    table.draw(data, { showRowNumber: true, width: '100%', height: '100%' });
 }
