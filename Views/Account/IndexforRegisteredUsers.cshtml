@@ -29,29 +29,37 @@
         <th>
             @Html.DisplayName("Organization")
         </th>
+        <th>
+            Edit
+        </th>
 
         <th></th>
     </tr>
 
     @foreach (var item in Model)
     {  
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.Firstname)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Lastname)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Email)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Role)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.organization)
-    </td>
-</tr>
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Firstname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Lastname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Role)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.organization)
+        </td>
+        <td>
+            <a href="@Url.Action("Edit", "Account", new { id = item.Id }, Request.Url.Scheme)">
+                <i style="font-size:16px; color:#3498DB" class="fa">&#xf044;</i>
+            </a>
+        </td>
+    </tr>
     }
 
 </table>

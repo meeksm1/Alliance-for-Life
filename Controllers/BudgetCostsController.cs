@@ -97,7 +97,7 @@ namespace Alliance_for_Life.Controllers
             //checking the url string for the returned value
             if (!String.IsNullOrEmpty(yearsearch))
             {
-                if(yearsearch.Length > 7)
+                if (yearsearch.Length > 7)
                 {
                     thisyear = Int32.Parse(yearsearch.Substring(0, 4));
                     region = Int32.Parse(yearsearch.Substring(10, 1));
