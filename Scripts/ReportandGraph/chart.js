@@ -90,6 +90,9 @@ function drawCharts(responses) {
 
     //table view
     drawTable(responses);
+
+    //excel output
+    drawToolbar(responses)
 }
 
 
@@ -476,4 +479,16 @@ function drawTable(responses) {
     var table = new google.visualization.Table(document.getElementById('table_div'));
 
     table.draw(data, { showRowNumber: true, width: '100%', height: '100%' });
+}
+
+function drawToolbar(responses) {
+    var components = [
+        {
+            type: 'html', datasource: 'https://spreadsheets.google.com/tq?key=pCQbetd-CptHnwJEfo8tALA' },
+        { type: 'csv', datasource: 'https://spreadsheets.google.com/tq?key=pCQbetd-CptHnwJEfo8tALA' }
+        
+    ];
+
+    var container = document.getElementById('toolbar_div');
+    google.visualization.drawToolbar(container, components);
 }
