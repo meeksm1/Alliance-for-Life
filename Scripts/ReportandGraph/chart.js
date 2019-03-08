@@ -353,6 +353,7 @@ function drawTable(responses) {
     data.addColumn('string', 'Name');
     data.addColumn('number', 'Admin Cost');
     data.addColumn('number', 'Participation Cost');
+    data.addColumn('number', 'State Fee');
     data.addColumn('number', 'Total');
 
     var firstquaterlyparticost = 0;
@@ -370,12 +371,12 @@ function drawTable(responses) {
 
         //calculate the first quater price
 
-        if (1 <= responses[i].Month <= 3) {
+        if (responses[i].Month <= 3) {
             //increment the cost
             firstquaterlyadmincost += firstquaterlyadmincost;
             firstquaterlyparticost += firstquaterlyparticost;
 
-              firstquaterlyadmincost = responses[i].ASalandWages + responses[i].AEmpBenefits + responses[i].AEmpTravel
+            firstquaterlyadmincost = responses[i].ASalandWages + responses[i].AEmpBenefits + responses[i].AEmpTravel
                 + responses[i].AEmpTraining + responses[i].AOfficeRent + responses[i].AOfficeUtilities
                 + responses[i].AFacilityIns + responses[i].AOfficeSupplies + responses[i].AEquipment
                 + responses[i].AOfficeCommunications + responses[i].AOfficeMaint + responses[i].AConsulting
@@ -384,13 +385,13 @@ function drawTable(responses) {
                 + responses[i].ASecurityServices + responses[i].ATotCosts + responses[i].AdminFee;
 
             ////adding the participation costs
-              firstquaterlyparticost = responses[i].Trasportation + responses[i].JobTraining + responses[i].TuitionAssistance
+            firstquaterlyparticost = responses[i].Trasportation + responses[i].JobTraining + responses[i].TuitionAssistance
                 + responses[i].ContractedResidential + responses[i].UtilityAssistance + responses[i].EmergencyShelter
                 + responses[i].HousingAssistance + responses[i].Childcare + responses[i].Clothing
                 + responses[i].Food + responses[i].Supplies + responses[i].RFO;
         }
-       // second quarter
-         if (4 <= responses[i].Month <= 6) {
+        // second quarter
+        else if (responses[i].Month <= 6) {
 
             secondquaterlyadmincost += secondquaterlyadmincost;
             secondquaterlyparticost += secondquaterlyparticost;
@@ -411,8 +412,8 @@ function drawTable(responses) {
                 + responses[i].Food + responses[i].Supplies + responses[i].RFO;
 
         }
-          //third quater
-       if (7 <= responses[i].Month <= 9) {
+        //third quater
+        else if (responses[i].Month <= 9) {
             thirdquaterlyadmincost += thirdquaterlyadmincost;
             thirdquaterlyparticost += thirdquaterlyparticost;
 
@@ -431,8 +432,8 @@ function drawTable(responses) {
                 + responses[i].Food + responses[i].Supplies + responses[i].RFO;
 
         }
-            //fourthquater
-       if (10 <= responses[i].Month <= 12) {
+        //fourthquater
+        else if (responses[i].Month >= 10) {
             fourthquaterlyadmincost += fourthquaterlyadmincost;
             fourthquaterlyparticost += fourthquaterlyparticost;
 
@@ -450,20 +451,21 @@ function drawTable(responses) {
                 + responses[i].HousingAssistance + responses[i].Childcare + responses[i].Clothing
                 + responses[i].Food + responses[i].Supplies + responses[i].RFO;
         }
+        else {}
         i++;
     }
 
-    var totalyearcost = fourthquaterlyadmincost + fourthquaterlyparticost
+    var totalyearcost = (fourthquaterlyadmincost + fourthquaterlyparticost
         + firstquaterlyparticost + firstquaterlyadmincost
         + secondquaterlyparticost + secondquaterlyadmincost
-        + thirdquaterlyparticost + thirdquaterlyadmincost;
+        + thirdquaterlyparticost + thirdquaterlyadmincost);
 
     data.addRows([
-        ['First Quater', { v: firstquaterlyadmincost, f: '$' + firstquaterlyadmincost }, { v: firstquaterlyparticost, f: '$' + firstquaterlyparticost }, { v: firstquaterlyadmincost + firstquaterlyparticost, f: '$' + (firstquaterlyadmincost + firstquaterlyparticost) }],
-        ['Second Quater', { v: secondquaterlyadmincost, f: '$' + secondquaterlyadmincost }, { v: secondquaterlyparticost, f: '$' + secondquaterlyparticost }, { v: secondquaterlyadmincost + secondquaterlyparticost, f: '$' + (secondquaterlyadmincost + secondquaterlyparticost) }],
-        ['Third Quater', { v: thirdquaterlyadmincost, f: '$' + thirdquaterlyadmincost }, { v: thirdquaterlyparticost, f: '$' + thirdquaterlyparticost }, { v: thirdquaterlyadmincost + thirdquaterlyparticost, f: '$' + (thirdquaterlyadmincost + thirdquaterlyparticost) }],
-        ['Fourth Quater', { v: fourthquaterlyadmincost, f: '$' + fourthquaterlyadmincost }, { v: fourthquaterlyparticost, f: '$' + fourthquaterlyparticost }, { v: fourthquaterlyadmincost + fourthquaterlyparticost, f: '$' + (fourthquaterlyadmincost + fourthquaterlyparticost) }],
-        ['Total', , , { v: totalyearcost, f: '$' + (totalyearcost) }],
+        ['First Quater', { v: firstquaterlyadmincost, f: '$' + firstquaterlyadmincost.toFixed(2) }, { v: firstquaterlyparticost, f: '$' + firstquaterlyparticost.toFixed(2) }, { v: (firstquaterlyadmincost + firstquaterlyparticost) * .1, f: '$' + ((firstquaterlyadmincost + firstquaterlyparticost) * .1).toFixed(2) }, { v: firstquaterlyadmincost + firstquaterlyparticost, f: '$' + ((firstquaterlyadmincost + firstquaterlyparticost) + (firstquaterlyadmincost + firstquaterlyparticost) * .1).toFixed(2) }],
+        ['Second Quater', { v: secondquaterlyadmincost, f: '$' + secondquaterlyadmincost.toFixed(2) }, { v: secondquaterlyparticost, f: '$' + secondquaterlyparticost.toFixed(2) }, { v: (secondquaterlyadmincost + secondquaterlyparticost) * .1, f: '$' + ((secondquaterlyadmincost + secondquaterlyparticost) * .1).toFixed(2) }, { v: secondquaterlyadmincost + secondquaterlyparticost, f: '$' + ((secondquaterlyadmincost + secondquaterlyparticost) + (secondquaterlyadmincost + secondquaterlyparticost) * .1).toFixed(2) }],
+        ['Third Quater', { v: thirdquaterlyadmincost, f: '$' + thirdquaterlyadmincost.toFixed(2) }, { v: thirdquaterlyparticost, f: '$' + thirdquaterlyparticost.toFixed(2) }, { v: (thirdquaterlyadmincost + thirdquaterlyparticost) * .1, f: '$' + ((thirdquaterlyadmincost + thirdquaterlyparticost) * .1).toFixed(2) }, { v: thirdquaterlyadmincost + thirdquaterlyparticost, f: '$' + ((thirdquaterlyadmincost + thirdquaterlyparticost) + (thirdquaterlyadmincost + thirdquaterlyparticost) * .1).toFixed(2) }],
+        ['Fourth Quater', { v: fourthquaterlyadmincost, f: '$' + fourthquaterlyadmincost.toFixed(2) }, { v: fourthquaterlyparticost, f: '$' + fourthquaterlyparticost.toFixed(2) }, { v: (fourthquaterlyadmincost + fourthquaterlyparticost) * .1, f: '$' + ((fourthquaterlyadmincost + fourthquaterlyparticost) * .1).toFixed(2) }, { v: fourthquaterlyadmincost + fourthquaterlyparticost, f: '$' + ((fourthquaterlyadmincost + fourthquaterlyparticost) + (fourthquaterlyadmincost + fourthquaterlyparticost) * .1).toFixed(2) }],
+        ['Total', , , , { v: totalyearcost+totalyearcost * .1, f: '$' + (totalyearcost + totalyearcost*.1).toFixed(2) }]
 
     ]);
 
