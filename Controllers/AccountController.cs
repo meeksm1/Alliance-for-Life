@@ -168,6 +168,7 @@ namespace Alliance_for_Life.Controllers
 
         public ActionResult Edit(Guid? id)
         {
+            var sublist = db.SubContractors.ToList();
             var client = db.Users.Find(id.ToString());
             var clienrole = client.Roles.FirstOrDefault().RoleId;
 
@@ -177,7 +178,8 @@ namespace Alliance_for_Life.Controllers
                 Firstname = client.FirstName,
                 Lastname = client.LastName,
                 Email = client.Email,
-                organization = db.SubContractors.Find(client.SubcontractorId).OrgName,
+                organization = sublist.ToString(),
+                //organization = db.SubContractors.Find(client.SubcontractorId).OrgName,
                 Role = db.Roles.Find(clienrole).Name
             };
 
@@ -189,22 +191,29 @@ namespace Alliance_for_Life.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Firstname,Lastname,Email,organization,Role")] RegisterViewModel applicationUser)
+        public ActionResult Edit(Userinformation user)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(applicationUser).State = EntityState.Modified;
+                var updateduser = db.Users.Single(s => s.Id == user.Id.ToString());
+                updateduser.SubcontractorId = new Guid(user.organization);
+                updateduser.FirstName = user.Firstname;
+                updateduser.LastName = user.Lastname;
+                updateduser.Email = user.Email;
+                updateduser.Roles.FirstOrDefault().RoleId = user.Role;
+
+                db.Entry(updateduser).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("IndexofRegisteredUsers");
             }
 
-            var client = db.Users.Find();
+            var client = db.Users.Find(user.Id);
             var clienrole = client.Roles.FirstOrDefault().RoleId;
 
-            ViewBag.SubcontractorId = new SelectList(db.SubContractors.ToList(), "SubcontractorId", "OrgName", applicationUser.Subcontractors);
+            ViewBag.SubcontractorId = new SelectList(db.SubContractors.ToList(), "SubcontractorId", "OrgName", user.organization);
             ViewBag.Role = new SelectList(db.Roles.ToList(), "Id", "Name", clienrole);
 
-            return View("Register",applicationUser);
+            return View("Register", user);
         }
 
 
