@@ -359,14 +359,14 @@ function drawTable(responses) {
     data.addColumn('number', 'State Fee');
     data.addColumn('number', 'Total');
 
-    var firstquaterlyparticost = 0;
-    var firstquaterlyadmincost = 0;
-    var secondquaterlyparticost = 0;
-    var secondquaterlyadmincost = 0;
-    var thirdquaterlyparticost = 0;
-    var thirdquaterlyadmincost = 0;
-    var fourthquaterlyparticost = 0;
-    var fourthquaterlyadmincost = 0;
+    var firstquarterlyparticost = 0;
+    var firstquarterlyadmincost = 0;
+    var secondquarterlyparticost = 0;
+    var secondquarterlyadmincost = 0;
+    var thirdquarterlyparticost = 0;
+    var thirdquarterlyadmincost = 0;
+    var fourthquarterlyparticost = 0;
+    var fourthquarterlyadmincost = 0;
 
     var i = 0;
 
@@ -376,10 +376,10 @@ function drawTable(responses) {
 
         if (responses[i].Month <= 3) {
             //increment the cost
-            firstquaterlyadmincost += firstquaterlyadmincost;
-            firstquaterlyparticost += firstquaterlyparticost;
+            firstquarterlyadmincost += firstquarterlyadmincost;
+            firstquarterlyparticost += firstquarterlyparticost;
 
-            firstquaterlyadmincost = responses[i].ASalandWages + responses[i].AEmpBenefits + responses[i].AEmpTravel
+            firstquarterlyadmincost = responses[i].ASalandWages + responses[i].AEmpBenefits + responses[i].AEmpTravel
                 + responses[i].AEmpTraining + responses[i].AOfficeRent + responses[i].AOfficeUtilities
                 + responses[i].AFacilityIns + responses[i].AOfficeSupplies + responses[i].AEquipment
                 + responses[i].AOfficeCommunications + responses[i].AOfficeMaint + responses[i].AConsulting
@@ -388,7 +388,7 @@ function drawTable(responses) {
                 + responses[i].ASecurityServices + responses[i].ATotCosts + responses[i].AdminFee;
 
             ////adding the participation costs
-            firstquaterlyparticost = responses[i].Trasportation + responses[i].JobTraining + responses[i].TuitionAssistance
+            firstquarterlyparticost = responses[i].Trasportation + responses[i].JobTraining + responses[i].TuitionAssistance
                 + responses[i].ContractedResidential + responses[i].UtilityAssistance + responses[i].EmergencyShelter
                 + responses[i].HousingAssistance + responses[i].Childcare + responses[i].Clothing
                 + responses[i].Food + responses[i].Supplies + responses[i].RFO;
@@ -396,11 +396,11 @@ function drawTable(responses) {
         // second quarter
         else if (responses[i].Month <= 6) {
 
-            secondquaterlyadmincost += secondquaterlyadmincost;
-            secondquaterlyparticost += secondquaterlyparticost;
+            secondquarterlyadmincost += secondquarterlyadmincost;
+            secondquarterlyparticost += secondquarterlyparticost;
 
             //adding them
-            secondquaterlyadmincost = responses[i].ASalandWages + responses[i].AEmpBenefits + responses[i].AEmpTravel
+            secondquarterlyadmincost = responses[i].ASalandWages + responses[i].AEmpBenefits + responses[i].AEmpTravel
                 + responses[i].AEmpTraining + responses[i].AOfficeRent + responses[i].AOfficeUtilities
                 + responses[i].AFacilityIns + responses[i].AOfficeSupplies + responses[i].AEquipment
                 + responses[i].AOfficeCommunications + responses[i].AOfficeMaint + responses[i].AConsulting
@@ -409,7 +409,7 @@ function drawTable(responses) {
                 + responses[i].ASecurityServices + responses[i].ATotCosts + responses[i].AdminFee;
 
             ////adding the participation costs
-            secondquaterlyparticost = responses[i].Trasportation + responses[i].JobTraining + responses[i].TuitionAssistance
+            secondquarterlyparticost = responses[i].Trasportation + responses[i].JobTraining + responses[i].TuitionAssistance
                 + responses[i].ContractedResidential + responses[i].UtilityAssistance + responses[i].EmergencyShelter
                 + responses[i].HousingAssistance + responses[i].Childcare + responses[i].Clothing
                 + responses[i].Food + responses[i].Supplies + responses[i].RFO;
@@ -417,10 +417,10 @@ function drawTable(responses) {
         }
         //third quater
         else if (responses[i].Month <= 9) {
-            thirdquaterlyadmincost += thirdquaterlyadmincost;
-            thirdquaterlyparticost += thirdquaterlyparticost;
+            thirdquarterlyadmincost += thirdquarterlyadmincost;
+            thirdquarterlyparticost += thirdquarterlyparticost;
 
-            thirdquaterlyadmincost = responses[i].ASalandWages + responses[i].AEmpBenefits + responses[i].AEmpTravel
+            thirdquarterlyadmincost = responses[i].ASalandWages + responses[i].AEmpBenefits + responses[i].AEmpTravel
                 + responses[i].AEmpTraining + responses[i].AOfficeRent + responses[i].AOfficeUtilities
                 + responses[i].AFacilityIns + responses[i].AOfficeSupplies + responses[i].AEquipment
                 + responses[i].AOfficeCommunications + responses[i].AOfficeMaint + responses[i].AConsulting
@@ -429,7 +429,7 @@ function drawTable(responses) {
                 + responses[i].ASecurityServices + responses[i].ATotCosts + responses[i].AdminFee;
 
             ////adding the participation costs
-            thirdquaterlyparticost = responses[i].Trasportation + responses[i].JobTraining + responses[i].TuitionAssistance
+            thirdquarterlyparticost = responses[i].Trasportation + responses[i].JobTraining + responses[i].TuitionAssistance
                 + responses[i].ContractedResidential + responses[i].UtilityAssistance + responses[i].EmergencyShelter
                 + responses[i].HousingAssistance + responses[i].Childcare + responses[i].Clothing
                 + responses[i].Food + responses[i].Supplies + responses[i].RFO;
@@ -437,10 +437,10 @@ function drawTable(responses) {
         }
         //fourthquater
         else if (responses[i].Month >= 10) {
-            fourthquaterlyadmincost += fourthquaterlyadmincost;
-            fourthquaterlyparticost += fourthquaterlyparticost;
+            fourthquarterlyadmincost += fourthquarterlyadmincost;
+            fourthquarterlyparticost += fourthquarterlyparticost;
 
-            fourthquaterlyadmincost = responses[i].ASalandWages + responses[i].AEmpBenefits + responses[i].AEmpTravel
+            fourthquarterlyadmincost = responses[i].ASalandWages + responses[i].AEmpBenefits + responses[i].AEmpTravel
                 + responses[i].AEmpTraining + responses[i].AOfficeRent + responses[i].AOfficeUtilities
                 + responses[i].AFacilityIns + responses[i].AOfficeSupplies + responses[i].AEquipment
                 + responses[i].AOfficeCommunications + responses[i].AOfficeMaint + responses[i].AConsulting
@@ -449,7 +449,7 @@ function drawTable(responses) {
                 + responses[i].ASecurityServices + responses[i].ATotCosts + responses[i].AdminFee;
 
             ////adding the participation costs
-            fourthquaterlyparticost = responses[i].Trasportation + responses[i].JobTraining + responses[i].TuitionAssistance
+            fourthquarterlyparticost = responses[i].Trasportation + responses[i].JobTraining + responses[i].TuitionAssistance
                 + responses[i].ContractedResidential + responses[i].UtilityAssistance + responses[i].EmergencyShelter
                 + responses[i].HousingAssistance + responses[i].Childcare + responses[i].Clothing
                 + responses[i].Food + responses[i].Supplies + responses[i].RFO;
@@ -458,16 +458,16 @@ function drawTable(responses) {
         i++;
     }
 
-    var totalyearcost = (fourthquaterlyadmincost + fourthquaterlyparticost
-        + firstquaterlyparticost + firstquaterlyadmincost
-        + secondquaterlyparticost + secondquaterlyadmincost
-        + thirdquaterlyparticost + thirdquaterlyadmincost);
+    var totalyearcost = (fourthquarterlyadmincost + fourthquarterlyparticost
+        + firstquarterlyparticost + firstquarterlyadmincost
+        + secondquarterlyparticost + secondquarterlyadmincost
+        + thirdquarterlyparticost + thirdquarterlyadmincost);
 
     data.addRows([
-        ['First Quater', { v: firstquaterlyadmincost, f: '$' + firstquaterlyadmincost.toFixed(2) }, { v: firstquaterlyparticost, f: '$' + firstquaterlyparticost.toFixed(2) }, { v: (firstquaterlyadmincost + firstquaterlyparticost) * .1, f: '$' + ((firstquaterlyadmincost + firstquaterlyparticost) * .1).toFixed(2) }, { v: firstquaterlyadmincost + firstquaterlyparticost, f: '$' + ((firstquaterlyadmincost + firstquaterlyparticost) + (firstquaterlyadmincost + firstquaterlyparticost) * .1).toFixed(2) }],
-        ['Second Quater', { v: secondquaterlyadmincost, f: '$' + secondquaterlyadmincost.toFixed(2) }, { v: secondquaterlyparticost, f: '$' + secondquaterlyparticost.toFixed(2) }, { v: (secondquaterlyadmincost + secondquaterlyparticost) * .1, f: '$' + ((secondquaterlyadmincost + secondquaterlyparticost) * .1).toFixed(2) }, { v: secondquaterlyadmincost + secondquaterlyparticost, f: '$' + ((secondquaterlyadmincost + secondquaterlyparticost) + (secondquaterlyadmincost + secondquaterlyparticost) * .1).toFixed(2) }],
-        ['Third Quater', { v: thirdquaterlyadmincost, f: '$' + thirdquaterlyadmincost.toFixed(2) }, { v: thirdquaterlyparticost, f: '$' + thirdquaterlyparticost.toFixed(2) }, { v: (thirdquaterlyadmincost + thirdquaterlyparticost) * .1, f: '$' + ((thirdquaterlyadmincost + thirdquaterlyparticost) * .1).toFixed(2) }, { v: thirdquaterlyadmincost + thirdquaterlyparticost, f: '$' + ((thirdquaterlyadmincost + thirdquaterlyparticost) + (thirdquaterlyadmincost + thirdquaterlyparticost) * .1).toFixed(2) }],
-        ['Fourth Quater', { v: fourthquaterlyadmincost, f: '$' + fourthquaterlyadmincost.toFixed(2) }, { v: fourthquaterlyparticost, f: '$' + fourthquaterlyparticost.toFixed(2) }, { v: (fourthquaterlyadmincost + fourthquaterlyparticost) * .1, f: '$' + ((fourthquaterlyadmincost + fourthquaterlyparticost) * .1).toFixed(2) }, { v: fourthquaterlyadmincost + fourthquaterlyparticost, f: '$' + ((fourthquaterlyadmincost + fourthquaterlyparticost) + (fourthquaterlyadmincost + fourthquaterlyparticost) * .1).toFixed(2) }],
+        ['First Quarter', { v: firstquarterlyadmincost, f: '$' + firstquarterlyadmincost.toFixed(2) }, { v: firstquarterlyparticost, f: '$' + firstquarterlyparticost.toFixed(2) }, { v: (firstquarterlyadmincost + firstquarterlyparticost) * .1, f: '$' + ((firstquarterlyadmincost + firstquarterlyparticost) * .1).toFixed(2) }, { v: firstquarterlyadmincost + firstquarterlyparticost, f: '$' + ((firstquarterlyadmincost + firstquarterlyparticost) + (firstquarterlyadmincost + firstquarterlyparticost) * .1).toFixed(2) }],
+        ['Second Quarter', { v: secondquarterlyadmincost, f: '$' + secondquarterlyadmincost.toFixed(2) }, { v: secondquarterlyparticost, f: '$' + secondquarterlyparticost.toFixed(2) }, { v: (secondquarterlyadmincost + secondquarterlyparticost) * .1, f: '$' + ((secondquarterlyadmincost + secondquarterlyparticost) * .1).toFixed(2) }, { v: secondquarterlyadmincost + secondquarterlyparticost, f: '$' + ((secondquarterlyadmincost + secondquarterlyparticost) + (secondquarterlyadmincost + secondquarterlyparticost) * .1).toFixed(2) }],
+        ['Third Quarter', { v: thirdquarterlyadmincost, f: '$' + thirdquarterlyadmincost.toFixed(2) }, { v: thirdquarterlyparticost, f: '$' + thirdquarterlyparticost.toFixed(2) }, { v: (thirdquarterlyadmincost + thirdquarterlyparticost) * .1, f: '$' + ((thirdquarterlyadmincost + thirdquarterlyparticost) * .1).toFixed(2) }, { v: thirdquarterlyadmincost + thirdquarterlyparticost, f: '$' + ((thirdquarterlyadmincost + thirdquarterlyparticost) + (thirdquarterlyadmincost + thirdquarterlyparticost) * .1).toFixed(2) }],
+        ['Fourth Quarter', { v: fourthquarterlyadmincost, f: '$' + fourthquarterlyadmincost.toFixed(2) }, { v: fourthquarterlyparticost, f: '$' + fourthquarterlyparticost.toFixed(2) }, { v: (fourthquarterlyadmincost + fourthquarterlyparticost) * .1, f: '$' + ((fourthquarterlyadmincost + fourthquarterlyparticost) * .1).toFixed(2) }, { v: fourthquarterlyadmincost + fourthquarterlyparticost, f: '$' + ((fourthquarterlyadmincost + fourthquarterlyparticost) + (fourthquarterlyadmincost + fourthquarterlyparticost) * .1).toFixed(2) }],
         ['Total', , , , { v: totalyearcost+totalyearcost * .1, f: '$' + (totalyearcost + totalyearcost*.1).toFixed(2) }]
 
     ]);
