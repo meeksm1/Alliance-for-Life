@@ -8,7 +8,6 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Net;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -157,7 +156,7 @@ namespace Alliance_for_Life.Controllers
                         Lastname = usr.LastName,
                         Email = usr.Email,
                         Role = r.Name,
-                        organization = db.SubContractors.Find(usr.SubcontractorId).OrgName
+                        Organization = db.SubContractors.Find(usr.SubcontractorId).OrgName
                     };
 
                     modelLst.Add(obj);
@@ -170,21 +169,19 @@ namespace Alliance_for_Life.Controllers
         {
             var sublist = db.SubContractors.ToList();
             var client = db.Users.Find(id.ToString());
-            var clienrole = client.Roles.FirstOrDefault().RoleId;
-
+            var clientrole = client.Roles.FirstOrDefault().RoleId;
             var viewModel = new Userinformation
             {
                 Id = new Guid(client.Id),
                 Firstname = client.FirstName,
                 Lastname = client.LastName,
                 Email = client.Email,
-                organization = sublist.ToString(),
-                //organization = db.SubContractors.Find(client.SubcontractorId).OrgName,
-                Role = db.Roles.Find(clienrole).Name
+                Organization = sublist.ToString(),
+                Role = db.Roles.Find(clientrole).Name
             };
 
             ViewBag.SubcontractorId = new SelectList(db.SubContractors.ToList(), "SubcontractorId", "OrgName", client.SubcontractorId);
-            ViewBag.Role = new SelectList(db.Roles.ToList(), "Id", "Name", clienrole);
+            ViewBag.Role = new SelectList(db.Roles.ToList(), "Id", "Name", clientrole);
 
             return View("Edit", viewModel);
         }
@@ -193,25 +190,37 @@ namespace Alliance_for_Life.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Userinformation user)
         {
+            var client = db.Users.Find(user.Id.ToString());
+            var clientrole = client.Roles.FirstOrDefault().RoleId;
+            var oldrolename = db.Roles.SingleOrDefault(r => r.Id == clientrole).Name;
+
+            //updating database
             if (ModelState.IsValid)
             {
+
                 var updateduser = db.Users.Single(s => s.Id == user.Id.ToString());
-                updateduser.SubcontractorId = new Guid(user.organization);
+                updateduser.SubcontractorId = new Guid(user.Organization);
                 updateduser.FirstName = user.Firstname;
                 updateduser.LastName = user.Lastname;
                 updateduser.Email = user.Email;
-                updateduser.Roles.FirstOrDefault().RoleId = user.Role;
+
+                if (oldrolename != db.Roles.SingleOrDefault(r => r.Id == user.Role).Name)
+                {
+                    UserManager.RemoveFromRole(user.Id.ToString(), oldrolename);
+                    UserManager.AddToRole(user.Id.ToString(), db.Roles.SingleOrDefault(r => r.Id == user.Role).Name);
+                }
+
+                //updateduser.Roles.FirstOrDefault().RoleId = user.Role;
 
                 db.Entry(updateduser).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("IndexofRegisteredUsers");
+                return RedirectToAction("IndexforRegisteredUsers");
             }
+            client = db.Users.Find(user.Id);
+            clientrole = client.Roles.FirstOrDefault().RoleId;
 
-            var client = db.Users.Find(user.Id);
-            var clienrole = client.Roles.FirstOrDefault().RoleId;
-
-            ViewBag.SubcontractorId = new SelectList(db.SubContractors.ToList(), "SubcontractorId", "OrgName", user.organization);
-            ViewBag.Role = new SelectList(db.Roles.ToList(), "Id", "Name", clienrole);
+            ViewBag.SubcontractorId = new SelectList(db.SubContractors.ToList(), "SubcontractorId", "OrgName", user.Organization);
+            ViewBag.Role = new SelectList(db.Roles.ToList(), "Id", "Name", clientrole);
 
             return View("Register", user);
         }
@@ -231,7 +240,6 @@ namespace Alliance_for_Life.Controllers
         //
         // POST: /Account/Register
         [HttpPost]
-        [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel viewModel)
         {
@@ -259,7 +267,7 @@ namespace Alliance_for_Life.Controllers
                 var result = await UserManager.CreateAsync(user, viewModel.Password);
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                    //  await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
@@ -267,6 +275,9 @@ namespace Alliance_for_Life.Controllers
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
+                    //add to role
+
+                    UserManager.AddToRole(user.Id, db.Roles.SingleOrDefault(r => r.Id == "f11bb44b-b367-4650-b48e-abbcedf296b0").Name);
                     return RedirectToAction("Create", "AFLForm");
                 }
                 AddErrors(result);

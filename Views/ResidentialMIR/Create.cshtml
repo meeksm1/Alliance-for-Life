@@ -12,7 +12,7 @@
 
 <div class="form-horizontal">
     <div class="form-group">
-        @Html.LabelFor(m => m.SubcontractorId)
+        @Html.LabelFor(m => m.SubcontractorId, "Organization")
         @Html.DropDownListFor(m => m.SubcontractorId, new SelectList(Model.Subcontractors, "SubcontractorId", "OrgName"), "", new { @class = "form-control" })
         @Html.ValidationMessageFor(m => m.SubcontractorId)
     </div>

@@ -7,7 +7,6 @@ C:\Users\meeksm1\Documents\GitHub\Alliance-for-Life\bin\PagedList.dll
 C:\Users\meeksm1\Documents\GitHub\Alliance-for-Life\bin\PagedList.Mvc.dll
 C:\Users\meeksm1\Documents\GitHub\Alliance-for-Life\bin\PagedList.xml
 C:\Users\meeksm1\Documents\GitHub\Alliance-for-Life\bin\PagedList.Mvc.xml
-C:\Users\meeksm1\Documents\GitHub\Alliance-for-Life\obj\Debug\Alliance for Life.csprojAssemblyReference.cache
 C:\Users\meeksm1\Documents\GitHub\Alliance-for-Life\obj\Debug\Alliance_for_Life.Migrations.InitialCreate.resources
 C:\Users\meeksm1\Documents\GitHub\Alliance-for-Life\obj\Debug\Alliance_for_Life.Migrations.RemoveAdminandPartIdsForInvoice.resources
 C:\Users\meeksm1\Documents\GitHub\Alliance-for-Life\obj\Debug\Alliance_for_Life.Migrations.AdminCostAddedOrgNameProp.resources
