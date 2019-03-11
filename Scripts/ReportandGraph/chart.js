@@ -75,7 +75,6 @@ function monthreturn(value) {
     return month;
  }
 
-
 //draw the chart
 function drawCharts(responses) {
 
@@ -95,6 +94,28 @@ function drawCharts(responses) {
     drawToolbar(responses)
 }
 
+//calculating admin total
+function admincosts(responses) {
+    var admintotal = responses.ASalandWages + responses.AEmpBenefits + responses.AEmpTravel
+        + responses.AEmpTraining + responses.AOfficeRent + responses.AOfficeUtilities
+        + responses.AFacilityIns + responses.AOfficeSupplies + responses.AEquipment
+        + responses.AOfficeCommunications + responses.AOfficeMaint + responses.AConsulting
+        + responses.SubConPayCost + responses.BackgrounCheck + responses.Other
+        + responses.AJanitorServices + responses.ADepreciation + responses.ATechSupport
+        + responses.ASecurityServices + responses.ATotCosts + responses.AdminFee;
+    return admintotal;
+}
+
+//calculating participation costs
+function particosts(responses) {
+    var partitotal = responses.Trasportation + responses.JobTraining + responses.TuitionAssistance
+        + responses.ContractedResidential + responses.UtilityAssistance + responses.EmergencyShelter
+        + responses.HousingAssistance + responses.Childcare + responses.Clothing
+        + responses.Food + responses.Supplies + responses.RFO;
+    return partitotal;
+}
+
+
 
 //barchart
 function barChart(responses) {
@@ -109,23 +130,12 @@ function barChart(responses) {
     //looping through the data 
     for (var i = 0; i < responses.length; i++) {
 
-        //calculating total admin cost
-        var admintotal = responses[i].ASalandWages + responses[i].AEmpBenefits + responses[i].AEmpTravel
-            + responses[i].AEmpTraining + responses[i].AOfficeRent + responses[i].AOfficeUtilities
-            + responses[i].AFacilityIns + responses[i].AOfficeSupplies + responses[i].AEquipment
-            + responses[i].AOfficeCommunications + responses[i].AOfficeMaint + responses[i].AConsulting
-            + responses[i].SubConPayCost + responses[i].BackgrounCheck + responses[i].Other
-            + responses[i].AJanitorServices + responses[i].ADepreciation + responses[i].ATechSupport
-            + responses[i].ASecurityServices + responses[i].ATotCosts + responses[i].AdminFee;
-
-        //calculating total participation cost
-        var partitotal = responses[i].Trasportation + responses[i].JobTraining + responses[i].TuitionAssistance
-            + responses[i].ContractedResidential + responses[i].UtilityAssistance + responses[i].EmergencyShelter
-            + responses[i].HousingAssistance + responses[i].Childcare + responses[i].Clothing
-            + responses[i].Food + responses[i].Supplies + responses[i].RFO;
-
+        //getting admin total
+        var admintotal = admincosts(responses[i]);
+        //getting participation total
+        var partitotal = particosts(responses[i]);
       
-        //pushing data to the table
+        //getting month
         var month = monthreturn(responses[i].Month);
 
         //adding to the table
@@ -136,7 +146,6 @@ function barChart(responses) {
 
 
     //bar chart options 
-    // set bar chart options
     var barOptions = {
         focusTarget: 'category',
         backgroundColor: 'transparent',
@@ -199,22 +208,12 @@ function lineChart(responses) {
 
     for (var i = 0; i < responses.length; i++) {
 
-        //calculating total admin cost
-        var admintotal = responses[i].ASalandWages + responses[i].AEmpBenefits + responses[i].AEmpTravel
-            + responses[i].AEmpTraining + responses[i].AOfficeRent + responses[i].AOfficeUtilities
-            + responses[i].AFacilityIns + responses[i].AOfficeSupplies + responses[i].AEquipment
-            + responses[i].AOfficeCommunications + responses[i].AOfficeMaint + responses[i].AConsulting
-            + responses[i].SubConPayCost + responses[i].BackgrounCheck + responses[i].Other
-            + responses[i].AJanitorServices + responses[i].ADepreciation + responses[i].ATechSupport
-            + responses[i].ASecurityServices + responses[i].ATotCosts + responses[i].AdminFee;
+        //getting admin cost total
+        var admintotal = admincosts(responses[i]);
 
-        //calculating total participation cost
-        var partitotal = responses[i].Trasportation + responses[i].JobTraining + responses[i].TuitionAssistance
-            + responses[i].ContractedResidential + responses[i].UtilityAssistance + responses[i].EmergencyShelter
-            + responses[i].HousingAssistance + responses[i].Childcare + responses[i].Clothing
-            + responses[i].Food + responses[i].Supplies + responses[i].RFO;
-
-
+        //getting particiapation cost total
+        var partitotal = particosts(responses[i]);
+           
         //pushing data to the table
         var month = monthreturn(responses[i].Month);
 
@@ -294,20 +293,12 @@ function piechart(responses) {
         admincost += admincost;
         particost += particost;
 
-        //adding all the admin costs
-        admincost = responses[i].ASalandWages + responses[i].AEmpBenefits + responses[i].AEmpTravel
-            + responses[i].AEmpTraining + responses[i].AOfficeRent + responses[i].AOfficeUtilities
-            + responses[i].AFacilityIns + responses[i].AOfficeSupplies + responses[i].AEquipment
-            + responses[i].AOfficeCommunications + responses[i].AOfficeMaint + responses[i].AConsulting
-            + responses[i].SubConPayCost + responses[i].BackgrounCheck + responses[i].Other
-            + responses[i].AJanitorServices + responses[i].ADepreciation + responses[i].ATechSupport
-            + responses[i].ASecurityServices + responses[i].ATotCosts + responses[i].AdminFee;
 
-        //adding the participation costs
-        particost = responses[i].Trasportation + responses[i].JobTraining + responses[i].TuitionAssistance
-            + responses[i].ContractedResidential + responses[i].UtilityAssistance + responses[i].EmergencyShelter
-            + responses[i].HousingAssistance + responses[i].Childcare + responses[i].Clothing
-            + responses[i].Food + responses[i].Supplies + responses[i].RFO;
+        //getting admin cost total
+        admincost = admincosts(responses[i]);
+
+        //getting particiapation cost total
+        particost  = particosts(responses[i]);
 
         //adding the costs saperately
         i++;
@@ -359,6 +350,7 @@ function drawTable(responses) {
     data.addColumn('number', 'State Fee');
     data.addColumn('number', 'Total');
 
+    //quarterly adding costs
     var firstquarterlyparticost = 0;
     var firstquarterlyadmincost = 0;
     var secondquarterlyparticost = 0;
@@ -379,80 +371,41 @@ function drawTable(responses) {
             firstquarterlyadmincost += firstquarterlyadmincost;
             firstquarterlyparticost += firstquarterlyparticost;
 
-            firstquarterlyadmincost = responses[i].ASalandWages + responses[i].AEmpBenefits + responses[i].AEmpTravel
-                + responses[i].AEmpTraining + responses[i].AOfficeRent + responses[i].AOfficeUtilities
-                + responses[i].AFacilityIns + responses[i].AOfficeSupplies + responses[i].AEquipment
-                + responses[i].AOfficeCommunications + responses[i].AOfficeMaint + responses[i].AConsulting
-                + responses[i].SubConPayCost + responses[i].BackgrounCheck + responses[i].Other
-                + responses[i].AJanitorServices + responses[i].ADepreciation + responses[i].ATechSupport
-                + responses[i].ASecurityServices + responses[i].ATotCosts + responses[i].AdminFee;
-
-            ////adding the participation costs
-            firstquarterlyparticost = responses[i].Trasportation + responses[i].JobTraining + responses[i].TuitionAssistance
-                + responses[i].ContractedResidential + responses[i].UtilityAssistance + responses[i].EmergencyShelter
-                + responses[i].HousingAssistance + responses[i].Childcare + responses[i].Clothing
-                + responses[i].Food + responses[i].Supplies + responses[i].RFO;
+            //getting admin and participation cost
+            firstquarterlyadmincost = admincosts(responses[i]);
+            firstquarterlyparticost = particosts(responses[i]);
         }
         // second quarter
         else if (responses[i].Month <= 6) {
-
+             //increment the cost
             secondquarterlyadmincost += secondquarterlyadmincost;
             secondquarterlyparticost += secondquarterlyparticost;
 
-            //adding them
-            secondquarterlyadmincost = responses[i].ASalandWages + responses[i].AEmpBenefits + responses[i].AEmpTravel
-                + responses[i].AEmpTraining + responses[i].AOfficeRent + responses[i].AOfficeUtilities
-                + responses[i].AFacilityIns + responses[i].AOfficeSupplies + responses[i].AEquipment
-                + responses[i].AOfficeCommunications + responses[i].AOfficeMaint + responses[i].AConsulting
-                + responses[i].SubConPayCost + responses[i].BackgrounCheck + responses[i].Other
-                + responses[i].AJanitorServices + responses[i].ADepreciation + responses[i].ATechSupport
-                + responses[i].ASecurityServices + responses[i].ATotCosts + responses[i].AdminFee;
-
-            ////adding the participation costs
-            secondquarterlyparticost = responses[i].Trasportation + responses[i].JobTraining + responses[i].TuitionAssistance
-                + responses[i].ContractedResidential + responses[i].UtilityAssistance + responses[i].EmergencyShelter
-                + responses[i].HousingAssistance + responses[i].Childcare + responses[i].Clothing
-                + responses[i].Food + responses[i].Supplies + responses[i].RFO;
+           //getting admin and participation cost
+            secondquarterlyadmincost = admincosts(responses[i]);
+            secondquarterlyparticost = particosts(responses[i]);
 
         }
         //third quater
         else if (responses[i].Month <= 9) {
+             //increment the cost
             thirdquarterlyadmincost += thirdquarterlyadmincost;
             thirdquarterlyparticost += thirdquarterlyparticost;
 
-            thirdquarterlyadmincost = responses[i].ASalandWages + responses[i].AEmpBenefits + responses[i].AEmpTravel
-                + responses[i].AEmpTraining + responses[i].AOfficeRent + responses[i].AOfficeUtilities
-                + responses[i].AFacilityIns + responses[i].AOfficeSupplies + responses[i].AEquipment
-                + responses[i].AOfficeCommunications + responses[i].AOfficeMaint + responses[i].AConsulting
-                + responses[i].SubConPayCost + responses[i].BackgrounCheck + responses[i].Other
-                + responses[i].AJanitorServices + responses[i].ADepreciation + responses[i].ATechSupport
-                + responses[i].ASecurityServices + responses[i].ATotCosts + responses[i].AdminFee;
-
-            ////adding the participation costs
-            thirdquarterlyparticost = responses[i].Trasportation + responses[i].JobTraining + responses[i].TuitionAssistance
-                + responses[i].ContractedResidential + responses[i].UtilityAssistance + responses[i].EmergencyShelter
-                + responses[i].HousingAssistance + responses[i].Childcare + responses[i].Clothing
-                + responses[i].Food + responses[i].Supplies + responses[i].RFO;
+             //getting admin and participation cost
+            thirdquarterlyadmincost = admincosts(responses[i]);
+            thirdquarterlyparticost = particosts(responses[i]);
 
         }
         //fourthquater
         else if (responses[i].Month >= 10) {
+             //increment the cost
             fourthquarterlyadmincost += fourthquarterlyadmincost;
             fourthquarterlyparticost += fourthquarterlyparticost;
 
-            fourthquarterlyadmincost = responses[i].ASalandWages + responses[i].AEmpBenefits + responses[i].AEmpTravel
-                + responses[i].AEmpTraining + responses[i].AOfficeRent + responses[i].AOfficeUtilities
-                + responses[i].AFacilityIns + responses[i].AOfficeSupplies + responses[i].AEquipment
-                + responses[i].AOfficeCommunications + responses[i].AOfficeMaint + responses[i].AConsulting
-                + responses[i].SubConPayCost + responses[i].BackgrounCheck + responses[i].Other
-                + responses[i].AJanitorServices + responses[i].ADepreciation + responses[i].ATechSupport
-                + responses[i].ASecurityServices + responses[i].ATotCosts + responses[i].AdminFee;
-
-            ////adding the participation costs
-            fourthquarterlyparticost = responses[i].Trasportation + responses[i].JobTraining + responses[i].TuitionAssistance
-                + responses[i].ContractedResidential + responses[i].UtilityAssistance + responses[i].EmergencyShelter
-                + responses[i].HousingAssistance + responses[i].Childcare + responses[i].Clothing
-                + responses[i].Food + responses[i].Supplies + responses[i].RFO;
+             //getting admin and participation cost
+            fourthquarterlyadmincost = admincosts(responses[i]);
+            fourthquarterlyparticost = particosts(responses[i]);
         }
         else {}
         i++;
@@ -473,8 +426,6 @@ function drawTable(responses) {
     ]);
 
     //calculating total cost
-   
- 
 
     var table = new google.visualization.Table(document.getElementById('table_div'));
 
