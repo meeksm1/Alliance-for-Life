@@ -54,12 +54,21 @@ namespace Alliance_for_Life.Controllers
 
             var invoice = new NonResidentialMIR
             {
+                Id = Guid.NewGuid(),
                 SubcontractorId = viewModel.SubcontractorId,
                 Months = viewModel.Month,
+                Year = viewModel.Year,
                 TotBedNights = viewModel.TotBedNights,
                 TotA2AEnrollment = viewModel.TotA2AEnrollment,
                 TotA2ABedNights = viewModel.TotA2ABedNights,
                 MA2Apercent = viewModel.MA2Apercent,
+                ClientsJobEduServ = viewModel.ClientsJobEduServ,
+                ParticipatingFathers = viewModel.ParticipatingFathers,
+                TotEduClasses = viewModel.TotEduClasses,
+                TotClientsinEduClasses = viewModel.TotClientsinEduClasses,
+                TotCaseHrs = viewModel.TotCaseHrs,
+                TotClientsCaseHrs = viewModel.TotClientsCaseHrs,
+                TotOtherClasses = viewModel.TotOtherClasses,
                 SubmittedDate = DateTime.Now
             };
 
