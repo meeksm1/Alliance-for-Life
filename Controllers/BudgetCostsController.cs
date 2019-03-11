@@ -1,5 +1,6 @@
 ﻿using Alliance_for_Life.Models;
 using ClosedXML.Excel;
+using PagedList;
 using System;
 using System.Data;
 using System.Data.Entity;
@@ -15,20 +16,33 @@ namespace Alliance_for_Life.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: BudgetCosts
-        public ViewResult Index(string sortOrder, string searchString)
+        public ViewResult Index(string sortOrder, string searchstring, string currentFilter, int? page)
         {
-            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            int pageSize;
+            //paged view
+            ViewBag.CurrentSort = sortOrder;
+
+            //default sorting
             ViewBag.YearSortParm = sortOrder == "Year" ? "year_desc" : "Year";
             ViewBag.MonthSortParm = sortOrder == "Month" ? "month_desc" : "Month";
             ViewBag.RegionSortParm = sortOrder == "Region" ? "region_desc" : "Region";
-
-            var budgetsearch = from s in db.BudgetCosts
-                               select s;
-
-            if (!String.IsNullOrEmpty(searchString))
+            if (searchstring != null)
             {
-                budgetsearch = budgetsearch.OrderBy(s => s.BudgetInvoiceId.ToString(searchString));
+                page = 1;
             }
+            else
+            {
+                searchstring = currentFilter;
+            }
+            ViewBag.CurrentFilter = searchstring;
+
+            var budgetsearch = from s in db.BudgetCosts.OrderByDescending(a=>a.Year)
+                               select s;
+            if (!string.IsNullOrEmpty(searchstring))
+            {
+                budgetsearch = budgetsearch.Where(s => s.Year == Int16.Parse(searchstring));
+            }
+
             switch (sortOrder)
             {
                 case "name_desc":
@@ -56,7 +70,11 @@ namespace Alliance_for_Life.Controllers
                     budgetsearch = budgetsearch.OrderBy(s => s.BudgetInvoiceId);
                     break;
             }
-            return View(budgetsearch.ToList());
+
+            pageSize = 10;
+            int pageNumber = (page ?? 1);
+            return View(budgetsearch.ToPagedList(pageNumber, pageSize));
+            //return View(budgetsearch.ToList());
         }
 
         //#############################################################################################
@@ -302,8 +320,19 @@ namespace Alliance_for_Life.Controllers
             base.Dispose(disposing);
         }
 
+
+
         [HttpPost]
-        public FileResult Export()
+        public  ActionResult Exports(Guid? id)
+        {
+            ViewBag.Msg = id.ToString();
+            return View();
+         }
+
+
+
+        [HttpPost]
+        public FileResult Export( Guid? id)
         {
             DataTable dt = new DataTable("Grid");
             dt.Columns.AddRange(new DataColumn[40]
@@ -393,6 +422,12 @@ namespace Alliance_for_Life.Controllers
                             BTotal = a.BTotal,
                             Maxtot = a.Maxtot
                         };
+
+            //check see  for the id
+            if(id != null)
+            {
+                costs = costs.Where(s => s.BudgetInvoiceId == id);
+            }
 
             foreach (var item in costs)
             {

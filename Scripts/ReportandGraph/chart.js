@@ -433,10 +433,30 @@ function drawTable(responses) {
 }
 
 function drawToolbar(responses) {
+
+    var data = new google.visualization.DataTable();
+
+    // Declare columns
+    data.addColumn('string', 'Employee Name');
+    data.addColumn('datetime', 'Hire Date');
+
+    // Add data.
+    data.addRows([
+        ['Mike', { v: new Date(2008, 1, 28), f: 'February 28, 2008' }], // Example of specifying actual and formatted values.
+        ['Bob', new Date(2007, 5, 1)],                              // More typically this would be done using a
+        ['Alice', new Date(2006, 7, 16)],                           // formatter.
+        ['Frank', new Date(2007, 11, 28)],
+        ['Floyd', new Date(2005, 3, 13)],
+        ['Fritz', new Date(2011, 6, 1)]
+    ]);
+
+    var csv = google.visualization.dataTableToCsv(data);
+    console.log(csv);
+
     var components = [
         {
-            type: 'html', datasource: 'https://spreadsheets.google.com/tq?key=pCQbetd-CptHnwJEfo8tALA' },
-        { type: 'csv', datasource: 'https://spreadsheets.google.com/tq?key=pCQbetd-CptHnwJEfo8tALA' }
+            type: 'html', datasource: csv },
+        { type: 'csv', datasource: data }
         
     ];
 

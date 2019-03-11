@@ -24,7 +24,6 @@ C:\Users\Ghimim\Documents\GitHub\Alliance-for-Life\bin\PagedList.dll
 C:\Users\Ghimim\Documents\GitHub\Alliance-for-Life\bin\PagedList.Mvc.dll
 C:\Users\Ghimim\Documents\GitHub\Alliance-for-Life\bin\PagedList.xml
 C:\Users\Ghimim\Documents\GitHub\Alliance-for-Life\bin\PagedList.Mvc.xml
-C:\Users\Ghimim\Documents\GitHub\Alliance-for-Life\obj\Debug\Alliance for Life.csprojAssemblyReference.cache
 C:\Users\Ghimim\Documents\GitHub\Alliance-for-Life\obj\Debug\Alliance_for_Life.Migrations.InitialCreate.resources
 C:\Users\Ghimim\Documents\GitHub\Alliance-for-Life\obj\Debug\Alliance_for_Life.Migrations.RemoveAdminandPartIdsForInvoice.resources
 C:\Users\Ghimim\Documents\GitHub\Alliance-for-Life\obj\Debug\Alliance_for_Life.Migrations.AdminCostAddedOrgNameProp.resources
