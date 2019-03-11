@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Alliance_for_Life.Models.ClientListReport>
+﻿@model IEnumerable<Alliance_for_Life.Models.ClientList>
 @{
     ViewBag.Title = "All Clients";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -6,20 +6,31 @@
 
 <h2>Current Active Clients</h2>
 
+@using (Html.BeginForm())
+{
+    <p>
+        Find by Organization Name or Last Name: @Html.TextBox("SearchString")
+        <input type="submit" value="Search" />
+    </p>
+}
+
 <table class="table">
     <tr>
         <th>
-            Organization Name
+
+        </th>
+        <th>
+            @Html.ActionLink("Organization", "AllActiveClients", new { sortOrder = ViewBag.NameSortParm })
         </th>
 
         <th>
             First Name
         </th>
         <th>
-            Last Name
+            @Html.ActionLink("Last Name", "AllActiveClients", new { sortOrder = ViewBag.LastNameSortParm })
         </th>
         <th>
-            Due Date
+            @Html.ActionLink("Due date", "AllActiveClients", new { sortOrder = ViewBag.DateSortParm })
         </th>
         <th>
             Birthday
@@ -27,32 +38,34 @@
         <th></th>
     </tr>
 
-    @foreach (var allactive in Model)
+    @foreach (var item in Model)
     {
         <tr>
             <td>
-                <div class="clientid">@allactive.Orgname</div>
+                @Html.ActionLink("Details", "Details", new { id = item.Id })
+            </td>
+            <td>
+                <div class="clientid">@item.Subcontractor.OrgName</div>
             </td>
 
             <td>
-                <div class="fname">@allactive.FirstName</div>
+                <div class="fname">@item.FirstName</div>
             </td>
 
             <td>
-                <div class="lname">@allactive.LastName</div>
+                <div class="lname">@item.LastName</div>
             </td>
 
             <td>
-                <div class="due">@allactive.DueDate.ToShortDateString()</div>
+                <div class="due">@item.DueDate.ToShortDateString()</div>
             </td>
 
             <td>
-                <div class="due">@allactive.DOB.ToShortDateString()</div>
+                <div class="due">@item.DOB.ToShortDateString()</div>
             </td>
         </tr>
     }
-    <tr>
-</tr>
+    <tr></tr>
 </table>
 
 <h3>Total Active Clients @Model.Count()</h3>

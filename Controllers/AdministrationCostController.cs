@@ -20,31 +20,31 @@ namespace Alliance_for_Life.Controllers
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
 
-            var adminSearch = from s in db.AdminCosts
-                              join d in db.SubContractors on s.SubcontractorId equals d.SubcontractorId
-                              select s;
+                var adminSearch = db.AdminCosts
+                .Include(a => a.Subcontractor).Where(a => a.SubcontractorId == a.Subcontractor.SubcontractorId);
 
             if (!String.IsNullOrEmpty(searchString))
             {
-                adminSearch = adminSearch.Where(s => s.OrgName.Contains(searchString)
-                                       || s.Subcontractor.SubmittedDate.ToString().Contains(searchString));
+                adminSearch = adminSearch.Where(a => a.Subcontractor.OrgName.Contains(searchString)
+                || a.Subcontractor.SubmittedDate.ToString().Contains(searchString));
             }
 
             switch (sortOrder)
             {
                 case "name_desc":
-                    adminSearch = adminSearch.OrderByDescending(s => s.OrgName);
+                    adminSearch = adminSearch.OrderByDescending(s => s.Subcontractor.OrgName);
                     break;
                 case "Date":
-                    adminSearch = adminSearch.OrderBy(s => s.Month);
+                    adminSearch = adminSearch.OrderBy(s => s.SubmittedDate);
                     break;
                 case "date_desc":
-                    adminSearch = adminSearch.OrderByDescending(s => s.Month);
+                    adminSearch = adminSearch.OrderByDescending(s => s.SubmittedDate);
                     break;
                 default:
-                    adminSearch = adminSearch.OrderBy(s => s.OrgName);
+                    adminSearch = adminSearch.OrderBy(s => s.Subcontractor.OrgName);
                     break;
             }
+
             return View(adminSearch.ToList());
         }
 

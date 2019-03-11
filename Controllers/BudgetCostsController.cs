@@ -27,13 +27,10 @@ namespace Alliance_for_Life.Controllers
 
             if (!String.IsNullOrEmpty(searchString))
             {
-                budgetsearch = budgetsearch.OrderBy(s => s.BudgetInvoiceId.ToString(searchString));
+                budgetsearch = budgetsearch.OrderBy(s => s.Month).Where(S => S.Year == Int16.Parse(searchString));
             }
             switch (sortOrder)
             {
-                case "name_desc":
-                    budgetsearch = budgetsearch.OrderByDescending(s => s.BudgetInvoiceId);
-                    break;
                 case "Year":
                     budgetsearch = budgetsearch.OrderBy(s => s.Year);
                     break;
@@ -53,7 +50,7 @@ namespace Alliance_for_Life.Controllers
                     budgetsearch = budgetsearch.OrderByDescending(s => s.Region);
                     break;
                 default:
-                    budgetsearch = budgetsearch.OrderBy(s => s.BudgetInvoiceId);
+                    budgetsearch = budgetsearch.OrderBy(s => s.Region);
                     break;
             }
             return View(budgetsearch.ToList());
@@ -66,7 +63,6 @@ namespace Alliance_for_Life.Controllers
             var datelist = Enumerable.Range(System.DateTime.Now.Year - 4, 10).ToList();
             ViewBag.Year = new SelectList(datelist, "Year");
             ViewBag.Region = new SelectList(Enum.GetNames(typeof(GeoRegion)), "Region");
-            ViewBag.ContractorID = new SelectList(db.SubContractors, "SubcontractorId", "OrgName");
             return View();
         }
 

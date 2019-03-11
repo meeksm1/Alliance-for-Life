@@ -10,7 +10,7 @@
 @using (Html.BeginForm())
 {
     <p>
-        Find by name: @Html.TextBox("SearchString")
+        Find by Region: @Html.TextBox("SearchString")
         <input type="submit" value="Search" />
     </p>
 }
@@ -21,16 +21,13 @@
 
         </th>
         <th>
-            @Html.ActionLink("Invoice Id", "Index", new { sortOrder = ViewBag.NameSortParm })
+            @Html.ActionLink("Region", "Index", new { sortOrder = ViewBag.RegionSortParm })
         </th>
         <th>
             @Html.ActionLink("Year", "Index", new { sortOrder = ViewBag.YearSortParm })
         </th>
         <th>
             @Html.ActionLink("Month", "Index", new { sortOrder = ViewBag.MonthSortParm })
-        </th>
-        <th>
-            @Html.ActionLink("Region", "Index", new { sortOrder = ViewBag.RegionSortParm })
         </th>
         <th>
             Salaries and Wages
@@ -142,128 +139,125 @@
 
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.ActionLink("Details", "Details", new { id = item.BudgetInvoiceId })
-            </td>
-            <td>
-                @item.BudgetInvoiceId
-            </td>
-            <td>
-                @item.Year
-            </td>
-            <td>
-                @item.Month
-            </td>
-            <td>
-                @item.Region
-            </td>
-            <td>
-                @item.ASalandWages.ToString("C")
-            </td>
-            <td>
-                @item.AEmpBenefits.ToString("C")
-            </td>
-            <td>
-                @item.AEmpTravel.ToString("C")
-            </td>
-            <td>
-                @item.AEmpTraining.ToString("C")
-            </td>
-            <td>
-                @item.AOfficeRent.ToString("C")
-            </td>
-            <td>
-                @item.AOfficeUtilities.ToString("C")
-            </td>
-            <td>
-                @item.AFacilityIns.ToString("C")
-            </td>
-            <td>
-                @item.AOfficeSupplies.ToString("C")
-            </td>
-            <td>
-                @item.AEquipment.ToString("C")
-            </td>
-            <td>
-                @item.AOfficeCommunications.ToString("C")
-            </td>
-            <td>
-                @item.AOfficeMaint.ToString("C")
-            </td>
-            <td>
-                @item.AConsulting.ToString("C")
-            </td>
-            <td>
-                @item.SubConPayCost.ToString("C")
-            </td>
-            <td>
-                @item.BackgrounCheck.ToString("C")
-            </td>
-            <td>
-                @item.Other.ToString("C")
-            </td>
-            <td>
-                @item.AJanitorServices.ToString("C")
-            </td>
-            <td>
-                @item.ADepreciation.ToString("C")
-            </td>
-            <td>
-                @item.ATechSupport.ToString("C")
-            </td>
-            <td>
-                @item.ASecurityServices.ToString("C")
-            </td>
-            <td>
-                @item.ATotCosts.ToString("C")
-            </td>
-            <td>
-                @item.AdminFee.ToString("C")
-            </td>
-            <td>
-                @item.Trasportation.ToString("C")
-            </td>
-            <td>
-                @item.JobTraining.ToString("C")
-            </td>
-            <td>
-                @item.TuitionAssistance.ToString("C")
-            </td>
-            <td>
-                @item.ContractedResidential.ToString("C")
-            </td>
-            <td>
-                @item.UtilityAssistance.ToString("C")
-            </td>
-            <td>
-                @item.EmergencyShelter.ToString("C")
-            </td>
-            <td>
-                @item.HousingAssistance.ToString("C")
-            </td>
-            <td>
-                @item.Childcare.ToString("C")
-            </td>
-            <td>
-                @item.Clothing.ToString("C")
-            </td>
-            <td>
-                @item.Food.ToString("C")
-            </td>
-            <td>
-                @item.Supplies.ToString("C")
-            </td>
-            <td>
-                @item.RFO.ToString("C")
-            </td>
-            <td>
-                @item.BTotal.ToString("C")
-            </td>
-            <td>
-                @item.Maxtot.ToString("C")
-            </td>
-        </tr>
+    <tr>
+        <td>
+            @Html.ActionLink("Details", "Details", new { id = item.BudgetInvoiceId })
+        </td>
+        <td>
+            @item.Region
+        </td>
+        <td>
+            @item.Year
+        </td>
+        <td>
+            @item.Month
+        </td>
+        <td>
+            @item.ASalandWages.ToString("C")
+        </td>
+        <td>
+            @item.AEmpBenefits.ToString("C")
+        </td>
+        <td>
+            @item.AEmpTravel.ToString("C")
+        </td>
+        <td>
+            @item.AEmpTraining.ToString("C")
+        </td>
+        <td>
+            @item.AOfficeRent.ToString("C")
+        </td>
+        <td>
+            @item.AOfficeUtilities.ToString("C")
+        </td>
+        <td>
+            @item.AFacilityIns.ToString("C")
+        </td>
+        <td>
+            @item.AOfficeSupplies.ToString("C")
+        </td>
+        <td>
+            @item.AEquipment.ToString("C")
+        </td>
+        <td>
+            @item.AOfficeCommunications.ToString("C")
+        </td>
+        <td>
+            @item.AOfficeMaint.ToString("C")
+        </td>
+        <td>
+            @item.AConsulting.ToString("C")
+        </td>
+        <td>
+            @item.SubConPayCost.ToString("C")
+        </td>
+        <td>
+            @item.BackgrounCheck.ToString("C")
+        </td>
+        <td>
+            @item.Other.ToString("C")
+        </td>
+        <td>
+            @item.AJanitorServices.ToString("C")
+        </td>
+        <td>
+            @item.ADepreciation.ToString("C")
+        </td>
+        <td>
+            @item.ATechSupport.ToString("C")
+        </td>
+        <td>
+            @item.ASecurityServices.ToString("C")
+        </td>
+        <td>
+            @item.ATotCosts.ToString("C")
+        </td>
+        <td>
+            @item.AdminFee.ToString("C")
+        </td>
+        <td>
+            @item.Trasportation.ToString("C")
+        </td>
+        <td>
+            @item.JobTraining.ToString("C")
+        </td>
+        <td>
+            @item.TuitionAssistance.ToString("C")
+        </td>
+        <td>
+            @item.ContractedResidential.ToString("C")
+        </td>
+        <td>
+            @item.UtilityAssistance.ToString("C")
+        </td>
+        <td>
+            @item.EmergencyShelter.ToString("C")
+        </td>
+        <td>
+            @item.HousingAssistance.ToString("C")
+        </td>
+        <td>
+            @item.Childcare.ToString("C")
+        </td>
+        <td>
+            @item.Clothing.ToString("C")
+        </td>
+        <td>
+            @item.Food.ToString("C")
+        </td>
+        <td>
+            @item.Supplies.ToString("C")
+        </td>
+        <td>
+            @item.RFO.ToString("C")
+        </td>
+        <td>
+            @item.BTotal.ToString("C")
+        </td>
+        <td>
+            @item.Maxtot.ToString("C")
+        </td>
+    </tr>
     }
 </table>
 @using (Html.BeginForm("Export", "BudgetCosts", FormMethod.Post))

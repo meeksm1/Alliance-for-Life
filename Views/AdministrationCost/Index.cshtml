@@ -10,7 +10,7 @@
 @using (Html.BeginForm())
 {
     <p>
-        Find by Organization or Submitted Date: @Html.TextBox("SearchString")
+        Find by Organization Name or Submitted Date Year: @Html.TextBox("SearchString")
         <input type="submit" value="Search" />
     </p>
 }
@@ -26,9 +26,6 @@
         <th>
             @Html.ActionLink("Submitted Date", "Index", new { sortOrder = ViewBag.DateSortParm })
         </th>
-        @*<th>
-                Year
-            </th>*@
         <th>
             Salaries and Wages
         </th>
@@ -99,14 +96,11 @@
                 @Html.ActionLink("Details", "Details", new { id = item.AdminCostId })
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.OrgName)
+                @item.Subcontractor.OrgName
             </td>
             <td>
                 @item.SubmittedDate.ToShortDateString()
             </td>
-            @*<td>
-                    @item.Year
-                </td>*@
             <td>
                 @item.ASalandWages.ToString("C")
             </td>

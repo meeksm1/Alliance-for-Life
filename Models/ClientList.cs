@@ -28,7 +28,7 @@ namespace Alliance_for_Life.Models
 
         //Navigation Properties
 
-        public SubContractor Subcontractors { get; set; }
+        public SubContractor Subcontractor { get; set; }
 
         public System.Guid SubcontractorId { get; set; }
     }

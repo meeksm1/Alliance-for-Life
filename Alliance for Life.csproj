@@ -249,6 +249,10 @@
     <Compile Include="Controllers\QuarterlyStatesController.cs" />
     <Compile Include="Controllers\ResidentialMIRController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
+    <Compile Include="Migrations\201903112207086_Update.cs" />
+    <Compile Include="Migrations\201903112207086_Update.Designer.cs">
+      <DependentUpon>201903112207086_Update.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\SearchData.cs" />
     <Compile Include="Controllers\SubContractorController.cs" />
     <Compile Include="Controllers\SurveysController.cs" />
@@ -744,6 +748,8 @@
     <Content Include="Views\QuarterlyStates\SecondQuarterReport.cshtml" />
     <Content Include="Views\QuarterlyStates\ThirdQuarterReport.cshtml" />
     <Content Include="Views\Account\Edit.cshtml" />
+    <Content Include="Views\BudgetCosts\Edit.cshtml" />
+    <Content Include="Views\ClientList\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config">
@@ -771,6 +777,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201903062258467_AdminCostAddedOrgNameProp.resx">
       <DependentUpon>201903062258467_AdminCostAddedOrgNameProp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903112207086_Update.resx">
+      <DependentUpon>201903112207086_Update.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

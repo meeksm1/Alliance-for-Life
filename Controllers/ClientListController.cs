@@ -6,7 +6,9 @@ using System;
 using System.Data;
 using System.IO;
 using System.Linq;
+using System.Data.Entity;
 using System.Web.Mvc;
+using System.Net;
 
 namespace Alliance_for_Life.Controllers
 {
@@ -73,10 +75,27 @@ namespace Alliance_for_Life.Controllers
                 SubmittedDate = DateTime.Now
             };
 
-            db.User.Add(client);
+            db.ClientLists.Add(client);
             db.SaveChanges();
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Create", "ContractorForm");
+        }
+
+        // GET: ClientList/Details/5
+        public ActionResult Details(Guid? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            ClientList client = db.ClientLists
+
+                .SingleOrDefault(a => a.Id == id);
+            if (client == null)
+            {
+                return HttpNotFound();
+            }
+            return View(client);
         }
 
         [Authorize]
@@ -90,7 +109,7 @@ namespace Alliance_for_Life.Controllers
                 return View("ClientListForm", viewModel);
             }
 
-            var client = db.User.Single(s => s.Id == viewModel.Id);
+            var client = db.ClientLists.Single(s => s.Id == viewModel.Id);
             {
                 client.SubcontractorId = viewModel.SubcontractorId;
                 client.FirstName = viewModel.FirstName;
@@ -108,7 +127,7 @@ namespace Alliance_for_Life.Controllers
         [Authorize]
         public ActionResult Edit(Guid id)
         {
-            var client = db.User.Single(s => s.Id == id);
+            var client = db.ClientLists.Single(s => s.Id == id);
             var viewModel = new ClientListFormViewModel
             {
                 Heading = "Edit Client Information",
@@ -124,22 +143,45 @@ namespace Alliance_for_Life.Controllers
             return View("ClientListForm", viewModel);
         }
 
-        public ActionResult AllActiveClients()
+        public ActionResult AllActiveClients(string sortOrder, string searchString)
         {
-            var allactive = from cl in db.User
-                            join su in db.SubContractors on cl.SubcontractorId equals su.SubcontractorId
-                            where cl.Active == true
-                            select new ClientListReport
-                            {
-                                Id = cl.Id,
-                                Orgname = su.OrgName,
-                                FirstName = cl.FirstName,
-                                LastName = cl.LastName,
-                                DOB = cl.DOB,
-                                DueDate = cl.DueDate,
-                                SubmittedDate = cl.SubmittedDate
-                            };
-            return View(allactive);
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
+            ViewBag.LastNameSortParm = sortOrder == "LastName" ? "last_desc" : "LastName";
+
+
+            var clients = db.ClientLists.Include(s => s.Subcontractor)
+                .Where(s => s.SubcontractorId == s.Subcontractor.SubcontractorId)
+                .Where(s => s.Active);
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                clients = clients.Where(a => a.Subcontractor.OrgName.Contains(searchString)
+                || a.LastName.ToString().Contains(searchString));
+            }
+
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    clients = clients.OrderByDescending(s => s.Subcontractor.OrgName);
+                    break;
+                case "Date":
+                    clients = clients.OrderBy(s => s.DueDate);
+                    break;
+                case "date_desc":
+                    clients = clients.OrderByDescending(s => s.DueDate);
+                    break;
+                case "LastName":
+                    clients = clients.OrderBy(s => s.LastName);
+                    break;
+                case "last_desc":
+                    clients = clients.OrderByDescending(s => s.LastName);
+                    break;
+                default:
+                    clients = clients.OrderBy(s => s.Subcontractor.OrgName);
+                    break;
+            }
+            return View(clients.ToList());
         }
 
         public FileResult ExportAllActive()
@@ -157,7 +199,7 @@ namespace Alliance_for_Life.Controllers
             });
 
             var user1 = User.Identity.GetUserId();
-            var query = from cl in db.User
+            var query = from cl in db.ClientLists
                         join su in db.SubContractors on cl.SubcontractorId equals su.SubcontractorId
                         where cl.Active
                         select new ClientListReport
@@ -190,7 +232,7 @@ namespace Alliance_for_Life.Controllers
         public ActionResult ActiveClients()
         {
             var user1 = User.Identity.GetUserId();
-            var activeclients = from cl in db.User
+            var activeclients = from cl in db.ClientLists
                                 join su in db.SubContractors on cl.SubcontractorId equals su.SubcontractorId
                                 join us in db.Users on su.SubcontractorId equals us.SubcontractorId
                                 where cl.Active && us.Id == user1
@@ -222,7 +264,7 @@ namespace Alliance_for_Life.Controllers
             });
 
             var user1 = User.Identity.GetUserId();
-            var query = from cl in db.User
+            var query = from cl in db.ClientLists
                         join su in db.SubContractors on cl.SubcontractorId equals su.SubcontractorId
                         join us in db.Users on su.SubcontractorId equals us.SubcontractorId
                         where cl.Active && us.Id == user1
@@ -254,7 +296,7 @@ namespace Alliance_for_Life.Controllers
 
         public ActionResult AllNonActiveClients()
         {
-            var allnonactive = from cl in db.User
+            var allnonactive = from cl in db.ClientLists
                                join su in db.SubContractors on cl.SubcontractorId equals su.SubcontractorId
                                where cl.Active == false
                                select new ClientListReport
@@ -284,7 +326,7 @@ namespace Alliance_for_Life.Controllers
             });
 
             var user1 = User.Identity.GetUserId();
-            var query = from cl in db.User
+            var query = from cl in db.ClientLists
                         join su in db.SubContractors on cl.SubcontractorId equals su.SubcontractorId
                         where cl.Active == false
                         select new ClientListReport
@@ -316,7 +358,7 @@ namespace Alliance_for_Life.Controllers
         public ActionResult NonActiveClients()
         {
             var user1 = User.Identity.GetUserId();
-            var nonactiveclients = from cl in db.User
+            var nonactiveclients = from cl in db.ClientLists
                                    join su in db.SubContractors on cl.SubcontractorId equals su.SubcontractorId
                                    join us in db.Users on su.SubcontractorId equals us.SubcontractorId
                                    where cl.Active == false && us.Id == user1
@@ -348,7 +390,7 @@ namespace Alliance_for_Life.Controllers
             });
 
             var user1 = User.Identity.GetUserId();
-            var query = from cl in db.User
+            var query = from cl in db.ClientLists
                         join su in db.SubContractors on cl.SubcontractorId equals su.SubcontractorId
                         join us in db.Users on su.SubcontractorId equals us.SubcontractorId
                         where cl.Active == false && us.Id == user1
