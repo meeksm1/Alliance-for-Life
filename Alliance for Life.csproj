@@ -753,6 +753,7 @@
     <Content Include="Views\ClientList\Details.cshtml" />
     <Content Include="Views\BudgetCosts\Index.cshtml" />
     <Content Include="Views\Invoices\Invoice.cshtml" />
+    <Content Include="Views\Shared\_InvoiceLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config">

@@ -1,4 +1,4 @@
-﻿﻿using Alliance_for_Life.Models;
+﻿using Alliance_for_Life.Models;
 using ClosedXML.Excel;
 using PagedList;
 using System;
@@ -71,15 +71,15 @@ namespace Alliance_for_Life.Controllers
                     break;
             }
 
-           
+
             if (pageSize < 1)
             {
                 pageSize = 10;
             }
-           
+
             int pageNumber = (page ?? 1);
             return View(budgetsearch.ToPagedList(pageNumber, pageSize));
-         //   return View(budgetsearch.ToList());
+            //   return View(budgetsearch.ToList());
         }
 
         //#############################################################################################
@@ -327,6 +327,10 @@ namespace Alliance_for_Life.Controllers
         [HttpPost]
         public FileResult Export()
         {
+            //get the invoice id
+            var exportid = new Guid(Request["BudgetInvoiceId"]);
+
+            //create datatable
             DataTable dt = new DataTable("Grid");
             dt.Columns.AddRange(new DataColumn[40]
             {
@@ -415,6 +419,11 @@ namespace Alliance_for_Life.Controllers
                             BTotal = a.BTotal,
                             Maxtot = a.Maxtot
                         };
+
+            if (exportid != null)
+            {
+                costs = costs.Where(s => s.BudgetInvoiceId == exportid);
+            }
 
             foreach (var item in costs)
             {

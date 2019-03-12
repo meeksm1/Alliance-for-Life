@@ -19,7 +19,6 @@ namespace Alliance_for_Life.ReportControllers
 
             return View(invoices.ToList());
         }
-
         //needs work on
         public ActionResult Invoice(Guid? id)
         {
@@ -28,7 +27,7 @@ namespace Alliance_for_Life.ReportControllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Invoice invoices = db.Invoices
-                
+
                 .Include(a => a.Subcontractor)
                 .SingleOrDefault(a => a.InvoiceId == id);
 
@@ -38,7 +37,6 @@ namespace Alliance_for_Life.ReportControllers
             }
             return View(invoices);
         }
-
         // GET: Invoices/Create
         public ActionResult Create()
         {
@@ -109,6 +107,25 @@ namespace Alliance_for_Life.ReportControllers
             return View(invoice);
         }
 
+
+        //Detail
+        public ActionResult Details(Guid? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Invoice invoices = db.Invoices
+
+                .Include(a => a.Subcontractor)
+                .SingleOrDefault(a => a.InvoiceId == id);
+
+            if (invoices == null)
+            {
+                return HttpNotFound();
+            }
+            return View(invoices);
+        }
         // POST: Invoices/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -139,7 +156,7 @@ namespace Alliance_for_Life.ReportControllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Invoice invoice = db.Invoices
-                
+
                 .Include(a => a.Subcontractor)
                 .SingleOrDefault(a => a.InvoiceId == id);
 
@@ -157,7 +174,7 @@ namespace Alliance_for_Life.ReportControllers
         {
             Invoice invoice = db.Invoices
                 .Include(a => a.Month)
-                
+
                 .Include(a => a.Subcontractor)
                 .SingleOrDefault(a => a.InvoiceId == id);
 

@@ -55,7 +55,8 @@
     {
     <tr>
         <td>
-            @Html.ActionLink("Details", "Details", new { id = invoice.InvoiceId })
+            @Html.ActionLink("Details", "Details", new { id = invoice.InvoiceId })|
+            @Html.ActionLink("Print Invoice", "Invoice", new { id = invoice.InvoiceId })
         </td>
         <td>
             <div class="clientid">@invoice.Subcontractor.OrgName</div>
