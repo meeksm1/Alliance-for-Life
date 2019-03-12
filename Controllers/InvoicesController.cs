@@ -13,12 +13,29 @@ namespace Alliance_for_Life.ReportControllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Invoices
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder, string searchString)
         {
-            var invoices = db.Invoices.Include(a => a.Subcontractor);
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
 
+            var invoices = db.Invoices.Include(s => s.Subcontractor);
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                invoices = invoices.Where(a => a.Subcontractor.OrgName.Contains(searchString));
+            }
+
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    invoices = invoices.OrderByDescending(s => s.Subcontractor.OrgName);
+                    break;
+                default:
+                    invoices = invoices.OrderBy(s => s.Subcontractor.OrgName);
+                    break;
+            }
             return View(invoices.ToList());
         }
+
         //needs work on
         public ActionResult Invoice(Guid? id)
         {

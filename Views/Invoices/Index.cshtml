@@ -6,13 +6,15 @@
 }
 <h2>Invoice Details</h2>
 
+<p>
+    Find by Organization Name: @Html.TextBox("SearchString")
+    <input type="submit" value="Search" />
+</p>
+
 <table class="table">
     <tr>
         <th>
-
-        </th>
-        <th>
-            Organization
+            @Html.ActionLink("Organization", "Index", new { sortOrder = ViewBag.NameSortParm })
         </th>
         <th>
             Direct Admin Cost
@@ -49,52 +51,53 @@
         <th>
             Balance Remaining
         </th>
-        <th></th>
+        <th>
+            Details
+        </th>
     </tr>
     @foreach (var invoice in Model)
     {
-    <tr>
-        <td>
-            @Html.ActionLink("Details", "Details", new { id = invoice.InvoiceId })|
-            @Html.ActionLink("Print Invoice", "Invoice", new { id = invoice.InvoiceId })
-        </td>
-        <td>
-            <div class="clientid">@invoice.Subcontractor.OrgName</div>
-        </td>
-        <td>
-            <div class="clientid">@invoice.DirectAdminCost.ToString("C")</div>
-        </td>
+        <tr>
+            <td>
+                <div class="clientid">@invoice.Subcontractor.OrgName</div>
+            </td>
+            <td>
+                <div class="clientid">@invoice.DirectAdminCost.ToString("C")</div>
+            </td>
 
-        <td>
-            <div class="clientid">@invoice.ParticipantServices.ToString("C")</div>
-        </td>
+            <td>
+                <div class="clientid">@invoice.ParticipantServices.ToString("C")</div>
+            </td>
 
-        <td>
-            <div class="fname">@invoice.GrandTotal.ToString("C")</div>
-        </td>
+            <td>
+                <div class="fname">@invoice.GrandTotal.ToString("C")</div>
+            </td>
 
-        <td>
-            <div class="lname">@invoice.LessManagementFee.ToString("C")</div>
-        </td>
+            <td>
+                <div class="lname">@invoice.LessManagementFee.ToString("C")</div>
+            </td>
 
-        <td>
-            <div class="due">@invoice.DepositAmount.ToString("C")</div>
-        </td>
+            <td>
+                <div class="due">@invoice.DepositAmount.ToString("C")</div>
+            </td>
 
-        <td>
-            <div class="due">@invoice.BeginningAllocation.ToString("C")</div>
-        </td>
-        <td>
-            <div class="lname">@invoice.AdjustedAllocation.ToString("C")</div>
-        </td>
+            <td>
+                <div class="due">@invoice.BeginningAllocation.ToString("C")</div>
+            </td>
+            <td>
+                <div class="lname">@invoice.AdjustedAllocation.ToString("C")</div>
+            </td>
 
-        <td>
-            <div class="due">@invoice.BillingDate.ToShortDateString()</div>
-        </td>
+            <td>
+                <div class="due">@invoice.BillingDate.ToShortDateString()</div>
+            </td>
 
-        <td>
-            <div class="due">@invoice.BalanceRemaining.ToString("C")</div>
-        </td>
-    </tr>
+            <td>
+                <div class="due">@invoice.BalanceRemaining.ToString("C")</div>
+            </td>
+            <td>
+                @Html.ActionLink("Details", "Invoice", new { id = invoice.InvoiceId })
+            </td>
+        </tr>
     }
 </table>

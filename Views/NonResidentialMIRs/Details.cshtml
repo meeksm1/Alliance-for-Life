@@ -1,0 +1,139 @@
+﻿@model Alliance_for_Life.Models.NonResidentialMIR
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>NonResidentialMIR</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SubcontractorId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SubcontractorId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TotBedNights)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TotBedNights)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TotA2AEnrollment)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TotA2AEnrollment)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TotA2ABedNights)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TotA2ABedNights)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SubmittedDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SubmittedDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MA2Apercent)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MA2Apercent)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ClientsJobEduServ)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ClientsJobEduServ)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ParticipatingFathers)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ParticipatingFathers)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TotEduClasses)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TotEduClasses)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TotClientsinEduClasses)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TotClientsinEduClasses)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TotCaseHrs)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TotCaseHrs)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TotClientsCaseHrs)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TotClientsCaseHrs)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TotOtherClasses)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TotOtherClasses)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Year)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Year)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Months)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Months)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Delete", "Delete", new { id = Model.Id })|
+    @Html.ActionLink("Back to List", "Index")
+</p>

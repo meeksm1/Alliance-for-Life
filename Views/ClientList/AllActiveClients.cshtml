@@ -17,9 +17,6 @@
 <table class="table">
     <tr>
         <th>
-
-        </th>
-        <th>
             @Html.ActionLink("Organization", "AllActiveClients", new { sortOrder = ViewBag.NameSortParm })
         </th>
 
@@ -35,15 +32,14 @@
         <th>
             Birthday
         </th>
-        <th></th>
+        <th>
+            Edit
+        </th>
     </tr>
 
     @foreach (var item in Model)
     {
         <tr>
-            <td>
-                @Html.ActionLink("Details", "Details", new { id = item.Id })
-            </td>
             <td>
                 <div class="clientid">@item.Subcontractor.OrgName</div>
             </td>
@@ -62,6 +58,11 @@
 
             <td>
                 <div class="due">@item.DOB.ToShortDateString()</div>
+            </td>
+            <td>
+                <a href="@Url.Action("Edit", "ClientList", new { id = item.Id }, Request.Url.Scheme)">
+                    <i style="font-size:16px; color:#3498DB" class="fa">&#xf044;</i>
+                </a>
             </td>
         </tr>
     }

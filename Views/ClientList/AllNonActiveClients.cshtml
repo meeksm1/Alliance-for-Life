@@ -1,58 +1,73 @@
-﻿@model IEnumerable<Alliance_for_Life.Models.ClientListReport>
+﻿@model IEnumerable<Alliance_for_Life.Models.ClientList>
 @{
     ViewBag.Title = "All Clients";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Current Active Clients</h2>
+<h2>History view of Non-Active Clients</h2>
+
+@using (Html.BeginForm())
+{
+    <p>
+        Find by Organization Name or Last Name: @Html.TextBox("SearchString")
+        <input type="submit" value="Search" />
+    </p>
+}
 
 <table class="table">
     <tr>
         <th>
-            Organization Name
+            @Html.ActionLink("Organization", "AllActiveClients", new { sortOrder = ViewBag.NameSortParm })
         </th>
 
         <th>
             First Name
         </th>
         <th>
-            Last Name
+            @Html.ActionLink("Last Name", "AllActiveClients", new { sortOrder = ViewBag.LastNameSortParm })
         </th>
         <th>
-            Due Date
+            @Html.ActionLink("Due date", "AllActiveClients", new { sortOrder = ViewBag.DateSortParm })
         </th>
         <th>
             Birthday
         </th>
-        <th></th>
+        <th>
+            Edit
+        </th>
     </tr>
 
-    @foreach (var allnonactive in Model)
+
+    @foreach (var item in Model)
     {
         <tr>
             <td>
-                <div class="clientid">@allnonactive.Orgname</div>
+                <div class="clientid">@item.Subcontractor.OrgName</div>
             </td>
 
             <td>
-                <div class="fname">@allnonactive.FirstName</div>
+                <div class="fname">@item.FirstName</div>
             </td>
 
             <td>
-                <div class="lname">@allnonactive.LastName</div>
+                <div class="lname">@item.LastName</div>
             </td>
 
             <td>
-                <div class="due">@allnonactive.DueDate.ToShortDateString()</div>
+                <div class="due">@item.DueDate.ToShortDateString()</div>
             </td>
 
             <td>
-                <div class="due">@allnonactive.DOB.ToShortDateString()</div>
+                <div class="due">@item.DOB.ToShortDateString()</div>
+            </td>
+            <td>
+                <a href="@Url.Action("Edit", "ClientList", new { id = item.Id }, Request.Url.Scheme)">
+                    <i style="font-size:16px; color:#3498DB" class="fa">&#xf044;</i>
+                </a>
             </td>
         </tr>
     }
-    <tr>
-</tr>
+    <tr></tr>
 </table>
 
 <h3>Total Non-Active Clients @Model.Count()</h3>

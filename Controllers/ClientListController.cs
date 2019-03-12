@@ -151,7 +151,6 @@ namespace Alliance_for_Life.Controllers
 
 
             var clients = db.ClientLists.Include(s => s.Subcontractor)
-                .Where(s => s.SubcontractorId == s.Subcontractor.SubcontractorId)
                 .Where(s => s.Active);
 
             if (!String.IsNullOrEmpty(searchString))
@@ -229,24 +228,45 @@ namespace Alliance_for_Life.Controllers
             }
         }
 
-        public ActionResult ActiveClients()
+        public ActionResult ActiveClients(string sortOrder, string searchString)
         {
-            var user1 = User.Identity.GetUserId();
-            var activeclients = from cl in db.ClientLists
-                                join su in db.SubContractors on cl.SubcontractorId equals su.SubcontractorId
-                                join us in db.Users on su.SubcontractorId equals us.SubcontractorId
-                                where cl.Active && us.Id == user1
-                                select new ClientListReport
-                                {
-                                    Id = cl.Id,
-                                    Orgname = su.OrgName,
-                                    FirstName = cl.FirstName,
-                                    LastName = cl.LastName,
-                                    DOB = cl.DOB,
-                                    DueDate = cl.DueDate
-                                };
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
+            ViewBag.LastNameSortParm = sortOrder == "LastName" ? "last_desc" : "LastName";
 
-            return View(activeclients);
+
+            var clients = db.ClientLists.Include(s => s.Subcontractor)
+                .Where(s => s.SubcontractorId == s.Subcontractor.SubcontractorId)
+                .Where(s => s.Active);
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                clients = clients.Where(a => a.Subcontractor.OrgName.Contains(searchString)
+                || a.LastName.ToString().Contains(searchString));
+            }
+
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    clients = clients.OrderByDescending(s => s.Subcontractor.OrgName);
+                    break;
+                case "Date":
+                    clients = clients.OrderBy(s => s.DueDate);
+                    break;
+                case "date_desc":
+                    clients = clients.OrderByDescending(s => s.DueDate);
+                    break;
+                case "LastName":
+                    clients = clients.OrderBy(s => s.LastName);
+                    break;
+                case "last_desc":
+                    clients = clients.OrderByDescending(s => s.LastName);
+                    break;
+                default:
+                    clients = clients.OrderBy(s => s.Subcontractor.OrgName);
+                    break;
+            }
+            return View(clients.ToList());
         }
 
         [HttpPost]
@@ -294,21 +314,44 @@ namespace Alliance_for_Life.Controllers
             }
         }
 
-        public ActionResult AllNonActiveClients()
+        public ActionResult AllNonActiveClients(string sortOrder, string searchString)
         {
-            var allnonactive = from cl in db.ClientLists
-                               join su in db.SubContractors on cl.SubcontractorId equals su.SubcontractorId
-                               where cl.Active == false
-                               select new ClientListReport
-                               {
-                                   Id = cl.Id,
-                                   Orgname = su.OrgName,
-                                   FirstName = cl.FirstName,
-                                   LastName = cl.LastName,
-                                   DOB = cl.DOB,
-                                   DueDate = cl.DueDate
-                               };
-            return View(allnonactive);
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
+            ViewBag.LastNameSortParm = sortOrder == "LastName" ? "last_desc" : "LastName";
+
+
+            var clients = db.ClientLists.Include(s => s.Subcontractor)
+                .Where(s => s.Active == false);
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                clients = clients.Where(a => a.Subcontractor.OrgName.Contains(searchString)
+                || a.LastName.ToString().Contains(searchString));
+            }
+
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    clients = clients.OrderByDescending(s => s.Subcontractor.OrgName);
+                    break;
+                case "Date":
+                    clients = clients.OrderBy(s => s.DueDate);
+                    break;
+                case "date_desc":
+                    clients = clients.OrderByDescending(s => s.DueDate);
+                    break;
+                case "LastName":
+                    clients = clients.OrderBy(s => s.LastName);
+                    break;
+                case "last_desc":
+                    clients = clients.OrderByDescending(s => s.LastName);
+                    break;
+                default:
+                    clients = clients.OrderBy(s => s.Subcontractor.OrgName);
+                    break;
+            }
+            return View(clients.ToList());
         }
 
         [HttpPost]
@@ -355,24 +398,45 @@ namespace Alliance_for_Life.Controllers
             }
         }
 
-        public ActionResult NonActiveClients()
+        public ActionResult NonActiveClients(string sortOrder, string searchString)
         {
-            var user1 = User.Identity.GetUserId();
-            var nonactiveclients = from cl in db.ClientLists
-                                   join su in db.SubContractors on cl.SubcontractorId equals su.SubcontractorId
-                                   join us in db.Users on su.SubcontractorId equals us.SubcontractorId
-                                   where cl.Active == false && us.Id == user1
-                                   select new ClientListReport
-                                   {
-                                       Id = cl.Id,
-                                       Orgname = su.OrgName,
-                                       FirstName = cl.FirstName,
-                                       LastName = cl.LastName,
-                                       DOB = cl.DOB,
-                                       DueDate = cl.DueDate
-                                   };
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
+            ViewBag.LastNameSortParm = sortOrder == "LastName" ? "last_desc" : "LastName";
 
-            return View(nonactiveclients);
+
+            var clients = db.ClientLists.Include(s => s.Subcontractor)
+                .Where(s => s.SubcontractorId == s.Subcontractor.SubcontractorId)
+                .Where(s => s.Active == false);
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                clients = clients.Where(a => a.Subcontractor.OrgName.Contains(searchString)
+                || a.LastName.ToString().Contains(searchString));
+            }
+
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    clients = clients.OrderByDescending(s => s.Subcontractor.OrgName);
+                    break;
+                case "Date":
+                    clients = clients.OrderBy(s => s.DueDate);
+                    break;
+                case "date_desc":
+                    clients = clients.OrderByDescending(s => s.DueDate);
+                    break;
+                case "LastName":
+                    clients = clients.OrderBy(s => s.LastName);
+                    break;
+                case "last_desc":
+                    clients = clients.OrderByDescending(s => s.LastName);
+                    break;
+                default:
+                    clients = clients.OrderBy(s => s.Subcontractor.OrgName);
+                    break;
+            }
+            return View(clients.ToList());
         }
 
         [HttpPost]
