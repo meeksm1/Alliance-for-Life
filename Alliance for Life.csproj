@@ -611,6 +611,8 @@
     <Content Include="Content\DataTables\css\semanticui.scss" />
     <Content Include="Content\DataTables\css\mixins.scss" />
     <Content Include="Content\DataTables\css\common.scss" />
+    <Content Include="Scripts\Invoice\log0.png" />
+    <Content Include="Scripts\Invoice\style.css" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Scripts\jquery-3.0.0-vsdoc.js" />
@@ -645,7 +647,6 @@
     <None Include="Scripts\_references.js" />
     <Content Include="Views\BudgetCosts\Create.cshtml" />
     <Content Include="Views\BudgetCosts\Details.cshtml" />
-    <Content Include="Views\BudgetCosts\Index.cshtml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -750,6 +751,8 @@
     <Content Include="Views\Account\Edit.cshtml" />
     <Content Include="Views\BudgetCosts\Edit.cshtml" />
     <Content Include="Views\ClientList\Details.cshtml" />
+    <Content Include="Views\BudgetCosts\Index.cshtml" />
+    <Content Include="Views\Invoices\Invoice.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config">

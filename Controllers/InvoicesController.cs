@@ -20,8 +20,8 @@ namespace Alliance_for_Life.ReportControllers
             return View(invoices.ToList());
         }
 
-        // GET: Invoices/Details/5
-        public ActionResult Details(Guid? id)
+        //needs work on
+        public ActionResult Invoice(Guid? id)
         {
             if (id == null)
             {
