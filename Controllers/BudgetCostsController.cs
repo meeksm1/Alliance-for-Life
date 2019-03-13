@@ -146,37 +146,274 @@ namespace Alliance_for_Life.Controllers
             return View(expensereport.ToList());
         }
 
-        public ActionResult FirstQuarter()
+        public ViewResult FirstQuarter(string sortOrder, string searchString, string currentFilter, int? page, string pgSize)
         {
-            var budgetCosts = db.BudgetCosts
+            int pageSize = Convert.ToInt16(pgSize);
+            //paged view
+            ViewBag.CurrentSort = sortOrder;
+
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.YearSortParm = sortOrder == "Year" ? "year_desc" : "Year";
+            ViewBag.MonthSortParm = sortOrder == "Month" ? "month_desc" : "Month";
+            ViewBag.RegionSortParm = sortOrder == "Region" ? "region_desc" : "Region";
+
+            //looking for the searchstring
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+            ViewBag.CurrentFilter = searchString;
+
+            var budgetsearch = db.BudgetCosts
             .Include(b => b.User)
             .Where(b => (int)b.Month.Value <= 3);
 
-            return View(budgetCosts.ToList());
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                int yearsearch = Convert.ToInt16(searchString);
+                budgetsearch = budgetsearch.OrderBy(s => s.Month).Where(S => S.Year == yearsearch);
+            }
+            switch (sortOrder)
+            {
+                case "Year":
+                    budgetsearch = budgetsearch.OrderBy(s => s.Year);
+                    break;
+                case "Month":
+                    budgetsearch = budgetsearch.OrderBy(s => s.Month);
+                    break;
+                case "Region":
+                    budgetsearch = budgetsearch.OrderBy(s => s.Region);
+                    break;
+                case "year_desc":
+                    budgetsearch = budgetsearch.OrderByDescending(s => s.Year);
+                    break;
+                case "month_desc":
+                    budgetsearch = budgetsearch.OrderByDescending(s => s.Month);
+                    break;
+                case "region_desc":
+                    budgetsearch = budgetsearch.OrderByDescending(s => s.Region);
+                    break;
+                default:
+                    budgetsearch = budgetsearch.OrderBy(s => s.Region);
+                    break;
+            }
+
+
+            if (pageSize < 1)
+            {
+                pageSize = 10;
+            }
+
+            int pageNumber = (page ?? 1);
+            return View(budgetsearch.ToPagedList(pageNumber, pageSize));        
+
         }
 
-        public ActionResult SecondQuarter()
+        public ViewResult SecondQuarter(string sortOrder, string searchString, string currentFilter, int? page, string pgSize)
         {
-            var budgetCosts = db.BudgetCosts
+            int pageSize = Convert.ToInt16(pgSize);
+            //paged view
+            ViewBag.CurrentSort = sortOrder;
+
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.YearSortParm = sortOrder == "Year" ? "year_desc" : "Year";
+            ViewBag.MonthSortParm = sortOrder == "Month" ? "month_desc" : "Month";
+            ViewBag.RegionSortParm = sortOrder == "Region" ? "region_desc" : "Region";
+
+            //looking for the searchstring
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+            ViewBag.CurrentFilter = searchString;
+
+            var budgetsearch = db.BudgetCosts
             .Include(b => b.User)
             .Where(b => (int)b.Month >= 4 && (int)b.Month <= 6);
-            return View(budgetCosts.ToList());
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                int yearsearch = Convert.ToInt16(searchString);
+                budgetsearch = budgetsearch.OrderBy(s => s.Month).Where(S => S.Year == yearsearch);
+            }
+            switch (sortOrder)
+            {
+                case "Year":
+                    budgetsearch = budgetsearch.OrderBy(s => s.Year);
+                    break;
+                case "Month":
+                    budgetsearch = budgetsearch.OrderBy(s => s.Month);
+                    break;
+                case "Region":
+                    budgetsearch = budgetsearch.OrderBy(s => s.Region);
+                    break;
+                case "year_desc":
+                    budgetsearch = budgetsearch.OrderByDescending(s => s.Year);
+                    break;
+                case "month_desc":
+                    budgetsearch = budgetsearch.OrderByDescending(s => s.Month);
+                    break;
+                case "region_desc":
+                    budgetsearch = budgetsearch.OrderByDescending(s => s.Region);
+                    break;
+                default:
+                    budgetsearch = budgetsearch.OrderBy(s => s.Region);
+                    break;
+            }
+
+
+            if (pageSize < 1)
+            {
+                pageSize = 10;
+            }
+
+            int pageNumber = (page ?? 1);
+            return View(budgetsearch.ToPagedList(pageNumber, pageSize));
+
         }
 
-        public ActionResult ThirdQuarter()
+        public ViewResult ThirdQuarter(string sortOrder, string searchString, string currentFilter, int? page, string pgSize)
         {
-            var budgetCosts = db.BudgetCosts
+            int pageSize = Convert.ToInt16(pgSize);
+            //paged view
+            ViewBag.CurrentSort = sortOrder;
+
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.YearSortParm = sortOrder == "Year" ? "year_desc" : "Year";
+            ViewBag.MonthSortParm = sortOrder == "Month" ? "month_desc" : "Month";
+            ViewBag.RegionSortParm = sortOrder == "Region" ? "region_desc" : "Region";
+
+            //looking for the searchstring
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+            ViewBag.CurrentFilter = searchString;
+
+            var budgetsearch = db.BudgetCosts
             .Include(b => b.User)
             .Where(b => (int)b.Month >= 7 && (int)b.Month <= 9);
-            return View(budgetCosts.ToList());
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                int yearsearch = Convert.ToInt16(searchString);
+                budgetsearch = budgetsearch.OrderBy(s => s.Month).Where(S => S.Year == yearsearch);
+            }
+            switch (sortOrder)
+            {
+                case "Year":
+                    budgetsearch = budgetsearch.OrderBy(s => s.Year);
+                    break;
+                case "Month":
+                    budgetsearch = budgetsearch.OrderBy(s => s.Month);
+                    break;
+                case "Region":
+                    budgetsearch = budgetsearch.OrderBy(s => s.Region);
+                    break;
+                case "year_desc":
+                    budgetsearch = budgetsearch.OrderByDescending(s => s.Year);
+                    break;
+                case "month_desc":
+                    budgetsearch = budgetsearch.OrderByDescending(s => s.Month);
+                    break;
+                case "region_desc":
+                    budgetsearch = budgetsearch.OrderByDescending(s => s.Region);
+                    break;
+                default:
+                    budgetsearch = budgetsearch.OrderBy(s => s.Region);
+                    break;
+            }
+
+
+            if (pageSize < 1)
+            {
+                pageSize = 10;
+            }
+
+            int pageNumber = (page ?? 1);
+            return View(budgetsearch.ToPagedList(pageNumber, pageSize));
+
         }
 
-        public ActionResult FourthQuarter()
+        public ViewResult FourthQuarter
+(string sortOrder, string searchString, string currentFilter, int? page, string pgSize)
         {
-            var budgetCosts = db.BudgetCosts
+            int pageSize = Convert.ToInt16(pgSize);
+            //paged view
+            ViewBag.CurrentSort = sortOrder;
+
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.YearSortParm = sortOrder == "Year" ? "year_desc" : "Year";
+            ViewBag.MonthSortParm = sortOrder == "Month" ? "month_desc" : "Month";
+            ViewBag.RegionSortParm = sortOrder == "Region" ? "region_desc" : "Region";
+
+            //looking for the searchstring
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+            ViewBag.CurrentFilter = searchString;
+
+            var budgetsearch = db.BudgetCosts
             .Include(b => b.User)
             .Where(b => (int)b.Month >= 10);
-            return View(budgetCosts.ToList());
+
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                int yearsearch = Convert.ToInt16(searchString);
+                budgetsearch = budgetsearch.OrderBy(s => s.Month).Where(S => S.Year == yearsearch);
+            }
+            switch (sortOrder)
+            {
+                case "Year":
+                    budgetsearch = budgetsearch.OrderBy(s => s.Year);
+                    break;
+                case "Month":
+                    budgetsearch = budgetsearch.OrderBy(s => s.Month);
+                    break;
+                case "Region":
+                    budgetsearch = budgetsearch.OrderBy(s => s.Region);
+                    break;
+                case "year_desc":
+                    budgetsearch = budgetsearch.OrderByDescending(s => s.Year);
+                    break;
+                case "month_desc":
+                    budgetsearch = budgetsearch.OrderByDescending(s => s.Month);
+                    break;
+                case "region_desc":
+                    budgetsearch = budgetsearch.OrderByDescending(s => s.Region);
+                    break;
+                default:
+                    budgetsearch = budgetsearch.OrderBy(s => s.Region);
+                    break;
+            }
+
+
+            if (pageSize < 1)
+            {
+                pageSize = 10;
+            }
+
+            int pageNumber = (page ?? 1);
+            return View(budgetsearch.ToPagedList(pageNumber, pageSize));
+
         }
 
         // GET: BudgetCosts/Details/5

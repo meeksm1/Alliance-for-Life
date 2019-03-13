@@ -65,3 +65,4 @@ C:\Users\manoj.ghimire\Documents\GitHub\Alliance-for-Life\obj\Debug\Alliance for
 C:\Users\manoj.ghimire\Documents\GitHub\Alliance-for-Life\obj\Debug\Alliance for Life.csproj.CopyComplete
 C:\Users\manoj.ghimire\Documents\GitHub\Alliance-for-Life\obj\Debug\Alliance for Life.dll
 C:\Users\manoj.ghimire\Documents\GitHub\Alliance-for-Life\obj\Debug\Alliance for Life.pdb
+C:\Users\meeksm1\Documents\GitHub\Alliance-for-Life\obj\Debug\Alliance_for_Life.Migrations.UpdateNR2.resources

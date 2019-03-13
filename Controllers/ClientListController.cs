@@ -9,6 +9,7 @@ using System.Linq;
 using System.Data.Entity;
 using System.Web.Mvc;
 using System.Net;
+using PagedList;
 
 namespace Alliance_for_Life.Controllers
 {
@@ -143,12 +144,26 @@ namespace Alliance_for_Life.Controllers
             return View("ClientListForm", viewModel);
         }
 
-        public ActionResult AllActiveClients(string sortOrder, string searchString)
+        public ViewResult AllActiveClients(string sortOrder, string searchString, string currentFilter, int? page, string pgSize)
         {
+
+            int pageSize = Convert.ToInt16(pgSize);
+            ViewBag.CurrentSort = sortOrder;
+
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
             ViewBag.LastNameSortParm = sortOrder == "LastName" ? "last_desc" : "LastName";
 
+            //looking for the searchstring
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+            ViewBag.CurrentFilter = searchString;
 
             var clients = db.ClientLists.Include(s => s.Subcontractor)
                 .Where(s => s.Active);
@@ -180,7 +195,13 @@ namespace Alliance_for_Life.Controllers
                     clients = clients.OrderBy(s => s.Subcontractor.OrgName);
                     break;
             }
-            return View(clients.ToList());
+            if (pageSize < 1)
+            {
+                pageSize = 10;
+            }
+
+            int pageNumber = (page ?? 1);
+            return View(clients.ToPagedList(pageNumber, pageSize));
         }
 
         public FileResult ExportAllActive()
@@ -228,12 +249,26 @@ namespace Alliance_for_Life.Controllers
             }
         }
 
-        public ActionResult ActiveClients(string sortOrder, string searchString)
+        public ActionResult ActiveClients(string sortOrder, string searchString, string currentFilter, int? page, string pgSize)
         {
+
+            int pageSize = Convert.ToInt16(pgSize);
+            ViewBag.CurrentSort = sortOrder;
+
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
             ViewBag.LastNameSortParm = sortOrder == "LastName" ? "last_desc" : "LastName";
 
+            //looking for the searchstring
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+            ViewBag.CurrentFilter = searchString;
 
             var clients = db.ClientLists.Include(s => s.Subcontractor)
                 .Where(s => s.SubcontractorId == s.Subcontractor.SubcontractorId)
@@ -266,7 +301,13 @@ namespace Alliance_for_Life.Controllers
                     clients = clients.OrderBy(s => s.Subcontractor.OrgName);
                     break;
             }
-            return View(clients.ToList());
+            if (pageSize < 1)
+            {
+                pageSize = 10;
+            }
+
+            int pageNumber = (page ?? 1);
+            return View(clients.ToPagedList(pageNumber, pageSize));
         }
 
         [HttpPost]
@@ -314,12 +355,26 @@ namespace Alliance_for_Life.Controllers
             }
         }
 
-        public ActionResult AllNonActiveClients(string sortOrder, string searchString)
+        public ActionResult AllNonActiveClients(string sortOrder, string searchString, string currentFilter, int? page, string pgSize)
         {
+
+            int pageSize = Convert.ToInt16(pgSize);
+            ViewBag.CurrentSort = sortOrder;
+
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
             ViewBag.LastNameSortParm = sortOrder == "LastName" ? "last_desc" : "LastName";
 
+            //looking for the searchstring
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+            ViewBag.CurrentFilter = searchString;
 
             var clients = db.ClientLists.Include(s => s.Subcontractor)
                 .Where(s => s.Active == false);
@@ -351,7 +406,13 @@ namespace Alliance_for_Life.Controllers
                     clients = clients.OrderBy(s => s.Subcontractor.OrgName);
                     break;
             }
-            return View(clients.ToList());
+            if (pageSize < 1)
+            {
+                pageSize = 10;
+            }
+
+            int pageNumber = (page ?? 1);
+            return View(clients.ToPagedList(pageNumber, pageSize));
         }
 
         [HttpPost]
@@ -398,12 +459,26 @@ namespace Alliance_for_Life.Controllers
             }
         }
 
-        public ActionResult NonActiveClients(string sortOrder, string searchString)
+        public ActionResult NonActiveClients(string sortOrder, string searchString, string currentFilter, int? page, string pgSize)
         {
+
+            int pageSize = Convert.ToInt16(pgSize);
+            ViewBag.CurrentSort = sortOrder;
+
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
             ViewBag.LastNameSortParm = sortOrder == "LastName" ? "last_desc" : "LastName";
 
+            //looking for the searchstring
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+            ViewBag.CurrentFilter = searchString;
 
             var clients = db.ClientLists.Include(s => s.Subcontractor)
                 .Where(s => s.SubcontractorId == s.Subcontractor.SubcontractorId)
@@ -436,7 +511,13 @@ namespace Alliance_for_Life.Controllers
                     clients = clients.OrderBy(s => s.Subcontractor.OrgName);
                     break;
             }
-            return View(clients.ToList());
+            if (pageSize < 1)
+            {
+                pageSize = 10;
+            }
+
+            int pageNumber = (page ?? 1);
+            return View(clients.ToPagedList(pageNumber, pageSize));
         }
 
         [HttpPost]

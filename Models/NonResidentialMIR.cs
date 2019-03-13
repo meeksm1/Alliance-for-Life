@@ -40,7 +40,7 @@ namespace Alliance_for_Life.Models
         public int Year { get; set; }
 
         /*Navigation Properties*/
-        public Months? Months { get; set; }
+        public Months? Month { get; set; }
         public SubContractor Subcontractor { get; set; }
 
        

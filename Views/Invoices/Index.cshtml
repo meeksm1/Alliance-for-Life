@@ -96,7 +96,10 @@
                 <div class="due">@invoice.BalanceRemaining.ToString("C")</div>
             </td>
             <td>
-                @Html.ActionLink("Details", "Invoice", new { id = invoice.InvoiceId })
+                @Html.ActionLink("Invoice Option 1", "Invoice", new { id = invoice.InvoiceId })
+            </td>
+            <td>
+                @Html.ActionLink("Invoice Option 2", "Details", new { id = invoice.InvoiceId })
             </td>
         </tr>
     }

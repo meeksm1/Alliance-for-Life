@@ -50,7 +50,7 @@ namespace Alliance_for_Life.ViewModels
         public int TotOtherClasses { get; set; }
 
         /*Navigation Properties*/
-        public IEnumerable<SubContractor> Subcontractors { get; set; }
+        public IEnumerable<SubContractor> Subcontractor { get; set; }
         public Months? Month { get; set; }
 
         public System.Guid SubcontractorId { get; set; }

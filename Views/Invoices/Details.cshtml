@@ -1,10 +1,9 @@
 ﻿@model  Alliance_for_Life.Models.Invoice
 
 @{
-                /**/
 
-                ViewBag.Title = "Invoice Details";
-              Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Invoice Details";
+    Layout = "~/Views/Shared/_InvoiceHeader.cshtml";
 }
 
 @if (ViewBag.WordDocumentMode == null || !ViewBag.WordDocumentMode)

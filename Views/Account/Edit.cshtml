@@ -13,12 +13,12 @@
     @Html.ValidationSummary("", new { @class = "text-danger" })
 
     <div class="form-group">
-            @Html.LabelFor(m => m.Organization, new { @class = "col-md-2 control-label" })
+        @Html.LabelFor(m => m.Organization, new { @class = "col-md-2 control-label" })
         <div class="col-md-4">
             @Html.DropDownList("Organization", (SelectList)ViewBag.SubcontractorId, new { @class = "form-control" })
             @Html.ValidationMessageFor(m => m.Organization)
         </div>
-        </div>  
+    </div>
     <div class="form-group">
         @Html.LabelFor(m => m.Firstname, new { @class = "col-md-2 control-label" })
         <div class="col-md-4">
@@ -48,6 +48,10 @@
         <div class="col-md-offset-2 col-md-4">
             <button type="submit" class="btn btn-group-sm btn-primary">Register</button>
         </div>
+    </div>
+
+    <div>
+        @Html.ActionLink("Cancel", "Index", "Home")
     </div>
 }
 

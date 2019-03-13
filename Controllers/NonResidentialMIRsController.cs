@@ -57,7 +57,10 @@ namespace Alliance_for_Life.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            NonResidentialMIR nonResidentialMIR = db.NonResidentialMIRs.Find(id);
+            NonResidentialMIR nonResidentialMIR = db.NonResidentialMIRs
+               .Include(s => s.Subcontractor)
+               .SingleOrDefault();
+
             if (nonResidentialMIR == null)
             {
                 return HttpNotFound();
@@ -68,6 +71,11 @@ namespace Alliance_for_Life.Controllers
         // GET: NonResidentialMIRs/Create
         public ActionResult Create()
         {
+            var datelist = Enumerable.Range(System.DateTime.Now.Year - 4, 10).ToList();
+
+            ViewBag.Year = new SelectList(datelist);
+            ViewBag.SubcontractorId = new SelectList(db.SubContractors, "SubcontractorId", "OrgName");
+
             return View();
         }
 
@@ -80,11 +88,27 @@ namespace Alliance_for_Life.Controllers
         {
             if (ModelState.IsValid)
             {
-                nonResidentialMIR.Id = Guid.NewGuid();
-                db.NonResidentialMIRs.Add(nonResidentialMIR);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                var dataexist = from s in db.NonResidentialMIRs
+                                where s.SubcontractorId == nonResidentialMIR.SubcontractorId &&
+                                s.Year == nonResidentialMIR.Year &&
+                                s.Month == nonResidentialMIR.Month
+                                select s;
+                if (dataexist.Count() >= 1)
+                {
+                    ViewBag.error = "Data already exists. Please change the params or search in the Reports tab for the current Record.";
+                }
+                else
+                {
+                    nonResidentialMIR.Id = Guid.NewGuid();
+                    db.NonResidentialMIRs.Add(nonResidentialMIR);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
             }
+            var datelist = Enumerable.Range(System.DateTime.Now.Year - 4, 10).ToList();
+
+            ViewBag.Year = new SelectList(datelist);
+            ViewBag.SubcontractorId = new SelectList(db.SubContractors, "SubcontractorId", "OrgName", nonResidentialMIR.SubcontractorId);
 
             return View(nonResidentialMIR);
         }
@@ -101,6 +125,12 @@ namespace Alliance_for_Life.Controllers
             {
                 return HttpNotFound();
             }
+
+            var datelist = Enumerable.Range(System.DateTime.Now.Year - 4, 10).ToList();
+
+            ViewBag.Year = new SelectList(datelist);
+            ViewBag.SubcontractorId = new SelectList(db.SubContractors, "SubcontractorId", "OrgName");
+
             return View(nonResidentialMIR);
         }
 
@@ -109,7 +139,7 @@ namespace Alliance_for_Life.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,SubcontractorId,TotBedNights,TotA2AEnrollment,TotA2ABedNights,SubmittedDate,MA2Apercent,ClientsJobEduServ,ParticipatingFathers,TotEduClasses,TotClientsinEduClasses,TotCaseHrs,TotClientsCaseHrs,TotOtherClasses,Year,Months")] NonResidentialMIR nonResidentialMIR)
+        public ActionResult Edit([Bind(Include = "Id,SubcontractorId,TotBedNights,TotA2AEnrollment,TotA2ABedNights,SubmittedDate,MA2Apercent,ClientsJobEduServ,ParticipatingFathers,TotEduClasses,TotClientsinEduClasses,TotCaseHrs,TotClientsCaseHrs,TotOtherClasses,Year,Month")] NonResidentialMIR nonResidentialMIR)
         {
             if (ModelState.IsValid)
             {
@@ -117,6 +147,12 @@ namespace Alliance_for_Life.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+
+            var datelist = Enumerable.Range(System.DateTime.Now.Year - 4, 10).ToList();
+
+            ViewBag.Year = new SelectList(datelist);
+            ViewBag.SubcontractorId = new SelectList(db.SubContractors, "SubcontractorId", "OrgName");
+
             return View(nonResidentialMIR);
         }
 
@@ -127,7 +163,10 @@ namespace Alliance_for_Life.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            NonResidentialMIR nonResidentialMIR = db.NonResidentialMIRs.Find(id);
+            NonResidentialMIR nonResidentialMIR = db.NonResidentialMIRs
+                .Include(s => s.Subcontractor)
+                .SingleOrDefault();
+
             if (nonResidentialMIR == null)
             {
                 return HttpNotFound();
@@ -140,7 +179,10 @@ namespace Alliance_for_Life.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(Guid id)
         {
-            NonResidentialMIR nonResidentialMIR = db.NonResidentialMIRs.Find(id);
+            NonResidentialMIR nonResidentialMIR = db.NonResidentialMIRs
+             .Include(s => s.Subcontractor)
+             .SingleOrDefault();
+
             db.NonResidentialMIRs.Remove(nonResidentialMIR);
             db.SaveChanges();
             return RedirectToAction("Index");
@@ -165,7 +207,7 @@ namespace Alliance_for_Life.Controllers
                              Id = res.Id,
                              SubmittedDate = res.SubmittedDate,
                              OrgName = s.OrgName,
-                             Month = res.Months.ToString(),
+                             Month = res.Month.ToString(),
                              YearName = res.Year,
                              TotBedNights = res.TotBedNights,
                              TotA2AEnrollment = res.TotA2AEnrollment,
@@ -215,7 +257,7 @@ namespace Alliance_for_Life.Controllers
                              Id = res.Id,
                              SubmittedDate = res.SubmittedDate,
                              OrgName = s.OrgName,
-                             Month = res.Months.ToString(),
+                             Month = res.Month.ToString(),
                              YearName = res.Year,
                              TotBedNights = res.TotBedNights,
                              TotA2AEnrollment = res.TotA2AEnrollment,

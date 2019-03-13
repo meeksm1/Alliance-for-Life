@@ -257,6 +257,10 @@
     <Compile Include="Migrations\201903121840194_UpdateNR.Designer.cs">
       <DependentUpon>201903121840194_UpdateNR.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201903131706397_UpdateNR2.cs" />
+    <Compile Include="Migrations\201903131706397_UpdateNR2.Designer.cs">
+      <DependentUpon>201903131706397_UpdateNR2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\SearchData.cs" />
     <Compile Include="Controllers\SubContractorController.cs" />
     <Compile Include="Controllers\SurveysController.cs" />
@@ -711,7 +715,6 @@
     <Content Include="Views\Surveys\Index.cshtml" />
     <Content Include="Views\ClientList\AllNonActiveClients.cshtml" />
     <Content Include="Views\ClientList\AllActiveClients.cshtml" />
-    <Content Include="Views\Role\AssignRoleToUser.cshtml" />
     <Content Include="Views\Role\Index.cshtml" />
     <Content Include="Views\Role\Create.cshtml" />
     <Content Include="Views\Account\RegisterRole.cshtml" />
@@ -761,6 +764,7 @@
     <Content Include="Views\NonResidentialMIRs\Details.cshtml" />
     <Content Include="Views\NonResidentialMIRs\Edit.cshtml" />
     <Content Include="Views\NonResidentialMIRs\Index.cshtml" />
+    <Content Include="Views\Shared\_InvoiceHeader.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config">
@@ -794,6 +798,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201903121840194_UpdateNR.resx">
       <DependentUpon>201903121840194_UpdateNR.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903131706397_UpdateNR2.resx">
+      <DependentUpon>201903131706397_UpdateNR2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
