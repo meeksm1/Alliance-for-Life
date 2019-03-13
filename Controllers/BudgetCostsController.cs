@@ -328,8 +328,9 @@ namespace Alliance_for_Life.Controllers
         public FileResult Export()
         {
             //get the invoice id
-            var exportid = new Guid(Request["BudgetInvoiceId"]);
-
+            var exportid = Request["BudgetInvoiceId"];
+           
+           
             //create datatable
             DataTable dt = new DataTable("Grid");
             dt.Columns.AddRange(new DataColumn[40]
@@ -420,9 +421,9 @@ namespace Alliance_for_Life.Controllers
                             Maxtot = a.Maxtot
                         };
 
-            if (exportid != null)
+            if ( exportid.Length ==32)
             {
-                costs = costs.Where(s => s.BudgetInvoiceId == exportid);
+                costs = costs.Where(s => s.BudgetInvoiceId == new Guid(exportid));
             }
 
             foreach (var item in costs)
