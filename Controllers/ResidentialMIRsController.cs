@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Alliance_for_Life.Models;
+using PagedList;
 
 namespace Alliance_for_Life.Controllers
 {
@@ -15,10 +16,25 @@ namespace Alliance_for_Life.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: ResidentialMIRs
-        public ActionResult Index(string sortOrder, string searchString)
+        public ActionResult Index(string sortOrder, string searchString, string currentFilter, int? page, string pgSize)
         {
+
+            int pageSize = Convert.ToInt16(pgSize);
+
+            ViewBag.CurrentSort = sortOrder;
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
+
+            //looking for the searchstring
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+            ViewBag.CurrentFilter = searchString;
 
             var ressearch = db.ResidentialMIRs
             .Include(a => a.Subcontractor).Where(a => a.SubcontractorId == a.Subcontractor.SubcontractorId);
@@ -44,8 +60,13 @@ namespace Alliance_for_Life.Controllers
                     ressearch = ressearch.OrderBy(s => s.Subcontractor.OrgName);
                     break;
             }
+            if (pageSize < 1)
+            {
+                pageSize = 10;
+            }
 
-            return View(ressearch.ToList());
+            int pageNumber = (page ?? 1);
+            return View(ressearch.ToPagedList(pageNumber, pageSize));
         }
 
         // GET: ResidentialMIRs/Details/5
