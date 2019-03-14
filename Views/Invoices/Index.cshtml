@@ -6,16 +6,91 @@
 }
 <h2>Invoice Details</h2>
 
-<p>
-    Find by Organization Name: @Html.TextBox("SearchString")
-    <input type="submit" value="Search" />
-</p>
 
+
+<!-- Button trigger modal -->
+
+@using (Html.BeginForm())
+{
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Generate Invoice</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="row" style="align-content:center;">
+                            <div class="col-xs-5th-1 col-sm-6" style="align-content:center;">
+                                @Html.DropDownList("SubcontractorId", null, "Select Organization ", htmlAttributes: new { @class = "form-control", required = "required" })
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-xs-5th-1 col-sm-6">
+                                @Html.DropDownList("Month", null, "Select Month", htmlAttributes: new { @class = "form-control", required = "required" })
+
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-xs-5th-1 col-sm-6">
+                                @Html.DropDownList("Year", null, "Select Year", htmlAttributes: new { @class = "form-control", required = "required" })
+
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-xs-5th-1 col-sm-6">
+                                @Html.Editor("billingdate", new { htmlAttributes = new { @class = "form-control", type = "date", required = "required" } })
+                                <small>Billing Date</small>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <input type="submit" value="Generate" class="btn btn-group-xs btn-success" />
+                </div>
+            </div>
+        </div>
+    </div>
+}
+<div class="container">
+    <div class="row" style="align-content:center;">
+        <div class="col-xs-5th-1 col-sm-6" style="align-content:center;">
+            @Html.TextBox("SearchString", null, new { placeholder = "Find Organization" })
+            <input type="submit" class="btn btn-success" value="Search" />
+        </div>
+        <div class="col-xs-5th-1 col-sm-6">
+            <input type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" value="Generate Invoice">
+        </div>
+    </div>
+</div>
+
+<br />
+
+<p style="color:red; text-align:center;">
+    @ViewBag.error
+</p>
 <table class="table">
     <tr>
         <th>
             @Html.ActionLink("Organization", "Index", new { sortOrder = ViewBag.NameSortParm })
         </th>
+        <th>
+            Month
+        </th>
+
+        <th>
+            Year
+        </th>
+
         <th>
             Direct Admin Cost
         </th>
@@ -62,6 +137,12 @@
                 <div class="clientid">@invoice.Subcontractor.OrgName</div>
             </td>
             <td>
+                <div class="clientid">@invoice.Month</div>
+            </td>
+            <td>
+                <div class="clientid">@invoice.Year</div>
+            </td>
+            <td>
                 <div class="clientid">@invoice.DirectAdminCost.ToString("C")</div>
             </td>
 
@@ -96,10 +177,7 @@
                 <div class="due">@invoice.BalanceRemaining.ToString("C")</div>
             </td>
             <td>
-                @Html.ActionLink("Invoice Option 1", "Invoice", new { id = invoice.InvoiceId })
-            </td>
-            <td>
-                @Html.ActionLink("Invoice Option 2", "Details", new { id = invoice.InvoiceId })
+                @Html.ActionLink("Details", "Invoice", new { id = invoice.InvoiceId })
             </td>
         </tr>
     }

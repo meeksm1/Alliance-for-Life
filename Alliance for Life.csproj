@@ -261,6 +261,10 @@
     <Compile Include="Migrations\201903131706397_UpdateNR2.Designer.cs">
       <DependentUpon>201903131706397_UpdateNR2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201903141610127_changeinvoicemodel.cs" />
+    <Compile Include="Migrations\201903141610127_changeinvoicemodel.Designer.cs">
+      <DependentUpon>201903141610127_changeinvoicemodel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\SearchData.cs" />
     <Compile Include="Controllers\SubContractorController.cs" />
     <Compile Include="Controllers\SurveysController.cs" />
@@ -801,6 +805,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201903131706397_UpdateNR2.resx">
       <DependentUpon>201903131706397_UpdateNR2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903141610127_changeinvoicemodel.resx">
+      <DependentUpon>201903141610127_changeinvoicemodel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
