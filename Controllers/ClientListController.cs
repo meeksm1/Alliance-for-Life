@@ -112,7 +112,7 @@ namespace Alliance_for_Life.Controllers
 
             var client = db.ClientLists.Single(s => s.Id == viewModel.Id);
             {
-                client.SubcontractorId = viewModel.SubcontractorId;
+                client.SubcontractorId = new Guid(Request["SubcontractorId"]);
                 client.FirstName = viewModel.FirstName;
                 client.LastName = viewModel.LastName;
                 client.DOB = viewModel.DOB;
@@ -126,7 +126,7 @@ namespace Alliance_for_Life.Controllers
         }
 
         [Authorize]
-        public ActionResult Edit(Guid id)
+        public ActionResult Edit(Guid? id)
         {
             var client = db.ClientLists.Single(s => s.Id == id);
             var viewModel = new ClientListFormViewModel
@@ -141,6 +141,10 @@ namespace Alliance_for_Life.Controllers
                 Active = client.Active,
                 SubmittedDate = DateTime.Now
             };
+            viewModel.SubcontractorId = client.SubcontractorId;
+            viewModel.DOB = client.DOB;
+            viewModel.DueDate = client.DueDate;
+
             return View("ClientListForm", viewModel);
         }
 

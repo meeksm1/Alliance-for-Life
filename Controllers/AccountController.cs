@@ -179,7 +179,7 @@ namespace Alliance_for_Life.Controllers
                 Subcontractors = db.SubContractors.ToList(),
             RoleName = db.Roles.Find(clientrole).Name
             };
-
+            viewModel.SubcontractorId = client.SubcontractorId;
             ViewBag.SubcontractorId = new SelectList(db.SubContractors.ToList(), "SubcontractorId", "OrgName", client.SubcontractorId);
             ViewBag.Role = new SelectList(db.Roles.ToList(), "Id", "Name", clientrole);
 
@@ -193,13 +193,13 @@ namespace Alliance_for_Life.Controllers
             var client = db.Users.Find(user.Id.ToString());
             var clientrole = client.Roles.FirstOrDefault().RoleId;
             var oldrolename = db.Roles.SingleOrDefault(r => r.Id == clientrole).Name;
-
+            var org = Request["SubcontractorId"];
             //updating database
             if (ModelState.IsValid)
             {
 
                 var updateduser = db.Users.Single(s => s.Id == user.Id.ToString());
-                updateduser.SubcontractorId = new Guid(user.Organization);
+                updateduser.SubcontractorId = new Guid(org);
                 updateduser.FirstName = user.Firstname;
                 updateduser.LastName = user.Lastname;
                 updateduser.Email = user.Email;

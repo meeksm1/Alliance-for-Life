@@ -29,3 +29,14 @@ C:\Users\meeksm1\Documents\GitHub\Alliance-for-Life\obj\Debug\Alliance for Life.
 C:\Users\meeksm1\Documents\GitHub\Alliance-for-Life\obj\Debug\Alliance for Life.csproj.CopyComplete
 C:\Users\meeksm1\Documents\GitHub\Alliance-for-Life\obj\Debug\Alliance for Life.dll
 C:\Users\meeksm1\Documents\GitHub\Alliance-for-Life\obj\Debug\Alliance for Life.pdb
+C:\Users\manoj\Documents\GitHub\Alliance-for-Life\bin\ApplicationInsights.config
+C:\Users\manoj\Documents\GitHub\Alliance-for-Life\bin\Alliance for Life.dll.config
+C:\Users\manoj\Documents\GitHub\Alliance-for-Life\bin\Alliance for Life.dll
+C:\Users\manoj\Documents\GitHub\Alliance-for-Life\bin\Alliance for Life.pdb
+C:\Users\manoj\Documents\GitHub\Alliance-for-Life\bin\Newtonsoft.Json.dll
+C:\Users\manoj\Documents\GitHub\Alliance-for-Life\obj\Debug\Alliance_for_Life.Migrations.update.resources
+C:\Users\manoj\Documents\GitHub\Alliance-for-Life\obj\Debug\Alliance for Life.csproj.GenerateResource.cache
+C:\Users\manoj\Documents\GitHub\Alliance-for-Life\obj\Debug\Alliance for Life.csproj.CoreCompileInputs.cache
+C:\Users\manoj\Documents\GitHub\Alliance-for-Life\obj\Debug\Alliance for Life.csproj.CopyComplete
+C:\Users\manoj\Documents\GitHub\Alliance-for-Life\obj\Debug\Alliance for Life.dll
+C:\Users\manoj\Documents\GitHub\Alliance-for-Life\obj\Debug\Alliance for Life.pdb
