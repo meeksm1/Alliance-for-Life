@@ -7,13 +7,13 @@ namespace Alliance_for_Life.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class inoviceupdate : IMigrationMetadata
+    public sealed partial class UpdateClientVMAPDBC : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(inoviceupdate));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(UpdateClientVMAPDBC));
         
         string IMigrationMetadata.Id
         {
-            get { return "201903141840321_inoviceupdate"; }
+            get { return "201903141956430_UpdateClientVMAPDBC"; }
         }
         
         string IMigrationMetadata.Source

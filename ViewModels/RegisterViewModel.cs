@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-
+using System.Web.Security;
 
 namespace Alliance_for_Life.ViewModels
 
@@ -10,6 +10,9 @@ namespace Alliance_for_Life.ViewModels
     public class RegisterViewModel
     {
         public IEnumerable<SubContractor> Subcontractors { get; set; }
+
+        public System.Guid SubcontractorId { get; set; }
+
 
         [StringLength(100)]
         public string RoleName { get; set; }

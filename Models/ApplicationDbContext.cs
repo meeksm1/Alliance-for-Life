@@ -3,7 +3,7 @@ using System.Data.Entity;
 
 namespace Alliance_for_Life.Models
 {
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
+    public class ApplicationDbContext : IdentityDbContext<Role>
     {
         public DbSet<SubContractor> SubContractors { get; set; }
         public DbSet<ClientList> ClientLists { get; set; }
@@ -25,7 +25,5 @@ namespace Alliance_for_Life.Models
         {
             return new ApplicationDbContext();
         }
-
-        public System.Data.Entity.DbSet<Alliance_for_Life.ViewModels.ClientListFormViewModel> ClientListFormViewModels { get; set; }
     }   
 }

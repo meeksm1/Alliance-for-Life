@@ -36,8 +36,6 @@ namespace Alliance_for_Life.Models
 
         public DateTime SubmittedDate { get; set; }
 
-        public System.Guid AdminCostId { get; set; }
-        public System.Guid PSId { get; set; }
         /*Navigation Properties*/
         public GeoRegion? Region { get; set; }
         public Months? Month { get; set; }

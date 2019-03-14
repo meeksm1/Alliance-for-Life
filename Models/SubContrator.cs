@@ -7,7 +7,7 @@ namespace Alliance_for_Life.Models
     {
         public System.Guid SubcontractorId { get; set; }
 
-        public ApplicationUser Administrator { get; set; }
+        public Role Administrator { get; set; }
 
         [Required]
         public string AdministratorId { get; set; }

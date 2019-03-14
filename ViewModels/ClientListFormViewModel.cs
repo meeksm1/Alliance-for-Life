@@ -45,7 +45,7 @@ namespace Alliance_for_Life.ViewModels
         //Used for Navigation Properties
         public IEnumerable<SubContractor> Subcontractors { get; set; }
 
-        public IEnumerable<ApplicationUser> User { get; set; }
+        public IEnumerable<Role> User { get; set; }
 
         //used to set the heading of the page
         public string Heading { get; set; }
