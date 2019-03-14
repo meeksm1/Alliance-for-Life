@@ -35,26 +35,23 @@
                 @if (ViewContext.HttpContext.User.IsInRole("Admin"))
                 {
                     @Html.ActionLink("Forms", "Create", "AFLForm", new { area = "" }, new { @class = "navbar-brand" })
-                    @Html.ActionLink("Contractor Forms", "Create", "ContractorForm", new { area = "" }, new { @class = "navbar-brand" })
                     @Html.ActionLink("Reports", "Reports", "AFLForm", new { area = "" }, new { @class = "navbar-brand" })
                     @Html.ActionLink("Invoices", "Index", "Invoices", new { area = "" }, new { @class = "navbar-brand" })
-                    @Html.ActionLink("Contractor Reports", "Reports", "ClientList", new { area = "" }, new { @class = "navbar-brand" })
-
-                    @Html.Partial("_LoginPartial")
-                }
-
-                else if (ViewContext.HttpContext.User.IsInRole("Manager"))
-                {
                     @Html.ActionLink("Contractor Forms", "Create", "ContractorForm", new { area = "" }, new { @class = "navbar-brand" })
                     @Html.ActionLink("Contractor Reports", "Reports", "ClientList", new { area = "" }, new { @class = "navbar-brand" })
+
                     @Html.Partial("_LoginPartial")
                 }
 
                 else if (ViewContext.HttpContext.User.IsInRole("User"))
                 {
-                    @Html.ActionLink("Reports", "Reports", "ClientList", new { area = "" }, new { @class = "navbar-brand" })
+                    @Html.ActionLink("Contractor Forms", "Create", "ContractorForm", new { area = "" }, new { @class = "navbar-brand" })
+                    @Html.ActionLink("Contractor Reports", "Reports", "ClientList", new { area = "" }, new { @class = "navbar-brand" })
+                    @Html.ActionLink("Invoices", "Index", "Invoices", new { area = "" }, new { @class = "navbar-brand" })
+
                     @Html.Partial("_LoginPartial")
                 }
+
                 else
                 {
                     @Html.Partial("_LoginPartial")
