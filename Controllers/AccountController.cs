@@ -2,6 +2,7 @@
 using Alliance_for_Life.Models;
 using Alliance_for_Life.ViewModels;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using System;
@@ -234,6 +235,8 @@ namespace Alliance_for_Life.Controllers
             {
                 Subcontractors = db.SubContractors.ToList()
             };
+
+            ViewBag.RoleName = new SelectList(db.Roles.ToList(), "Name", "Name");
             return View(viewModel);
         }
 
@@ -245,21 +248,20 @@ namespace Alliance_for_Life.Controllers
         {
             if (!ModelState.IsValid)
             {
-                var contractor = db.SubContractors.Select(c => c.OrgName);
+                //var userRole = new RoleManager<IdentityRole>(new IQueryableRoleStore<IdentityRole>(db));
                 viewModel.Subcontractors = db.SubContractors.ToList();
+                //viewModel.Roles = db.Roles.ToList();
                 return View("Create", viewModel);
             }
-            {
-                //var subcontractorId = _context.SubContractors.Single(s => s.SubcontractorId == viewModel.SubcontractorId);
 
-                var user = new ApplicationUser
+            {
+                var user = new Role
                 {
-                    //SubcontractorId = viewModel.SubcontractorId,
+                    SubcontractorId = viewModel.SubcontractorId,
                     Email = viewModel.Email,
                     FirstName = viewModel.FirstName,
                     LastName = viewModel.LastName,
-                    UserName = viewModel.Email,
-
+                    UserName = viewModel.Email
                 };
 
                 db.Users.Add(user);
@@ -287,7 +289,7 @@ namespace Alliance_for_Life.Controllers
             return View(viewModel);
         }
 
-        [AllowAnonymous]
+
         [HttpGet]
         public ActionResult RegisterRole()
         {
@@ -299,9 +301,8 @@ namespace Alliance_for_Life.Controllers
         //
         //POST: /Account/Register
         [HttpPost]
-        [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> RegisterRole(RegisterViewModel model, ApplicationUser user)
+        public async Task<ActionResult> RegisterRole(RegisterViewModel model, Role user)
         {
             var userId = db.Users.Where(i => i.UserName == user.UserName).Select(s => s.Id);
             string updateId = "";
@@ -318,7 +319,6 @@ namespace Alliance_for_Life.Controllers
 
         //
         // GET: /Account/ConfirmEmail
-        [AllowAnonymous]
         public async Task<ActionResult> ConfirmEmail(string userId, string code)
         {
             if (userId == null || code == null)
@@ -511,7 +511,7 @@ namespace Alliance_for_Life.Controllers
                 {
                     return View("ExternalLoginFailure");
                 }
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new Role { UserName = model.Email, Email = model.Email };
                 var result = await UserManager.CreateAsync(user);
                 if (result.Succeeded)
                 {

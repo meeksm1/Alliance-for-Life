@@ -82,7 +82,7 @@ namespace Alliance_for_Life.Models
         // Navigation Properties
         public Months? Month { get; set; }
         public GeoRegion? Region { get; set; }
-        public ApplicationUser User { get; set; }
+        public Role User { get; set; }
         public AdminCosts AdminCost { get; set; }
         public ParticipationService ParticipationCost { get; set; }
         public int Year { get; set; }

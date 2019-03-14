@@ -269,6 +269,10 @@
     <Compile Include="Migrations\201903141807248_UpdateRESMIR.Designer.cs">
       <DependentUpon>201903141807248_UpdateRESMIR.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201903141956430_UpdateClientVMAPDBC.cs" />
+    <Compile Include="Migrations\201903141956430_UpdateClientVMAPDBC.Designer.cs">
+      <DependentUpon>201903141956430_UpdateClientVMAPDBC.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\SearchData.cs" />
     <Compile Include="Controllers\SubContractorController.cs" />
     <Compile Include="Controllers\SurveysController.cs" />
@@ -818,6 +822,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201903141807248_UpdateRESMIR.resx">
       <DependentUpon>201903141807248_UpdateRESMIR.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903141956430_UpdateClientVMAPDBC.resx">
+      <DependentUpon>201903141956430_UpdateClientVMAPDBC.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
