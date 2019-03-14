@@ -1,0 +1,137 @@
+﻿@model Alliance_for_Life.Models.ResidentialMIR
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Non-Residential MIR Report Details</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Subcontractor.OrgName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Subcontractor.OrgName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Month)
+        </dt>
+
+        <dd>
+            @Model.Month
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Year)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Year)
+        </dd>
+
+        <dt>
+            Client Bed Nights
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TotBedNights)
+        </dd>
+
+        <dt>
+            A2A Enrollment
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TotA2AEnrollment)
+        </dd>
+
+        <dt>
+            Total A2A Bed Nights
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TotA2ABedNights)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SubmittedDate)
+        </dt>
+
+        <dd>
+            @Model.SubmittedDate.ToShortDateString()
+        </dd>
+
+        <dt>
+            Monthly A2A Clients Served
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MA2Apercent)
+        </dd>
+
+        <dt>
+            Job or Educational Services
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ClientsJobEduServ)
+        </dd>
+
+        <dt>
+            Participating Fathers
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ParticipatingFathers)
+        </dd>
+
+        <dt>
+            Prenatal & Parenting Classes Offered
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TotEduClasses)
+        </dd>
+
+        <dt>
+            Prenatal & Parenting Classes Attended
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TotClientsinEduClasses)
+        </dd>
+
+        <dt>
+            Case Management Hours
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TotCaseHrs)
+        </dd>
+
+        <dt>
+            Participants in Case Management
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TotClientsCaseHrs)
+        </dd>
+
+        <dt>
+            Other Classes Offered
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TotOtherClasses)
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Delete", "Delete", new { id = Model.Id })|
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -99,6 +99,7 @@ namespace Alliance_for_Life.Controllers
                 }
                 else
                 {
+                    nonResidentialMIR.SubmittedDate = DateTime.Now;
                     nonResidentialMIR.Id = Guid.NewGuid();
                     db.NonResidentialMIRs.Add(nonResidentialMIR);
                     db.SaveChanges();
@@ -143,6 +144,7 @@ namespace Alliance_for_Life.Controllers
         {
             if (ModelState.IsValid)
             {
+                nonResidentialMIR.SubmittedDate = DateTime.Now;
                 db.Entry(nonResidentialMIR).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

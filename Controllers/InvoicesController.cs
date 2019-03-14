@@ -30,7 +30,7 @@ namespace Alliance_for_Life.ReportControllers
                 if (dataexist.Count() >= 1)
                 {
                     ViewBag.error = "Invoice for " + db.SubContractors.Find(new Guid(SubcontractorId)).OrgName
-                        + "for " + Month + ", " + year + " already exists. Please find the invoice below";
+                        + " for " + Month + ", " + year + " already exists. Please find the invoice below";
 
                     searchString = db.SubContractors.Find(new Guid(SubcontractorId)).OrgName;
                     ModelState.Clear();
@@ -97,7 +97,7 @@ namespace Alliance_for_Life.ReportControllers
             if ((admincost.Count() == 0) && (particost.Count() == 0))
             {
                 ViewBag.error = "Invoice for " + db.SubContractors.Find(new Guid(orgname)).OrgName
-                         + " for " + Month + ", " + Year + " cannot be generates. Admin cost or Participation cost does not exist.";
+                         + " for " + Month + ", " + Year + " cannot be generated. Admin cost or Participation cost does not exist.";
                 ModelState.Clear();
             }
             else

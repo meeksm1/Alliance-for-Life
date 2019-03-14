@@ -247,7 +247,7 @@
     <Compile Include="Controllers\NonResidentialMIRsController.cs" />
     <Compile Include="Controllers\ParticipationServiceController.cs" />
     <Compile Include="Controllers\QuarterlyStatesController.cs" />
-    <Compile Include="Controllers\ResidentialMIRController.cs" />
+    <Compile Include="Controllers\ResidentialMIRsController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Migrations\201903112207086_Update.cs" />
     <Compile Include="Migrations\201903112207086_Update.Designer.cs">
@@ -264,6 +264,10 @@
     <Compile Include="Migrations\201903141610127_changeinvoicemodel.cs" />
     <Compile Include="Migrations\201903141610127_changeinvoicemodel.Designer.cs">
       <DependentUpon>201903141610127_changeinvoicemodel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903141807248_UpdateRESMIR.cs" />
+    <Compile Include="Migrations\201903141807248_UpdateRESMIR.Designer.cs">
+      <DependentUpon>201903141807248_UpdateRESMIR.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\SearchData.cs" />
     <Compile Include="Controllers\SubContractorController.cs" />
@@ -697,7 +701,6 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\SubContractor\SubContractorForm.cshtml" />
     <Content Include="Views\ClientList\ClientListForm.cshtml" />
-    <Content Include="Views\ResidentialMIR\Create.cshtml" />
     <Content Include="Scripts\umd\popper.min.js.map" />
     <Content Include="Scripts\umd\popper.js.map" />
     <Content Include="Scripts\umd\popper-utils.min.js.map" />
@@ -724,7 +727,6 @@
     <Content Include="Views\Account\RegisterRole.cshtml" />
     <Content Include="Views\AflForm\Reports.cshtml" />
     <Content Include="Views\SubContractor\Reports.cshtml" />
-    <Content Include="Views\ResidentialMIR\Reports.cshtml" />
     <Content Include="Views\Shared\_LayoutWord.cshtml" />
     <Content Include="Views\Invoices\Create.cshtml" />
     <Content Include="Views\Invoices\Delete.cshtml" />
@@ -769,6 +771,11 @@
     <Content Include="Views\NonResidentialMIRs\Edit.cshtml" />
     <Content Include="Views\NonResidentialMIRs\Index.cshtml" />
     <Content Include="Views\Shared\_InvoiceHeader.cshtml" />
+    <Content Include="Views\ResidentialMIRs\Create.cshtml" />
+    <Content Include="Views\ResidentialMIRs\Delete.cshtml" />
+    <Content Include="Views\ResidentialMIRs\Details.cshtml" />
+    <Content Include="Views\ResidentialMIRs\Edit.cshtml" />
+    <Content Include="Views\ResidentialMIRs\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config">
@@ -808,6 +815,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201903141610127_changeinvoicemodel.resx">
       <DependentUpon>201903141610127_changeinvoicemodel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903141807248_UpdateRESMIR.resx">
+      <DependentUpon>201903141807248_UpdateRESMIR.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
