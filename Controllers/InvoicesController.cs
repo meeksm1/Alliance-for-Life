@@ -1,5 +1,6 @@
 ﻿using Alliance_for_Life.Models;
 using Alliance_for_Life.ViewModels;
+using PagedList;
 using System;
 using System.Data.Entity;
 using System.Linq;
@@ -14,8 +15,21 @@ namespace Alliance_for_Life.ReportControllers
 
         // GET: Invoices
         // GET: Invoices
-        public ActionResult Index(string sortOrder, string searchString, string SubcontractorId, string Month, string Year, string billingdate)
+        public ActionResult Index(string sortOrder, string searchString, string SubcontractorId, string Month, string Year, string billingdate, string currentFilter, int? page, string pgSize)
         {
+            int pageSize = Convert.ToInt16(pgSize);
+            //paged view
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+            ViewBag.CurrentFilter = searchString;
 
             //generate invoices 
             if (SubcontractorId != null && Month != null && Year != null && billingdate != null)
@@ -42,7 +56,8 @@ namespace Alliance_for_Life.ReportControllers
                 }
             }
             //return the index
-            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+
+
 
             var invoices = db.Invoices.Include(s => s.Subcontractor);
 
@@ -65,8 +80,15 @@ namespace Alliance_for_Life.ReportControllers
             ViewBag.Year = new SelectList(datelist);
             ViewBag.SubcontractorId = new SelectList(db.SubContractors, "SubcontractorId", "OrgName");
             ViewBag.Month = new SelectList(Enum.GetValues(typeof(Months)));
-            ModelState.Clear();
-            return View(invoices.ToList());
+            //ModelState.Clear();
+
+            if (pageSize < 1)
+            {
+                pageSize = 10;
+            }
+            int pageNumber = (page ?? 1);
+            return View(invoices.ToPagedList(pageNumber, pageSize));
+            // return View(invoices.ToList());
         }
 
         //generate invoice function
@@ -92,7 +114,7 @@ namespace Alliance_for_Life.ReportControllers
             //set totals to zero
             invoice.DirectAdminCost = 0;
             invoice.ParticipantServices = 0;
-           
+
 
             //check if both admincost and participation cost does not exists
             if ((admincost.Count() == 0) && (particost.Count() == 0))
@@ -157,7 +179,7 @@ namespace Alliance_for_Life.ReportControllers
 
             var invoice = db.Invoices.Find(id);
 
-       invoice.SubmittedDate = System.DateTime.Now;
+            invoice.SubmittedDate = System.DateTime.Now;
 
             var admincost = db.AdminCosts
     .Where(s => s.SubcontractorId == invoice.SubcontractorId && s.Year == invoice.Year && s.Month == invoice.Month);
@@ -187,13 +209,13 @@ namespace Alliance_for_Life.ReportControllers
             invoice.BalanceRemaining = invoice.BeginningAllocation - invoice.AdjustedAllocation;
 
             db.Entry(invoice).State = EntityState.Modified;
-                db.SaveChanges();
+            db.SaveChanges();
 
             return RedirectToAction("Index");
         }
 
 
-            public ActionResult Invoice(Guid? id)
+        public ActionResult Invoice(Guid? id)
         {
             if (id == null)
             {
