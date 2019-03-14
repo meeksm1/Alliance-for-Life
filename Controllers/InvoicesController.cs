@@ -13,13 +13,7 @@ namespace Alliance_for_Life.ReportControllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Invoices
-<<<<<<< HEAD
-        // GET: Invoices
         public ActionResult Index(string sortOrder, string searchString, string SubcontractorId, string Month, string Year, string billingdate, string currentFilter, int? page, string pgSize)
-=======
-        public ActionResult Index(string sortOrder, string searchString, string SubcontractorId, string Month, string Year, string billingdate)
->>>>>>> 64ca3a9d0f73166a3854b54faf137792889db414
         {
             int pageSize = Convert.ToInt16(pgSize);
             //paged view
@@ -59,8 +53,6 @@ namespace Alliance_for_Life.ReportControllers
                     GenerateInvoice(SubcontractorId, Month, Year, billingdate);
                 }
             }
-            //return the index
-
 
 
             var invoices = db.Invoices.Include(s => s.Subcontractor);
@@ -119,12 +111,7 @@ namespace Alliance_for_Life.ReportControllers
             //set totals to zero
             invoice.DirectAdminCost = 0;
             invoice.ParticipantServices = 0;
-<<<<<<< HEAD
 
-=======
->>>>>>> 64ca3a9d0f73166a3854b54faf137792889db414
-
-            //check if both admincost and participation cost does not exists
             if ((admincost.Count() == 0) && (particost.Count() == 0))
             {
                 ViewBag.error = "Invoice for " + db.SubContractors.Find(new Guid(orgname)).OrgName
@@ -136,11 +123,13 @@ namespace Alliance_for_Life.ReportControllers
                 if (admincost.Count() != 0)
                 {
                     invoice.DirectAdminCost = admincost.FirstOrDefault().ATotCosts;
+                    invoice.AdminCostId = admincost.FirstOrDefault().AdminCostId;
                 }
 
                 if (particost.Count() != 0)
                 {
                     invoice.ParticipantServices = particost.FirstOrDefault().PTotals;
+                    invoice.PSId = particost.FirstOrDefault().PSId;
                 }
 
                 //grand total
@@ -173,7 +162,7 @@ namespace Alliance_for_Life.ReportControllers
             return View();
         }
         //needs work on
-<<<<<<< HEAD
+
 
         [HttpPost]
         public ActionResult UpdateInvoice()
@@ -218,8 +207,6 @@ namespace Alliance_for_Life.ReportControllers
         }
 
 
-=======
->>>>>>> 64ca3a9d0f73166a3854b54faf137792889db414
         public ActionResult Invoice(Guid? id)
         {
             if (id == null)

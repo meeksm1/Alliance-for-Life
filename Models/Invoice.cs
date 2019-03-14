@@ -35,7 +35,8 @@ namespace Alliance_for_Life.Models
         public double BalanceRemaining { get; set; }
 
         public DateTime SubmittedDate { get; set; }
-
+        public System.Guid AdminCostId { get; set; }
+        public System.Guid PSId { get; set; }
         /*Navigation Properties*/
         public GeoRegion? Region { get; set; }
         public Months? Month { get; set; }
@@ -45,7 +46,7 @@ namespace Alliance_for_Life.Models
 
         public int Year { get; set; }
         public System.Guid SubcontractorId { get; set; }
-  
-      
+
+
     }
 }

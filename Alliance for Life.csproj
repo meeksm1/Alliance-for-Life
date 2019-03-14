@@ -249,49 +249,21 @@
     <Compile Include="Controllers\QuarterlyStatesController.cs" />
     <Compile Include="Controllers\ResidentialMIRsController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
-    <Compile Include="Migrations\201903112207086_Update.cs" />
-    <Compile Include="Migrations\201903112207086_Update.Designer.cs">
-      <DependentUpon>201903112207086_Update.cs</DependentUpon>
+    <Compile Include="Migrations\201903142057326_initial.cs" />
+    <Compile Include="Migrations\201903142057326_initial.Designer.cs">
+      <DependentUpon>201903142057326_initial.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201903121840194_UpdateNR.cs" />
-    <Compile Include="Migrations\201903121840194_UpdateNR.Designer.cs">
-      <DependentUpon>201903121840194_UpdateNR.cs</DependentUpon>
+    <Compile Include="Migrations\201903142059546_invoicesupdate.cs" />
+    <Compile Include="Migrations\201903142059546_invoicesupdate.Designer.cs">
+      <DependentUpon>201903142059546_invoicesupdate.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201903131706397_UpdateNR2.cs" />
-    <Compile Include="Migrations\201903131706397_UpdateNR2.Designer.cs">
-      <DependentUpon>201903131706397_UpdateNR2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201903141610127_changeinvoicemodel.cs" />
-    <Compile Include="Migrations\201903141610127_changeinvoicemodel.Designer.cs">
-      <DependentUpon>201903141610127_changeinvoicemodel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201903141807248_UpdateRESMIR.cs" />
-    <Compile Include="Migrations\201903141807248_UpdateRESMIR.Designer.cs">
-      <DependentUpon>201903141807248_UpdateRESMIR.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201903141956430_UpdateClientVMAPDBC.cs" />
-    <Compile Include="Migrations\201903141956430_UpdateClientVMAPDBC.Designer.cs">
-      <DependentUpon>201903141956430_UpdateClientVMAPDBC.cs</DependentUpon>
-    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\SearchData.cs" />
     <Compile Include="Controllers\SubContractorController.cs" />
     <Compile Include="Controllers\SurveysController.cs" />
     <Compile Include="DTO\AdminReport.cs" />
     <Compile Include="DTO\QuarterlyStateReport.cs" />
     <Compile Include="DTO\Userinformation.cs" />
-    <Compile Include="Migrations\201903041941588_InitialCreate.cs" />
-    <Compile Include="Migrations\201903041941588_InitialCreate.Designer.cs">
-      <DependentUpon>201903041941588_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201903042027161_RemoveAdminandPartIdsForInvoice.cs" />
-    <Compile Include="Migrations\201903042027161_RemoveAdminandPartIdsForInvoice.Designer.cs">
-      <DependentUpon>201903042027161_RemoveAdminandPartIdsForInvoice.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201903062258467_AdminCostAddedOrgNameProp.cs" />
-    <Compile Include="Migrations\201903062258467_AdminCostAddedOrgNameProp.Designer.cs">
-      <DependentUpon>201903062258467_AdminCostAddedOrgNameProp.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\QuarterlyState.cs" />
     <Compile Include="DTO\BudgetReport.cs" />
     <Compile Include="Models\Invoice.cs" />
@@ -797,34 +769,12 @@
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\index.d.ts" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201903041941588_InitialCreate.resx">
-      <DependentUpon>201903041941588_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201903142057326_initial.resx">
+      <DependentUpon>201903142057326_initial.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201903042027161_RemoveAdminandPartIdsForInvoice.resx">
-      <DependentUpon>201903042027161_RemoveAdminandPartIdsForInvoice.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201903062258467_AdminCostAddedOrgNameProp.resx">
-      <DependentUpon>201903062258467_AdminCostAddedOrgNameProp.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201903112207086_Update.resx">
-      <DependentUpon>201903112207086_Update.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201903121840194_UpdateNR.resx">
-      <DependentUpon>201903121840194_UpdateNR.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201903131706397_UpdateNR2.resx">
-      <DependentUpon>201903131706397_UpdateNR2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201903141610127_changeinvoicemodel.resx">
-      <DependentUpon>201903141610127_changeinvoicemodel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201903141807248_UpdateRESMIR.resx">
-      <DependentUpon>201903141807248_UpdateRESMIR.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201903141956430_UpdateClientVMAPDBC.resx">
-      <DependentUpon>201903141956430_UpdateClientVMAPDBC.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201903142059546_invoicesupdate.resx">
+      <DependentUpon>201903142059546_invoicesupdate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
