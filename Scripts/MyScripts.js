@@ -9,7 +9,7 @@
         if (q !== "" && p !== "" && $.isNumeric(q) && $.isNumeric(p)) {
             result = parseFloat(q) / parseFloat(p);
         }
-        jQuery("#ma2apercent").val(result * 100);
+        jQuery("#MA2Apercent").val(result * 100);
     });
 });
 
