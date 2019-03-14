@@ -11,20 +11,22 @@
     <form>
         @using (Html.BeginForm())
         {
-            <p>
-                <div class="col-xs-3">
+            <br/>
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-5th-1 col-sm-3" style="align-content:center;">
                     Search By Year:
                     @Html.DropDownList("SearchString", new SelectList(new[] { 2018, 2019, 2020 }), htmlAttributes: new { @class = "", onchange = "this.form.submit()" })
-                </div>
-            </p>
 
-            <p>
-                <div class="col-xs-2">
+                </div>
+                <div class="col-xs-5th-1 col-sm-3" style="align-content:center;">
                     Select Page:
                     @Html.DropDownList("pgSize", new SelectList(new[] { 10, 20, 30, 40, 50 }), htmlAttributes: new { @class = "", onchange = "this.form.submit()" })
-                </div>
-            </p>
 
+                </div>
+            </div>
+        </div> 
+        <br />
         }
 
     </form>

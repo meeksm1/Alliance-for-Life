@@ -7,13 +7,13 @@ namespace Alliance_for_Life.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class RemoveAdminandPartIdsForInvoice : IMigrationMetadata
+    public sealed partial class invoicesupdate : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(RemoveAdminandPartIdsForInvoice));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(invoicesupdate));
         
         string IMigrationMetadata.Id
         {
-            get { return "201903042027161_RemoveAdminandPartIdsForInvoice"; }
+            get { return "201903142059546_invoicesupdate"; }
         }
         
         string IMigrationMetadata.Source
