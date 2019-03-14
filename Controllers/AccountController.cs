@@ -168,17 +168,16 @@ namespace Alliance_for_Life.Controllers
 
         public ActionResult Edit(Guid? id)
         {
-            var sublist = db.SubContractors.ToList();
+
             var client = db.Users.Find(id.ToString());
             var clientrole = client.Roles.FirstOrDefault().RoleId;
-            var viewModel = new Userinformation
+            var viewModel = new RegisterViewModel
             {
-                Id = new Guid(client.Id),
-                Firstname = client.FirstName,
-                Lastname = client.LastName,
+                FirstName = client.FirstName,
+                LastName = client.LastName,
                 Email = client.Email,
-                Organization = sublist.ToString(),
-                Role = db.Roles.Find(clientrole).Name
+                Subcontractors = db.SubContractors.ToList(),
+            RoleName = db.Roles.Find(clientrole).Name
             };
 
             ViewBag.SubcontractorId = new SelectList(db.SubContractors.ToList(), "SubcontractorId", "OrgName", client.SubcontractorId);

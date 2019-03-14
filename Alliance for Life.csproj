@@ -249,13 +249,9 @@
     <Compile Include="Controllers\QuarterlyStatesController.cs" />
     <Compile Include="Controllers\ResidentialMIRsController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
-    <Compile Include="Migrations\201903142057326_initial.cs" />
-    <Compile Include="Migrations\201903142057326_initial.Designer.cs">
-      <DependentUpon>201903142057326_initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201903142059546_invoicesupdate.cs" />
-    <Compile Include="Migrations\201903142059546_invoicesupdate.Designer.cs">
-      <DependentUpon>201903142059546_invoicesupdate.cs</DependentUpon>
+    <Compile Include="Migrations\201903142114531_update.cs" />
+    <Compile Include="Migrations\201903142114531_update.Designer.cs">
+      <DependentUpon>201903142114531_update.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\SearchData.cs" />
@@ -770,11 +766,8 @@
     <TypeScriptCompile Include="Scripts\index.d.ts" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201903142057326_initial.resx">
-      <DependentUpon>201903142057326_initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201903142059546_invoicesupdate.resx">
-      <DependentUpon>201903142059546_invoicesupdate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201903142114531_update.resx">
+      <DependentUpon>201903142114531_update.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
