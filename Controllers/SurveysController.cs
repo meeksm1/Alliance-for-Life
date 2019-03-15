@@ -11,6 +11,7 @@ using System.Web.UI.WebControls;
 
 namespace Alliance_for_Life.Controllers
 {
+    [Authorize]
     public class SurveysController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

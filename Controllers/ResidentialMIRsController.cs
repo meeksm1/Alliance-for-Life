@@ -11,6 +11,7 @@ using PagedList;
 
 namespace Alliance_for_Life.Controllers
 {
+    [Authorize]
     public class ResidentialMIRsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

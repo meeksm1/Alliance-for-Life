@@ -139,7 +139,7 @@ namespace Alliance_for_Life.Controllers
         }
 
         //list user information
-
+        [Authorize]
         public ActionResult IndexforRegisteredUsers()
         {
             List<Userinformation> modelLst = new List<Userinformation>();
@@ -166,6 +166,7 @@ namespace Alliance_for_Life.Controllers
             return View(modelLst);
         }
 
+        [Authorize]
         public ActionResult Edit(Guid? id)
         {
 
@@ -177,7 +178,7 @@ namespace Alliance_for_Life.Controllers
                 LastName = client.LastName,
                 Email = client.Email,
                 Subcontractors = db.SubContractors.ToList(),
-            RoleName = db.Roles.Find(clientrole).Name
+                RoleName = db.Roles.Find(clientrole).Name
             };
             viewModel.SubcontractorId = client.SubcontractorId;
             ViewBag.SubcontractorId = new SelectList(db.SubContractors.ToList(), "SubcontractorId", "OrgName", client.SubcontractorId);
@@ -186,6 +187,7 @@ namespace Alliance_for_Life.Controllers
             return View("Edit", viewModel);
         }
 
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Userinformation user)
@@ -225,8 +227,7 @@ namespace Alliance_for_Life.Controllers
             return View("Register", user);
         }
 
-
-        //
+        [Authorize]
         // GET: /Account/Register
         public ActionResult Register()
         {
@@ -242,6 +243,7 @@ namespace Alliance_for_Life.Controllers
         //
         // POST: /Account/Register
         [HttpPost]
+        [Authorize]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel viewModel)
         {
@@ -288,7 +290,7 @@ namespace Alliance_for_Life.Controllers
             return View(viewModel);
         }
 
-
+        [Authorize]
         [HttpGet]
         public ActionResult RegisterRole()
         {
@@ -297,9 +299,9 @@ namespace Alliance_for_Life.Controllers
             return View();
         }
 
-        //
         //POST: /Account/Register
         [HttpPost]
+        [Authorize]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> RegisterRole(RegisterViewModel model, Role user)
         {
@@ -528,7 +530,6 @@ namespace Alliance_for_Life.Controllers
             return View(model);
         }
 
-        //
         // POST: /Account/LogOff
         [HttpPost]
         [ValidateAntiForgeryToken]

@@ -9,6 +9,7 @@ using System.Web.Mvc;
 
 namespace Alliance_for_Life.ReportControllers
 {
+    [Authorize]
     public class InvoicesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

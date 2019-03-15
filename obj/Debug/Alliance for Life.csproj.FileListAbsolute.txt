@@ -52,3 +52,4 @@ C:\Users\manoj\Downloads\Alliance-for-Life-master\Alliance-for-Life-master\obj\D
 C:\Users\manoj\Downloads\Alliance-for-Life-master\Alliance-for-Life-master\obj\Debug\Alliance for Life.csproj.CopyComplete
 C:\Users\manoj\Downloads\Alliance-for-Life-master\Alliance-for-Life-master\obj\Debug\Alliance for Life.dll
 C:\Users\manoj\Downloads\Alliance-for-Life-master\Alliance-for-Life-master\obj\Debug\Alliance for Life.pdb
+C:\Users\meeksm1\Documents\GitHub\Alliance-for-Life\obj\Debug\Alliance for Life.csprojAssemblyReference.cache

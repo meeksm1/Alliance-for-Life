@@ -11,6 +11,7 @@ using System.Web.Mvc;
 
 namespace Alliance_for_Life.Controllers
 {
+    [Authorize]
     public class BudgetCostsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

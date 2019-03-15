@@ -10,6 +10,7 @@ using System.Web.Mvc;
 
 namespace Alliance_for_Life.Controllers
 {
+    [Authorize]
     public class AdministrationCostController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -20,8 +21,8 @@ namespace Alliance_for_Life.Controllers
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
 
-                var adminSearch = db.AdminCosts
-                .Include(a => a.Subcontractor).Where(a => a.SubcontractorId == a.Subcontractor.SubcontractorId);
+            var adminSearch = db.AdminCosts
+            .Include(a => a.Subcontractor).Where(a => a.SubcontractorId == a.Subcontractor.SubcontractorId);
 
             if (!String.IsNullOrEmpty(searchString))
             {

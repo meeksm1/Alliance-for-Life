@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace Alliance_for_Life.Controllers
 {
+    [Authorize]
     public class QuarterlyStatesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

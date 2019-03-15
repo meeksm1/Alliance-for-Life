@@ -10,6 +10,7 @@ using System.Web.Mvc;
 
 namespace Alliance_for_Life.Controllers
 {
+    [Authorize]
     public class SubContractorController : Controller
     {
         private readonly ApplicationDbContext db;

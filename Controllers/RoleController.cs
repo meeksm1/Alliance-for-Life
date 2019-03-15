@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace Alliance_for_Life.Controllers
 {
+    [Authorize]
     public class RoleController : Controller
     {
         ApplicationDbContext db;
