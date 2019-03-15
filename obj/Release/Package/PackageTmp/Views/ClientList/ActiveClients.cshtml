@@ -1,77 +1,91 @@
-﻿@model IEnumerable<Alliance_for_Life.Models.ClientListReport>
-
+﻿@model PagedList.IPagedList<Alliance_for_Life.Models.ClientList>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 @{
     ViewBag.Title = "All Clients";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<div class="container">
+    <h2>Current Active Clients</h2>
 
-<h2>Current Active Clients</h2>
-
-<table class="table">
-    <tr>
-        <th>
-           Client Id
-        </th>
-
-        <th>
-            Organization Name
-        </th>
-
-        <th>
-            First Name
-        </th>
-        <th>
-            Last Name
-        </th>
-        <th>
-            Due Date
-        </th>
-        <th>
-            Birthday
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var activeclients in Model)
+    @using (Html.BeginForm())
     {
-        <tr>
-            <td>
-                <div class="clientid">@activeclients.Id</div>
-            </td>
-
-            <td>
-                <div class="clientid">@activeclients.Orgname</div>
-            </td>
-
-            <td>
-                <div class="fname">@activeclients.FirstName</div>
-            </td>
-
-            <td>
-                <div class="lname">@activeclients.LastName</div>
-            </td>
-
-            <td>
-                <div class="due">@activeclients.DueDate.ToShortDateString()</div>
-            </td>
-
-            <td>
-                <div class="due">@activeclients.DOB.ToShortDateString()</div>
-            </td>
-
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = activeclients.Id })
-            </td>
-        </tr>
+        <p>
+            Find by Organization Name or Last Name: @Html.TextBox("SearchString")
+            <input type="submit" value="Search" />
+        </p>
     }
-    <tr>
-</tr>
-</table>
+    <br />
+    <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100">
+        <tr>
+            <th>
+                @Html.ActionLink("Organization", "AllActiveClients", new { sortOrder = ViewBag.NameSortParm })
+            </th>
 
-<h3>Total Active Clients @Model.Count()</h3>
+            <th>
+                First Name
+            </th>
+            <th>
+                @Html.ActionLink("Last Name", "AllActiveClients", new { sortOrder = ViewBag.LastNameSortParm })
+            </th>
+            <th>
+                @Html.ActionLink("Due date", "AllActiveClients", new { sortOrder = ViewBag.DateSortParm })
+            </th>
+            <th>
+                Birthday
+            </th>
+            <th>
+                Edit
+            </th>
+        </tr>
 
-<br />
-@using (Html.BeginForm("ExportActive", "ClientList", FormMethod.Post))
-{
-    <input type="submit" value="Export to Excel" class="btn btn-group-sm btn-primary" />
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <div class="clientid">@item.Subcontractor.OrgName</div>
+                </td>
+
+                <td>
+                    <div class="fname">@item.FirstName</div>
+                </td>
+
+                <td>
+                    <div class="lname">@item.LastName</div>
+                </td>
+
+                <td>
+                    <div class="due">@item.DueDate.ToShortDateString()</div>
+                </td>
+
+                <td>
+                    <div class="due">@item.DOB.ToShortDateString()</div>
+                </td>
+                <td>
+                    <a href="@Url.Action("Edit", "ClientList", new { id = item.Id }, Request.Url.Scheme)">
+                        <i style="font-size:16px; color:#3498DB" class="fa">&#xf044;</i>
+                    </a>
+                </td>
+            </tr>
+        }
+        <tr></tr>
+    </table>
+
+    <h3>Total Active Clients @Model.Count()</h3>
+
+    <p>
+        Select Number Shown Per Page:
+        @Html.DropDownList("pgSize", new SelectList(new[] { 10, 20, 30, 40, 50 }), htmlAttributes: new { @class = "", onchange = "this.form.submit()" })
+    </p>
+
+    @using (Html.BeginForm("ExportAllActive", "ClientList", FormMethod.Post))
+    {
+        <input type="submit" value="Export to Excel" class="btn btn-primary" />
+    }
+    <br />
+
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("Index",
+        new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter, @class="pagination" }))
+</div>

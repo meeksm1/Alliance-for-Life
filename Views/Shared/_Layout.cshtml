@@ -14,13 +14,13 @@
 </head>
 <body>
     <p>
-        <img src="~/Content/DataTables/images/afllogo.png" style="padding-top:10px;"/>
+        <img src="~/Content/DataTables/images/afllogo.png" style="padding-top:10px;" />
     </p>
-   
+
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <a class="navbar-brand" href="@Url.Action("Index", "Home")">
-                <img src="~/images/log.png" height="25"/>
+                <img src="~/images/log.png" height="25" />
             </a>
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -30,36 +30,31 @@
                 </button>
                 @Html.ActionLink("AFL", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
-
             <div class="navbar-collapse collapse">
+
                 @if (ViewContext.HttpContext.User.IsInRole("Admin"))
                 {
-                    @Html.ActionLink("Forms", "Create", "AFLForm", new { area = "" }, new { @class = "navbar-brand" })
-                    @Html.ActionLink("Reports", "Reports", "AFLForm", new { area = "" }, new { @class = "navbar-brand" })
-                    @Html.ActionLink("Invoices", "Index", "Invoices", new { area = "" }, new { @class = "navbar-brand" })
-                    @Html.ActionLink("Contractor Forms", "Create", "ContractorForm", new { area = "" }, new { @class = "navbar-brand" })
-                    @Html.ActionLink("Contractor Reports", "Reports", "ClientList", new { area = "" }, new { @class = "navbar-brand" })
-
-                    @Html.Partial("_LoginPartial")
+                    <ul class="nav navbar-nav">
+                        <li> @Html.ActionLink("Forms", "Create", "AFLForm", new { area = "" }, new { @class = "navbar-brand" })</li>
+                        <li> @Html.ActionLink("Reports", "Reports", "AFLForm", new { area = "" }, new { @class = "navbar-brand" })</li>
+                        <li> @Html.ActionLink("Invoices", "Index", "Invoices", new { area = "" }, new { @class = "navbar-brand" })</li>
+                        <li> @Html.ActionLink("Contractor Forms", "Create", "ContractorForm", new { area = "" }, new { @class = "navbar-brand" })</li>
+                        <li>  @Html.ActionLink("Contractor Reports", "Reports", "ClientList", new { area = "" }, new { @class = "navbar-brand" })</li>
+                    </ul>
                 }
-
                 else if (ViewContext.HttpContext.User.IsInRole("User"))
                 {
-                    @Html.ActionLink("Contractor Forms", "Create", "ContractorForm", new { area = "" }, new { @class = "navbar-brand" })
-                    @Html.ActionLink("Contractor Reports", "Reports", "ClientList", new { area = "" }, new { @class = "navbar-brand" })
-                    @Html.ActionLink("Invoices", "Index", "Invoices", new { area = "" }, new { @class = "navbar-brand" })
-
-                    @Html.Partial("_LoginPartial")
+                    <ul class="nav navbar-nav">
+                        <li> @Html.ActionLink("Contractor Forms", "Create", "ContractorForm", new { area = "" }, new { @class = "navbar-brand" })</li>
+                        <li>  @Html.ActionLink("Contractor Reports", "Reports", "ClientList", new { area = "" }, new { @class = "navbar-brand" })</li>
+                        <li>  @Html.ActionLink("Invoices", "Index", "Invoices", new { area = "" }, new { @class = "navbar-brand" })</li>
+                    </ul>
                 }
-
-                else
-                {
-                    @Html.Partial("_LoginPartial")
-                }
-
+                @Html.Partial("_LoginPartial")
             </div>
         </div>
     </div>
+
     <br />
     <div class="container body-content">
         @RenderBody()

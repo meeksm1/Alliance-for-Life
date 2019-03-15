@@ -7,7 +7,7 @@
 
 <h2>Participation Cost Reports</h2>
 
-<table class="table">
+<table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100">
     <tr>
         <th>
 
@@ -17,9 +17,6 @@
         </th>
         <th>
             Month
-        </th>
-        <th>
-            Region&nbsp;&nbsp;&nbsp;&nbsp;
         </th>
         <th>
             Transportation
@@ -80,9 +77,6 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Month)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Region)
             </td>
             <td>
                 @item.PTranspotation.ToString("C")

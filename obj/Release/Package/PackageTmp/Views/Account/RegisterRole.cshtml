@@ -1,7 +1,7 @@
 ﻿@model Alliance_for_Life.ViewModels.RegisterViewModel
 
-@{ 
-    ViewBag.Title = "Register Role";
+@{
+    ViewBag.Title = "Register User Role";
 }
 
 <h2>@ViewBag.Title</h2>
@@ -9,9 +9,8 @@
 @using (Html.BeginForm("RegisterRole", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()
-    <h4>Create a new Account</h4>
     <hr />
-    @Html.ValidationSummary("", new { @class = "text-danger"})
+    @Html.ValidationSummary("", new { @class = "text-danger" })
     <div class="form-group">
         @Html.Label("Select Role", new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
@@ -30,7 +29,11 @@
     <!--Ends Here-->
     <div class="form-group">
         <div class="col-md-10">
-          <input type="submit" class="btn btn-primary" value="Register"/>
+            <input type="submit" class="btn btn-primary" value="Register" />
         </div>
+    </div>
+
+    <div>
+        @Html.ActionLink("Cancel", "Index", "Home")
     </div>
 }

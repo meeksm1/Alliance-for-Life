@@ -40,6 +40,7 @@ namespace Alliance_for_Life.ReportControllers
                                 s.Year == year &&
                                 s.Month == mon
                                 select s;
+
                 if (dataexist.Count() >= 1)
                 {
                     ViewBag.error = "Invoice for " + db.SubContractors.Find(new Guid(SubcontractorId)).OrgName
@@ -48,6 +49,7 @@ namespace Alliance_for_Life.ReportControllers
                     searchString = db.SubContractors.Find(new Guid(SubcontractorId)).OrgName;
                     ModelState.Clear();
                 }
+               
                 else
                 {
                     GenerateInvoice(SubcontractorId, Month, Year, billingdate);
@@ -151,7 +153,7 @@ namespace Alliance_for_Life.ReportControllers
                 invoice.Region = subcontractorbalance.FirstOrDefault().Region;
                 invoice.BillingDate = DateTime.Parse(billingdate);
                 invoice.SubmittedDate = DateTime.Now;
-
+                invoice.OrgName = db.SubContractors.Find(invoice.SubcontractorId).OrgName;
                 //add to the Invoice table and save data
                 db.Invoices.Add(invoice);
                 db.SaveChanges();
@@ -180,12 +182,23 @@ namespace Alliance_for_Life.ReportControllers
             var particost = db.ParticipationServices
                 .Where(s => s.SubcontractorId == invoice.SubcontractorId && s.Year == invoice.Year && s.Month == invoice.Month);
 
-
             //set totals to zero
             invoice.DirectAdminCost = 0;
             invoice.ParticipantServices = 0;
-            invoice.DirectAdminCost = admincost.FirstOrDefault().ATotCosts;
-            invoice.ParticipantServices = particost.FirstOrDefault().PTotals;
+
+            if (admincost.Count() != 0)
+            {
+                invoice.DirectAdminCost = admincost.FirstOrDefault().ATotCosts;
+                invoice.AdminCostId = admincost.FirstOrDefault().AdminCostId;
+            }
+
+            if (particost.Count() != 0)
+            {
+                invoice.ParticipantServices = particost.FirstOrDefault().PTotals;
+                invoice.PSId = particost.FirstOrDefault().PSId;
+            }
+            //set totals to zero
+           
             invoice.GrandTotal = invoice.DirectAdminCost + invoice.ParticipantServices;
             invoice.LessManagementFee = invoice.GrandTotal * .03;
             invoice.DepositAmount = invoice.GrandTotal - invoice.LessManagementFee;
@@ -199,7 +212,7 @@ namespace Alliance_for_Life.ReportControllers
 
             //calculating the rest
             invoice.BalanceRemaining = invoice.BeginningAllocation - invoice.AdjustedAllocation;
-
+            invoice.OrgName = db.SubContractors.Find(invoice.SubcontractorId).OrgName;
             db.Entry(invoice).State = EntityState.Modified;
             db.SaveChanges();
 

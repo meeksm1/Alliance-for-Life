@@ -1,258 +1,126 @@
-﻿@model IEnumerable<Alliance_for_Life.Models.BudgetCosts>
-
+﻿@model PagedList.IPagedList<Alliance_for_Life.Models.BudgetCosts>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 @{
     ViewBag.Title = "Budgeted Fee's";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Budgeted Fee's</h2>
+<div class="container">
+    <h2>Budget Costs Reports</h2>
+    <form>
+        @using (Html.BeginForm())
+        {
+            <br/>
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-5th-1 col-sm-3" style="align-content:center;">
+                    Search By Year:
+                    @Html.DropDownList("SearchString", new SelectList(new[] { 2018, 2019, 2020 }), htmlAttributes: new { @class = "", onchange = "this.form.submit()" })
 
-<table class="table">
-    <tr>
-        <th>
+                </div>
+                <div class="col-xs-5th-1 col-sm-3" style="align-content:center;">
+                    Select Page:
+                    @Html.DropDownList("pgSize", new SelectList(new[] { 10, 20, 30, 40, 50 }), htmlAttributes: new { @class = "", onchange = "this.form.submit()" })
 
-        </th>
-        <th>
-            Year
-        </th>
-        <th>
-            Month
-        </th>
-        <th>
-            Region&nbsp;&nbsp;&nbsp;&nbsp;
-        </th>
-        <th>
-            Salaries and Wages
-        </th>
-        <th>
-            Employee Benefits
-        </th>
-        <th>
-            Employee Travel
-        </th>
-        <th>
-            Employee Training
-        </th>
-        <th>
-            Office Rent
-        </th>
-        <th>
-            Office Utilities
-        </th>
-        <th>
-            Facility Insurance
-        </th>
-        <th>
-            Office Supplies
-        </th>
-        <th>
-            Equipment
-        </th>
-        <th>
-            Office Communications
-        </th>
-        <th>
-            Office Maintenance
-        </th>
-        <th>
-            Consulting Fee's
-        </th>
-        <th>
-            EFT Fee's
-        </th>
-        <th>
-            Background Check's
-        </th>
-        <th>
-            Other
-        </th>
-        <th>
-            Janitor Services
-        </th>
-        <th>
-            Depreciation
-        </th>
-        <th>
-            Tech Support
-        </th>
-        <th>
-            Security Services
-        </th>
-        <th>
-            Admininstration Totals
-        </th>
-        <th>
-            Administration Fee
-        </th>
-        <th>
-            Transportation
-        </th>
-        <th>
-            Job Training
-        </th>
-        <th>
-            Tuition Assistance
-        </th>
-        <th>
-            Contracted Residential Care
-        </th>
-        <th>
-            Utility Assistance
-        </th>
-        <th>
-            Emergency Shelter
-        </th>
-        <th>
-            Housing Assistance
-        </th>
-        <th>
-            Childcare
-        </th>
-        <th>
-            Clothing
-        </th>
-        <th>
-            Food
-        </th>
-        <th>
-            Supplies
-        </th>
-        <th>
-            RFO Costs
-        </th>
-        <th>
-            Participation Total Costs
-        </th>
-        <th>
-            Direct and Participation Total Costs
-        </th>
-        <th></th>
-    </tr>
+                </div>
+            </div>
+        </div> 
+        <br />
+        }
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.ActionLink("Details", "Details", new { id = item.BudgetInvoiceId })
-            </td>
-            <td>
-                @item.Year
-            </td>
-            <td>
-                @item.Month
-            </td>
-            <td>
-               @item.Region
-            </td>
-            <td>
-                @item.ASalandWages.ToString("C")
-            </td>
-            <td>
-                @item.AEmpBenefits.ToString("C")
-            </td>
-            <td>
-                @item.AEmpTravel.ToString("C")
-            </td>
-            <td>
-                @item.AEmpTraining.ToString("C")
-            </td>
-            <td>
-                @item.AOfficeRent.ToString("C")
-            </td>
-            <td>
-                @item.AOfficeUtilities.ToString("C")
-            </td>
-            <td>
-                @item.AFacilityIns.ToString("C")
-            </td>
-            <td>
-                @item.AOfficeSupplies.ToString("C")
-            </td>
-            <td>
-                @item.AEquipment.ToString("C")
-            </td>
-            <td>
-                @item.AOfficeCommunications.ToString("C")
-            </td>
-            <td>
-                @item.AOfficeMaint.ToString("C")
-            </td>
-            <td>
-                @item.AConsulting.ToString("C")
-            </td>
-            <td>
-                @item.SubConPayCost.ToString("C")
-            </td>
-            <td>
-                @item.BackgrounCheck.ToString("C")
-            </td>
-            <td>
-                @item.Other.ToString("C")
-            </td>
-            <td>
-                @item.AJanitorServices.ToString("C")
-            </td>
-            <td>
-                @item.ADepreciation.ToString("C")
-            </td>
-            <td>
-                @item.ATechSupport.ToString("C")
-            </td>
-            <td>
-                @item.ASecurityServices.ToString("C")
-            </td>
-            <td>
-                @item.ATotCosts.ToString("C")
-            </td>
-            <td>
-                @item.AdminFee.ToString("C")
-            </td>
-            <td>
-                @item.Trasportation.ToString("C")
-            </td>
-            <td>
-                @item.JobTraining.ToString("C")
-            </td>
-            <td>
-                @item.TuitionAssistance.ToString("C")
-            </td>
-            <td>
-                @item.ContractedResidential.ToString("C")
-            </td>
-            <td>
-                @item.UtilityAssistance.ToString("C")
-            </td>
-            <td>
-                @item.EmergencyShelter.ToString("C")
-            </td>
-            <td>
-                @item.HousingAssistance.ToString("C")
-            </td>
-            <td>
-                @item.Childcare.ToString("C")
-            </td>
-            <td>
-                @item.Clothing.ToString("C")
-            </td>
-            <td>
-                @item.Food.ToString("C")
-            </td>
-            <td>
-                @item.Supplies.ToString("C")
-            </td>
-            <td>
-                @item.RFO.ToString("C")
-            </td>
-            <td>
-                @item.BTotal.ToString("C")
-            </td>
-            <td>
-                @item.Maxtot.ToString("C")
-            </td>
-        </tr>
-    }
-</table>
-@using (Html.BeginForm("Export", "BudgetCosts", FormMethod.Post))
-{
-    <input type="submit" value="Export to Excel" class="btn btn-group-sm btn-primary" />
-}
+    </form>
+    <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100">
+        <thead>
+            <tr style="font-size:16px">
+                <th class="th-sm">
+                    @Html.ActionLink("Year", "Index", new { sortOrder = ViewBag.YearSortParm })
+
+                </th>
+                <th class="th-sm">
+                    @Html.ActionLink("Month", "Index", new { sortOrder = ViewBag.MonthSortParm })
+
+                </th>
+                <th class="th-sm">
+                    @Html.ActionLink("Region", "Index", new { sortOrder = ViewBag.RegionSortParm })
+
+                </th>
+                <th class="th-sm">
+                    Admininstration Totals
+
+                </th>
+                <th class="th-sm">
+                    Administration Fee
+
+                </th>
+                <th class="th-sm">
+                    Participation Total Costs
+
+                </th>
+                <th class="th-sm">
+                    Admin and Participation Total Costs
+
+                </th>
+                <th class="th-sm">
+
+                </th>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+
+                    <td>
+                        @item.Year
+                    </td>
+                    <td>
+                        @item.Month
+                    </td>
+                    <td>
+                        @item.Region
+                    </td>
+                    <td>
+                        @item.ATotCosts.ToString("C")
+                    </td>
+                    <td>
+                        @item.AdminFee.ToString("C")
+                    </td>
+
+                    <td>
+                        @item.BTotal.ToString("C")
+                    </td>
+                    <td>
+                        @item.Maxtot.ToString("C")
+                    </td>
+                    <td>
+                        <form action="/BudgetCosts/Export" method="post">
+                            <button style='font-size:16px; background:none; border:none' value="@item.BudgetInvoiceId" name="BudgetInvoiceId" id="@item.BudgetInvoiceId"><i class='fa fa-file' style="font-size:16px;color:#2ECC71"></i></button>
+                            |
+                            <a href="@Url.Action("Details", "BudgetCosts", new { id = item.BudgetInvoiceId }, Request.Url.Scheme)">
+                                <i style="font-size:16px; color:#3498DB" class="fa">&#xf06e;</i>
+                            </a>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <p>
+        @using (Html.BeginForm("Export", "BudgetCosts", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            <input type="submit" name="BudgetInvoiceId" id="BudgetInvoiceId" value="Export All to CSV" class="btn btn-group-sm btn-success" />
+        }
+    </p>
+
+    <p>
+    </p>
+    <br />
+
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("Index",
+        new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter, @class="pagination" }))
+</div>
+

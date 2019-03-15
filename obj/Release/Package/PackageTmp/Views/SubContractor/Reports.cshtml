@@ -5,15 +5,16 @@
 }
 
 <h2>Subcontractor Reports</h2>
+@Html.ActionLink("Create Subcontractor", "Create", "SubContractor")
 
-<table class="table">
+<table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100">
     <tr>
         <th>
             EIN
         </th>
 
         <th>
-            Organization    
+            Organization
         </th>
 
         <th>
@@ -27,48 +28,50 @@
         <th>
             Active
         </th>
-        <th></th>
+        <th>
+            Edit
+        </th>
     </tr>
     @foreach (var subcontractors in Model)
     {
-    <tr>
-        <td>
-            <div class="clientid">@subcontractors.EIN</div>
-        </td>
+        <tr>
+            <td>
+                <div class="clientid">@subcontractors.EIN</div>
+            </td>
 
-        <td>
-            <div class="clientid">@subcontractors.OrgName</div>
-        </td>
+            <td>
+                <div class="clientid">@subcontractors.OrgName</div>
+            </td>
 
-        <td>
-            <div class="clientid">@subcontractors.Director</div>
-        </td>
+            <td>
+                <div class="clientid">@subcontractors.Director</div>
+            </td>
 
-        <td>
-            <div class="fname">@subcontractors.Region</div>
-        </td>
+            <td>
+                <div class="fname">@subcontractors.Region</div>
+            </td>
 
-        <td>
-            @{
-                if (subcontractors.Active == true)
-                {
+            <td>
+                @{
+                    if (subcontractors.Active == true)
+                    {
 
-                    <i class="fa fa-check-circle" style="font-size:24px;color:#2ECC71"></i>
+                        <i class="fa fa-check-circle" style="font-size:24px;color:#2ECC71"></i>
 
+                    }
+                    if (subcontractors.Active == false)
+                    {
+
+                        <i class="fa fa-exclamation-circle" style="font-size:24px;color:#E74C3C"></i>
+                    }
                 }
-                if (subcontractors.Active == false)
-                {
-
-                    <i class="fa fa-exclamation-circle" style="font-size:24px;color:#E74C3C"></i>
-                }
-            }
-        </td>
-        <td>
-            <a href="@Url.Action("Edit", "SubContractor", new { id = subcontractors.SubcontractorId }, Request.Url.Scheme)">
-                <i style="font-size:16px; color:#3498DB" class="fa">&#xf044;</i>
-            </a>
-        </td>
-    </tr>
+            </td>
+            <td>
+                <a href="@Url.Action("Edit", "SubContractor", new { id = subcontractors.SubcontractorId }, Request.Url.Scheme)">
+                    <i style="font-size:16px; color:#3498DB" class="fa">&#xf044;</i>
+                </a>
+            </td>
+        </tr>
     }
     <tr></tr>
 </table>
