@@ -1,0 +1,87 @@
+﻿
+
+section {
+    box-sizing: border-box;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    color: white;
+}
+
+a {
+    color: #FFFFFF;
+    outline: 0;
+}
+
+    a:hover, a:focus {
+        color: inherit;
+    }
+
+.flipbox .front, .flipbox .back {
+    position: absolute;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    width: 200px;
+    height: 180px;
+    border-radius: 7px;
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+    justify-content: center;
+    align-items: baseline;
+}
+
+.flipbox {
+    float: left;
+    width: 200px;
+    height: 180px;
+    margin: 10px;
+}
+
+    .flipbox .front {
+        -webkit-transform: rotateY(0deg);
+        transform: rotateY(0deg);
+        font-size: 100px;
+        text-align: center;
+        padding: 10px;
+        font-family: Georgia, 'Times New Roman', Times, serif;
+    }
+
+        .flipbox .front > h2 {
+            font-size: 22px;
+            width: 100%;
+            margin: 0 0 10px 0;
+        }
+
+        .flipbox .front > i.fa {
+            font-size: 3em;
+            align-self: flex-end;
+        }
+
+        .flipbox .front > img {
+            height: 49px;
+            width: auto;
+            align-self: flex-end;
+        }
+
+    .flipbox .back {
+        -webkit-transform: rotateY(180deg);
+        transform: rotateY(180deg);
+        background: #3B99CA;
+    }
+
+        .flipbox .back > a {
+            align-self: center;
+            width: 100%;
+        }
+
+    .flipbox:hover .front {
+        -webkit-transform: rotateY(-180deg);
+        transform: rotateY(-180deg);
+    }
+
+    .flipbox:hover .back {
+        -webkit-transform: rotateY(0deg);
+        transform: rotateY(0deg);
+    }

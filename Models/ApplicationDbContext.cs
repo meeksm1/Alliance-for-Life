@@ -13,11 +13,12 @@ namespace Alliance_for_Life.Models
         public DbSet<ParticipationService> ParticipationServices { get; set; }
         public DbSet<BudgetCosts> BudgetCosts { get; set; }
         public DbSet<Surveys> Surveys { get; set; }
-       public DbSet<Invoice> Invoices { get; set; }
+        public DbSet<Invoice> Invoices { get; set; }
         public DbSet<QuarterlyState> QuarterlyStates { get; set; }
 
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            // : base("DefaultConnection", throwIfV1Schema: false)
+            : base("LocalConnection", throwIfV1Schema: false)
         {
         }
 
@@ -25,5 +26,5 @@ namespace Alliance_for_Life.Models
         {
             return new ApplicationDbContext();
         }
-    }   
+    }
 }

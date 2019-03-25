@@ -599,6 +599,8 @@
     <Content Include="Content\DataTables\css\semanticui.scss" />
     <Content Include="Content\DataTables\css\mixins.scss" />
     <Content Include="Content\DataTables\css\common.scss" />
+    <Content Include="Scripts\Home\index.js" />
+    <Content Include="Scripts\Home\style.css" />
     <Content Include="Scripts\Invoice\log0.png" />
     <Content Include="Scripts\Invoice\style.css" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />

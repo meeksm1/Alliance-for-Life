@@ -2,28 +2,34 @@
 @{
     ViewBag.Title = "Home Page";
 }
-<h1>Welcome to the Alternative to Abortion Database System</h1>
-<h3>Centers we work with:</h3>
-<ul class="subcontractor">
-    @foreach (var subcontractor in Model)
-    {
-        <li class="col-md-4">
-            <div class="details">
-                <div class="orgname">@subcontractor.OrgName</div>
-                <div class="address1"><strong>Key Contact: </strong> @subcontractor.Director</div>
-                <div class="address1"><strong>Address: </strong> @subcontractor.Address1</div>
-                <div class="city">@subcontractor.City</div>
-                <div class="state">@subcontractor.State</div>
-            </div>
-            <div class="actions">
-                @if (ViewContext.HttpContext.User.IsInRole("Admin"))
-                {
-                    <a href="@Url.Action("Edit", "SubContractor", new { id = subcontractor.SubcontractorId })">Edit</a>
-                }
-                
-            </div>
-        </li>
-    }
-</ul>
+
+    <div style="text-align:center;">
+        <h1>Welcome to the Alternative to Abortion Database System</h1>
+        <h3>Centers we work with:</h3>
+    </div>
 
 
+    <section>
+        @foreach (var subcontractor in Model)
+        {
+            <div class="flipbox">
+                <div class="back">
+                    <div><strong>Key Contact: </strong> @subcontractor.Director</div>
+                    <div><strong>Address: </strong> @subcontractor.Address1</div>
+                    <div>@subcontractor.City</div>
+                    <div>@subcontractor.State</div>
+                    <br />
+                    @if (ViewContext.HttpContext.User.IsInRole("Admin"))
+                    {
+                        <a href="@Url.Action("Edit", "SubContractor", new { id = subcontractor.SubcontractorId })">Edit</a>
+                    }
+                </div>
+                <div>
+                    <img class="front" width="200" height="200" avatar="@subcontractor.OrgName">
+                </div>
+            </div>
+        }
+    </section>
+
+<script src="~/Scripts/Home/index.js"></script>
+<link href="~/Scripts/Home/style.css" rel="stylesheet" />
