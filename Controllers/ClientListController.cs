@@ -2,14 +2,14 @@
 using Alliance_for_Life.ViewModels;
 using ClosedXML.Excel;
 using Microsoft.AspNet.Identity;
+using PagedList;
 using System;
 using System.Data;
+using System.Data.Entity;
 using System.IO;
 using System.Linq;
-using System.Data.Entity;
-using System.Web.Mvc;
 using System.Net;
-using PagedList;
+using System.Web.Mvc;
 
 namespace Alliance_for_Life.Controllers
 {
@@ -31,14 +31,14 @@ namespace Alliance_for_Life.Controllers
         [Authorize]
         public ActionResult Create()
         {
-             var subcontractorlist = new ClientListFormViewModel
-             {
-                 Subcontractors = from s in db.SubContractors
-                                  join a in db.Users on s.AdministratorId equals a.Id
-                                  where s.SubcontractorId == a.SubcontractorId
-                                  select s,
-                 Heading = "Add Client Information"
-             }; 
+            var subcontractorlist = new ClientListFormViewModel
+            {
+                Subcontractors = from s in db.SubContractors
+                                 join a in db.Users on s.AdministratorId equals a.Id
+                                 where s.SubcontractorId == a.SubcontractorId
+                                 select s,
+                Heading = "Add Client Information"
+            };
 
             if (User.IsInRole("Admin"))
             {
@@ -49,7 +49,7 @@ namespace Alliance_for_Life.Controllers
                 };
                 return View("ClientListForm", viewModel);
             }
-               
+
 
             return View("ClientListForm", subcontractorlist);
         }
@@ -61,13 +61,13 @@ namespace Alliance_for_Life.Controllers
         {
             if (!ModelState.IsValid)
             {
-                    viewModel.Subcontractors = db.SubContractors.ToList();
-                    return View("ClientListForm", viewModel);
+                viewModel.Subcontractors = db.SubContractors.ToList();
+                return View("ClientListForm", viewModel);
             }
 
             var client = new ClientList
             {
-                Id= Guid.NewGuid(),
+                Id = Guid.NewGuid(),
                 SubcontractorId = viewModel.SubcontractorId,
                 FirstName = viewModel.FirstName,
                 LastName = viewModel.LastName,
@@ -123,18 +123,18 @@ namespace Alliance_for_Life.Controllers
 
             db.SaveChanges();
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("AllActiveClients", "ClientList");
         }
 
         [Authorize]
         public ActionResult Edit(Guid? id)
         {
-            var client = db.ClientLists.Single(s => s.Id == id);
+            var client = db.ClientLists.Find(id);
             var viewModel = new ClientListFormViewModel
             {
                 Heading = "Edit Client Information",
                 Id = client.Id,
-                Subcontractors = db.SubContractors.ToList(),
+                Subcontractors = db.SubContractors.Where(s => s.Active).ToList(),
                 FirstName = client.FirstName,
                 LastName = client.LastName,
                 DOB = client.DOB,

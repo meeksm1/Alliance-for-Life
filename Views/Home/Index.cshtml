@@ -7,17 +7,16 @@
         <h1>Welcome to the Alternative to Abortion Database System</h1>
         <h3>Centers we work with:</h3>
     </div>
-
+    <link href="~/Scripts/Home/style.css" rel="stylesheet" />
 
     <section>
         @foreach (var subcontractor in Model)
         {
             <div class="flipbox">
                 <div class="back">
-                    <div><strong>Key Contact: </strong> @subcontractor.Director</div>
-                    <div><strong>Address: </strong> @subcontractor.Address1</div>
-                    <div>@subcontractor.City</div>
-                    <div>@subcontractor.State</div>
+                    <div style="font-size:17px; text-align:center; text-decoration: underline;"> <strong> @subcontractor.OrgName </strong></div> <br />
+                    <div style="font-size:14px; text-align:center; "><i class="fa fa-user" style="font-size:24px;"></i>&nbsp; &nbsp;  @subcontractor.Director</div>
+                    <div style="font-size:14px; text-align:center; "><i class="fa fa-home" style="font-size:24px;"> </i> &nbsp; &nbsp;  @subcontractor.Address1 &nbsp;  @subcontractor.City, @subcontractor.State</div>
                     <br />
                     @if (ViewContext.HttpContext.User.IsInRole("Admin"))
                     {
@@ -25,11 +24,13 @@
                     }
                 </div>
                 <div>
-                    <img class="front" width="200" height="200" avatar="@subcontractor.OrgName">
+
+                     <img class="front" width="1000" height="1000" avatar="@subcontractor.OrgName">
+
+                   
                 </div>
             </div>
         }
     </section>
 
 <script src="~/Scripts/Home/index.js"></script>
-<link href="~/Scripts/Home/style.css" rel="stylesheet" />

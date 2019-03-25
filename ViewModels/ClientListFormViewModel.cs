@@ -28,12 +28,12 @@ namespace Alliance_for_Life.ViewModels
         [Display(Name = "Clients Last Name")]
         public string LastName { get; set; }
 
-      
+
         [DataType(DataType.Date)]
         [Display(Name = "Clients Birth Date")]
         public DateTime DOB { get; set; }
 
-       
+
         [DataType(DataType.Date)]
         [Display(Name = "Due Date")]
         public DateTime DueDate { get; set; }
@@ -50,7 +50,7 @@ namespace Alliance_for_Life.ViewModels
         //used to set the heading of the page
         public string Heading { get; set; }
 
-      //  used to switch between actions in the controller
+        //  used to switch between actions in the controller
         public string Action
         {
             get
@@ -61,11 +61,11 @@ namespace Alliance_for_Life.ViewModels
                 Expression<Func<ClientListController, ActionResult>> create =
                     (c => c.Create(this));
 
-                var action = (Id != Guid.Empty) ? update : create;
+                var action = (Id != null) ? update : create;
                 return (action.Body as MethodCallExpression).Method.Name;
             }
 
         }
 
-    }   
+    }
 }

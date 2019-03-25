@@ -1,17 +1,3 @@
-C:\Users\Ghimim\Documents\GitHub\Alliance-for-Life\obj\Debug\Alliance for Life.csproj.CoreCompileInputs.cache
-C:\Users\Ghimim\Documents\GitHub\Alliance-for-Life\obj\Debug\Alliance for Life.dll
-C:\Users\Ghimim\Documents\GitHub\Alliance-for-Life\obj\Debug\Alliance for Life.pdb
-C:\Users\Ghimim\Documents\GitHub\Alliance-for-Life\bin\ApplicationInsights.config
-C:\Users\Ghimim\Documents\GitHub\Alliance-for-Life\bin\Alliance for Life.dll.config
-C:\Users\Ghimim\Documents\GitHub\Alliance-for-Life\bin\Alliance for Life.dll
-C:\Users\Ghimim\Documents\GitHub\Alliance-for-Life\bin\Alliance for Life.pdb
-C:\Users\Ghimim\Documents\GitHub\Alliance-for-Life\bin\Newtonsoft.Json.dll
-C:\Users\Ghimim\Documents\GitHub\Alliance-for-Life\bin\PagedList.dll
-C:\Users\Ghimim\Documents\GitHub\Alliance-for-Life\bin\PagedList.Mvc.dll
-C:\Users\Ghimim\Documents\GitHub\Alliance-for-Life\bin\PagedList.xml
-C:\Users\Ghimim\Documents\GitHub\Alliance-for-Life\bin\PagedList.Mvc.xml
-C:\Users\Ghimim\Documents\GitHub\Alliance-for-Life\obj\Debug\Alliance for Life.csproj.CopyComplete
-C:\Users\Ghimim\Documents\GitHub\Alliance-for-Life\obj\Debug\Alliance for Life.csproj.GenerateResource.cache
 C:\Users\meeksm1\Documents\GitHub\Alliance-for-Life\bin\ApplicationInsights.config
 C:\Users\meeksm1\Documents\GitHub\Alliance-for-Life\bin\Alliance for Life.dll.config
 C:\Users\meeksm1\Documents\GitHub\Alliance-for-Life\bin\Alliance for Life.dll
@@ -51,5 +37,18 @@ C:\Users\manoj\Downloads\Alliance-for-Life-master\Alliance-for-Life-master\obj\D
 C:\Users\manoj\Downloads\Alliance-for-Life-master\Alliance-for-Life-master\obj\Debug\Alliance for Life.dll
 C:\Users\manoj\Downloads\Alliance-for-Life-master\Alliance-for-Life-master\obj\Debug\Alliance for Life.pdb
 C:\Users\meeksm1\Documents\GitHub\Alliance-for-Life\obj\Debug\Alliance for Life.csprojAssemblyReference.cache
+C:\Users\Ghimim\Documents\GitHub\Alliance-for-Life\bin\ApplicationInsights.config
+C:\Users\Ghimim\Documents\GitHub\Alliance-for-Life\bin\Alliance for Life.dll.config
+C:\Users\Ghimim\Documents\GitHub\Alliance-for-Life\bin\Alliance for Life.dll
+C:\Users\Ghimim\Documents\GitHub\Alliance-for-Life\bin\Alliance for Life.pdb
+C:\Users\Ghimim\Documents\GitHub\Alliance-for-Life\bin\Newtonsoft.Json.dll
+C:\Users\Ghimim\Documents\GitHub\Alliance-for-Life\bin\PagedList.dll
+C:\Users\Ghimim\Documents\GitHub\Alliance-for-Life\bin\PagedList.Mvc.dll
+C:\Users\Ghimim\Documents\GitHub\Alliance-for-Life\bin\PagedList.xml
+C:\Users\Ghimim\Documents\GitHub\Alliance-for-Life\bin\PagedList.Mvc.xml
 C:\Users\Ghimim\Documents\GitHub\Alliance-for-Life\obj\Debug\Alliance_for_Life.Migrations.update.resources
-C:\Users\Ghimim\Documents\GitHub\Alliance-for-Life\obj\Debug\Alliance for Life.csprojAssemblyReference.cache
+C:\Users\Ghimim\Documents\GitHub\Alliance-for-Life\obj\Debug\Alliance for Life.csproj.GenerateResource.cache
+C:\Users\Ghimim\Documents\GitHub\Alliance-for-Life\obj\Debug\Alliance for Life.csproj.CoreCompileInputs.cache
+C:\Users\Ghimim\Documents\GitHub\Alliance-for-Life\obj\Debug\Alliance for Life.csproj.CopyComplete
+C:\Users\Ghimim\Documents\GitHub\Alliance-for-Life\obj\Debug\Alliance for Life.dll
+C:\Users\Ghimim\Documents\GitHub\Alliance-for-Life\obj\Debug\Alliance for Life.pdb
