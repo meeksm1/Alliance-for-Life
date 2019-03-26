@@ -1,4 +1,6 @@
-﻿using System.Web;
+﻿using Alliance_for_Life.Models;
+using Microsoft.ApplicationInsights.DataContracts;
+using System.Web;
 using System.Web.Mvc;
 
 namespace Alliance_for_Life
