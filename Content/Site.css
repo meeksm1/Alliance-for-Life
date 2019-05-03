@@ -165,6 +165,15 @@ font-size: 14px;
     bottom: 5px;
     clear: both;
 }
+
+.footer-alignment2 {
+    width: 100%;
+    position: fixed;
+    text-align: center;
+    bottom: 35px;
+    clear: both;
+}
+
 .well {
     min-height: 10px;
     padding: 19px;
