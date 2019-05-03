@@ -29,6 +29,7 @@ namespace Alliance_for_Life.ViewModels
         public string County { get; set; }
 
         [Required]
+        [Display(Name = "A2A Region")]
         public GeoRegion? Region { get; set; }
 
         [Required]
@@ -58,6 +59,9 @@ namespace Alliance_for_Life.ViewModels
         public bool Active { get; set; }
 
         public DateTime SubmittedDate { get; set; }
+
+        [Display(Name = "Affiliate Region")]
+        public AffiliatesRegion? AffiliateRegion { get; set; }
 
         //used to set the heading of the page
         public string Heading { get; set; }

@@ -55,5 +55,7 @@ namespace Alliance_for_Life.Models
 
         public DateTime SubmittedDate { get; set; }
 
+        public AffiliatesRegion? AffiliateRegion { get; set; }
+
     }
 }
