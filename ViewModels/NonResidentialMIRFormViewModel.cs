@@ -14,16 +14,8 @@ namespace Alliance_for_Life.ViewModels
         public DateTime SubmittedDate { get; set; }
 
         [Required]
-        [Display(Name = "Total of overall Client bed nights for the month.")]
-        public int TotBedNights { get; set; }
-
-        [Required]
         [Display(Name = "Total current A2A enrollment.")]
         public int TotA2AEnrollment { get; set; }
-
-        [Required]
-        [Display(Name = "Total A2A Client bed nights.")]
-        public int TotA2ABedNights { get; set; }
 
         [Display(Name = "Monthly A2A Clients served.")]
         public double MA2Apercent { get; set; }

@@ -8,15 +8,11 @@ namespace Alliance_for_Life.Models
         [Key]
         public System.Guid PSId { get; set; }
 
-        public double BackgroudCheck { get; set; }
-
         public double PTranspotation { get; set; }
 
         public double PJobTrain { get; set; }
 
         public double PEducationAssistance { get; set; }
-
-        public double PBirthCerts { get; set; }
         
         public double PResidentialCare { get; set; }
 

@@ -23,6 +23,11 @@ namespace Alliance_for_Life.Controllers
             return View(viewModel);
         }
 
+        public ActionResult Reports()
+        {
+            return View();
+        }
+
         public ActionResult Index()
         {
             return View();

@@ -23,11 +23,6 @@ namespace Alliance_for_Life.Controllers
             db = new ApplicationDbContext();
         }
 
-        public ActionResult Reports()
-        {
-            return View();
-        }
-
         [Authorize]
         public ActionResult Create()
         {

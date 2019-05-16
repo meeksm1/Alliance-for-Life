@@ -1,11 +1,11 @@
 ﻿@model Alliance_for_Life.Models.ParticipationService
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Delete Participation Cost Report";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Delete Participation Service Record</h2>
+<h2>@ViewBag.Title</h2>
 
 <div>
 
@@ -41,7 +41,7 @@
         </dd>
 
         <dt>
-            Job Training
+            Job Training / Placement
         </dt>
 
         <dd>
@@ -49,7 +49,7 @@
         </dd>
 
         <dt>
-            Eduacation Assistance
+            Eduacation / Tuition Assistance
         </dt>
 
         <dd>
@@ -73,7 +73,7 @@
         </dd>
 
         <dt>
-            Housing Emergencies
+            Housing/Emergency
         </dt>
 
         <dd>
@@ -154,7 +154,8 @@
 
     </dl>
 
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
         <hr />

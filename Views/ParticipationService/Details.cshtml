@@ -1,11 +1,11 @@
 ﻿@model Alliance_for_Life.Models.ParticipationService
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Details for the Participation Cost Report";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Participation Service Details</h2>
+<h2>@ViewBag.Title</h2>
 
 <div>
     <hr />
@@ -42,7 +42,7 @@
         </dd>
 
         <dt>
-            Job Training
+            Job Training / Placement
         </dt>
 
         <dd>
@@ -50,7 +50,7 @@
         </dd>
 
         <dt>
-            Eduacation Assistance
+            Eduacation/Tuition Assistance
         </dt>
 
         <dd>
@@ -74,7 +74,7 @@
         </dd>
 
         <dt>
-            Housing Emergencies
+            Housing/Emergency
         </dt>
 
         <dd>
@@ -157,6 +157,6 @@
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.PSId }) |
-    @Html.ActionLink("Delete", "Delete", new { id = Model.PSId })|  
+    @Html.ActionLink("Delete", "Delete", new { id = Model.PSId })|
     @Html.ActionLink("Back to List", "Index")
 </p>

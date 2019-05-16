@@ -2,12 +2,12 @@
 @using PagedList.Mvc;
 <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 @{
-    ViewBag.Title = "Budgeted Fee's";
+    ViewBag.Title = "Budget Price Analysis";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="container">
-    <h2>Budget Costs Reports</h2>
+    <h2>Budget Price Analysis Reports</h2>
     <form>
         @using (Html.BeginForm())
         {
@@ -35,10 +35,6 @@
             <tr style="font-size:16px">
                 <th class="th-sm">
                     @Html.ActionLink("Year", "Index", new { sortOrder = ViewBag.YearSortParm })
-
-                </th>
-                <th class="th-sm">
-                    @Html.ActionLink("Month", "Index", new { sortOrder = ViewBag.MonthSortParm })
 
                 </th>
                 <th class="th-sm">
@@ -72,9 +68,6 @@
 
                     <td>
                         @item.Year
-                    </td>
-                    <td>
-                        @item.Month
                     </td>
                     <td>
                         @item.Region

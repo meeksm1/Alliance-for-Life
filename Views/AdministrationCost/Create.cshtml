@@ -1,11 +1,11 @@
 ﻿@model Alliance_for_Life.Models.AdminCosts
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Create Direct Administrative Cost Report";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Add Administration Cost Record</h2>
+<h2>@ViewBag.Title</h2>
 
 @using (Html.BeginForm())
 {
@@ -122,7 +122,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.AOfficeMaint, "Office Maintenance", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.AOfficeMaint, "Office Repairs & Maintenance", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.AOfficeMaint, new { htmlAttributes = new { @class = "form-control numAdd" } })
                 @Html.ValidationMessageFor(model => model.AOfficeMaint, "", new { @class = "text-danger" })
@@ -130,7 +130,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.AConsulting, "Consulting Fees", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.AConsulting, "Contract/Consulting", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.AConsulting, new { htmlAttributes = new { @class = "form-control numAdd" } })
                 @Html.ValidationMessageFor(model => model.AConsulting, "", new { @class = "text-danger" })
@@ -154,7 +154,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.ATechSupport, "Technical Support", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.ATechSupport, "Computer & Technology Support", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.ATechSupport, new { htmlAttributes = new { @class = "form-control numAdd" } })
                 @Html.ValidationMessageFor(model => model.ATechSupport, "", new { @class = "text-danger" })
@@ -162,7 +162,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.ASecurityServices, "Security Services", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.ASecurityServices, "Security & Monitoring Services", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.ASecurityServices, new { htmlAttributes = new { @class = "form-control numAdd" } })
                 @Html.ValidationMessageFor(model => model.ASecurityServices, "", new { @class = "text-danger" })

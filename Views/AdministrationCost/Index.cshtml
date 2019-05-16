@@ -1,11 +1,11 @@
 ﻿@model IEnumerable<Alliance_for_Life.Models.AdminCosts>
 
 @{
-    ViewBag.Title = "Administrative Fee's";
+    ViewBag.Title = "Direct Administrative Cost Report";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Administrative Cost Reports</h2>
+<h2>@ViewBag.Title</h2>
 
 @using (Html.BeginForm())
 {

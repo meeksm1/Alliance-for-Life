@@ -257,6 +257,18 @@
     <Compile Include="Migrations\201905031914060_CreateAffiliateEnum.Designer.cs">
       <DependentUpon>201905031914060_CreateAffiliateEnum.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905161442144_RemovedBudgetCostMonths.cs" />
+    <Compile Include="Migrations\201905161442144_RemovedBudgetCostMonths.Designer.cs">
+      <DependentUpon>201905161442144_RemovedBudgetCostMonths.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905161623510_RemoveBedNightsNonMir.cs" />
+    <Compile Include="Migrations\201905161623510_RemoveBedNightsNonMir.Designer.cs">
+      <DependentUpon>201905161623510_RemoveBedNightsNonMir.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905161648513_RemovedBackGroundBirthCerts.cs" />
+    <Compile Include="Migrations\201905161648513_RemovedBackGroundBirthCerts.Designer.cs">
+      <DependentUpon>201905161648513_RemovedBackGroundBirthCerts.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AffiliateRegion.cs" />
     <Compile Include="Models\SearchData.cs" />
@@ -692,7 +704,7 @@
     <Content Include="Views\ContractorForm\Create.cshtml" />
     <Content Include="Views\ClientList\ActiveClients.cshtml" />
     <Content Include="Views\ClientList\NonActiveClients.cshtml" />
-    <Content Include="Views\ClientList\Reports.cshtml" />
+    <Content Include="Views\ContractorForm\Reports.cshtml" />
     <Content Include="Views\AflForm\Create.cshtml" />
     <Content Include="Views\Surveys\Create.cshtml" />
     <Content Include="Views\Surveys\Delete.cshtml" />
@@ -722,7 +734,6 @@
     <Content Include="Views\BudgetCosts\SecondQuarter.cshtml" />
     <Content Include="Views\BudgetCosts\FourthQuarter.cshtml" />
     <Content Include="Views\BudgetCosts\ThirdQuarter.cshtml" />
-    <Content Include="Views\BudgetCosts\AExpenseVSBExpense.cshtml" />
     <Content Include="Views\QuarterlyStates\Delete.cshtml" />
     <Content Include="Views\QuarterlyStates\Details.cshtml" />
     <Content Include="Views\QuarterlyStates\Edit.cshtml" />
@@ -778,6 +789,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905031914060_CreateAffiliateEnum.resx">
       <DependentUpon>201905031914060_CreateAffiliateEnum.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905161442144_RemovedBudgetCostMonths.resx">
+      <DependentUpon>201905161442144_RemovedBudgetCostMonths.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905161623510_RemoveBedNightsNonMir.resx">
+      <DependentUpon>201905161623510_RemoveBedNightsNonMir.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905161648513_RemovedBackGroundBirthCerts.resx">
+      <DependentUpon>201905161648513_RemovedBackGroundBirthCerts.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

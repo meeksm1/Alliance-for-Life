@@ -3,12 +3,12 @@
 <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 @{
-    ViewBag.Title = "Third Quarter Budget Costs Report";
+    ViewBag.Title = "Third Quarter";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="container">
-    <h2>Budget Costs for Third Quarter</h2>
+    <h2>Budget Price Analysis Third Quarter</h2>
     <form>
         @using (Html.BeginForm())
         {
@@ -34,10 +34,6 @@
             <tr style="font-size:16px">
                 <th class="th-sm">
                     @Html.ActionLink("Year", "Index", new { sortOrder = ViewBag.YearSortParm })
-
-                </th>
-                <th class="th-sm">
-                    @Html.ActionLink("Month", "Index", new { sortOrder = ViewBag.MonthSortParm })
 
                 </th>
                 <th class="th-sm">
@@ -71,9 +67,6 @@
 
                     <td>
                         @item.Year
-                    </td>
-                    <td>
-                        @item.Month
                     </td>
                     <td>
                         @item.Region

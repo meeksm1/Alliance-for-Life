@@ -11,13 +11,7 @@ namespace Alliance_for_Life.Models
         public System.Guid SubcontractorId { get; set; }
 
         [Required]
-        public double TotBedNights { get; set; }
-
-        [Required]
         public double TotA2AEnrollment { get; set; }
-
-        [Required]
-        public double TotA2ABedNights { get; set; }
 
         public DateTime SubmittedDate { get; set; }
 

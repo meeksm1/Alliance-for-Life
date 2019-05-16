@@ -25,7 +25,6 @@ namespace Alliance_for_Life.Controllers
 
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.YearSortParm = sortOrder == "Year" ? "year_desc" : "Year";
-            ViewBag.MonthSortParm = sortOrder == "Month" ? "month_desc" : "Month";
             ViewBag.RegionSortParm = sortOrder == "Region" ? "region_desc" : "Region";
 
             //looking for the searchstring
@@ -45,24 +44,18 @@ namespace Alliance_for_Life.Controllers
             if (!String.IsNullOrEmpty(searchString))
             {
                 int yearsearch = Convert.ToInt16(searchString);
-                budgetsearch = budgetsearch.OrderBy(s => s.Month).Where(S => S.Year == yearsearch);
+                budgetsearch = budgetsearch.OrderBy(S => S.Year == yearsearch);
             }
             switch (sortOrder)
             {
                 case "Year":
                     budgetsearch = budgetsearch.OrderBy(s => s.Year);
                     break;
-                case "Month":
-                    budgetsearch = budgetsearch.OrderBy(s => s.Month);
-                    break;
                 case "Region":
                     budgetsearch = budgetsearch.OrderBy(s => s.Region);
                     break;
                 case "year_desc":
                     budgetsearch = budgetsearch.OrderByDescending(s => s.Year);
-                    break;
-                case "month_desc":
-                    budgetsearch = budgetsearch.OrderByDescending(s => s.Month);
                     break;
                 case "region_desc":
                     budgetsearch = budgetsearch.OrderByDescending(s => s.Region);
@@ -107,8 +100,7 @@ namespace Alliance_for_Life.Controllers
             }
 
             var costlist = db.BudgetCosts
-                .Where(s => s.Year == thisyear && (int)s.Region.Value == region)
-                .OrderBy(s => s.Month);
+                .Where(s => s.Year == thisyear && (int)s.Region.Value == region);
 
             return Json(costlist.ToList(), JsonRequestBehavior.AllowGet);
         }
@@ -132,8 +124,7 @@ namespace Alliance_for_Life.Controllers
             }
 
             var costlist = db.BudgetCosts
-                .Where(s => s.Year == thisyear && (int)s.Region.Value == region)
-                .OrderBy(s => s.Month);
+                .Where(s => s.Year == thisyear && (int)s.Region.Value == region);
 
             return Json(costlist.ToList(), JsonRequestBehavior.AllowGet);
         }
@@ -155,7 +146,6 @@ namespace Alliance_for_Life.Controllers
 
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.YearSortParm = sortOrder == "Year" ? "year_desc" : "Year";
-            ViewBag.MonthSortParm = sortOrder == "Month" ? "month_desc" : "Month";
             ViewBag.RegionSortParm = sortOrder == "Region" ? "region_desc" : "Region";
 
             //looking for the searchstring
@@ -170,30 +160,23 @@ namespace Alliance_for_Life.Controllers
             ViewBag.CurrentFilter = searchString;
 
             var budgetsearch = db.BudgetCosts
-            .Include(b => b.User)
-            .Where(b => (int)b.Month.Value <= 3);
+            .Include(b => b.User);
 
             if (!String.IsNullOrEmpty(searchString))
             {
                 int yearsearch = Convert.ToInt16(searchString);
-                budgetsearch = budgetsearch.OrderBy(s => s.Month).Where(S => S.Year == yearsearch);
+                budgetsearch = budgetsearch.OrderBy(S => S.Year == yearsearch);
             }
             switch (sortOrder)
             {
                 case "Year":
                     budgetsearch = budgetsearch.OrderBy(s => s.Year);
                     break;
-                case "Month":
-                    budgetsearch = budgetsearch.OrderBy(s => s.Month);
-                    break;
                 case "Region":
                     budgetsearch = budgetsearch.OrderBy(s => s.Region);
                     break;
                 case "year_desc":
                     budgetsearch = budgetsearch.OrderByDescending(s => s.Year);
-                    break;
-                case "month_desc":
-                    budgetsearch = budgetsearch.OrderByDescending(s => s.Month);
                     break;
                 case "region_desc":
                     budgetsearch = budgetsearch.OrderByDescending(s => s.Region);
@@ -222,7 +205,6 @@ namespace Alliance_for_Life.Controllers
 
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.YearSortParm = sortOrder == "Year" ? "year_desc" : "Year";
-            ViewBag.MonthSortParm = sortOrder == "Month" ? "month_desc" : "Month";
             ViewBag.RegionSortParm = sortOrder == "Region" ? "region_desc" : "Region";
 
             //looking for the searchstring
@@ -237,30 +219,23 @@ namespace Alliance_for_Life.Controllers
             ViewBag.CurrentFilter = searchString;
 
             var budgetsearch = db.BudgetCosts
-            .Include(b => b.User)
-            .Where(b => (int)b.Month >= 4 && (int)b.Month <= 6);
+            .Include(b => b.User);
 
             if (!String.IsNullOrEmpty(searchString))
             {
                 int yearsearch = Convert.ToInt16(searchString);
-                budgetsearch = budgetsearch.OrderBy(s => s.Month).Where(S => S.Year == yearsearch);
+                budgetsearch = budgetsearch.OrderBy(S => S.Year == yearsearch);
             }
             switch (sortOrder)
             {
                 case "Year":
                     budgetsearch = budgetsearch.OrderBy(s => s.Year);
                     break;
-                case "Month":
-                    budgetsearch = budgetsearch.OrderBy(s => s.Month);
-                    break;
                 case "Region":
                     budgetsearch = budgetsearch.OrderBy(s => s.Region);
                     break;
                 case "year_desc":
                     budgetsearch = budgetsearch.OrderByDescending(s => s.Year);
-                    break;
-                case "month_desc":
-                    budgetsearch = budgetsearch.OrderByDescending(s => s.Month);
                     break;
                 case "region_desc":
                     budgetsearch = budgetsearch.OrderByDescending(s => s.Region);
@@ -269,7 +244,6 @@ namespace Alliance_for_Life.Controllers
                     budgetsearch = budgetsearch.OrderBy(s => s.Region);
                     break;
             }
-
 
             if (pageSize < 1)
             {
@@ -289,7 +263,6 @@ namespace Alliance_for_Life.Controllers
 
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.YearSortParm = sortOrder == "Year" ? "year_desc" : "Year";
-            ViewBag.MonthSortParm = sortOrder == "Month" ? "month_desc" : "Month";
             ViewBag.RegionSortParm = sortOrder == "Region" ? "region_desc" : "Region";
 
             //looking for the searchstring
@@ -304,30 +277,23 @@ namespace Alliance_for_Life.Controllers
             ViewBag.CurrentFilter = searchString;
 
             var budgetsearch = db.BudgetCosts
-            .Include(b => b.User)
-            .Where(b => (int)b.Month >= 7 && (int)b.Month <= 9);
+            .Include(b => b.User);
 
             if (!String.IsNullOrEmpty(searchString))
             {
                 int yearsearch = Convert.ToInt16(searchString);
-                budgetsearch = budgetsearch.OrderBy(s => s.Month).Where(S => S.Year == yearsearch);
+                budgetsearch = budgetsearch.OrderBy(S => S.Year == yearsearch);
             }
             switch (sortOrder)
             {
                 case "Year":
                     budgetsearch = budgetsearch.OrderBy(s => s.Year);
                     break;
-                case "Month":
-                    budgetsearch = budgetsearch.OrderBy(s => s.Month);
-                    break;
                 case "Region":
                     budgetsearch = budgetsearch.OrderBy(s => s.Region);
                     break;
                 case "year_desc":
                     budgetsearch = budgetsearch.OrderByDescending(s => s.Year);
-                    break;
-                case "month_desc":
-                    budgetsearch = budgetsearch.OrderByDescending(s => s.Month);
                     break;
                 case "region_desc":
                     budgetsearch = budgetsearch.OrderByDescending(s => s.Region);
@@ -357,7 +323,6 @@ namespace Alliance_for_Life.Controllers
 
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.YearSortParm = sortOrder == "Year" ? "year_desc" : "Year";
-            ViewBag.MonthSortParm = sortOrder == "Month" ? "month_desc" : "Month";
             ViewBag.RegionSortParm = sortOrder == "Region" ? "region_desc" : "Region";
 
             //looking for the searchstring
@@ -372,31 +337,24 @@ namespace Alliance_for_Life.Controllers
             ViewBag.CurrentFilter = searchString;
 
             var budgetsearch = db.BudgetCosts
-            .Include(b => b.User)
-            .Where(b => (int)b.Month >= 10);
+            .Include(b => b.User);
 
 
             if (!String.IsNullOrEmpty(searchString))
             {
                 int yearsearch = Convert.ToInt16(searchString);
-                budgetsearch = budgetsearch.OrderBy(s => s.Month).Where(S => S.Year == yearsearch);
+                budgetsearch = budgetsearch.OrderBy(S => S.Year == yearsearch);
             }
             switch (sortOrder)
             {
                 case "Year":
                     budgetsearch = budgetsearch.OrderBy(s => s.Year);
                     break;
-                case "Month":
-                    budgetsearch = budgetsearch.OrderBy(s => s.Month);
-                    break;
                 case "Region":
                     budgetsearch = budgetsearch.OrderBy(s => s.Region);
                     break;
                 case "year_desc":
                     budgetsearch = budgetsearch.OrderByDescending(s => s.Year);
-                    break;
-                case "month_desc":
-                    budgetsearch = budgetsearch.OrderByDescending(s => s.Month);
                     break;
                 case "region_desc":
                     budgetsearch = budgetsearch.OrderByDescending(s => s.Region);
@@ -405,7 +363,6 @@ namespace Alliance_for_Life.Controllers
                     budgetsearch = budgetsearch.OrderBy(s => s.Region);
                     break;
             }
-
 
             if (pageSize < 1)
             {
@@ -454,8 +411,7 @@ namespace Alliance_for_Life.Controllers
                 var dataexist = from s in db.BudgetCosts
                                 where
                                 s.Year == budgetCosts.Year &&
-                                s.Region == budgetCosts.Region &&
-                                s.Month == budgetCosts.Month
+                                s.Region == budgetCosts.Region
                                 select s;
                 if (dataexist.Count() >= 1)
                 {
@@ -571,11 +527,10 @@ namespace Alliance_for_Life.Controllers
            
             //create datatable
             DataTable dt = new DataTable("Grid");
-            dt.Columns.AddRange(new DataColumn[40]
+            dt.Columns.AddRange(new DataColumn[39]
             {
                 new DataColumn ("Budget Report Id"),
                 new DataColumn ("Date Submitted"),
-                new DataColumn ("Month"),
                 new DataColumn ("Region"),
                 new DataColumn ("Year"),
                 new DataColumn ("Salary/Wages"),
@@ -620,7 +575,6 @@ namespace Alliance_for_Life.Controllers
                         {
                             BudgetInvoiceId = a.BudgetInvoiceId,
                             SubmittedDate = a.SubmittedDate,
-                            MonthName = a.Month.ToString(),
                             RegionName = a.Region.ToString(),
                             YearName = a.Year,
                             ASalandWages = a.ASalandWages,
@@ -666,7 +620,7 @@ namespace Alliance_for_Life.Controllers
 
             foreach (var item in costs)
             {
-                dt.Rows.Add(item.BudgetInvoiceId, item.SubmittedDate, item.MonthName, item.RegionName, item.YearName, item.ASalandWages, item.AEmpBenefits,
+                dt.Rows.Add(item.BudgetInvoiceId, item.SubmittedDate, item.RegionName, item.YearName, item.ASalandWages, item.AEmpBenefits,
                     item.AEmpTravel, item.AEmpTraining, item.AOfficeRent, item.AOfficeUtilities, item.AFacilityIns, item.AOfficeSupplies,
                     item.AEquipment, item.AOfficeCommunications, item.AOfficeMaint, item.AConsulting, item.SubConPayCost, item.BackgrounCheck,
                     item.Other, item.AJanitorServices, item.ADepreciation, item.ATechSupport, item.ASecurityServices, item.ATotCosts,

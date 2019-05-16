@@ -1,11 +1,11 @@
 ﻿@model Alliance_for_Life.Models.NonResidentialMIR
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Delete NonResidential Monthly Service Report";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Delete Record</h2>
+<h2>@ViewBag.Title</h2>
 
 <h3>Are you sure you want to delete this?</h3>
 <div>
@@ -35,29 +35,12 @@
             @Html.DisplayFor(model => model.Year)
         </dd>
 
-
-        <dt>
-            @Html.DisplayNameFor(model => model.TotBedNights)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TotBedNights)
-        </dd>
-
         <dt>
             @Html.DisplayNameFor(model => model.TotA2AEnrollment)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.TotA2AEnrollment)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.TotA2ABedNights)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TotA2ABedNights)
         </dd>
 
         <dt>
@@ -134,7 +117,8 @@
 
     </dl>
 
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">

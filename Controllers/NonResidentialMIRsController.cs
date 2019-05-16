@@ -234,9 +234,7 @@ namespace Alliance_for_Life.Controllers
                              OrgName = s.OrgName,
                              Month = res.Month.ToString(),
                              YearName = res.Year,
-                             TotBedNights = res.TotBedNights,
                              TotA2AEnrollment = res.TotA2AEnrollment,
-                             TotA2ABedNights = res.TotA2ABedNights,
                              MA2Apercent = res.MA2Apercent,
                              ClientsJobEduServ = res.ClientsJobEduServ,
                              ParticipatingFathers = res.ParticipatingFathers,
@@ -255,16 +253,14 @@ namespace Alliance_for_Life.Controllers
         public FileResult Export()
         {
             DataTable dt = new DataTable("Grid");
-            dt.Columns.AddRange(new DataColumn[16]
+            dt.Columns.AddRange(new DataColumn[14]
             {
                 new DataColumn ("Report Id"),
                 new DataColumn ("Date Submitted"),
                 new DataColumn ("Organization"),
                 new DataColumn ("Month"),
                 new DataColumn ("Year"),
-                new DataColumn ("Client Bed Nights"),
                 new DataColumn ("A2A Enrollment"),
-                new DataColumn ("Total A2A Bed Nights"),
                 new DataColumn ("Monthly A2A Clients Served"),
                 new DataColumn ("Job or Educational Service"),
                 new DataColumn ("Participating Fathers"),
@@ -284,9 +280,7 @@ namespace Alliance_for_Life.Controllers
                              OrgName = s.OrgName,
                              Month = res.Month.ToString(),
                              YearName = res.Year,
-                             TotBedNights = res.TotBedNights,
                              TotA2AEnrollment = res.TotA2AEnrollment,
-                             TotA2ABedNights = res.TotA2ABedNights,
                              MA2Apercent = res.MA2Apercent,
                              ClientsJobEduServ = res.ClientsJobEduServ,
                              ParticipatingFathers = res.ParticipatingFathers,
@@ -299,7 +293,7 @@ namespace Alliance_for_Life.Controllers
 
             foreach (var item in report)
             {
-                dt.Rows.Add(item.Id, item.SubmittedDate, item.OrgName, item.Month, item.YearName, item.TotBedNights, item.TotA2AEnrollment, item.TotA2ABedNights,
+                dt.Rows.Add(item.Id, item.SubmittedDate, item.OrgName, item.Month, item.YearName, item.TotA2AEnrollment,
                     item.MA2Apercent, item.ClientsJobEduServ, item.ParticipatingFathers, item.TotEduClasses,
                     item.TotClientsinEduClasses, item.TotCaseHrs, item.TotClientsCaseHrs, item.TotOtherClasses);
             }

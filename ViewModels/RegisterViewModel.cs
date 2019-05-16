@@ -11,6 +11,7 @@ namespace Alliance_for_Life.ViewModels
     {
         public IEnumerable<SubContractor> Subcontractors { get; set; }
 
+        [Display(Name = "Organization")]
         public System.Guid SubcontractorId { get; set; }
 
 

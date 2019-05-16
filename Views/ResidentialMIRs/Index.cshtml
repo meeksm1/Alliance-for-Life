@@ -3,12 +3,12 @@
 <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Residential Monthly Service Report";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="container">
-    <h2>Residential MIR Reports</h2>
+    <h2>@ViewBag.Title</h2>
 
     <p>
         Find by Organization Name or Submitted Date: @Html.TextBox("SearchString")

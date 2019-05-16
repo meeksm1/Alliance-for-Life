@@ -67,8 +67,6 @@ namespace Alliance_for_Life.Controllers
                                    RFOCarRepairs = p.POther,
                                    RFOCarPayments = p.POther2,
                                    RFOCarIns = p.POther3,
-                                   RFOBackgroundCheck = p.BackgroudCheck,
-                                   BirthCerts = p.PBirthCerts,
                                    PTotals = p.PTotals,
                                    TotDAandPSMonth = qs.TotDACandPSMonthly,
                                    TotDAandPSQuarter = qs.TotDAandPSQuarter
@@ -127,8 +125,6 @@ namespace Alliance_for_Life.Controllers
                                    RFOCarRepairs = p.POther,
                                    RFOCarPayments = p.POther2,
                                    RFOCarIns = p.POther3,
-                                   RFOBackgroundCheck = p.BackgroudCheck,
-                                   BirthCerts = p.PBirthCerts,
                                    PTotals = p.PTotals,
                                    TotDAandPSMonth = qs.TotDACandPSMonthly,
                                    TotDAandPSQuarter = qs.TotDAandPSQuarter
@@ -187,8 +183,6 @@ namespace Alliance_for_Life.Controllers
                                    RFOCarRepairs = p.POther,
                                    RFOCarPayments = p.POther2,
                                    RFOCarIns = p.POther3,
-                                   RFOBackgroundCheck = p.BackgroudCheck,
-                                   BirthCerts = p.PBirthCerts,
                                    PTotals = p.PTotals,
                                    TotDAandPSMonth = qs.TotDACandPSMonthly,
                                    TotDAandPSQuarter = qs.TotDAandPSQuarter
@@ -247,8 +241,6 @@ namespace Alliance_for_Life.Controllers
                                    RFOCarRepairs = p.POther,
                                    RFOCarPayments = p.POther2,
                                    RFOCarIns = p.POther3,
-                                   RFOBackgroundCheck = p.BackgroudCheck,
-                                   BirthCerts = p.PBirthCerts,
                                    PTotals = p.PTotals,
                                    TotDAandPSMonth = qs.TotDACandPSMonthly,
                                    TotDAandPSQuarter = qs.TotDAandPSQuarter

@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Budgeted Costs</h2>
+<h2>Budget Price Analysis by Region</h2>
 
 
 @using (Html.BeginForm()) 
@@ -23,13 +23,6 @@
         <div class="col-md-10">
             @Html.EnumDropDownListFor(model => model.Region, htmlAttributes: new { @class = "form-control" })
             @Html.ValidationMessageFor(model => model.Region, "", new { @class = "text-danger" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(model => model.Month, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EnumDropDownListFor(model => model.Month, htmlAttributes: new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.Month, "", new { @class = "text-danger" })
         </div>
     </div>
 
@@ -138,7 +131,7 @@
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.SubConPayCost, "EFT Fees", htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.SubConPayCost, "Subcontractor Payment Costs", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.EditorFor(model => model.SubConPayCost, new { htmlAttributes = new { @class = "form-control numAdd" } })
             @Html.ValidationMessageFor(model => model.SubConPayCost, "", new { @class = "text-danger" })
@@ -234,7 +227,7 @@
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.ContractedResidential, "Contracted Residential Care", htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.ContractedResidential, "Contracted Residential", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.EditorFor(model => model.ContractedResidential, new { htmlAttributes = new { @class = "form-control numAdd2" } })
             @Html.ValidationMessageFor(model => model.ContractedResidential, "", new { @class = "text-danger" })

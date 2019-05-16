@@ -6,7 +6,8 @@ namespace Alliance_for_Life.Models
     public class BudgetCosts
     {
         [Key]
-         public System.Guid BudgetInvoiceId { get; set; }
+        public System.Guid BudgetInvoiceId { get; set; }
+
         public double ASalandWages { get; set; }
 
         public double AEmpBenefits { get; set; }
@@ -80,7 +81,6 @@ namespace Alliance_for_Life.Models
         public DateTime SubmittedDate { get; set; }
 
         // Navigation Properties
-        public Months? Month { get; set; }
         public GeoRegion? Region { get; set; }
         public Role User { get; set; }
         public AdminCosts AdminCost { get; set; }

@@ -7,8 +7,6 @@ namespace Alliance_for_Life.ViewModels
 {
     public class BudgetCostViewModel
     {
-        public Months? Month { get; set; }
-
         [Required]
         public GeoRegion? Region { get; set; }
 
@@ -76,23 +74,6 @@ namespace Alliance_for_Life.ViewModels
 
         //used to set the heading of the page
         public string Heading { get; set; }
-
-        //used to switch between actions in the controller
-        //public string Action
-        //{
-        //    get
-        //    {
-        //        Expression<Func<BudgetCostController, ActionResult>> update =
-        //            (c => c.Update(this));
-
-        //        Expression<Func<BudgetCostController, ActionResult>> create =
-        //            (c => c.Create(this));
-
-        //        var action = (Month != 0 && Region != 0) ? update : create;
-        //        return (action.Body as MethodCallExpression).Method.Name;
-        //    }
-
-        //}
 
         public int Trasportation { get; set; }
 

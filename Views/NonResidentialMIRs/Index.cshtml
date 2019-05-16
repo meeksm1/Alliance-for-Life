@@ -3,12 +3,12 @@
 <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 @{
-    ViewBag.Title = "Non-Residential MIR Reports";
+    ViewBag.Title = "NonResidential Monthly Service Report";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="container">
-    <h2>Non-Residential MIR Reports</h2>
+    <h2>@ViewBag.Title</h2>
 
     <p>
         Find by Organization Name or Submitted Date: @Html.TextBox("SearchString")
@@ -30,18 +30,12 @@
                     @Html.ActionLink("Submitted Date", "Index", new { sortOrder = ViewBag.DateSortParm })
 
                 </th>
-                <th class="th-sm">
-                    Bed Nights
 
-                </th>
                 <th class="th-sm">
                     A2A Enrollment
 
                 </th>
-                <th class="th-sm">
-                    A2A Bed Nights
 
-                </th>
                 <th class="th-sm">
                     Monthly A2A Clients
 
@@ -88,13 +82,7 @@
                     @item.SubmittedDate.ToShortDateString()
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.TotBedNights)
-                </td>
-                <td>
                     @Html.DisplayFor(modelItem => item.TotA2AEnrollment)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.TotA2ABedNights)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.MA2Apercent)
