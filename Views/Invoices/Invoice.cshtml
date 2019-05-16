@@ -28,83 +28,97 @@
     <div class="invoice-body">
         <div class="row" style=" font-family:'Times New Roman'">
             <div class="col-xs-6">
+
+                <div class="col-xs-10" style="font-size:medium;">
+                    <div class="media">
+                        <div class="media-left">
+                            <img src="~/Content/DataTables/images/AFL-2015LOGO-CMYK[1].jpg" class="media-object logo" style=" float: left; padding-right: 1em; padding-top: .5em;" />
+                        </div>
+                        <ul class="media-body list-unstyled">
+                            <li><strong>Alliance For Life</strong></li>
+                            <li> 487 SW Ward Rd, Lee’s Summit, MO 64081 </li>
+                            <li><i class="fa fa-phone"> 816-806-4168</i></li>
+                        </ul>
+                    </div>
+                </div>
+                <br />
                 <div>
                     <h2> <strong>Monthly Invoice </strong></h2>
                     <h4 class="text-muted">NO:@Model.InvoiceId.ToString().Substring(19, 12) | Date: @System.DateTime.Now.ToString("MMMM dd, yyyy")</h4>
                 </div>
-                <br />
-                <div class="col-xs-10" style="font-size:medium;">
-                    <div class="media">
-                        <div class="media-left">
-                            <img src="~/Scripts/Invoice/log0.png" class="media-object logo" style=" float: left; padding-right: 1em; padding-top: .5em;" />
-                        </div>
-                        <ul class="media-body list-unstyled">
-                            <li><strong>Alliance For Life</strong></li>
-                            <li><i class="fa fa-home"> 487 SW Ward Rd, Lee’s Summit, MO 64081 </i></li>
-                            <li><i class="fa fa-envelope"> info@allianceforlifemissouri.com</i></li>
-                            <li><i class="fa fa-phone"> 816-806-4768</i></li>
 
-                        </ul>
-                    </div>
-                </div>
             </div>
-            <div class="col-xs-5" style="font-size:medium;">
+            <div class="col-xs-6" style="font-size:medium;">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title" style="text-align:center;">Customer Details</h3>
+                        <h3 class="panel-title" style="text-align:center;">SubContractor</h3>
                     </div>
                     <div class="panel-body">
                         <dl class="dl-horizontal">
-                            <dt style="text-align:left;">EIN</dt>
-                            <dd style="text-align:left;"> @Model.Subcontractor.EIN</dd>
                             <dt style="text-align:left;">Name</dt>
                             <dd style="text-align:left;">@Model.Subcontractor.OrgName</dd>
                             <dt style="text-align:left;">Address</dt>
-                            <dd style="text-align:left;">@Model.Subcontractor.Address1, @Model.Subcontractor.County, @Model.Subcontractor.City - @Model.Subcontractor.State  @Model.Subcontractor.ZipCode , USA</dd>
-                            <dt style="text-align:left;">Director</dt>
+                            <dd >@Model.Subcontractor.Address1, @Model.Subcontractor.County, @Model.Subcontractor.City   @Model.Subcontractor.State  @Model.Subcontractor.ZipCode , USA </p> </dd>
+                            <dt style="text-align:left;"> Key Contact</dt>
                             <dd style="text-align:left;">@Model.Subcontractor.Director</dd>
+                            <dt style="text-align:left;">Invoice Month</dt>
+                            <dd style="text-align:left;">@Model.Month, @Model.Year</dd>
                         </dl>
                     </div>
                 </div>
             </div>
         </div>
         <br />
-        <br />
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title">Services / Products</h3>
+                <h3 class="panel-title text-center">Alternative to Abortion Program</h3>
             </div>
             <table class="table table-bordered table-condensed">
                 <thead>
                     <tr>
-                        <th> Details</th>
-                        <th class="text-center colfix">Administrative Cost</th>
-                        <th class="text-center colfix">Participant Service</th>
-                        <th class="text-center colfix">Management Fee</th>
-                        <th class="text-center colfix">Grand Total</th>
-                        <th class="text-center colfix">Deposit Amount</th>
+                        <th class="text-center colfix"> Details</th>
+                        <th class="text-center colfix"> Cost</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td>
-                            Price
+                            Administrative Cost
                         </td>
                         <td class="text-right">
-                            <span class="mono">$@Model.DirectAdminCost</span>
+                            <span class="mono">$@Model.DirectAdminCost.ToString("#,##0.00")</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Participant Cost
                         </td>
                         <td class="text-right">
-                            <span class="mono">$@Model.ParticipantServices</span>
-
+                            <span class="mono">$@Model.ParticipantServices.ToString("#,##0.00")</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Less Management Fee
                         </td>
                         <td class="text-right">
-                            <span class="mono">$@Model.LessManagementFee</span>
+                            <span class="mono">$@Model.LessManagementFee.ToString("#,##0.00")</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Deposit Amount
                         </td>
                         <td class="text-right">
-                            <span class="mono">$@Model.GrandTotal</span>
+                            <span class="mono">$@Model.DepositAmount.ToString("#,##0.00")</span>
                         </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            Grand Total
+                        </th>
                         <td class="text-right">
-                            <strong class="mono">$@Model.DepositAmount</strong>
+                            <span class="mono">$@Model.GrandTotal.ToString("#,##0.00")</span>
                         </td>
                     </tr>
                 </tbody>
@@ -114,16 +128,23 @@
             <table class="table table-bordered table-condensed">
                 <thead>
                     <tr>
-                        <td class="text-center col-xs-1">Beginning Allocation</td>
-                        <td class="text-center col-xs-1">Adjusted Allocation</td>
-                        <td class="text-center col-xs-1">Remaining Balance</td>
+                        <td class="text-left ">Beginning Allocation</td>
+                        <td class="text-right ">$@Model.BeginningAllocation.ToString("#,##0.00")</td>
+                    </tr>
+                    <tr>
+                        <td class="text-left ">Adjusted Allocation</td>
+                        <td class="text-right ">$@Model.AdjustedAllocation.ToString("#,##0.00")</td>
+
+                    </tr>
+                    <tr>
+                        <td class="text-left ">Remaining Balance</td>
+                        <td class="text-right ">$@Model.BalanceRemaining.ToString("#,##0.00")</td>
+
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <th class="text-center rowtotal mono">$@Model.BeginningAllocation</th>
-                        <th class="text-center rowtotal mono">$@Model.AdjustedAllocation</th>
-                        <th class="text-center rowtotal mono">$@Model.BalanceRemaining</th>
+                     
                     </tr>
                 </tbody>
             </table>
@@ -149,12 +170,6 @@
             </div>
         </div>
 
-    </div>
-    <div class="invoice-footer">
-        Thank you for choosing our services.
-        <br /> We hope to see you again soon
-        <br />
-        <strong>~AFL~</strong>
     </div>
 </div>
 
