@@ -79,11 +79,11 @@ namespace Alliance_for_Life.Controllers
         {
             var montot1 = from x in db.AdminCosts where (int)x.Month == 1 select x.ATotCosts;
 
-            var firstquarter = from qs in db.QuarterlyStates
+            var secondquarter = from qs in db.QuarterlyStates
                                join s in db.SubContractors on qs.SubcontractorId equals s.SubcontractorId
                                join a in db.AdminCosts on qs.AdminCostId equals a.AdminCostId
                                join p in db.ParticipationServices on qs.ParticipationCostId equals p.PSId
-                               where (int)qs.Month <= 7 && (int)qs.Month >= 9
+                               where (int)qs.Month <= 10 && (int)qs.Month >= 12
 
                                select new QuarterlyStateReport
                                {
@@ -130,18 +130,18 @@ namespace Alliance_for_Life.Controllers
                                    TotDAandPSQuarter = qs.TotDAandPSQuarter
                                };
 
-            return View(firstquarter);
+            return View(secondquarter);
         }
 
         public ActionResult ThirdQuarterReport()
         {
             var montot1 = from x in db.AdminCosts where (int)x.Month == 1 select x.ATotCosts;
 
-            var firstquarter = from qs in db.QuarterlyStates
+            var thirdquarter = from qs in db.QuarterlyStates
                                join s in db.SubContractors on qs.SubcontractorId equals s.SubcontractorId
                                join a in db.AdminCosts on qs.AdminCostId equals a.AdminCostId
                                join p in db.ParticipationServices on qs.ParticipationCostId equals p.PSId
-                               where (int) qs.Month <= 7 && (int)qs.Month >= 9
+                               where (int) qs.Month <= 1 && (int)qs.Month >= 3
 
                                select new QuarterlyStateReport
                                {
@@ -188,18 +188,18 @@ namespace Alliance_for_Life.Controllers
                                    TotDAandPSQuarter = qs.TotDAandPSQuarter
                                };
 
-            return View(firstquarter);
+            return View(thirdquarter);
         }
 
         public ActionResult FourthQuarterReport()
         {
             var montot1 = from x in db.AdminCosts where (int)x.Month == 1 select x.ATotCosts;
 
-            var firstquarter = from qs in db.QuarterlyStates
+            var fourthquarter = from qs in db.QuarterlyStates
                                join s in db.SubContractors on qs.SubcontractorId equals s.SubcontractorId
                                join a in db.AdminCosts on qs.AdminCostId equals a.AdminCostId
                                join p in db.ParticipationServices on qs.ParticipationCostId equals p.PSId
-                               where (int)qs.Month >= 10
+                               where (int)qs.Month >= 4 && (int)qs.Month >= 6
 
                                select new QuarterlyStateReport
                                {
@@ -246,7 +246,7 @@ namespace Alliance_for_Life.Controllers
                                    TotDAandPSQuarter = qs.TotDAandPSQuarter
                                };
 
-            return View(firstquarter);
+            return View(fourthquarter);
         }
 
         // GET: QuarterlyStates/Details/5
