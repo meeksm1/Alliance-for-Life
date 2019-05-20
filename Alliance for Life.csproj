@@ -713,8 +713,6 @@
     <Content Include="Views\Surveys\Index.cshtml" />
     <Content Include="Views\ClientList\AllNonActiveClients.cshtml" />
     <Content Include="Views\ClientList\AllActiveClients.cshtml" />
-    <Content Include="Views\Role\Index.cshtml" />
-    <Content Include="Views\Role\Create.cshtml" />
     <Content Include="Views\Account\RegisterRole.cshtml" />
     <Content Include="Views\AflForm\Reports.cshtml" />
     <Content Include="Views\SubContractor\Reports.cshtml" />

@@ -8,15 +8,6 @@ section {
     color: white;
 }
 
-a {
-    color: #FFFFFF;
-    outline: 0;
-}
-
-    a:hover, a:focus {
-        color: inherit;
-    }
-
 .flipbox .front, .flipbox .back {
     position: absolute;
     -webkit-backface-visibility: hidden;

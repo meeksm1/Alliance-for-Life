@@ -163,7 +163,6 @@ font-size: 14px;
     position: fixed;
     text-align: center;
     bottom: 5px;
-    clear: both;
 }
 
 .footer-alignment2 {
@@ -171,7 +170,7 @@ font-size: 14px;
     position: fixed;
     text-align: center;
     bottom: 35px;
-    clear: both;
+    visibility: visible;
 }
 
 .well {
