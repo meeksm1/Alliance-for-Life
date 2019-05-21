@@ -1,0 +1,211 @@
+﻿@model Alliance_for_Life.Models.MonthlyServices
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>MonthlyServices</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Subcontractor.AdministratorId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Subcontractor.AdministratorId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SubmittedDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SubmittedDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RTotBedNights)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RTotBedNights)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RTotA2AEnrollment)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RTotA2AEnrollment)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RTotA2ABedNights)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RTotA2ABedNights)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RMA2Apercent)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RMA2Apercent)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RClientsJobEduServ)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RClientsJobEduServ)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RParticipatingFathers)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RParticipatingFathers)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RTotEduClasses)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RTotEduClasses)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RTotClientsinEduClasses)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RTotClientsinEduClasses)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RTotCaseHrs)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RTotCaseHrs)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RTotClientsCaseHrs)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RTotClientsCaseHrs)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RTotOtherClasses)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RTotOtherClasses)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NTotA2AEnrollment)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NTotA2AEnrollment)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NMA2Apercent)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NMA2Apercent)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NClientsJobEduServ)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NClientsJobEduServ)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NParticipatingFathers)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NParticipatingFathers)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NTotEduClasses)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NTotEduClasses)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NTotClientsinEduClasses)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NTotClientsinEduClasses)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NTotCaseHrs)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NTotCaseHrs)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NTotClientsCaseHrs)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NTotClientsCaseHrs)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NTotOtherClasses)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NTotOtherClasses)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Year)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Year)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Month)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Month)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

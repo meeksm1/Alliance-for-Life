@@ -26,5 +26,7 @@ namespace Alliance_for_Life.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<Alliance_for_Life.Models.MonthlyServices> MonthlyServices { get; set; }
     }
 }
