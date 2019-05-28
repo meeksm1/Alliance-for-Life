@@ -33,10 +33,11 @@ namespace Alliance_for_Life.Models
 
         public int Year { get; set; }
 
+        public double TotOverallServed { get; set; }        
+
         /*Navigation Properties*/
         public Months? Month { get; set; }
         public SubContractor Subcontractor { get; set; }
 
-       
     }
 }

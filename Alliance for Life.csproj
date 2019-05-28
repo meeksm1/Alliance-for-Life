@@ -274,6 +274,10 @@
     <Compile Include="Migrations\201905201841549_RefractorRESandNONRESMIRStoMonthlyServices.Designer.cs">
       <DependentUpon>201905201841549_RefractorRESandNONRESMIRStoMonthlyServices.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905222102050_UpdatestoNONandRESClasses.cs" />
+    <Compile Include="Migrations\201905222102050_UpdatestoNONandRESClasses.Designer.cs">
+      <DependentUpon>201905222102050_UpdatestoNONandRESClasses.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AffiliateRegion.cs" />
     <Compile Include="Models\MonthlyServices.cs" />
@@ -813,6 +817,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905201841549_RefractorRESandNONRESMIRStoMonthlyServices.resx">
       <DependentUpon>201905201841549_RefractorRESandNONRESMIRStoMonthlyServices.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905222102050_UpdatestoNONandRESClasses.resx">
+      <DependentUpon>201905222102050_UpdatestoNONandRESClasses.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />
