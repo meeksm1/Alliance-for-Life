@@ -1,5 +1,6 @@
 ﻿using Alliance_for_Life.Models;
 using ClosedXML.Excel;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Data;
 using System.Data.Entity;
@@ -19,6 +20,15 @@ namespace Alliance_for_Life.Controllers
         public ActionResult Index()
         {
             var participationServices = db.ParticipationServices.Include(p => p.Subcontractor);
+            if (!User.IsInRole("Admin"))
+            {
+                var id = User.Identity.GetUserId();
+                var usersubid = db.Users.Find(id).SubcontractorId;
+
+                participationServices = from s in db.ParticipationServices
+                                        where usersubid == s.SubcontractorId
+                                        select s;
+            }
             return View(participationServices.ToList());
         }
 
@@ -33,6 +43,10 @@ namespace Alliance_for_Life.Controllers
 
                 .Include(a => a.Subcontractor)
                 .SingleOrDefault(a => a.PSId == id);
+
+
+
+
 
             if (participationService == null)
             {

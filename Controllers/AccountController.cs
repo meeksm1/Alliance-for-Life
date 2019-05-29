@@ -2,7 +2,6 @@
 using Alliance_for_Life.Models;
 using Alliance_for_Life.ViewModels;
 using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using System;
@@ -144,12 +143,19 @@ namespace Alliance_for_Life.Controllers
         {
             List<Userinformation> modelLst = new List<Userinformation>();
             var role = db.Roles.Include(x => x.Users).ToList();
-
             foreach (var r in role)
             {
                 foreach (var u in r.Users)
                 {
                     var usr = db.Users.Find(u.UserId);
+
+                    var usersub = db.SubContractors.Find(usr.SubcontractorId).OrgName;
+                    if (usersub == null)
+                    {
+                        usersub = "";
+                    }
+
+
                     var obj = new Userinformation
                     {
                         Id = new Guid(usr.Id),
@@ -157,13 +163,13 @@ namespace Alliance_for_Life.Controllers
                         Lastname = usr.LastName,
                         Email = usr.Email,
                         Role = r.Name,
-                        Organization = db.SubContractors.Find(usr.SubcontractorId).OrgName
+                        Organization = usersub
                     };
 
                     modelLst.Add(obj);
                 }
             }
-            return View(modelLst);
+            return View(modelLst.OrderBy(s => s.Organization));
         }
 
         [Authorize]

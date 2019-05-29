@@ -41,6 +41,8 @@ namespace Alliance_for_Life.Controllers
             var budgetsearch = from s in db.BudgetCosts
                                select s;
 
+
+
             if (!String.IsNullOrEmpty(searchString))
             {
                 int yearsearch = Convert.ToInt16(searchString);
@@ -193,7 +195,7 @@ namespace Alliance_for_Life.Controllers
             }
 
             int pageNumber = (page ?? 1);
-            return View(budgetsearch.ToPagedList(pageNumber, pageSize));        
+            return View(budgetsearch.ToPagedList(pageNumber, pageSize));
 
         }
 
@@ -523,8 +525,8 @@ namespace Alliance_for_Life.Controllers
         {
             //get the invoice id
             var exportid = Request["BudgetInvoiceId"];
-           
-           
+
+
             //create datatable
             DataTable dt = new DataTable("Grid");
             dt.Columns.AddRange(new DataColumn[39]
@@ -613,7 +615,7 @@ namespace Alliance_for_Life.Controllers
                             Maxtot = a.Maxtot
                         };
 
-            if ( exportid.Length ==32)
+            if (exportid.Length == 32)
             {
                 costs = costs.Where(s => s.BudgetInvoiceId == new Guid(exportid));
             }
