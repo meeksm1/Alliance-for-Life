@@ -25,6 +25,19 @@ namespace Alliance_for_Life.Controllers
             var adminSearch = db.AdminCosts
             .Include(a => a.Subcontractor).Where(a => a.SubcontractorId == a.Subcontractor.SubcontractorId);
 
+
+            if (!User.IsInRole("Admin"))
+            {
+                var id = User.Identity.GetUserId();
+                var usersubid = db.Users.Find(id).SubcontractorId;
+
+                adminSearch = from s in db.AdminCosts
+                              where usersubid == s.SubcontractorId
+                              select s;
+            }
+
+
+
             if (!String.IsNullOrEmpty(searchString))
             {
                 adminSearch = adminSearch.Where(a => a.Subcontractor.OrgName.Contains(searchString)

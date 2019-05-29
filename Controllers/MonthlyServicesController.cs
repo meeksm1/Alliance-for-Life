@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Alliance_for_Life.Models;
+using Microsoft.AspNet.Identity;
+using System;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using Alliance_for_Life.Models;
 
 namespace Alliance_for_Life.Controllers
 {
@@ -18,6 +17,17 @@ namespace Alliance_for_Life.Controllers
         public ActionResult Index()
         {
             var monthlyServices = db.MonthlyServices.Include(m => m.Subcontractor);
+
+            if (!User.IsInRole("Admin"))
+            {
+                var id = User.Identity.GetUserId();
+                var usersubid = db.Users.Find(id).SubcontractorId;
+
+                monthlyServices = from s in db.MonthlyServices
+                                  where usersubid == s.SubcontractorId
+                                  select s;
+            }
+
             return View(monthlyServices.ToList());
         }
 

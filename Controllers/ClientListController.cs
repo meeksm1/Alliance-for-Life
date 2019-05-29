@@ -171,6 +171,16 @@ namespace Alliance_for_Life.Controllers
             var clients = db.ClientLists.Include(s => s.Subcontractor)
                 .Where(s => s.Active);
 
+            if (!User.IsInRole("Admin"))
+            {
+                var id = User.Identity.GetUserId();
+                var usersubid = db.Users.Find(id).SubcontractorId;
+
+                clients = from s in db.ClientLists
+                          where usersubid == s.SubcontractorId
+                          select s;
+            }
+
             if (!String.IsNullOrEmpty(searchString))
             {
                 clients = clients.Where(a => a.Subcontractor.OrgName.Contains(searchString)
@@ -255,6 +265,7 @@ namespace Alliance_for_Life.Controllers
         public ActionResult ActiveClients(string sortOrder, string searchString, string currentFilter, int? page, string pgSize)
         {
 
+
             int pageSize = Convert.ToInt16(pgSize);
             ViewBag.CurrentSort = sortOrder;
 
@@ -273,9 +284,29 @@ namespace Alliance_for_Life.Controllers
             }
             ViewBag.CurrentFilter = searchString;
 
+
+
             var clients = db.ClientLists.Include(s => s.Subcontractor)
                 .Where(s => s.SubcontractorId == s.Subcontractor.SubcontractorId)
                 .Where(s => s.Active);
+
+            if (!User.IsInRole("Admin"))
+            {
+                var id = User.Identity.GetUserId();
+
+                var usersubid = from s in db.Users
+                                where s.Id == id
+                                select s.SubcontractorId;
+
+                foreach (var items in usersubid)
+                {
+                    clients = db.ClientLists.Include(s => s.Subcontractor)
+            .Where(s => s.SubcontractorId == items)
+            .Where(s => s.Active);
+                }
+
+            }
+
 
             if (!String.IsNullOrEmpty(searchString))
             {
@@ -486,6 +517,22 @@ namespace Alliance_for_Life.Controllers
             var clients = db.ClientLists.Include(s => s.Subcontractor)
                 .Where(s => s.SubcontractorId == s.Subcontractor.SubcontractorId)
                 .Where(s => s.Active == false);
+
+            if (!User.IsInRole("Admin"))
+            {
+                var id = User.Identity.GetUserId();
+
+                var usersubid = from s in db.Users
+                                where s.Id == id
+                                select s.SubcontractorId;
+
+                foreach (var items in usersubid)
+                {
+                    clients = db.ClientLists.Include(s => s.Subcontractor)
+            .Where(s => s.SubcontractorId == items);
+                }
+
+            }
 
             if (!String.IsNullOrEmpty(searchString))
             {
