@@ -109,7 +109,7 @@ namespace Alliance_for_Life.Controllers
                 return View("ClientListForm", viewModel);
             }
 
-            var client = db.ClientLists.Single(s => s.Id == viewModel.Id);
+            var client = db.ClientLists.SingleOrDefault(s => s.Id == viewModel.Id);
             {
                 client.SubcontractorId = new Guid(Request["SubcontractorId"]);
                 client.FirstName = viewModel.FirstName;

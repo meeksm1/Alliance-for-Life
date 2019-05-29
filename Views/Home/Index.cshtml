@@ -4,8 +4,7 @@
 }
 
     <div style="text-align:center;">
-        <h1>Welcome to the Alternative to Abortion Database System</h1>
-        <h3>Organizations we work with:</h3>
+        <h1>Welcome to the Alternative to Abortion Database System</h1> 
     </div>
     <link href="~/Scripts/Home/style.css" rel="stylesheet" />
 
@@ -14,17 +13,20 @@
         {
             <div class="flipbox">
                 <div class="back">
-                    <div style="font-size:17px; text-align:center; text-decoration: underline;"> <strong> @subcontractor.OrgName </strong></div> 
+                    <div style="font-size:17px; text-align:center; text-decoration: underline;"> <strong> @subcontractor.OrgName </strong></div>
                     <br />
                     <div style="font-size:14px; text-align:center; "><i class="fa fa-user" style="font-size:24px;"></i>&nbsp; &nbsp; @subcontractor.Director</div>
                     <br />
                     @if (ViewContext.HttpContext.User.IsInRole("Admin"))
                     {
+
                         <a href="@Url.Action("Edit", "SubContractor", new { id = subcontractor.SubcontractorId })">Edit</a>
                     }
+
                 </div>
                 <div>
-                     <img class="front" width="1000" height="1000" avatar="@subcontractor.OrgName">
+                    <img class="front" width="1000" height="1000" avatar="@subcontractor.OrgName">
+               
                 </div>
             </div>
         }

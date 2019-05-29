@@ -79,7 +79,7 @@ namespace Alliance_for_Life.Controllers
             }
 
             var userId = User.Identity.GetUserId();
-            var contractor = db.SubContractors.Single(s => s.SubcontractorId == viewModel.Id && s.AdministratorId == userId);
+            var contractor = db.SubContractors.SingleOrDefault(s => s.SubcontractorId == viewModel.Id && s.AdministratorId == userId);
             contractor.Region = viewModel.Region;
             contractor.OrgName = viewModel.OrgName;
             contractor.Director = viewModel.Director;
@@ -103,7 +103,7 @@ namespace Alliance_for_Life.Controllers
         [Authorize(Roles = "Admin")]
         public ActionResult Edit(Guid id)
         {
-            var org = db.SubContractors.Single(s => s.SubcontractorId == id);
+            var org = db.SubContractors.SingleOrDefault(s => s.SubcontractorId == id);
             var viewModel = new SubContractorFormViewModel
             {
                 Heading = "Edit Subcontractor Information",

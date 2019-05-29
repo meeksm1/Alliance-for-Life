@@ -61,7 +61,7 @@ namespace Alliance_for_Life.ViewModels
                 Expression<Func<ClientListController, ActionResult>> create =
                     (c => c.Create(this));
 
-                var action = (Id != null) ? update : create;
+                var action = (Id != Guid.Empty) ? update : create;
                 return (action.Body as MethodCallExpression).Method.Name;
             }
 

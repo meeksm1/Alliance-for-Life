@@ -278,6 +278,10 @@
     <Compile Include="Migrations\201905222102050_UpdatestoNONandRESClasses.Designer.cs">
       <DependentUpon>201905222102050_UpdatestoNONandRESClasses.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905291754286_NavpropertyAddedtoRoleClass.cs" />
+    <Compile Include="Migrations\201905291754286_NavpropertyAddedtoRoleClass.Designer.cs">
+      <DependentUpon>201905291754286_NavpropertyAddedtoRoleClass.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AffiliateRegion.cs" />
     <Compile Include="Models\MonthlyServices.cs" />
@@ -300,7 +304,7 @@
     <Compile Include="Models\AdminCost.cs" />
     <Compile Include="Models\AFLForm.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
-    <Compile Include="Models\ApplicationUser.cs" />
+    <Compile Include="Models\Role.cs" />
     <Compile Include="Models\BudgetCosts.cs" />
     <Compile Include="Models\ClientList.cs" />
     <Compile Include="Models\ContractorForm.cs" />
@@ -664,6 +668,8 @@
     <None Include="Scripts\_references.js" />
     <Content Include="Views\BudgetCosts\Create.cshtml" />
     <Content Include="Views\BudgetCosts\Details.cshtml" />
+    <Content Include="Views\Role\Create.cshtml" />
+    <Content Include="Views\Role\Index.cshtml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -780,8 +786,8 @@
     <Content Include="Views\MonthlyServices\Edit.cshtml" />
     <Content Include="Views\MonthlyServices\Index.cshtml" />
     <Content Include="Views\MonthlyServices\CreateR.cshtml" />
-    <Content Include="Views\Role\Create.cshtml" />
-    <Content Include="Views\Role\Index.cshtml" />
+    <Content Include="Views\Role\AssignRoleToUser.cshtml" />
+    <Content Include="Views\Account\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config">
@@ -820,6 +826,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905222102050_UpdatestoNONandRESClasses.resx">
       <DependentUpon>201905222102050_UpdatestoNONandRESClasses.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905291754286_NavpropertyAddedtoRoleClass.resx">
+      <DependentUpon>201905291754286_NavpropertyAddedtoRoleClass.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

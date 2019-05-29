@@ -132,7 +132,9 @@ namespace Alliance_for_Life.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Surveys surveys = db.Surveys.Find(id);
+            Surveys surveys = db.Surveys
+                 .Include(s => s.Subcontractors)
+                 .SingleOrDefault(s => s.SurveyId == id);
             if (surveys == null)
             {
                 return HttpNotFound();
