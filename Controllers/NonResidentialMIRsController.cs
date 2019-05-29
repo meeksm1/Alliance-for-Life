@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using Alliance_for_Life.Models;
 using ClosedXML.Excel;
+using Microsoft.AspNet.Identity;
 using PagedList;
 
 namespace Alliance_for_Life.Controllers
@@ -94,10 +95,19 @@ namespace Alliance_for_Life.Controllers
         // GET: NonResidentialMIRs/Create
         public ActionResult Create()
         {
-            var datelist = Enumerable.Range(System.DateTime.Now.Year - 4, 10).ToList();
+            var list = db.SubContractors.ToList();
+            if (!User.IsInRole("Admin"))
+            {
+                var id = User.Identity.GetUserId();
+                var usersubid = db.Users.Find(id).SubcontractorId;
 
+                list = list.Where(s => s.SubcontractorId == usersubid).ToList();
+
+            }
+
+            var datelist = Enumerable.Range(System.DateTime.Now.Year - 4, 10).ToList();
             ViewBag.Year = new SelectList(datelist);
-            ViewBag.SubcontractorId = new SelectList(db.SubContractors, "SubcontractorId", "OrgName");
+            ViewBag.SubcontractorId = new SelectList(list, "SubcontractorId", "OrgName");
 
             return View();
         }

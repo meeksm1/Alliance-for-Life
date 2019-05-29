@@ -35,11 +35,14 @@ namespace Alliance_for_Life.Controllers
                 Heading = "Add Client Information"
             };
 
-            if (User.IsInRole("Admin"))
+            if (!User.IsInRole("Admin"))
             {
+                
+                var id = User.Identity.GetUserId();
+                var usersubid = db.Users.Find(id).SubcontractorId;
                 var viewModel = new ClientListFormViewModel
                 {
-                    Subcontractors = db.SubContractors.ToList(),
+                    Subcontractors = db.SubContractors.ToList().Where(s => s.SubcontractorId == usersubid).ToList(),
                     Heading = "Add Client Information"
                 };
                 return View("ClientListForm", viewModel);
