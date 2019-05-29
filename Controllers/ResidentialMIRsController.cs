@@ -37,7 +37,8 @@ namespace Alliance_for_Life.Controllers
             ViewBag.CurrentFilter = searchString;
 
             var ressearch = db.ResidentialMIRs
-            .Include(a => a.Subcontractor).Where(a => a.SubcontractorId == a.Subcontractor.SubcontractorId);
+            .Include(a => a.Subcontractor).Include(a => a.NonResidential);
+            
 
 
             if (!User.IsInRole("Admin"))
@@ -126,7 +127,7 @@ namespace Alliance_for_Life.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,SubmittedDate,SubcontractorId,TotBedNights,TotA2AEnrollment,TotA2ABedNights,MA2Apercent,ClientsJobEduServ,ParticipatingFathers,TotEduClasses,TotClientsinEduClasses,TotCaseHrs,TotClientsCaseHrs,TotOtherClasses,Year,Month")] ResidentialMIR residentialMIR)
+        public ActionResult Create([Bind(Include = "Id,SubmittedDate,SubcontractorId,TotOverallServed,TotBedNights,TotA2AEnrollment,TotA2ABedNights,MA2Apercent,ClientsJobEduServ,ParticipatingFathers,TotEduClasses,TotClientsinEduClasses,TotCaseHrs,TotClientsCaseHrs,TotOtherClasses,Year,Month")] ResidentialMIR residentialMIR)
         {
             if (ModelState.IsValid)
             {
@@ -182,7 +183,7 @@ namespace Alliance_for_Life.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,SubmittedDate,SubcontractorId,TotBedNights,TotA2AEnrollment,TotA2ABedNights,MA2Apercent,ClientsJobEduServ,ParticipatingFathers,TotEduClasses,TotClientsinEduClasses,TotCaseHrs,TotClientsCaseHrs,TotOtherClasses,Year,Month")] ResidentialMIR residentialMIR)
+        public ActionResult Edit([Bind(Include = "Id,SubmittedDate,SubcontractorId,TotBedNights,TotOverallServed,TotA2AEnrollment,TotA2ABedNights,MA2Apercent,ClientsJobEduServ,ParticipatingFathers,TotEduClasses,TotClientsinEduClasses,TotCaseHrs,TotClientsCaseHrs,TotOtherClasses,Year,Month")] ResidentialMIR residentialMIR)
         {
             if (ModelState.IsValid)
             {
