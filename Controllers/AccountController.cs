@@ -240,7 +240,7 @@ namespace Alliance_for_Life.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Role user = db.Users.Include(r => r.Roles).Include(a => a.Subcontractors).SingleOrDefault(s => s.Id == id);
+            Role user = db.Users.Include(r => r.Roles).SingleOrDefault(s => s.Id == id);
 
             if (user == null)
             {
@@ -255,11 +255,11 @@ namespace Alliance_for_Life.Controllers
         public ActionResult DeleteConfirmed(string id)
         {
 
-            Role user = db.Users.Include(r => r.Roles).Include(a => a.Subcontractors).SingleOrDefault(s => s.Id == id);
+            Role user = db.Users.Include(r => r.Roles).SingleOrDefault(s => s.Id == id);
 
             db.Users.Remove(user);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("IndexforRegisteredUsers");
         }
 
         [Authorize]
