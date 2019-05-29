@@ -6,8 +6,10 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.Entity;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -218,8 +220,6 @@ namespace Alliance_for_Life.Controllers
                     UserManager.AddToRole(user.Id.ToString(), db.Roles.SingleOrDefault(r => r.Id == user.Role).Name);
                 }
 
-                //updateduser.Roles.FirstOrDefault().RoleId = user.Role;
-
                 db.Entry(updateduser).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("IndexforRegisteredUsers");
@@ -231,6 +231,35 @@ namespace Alliance_for_Life.Controllers
             ViewBag.Role = new SelectList(db.Roles.ToList(), "Id", "Name", clientrole);
 
             return View("Register", user);
+        }
+
+        // GET: RegisteredUsers/Delete/5
+        public ActionResult Delete(string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Role user = db.Users.Include(r => r.Roles).Include(a => a.Subcontractors).SingleOrDefault(s => s.Id == id);
+
+            if (user == null)
+            {
+                return HttpNotFound();
+            }
+            return View(user);
+        }
+
+        // POST: RegisteredUsers/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(string id)
+        {
+
+            Role user = db.Users.Include(r => r.Roles).Include(a => a.Subcontractors).SingleOrDefault(s => s.Id == id);
+
+            db.Users.Remove(user);
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
 
         [Authorize]
