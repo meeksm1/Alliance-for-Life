@@ -46,6 +46,7 @@ namespace Alliance_for_Life.Controllers
                 SubcontractorId = Guid.NewGuid(),
                 AdministratorId = User.Identity.GetUserId(),
                 Region = viewModel.Region,
+                AffiliateRegion = viewModel.AffiliateRegion,
                 OrgName = viewModel.OrgName,
                 Director = viewModel.Director,
                 City = viewModel.City,
@@ -81,6 +82,7 @@ namespace Alliance_for_Life.Controllers
             var userId = User.Identity.GetUserId();
             var contractor = db.SubContractors.SingleOrDefault(s => s.SubcontractorId == viewModel.Id && s.AdministratorId == userId);
             contractor.Region = viewModel.Region;
+            contractor.AffiliateRegion = viewModel.AffiliateRegion;
             contractor.OrgName = viewModel.OrgName;
             contractor.Director = viewModel.Director;
             contractor.City = viewModel.City;
@@ -109,6 +111,7 @@ namespace Alliance_for_Life.Controllers
                 Heading = "Edit Subcontractor Information",
                 Id = org.SubcontractorId,
                 Region = org.Region,
+                AffiliateRegion = org.AffiliateRegion,
                 Director = org.Director,
                 City = org.City,
                 State = org.State,
