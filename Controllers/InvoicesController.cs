@@ -1,5 +1,6 @@
 ﻿using Alliance_for_Life.Models;
 using Alliance_for_Life.ViewModels;
+using Microsoft.AspNet.Identity;
 using PagedList;
 using System;
 using System.Data.Entity;
@@ -50,7 +51,7 @@ namespace Alliance_for_Life.ReportControllers
                     searchString = db.SubContractors.Find(new Guid(SubcontractorId)).OrgName;
                     ModelState.Clear();
                 }
-               
+
                 else
                 {
                     GenerateInvoice(SubcontractorId, Month, Year, billingdate);
@@ -59,6 +60,16 @@ namespace Alliance_for_Life.ReportControllers
 
 
             var invoices = db.Invoices.Include(s => s.Subcontractor);
+
+            if (!User.IsInRole("Admin"))
+            {
+                var id = User.Identity.GetUserId();
+                var usersubid = db.Users.Find(id).SubcontractorId;
+
+                invoices = from s in db.Invoices
+                           where usersubid == s.SubcontractorId
+                           select s;
+            }
 
             if (!String.IsNullOrEmpty(searchString))
             {
@@ -199,7 +210,7 @@ namespace Alliance_for_Life.ReportControllers
                 invoice.PSId = particost.FirstOrDefault().PSId;
             }
             //set totals to zero
-           
+
             invoice.GrandTotal = invoice.DirectAdminCost + invoice.ParticipantServices;
             invoice.LessManagementFee = invoice.GrandTotal * .03;
             invoice.DepositAmount = invoice.GrandTotal - invoice.LessManagementFee;

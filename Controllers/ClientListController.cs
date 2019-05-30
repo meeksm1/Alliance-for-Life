@@ -37,7 +37,7 @@ namespace Alliance_for_Life.Controllers
 
             if (!User.IsInRole("Admin"))
             {
-                
+
                 var id = User.Identity.GetUserId();
                 var usersubid = db.Users.Find(id).SubcontractorId;
                 var viewModel = new ClientListFormViewModel

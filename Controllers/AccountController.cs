@@ -57,7 +57,18 @@ namespace Alliance_for_Life.Controllers
             }
         }
 
-        //
+        //indexpage
+        [AllowAnonymous]
+        public ActionResult Index(string returnUrl)
+        {
+            ViewBag.ReturnUrl = returnUrl;
+
+            List<SubContractor> OrgList = db.SubContractors.ToList();
+            ViewBag.Subcontractors = OrgList;
+
+
+            return View();
+        }
         // GET: /Account/Login
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
