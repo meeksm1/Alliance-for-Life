@@ -12,20 +12,16 @@
     <form>
         @using (Html.BeginForm())
         {
-            <p>
-                <div class="col-xs-3">
-                    Search By Year:
-                    @Html.DropDownList("SearchString", new SelectList(new[] { 2018, 2019, 2020 }), htmlAttributes: new { @class = "", onchange = "this.form.submit()" })
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-5th-1 col-sm-3" style="align-content:center;">
+                        Search By Region: @Html.DropDownList("searchString", new SelectList(new[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 }),"",htmlAttributes: new { @class = "form-control", onchange = "this.form.submit()" })
+                    </div>
+                    <div class="col-xs-5th-1 col-sm-3" style="align-content:center;">
+                        Results Shown per Page: @Html.DropDownList("pgSize", new SelectList(new[] { 10, 20, 30, 40, 50 }), htmlAttributes: new { @class = "form-control", onchange = "this.form.submit()" })
+                    </div>
                 </div>
-            </p>
-
-            <p>
-                <div class="col-xs-2">
-                    Select Page:
-                    @Html.DropDownList("pgSize", new SelectList(new[] { 10, 20, 30, 40, 50 }), htmlAttributes: new { @class = "", onchange = "this.form.submit()" })
-                </div>
-            </p>
-
+            </div>
         }
 
     </form>

@@ -146,7 +146,7 @@ namespace Alliance_for_Life.Controllers
                                      SubmittedDate = DateTime.Now
                                  };
 
-            return View(subcontractors);
+            return View(subcontractors.OrderBy(r => r.OrgName));
         }
 
         [HttpPost]
