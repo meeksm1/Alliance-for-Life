@@ -19,7 +19,7 @@
 
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="@Url.Action("Index", "Home")">
+            <a class="navbar-brand" href="@Url.Action("Index", "Account")">
                 <img src="~/images/log.png" height="25" />
             </a>
             <div class="navbar-header">
@@ -28,7 +28,12 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("AFL", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+
+                @if (ViewContext.HttpContext.User.IsInRole("Admin")|| ViewContext.HttpContext.User.IsInRole("User"))
+                {
+                    @Html.ActionLink("AFL", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                }
+                else {    @Html.ActionLink("AFL", "Index", "Account", new { area = "" }, new { @class = "navbar-brand" })}
             </div>
             <div class="navbar-collapse collapse">
 

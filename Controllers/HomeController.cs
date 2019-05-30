@@ -7,7 +7,6 @@ using System.Web.Mvc;
 
 namespace Alliance_for_Life.Controllers
 {
-    [Authorize]
     public class HomeController : Controller
     {
         private ApplicationDbContext db;
