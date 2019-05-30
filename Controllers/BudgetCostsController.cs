@@ -45,8 +45,8 @@ namespace Alliance_for_Life.Controllers
 
             if (!String.IsNullOrEmpty(searchString))
             {
-                int yearsearch = Convert.ToInt16(searchString);
-                budgetsearch = budgetsearch.OrderBy(S => S.Year == yearsearch);
+                var regionSearch = Enum.Parse(typeof(GeoRegion), searchString);
+                budgetsearch = budgetsearch.Where(r => r.Region == (GeoRegion)regionSearch).OrderBy(r => r.Region);
             }
             switch (sortOrder)
             {
@@ -75,7 +75,7 @@ namespace Alliance_for_Life.Controllers
 
             int pageNumber = (page ?? 1);
             return View(budgetsearch.ToPagedList(pageNumber, pageSize));
-            //   return View(budgetsearch.ToList());
+
         }
 
         //#############################################################################################
