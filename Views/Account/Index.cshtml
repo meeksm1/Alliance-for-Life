@@ -1,0 +1,47 @@
+﻿@using Alliance_for_Life.ViewModels
+@model LoginViewModel
+@{
+    ViewBag.Title = "Log in";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div style="padding:-5px;">
+    <h1 style="text-align:center;">Alternatives to Abortion Database System</h1>
+    <br />
+    <div class="row">
+        <div class="col-md-7">
+            <img src="~/images/AFLMAP.jpg" style="height:500px;" />
+
+        </div>
+        <div class="col-md-4">
+            <div class="well">
+                <ul> <h4 style="text-align:center; text-decoration:underline;"><strong>Organizations we support:</strong></h4> </ul>
+
+
+                @foreach (var items in ViewBag.Subcontractors)
+                {
+
+                    <p>@items.OrgName</p>
+                }
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col">
+    <div class="well">
+        <ul>
+            <li>
+                <strong>Our Vision:</strong> To unify and champion Life ministries.
+
+            </li>
+            <li>
+                <strong>Our Mission:</strong> Saving and changing lives by equipping people, empowering ministries and engaging communities toward a culture of LIFE.
+
+            </li>
+        </ul>
+
+    </div>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

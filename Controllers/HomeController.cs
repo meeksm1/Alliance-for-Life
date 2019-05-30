@@ -27,15 +27,15 @@ namespace Alliance_for_Life.Controllers
             {
                 var id = User.Identity.GetUserId();
                 subcontractors = from s in db.SubContractors
-                                        join a in db.Users on s.SubcontractorId equals a.SubcontractorId
-                                        where id == a.Id
-                                        select s;
+                                 join a in db.Users on s.SubcontractorId equals a.SubcontractorId
+                                 where id == a.Id
+                                 select s;
             }
 
             return View(subcontractors);
         }
 
- 
+
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
