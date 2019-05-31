@@ -170,7 +170,7 @@ namespace Alliance_for_Life.Controllers
             ViewBag.CurrentFilter = searchString;
 
             var budgetsearch = db.BudgetCosts
-            .Include(b => b.User);
+            .Include(b => b.User).Include(a => a.AdminCost).Include(p => p.ParticipationCost);
 
 
             if (!String.IsNullOrEmpty(searchString) || !String.IsNullOrEmpty(yearsearch.ToString()))

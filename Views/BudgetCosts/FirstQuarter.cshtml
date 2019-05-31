@@ -31,6 +31,7 @@
     <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100">
         <thead>
             <tr style="font-size:16px">
+                <th></th>
                 <th class="th-sm">
                     @Html.ActionLink("Year", "Index", new { sortOrder = ViewBag.YearSortParm })
 
@@ -40,20 +41,109 @@
 
                 </th>
                 <th class="th-sm">
+                    Salaries or Wages
+                </th>
+                <th class="th-sm">
+                    Employee Benefits
+                </th>
+                <th class="th-sm">
+                    Employee Travel
+                </th>
+                <th class="th-sm">
+                    Employee Training
+                </th>
+                <th class="th-sm">
+                    Office Rent
+                </th>
+                <th class="th-sm">
+                    Office Utilities
+                </th>
+                <th class="th-sm">
+                    Facility Insurance
+                </th>
+                <th class="th-sm">
+                    Office Supplies
+                </th>
+                <th class="th-sm">
+                    Equipment
+                </th>
+                <th class="th-sm">
+                    Office Communications
+                </th>
+                <th class="th-sm">
+                    Office Maintenance
+                </th>
+                <th class="th-sm">
+                    Consulting Fees
+                </th>
+                <th class="th-sm">
+                    EFT Fees
+                </th>
+                <th class="th-sm">
+                    Background Check
+                </th>
+                <th class="th-sm">
+                    Other
+                </th>
+                <th class="th-sm">
+                    Janitorial Services
+                </th>
+                <th class="th-sm">
+                    Depreciation
+                </th>
+                <th class="th-sm">
+                    Technical Support
+                </th>
+                <th class="th-sm">
+                    Security Services
+                </th>
+                <th class="th-sm">
                     Admininstration Totals
-
                 </th>
                 <th class="th-sm">
                     Administration Fee
-
+                </th>
+                <th class="th-sm">
+                    Transportation
+                </th>
+                <th class="th-sm">
+                    Job Training
+                </th>
+                <th class="th-sm">
+                    Tuition Assistance
+                </th>
+                <th class="th-sm">
+                    Contracted Residential Care
+                </th>
+                <th class="th-sm">
+                    Utility Assistance
+                </th>
+                <th class="th-sm">
+                    Emergency Shelter
+                </th>
+                <th class="th-sm">
+                    Housing Assistance
+                </th>
+                <th class="th-sm">
+                    Childcare
+                </th>
+                <th class="th-sm">
+                    Clothing
+                </th>
+                <th class="th-sm">
+                    Food
+                </th>
+                <th class="th-sm">
+                    Supplies
+                </th>
+                <th class="th-sm">
+                    RFO Costs
                 </th>
                 <th class="th-sm">
                     Participation Total Costs
-
                 </th>
                 <th class="th-sm">
                     Admin and Participation Total Costs
-
                 </th>
                 <th class="th-sm">
 
@@ -63,12 +153,70 @@
             @foreach (var item in Model)
             {
                 <tr>
-
+                    <td>Budgeted Amounts</td>
                     <td>
                         @item.Year
                     </td>
+
                     <td>
                         @item.Region
+                    </td>
+                    <td>
+                        @item.ASalandWages.ToString("c")
+                    </td>
+                    <td>
+                        @item.AEmpBenefits.ToString("c")
+                    </td>
+                    <td>
+                        @item.AEmpTravel.ToString("c")
+                    </td>
+                    <td>
+                        @item.AEmpTraining.ToString("c")
+                    </td>
+                    <td>
+                        @item.AOfficeRent.ToString("c")
+                    </td>
+                    <td>
+                        @item.AOfficeUtilities.ToString("c")
+                    </td>
+                    <td>
+                        @item.AFacilityIns.ToString("c")
+                    </td>
+                    <td>
+                        @item.AOfficeSupplies.ToString("c")
+                    </td>
+                    <td>
+                        @item.AEquipment.ToString("c")
+                    </td>
+                    <td>
+                        @item.AOfficeCommunications.ToString("c")
+                    </td>
+                    <td>
+                        @item.AOfficeMaint.ToString("c")
+                    </td>
+                    <td>
+                        @item.AConsulting.ToString("c")
+                    </td>
+                    <td>
+                        @item.SubConPayCost.ToString("c")
+                    </td>
+                    <td>
+                        @item.BackgrounCheck.ToString("c")
+                    </td>
+                    <td>
+                        @item.Other.ToString("c")
+                    </td>
+                    <td>
+                        @item.AJanitorServices.ToString("c")
+                    </td>
+                    <td>
+                        @item.ADepreciation.ToString("c")
+                    </td>
+                    <td>
+                        @item.ATechSupport.ToString("c")
+                    </td>
+                    <td>
+                        @item.ASecurityServices.ToString("c")
                     </td>
                     <td>
                         @item.ATotCosts.ToString("C")
@@ -76,7 +224,42 @@
                     <td>
                         @item.AdminFee.ToString("C")
                     </td>
-
+                    <td>
+                        @item.Trasportation.ToString("c")
+                    </td>
+                    <td>
+                        @item.JobTraining.ToString("c")
+                    </td>
+                    <td>
+                        @item.TuitionAssistance.ToString("c")
+                    </td>
+                    <td>
+                        @item.ContractedResidential.ToString("c")
+                    </td>
+                    <td>
+                        @item.UtilityAssistance.ToString("c")
+                    </td>
+                    <td>
+                        @item.EmergencyShelter.ToString("c")
+                    </td>
+                    <td>
+                        @item.HousingAssistance.ToString("c")
+                    </td>
+                    <td>
+                        @item.Childcare.ToString("c")
+                    </td>
+                    <td>
+                        @item.Clothing.ToString("c")
+                    </td>
+                    <td>
+                        @item.Food.ToString("c")
+                    </td>
+                    <td>
+                        @item.Supplies.ToString("c")
+                    </td>
+                    <td>
+                        @item.RFO.ToString("c")
+                    </td>
                     <td>
                         @item.BTotal.ToString("C")
                     </td>
@@ -93,10 +276,255 @@
                         </form>
                     </td>
                 </tr>
-            }
+                <tr>
+                    <td>Administration Amounts</td>
+                    <td>
+                        @item.Year
+                    </td>
+
+                    <td>
+                        @item.Region
+                    </td>
+                    <td>
+                        @item.AdminCost.ASalandWages.ToString("c")
+                    </td>
+                    <td>
+                        @item.AdminCost.AEmpBenefits.ToString("c")
+                    </td>
+                    <td>
+                        @item.AdminCost.AEmpTravel.ToString("c")
+                    </td>
+                    <td>
+                        @item.AdminCost.AEmpTraining.ToString("c")
+                    </td>
+                    <td>
+                        @item.AdminCost.AOfficeRent.ToString("c")
+                    </td>
+                    <td>
+                        @item.AdminCost.AOfficeUtilities.ToString("c")
+                    </td>
+                    <td>
+                        @item.AdminCost.AFacilityIns.ToString("c")
+                    </td>
+                    <td>
+                        @item.AdminCost.AOfficeSupplies.ToString("c")
+                    </td>
+                    <td>
+                        @item.AdminCost.AEquipment.ToString("c")
+                    </td>
+                    <td>
+                        @item.AdminCost.AOfficeCommunications.ToString("c")
+                    </td>
+                    <td>
+                        @item.AdminCost.AOfficeMaint.ToString("c")
+                    </td>
+                    <td>
+                        @item.AdminCost.AConsulting.ToString("c")
+                    </td>
+                    <td>
+                        @item.AdminCost.AOther.ToString("c")
+                    </td>
+                    <td>
+                        @item.AdminCost.AOther2.ToString("c")
+                    </td>
+                    <td>
+                        @item.AdminCost.AOther3.ToString("c")
+                    </td>
+                    <td>
+                        @item.AdminCost.AJanitorServices.ToString("c")
+                    </td>
+                    <td>
+                        @item.AdminCost.ADepreciation.ToString("c")
+                    </td>
+                    <td>
+                        @item.AdminCost.ATechSupport.ToString("c")
+                    </td>
+                    <td>
+                        @item.AdminCost.ASecurityServices.ToString("c")
+                    </td>
+                    <td>
+                        @item.AdminCost.ATotCosts.ToString("C")
+                    </td>
+                    <td>
+                        <form action="/BudgetCosts/Export" method="post">
+                            <button style='font-size:16px; background:none; border:none' value="@item.BudgetInvoiceId" name="BudgetInvoiceId" id="@item.BudgetInvoiceId"><i class='fa fa-file' style="font-size:16px;color:#2ECC71"></i></button>
+                            |
+                            <a href="@Url.Action("Details", "AdminCosts", new { id = item.AdminCost.AdminCostId }, Request.Url.Scheme)">
+                                <i style="font-size:16px; color:#3498DB" class="fa">&#xf06e;</i>
+                            </a>
+                        </form>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Participation Amounts</td>
+                    <td>
+                        @item.ParticipationCost.PTranspotation.ToString("c")
+                    </td>
+                    <td>
+                        @item.ParticipationCost.PJobTrain.ToString("c")
+                    </td>
+                    <td>
+                        @item.ParticipationCost.PEducationAssistance.ToString("c")
+                    </td>
+                    <td>
+                        @item.ParticipationCost.PResidentialCare.ToString("c")
+                    </td>
+                    <td>
+                        @item.ParticipationCost.PUtilities.ToString("c")
+                    </td>
+                    <td>
+                        @item.ParticipationCost.PHousingEmergency.ToString("c")
+                    </td>
+                    <td>
+                        @item.ParticipationCost.PHousingAssistance.ToString("c")
+                    </td>
+                    <td>
+                        @item.ParticipationCost.PChildCare.ToString("c")
+                    </td>
+                    <td>
+                        @item.ParticipationCost.PClothing.ToString("c")
+                    </td>
+                    <td>
+                        @item.ParticipationCost.PFood.ToString("c")
+                    </td>
+                    <td>
+                        @item.ParticipationCost.PSupplies.ToString("c")
+                    </td>
+                    <td>
+                        @item.ParticipationCost.POther.ToString("c")
+                    </td>
+                    <td>
+                        @item.ParticipationCost.POther2.ToString("C")
+                    </td>
+                    <td>
+                        @item.ParticipationCost.POther3.ToString("C")
+                    </td>
+                    <td>
+                        @item.ParticipationCost.PTotals.ToString("C")
+                    </td>
+                    <td>
+                        <form action="/BudgetCosts/Export" method="post">
+                            <button style='font-size:16px; background:none; border:none' value="@item.BudgetInvoiceId" name="BudgetInvoiceId" id="@item.BudgetInvoiceId"><i class='fa fa-file' style="font-size:16px;color:#2ECC71"></i></button>
+                            |
+                            <a href="@Url.Action("Details", "ParticipationService", new { id = item.ParticipationCost.PSId }, Request.Url.Scheme)">
+                                <i style="font-size:16px; color:#3498DB" class="fa">&#xf06e;</i>
+                            </a>
+                        </form>
+                    </td>
+                </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td>
+                                @Math.Round(((item.ASalandWages / item.Maxtot) * 100), 3) %
+                            </td>
+                            <td>
+                                @Math.Round(((item.AEmpBenefits / item.Maxtot) * 100), 3) %
+                            </td>
+                            <td>
+                                @Math.Round(((item.AEmpTravel / item.Maxtot) * 100), 3) %
+                            </td>
+                            <td>
+                                @Math.Round(((item.AEmpTraining / item.Maxtot) * 100), 3) %
+                            </td>
+                            <td>
+                                @Math.Round(((item.AOfficeRent / item.Maxtot) * 100), 3) %
+                            </td>
+                            <td>
+                                @Math.Round(((item.AOfficeUtilities / item.Maxtot) * 100), 3) %
+                            </td>
+                            <td>
+                                @Math.Round(((item.AFacilityIns / item.Maxtot) * 100), 3) %
+                            </td>
+                            <td>
+                                @Math.Round(((item.AOfficeSupplies / item.Maxtot) * 100), 3) %
+                            </td>
+                            <td>
+                                @Math.Round(((item.AEquipment / item.Maxtot) * 100), 3) %
+                            </td>
+                            <td>
+                                @Math.Round(((item.AOfficeCommunications / item.Maxtot) * 100), 3) %
+                            </td>
+                            <td>
+                                @Math.Round(((item.AOfficeMaint / item.Maxtot) * 100), 3) %
+                            </td>
+                            <td>
+                                @Math.Round(((item.AConsulting / item.Maxtot) * 100), 3) %
+                            </td>
+                            <td>
+                                @Math.Round(((item.SubConPayCost / item.Maxtot) * 100), 3) %
+                            </td>
+                            <td>
+                                @Math.Round(((item.BackgrounCheck / item.Maxtot) * 100), 3) %
+                            </td>
+                            <td>
+                                @Math.Round(((item.Other / item.Maxtot) * 100), 3) %
+                            </td>
+                            <td>
+                                @Math.Round(((item.AJanitorServices / item.Maxtot) * 100), 3) %
+                            </td>
+                            <td>
+                                @Math.Round(((item.ADepreciation / item.Maxtot) * 100), 3) %
+                            </td>
+                            <td>
+                                @Math.Round(((item.ATechSupport / item.Maxtot) * 100), 3) %
+                            </td>
+                            <td>
+                                @Math.Round(((item.ASecurityServices / item.Maxtot) * 100), 3) %
+                            </td>
+                            <td>
+                                @Math.Round(((item.ATotCosts / item.Maxtot) * 100), 3) %
+                            </td>
+                            <td>
+                                @Math.Round(((item.AdminFee / item.Maxtot) * 100), 3) %
+                            </td>
+                            <td>
+                                @Math.Round(((item.Trasportation / item.Maxtot) * 100), 3) %
+                            </td>
+                            <td>
+                                @Math.Round(((item.JobTraining / item.Maxtot) * 100), 3) %
+                            </td>
+                            <td>
+                                @Math.Round(((item.TuitionAssistance / item.Maxtot) * 100), 3) %
+                            </td>
+                            <td>
+                                @Math.Round(((item.ContractedResidential / item.Maxtot) * 100), 3) %
+                            </td>
+                            <td>
+                                @Math.Round(((item.UtilityAssistance / item.Maxtot) * 100), 3) %
+                            </td>
+                            <td>
+                                @Math.Round(((item.EmergencyShelter / item.Maxtot) * 100), 3) %
+                            </td>
+                            <td>
+                                @Math.Round(((item.HousingAssistance / item.Maxtot) * 100), 3) %
+                            </td>
+                            <td>
+                                @Math.Round(((item.Childcare / item.Maxtot) * 100), 3) %
+                            </td>
+                            <td>
+                                @Math.Round(((item.Clothing / item.Maxtot) * 100), 3) %
+                            </td>
+                            <td>
+                                @Math.Round(((item.Food / item.Maxtot) * 100), 3) %
+                            </td>
+                            <td>
+                                @Math.Round(((item.Supplies / item.Maxtot) * 100), 3) %
+                            </td>
+                            <td>
+                                @Math.Round(((item.RFO / item.Maxtot) * 100), 3) %
+                            </td>
+                            <td>
+                                @Math.Round(((item.BTotal / item.Maxtot) * 100), 3) %
+                            </td>
+                            <td>
+                                @Math.Round(((item.Maxtot / item.Maxtot) * 100), 3) %
+                            </td>
+                        </tr>
+             }
         </tbody>
     </table>
-
+            
     <p>
         @using (Html.BeginForm("Export", "BudgetCosts", FormMethod.Post))
         {
