@@ -38,9 +38,9 @@ namespace Alliance_for_Life.Controllers
             ViewBag.CurrentFilter = searchString;
 
             var ressearch = db.ResidentialMIRs
-            .Include(a => a.Subcontractor).Include(a => a.NonResidential);
-            
+            .Include(a => a.Subcontractor);
 
+            var nonresidental = db.NonResidentialMIRs.Include(n => n.Subcontractor);
 
             if (!User.IsInRole("Admin"))
             {
@@ -50,27 +50,41 @@ namespace Alliance_for_Life.Controllers
                 ressearch = from s in db.ResidentialMIRs
                             where usersubid == s.SubcontractorId
                             select s;
+
+                nonresidental = from t in db.NonResidentialMIRs
+                                where usersubid == t.SubcontractorId
+                                select t;
             }
+
+            ViewBag.nonResidentialMIRs = nonresidental.ToList();
 
             if (!String.IsNullOrEmpty(searchString))
             {
                 ressearch = ressearch.Where(a => a.Subcontractor.OrgName.Contains(searchString)
                 || a.Subcontractor.SubmittedDate.ToString().Contains(searchString));
+
+
+                nonresidental = nonresidental.Where(a => a.Subcontractor.OrgName.Contains(searchString)
+                 || a.Subcontractor.SubmittedDate.ToString().Contains(searchString));
             }
 
             switch (sortOrder)
             {
                 case "name_desc":
                     ressearch = ressearch.OrderByDescending(s => s.Subcontractor.OrgName);
+                    nonresidental = nonresidental.OrderByDescending(s => s.Subcontractor.OrgName);
                     break;
                 case "Date":
                     ressearch = ressearch.OrderBy(s => s.SubmittedDate);
+                    nonresidental = nonresidental.OrderBy(s => s.SubmittedDate);
                     break;
                 case "date_desc":
                     ressearch = ressearch.OrderByDescending(s => s.SubmittedDate);
+                    nonresidental = nonresidental.OrderByDescending(s => s.SubmittedDate);
                     break;
                 default:
                     ressearch = ressearch.OrderBy(s => s.Subcontractor.OrgName);
+                    nonresidental = nonresidental.OrderBy(s => s.Subcontractor.OrgName);
                     break;
             }
             if (pageSize < 1)

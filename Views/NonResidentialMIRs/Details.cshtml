@@ -1,41 +1,26 @@
 ﻿@model Alliance_for_Life.Models.NonResidentialMIR
 
 @{
-    ViewBag.Title = "Details for the NonResidential Monthly Service Report";
+    ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>@ViewBag.Title</h2>
+<h2>Details</h2>
 
 <div>
+    <h4>NonResidentialMIR</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Subcontractor.OrgName)
+            @Html.DisplayNameFor(model => model.Subcontractor.AdministratorId)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Subcontractor.OrgName)
+            @Html.DisplayFor(model => model.Subcontractor.AdministratorId)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Month)
-        </dt>
-
-        <dd>
-            @Model.Month
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Year)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Year)
-        </dd>
-
-        <dt>
-            A2A Enrollment
+            @Html.DisplayNameFor(model => model.TotA2AEnrollment)
         </dt>
 
         <dd>
@@ -47,11 +32,11 @@
         </dt>
 
         <dd>
-            @Model.SubmittedDate.ToShortDateString()
+            @Html.DisplayFor(model => model.SubmittedDate)
         </dd>
 
         <dt>
-            Monthly A2A Clients Served
+            @Html.DisplayNameFor(model => model.MA2Apercent)
         </dt>
 
         <dd>
@@ -59,7 +44,7 @@
         </dd>
 
         <dt>
-            Job or Educational Services
+            @Html.DisplayNameFor(model => model.ClientsJobEduServ)
         </dt>
 
         <dd>
@@ -67,7 +52,7 @@
         </dd>
 
         <dt>
-            Participating Fathers
+            @Html.DisplayNameFor(model => model.ParticipatingFathers)
         </dt>
 
         <dd>
@@ -75,7 +60,7 @@
         </dd>
 
         <dt>
-            Prenatal & Parenting Classes Offered
+            @Html.DisplayNameFor(model => model.TotEduClasses)
         </dt>
 
         <dd>
@@ -83,7 +68,7 @@
         </dd>
 
         <dt>
-            Prenatal & Parenting Classes Attended
+            @Html.DisplayNameFor(model => model.TotClientsinEduClasses)
         </dt>
 
         <dd>
@@ -91,7 +76,7 @@
         </dd>
 
         <dt>
-            Case Management Hours
+            @Html.DisplayNameFor(model => model.TotCaseHrs)
         </dt>
 
         <dd>
@@ -99,7 +84,7 @@
         </dd>
 
         <dt>
-            Participants in Case Management
+            @Html.DisplayNameFor(model => model.TotClientsCaseHrs)
         </dt>
 
         <dd>
@@ -107,15 +92,40 @@
         </dd>
 
         <dt>
-            Other Classes Offered
+            @Html.DisplayNameFor(model => model.TotOtherClasses)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.TotOtherClasses)
         </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Year)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Year)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TotOverallServed)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TotOverallServed)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Month)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Month)
+        </dd>
+
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Delete", "Delete", new { id = Model.Id })|
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
