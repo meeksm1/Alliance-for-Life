@@ -316,8 +316,7 @@ namespace Alliance_for_Life.Controllers
 
         }
 
-        public ViewResult FourthQuarter
-(string sortOrder, string searchString, string currentFilter, int? page, string pgSize)
+        public ViewResult FourthQuarter(string sortOrder, string searchString, string currentFilter, int? page, string pgSize)
         {
             int pageSize = Convert.ToInt16(pgSize);
             //paged view

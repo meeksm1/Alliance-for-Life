@@ -32,12 +32,26 @@
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.DOB)
-        @Html.TextBoxFor(m => m.DOB, new { @class = "form-control", type = "date"})
+        @if (Model.Action == "Create")
+        {
+            @Html.TextBoxFor(m => m.DOB, new { @class = "form-control ", type = "date", placeholder = "eg 12/18/2018" })
+        }
+        else
+        {
+            @Html.TextBoxFor(m => m.DOB, "{0:MM/dd/yyyy}", new { @class = "form-control " })
+        }
         @Html.ValidationMessageFor(m => m.DOB)
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.DueDate)
-        @Html.TextBoxFor(m => m.DueDate, new { @class = "form-control ", type = "date", placeholder = "eg 12/18/2018" })
+        @if (Model.Action == "Create")
+        {
+            @Html.TextBoxFor(m => m.DueDate, new { @class = "form-control ", type = "date", placeholder = "eg 12/18/2018" })
+        }
+        else
+        {
+            @Html.TextBoxFor(m => m.DueDate, "{0:MM/dd/yyyy}", new { @class = "form-control " })
+        }
         @Html.ValidationMessageFor(m => m.DueDate)
     </div>
     <div class="form-group">
