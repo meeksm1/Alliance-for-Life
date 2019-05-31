@@ -56,7 +56,7 @@ namespace Alliance_for_Life.Controllers
                                 select t;
             }
 
-            ViewBag.nonResidentialMIRs = nonresidental.ToList();
+            
 
             if (!String.IsNullOrEmpty(searchString))
             {
@@ -67,6 +67,8 @@ namespace Alliance_for_Life.Controllers
                 nonresidental = nonresidental.Where(a => a.Subcontractor.OrgName.Contains(searchString)
                  || a.Subcontractor.SubmittedDate.ToString().Contains(searchString));
             }
+
+            ViewBag.nonResidentialMIRs = nonresidental.ToList();
 
             switch (sortOrder)
             {

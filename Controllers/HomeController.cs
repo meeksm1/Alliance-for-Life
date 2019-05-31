@@ -24,44 +24,32 @@ namespace Alliance_for_Life.Controllers
              .Include(s => s.Administrator)
              .Where(s => s.Active);
 
-            if (!User.IsInRole("Admin"))
-            {
-                var id = User.Identity.GetUserId();
-                subcontractors = from s in db.SubContractors
-                                 join a in db.Users on s.SubcontractorId equals a.SubcontractorId
-                                 where id == a.Id
-                                 select s;
-            }
+            var id = User.Identity.GetUserId();
 
             List<Userinformation> userlist = new List<Userinformation>();
             var role = db.Roles.Include(x => x.Users).ToList();
             var organization = "";
-            foreach (var r in role)
+
+            var usr = db.Users.Find(id);
+
+            var usersub = db.SubContractors.Find(usr.SubcontractorId);
+            organization = usersub.OrgName;
+            if (organization == null)
             {
-                foreach (var u in r.Users)
+                organization = "";
+
+            }
+            foreach (var users in db.Users.Where(s => s.SubcontractorId == usersub.SubcontractorId))
+            {
+                var obj = new Userinformation
                 {
-                    var usr = db.Users.Find(u.UserId);
+                    Id = new Guid(users.Id),
+                    Firstname = users.FirstName,
+                    Lastname = users.LastName,
+                    Email = users.Email,
+                };
 
-                    var usersub = db.SubContractors.Find(usr.SubcontractorId).OrgName;
-                    organization = usersub;
-                    if (usersub == null)
-                    {
-                        usersub = "";
-
-                    }
-
-                    var obj = new Userinformation
-                    {
-                        Id = new Guid(usr.Id),
-                        Firstname = usr.FirstName,
-                        Lastname = usr.LastName,
-                        Email = usr.Email,
-                        Role = r.Name,
-                        Organization = usersub
-                    };
-
-                    userlist.Add(obj);
-                }
+                userlist.Add(obj);
             }
 
             ViewBag.Orgname = organization;
