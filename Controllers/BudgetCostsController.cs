@@ -17,9 +17,10 @@ namespace Alliance_for_Life.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: BudgetCosts
-        public ViewResult Index(string sortOrder, string searchString, string currentFilter, int? page, string pgSize)
+        public ViewResult Index(string sortOrder, string searchString, int? yearsearch, string currentFilter, int? page, string pgSize)
         {
             int pageSize = Convert.ToInt16(pgSize);
+
             //paged view
             ViewBag.CurrentSort = sortOrder;
 
@@ -43,11 +44,28 @@ namespace Alliance_for_Life.Controllers
 
 
 
-            if (!String.IsNullOrEmpty(searchString))
+            if (!String.IsNullOrEmpty(searchString) || !String.IsNullOrEmpty(yearsearch.ToString()))
             {
-                var regionSearch = Enum.Parse(typeof(GeoRegion), searchString);
-                budgetsearch = budgetsearch.Where(r => r.Region == (GeoRegion)regionSearch).OrderBy(r => r.Region);
+                var yearSearch = (yearsearch);
+
+                if (String.IsNullOrEmpty(searchString))
+                {
+                    budgetsearch = budgetsearch.Where(r => r.Year == yearsearch).OrderBy(r => r.Region);
+                }
+                else if (String.IsNullOrEmpty(yearsearch.ToString()))
+                {
+                    var regionSearch = Enum.Parse(typeof(GeoRegion), searchString);
+                    budgetsearch = budgetsearch.Where(r => r.Region == (GeoRegion)regionSearch).OrderBy(r => r.Region);
+
+                }
+                else
+                {
+                    var regionSearch = Enum.Parse(typeof(GeoRegion), searchString);
+                    budgetsearch = budgetsearch.Where(r => r.Region == (GeoRegion)regionSearch && r.Year == yearsearch).OrderBy(r => r.Region);
+
+                }
             }
+
             switch (sortOrder)
             {
                 case "Year":
@@ -66,7 +84,6 @@ namespace Alliance_for_Life.Controllers
                     budgetsearch = budgetsearch.OrderBy(s => s.Region);
                     break;
             }
-
 
             if (pageSize < 1)
             {
@@ -131,16 +148,7 @@ namespace Alliance_for_Life.Controllers
             return Json(costlist.ToList(), JsonRequestBehavior.AllowGet);
         }
         //#############################################################################################
-        public ActionResult AExpenseVSBExpense()
-        {
-            var expensereport = db.BudgetCosts
-                .Include(b => b.AdminCost)
-                .Include(b => b.ParticipationCost);
-
-            return View(expensereport.ToList());
-        }
-
-        public ViewResult FirstQuarter(string sortOrder, string searchString, string currentFilter, int? page, string pgSize)
+        public ViewResult FirstQuarter(string sortOrder, string searchString, int? yearsearch, string currentFilter, int? page, string pgSize)
         {
             int pageSize = Convert.ToInt16(pgSize);
             //paged view
@@ -164,69 +172,27 @@ namespace Alliance_for_Life.Controllers
             var budgetsearch = db.BudgetCosts
             .Include(b => b.User);
 
-            if (!String.IsNullOrEmpty(searchString))
+
+            if (!String.IsNullOrEmpty(searchString) || !String.IsNullOrEmpty(yearsearch.ToString()))
             {
-                var regionSearch = Enum.Parse(typeof(GeoRegion), searchString);
-                budgetsearch = budgetsearch.Where(r => r.Region == (GeoRegion)regionSearch).OrderBy(r => r.Region);
-            }
-            switch (sortOrder)
-            {
-                case "Year":
-                    budgetsearch = budgetsearch.OrderBy(s => s.Year);
-                    break;
-                case "Region":
-                    budgetsearch = budgetsearch.OrderBy(s => s.Region);
-                    break;
-                case "year_desc":
-                    budgetsearch = budgetsearch.OrderByDescending(s => s.Year);
-                    break;
-                case "region_desc":
-                    budgetsearch = budgetsearch.OrderByDescending(s => s.Region);
-                    break;
-                default:
-                    budgetsearch = budgetsearch.OrderBy(s => s.Region);
-                    break;
-            }
+                var yearSearch = (yearsearch);
 
+                if (String.IsNullOrEmpty(searchString))
+                {
+                    budgetsearch = budgetsearch.Where(r => r.Year == yearsearch).OrderBy(r => r.Region);
+                }
+                else if (String.IsNullOrEmpty(yearsearch.ToString()))
+                {
+                    var regionSearch = Enum.Parse(typeof(GeoRegion), searchString);
+                    budgetsearch = budgetsearch.Where(r => r.Region == (GeoRegion)regionSearch).OrderBy(r => r.Region);
 
-            if (pageSize < 1)
-            {
-                pageSize = 10;
-            }
+                }
+                else
+                {
+                    var regionSearch = Enum.Parse(typeof(GeoRegion), searchString);
+                    budgetsearch = budgetsearch.Where(r => r.Region == (GeoRegion)regionSearch && r.Year == yearsearch).OrderBy(r => r.Region);
 
-            int pageNumber = (page ?? 1);
-            return View(budgetsearch.ToPagedList(pageNumber, pageSize));
-
-        }
-
-        public ViewResult SecondQuarter(string sortOrder, string searchString, string currentFilter, int? page, string pgSize)
-        {
-            int pageSize = Convert.ToInt16(pgSize);
-            //paged view
-            ViewBag.CurrentSort = sortOrder;
-
-            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
-            ViewBag.YearSortParm = sortOrder == "Year" ? "year_desc" : "Year";
-            ViewBag.RegionSortParm = sortOrder == "Region" ? "region_desc" : "Region";
-
-            //looking for the searchstring
-            if (searchString != null)
-            {
-                page = 1;
-            }
-            else
-            {
-                searchString = currentFilter;
-            }
-            ViewBag.CurrentFilter = searchString;
-
-            var budgetsearch = db.BudgetCosts
-            .Include(b => b.User);
-
-            if (!String.IsNullOrEmpty(searchString))
-            {
-                var regionSearch = Enum.Parse(typeof(GeoRegion), searchString);
-                budgetsearch = budgetsearch.Where(r => r.Region == (GeoRegion)regionSearch).OrderBy(r => r.Region);
+                }
             }
             switch (sortOrder)
             {
@@ -257,7 +223,7 @@ namespace Alliance_for_Life.Controllers
 
         }
 
-        public ViewResult ThirdQuarter(string sortOrder, string searchString, string currentFilter, int? page, string pgSize)
+        public ViewResult SecondQuarter(string sortOrder, string searchString, int? yearsearch, string currentFilter, int? page, string pgSize)
         {
             int pageSize = Convert.ToInt16(pgSize);
             //paged view
@@ -281,11 +247,103 @@ namespace Alliance_for_Life.Controllers
             var budgetsearch = db.BudgetCosts
             .Include(b => b.User);
 
-            if (!String.IsNullOrEmpty(searchString))
+
+            if (!String.IsNullOrEmpty(searchString) || !String.IsNullOrEmpty(yearsearch.ToString()))
             {
-                var regionSearch = Enum.Parse(typeof(GeoRegion), searchString);
-                budgetsearch = budgetsearch.Where(r => r.Region == (GeoRegion)regionSearch).OrderBy(r => r.Region);
+                var yearSearch = (yearsearch);
+
+                if (String.IsNullOrEmpty(searchString))
+                {
+                    budgetsearch = budgetsearch.Where(r => r.Year == yearsearch).OrderBy(r => r.Region);
+                }
+                else if (String.IsNullOrEmpty(yearsearch.ToString()))
+                {
+                    var regionSearch = Enum.Parse(typeof(GeoRegion), searchString);
+                    budgetsearch = budgetsearch.Where(r => r.Region == (GeoRegion)regionSearch).OrderBy(r => r.Region);
+
+                }
+                else
+                {
+                    var regionSearch = Enum.Parse(typeof(GeoRegion), searchString);
+                    budgetsearch = budgetsearch.Where(r => r.Region == (GeoRegion)regionSearch && r.Year == yearsearch).OrderBy(r => r.Region);
+
+                }
             }
+            switch (sortOrder)
+            {
+                case "Year":
+                    budgetsearch = budgetsearch.OrderBy(s => s.Year);
+                    break;
+                case "Region":
+                    budgetsearch = budgetsearch.OrderBy(s => s.Region);
+                    break;
+                case "year_desc":
+                    budgetsearch = budgetsearch.OrderByDescending(s => s.Year);
+                    break;
+                case "region_desc":
+                    budgetsearch = budgetsearch.OrderByDescending(s => s.Region);
+                    break;
+                default:
+                    budgetsearch = budgetsearch.OrderBy(s => s.Region);
+                    break;
+            }
+
+            if (pageSize < 1)
+            {
+                pageSize = 10;
+            }
+
+            int pageNumber = (page ?? 1);
+            return View(budgetsearch.ToPagedList(pageNumber, pageSize));
+
+        }
+
+        public ViewResult ThirdQuarter(string sortOrder, string searchString, int? yearsearch, string currentFilter, int? page, string pgSize)
+        {
+            int pageSize = Convert.ToInt16(pgSize);
+            //paged view
+            ViewBag.CurrentSort = sortOrder;
+
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.YearSortParm = sortOrder == "Year" ? "year_desc" : "Year";
+            ViewBag.RegionSortParm = sortOrder == "Region" ? "region_desc" : "Region";
+
+            //looking for the searchstring
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+            ViewBag.CurrentFilter = searchString;
+
+            var budgetsearch = db.BudgetCosts
+            .Include(b => b.User);
+
+            if (!String.IsNullOrEmpty(searchString) || !String.IsNullOrEmpty(yearsearch.ToString()))
+            {
+                var yearSearch = (yearsearch);
+
+                if (String.IsNullOrEmpty(searchString))
+                {
+                    budgetsearch = budgetsearch.Where(r => r.Year == yearsearch).OrderBy(r => r.Region);
+                }
+                else if (String.IsNullOrEmpty(yearsearch.ToString()))
+                {
+                    var regionSearch = Enum.Parse(typeof(GeoRegion), searchString);
+                    budgetsearch = budgetsearch.Where(r => r.Region == (GeoRegion)regionSearch).OrderBy(r => r.Region);
+
+                }
+                else
+                {
+                    var regionSearch = Enum.Parse(typeof(GeoRegion), searchString);
+                    budgetsearch = budgetsearch.Where(r => r.Region == (GeoRegion)regionSearch && r.Year == yearsearch).OrderBy(r => r.Region);
+
+                }
+            }
+
             switch (sortOrder)
             {
                 case "Year":
@@ -316,7 +374,7 @@ namespace Alliance_for_Life.Controllers
 
         }
 
-        public ViewResult FourthQuarter(string sortOrder, string searchString, string currentFilter, int? page, string pgSize)
+        public ViewResult FourthQuarter(string sortOrder, string searchString, int? yearsearch, string currentFilter, int? page, string pgSize)
         {
             int pageSize = Convert.ToInt16(pgSize);
             //paged view
@@ -341,10 +399,26 @@ namespace Alliance_for_Life.Controllers
             .Include(b => b.User);
 
 
-            if (!String.IsNullOrEmpty(searchString))
+            if (!String.IsNullOrEmpty(searchString) || !String.IsNullOrEmpty(yearsearch.ToString()))
             {
-                var regionSearch = Enum.Parse(typeof(GeoRegion), searchString);
-                budgetsearch = budgetsearch.Where(r => r.Region == (GeoRegion)regionSearch).OrderBy(r => r.Region);
+                var yearSearch = (yearsearch);
+
+                if (String.IsNullOrEmpty(searchString))
+                {
+                    budgetsearch = budgetsearch.Where(r => r.Year == yearsearch).OrderBy(r => r.Region);
+                }
+                else if (String.IsNullOrEmpty(yearsearch.ToString()))
+                {
+                    var regionSearch = Enum.Parse(typeof(GeoRegion), searchString);
+                    budgetsearch = budgetsearch.Where(r => r.Region == (GeoRegion)regionSearch).OrderBy(r => r.Region);
+
+                }
+                else
+                {
+                    var regionSearch = Enum.Parse(typeof(GeoRegion), searchString);
+                    budgetsearch = budgetsearch.Where(r => r.Region == (GeoRegion)regionSearch && r.Year == yearsearch).OrderBy(r => r.Region);
+
+                }
             }
             switch (sortOrder)
             {

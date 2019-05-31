@@ -1,17 +1,17 @@
-﻿$(function () {
+﻿//$(function () {
 
-    jQuery("#TotA2AEnrollment,#TotA2ABedNights").keyup(function (e) {
+//    jQuery("#TotA2AEnrollment,#TotA2ABedNights").keyup(function (e) {
 
-        var q = $("#TotA2ABedNights").val();
-        var p = $("#TotA2AEnrollment").val();
-        var result = "";
+//        var q = $("#TotA2ABedNights").val();
+//        var p = $("#TotA2AEnrollment").val();
+//        var result = "";
 
-        if (q !== "" && p !== "" && $.isNumeric(q) && $.isNumeric(p)) {
-            result = parseFloat(q) / parseFloat(p);
-        }
-        jQuery("#MA2Apercent").val(result * 100);
-    });
-});
+//        if (q !== "" && p !== "" && $.isNumeric(q) && $.isNumeric(p)) {
+//            result = parseFloat(q) / parseFloat(p);
+//        }
+//        jQuery("#MA2Apercent").val(result * 100);
+//    });
+//});
 
 $(function addAdministrationTotals() {
     $('.numAdd').change(function () {
