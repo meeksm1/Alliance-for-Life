@@ -196,62 +196,68 @@
                 <th class="th-sm">
                     TotOverallServed
                 </th>
+                <th>
+
+                </th>
 
         </thead>
 
         @foreach (var items in ViewBag.nonResidentialMIRs)
         {
-            <tr>
-                <td>
-                    @items.Subcontractor.OrgName
-                </td>
-                <td>
-                    @items.Month
-                </td>
-                <td>
-                    @items.Year
-                </td>
-                <td>
-                    @items.SubmittedDate
-                </td>
-                <td>
-                    @items.TotA2AEnrollment
-                </td>
-                <td>
-                    @items.MA2Apercent
-                </td>
-                <td>
-                    @items.ClientsJobEduServ
-                </td>
-                <td>
-                    @items.ParticipatingFathers
-                </td>
-                <td>
-                    @items.TotEduClasses
-                </td>
-                <td>
-                    @items.TotClientsinEduClasses
-                </td>
-                <td>
-                    @items.TotCaseHrs
-                </td>
-                <td>
-                    @items.TotClientsCaseHrs
-                </td>
-                <td>
-                    @items.TotOtherClasses
-                </td>
+    <tr>
+        <td>
+            @items.Subcontractor.OrgName
+        </td>
+        <td>
+            @items.Month
+        </td>
+        <td>
+            @items.Year
+        </td>
+        <td>
+            @items.SubmittedDate
+        </td>
+        <td>
+            @items.TotA2AEnrollment
+        </td>
+        <td>
+            @items.MA2Apercent
+        </td>
+        <td>
+            @items.ClientsJobEduServ
+        </td>
+        <td>
+            @items.ParticipatingFathers
+        </td>
+        <td>
+            @items.TotEduClasses
+        </td>
+        <td>
+            @items.TotClientsinEduClasses
+        </td>
+        <td>
+            @items.TotCaseHrs
+        </td>
+        <td>
+            @items.TotClientsCaseHrs
+        </td>
+        <td>
+            @items.TotOtherClasses
+        </td>
 
-                <td>
-                    @items.TotOverallServed
-                </td>
-
-                <td>
-                    @*@Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                        @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })*@
-                </td>
-            </tr>
+        <td>
+            @items.TotOverallServed
+        </td>
+        <td>
+            <a href="@Url.Action("Details", "NonResidentialMIRs", new { id = items.Id }, Request.Url.Scheme)">
+                <i style="font-size:16px; color:green" class="fa">&#xf06e;</i>
+            </a> |
+            <a href="@Url.Action("Edit", "NonResidentialMIRs", new { id = items.Id }, Request.Url.Scheme)">
+                <i style="font-size:16px; color:#3498DB" class="fa">&#xf044;</i>
+            </a>
+        </td>
+       
+    </tr>
         }
     </table>
 
