@@ -14,7 +14,6 @@ namespace Alliance_for_Life.ReportControllers
     public class InvoicesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-
         public ActionResult Index(string sortOrder, string searchString, string SubcontractorId, string Month, string Year, string billingdate, string currentFilter, int? page, string pgSize)
         {
             int pageSize = Convert.ToInt16(pgSize);
@@ -57,7 +56,6 @@ namespace Alliance_for_Life.ReportControllers
                     GenerateInvoice(SubcontractorId, Month, Year, billingdate);
                 }
             }
-
 
             var invoices = db.Invoices.Include(s => s.Subcontractor);
 
@@ -116,11 +114,9 @@ namespace Alliance_for_Life.ReportControllers
             var admincost = db.AdminCosts
                 .Where(s => s.SubcontractorId == invoice.SubcontractorId && s.Year == invoice.Year && s.Month == invoice.Month);
 
-
             //getting participation total
             var particost = db.ParticipationServices
                 .Where(s => s.SubcontractorId == invoice.SubcontractorId && s.Year == invoice.Year && s.Month == invoice.Month);
-
 
             //set totals to zero
             invoice.DirectAdminCost = 0;
@@ -385,8 +381,6 @@ namespace Alliance_for_Life.ReportControllers
         public ActionResult DeleteConfirmed(Guid id)
         {
             Invoice invoice = db.Invoices
-                .Include(a => a.Month)
-
                 .Include(a => a.Subcontractor)
                 .SingleOrDefault(a => a.InvoiceId == id);
 

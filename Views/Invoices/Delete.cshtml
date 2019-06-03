@@ -19,13 +19,22 @@
         <dd>
             @Html.DisplayFor(model => model.OrgName)
         </dd>
+        <dt>
 
+            @Html.DisplayNameFor(model => model.BillingDate)
+        </dt>
+
+        <dd>
+
+            @Model.BillingDate
+        </dd>
         <dt>
             @Html.DisplayNameFor(model => model.DirectAdminCost)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.DirectAdminCost)
+            @Model.DirectAdminCost.ToString("C")
+
         </dd>
 
         <dt>
@@ -33,7 +42,8 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.ParticipantServices)
+            @Model.ParticipantServices.ToString("C")
+
         </dd>
 
         <dt>
@@ -41,55 +51,55 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.GrandTotal)
+            @Model.GrandTotal.ToString("C")
+
         </dd>
 
         <dt>
             @Html.DisplayNameFor(model => model.LessManagementFee)
+
+
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.LessManagementFee)
+            @Model.LessManagementFee.ToString("C")
         </dd>
 
         <dt>
+
             @Html.DisplayNameFor(model => model.DepositAmount)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.DepositAmount)
+            @Model.DepositAmount.ToString("C")
         </dd>
 
         <dt>
+
             @Html.DisplayNameFor(model => model.BeginningAllocation)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.BeginningAllocation)
+            @Model.BeginningAllocation.ToString("C")
         </dd>
 
         <dt>
+
             @Html.DisplayNameFor(model => model.AdjustedAllocation)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.AdjustedAllocation)
+            @Model.AdjustedAllocation.ToString("C")
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.BillingDate)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.BillingDate)
-        </dd>
 
         <dt>
             @Html.DisplayNameFor(model => model.BalanceRemaining)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.BalanceRemaining)
+            @Model.BalanceRemaining.ToString("C")
         </dd>
 
     </dl>
