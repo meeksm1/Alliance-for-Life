@@ -169,9 +169,16 @@ namespace Alliance_for_Life.Controllers
             }
             ViewBag.CurrentFilter = searchString;
 
-            var budgetsearch = db.BudgetCosts
-            .Include(b => b.User).Include(a => a.AdminCost).Include(p => p.ParticipationCost);
-
+            //Get proper Quarter for search
+            var adminsearch = db.AdminCosts.Include(s => s.Subcontractor).Where(a => a.Month <= (Months)3);
+            var partsearch = db.ParticipationServices.Include(s => s.Subcontractor).Where(a => a.Month <= (Months)3);
+               
+            //Sets all of the data
+            var budgetsearch = from s in db.BudgetCosts
+                               join a in db.AdminCosts on s.Region equals a.Region
+                               join b in db.ParticipationServices on s.Region equals b.Region
+                               where s.Year == a.Year && s.Year == b.Year
+                               select s;
 
             if (!String.IsNullOrEmpty(searchString) || !String.IsNullOrEmpty(yearsearch.ToString()))
             {
@@ -185,15 +192,17 @@ namespace Alliance_for_Life.Controllers
                 {
                     var regionSearch = Enum.Parse(typeof(GeoRegion), searchString);
                     budgetsearch = budgetsearch.Where(r => r.Region == (GeoRegion)regionSearch).OrderBy(r => r.Region);
-
                 }
                 else
                 {
                     var regionSearch = Enum.Parse(typeof(GeoRegion), searchString);
                     budgetsearch = budgetsearch.Where(r => r.Region == (GeoRegion)regionSearch && r.Year == yearsearch).OrderBy(r => r.Region);
-
                 }
             }
+
+            //ViewBag.adminsearch = adminsearch.ToList();
+            //ViewBag.partsearch = partsearch.ToList();
+
             switch (sortOrder)
             {
                 case "Year":

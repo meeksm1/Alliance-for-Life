@@ -278,6 +278,10 @@
     <Compile Include="Migrations\201905222102050_UpdatestoNONandRESClasses.Designer.cs">
       <DependentUpon>201905222102050_UpdatestoNONandRESClasses.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201906031455498_UPdateAdminAndPartClasseswithRegionProperties.cs" />
+    <Compile Include="Migrations\201906031455498_UPdateAdminAndPartClasseswithRegionProperties.Designer.cs">
+      <DependentUpon>201906031455498_UPdateAdminAndPartClasseswithRegionProperties.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AffiliateRegion.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
@@ -826,6 +830,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905222102050_UpdatestoNONandRESClasses.resx">
       <DependentUpon>201905222102050_UpdatestoNONandRESClasses.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906031455498_UPdateAdminAndPartClasseswithRegionProperties.resx">
+      <DependentUpon>201906031455498_UPdateAdminAndPartClasseswithRegionProperties.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

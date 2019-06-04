@@ -37,8 +37,7 @@ namespace Alliance_for_Life.Controllers
             }
             ViewBag.CurrentFilter = searchString;
 
-            var ressearch = db.ResidentialMIRs
-            .Include(a => a.Subcontractor);
+            var ressearch = db.ResidentialMIRs.Include(a => a.Subcontractor);
 
             var nonresidental = db.NonResidentialMIRs.Include(n => n.Subcontractor);
 
@@ -55,7 +54,6 @@ namespace Alliance_for_Life.Controllers
                                 where usersubid == t.SubcontractorId
                                 select t;
             }
-
             
 
             if (!String.IsNullOrEmpty(searchString))

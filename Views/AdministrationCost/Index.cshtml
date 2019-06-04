@@ -27,6 +27,9 @@
             @Html.ActionLink("Submitted Date", "Index", new { sortOrder = ViewBag.DateSortParm })
         </th>
         <th>
+            Region
+        </th>
+        <th>
             Salaries and Wages
         </th>
         <th>
@@ -91,77 +94,80 @@
 
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.ActionLink("Details", "Details", new { id = item.AdminCostId })
-            </td>
-            <td>
-                @item.Subcontractor.OrgName
-            </td>
-            <td>
-                @item.SubmittedDate.ToShortDateString()
-            </td>
-            <td>
-                @item.ASalandWages.ToString("C")
-            </td>
-            <td>
-                @item.AEmpBenefits.ToString("C")
-            </td>
-            <td>
-                @item.AEmpTravel.ToString("C")
-            </td>
-            <td>
-                @item.AEmpTraining.ToString("C")
-            </td>
-            <td>
-                @item.AOfficeRent.ToString("C")
-            </td>
-            <td>
-                @item.AOfficeUtilities.ToString("C")
-            </td>
-            <td>
-                @item.AFacilityIns.ToString("C")
-            </td>
-            <td>
-                @item.AOfficeSupplies.ToString("C")
-            </td>
-            <td>
-                @item.AEquipment.ToString("C")
-            </td>
-            <td>
-                @item.AOfficeCommunications.ToString("C")
-            </td>
-            <td>
-                @item.AOfficeMaint.ToString("C")
-            </td>
-            <td>
-                @item.AConsulting.ToString("C")
-            </td>
-            <td>
-                @item.AJanitorServices.ToString("C")
-            </td>
-            <td>
-                @item.ADepreciation.ToString("C")
-            </td>
-            <td>
-                @item.ATechSupport.ToString("C")
-            </td>
-            <td>
-                @item.ASecurityServices.ToString("C")
-            </td>
-            <td>
-                @item.AOther.ToString("C")
-            </td>
-            <td>
-                @item.AOther2.ToString("C")
-            </td>
-            <td>
-                @item.AOther3.ToString("C")
-            </td>
-            <td>
-                @item.ATotCosts.ToString("C")
-            </td>
-        </tr>
+    <tr>
+        <td>
+            @Html.ActionLink("Details", "Details", new { id = item.AdminCostId })
+        </td>
+        <td>
+            @item.Subcontractor.OrgName
+        </td>
+        <td>
+            @item.SubmittedDate.ToShortDateString()
+        </td>
+        <td>
+            @item.Region
+        </td>
+        <td>
+            @item.ASalandWages.ToString("C")
+        </td>
+        <td>
+            @item.AEmpBenefits.ToString("C")
+        </td>
+        <td>
+            @item.AEmpTravel.ToString("C")
+        </td>
+        <td>
+            @item.AEmpTraining.ToString("C")
+        </td>
+        <td>
+            @item.AOfficeRent.ToString("C")
+        </td>
+        <td>
+            @item.AOfficeUtilities.ToString("C")
+        </td>
+        <td>
+            @item.AFacilityIns.ToString("C")
+        </td>
+        <td>
+            @item.AOfficeSupplies.ToString("C")
+        </td>
+        <td>
+            @item.AEquipment.ToString("C")
+        </td>
+        <td>
+            @item.AOfficeCommunications.ToString("C")
+        </td>
+        <td>
+            @item.AOfficeMaint.ToString("C")
+        </td>
+        <td>
+            @item.AConsulting.ToString("C")
+        </td>
+        <td>
+            @item.AJanitorServices.ToString("C")
+        </td>
+        <td>
+            @item.ADepreciation.ToString("C")
+        </td>
+        <td>
+            @item.ATechSupport.ToString("C")
+        </td>
+        <td>
+            @item.ASecurityServices.ToString("C")
+        </td>
+        <td>
+            @item.AOther.ToString("C")
+        </td>
+        <td>
+            @item.AOther2.ToString("C")
+        </td>
+        <td>
+            @item.AOther3.ToString("C")
+        </td>
+        <td>
+            @item.ATotCosts.ToString("C")
+        </td>
+    </tr>
     }
 </table>
 

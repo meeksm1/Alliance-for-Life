@@ -31,13 +31,12 @@
                 <th class="th-sm">
                     Month
                 </th>
-
-                <th class="th-sm">
-                    @Html.ActionLink("Submitted Date", "Index", new { sortOrder = ViewBag.DateSortParm })
-
+                <th>
+                    Year
                 </th>
+
                 <th class="th-sm">
-                    Bed Nights
+                    Client Bed Nights
 
                 </th>
                 <th class="th-sm">
@@ -45,33 +44,33 @@
 
                 </th>
                 <th class="th-sm">
-                    A2A Bed Nights
+                    Total A2A Bed Nights
 
                 </th>
                 <th class="th-sm">
-                    Monthly A2A Clients
+                    Monthly A2A Clients Served
 
                 </th>
                 <th class="th-sm">
-                    Jobs or Education
+                    Job or Educational Services
                 </th>
                 <th class="th-sm">
-                    Enrolled Fathers
+                    Participating Fathers
                 </th>
                 <th class="th-sm">
-                    Parenting Classes Offered
+                    Prenatal & Parenting Classes Offered
                 </th>
                 <th class="th-sm">
-                    Parenting Classes Attended
+                    Prenatal & Parenting Classes Attended
                 </th>
                 <th class="th-sm">
-                    Management Hours
+                    Case Management Hours
                 </th>
                 <th class="th-sm">
                     Participants in Case Management
                 </th>
                 <th class="th-sm">
-                    Other Classes
+                    Other Classes Offered
                 </th>
                 <th class="th-sm">
                     Details
@@ -92,7 +91,7 @@
                     @item.Month
                 </td>
                 <td>
-                    @item.SubmittedDate.ToShortDateString()
+                    @item.Year
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.TotBedNights)
@@ -154,110 +153,101 @@
                 <th class="th-sm">
                     Month
                 </th>
-                <th class="th-sm">
+                <th>
                     Year
                 </th>
                 <th class="th-sm">
-                    @Html.ActionLink("Submitted Date", "Index", new { sortOrder = ViewBag.DateSortParm })
-
+                    A2A Enrollment
                 </th>
                 <th class="th-sm">
-                    TotA2AEnrollment
-                </th>
-
-                <th class="th-sm">
-                    MA2Apercent
-
-                </th>
-
-                <th class="th-sm">
-                    ClientsJobEduServ
-
+                    Monthly A2A Clients
                 </th>
                 <th class="th-sm">
-                    ParticipatingFathers
+                    Jobs or Education
                 </th>
                 <th class="th-sm">
-                    TotEduClasses
+                    Enrolled Fathers
                 </th>
                 <th class="th-sm">
-                    TotClientsinEduClasses
+                    Parenting Classes Offered
                 </th>
                 <th class="th-sm">
-                    TotCaseHrs
+                    Parenting Classes Attended
                 </th>
                 <th class="th-sm">
-                    TotClientsCaseHrs
+                    Management Hours
                 </th>
                 <th class="th-sm">
-                    TotOtherClasses
+                    Participants in Case Management
                 </th>
-
                 <th class="th-sm">
-                    TotOverallServed
+                    Other Classes
+                </th>
+                <th class="th-sm">
+                    Details
+                </th>
+                <th class="th-sm">
+                    Edit
                 </th>
                 <th>
 
                 </th>
 
-        </thead>
+</thead>
 
         @foreach (var items in ViewBag.nonResidentialMIRs)
         {
-    <tr>
-        <td>
-            @items.Subcontractor.OrgName
-        </td>
-        <td>
-            @items.Month
-        </td>
-        <td>
-            @items.Year
-        </td>
-        <td>
-            @items.SubmittedDate
-        </td>
-        <td>
-            @items.TotA2AEnrollment
-        </td>
-        <td>
-            @items.MA2Apercent
-        </td>
-        <td>
-            @items.ClientsJobEduServ
-        </td>
-        <td>
-            @items.ParticipatingFathers
-        </td>
-        <td>
-            @items.TotEduClasses
-        </td>
-        <td>
-            @items.TotClientsinEduClasses
-        </td>
-        <td>
-            @items.TotCaseHrs
-        </td>
-        <td>
-            @items.TotClientsCaseHrs
-        </td>
-        <td>
-            @items.TotOtherClasses
-        </td>
+        <tr>
+            <td>
+                @items.Subcontractor.OrgName
+            </td>
+            <td>
+                @items.Month
+            </td>
+            <td>
+                @items.Year
+            </td>
+            <td>
+                @items.TotA2AEnrollment
+            </td>
+            <td>
+                @items.MA2Apercent
+            </td>
+            <td>
+                @items.ClientsJobEduServ
+            </td>
+            <td>
+                @items.ParticipatingFathers
+            </td>
+            <td>
+                @items.TotEduClasses
+            </td>
+            <td>
+                @items.TotClientsinEduClasses
+            </td>
+            <td>
+                @items.TotCaseHrs
+            </td>
+            <td>
+                @items.TotClientsCaseHrs
+            </td>
+            <td>
+                @items.TotOtherClasses
+            </td>
 
-        <td>
-            @items.TotOverallServed
-        </td>
-        <td>
-            <a href="@Url.Action("Details", "NonResidentialMIRs", new { id = items.Id }, Request.Url.Scheme)">
-                <i style="font-size:16px; color:green" class="fa">&#xf06e;</i>
-            </a> |
+            <td>
+                @items.TotOverallServed
+            </td>
+            <td>
+                @Html.ActionLink("Details", "Details", new { id = items.Id })
+            </td>
+            <td>
             <a href="@Url.Action("Edit", "NonResidentialMIRs", new { id = items.Id }, Request.Url.Scheme)">
                 <i style="font-size:16px; color:#3498DB" class="fa">&#xf044;</i>
             </a>
-        </td>
-       
-    </tr>
+            </td>
+
+        </tr>
         }
     </table>
 
