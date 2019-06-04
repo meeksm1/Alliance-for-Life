@@ -176,13 +176,10 @@ namespace Alliance_for_Life.Controllers
 
             //Sets all of the data
             var budgetsearch = from s in db.BudgetCosts
-                               join a in adminsearch on s.Region equals a.Region
-                               join b in partsearch on s.Region equals b.Region
+                               join a in db.AdminCosts on s.Region equals a.Region
+                               join b in db.ParticipationServices on s.Region equals b.Region
                                where s.Year == a.Year && s.Year == b.Year
                                select new BudgetViewModel { budgetcosts = s, admincost = a, particost = b };
-
-            var departments = db.BudgetCosts.Include(d => d.AdminCost).Include(d => d.ParticipationCost);
-
 
             if (!String.IsNullOrEmpty(searchString) || !String.IsNullOrEmpty(yearsearch.ToString()))
             {

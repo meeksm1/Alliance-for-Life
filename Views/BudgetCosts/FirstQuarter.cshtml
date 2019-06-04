@@ -337,176 +337,180 @@
                     </tr>
                     if (item.particost.PSId != Guid.Empty)
                     {
-                        <tr>
+        <tr>
 
 
-                            <td>Participation Amounts</td>
-                            <td></td>
-                            <td></td>
-                            <td>
-                                @item.particost.PTranspotation.ToString("c")
-                            </td>
-                            <td>
-                                @item.particost.PJobTrain.ToString("c")
-                            </td>
-                            <td>
-                                @item.particost.PEducationAssistance.ToString("c")
-                            </td>
-                            <td>
-                                @item.particost.PResidentialCare.ToString("c")
-                            </td>
-                            <td>
-                                @item.particost.PUtilities.ToString("c")
-                            </td>
-                            <td>
-                                @item.particost.PHousingEmergency.ToString("c")
-                            </td>
-                            <td>
-                                @item.particost.PHousingAssistance.ToString("c")
-                            </td>
-                            <td>
-                                @item.particost.PChildCare.ToString("c")
-                            </td>
-                            <td>
-                                @item.particost.PClothing.ToString("c")
-                            </td>
-                            <td>
-                                @item.particost.PFood.ToString("c")
-                            </td>
-                            <td>
-                                @item.particost.PSupplies.ToString("c")
-                            </td>
-                            <td>
-                                @item.particost.POther.ToString("c")
-                            </td>
-                            <td>
-                                @item.particost.POther2.ToString("C")
-                            </td>
-                            <td>
-                                @item.particost.POther3.ToString("C")
-                            </td>
-                            <td>
-                                @item.particost.PTotals.ToString("C")
-                            </td>
-                        </tr>
-                    }
+            <td>Participation Amounts</td>
+            <td>
 
+            </td>
+            <td>
+
+            </td>
+            <td>
+                @item.particost.PTranspotation.ToString("c")
+            </td>
+            <td>
+                @item.particost.PJobTrain.ToString("c")
+            </td>
+            <td>
+                @item.particost.PEducationAssistance.ToString("c")
+            </td>
+            <td>
+                @item.particost.PResidentialCare.ToString("c")
+            </td>
+            <td>
+                @item.particost.PUtilities.ToString("c")
+            </td>
+            <td>
+                @item.particost.PHousingEmergency.ToString("c")
+            </td>
+            <td>
+                @item.particost.PHousingAssistance.ToString("c")
+            </td>
+            <td>
+                @item.particost.PChildCare.ToString("c")
+            </td>
+            <td>
+                @item.particost.PClothing.ToString("c")
+            </td>
+            <td>
+                @item.particost.PFood.ToString("c")
+            </td>
+            <td>
+                @item.particost.PSupplies.ToString("c")
+            </td>
+            <td>
+                @item.particost.POther.ToString("c")
+            </td>
+            <td>
+                @item.particost.POther2.ToString("C")
+            </td>
+            <td>
+                @item.particost.POther3.ToString("C")
+            </td>
+            <td>
+                @item.particost.PTotals.ToString("C")
+            </td>
+        </tr>
                 }
 
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>
-                        @Math.Round(((item.budgetcosts.ASalandWages / item.budgetcosts.Maxtot) * 100), 3) %
-                    </td>
-                    <td>
-                        @Math.Round(((item.budgetcosts.AEmpBenefits / item.budgetcosts.Maxtot) * 100), 3) %
-                    </td>
-                    <td>
-                        @Math.Round(((item.budgetcosts.AEmpTravel / item.budgetcosts.Maxtot) * 100), 3) %
-                    </td>
-                    <td>
-                        @Math.Round(((item.budgetcosts.AEmpTraining / item.budgetcosts.Maxtot) * 100), 3) %
-                    </td>
-                    <td>
-                        @Math.Round(((item.budgetcosts.AOfficeRent / item.budgetcosts.Maxtot) * 100), 3) %
-                    </td>
-                    <td>
-                        @Math.Round(((item.budgetcosts.AOfficeUtilities / item.budgetcosts.Maxtot) * 100), 3) %
-                    </td>
-                    <td>
-                        @Math.Round(((item.budgetcosts.AFacilityIns / item.budgetcosts.Maxtot) * 100), 3) %
-                    </td>
-                    <td>
-                        @Math.Round(((item.budgetcosts.AOfficeSupplies / item.budgetcosts.Maxtot) * 100), 3) %
-                    </td>
-                    <td>
-                        @Math.Round(((item.budgetcosts.AEquipment / item.budgetcosts.Maxtot) * 100), 3) %
-                    </td>
-                    <td>
-                        @Math.Round(((item.budgetcosts.AOfficeCommunications / item.budgetcosts.Maxtot) * 100), 3) %
-                    </td>
-                    <td>
-                        @Math.Round(((item.budgetcosts.AOfficeMaint / item.budgetcosts.Maxtot) * 100), 3) %
-                    </td>
-                    <td>
-                        @Math.Round(((item.budgetcosts.AConsulting / item.budgetcosts.Maxtot) * 100), 3) %
-                    </td>
-                    <td>
-                        @Math.Round(((item.budgetcosts.SubConPayCost / item.budgetcosts.Maxtot) * 100), 3) %
-                    </td>
-                    <td>
-                        @Math.Round(((item.budgetcosts.BackgrounCheck / item.budgetcosts.Maxtot) * 100), 3) %
-                    </td>
-                    <td>
-                        @Math.Round(((item.budgetcosts.Other / item.budgetcosts.Maxtot) * 100), 3) %
-                    </td>
-                    <td>
-                        @Math.Round(((item.budgetcosts.AJanitorServices / item.budgetcosts.Maxtot) * 100), 3) %
-                    </td>
-                    <td>
-                        @Math.Round(((item.budgetcosts.ADepreciation / item.budgetcosts.Maxtot) * 100), 3) %
-                    </td>
-                    <td>
-                        @Math.Round(((item.budgetcosts.ATechSupport / item.budgetcosts.Maxtot) * 100), 3) %
-                    </td>
-                    <td>
-                        @Math.Round(((item.budgetcosts.ASecurityServices / item.budgetcosts.Maxtot) * 100), 3) %
-                    </td>
-                    <td>
-                        @Math.Round(((item.budgetcosts.ATotCosts / item.budgetcosts.Maxtot) * 100), 3) %
-                    </td>
-                    <td>
-                        @Math.Round(((item.budgetcosts.AdminFee / item.budgetcosts.Maxtot) * 100), 3) %
-                    </td>
-                    <td>
-                        @Math.Round(((item.budgetcosts.Trasportation / item.budgetcosts.Maxtot) * 100), 3) %
-                    </td>
-                    <td>
-                        @Math.Round(((item.budgetcosts.JobTraining / item.budgetcosts.Maxtot) * 100), 3) %
-                    </td>
-                    <td>
-                        @Math.Round(((item.budgetcosts.TuitionAssistance / item.budgetcosts.Maxtot) * 100), 3) %
-                    </td>
-                    <td>
-                        @Math.Round(((item.budgetcosts.ContractedResidential / item.budgetcosts.Maxtot) * 100), 3) %
-                    </td>
-                    <td>
-                        @Math.Round(((item.budgetcosts.UtilityAssistance / item.budgetcosts.Maxtot) * 100), 3) %
-                    </td>
-                    <td>
-                        @Math.Round(((item.budgetcosts.EmergencyShelter / item.budgetcosts.Maxtot) * 100), 3) %
-                    </td>
-                    <td>
-                        @Math.Round(((item.budgetcosts.HousingAssistance / item.budgetcosts.Maxtot) * 100), 3) %
-                    </td>
-                    <td>
-                        @Math.Round(((item.budgetcosts.Childcare / item.budgetcosts.Maxtot) * 100), 3) %
-                    </td>
-                    <td>
-                        @Math.Round(((item.budgetcosts.Clothing / item.budgetcosts.Maxtot) * 100), 3) %
-                    </td>
-                    <td>
-                        @Math.Round(((item.budgetcosts.Food / item.budgetcosts.Maxtot) * 100), 3) %
-                    </td>
-                    <td>
-                        @Math.Round(((item.budgetcosts.Supplies / item.budgetcosts.Maxtot) * 100), 3) %
-                    </td>
-                    <td>
-                        @Math.Round(((item.budgetcosts.RFO / item.budgetcosts.Maxtot) * 100), 3) %
-                    </td>
-                    <td>
-                        @Math.Round(((item.budgetcosts.BTotal / item.budgetcosts.Maxtot) * 100), 3) %
-                    </td>
-                    <td>
-                        @Math.Round(((item.budgetcosts.Maxtot / item.budgetcosts.Maxtot) * 100), 3) %
-                    </td>
-                </tr>
             }
-        </tbody>
-    </table>
 
+           <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>
+                    @Math.Round(((item.budgetcosts.ASalandWages / item.budgetcosts.Maxtot) * 100), 3) %
+                </td>
+                <td>
+                    @Math.Round(((item.budgetcosts.AEmpBenefits / item.budgetcosts.Maxtot) * 100), 3) %
+                </td>
+                <td>
+                    @Math.Round(((item.budgetcosts.AEmpTravel / item.budgetcosts.Maxtot) * 100), 3) %
+                </td>
+                <td>
+                    @Math.Round(((item.budgetcosts.AEmpTraining / item.budgetcosts.Maxtot) * 100), 3) %
+                </td>
+                <td>
+                    @Math.Round(((item.budgetcosts.AOfficeRent / item.budgetcosts.Maxtot) * 100), 3) %
+                </td>
+                <td>
+                    @Math.Round(((item.budgetcosts.AOfficeUtilities / item.budgetcosts.Maxtot) * 100), 3) %
+                </td>
+                <td>
+                    @Math.Round(((item.budgetcosts.AFacilityIns / item.budgetcosts.Maxtot) * 100), 3) %
+                </td>
+                <td>
+                    @Math.Round(((item.budgetcosts.AOfficeSupplies / item.budgetcosts.Maxtot) * 100), 3) %
+                </td>
+                <td>
+                    @Math.Round(((item.budgetcosts.AEquipment / item.budgetcosts.Maxtot) * 100), 3) %
+                </td>
+                <td>
+                    @Math.Round(((item.budgetcosts.AOfficeCommunications / item.budgetcosts.Maxtot) * 100), 3) %
+                </td>
+                <td>
+                    @Math.Round(((item.budgetcosts.AOfficeMaint / item.budgetcosts.Maxtot) * 100), 3) %
+                </td>
+                <td>
+                    @Math.Round(((item.budgetcosts.AConsulting / item.budgetcosts.Maxtot) * 100), 3) %
+                </td>
+                <td>
+                    @Math.Round(((item.budgetcosts.SubConPayCost / item.budgetcosts.Maxtot) * 100), 3) %
+                </td>
+                <td>
+                    @Math.Round(((item.budgetcosts.BackgrounCheck / item.budgetcosts.Maxtot) * 100), 3) %
+                </td>
+                <td>
+                    @Math.Round(((item.budgetcosts.Other / item.budgetcosts.Maxtot) * 100), 3) %
+                </td>
+                <td>
+                    @Math.Round(((item.budgetcosts.AJanitorServices / item.budgetcosts.Maxtot) * 100), 3) %
+                </td>
+                <td>
+                    @Math.Round(((item.budgetcosts.ADepreciation / item.budgetcosts.Maxtot) * 100), 3) %
+                </td>
+                <td>
+                    @Math.Round(((item.budgetcosts.ATechSupport / item.budgetcosts.Maxtot) * 100), 3) %
+                </td>
+                <td>
+                    @Math.Round(((item.budgetcosts.ASecurityServices / item.budgetcosts.Maxtot) * 100), 3) %
+                </td>
+                <td>
+                    @Math.Round(((item.budgetcosts.ATotCosts / item.budgetcosts.Maxtot) * 100), 3) %
+                </td>
+                <td>
+                    @Math.Round(((item.budgetcosts.AdminFee / item.budgetcosts.Maxtot) * 100), 3) %
+                </td>
+                <td>
+                    @Math.Round(((item.budgetcosts.Trasportation / item.budgetcosts.Maxtot) * 100), 3) %
+                </td>
+                <td>
+                    @Math.Round(((item.budgetcosts.JobTraining / item.budgetcosts.Maxtot) * 100), 3) %
+                </td>
+                <td>
+                    @Math.Round(((item.budgetcosts.TuitionAssistance / item.budgetcosts.Maxtot) * 100), 3) %
+                </td>
+                <td>
+                    @Math.Round(((item.budgetcosts.ContractedResidential / item.budgetcosts.Maxtot) * 100), 3) %
+                </td>
+                <td>
+                    @Math.Round(((item.budgetcosts.UtilityAssistance / item.budgetcosts.Maxtot) * 100), 3) %
+                </td>
+                <td>
+                    @Math.Round(((item.budgetcosts.EmergencyShelter / item.budgetcosts.Maxtot) * 100), 3) %
+                </td>
+                <td>
+                    @Math.Round(((item.budgetcosts.HousingAssistance / item.budgetcosts.Maxtot) * 100), 3) %
+                </td>
+                <td>
+                    @Math.Round(((item.budgetcosts.Childcare / item.budgetcosts.Maxtot) * 100), 3) %
+                </td>
+                <td>
+                    @Math.Round(((item.budgetcosts.Clothing / item.budgetcosts.Maxtot) * 100), 3) %
+                </td>
+                <td>
+                    @Math.Round(((item.budgetcosts.Food / item.budgetcosts.Maxtot) * 100), 3) %
+                </td>
+                <td>
+                    @Math.Round(((item.budgetcosts.Supplies / item.budgetcosts.Maxtot) * 100), 3) %
+                </td>
+                <td>
+                    @Math.Round(((item.budgetcosts.RFO / item.budgetcosts.Maxtot) * 100), 3) %
+                </td>
+                <td>
+                    @Math.Round(((item.budgetcosts.BTotal / item.budgetcosts.Maxtot) * 100), 3) %
+                </td>
+                <td>
+                    @Math.Round(((item.budgetcosts.Maxtot / item.budgetcosts.Maxtot) * 100), 3) %
+                </td>
+            </tr>
+        }
+            </tbody>
+        </table>
+            
     <p>
         @using (Html.BeginForm("Export", "BudgetCosts", FormMethod.Post))
         {
