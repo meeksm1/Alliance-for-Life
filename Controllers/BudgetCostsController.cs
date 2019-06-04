@@ -1,4 +1,5 @@
 ﻿using Alliance_for_Life.Models;
+using Alliance_for_Life.ViewModels;
 using ClosedXML.Excel;
 using PagedList;
 using System;
@@ -178,7 +179,7 @@ namespace Alliance_for_Life.Controllers
                                join a in adminsearch on s.Region equals a.Region
                                join b in partsearch on s.Region equals b.Region
                                where s.Year == a.Year && s.Year == b.Year
-                               select s;
+                               select new BudgetViewModel { budgetcosts = s, admincost = a, particost = b };
 
             var departments = db.BudgetCosts.Include(d => d.AdminCost).Include(d => d.ParticipationCost);
 
@@ -189,17 +190,17 @@ namespace Alliance_for_Life.Controllers
 
                 if (String.IsNullOrEmpty(searchString))
                 {
-                    budgetsearch = budgetsearch.Where(r => r.Year == yearsearch).OrderBy(r => r.Region);
+                    budgetsearch = budgetsearch.Where(r => r.budgetcosts.Year == yearsearch).OrderBy(r => r.budgetcosts.Region);
                 }
                 else if (String.IsNullOrEmpty(yearsearch.ToString()))
                 {
                     var regionSearch = Enum.Parse(typeof(GeoRegion), searchString);
-                    budgetsearch = budgetsearch.Where(r => r.Region == (GeoRegion)regionSearch).OrderBy(r => r.Region);
+                    budgetsearch = budgetsearch.Where(r => r.budgetcosts.Region == (GeoRegion)regionSearch).OrderBy(r => r.budgetcosts.Region);
                 }
                 else
                 {
                     var regionSearch = Enum.Parse(typeof(GeoRegion), searchString);
-                    budgetsearch = budgetsearch.Where(r => r.Region == (GeoRegion)regionSearch && r.Year == yearsearch).OrderBy(r => r.Region);
+                    budgetsearch = budgetsearch.Where(r => r.budgetcosts.Region == (GeoRegion)regionSearch && r.budgetcosts.Year == yearsearch).OrderBy(r => r.budgetcosts.Region);
                 }
             }
 
@@ -209,19 +210,19 @@ namespace Alliance_for_Life.Controllers
             switch (sortOrder)
             {
                 case "Year":
-                    budgetsearch = budgetsearch.OrderBy(s => s.Year);
+                    budgetsearch = budgetsearch.OrderBy(s => s.budgetcosts.Year);
                     break;
                 case "Region":
-                    budgetsearch = budgetsearch.OrderBy(s => s.Region);
+                    budgetsearch = budgetsearch.OrderBy(s => s.budgetcosts.Region);
                     break;
                 case "year_desc":
-                    budgetsearch = budgetsearch.OrderByDescending(s => s.Year);
+                    budgetsearch = budgetsearch.OrderByDescending(s => s.budgetcosts.Year);
                     break;
                 case "region_desc":
-                    budgetsearch = budgetsearch.OrderByDescending(s => s.Region);
+                    budgetsearch = budgetsearch.OrderByDescending(s => s.budgetcosts.Region);
                     break;
                 default:
-                    budgetsearch = budgetsearch.OrderBy(s => s.Region);
+                    budgetsearch = budgetsearch.OrderBy(s => s.budgetcosts.Region);
                     break;
             }
 

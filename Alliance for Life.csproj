@@ -324,6 +324,7 @@
     <Compile Include="ViewModels\AdminCostsViewModel.cs" />
     <Compile Include="ViewModels\AFLFormViewModel.cs" />
     <Compile Include="ViewModels\BudgetCostViewModel.cs" />
+    <Compile Include="ViewModels\BudgetViewModel.cs" />
     <Compile Include="ViewModels\ChangePasswordViewModel.cs" />
     <Compile Include="ViewModels\ClientListFormViewModel.cs" />
     <Compile Include="ViewModels\ClientListReportViewModel.cs" />
