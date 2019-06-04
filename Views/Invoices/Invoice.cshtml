@@ -44,7 +44,7 @@
                 <br />
                 <div>
                     <h2> <strong>Monthly Invoice </strong></h2>
-                    <h4 class="text-muted">NO:@Model.InvoiceId.ToString().Substring(19, 12) | Date: @System.DateTime.Now.ToString("MMMM dd, yyyy")</h4>
+                    <h4 class="text-muted"> Date: @System.DateTime.Now.ToString("MMMM dd, yyyy")</h4>
                 </div>
 
             </div>
@@ -86,7 +86,7 @@
                             Administrative Cost
                         </td>
                         <td class="text-right">
-                            <span class="mono">$@Model.DirectAdminCost.ToString("#,##0.00")</span>
+                            <span class="mono">@Model.DirectAdminCost.ToString("C")</span>
                         </td>
                     </tr>
                     <tr>
@@ -94,7 +94,7 @@
                             Participant Cost
                         </td>
                         <td class="text-right">
-                            <span class="mono">$@Model.ParticipantServices.ToString("#,##0.00")</span>
+                            <span class="mono">@Model.ParticipantServices.ToString("C")</span>
                         </td>
                     </tr>
                     <tr>
@@ -102,7 +102,7 @@
                             Less Management Fee
                         </td>
                         <td class="text-right">
-                            <span class="mono">$@Model.LessManagementFee.ToString("#,##0.00")</span>
+                            <span class="mono">@Model.LessManagementFee.ToString("C")</span>
                         </td>
                     </tr>
                     <tr>
@@ -110,7 +110,7 @@
                             Deposit Amount
                         </td>
                         <td class="text-right">
-                            <span class="mono">$@Model.DepositAmount.ToString("#,##0.00")</span>
+                            <span class="mono">@Model.DepositAmount.ToString("C")</span>
                         </td>
                     </tr>
                     <tr>
@@ -118,7 +118,7 @@
                             Grand Total
                         </th>
                         <td class="text-right">
-                            <span class="mono">$@Model.GrandTotal.ToString("#,##0.00")</span>
+                            <span class="mono">@Model.GrandTotal.ToString("C")</span>
                         </td>
                     </tr>
                 </tbody>
@@ -129,16 +129,16 @@
                 <thead>
                     <tr>
                         <td class="text-left ">Beginning Allocation</td>
-                        <td class="text-right ">$@Model.BeginningAllocation.ToString("#,##0.00")</td>
+                        <td class="text-right ">@Model.BeginningAllocation.ToString("C")</td>
                     </tr>
                     <tr>
                         <td class="text-left ">Adjusted Allocation</td>
-                        <td class="text-right ">$@Model.AdjustedAllocation.ToString("#,##0.00")</td>
+                        <td class="text-right ">@Model.AdjustedAllocation.ToString("C")</td>
 
                     </tr>
                     <tr>
                         <td class="text-left ">Remaining Balance</td>
-                        <td class="text-right ">$@Model.BalanceRemaining.ToString("#,##0.00")</td>
+                        <td class="text-right ">@Model.BalanceRemaining.ToString("C")</td>
 
                     </tr>
                 </thead>
