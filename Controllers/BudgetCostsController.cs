@@ -172,13 +172,16 @@ namespace Alliance_for_Life.Controllers
             //Get proper Quarter for search
             var adminsearch = db.AdminCosts.Include(s => s.Subcontractor).Where(a => a.Month <= (Months)3);
             var partsearch = db.ParticipationServices.Include(s => s.Subcontractor).Where(a => a.Month <= (Months)3);
-               
+
             //Sets all of the data
             var budgetsearch = from s in db.BudgetCosts
-                               join a in db.AdminCosts on s.Region equals a.Region
-                               join b in db.ParticipationServices on s.Region equals b.Region
+                               join a in adminsearch on s.Region equals a.Region
+                               join b in partsearch on s.Region equals b.Region
                                where s.Year == a.Year && s.Year == b.Year
                                select s;
+
+            var departments = db.BudgetCosts.Include(d => d.AdminCost).Include(d => d.ParticipationCost);
+
 
             if (!String.IsNullOrEmpty(searchString) || !String.IsNullOrEmpty(yearsearch.ToString()))
             {

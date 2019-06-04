@@ -52,6 +52,10 @@
 
                 </th>
                 <th class="th-sm">
+                    Total Clients Served
+
+                </th>
+                <th class="th-sm">
                     Job or Educational Services
                 </th>
                 <th class="th-sm">
@@ -78,7 +82,7 @@
                 <th class="th-sm">
                     Edit
                 </th>
-        </thead>
+</thead>
 
         @foreach (var item in Model)
         {
@@ -104,6 +108,9 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.MA2Apercent)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TotOverallServed)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.ClientsJobEduServ)
@@ -163,6 +170,9 @@
                     Monthly A2A Clients
                 </th>
                 <th class="th-sm">
+                    Total Clients Served
+                </th>
+                <th class="th-sm">
                     Jobs or Education
                 </th>
                 <th class="th-sm">
@@ -189,10 +199,6 @@
                 <th class="th-sm">
                     Edit
                 </th>
-                <th>
-
-                </th>
-
 </thead>
 
         @foreach (var items in ViewBag.nonResidentialMIRs)
@@ -212,6 +218,9 @@
             </td>
             <td>
                 @items.MA2Apercent
+            </td>
+            <td>
+                @items.TotOverallServed
             </td>
             <td>
                 @items.ClientsJobEduServ
@@ -234,17 +243,13 @@
             <td>
                 @items.TotOtherClasses
             </td>
-
-            <td>
-                @items.TotOverallServed
-            </td>
             <td>
                 @Html.ActionLink("Details", "Details", new { id = items.Id })
             </td>
             <td>
-            <a href="@Url.Action("Edit", "NonResidentialMIRs", new { id = items.Id }, Request.Url.Scheme)">
-                <i style="font-size:16px; color:#3498DB" class="fa">&#xf044;</i>
-            </a>
+                <a href="@Url.Action("Edit", "NonResidentialMIRs", new { id = items.Id }, Request.Url.Scheme)">
+                    <i style="font-size:16px; color:#3498DB" class="fa">&#xf044;</i>
+                </a>
             </td>
 
         </tr>

@@ -20,11 +20,19 @@
         </dd>
 
         <dt>
+            Date form was submitted
+        </dt>
+
+        <dd>
+            @Model.SubmittedDate.ToShortDateString()
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.Month)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Month)
+            @Model.Month
         </dd>
 
         <dt>
@@ -35,9 +43,8 @@
             @Html.DisplayFor(model => model.Year)
         </dd>
 
-
         <dt>
-            @Html.DisplayNameFor(model => model.TotBedNights)
+            Client Bed Nights
         </dt>
 
         <dd>
@@ -45,7 +52,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.TotA2AEnrollment)
+            A2A Enrollment
         </dt>
 
         <dd>
@@ -53,7 +60,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.TotA2ABedNights)
+            Total A2A Bed Nights
         </dt>
 
         <dd>
@@ -61,15 +68,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.SubmittedDate)
-        </dt>
-
-        <dd>
-            @Model.SubmittedDate.ToShortDateString()
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.MA2Apercent)
+            Monthly A2A Clients Served
         </dt>
 
         <dd>
@@ -77,7 +76,15 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.ClientsJobEduServ)
+            Total Clients Served
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TotOverallServed)
+        </dd>
+
+        <dt>
+            Job or Educational Services
         </dt>
 
         <dd>
@@ -85,7 +92,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.ParticipatingFathers)
+            Participating Fathers
         </dt>
 
         <dd>
@@ -93,7 +100,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.TotEduClasses)
+            Prenatal & Parenting Classes Offered
         </dt>
 
         <dd>
@@ -101,7 +108,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.TotClientsinEduClasses)
+            Prenatal & Parenting Classes Attended
         </dt>
 
         <dd>
@@ -109,7 +116,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.TotCaseHrs)
+            Case Management Hours
         </dt>
 
         <dd>
@@ -117,7 +124,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.TotClientsCaseHrs)
+            Participants in Case Management
         </dt>
 
         <dd>
@@ -125,7 +132,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.TotOtherClasses)
+            Other Classes Offered
         </dt>
 
         <dd>
@@ -142,5 +149,7 @@
             <input type="submit" value="Delete" class="btn btn-danger" /> |
             @Html.ActionLink("Back to List", "Index")
         </div>
+        <br />
+        <br />
     }
 </div>

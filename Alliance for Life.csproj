@@ -244,7 +244,6 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InvoicesController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\MonthlyServicesController.cs" />
     <Compile Include="Controllers\NonResidentialMIRsController.cs" />
     <Compile Include="Controllers\ParticipationServiceController.cs" />
     <Compile Include="Controllers\QuarterlyStatesController.cs" />
@@ -282,10 +281,13 @@
     <Compile Include="Migrations\201906031455498_UPdateAdminAndPartClasseswithRegionProperties.Designer.cs">
       <DependentUpon>201906031455498_UPdateAdminAndPartClasseswithRegionProperties.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201906041528231_DeleteMonthlyServiceClassesControlersViews.cs" />
+    <Compile Include="Migrations\201906041528231_DeleteMonthlyServiceClassesControlersViews.Designer.cs">
+      <DependentUpon>201906041528231_DeleteMonthlyServiceClassesControlersViews.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AffiliateRegion.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
-    <Compile Include="Models\MonthlyServices.cs" />
     <Compile Include="Models\SearchData.cs" />
     <Compile Include="Controllers\SubContractorController.cs" />
     <Compile Include="Controllers\SurveysController.cs" />
@@ -783,12 +785,6 @@
     <Content Include="Views\ResidentialMIRs\Details.cshtml" />
     <Content Include="Views\ResidentialMIRs\Edit.cshtml" />
     <Content Include="Views\ResidentialMIRs\Index.cshtml" />
-    <Content Include="Views\MonthlyServices\CreateN.cshtml" />
-    <Content Include="Views\MonthlyServices\Delete.cshtml" />
-    <Content Include="Views\MonthlyServices\Details.cshtml" />
-    <Content Include="Views\MonthlyServices\Edit.cshtml" />
-    <Content Include="Views\MonthlyServices\Index.cshtml" />
-    <Content Include="Views\MonthlyServices\CreateR.cshtml" />
     <Content Include="Views\Role\AssignRoleToUser.cshtml" />
     <Content Include="Views\Account\Delete.cshtml" />
     <Content Include="Views\Account\Index.cshtml" />
@@ -833,6 +829,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201906031455498_UPdateAdminAndPartClasseswithRegionProperties.resx">
       <DependentUpon>201906031455498_UPdateAdminAndPartClasseswithRegionProperties.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906041528231_DeleteMonthlyServiceClassesControlersViews.resx">
+      <DependentUpon>201906041528231_DeleteMonthlyServiceClassesControlersViews.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

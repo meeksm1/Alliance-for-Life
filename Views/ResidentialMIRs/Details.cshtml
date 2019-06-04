@@ -19,6 +19,14 @@
         </dd>
 
         <dt>
+            Date form was submitted
+        </dt>
+
+        <dd>
+            @Model.SubmittedDate.ToShortDateString()
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.Month)
         </dt>
 
@@ -59,19 +67,19 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.SubmittedDate)
-        </dt>
-
-        <dd>
-            @Model.SubmittedDate.ToShortDateString()
-        </dd>
-
-        <dt>
             Monthly A2A Clients Served
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.MA2Apercent)
+        </dd>
+
+        <dt>
+            Total Clients Served
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TotOverallServed)
         </dd>
 
         <dt>
@@ -135,3 +143,5 @@
     @Html.ActionLink("Delete", "Delete", new { id = Model.Id })|
     @Html.ActionLink("Back to List", "Index")
 </p>
+<br />
+<br />

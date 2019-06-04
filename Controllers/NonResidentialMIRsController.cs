@@ -145,7 +145,7 @@ namespace Alliance_for_Life.Controllers
                     nonResidentialMIR.Id = Guid.NewGuid();
                     db.NonResidentialMIRs.Add(nonResidentialMIR);
                     db.SaveChanges();
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Index", "ResidentialMIRs");
                 }
             }
             var datelist = Enumerable.Range(System.DateTime.Now.Year - 4, 10).ToList();
@@ -189,7 +189,7 @@ namespace Alliance_for_Life.Controllers
                 nonResidentialMIR.SubmittedDate = DateTime.Now;
                 db.Entry(nonResidentialMIR).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "ResidentialMIRs");
             }
 
             var datelist = Enumerable.Range(System.DateTime.Now.Year - 4, 10).ToList();
@@ -229,7 +229,7 @@ namespace Alliance_for_Life.Controllers
 
             db.NonResidentialMIRs.Remove(nonResidentialMIR);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "ResidentialMIRs");
         }
 
         protected override void Dispose(bool disposing)
