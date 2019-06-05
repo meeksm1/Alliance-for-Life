@@ -88,7 +88,7 @@ $(function calcInvoiceAllocatedFunds() {
         var result = "";
 
         if (q !== "" && p !== "" && $.isNumeric(q) && $.isNumeric(p)) {
-            result = parseFloat(q) - parseFloat(p);
+            result = parseFloat(q) + parseFloat(p);
         }
         jQuery("#BalanceRemaining").val(result);
     });

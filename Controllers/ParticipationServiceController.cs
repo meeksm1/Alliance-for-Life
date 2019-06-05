@@ -25,7 +25,7 @@ namespace Alliance_for_Life.Controllers
                 var id = User.Identity.GetUserId();
                 var usersubid = db.Users.Find(id).SubcontractorId;
 
-                participationServices = from s in db.ParticipationServices
+                participationServices = from s in participationServices
                                         where usersubid == s.SubcontractorId
                                         select s;
             }

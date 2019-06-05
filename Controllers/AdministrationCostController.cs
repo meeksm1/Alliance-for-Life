@@ -32,7 +32,7 @@ namespace Alliance_for_Life.Controllers
                 var id = User.Identity.GetUserId();
                 var usersubid = db.Users.Find(id).SubcontractorId;
 
-                adminSearch = from s in db.AdminCosts
+                adminSearch = from s in adminSearch
                               where usersubid == s.SubcontractorId
                               select s;
             }

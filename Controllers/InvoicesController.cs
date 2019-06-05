@@ -219,7 +219,7 @@ namespace Alliance_for_Life.ReportControllers
             invoice.AdjustedAllocation = subcontractorbalance.FirstOrDefault().AllocatedAdjustments;
 
             //calculating the rest
-            invoice.BalanceRemaining = invoice.BeginningAllocation - invoice.AdjustedAllocation;
+            invoice.BalanceRemaining = invoice.BeginningAllocation + invoice.AdjustedAllocation;
             invoice.OrgName = db.SubContractors.Find(invoice.SubcontractorId).OrgName;
             db.Entry(invoice).State = EntityState.Modified;
             db.SaveChanges();

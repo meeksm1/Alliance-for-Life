@@ -72,7 +72,7 @@
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.AllocatedAdjustments)
-        @Html.TextBoxFor(m => m.AllocatedAdjustments, new { @class = "form-control" })
+        @Html.TextBoxFor(m => m.AllocatedAdjustments, new { @class = "form-control", type="number"})
         @Html.ValidationMessageFor(m => m.AllocatedAdjustments)
     </div>
     <div class="form-group">

@@ -46,11 +46,11 @@ namespace Alliance_for_Life.Controllers
                 var id = User.Identity.GetUserId();
                 var usersubid = db.Users.Find(id).SubcontractorId;
 
-                ressearch = from s in db.ResidentialMIRs
+                ressearch = from s in ressearch
                             where usersubid == s.SubcontractorId
                             select s;
 
-                nonresidental = from t in db.NonResidentialMIRs
+                nonresidental = from t in nonresidental
                                 where usersubid == t.SubcontractorId
                                 select t;
             }

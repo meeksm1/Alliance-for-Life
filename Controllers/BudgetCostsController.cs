@@ -171,8 +171,8 @@ namespace Alliance_for_Life.Controllers
             ViewBag.CurrentFilter = searchString;
 
             //Get proper Quarter for search
-            var adminsearch = db.AdminCosts.Include(s => s.Subcontractor).Where(a => a.Month <= (Months)3);
-            var partsearch = db.ParticipationServices.Include(s => s.Subcontractor).Where(a => a.Month <= (Months)3);
+            //var adminsearch = db.AdminCosts.Include(s => s.Subcontractor).Where(a => a.Month <= (Months)3);
+            //var partsearch = db.ParticipationServices.Include(s => s.Subcontractor).Where(a => a.Month <= (Months)3);
 
             //Sets all of the data
             var budgetsearch = from s in db.BudgetCosts
@@ -201,6 +201,7 @@ namespace Alliance_for_Life.Controllers
                 }
             }
 
+            budgetsearch = budgetsearch.OrderByDescending(m => m.budgetcosts.Year);
             //ViewBag.adminsearch = adminsearch.ToList();
             //ViewBag.partsearch = partsearch.ToList();
 
