@@ -9,6 +9,12 @@
 
 <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100">
     <tr>
+        @if (!User.IsInRole("Admin"))
+        {
+            <th>
+
+            </th>
+        }
         <th>
 
         </th>
@@ -70,65 +76,72 @@
 
     @foreach (var item in Model)
     {
-        <tr>
+    <tr>
+        @if (!User.IsInRole("Admin"))
+        {
             <td>
-                @Html.ActionLink("Details", "Details", new { id = item.PSId })
+                @Html.ActionLink("Edit", "Edit", new { id = item.PSId })
             </td>
-            <td>
-                @item.Subcontractor.OrgName
-            </td>
-            <td>
-                @item.Region
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Month)
-            </td>
-            <td>
-                @item.PTranspotation.ToString("C")
-            </td>
-            <td>
-                @item.PJobTrain.ToString("C")
-            </td>
-            <td>
-                @item.PEducationAssistance.ToString("C")
-            </td>
-            <td>
-                @item.PResidentialCare.ToString("C")
-            </td>
-            <td>
-                @item.PUtilities.ToString("C")
-            </td>
-            <td>
-                @item.PHousingEmergency.ToString("C")
-            </td>
-            <td>
-                @item.PHousingAssistance.ToString("C")
-            </td>
-            <td>
-                @item.PChildCare.ToString("C")
-            </td>
-            <td>
-                @item.PClothing.ToString("C")
-            </td>
-            <td>
-                @item.PFood.ToString("C")
-            </td>
-            <td>
-                @item.PSupplies.ToString("C")
-            </td>
-            <td>
-                @item.POther.ToString("C")
-            </td>
-            <td>
-                @item.POther2.ToString("C")
-            </td>
-            <td>
-                @item.POther3.ToString("C")
-            </td>
-            <td>
-                @item.PTotals.ToString("C")
-            </td>
-        </tr>
+        }
+
+        <td>
+            @Html.ActionLink("Details", "Details", new { id = item.PSId })
+        </td>
+        <td>
+            @item.Subcontractor.OrgName
+        </td>
+        <td>
+            @item.Region
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Month)
+        </td>
+        <td>
+            @item.PTranspotation.ToString("C")
+        </td>
+        <td>
+            @item.PJobTrain.ToString("C")
+        </td>
+        <td>
+            @item.PEducationAssistance.ToString("C")
+        </td>
+        <td>
+            @item.PResidentialCare.ToString("C")
+        </td>
+        <td>
+            @item.PUtilities.ToString("C")
+        </td>
+        <td>
+            @item.PHousingEmergency.ToString("C")
+        </td>
+        <td>
+            @item.PHousingAssistance.ToString("C")
+        </td>
+        <td>
+            @item.PChildCare.ToString("C")
+        </td>
+        <td>
+            @item.PClothing.ToString("C")
+        </td>
+        <td>
+            @item.PFood.ToString("C")
+        </td>
+        <td>
+            @item.PSupplies.ToString("C")
+        </td>
+        <td>
+            @item.POther.ToString("C")
+        </td>
+        <td>
+            @item.POther2.ToString("C")
+        </td>
+        <td>
+            @item.POther3.ToString("C")
+        </td>
+        <td>
+            @item.PTotals.ToString("C")
+        </td>
+    </tr>
     }
 </table>
 

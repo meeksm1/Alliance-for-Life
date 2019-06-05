@@ -203,9 +203,12 @@
   </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.AdminCostId }) |
-    @Html.ActionLink("Delete", "Delete", new { id = Model.AdminCostId })|
+    @if (!User.IsInRole("Admin"))
+    {
+        @Html.ActionLink("Delete |", "Delete", new { id = Model.AdminCostId });
+}
     @Html.ActionLink("Back to List", "Index")
 </p>
-
+<br />
+<br />
 

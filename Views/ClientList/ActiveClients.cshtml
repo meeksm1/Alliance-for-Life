@@ -78,7 +78,7 @@
         @Html.DropDownList("pgSize", new SelectList(new[] { 10, 20, 30, 40, 50 }), htmlAttributes: new { @class = "", onchange = "this.form.submit()" })
     </p>
 
-    @using (Html.BeginForm("ExportAllActive", "ClientList", FormMethod.Post))
+    @using (Html.BeginForm("ExportActive", "ClientList", FormMethod.Post))
     {
         <input type="submit" value="Export to Excel" class="btn btn-primary" />
     }

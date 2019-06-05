@@ -125,7 +125,7 @@ namespace Alliance_for_Life.Controllers
 
             var datelist = Enumerable.Range(System.DateTime.Now.Year - 4, 10).ToList();
             ViewBag.Year = new SelectList(datelist);
-            ViewBag.SubcontractorId = new SelectList(db.SubContractors, "SubcontractorId", "OrgName", participationService.SubcontractorId);
+            ViewBag.SubcontractorId = new SelectList(db.SubContractors.Where(a => a.SubcontractorId == participationService.SubcontractorId), "SubcontractorId", "OrgName");
             return View(participationService);
         }
 

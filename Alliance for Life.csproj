@@ -678,6 +678,8 @@
     <None Include="Scripts\_references.js" />
     <Content Include="Views\BudgetCosts\Create.cshtml" />
     <Content Include="Views\BudgetCosts\Details.cshtml" />
+    <Content Include="Views\ClientList\ActiveClients.cshtml" />
+    <Content Include="Views\ClientList\NonActiveClients.cshtml" />
     <Content Include="Views\Role\Create.cshtml" />
     <Content Include="Views\Role\Index.cshtml" />
     <Content Include="Web.config">
@@ -728,8 +730,6 @@
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\ContractorForm\Create.cshtml" />
-    <Content Include="Views\ClientList\ActiveClients.cshtml" />
-    <Content Include="Views\ClientList\NonActiveClients.cshtml" />
     <Content Include="Views\ContractorForm\Reports.cshtml" />
     <Content Include="Views\AflForm\Create.cshtml" />
     <Content Include="Views\Surveys\Create.cshtml" />

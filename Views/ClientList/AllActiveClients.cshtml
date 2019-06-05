@@ -34,9 +34,6 @@
             <th>
                 Birthday
             </th>
-            <th>
-                Edit
-            </th>
         </tr>
 
         @foreach (var item in Model)
@@ -60,11 +57,6 @@
 
                 <td>
                     <div class="due">@item.DOB.ToShortDateString()</div>
-                </td>
-                <td>
-                    <a href="@Url.Action("Edit", "ClientList", new { id = item.Id }, Request.Url.Scheme)">
-                        <i style="font-size:16px; color:#3498DB" class="fa">&#xf044;</i>
-                    </a>
                 </td>
             </tr>
         }

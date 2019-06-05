@@ -81,7 +81,7 @@ namespace Alliance_for_Life.Controllers
             return RedirectToAction("Create", "ContractorForm");
         }
 
-        // GET: ClientList/Details/5
+       // GET: ClientList/Details/5
         public ActionResult Details(Guid? id)
         {
             if (id == null)
@@ -120,8 +120,23 @@ namespace Alliance_for_Life.Controllers
             };
 
             db.SaveChanges();
+            if (!User.IsInRole("Admin"))
+            {
+                if (client.Active)
+                {
+                    return RedirectToAction("ActiveClients", "ClientList");
+                }
+                return RedirectToAction("NonActiveClients", "ClientList");
+            }
+            else
+            {
+                if (client.Active)
+                {
+                     return RedirectToAction("AllActiveClients", "ClientList");
+                }
+                return RedirectToAction("AllNonActiveClients", "ClientList");
+            }
 
-            return RedirectToAction("AllActiveClients", "ClientList");
         }
 
         [Authorize]
@@ -132,7 +147,7 @@ namespace Alliance_for_Life.Controllers
             {
                 Heading = "Edit Client Information",
                 Id = client.Id,
-                Subcontractors = db.SubContractors.Where(s => s.Active).ToList(),
+                Subcontractors = db.SubContractors.ToList().Where(s => s.SubcontractorId == client.SubcontractorId).ToList(),
                 FirstName = client.FirstName,
                 LastName = client.LastName,
                 DOB = client.DOB,
@@ -157,15 +172,15 @@ namespace Alliance_for_Life.Controllers
             ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
             ViewBag.LastNameSortParm = sortOrder == "LastName" ? "last_desc" : "LastName";
 
-            //looking for the searchstring
+           // looking for the searchstring
             if (searchString != null)
-            {
-                page = 1;
-            }
-            else
-            {
-                searchString = currentFilter;
-            }
+                {
+                    page = 1;
+                }
+                else
+                {
+                    searchString = currentFilter;
+                }
             ViewBag.CurrentFilter = searchString;
 
             var clients = db.ClientLists.Include(s => s.Subcontractor)
@@ -176,7 +191,7 @@ namespace Alliance_for_Life.Controllers
                 var id = User.Identity.GetUserId();
                 var usersubid = db.Users.Find(id).SubcontractorId;
 
-                clients = from s in db.ClientLists
+                clients = from s in clients
                           where usersubid == s.SubcontractorId
                           select s;
             }
@@ -398,13 +413,13 @@ namespace Alliance_for_Life.Controllers
 
             //looking for the searchstring
             if (searchString != null)
-            {
-                page = 1;
-            }
-            else
-            {
-                searchString = currentFilter;
-            }
+                {
+                    page = 1;
+                }
+                else
+                {
+                    searchString = currentFilter;
+                }
             ViewBag.CurrentFilter = searchString;
 
             var clients = db.ClientLists.Include(s => s.Subcontractor)
@@ -526,7 +541,9 @@ namespace Alliance_for_Life.Controllers
                 foreach (var items in usersubid)
                 {
                     clients = db.ClientLists.Include(s => s.Subcontractor)
-            .Where(s => s.SubcontractorId == items);
+                                .Where(s => s.SubcontractorId == items)
+                                 .Where(s => s.Active == false);
+                    ;
                 }
 
             }

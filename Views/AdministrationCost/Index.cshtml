@@ -17,6 +17,13 @@
 
 <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100">
     <tr>
+        @if (!User.IsInRole("Admin"))
+        {
+            <th>
+
+            </th>
+        }
+
         <th>
 
         </th>
@@ -95,6 +102,13 @@
     @foreach (var item in Model)
     {
     <tr>
+        @if (!User.IsInRole("Admin"))
+        {
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.AdminCostId })
+            </td>
+        }
+
         <td>
             @Html.ActionLink("Details", "Details", new { id = item.AdminCostId })
         </td>

@@ -34,9 +34,6 @@
             <th>
                 Birthday
             </th>
-            <th>
-                Edit
-            </th>
         </tr>
 
         @foreach (var item in Model)
@@ -61,11 +58,6 @@
                 <td>
                     <div class="due">@item.DOB.ToShortDateString()</div>
                 </td>
-                <td>
-                    <a href="@Url.Action("Edit", "ClientList", new { id = item.Id }, Request.Url.Scheme)">
-                        <i style="font-size:16px; color:#3498DB" class="fa">&#xf044;</i>
-                    </a>
-                </td>
             </tr>
         }
         <tr></tr>
@@ -78,7 +70,7 @@
         @Html.DropDownList("pgSize", new SelectList(new[] { 10, 20, 30, 40, 50 }), htmlAttributes: new { @class = "", onchange = "this.form.submit()" })
     </p>
 
-    @using (Html.BeginForm("ExportAllActive", "ClientList", FormMethod.Post))
+    @using (Html.BeginForm("ExportAllNonActive", "ClientList", FormMethod.Post))
     {
         <input type="submit" value="Export to Excel" class="btn btn-primary" />
     }

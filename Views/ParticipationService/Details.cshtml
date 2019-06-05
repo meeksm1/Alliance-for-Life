@@ -163,7 +163,11 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.PSId }) |
-    @Html.ActionLink("Delete", "Delete", new { id = Model.PSId })|
+    @if (!User.IsInRole("Admin"))
+    {
+        @Html.ActionLink("Delete |", "Delete", new { id = Model.PSId });
+    }
     @Html.ActionLink("Back to List", "Index")
 </p>
+<br />
+<br />
