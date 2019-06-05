@@ -209,7 +209,7 @@ namespace Alliance_for_Life.Controllers
             var datelist = Enumerable.Range(System.DateTime.Now.Year - 4, 10).ToList();
 
             ViewBag.Year = new SelectList(datelist);
-            ViewBag.SubcontractorId = new SelectList(db.SubContractors, "SubcontractorId", "OrgName");
+            ViewBag.SubcontractorId = new SelectList(db.SubContractors, "SubcontractorId", "OrgName", residentialMIR.SubcontractorId);
 
             return View(residentialMIR);
         }

@@ -7,6 +7,7 @@ namespace Alliance_for_Life.Models
     {
         [Key]
         public System.Guid AdminCostId { get; set; }
+
         public double ASalandWages { get; set; }
 
         public double ABackgroundCheck { get; set; }
@@ -54,9 +55,6 @@ namespace Alliance_for_Life.Models
         public double ATotCosts { get; set; }
 
         public DateTime SubmittedDate { get; set; }
-
-        public string OrgName { get; set; }
-
 
 
         //Navigation Properties

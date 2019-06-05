@@ -264,8 +264,6 @@ namespace Alliance_for_Life.Controllers
 
         public ActionResult ActiveClients(string sortOrder, string searchString, string currentFilter, int? page, string pgSize)
         {
-
-
             int pageSize = Convert.ToInt16(pgSize);
             ViewBag.CurrentSort = sortOrder;
 
@@ -282,9 +280,8 @@ namespace Alliance_for_Life.Controllers
             {
                 searchString = currentFilter;
             }
+
             ViewBag.CurrentFilter = searchString;
-
-
 
             var clients = db.ClientLists.Include(s => s.Subcontractor)
                 .Where(s => s.SubcontractorId == s.Subcontractor.SubcontractorId)
@@ -301,8 +298,8 @@ namespace Alliance_for_Life.Controllers
                 foreach (var items in usersubid)
                 {
                     clients = db.ClientLists.Include(s => s.Subcontractor)
-            .Where(s => s.SubcontractorId == items)
-            .Where(s => s.Active);
+                                .Where(s => s.SubcontractorId == items)
+                                .Where(s => s.Active);
                 }
 
             }

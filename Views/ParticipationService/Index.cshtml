@@ -75,7 +75,7 @@
                 @Html.ActionLink("Details", "Details", new { id = item.PSId })
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Subcontractor.OrgName)
+                @item.Subcontractor.OrgName
             </td>
             <td>
                 @item.Region

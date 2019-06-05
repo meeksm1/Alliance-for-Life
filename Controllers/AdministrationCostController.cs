@@ -23,7 +23,8 @@ namespace Alliance_for_Life.Controllers
             ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
 
             var adminSearch = db.AdminCosts
-            .Include(a => a.Subcontractor).Where(a => a.SubcontractorId == a.Subcontractor.SubcontractorId);
+            .Include(a => a.Subcontractor)
+            .Where(a => a.SubcontractorId == a.Subcontractor.SubcontractorId);
 
 
             if (!User.IsInRole("Admin"))
@@ -71,9 +72,9 @@ namespace Alliance_for_Life.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             AdminCosts adminCosts = db.AdminCosts
-
                 .Include(a => a.Subcontractor)
                 .SingleOrDefault(a => a.AdminCostId == id);
+
             if (adminCosts == null)
             {
                 return HttpNotFound();
