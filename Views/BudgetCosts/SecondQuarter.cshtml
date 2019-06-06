@@ -25,36 +25,132 @@
                     </div>
                 </div>
             </div>
-
         }
-<br />
+        <br />
     </form>
     <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100">
         <thead>
             <tr style="font-size:16px">
+                <th></th>
                 <th class="th-sm">
                     @Html.ActionLink("Year", "Index", new { sortOrder = ViewBag.YearSortParm })
 
                 </th>
                 <th class="th-sm">
-                    @Html.ActionLink("Region", "Index", new { sortOrder = ViewBag.RegionSortParm })
+                    @Html.ActionLink("Region", "Index", new { sortOrder = ViewBag.RegionSortParm })&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
+                </th>
+                <th class="th-sm">
+                    Salaries or Wages
+                </th>
+                <th class="th-sm">
+                    Employee Benefits
+                </th>
+                <th class="th-sm">
+                    Employee Travel
+                </th>
+                <th class="th-sm">
+                    Employee Training
+                </th>
+                <th class="th-sm">
+                    Office Rent
+                </th>
+                <th class="th-sm">
+                    Office Utilities
+                </th>
+                <th class="th-sm">
+                    Facility Insurance
+                </th>
+                <th class="th-sm">
+                    Office Supplies
+                </th>
+                <th class="th-sm">
+                    Equipment
+                </th>
+                <th class="th-sm">
+                    Office Communications
+                </th>
+                <th class="th-sm">
+                    Office Maintenance
+                </th>
+                <th class="th-sm">
+                    Consulting Fees
+                </th>
+                <th class="th-sm">
+                    EFT Fees
+                </th>
+                <th class="th-sm">
+                    Background Check
+                </th>
+                <th class="th-sm">
+                    Other
+                </th>
+                <th class="th-sm">
+                    Janitorial Services
+                </th>
+                <th class="th-sm">
+                    Depreciation
+                </th>
+                <th class="th-sm">
+                    Technical Support
+                </th>
+                <th class="th-sm">
+                    Security Services
                 </th>
                 <th class="th-sm">
                     Admininstration Totals
-
                 </th>
                 <th class="th-sm">
                     Administration Fee
-
+                </th>
+                <th></th>
+                <th class="th-sm">
+                    Transportation
+                </th>
+                <th class="th-sm">
+                    Job Training
+                </th>
+                <th class="th-sm">
+                    Tuition Assistance
+                </th>
+                <th class="th-sm">
+                    Contracted Residential Care
+                </th>
+                <th class="th-sm">
+                    Utility Assistance
+                </th>
+                <th class="th-sm">
+                    Emergency Shelter
+                </th>
+                <th class="th-sm">
+                    Housing Assistance
+                </th>
+                <th class="th-sm">
+                    Childcare
+                </th>
+                <th class="th-sm">
+                    Clothing
+                </th>
+                <th class="th-sm">
+                    Food
+                </th>
+                <th class="th-sm">
+                    Supplies
+                </th>
+                <th class="th-sm">
+                    RFO Costs
+                </th>
+                <th class="th-sm">
+                    Other 1
+                </th>
+                <th class="th-sm">
+                    Other 2
                 </th>
                 <th class="th-sm">
                     Participation Total Costs
-
                 </th>
                 <th class="th-sm">
                     Admin and Participation Total Costs
-
                 </th>
                 <th class="th-sm">
 
@@ -64,34 +160,684 @@
             @foreach (var item in Model)
             {
                 <tr>
-
+                    <td>Budgeted Amounts</td>
                     <td>
-                        @item.Year
-                    </td>
-                    <td>
-                        @item.Region.GetDisplayName()
-                    </td>
-                    <td>
-                        @item.ATotCosts.ToString("C")
-                    </td>
-                    <td>
-                        @item.AdminFee.ToString("C")
+                        @item.budgetcosts.Year
                     </td>
 
                     <td>
-                        @item.BTotal.ToString("C")
+                        @item.budgetcosts.Region.GetDisplayName()
                     </td>
                     <td>
-                        @item.Maxtot.ToString("C")
+                        @item.budgetcosts.ASalandWages.ToString("c")
                     </td>
                     <td>
-                        <form action="/BudgetCosts/Export" method="post">
-                            <button style='font-size:16px; background:none; border:none' value="@item.BudgetInvoiceId" name="BudgetInvoiceId" id="@item.BudgetInvoiceId"><i class='fa fa-file' style="font-size:16px;color:#2ECC71"></i></button>
-                            |
-                            <a href="@Url.Action("Details", "BudgetCosts", new { id = item.BudgetInvoiceId }, Request.Url.Scheme)">
-                                <i style="font-size:16px; color:#3498DB" class="fa">&#xf06e;</i>
-                            </a>
-                        </form>
+                        @item.budgetcosts.AEmpBenefits.ToString("c")
+                    </td>
+                    <td>
+                        @item.budgetcosts.AEmpTravel.ToString("c")
+                    </td>
+                    <td>
+                        @item.budgetcosts.AEmpTraining.ToString("c")
+                    </td>
+                    <td>
+                        @item.budgetcosts.AOfficeRent.ToString("c")
+                    </td>
+                    <td>
+                        @item.budgetcosts.AOfficeUtilities.ToString("c")
+                    </td>
+                    <td>
+                        @item.budgetcosts.AFacilityIns.ToString("c")
+                    </td>
+                    <td>
+                        @item.budgetcosts.AOfficeSupplies.ToString("c")
+                    </td>
+                    <td>
+                        @item.budgetcosts.AEquipment.ToString("c")
+                    </td>
+                    <td>
+                        @item.budgetcosts.AOfficeCommunications.ToString("c")
+                    </td>
+                    <td>
+                        @item.budgetcosts.AOfficeMaint.ToString("c")
+                    </td>
+                    <td>
+                        @item.budgetcosts.AConsulting.ToString("c")
+                    </td>
+                    <td>
+                        @item.budgetcosts.SubConPayCost.ToString("c")
+                    </td>
+                    <td>
+                        @item.budgetcosts.BackgrounCheck.ToString("c")
+                    </td>
+                    <td>
+                        @item.budgetcosts.Other.ToString("c")
+                    </td>
+                    <td>
+                        @item.budgetcosts.AJanitorServices.ToString("c")
+                    </td>
+                    <td>
+                        @item.budgetcosts.ADepreciation.ToString("c")
+                    </td>
+                    <td>
+                        @item.budgetcosts.ATechSupport.ToString("c")
+                    </td>
+                    <td>
+                        @item.budgetcosts.ASecurityServices.ToString("c")
+                    </td>
+                    <td>
+                        @item.budgetcosts.ATotCosts.ToString("C")
+                    </td>
+                    <td>
+                        @item.budgetcosts.AdminFee.ToString("C")
+                    </td>
+                    <td></td>
+                    <td>
+                        @item.budgetcosts.Trasportation.ToString("c")
+                    </td>
+                    <td>
+                        @item.budgetcosts.JobTraining.ToString("c")
+                    </td>
+                    <td>
+                        @item.budgetcosts.TuitionAssistance.ToString("c")
+                    </td>
+                    <td>
+                        @item.budgetcosts.ContractedResidential.ToString("c")
+                    </td>
+                    <td>
+                        @item.budgetcosts.UtilityAssistance.ToString("c")
+                    </td>
+                    <td>
+                        @item.budgetcosts.EmergencyShelter.ToString("c")
+                    </td>
+                    <td>
+                        @item.budgetcosts.HousingAssistance.ToString("c")
+                    </td>
+                    <td>
+                        @item.budgetcosts.Childcare.ToString("c")
+                    </td>
+                    <td>
+                        @item.budgetcosts.Clothing.ToString("c")
+                    </td>
+                    <td>
+                        @item.budgetcosts.Food.ToString("c")
+                    </td>
+                    <td>
+                        @item.budgetcosts.Supplies.ToString("c")
+                    </td>
+                    <td>
+                        @item.budgetcosts.RFO.ToString("c")
+                    </td>
+                    <td>
+                        @item.budgetcosts.RFO.ToString("c")
+                    </td>
+                    <td>
+                        @item.budgetcosts.RFO.ToString("c")
+                    </td>
+                    <td>
+                        @item.budgetcosts.BTotal.ToString("C")
+                    </td>
+                    <td>
+                        @item.budgetcosts.Maxtot.ToString("C")
+                    </td>
+                </tr>
+
+                if (item.admincost.AdminCostId != Guid.Empty || item.particost.PSId != Guid.Empty)
+                {
+                    <tr>
+                        <td>Admin Cost</td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            @item.admincost.ASalandWages.ToString("c")
+                        </td>
+                        <td>
+                            @item.admincost.AEmpBenefits.ToString("c")
+                        </td>
+                        <td>
+                            @item.admincost.AEmpTravel.ToString("c")
+                        </td>
+                        <td>
+                            @item.admincost.AEmpTraining.ToString("c")
+                        </td>
+                        <td>
+                            @item.admincost.AOfficeRent.ToString("c")
+                        </td>
+                        <td>
+                            @item.admincost.AOfficeUtilities.ToString("c")
+                        </td>
+                        <td>
+                            @item.admincost.AFacilityIns.ToString("c")
+                        </td>
+                        <td>
+                            @item.admincost.AOfficeSupplies.ToString("c")
+                        </td>
+                        <td>
+                            @item.admincost.AEquipment.ToString("c")
+                        </td>
+                        <td>
+                            @item.admincost.AOfficeCommunications.ToString("c")
+                        </td>
+                        <td>
+                            @item.admincost.AOfficeMaint.ToString("c")
+                        </td>
+                        <td>
+                            @item.admincost.AConsulting.ToString("c")
+                        </td>
+                        <td>
+                            @item.admincost.AOther.ToString("c")
+                        </td>
+                        <td>
+                            @item.admincost.AOther2.ToString("c")
+                        </td>
+                        <td>
+                            @item.admincost.AOther3.ToString("c")
+                        </td>
+                        <td>
+                            @item.admincost.AJanitorServices.ToString("c")
+                        </td>
+                        <td>
+                            @item.admincost.ADepreciation.ToString("c")
+                        </td>
+                        <td>
+                            @item.admincost.ATechSupport.ToString("c")
+                        </td>
+                        <td>
+                            @item.admincost.ASecurityServices.ToString("c")
+                        </td>
+                        <td>
+                            @item.admincost.ATotCosts.ToString("C")
+                        </td>
+                        <td></td>
+
+                        <td>Participation Amounts</td>
+                        <td>
+                            @item.particost.PTranspotation.ToString("c")
+                        </td>
+                        <td>
+                            @item.particost.PJobTrain.ToString("c")
+                        </td>
+                        <td>
+                            @item.particost.PEducationAssistance.ToString("c")
+                        </td>
+                        <td>
+                            @item.particost.PResidentialCare.ToString("c")
+                        </td>
+                        <td>
+                            @item.particost.PUtilities.ToString("c")
+                        </td>
+                        <td>
+                            @item.particost.PHousingEmergency.ToString("c")
+                        </td>
+                        <td>
+                            @item.particost.PHousingAssistance.ToString("c")
+                        </td>
+                        <td>
+                            @item.particost.PChildCare.ToString("c")
+                        </td>
+                        <td>
+                            @item.particost.PClothing.ToString("c")
+                        </td>
+                        <td>
+                            @item.particost.PFood.ToString("c")
+                        </td>
+                        <td>
+                            @item.particost.PSupplies.ToString("c")
+                        </td>
+                        <td>
+                            @item.particost.POther.ToString("c")
+                        </td>
+                        <td>
+                            @item.particost.POther2.ToString("C")
+                        </td>
+                        <td>
+                            @item.particost.POther3.ToString("C")
+                        </td>
+                        <td>
+                            @item.particost.PTotals.ToString("C")
+                        </td>
+                    </tr>
+
+
+                }
+
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>
+                        @if (item.budgetcosts.ASalandWages - Model.Sum(a => a.admincost.ASalandWages) < 0)
+                        {
+                            <div style="color: red">
+                                @Math.Round(@item.budgetcosts.ASalandWages - @Model.Sum(a => a.admincost.ASalandWages)).ToString("C")
+                            </div>
+                        }
+                        else
+                        {
+                            @Math.Round(@item.budgetcosts.ASalandWages - @Model.Sum(a => a.admincost.ASalandWages)).ToString("C")
+
+                        }
+                    </td>
+                    <td>
+                        @if (item.budgetcosts.AEmpBenefits - Model.Sum(a => a.admincost.AEmpBenefits) < 0)
+                        {
+                            <div style="color: red">
+                                @Math.Round(@item.budgetcosts.AEmpBenefits - @Model.Sum(a => a.admincost.AEmpBenefits)).ToString("C")
+                            </div>
+                        }
+                        else
+                        {
+                            @Math.Round(@item.budgetcosts.AEmpBenefits - @Model.Sum(a => a.admincost.AEmpBenefits)).ToString("C")
+                        }
+                    </td>
+                    <td>
+                        @if (item.budgetcosts.AEmpTravel - @Model.Sum(a => a.admincost.AEmpTravel) < 0)
+                        {
+                            <div style="color: red">
+                                @Math.Round(@item.budgetcosts.AEmpTravel - @Model.Sum(a => a.admincost.AEmpTravel)).ToString("C")
+                            </div>
+                        }
+                        else
+                        {
+                            @Math.Round(@item.budgetcosts.AEmpTravel - @Model.Sum(a => a.admincost.AEmpTravel)).ToString("C")
+                        }
+                    </td>
+                    <td>
+                        @if (item.budgetcosts.AEmpTraining - Model.Sum(a => a.admincost.AEmpTraining) < 0)
+                        {
+                            <div style="color: red">
+                                @Math.Round(@item.budgetcosts.AEmpTraining - @Model.Sum(a => a.admincost.AEmpTraining)).ToString("C")
+                            </div>
+                        }
+                        else
+                        {
+                            @Math.Round(@item.budgetcosts.AEmpTraining - @Model.Sum(a => a.admincost.AEmpTraining)).ToString("C")
+                        }
+                    </td>
+                    <td>
+                        @if (item.budgetcosts.AOfficeRent - Model.Sum(a => a.admincost.AOfficeRent) < 0)
+                        {
+                            <div style="color: red">
+                                @Math.Round(@item.budgetcosts.AOfficeRent - @Model.Sum(a => a.admincost.AOfficeRent)).ToString("C")
+                            </div>
+                        }
+                        else
+                        {
+                            @Math.Round(@item.budgetcosts.AOfficeRent - @Model.Sum(a => a.admincost.AOfficeRent)).ToString("C")
+                        }
+                    </td>
+                    <td>
+                        @if (item.budgetcosts.AOfficeUtilities - Model.Sum(a => a.admincost.AOfficeUtilities) < 0)
+                        {
+                            <div style="color: red">
+                                @Math.Round(@item.budgetcosts.AOfficeUtilities - @Model.Sum(a => a.admincost.AOfficeUtilities)).ToString("C")
+                            </div>
+                        }
+                        else
+                        {
+                            @Math.Round(@item.budgetcosts.AOfficeUtilities - @Model.Sum(a => a.admincost.AOfficeUtilities)).ToString("C")
+                        }
+                    </td>
+                    <td>
+                        @if (item.budgetcosts.AFacilityIns - Model.Sum(a => a.admincost.AFacilityIns) < 0)
+                        {
+                            <div style="color: red">
+                                @Math.Round(@item.budgetcosts.AFacilityIns - @Model.Sum(a => a.admincost.AFacilityIns)).ToString("C")
+                            </div>
+                        }
+                        else
+                        {
+                            @Math.Round(@item.budgetcosts.AFacilityIns - @Model.Sum(a => a.admincost.AFacilityIns)).ToString("C")
+                        }
+                    </td>
+                    <td>
+                        @if (item.budgetcosts.AOfficeSupplies - Model.Sum(a => a.admincost.AOfficeSupplies) < 0)
+                        {
+                            <div style="color: red">
+                                @Math.Round(@item.budgetcosts.AOfficeSupplies - @Model.Sum(a => a.admincost.AOfficeSupplies)).ToString("C")
+                            </div>
+                        }
+                        else
+                        {
+                            @Math.Round(@item.budgetcosts.AOfficeSupplies - @Model.Sum(a => a.admincost.AOfficeSupplies)).ToString("C")
+                        }
+                    </td>
+                    <td>
+                        @if (item.budgetcosts.AEquipment - Model.Sum(a => a.admincost.AEquipment) < 0)
+                        {
+                            <div style="color: red">
+                                @Math.Round(@item.budgetcosts.AEquipment - @Model.Sum(a => a.admincost.AEquipment)).ToString("C")
+                            </div>
+                        }
+                        else
+                        {
+                            @Math.Round(@item.budgetcosts.AEquipment - @Model.Sum(a => a.admincost.AEquipment)).ToString("C")
+                        }
+                    </td>
+                    <td>
+                        @if (item.budgetcosts.AOfficeCommunications - Model.Sum(a => a.admincost.AOfficeCommunications) < 0)
+                        {
+                            <div style="color: red">
+                                @Math.Round(@item.budgetcosts.AOfficeCommunications - @Model.Sum(a => a.admincost.AOfficeCommunications)).ToString("C")
+                            </div>
+                        }
+                        else
+                        {
+                            @Math.Round(@item.budgetcosts.AOfficeCommunications - @Model.Sum(a => a.admincost.AOfficeCommunications)).ToString("C")
+                        }
+                    </td>
+                    <td>
+                        @if (item.budgetcosts.AOfficeMaint - Model.Sum(a => a.admincost.AOfficeMaint) < 0)
+                        {
+                            <div style="color: red">
+                                @Math.Round(@item.budgetcosts.AOfficeMaint - @Model.Sum(a => a.admincost.AOfficeMaint)).ToString("C")
+                            </div>
+                        }
+                        else
+                        {
+                            @Math.Round(@item.budgetcosts.AOfficeMaint - @Model.Sum(a => a.admincost.AOfficeMaint)).ToString("C")
+                        }
+                    </td>
+                    <td>
+                        @if (item.budgetcosts.AConsulting - @Model.Sum(a => a.admincost.AConsulting) < 0)
+                        {
+                            <div style="color: red">
+                                @Math.Round(@item.budgetcosts.AConsulting - @Model.Sum(a => a.admincost.AConsulting)).ToString("C")
+                            </div>
+                        }
+                        else
+                        {
+                            @Math.Round(@item.budgetcosts.AConsulting - @Model.Sum(a => a.admincost.AConsulting)).ToString("C")
+                        }
+                    </td>
+                    <td>
+                        @if (item.budgetcosts.SubConPayCost - @Model.Sum(a => a.admincost.AOther2) < 0)
+                        {
+                            <div style="color: red">
+                                @Math.Round(@item.budgetcosts.SubConPayCost - @Model.Sum(a => a.admincost.AOther2)).ToString("C")
+                            </div>
+                        }
+                        else
+                        {
+                            @Math.Round(@item.budgetcosts.SubConPayCost - @Model.Sum(a => a.admincost.AOther2)).ToString("C")
+                        }
+                    </td>
+                    <td>
+                        @if (item.budgetcosts.BackgrounCheck - @Model.Sum(a => a.admincost.AOther3) < 0)
+                        {
+                            <div style="color: red">
+                                @Math.Round(@item.budgetcosts.BackgrounCheck - @Model.Sum(a => a.admincost.AOther3)).ToString("C")
+                            </div>
+                        }
+                        else
+                        {
+                            @Math.Round(@item.budgetcosts.BackgrounCheck - @Model.Sum(a => a.admincost.AOther3)).ToString("C")
+                        }
+                    </td>
+                    <td>
+                        @if (item.budgetcosts.Other - @Model.Sum(a => a.admincost.AOther) < 0)
+                        {
+                            <div style="color: red">
+                                @Math.Round(@item.budgetcosts.Other - @Model.Sum(a => a.admincost.AOther)).ToString("C")
+                            </div>
+                        }
+                        else
+                        {
+                            @Math.Round(@item.budgetcosts.Other - @Model.Sum(a => a.admincost.AOther)).ToString("C")
+                        }
+                    </td>
+                    <td>
+                        @if (item.budgetcosts.AJanitorServices - Model.Sum(a => a.admincost.AJanitorServices) < 0)
+                        {
+                            <div style="color: red">
+                                @Math.Round(@item.budgetcosts.AJanitorServices - @Model.Sum(a => a.admincost.AJanitorServices)).ToString("C")
+                            </div>
+                        }
+                        else
+                        {
+                            @Math.Round(@item.budgetcosts.AJanitorServices - @Model.Sum(a => a.admincost.AJanitorServices)).ToString("C")
+                        }
+                    </td>
+                    <td>
+                        @if (item.budgetcosts.ADepreciation - @Model.Sum(a => a.admincost.ADepreciation) < 0)
+                        {
+                            <div style="color: red">
+                                @Math.Round(@item.budgetcosts.ADepreciation - @Model.Sum(a => a.admincost.ADepreciation)).ToString("C")
+                            </div>
+                        }
+                        else
+                        {
+                            @Math.Round(@item.budgetcosts.ADepreciation - @Model.Sum(a => a.admincost.ADepreciation)).ToString("C")
+                        }
+                    </td>
+                    <td>
+                        @if (item.budgetcosts.ATechSupport - @Model.Sum(a => a.admincost.ATechSupport) < 0)
+                        {
+                            <div style="color: red">
+                                @Math.Round(@item.budgetcosts.ATechSupport - @Model.Sum(a => a.admincost.ATechSupport)).ToString("C")
+                            </div>
+                        }
+                        else
+                        {
+                            @Math.Round(@item.budgetcosts.ATechSupport - @Model.Sum(a => a.admincost.ATechSupport)).ToString("C")
+                        }
+                    </td>
+                    <td>
+                        @if (item.budgetcosts.ASecurityServices - @Model.Sum(a => a.admincost.ASecurityServices) < 0)
+                        {
+                            <div style="color: red">
+                                @Math.Round(@item.budgetcosts.ASecurityServices - @Model.Sum(a => a.admincost.ASecurityServices)).ToString("C")
+                            </div>
+                        }
+                        else
+                        {
+                            @Math.Round(@item.budgetcosts.ASecurityServices - @Model.Sum(a => a.admincost.ASecurityServices)).ToString("C")
+                        }
+                    </td>
+                    <td>
+                        @if (item.budgetcosts.ATotCosts - @Model.Sum(a => a.admincost.ATotCosts) < 0)
+                        {
+                            <div style="color: red">
+                                @Math.Round(@item.budgetcosts.ATotCosts - @Model.Sum(a => a.admincost.ATotCosts)).ToString("C")
+                            </div>
+                        }
+                        else
+                        {
+                            @Math.Round(@item.budgetcosts.ATotCosts - @Model.Sum(a => a.admincost.ATotCosts)).ToString("C")
+                        }
+                    </td>
+                    <td>
+                        @if (item.budgetcosts.AdminFee - @Model.Sum(a => a.admincost.StateAdminFee) < 0)
+                        {
+                            <div style="color: red">
+                                @Math.Round(@item.budgetcosts.AdminFee - @Model.Sum(a => a.admincost.StateAdminFee)).ToString("C")
+                            </div>
+                        }
+                        else
+                        {
+                            @Math.Round(@item.budgetcosts.AdminFee - @Model.Sum(a => a.admincost.StateAdminFee)).ToString("C")
+                        }
+                    </td>
+                    <td></td>
+                    <td>
+                        @if (item.budgetcosts.Trasportation - @Model.Sum(a => a.particost.PTranspotation) < 0)
+                        {
+                            <div style="color: red">
+                                @Math.Round(@item.budgetcosts.Trasportation - @Model.Sum(a => a.particost.PTranspotation)).ToString("C")
+                            </div>
+                        }
+                        else
+                        {
+                            @Math.Round(@item.budgetcosts.Trasportation - @Model.Sum(a => a.particost.PTranspotation)).ToString("C")
+                        }
+                    </td>
+                    <td>
+                        @if (item.budgetcosts.JobTraining - @Model.Sum(a => a.particost.PJobTrain) < 0)
+                        {
+                            <div style="color: red">
+                                @Math.Round(@item.budgetcosts.JobTraining - @Model.Sum(a => a.particost.PJobTrain)).ToString("C")
+                            </div>
+                        }
+                        else
+                        {
+                            @Math.Round(@item.budgetcosts.JobTraining - @Model.Sum(a => a.particost.PJobTrain)).ToString("C")
+                        }
+                    </td>
+                    <td>
+                        @if (item.budgetcosts.TuitionAssistance - @Model.Sum(a => a.particost.PEducationAssistance) < 0)
+                        {
+                            <div style="color: red">
+                                @Math.Round(@item.budgetcosts.TuitionAssistance - @Model.Sum(a => a.particost.PEducationAssistance)).ToString("C")
+                            </div>
+                        }
+                        else
+                        {
+                            @Math.Round(@item.budgetcosts.TuitionAssistance - @Model.Sum(a => a.particost.PEducationAssistance)).ToString("C")
+                        }
+                    </td>
+                    <td>
+                        @if (item.budgetcosts.ContractedResidential - @Model.Sum(a => a.particost.PResidentialCare) < 0)
+                        {
+                            <div style="color: red">
+                                @Math.Round(@item.budgetcosts.ContractedResidential - @Model.Sum(a => a.particost.PResidentialCare)).ToString("C")
+                            </div>
+                        }
+                        else
+                        {
+                            @Math.Round(@item.budgetcosts.ContractedResidential - @Model.Sum(a => a.particost.PResidentialCare)).ToString("C")
+                        }
+                    </td>
+                    <td>
+                        @if (item.budgetcosts.UtilityAssistance - @Model.Sum(a => a.particost.PUtilities) < 0)
+                        {
+                            <div style="color: red">
+                                @Math.Round(@item.budgetcosts.UtilityAssistance - @Model.Sum(a => a.particost.PUtilities)).ToString("C")
+                            </div>
+                        }
+                        else
+                        {
+                            @Math.Round(@item.budgetcosts.UtilityAssistance - @Model.Sum(a => a.particost.PUtilities)).ToString("C")
+                        }
+                    </td>
+                    <td>
+                        @if (item.budgetcosts.EmergencyShelter - @Model.Sum(a => a.particost.PHousingEmergency) < 0)
+                        {
+                            <div style="color: red">
+                                @Math.Round(@item.budgetcosts.EmergencyShelter - @Model.Sum(a => a.particost.PHousingEmergency)).ToString("C")
+                            </div>
+                        }
+                        else
+                        {
+                            @Math.Round(@item.budgetcosts.EmergencyShelter - @Model.Sum(a => a.particost.PHousingEmergency)).ToString("C")
+                        }
+                    </td>
+                    <td>
+                        @if (item.budgetcosts.HousingAssistance - @Model.Sum(a => a.particost.PHousingAssistance) < 0)
+                        {
+                            <div style="color: red">
+                                @Math.Round(@item.budgetcosts.HousingAssistance - @Model.Sum(a => a.particost.PHousingAssistance)).ToString("C")
+                            </div>
+                        }
+                        else
+                        {
+                            @Math.Round(@item.budgetcosts.HousingAssistance - @Model.Sum(a => a.particost.PHousingAssistance)).ToString("C")
+                        }
+                    </td>
+                    <td>
+                        @if (item.budgetcosts.Childcare - @Model.Sum(a => a.particost.PChildCare) < 0)
+                        {
+                            <div style="color: red">
+                                @Math.Round(@item.budgetcosts.Childcare - @Model.Sum(a => a.particost.PChildCare)).ToString("C")
+                            </div>
+                        }
+                        else
+                        {
+                            @Math.Round(@item.budgetcosts.Childcare - @Model.Sum(a => a.particost.PChildCare)).ToString("C")
+                        }
+                    </td>
+                    <td>
+                        @if (item.budgetcosts.Clothing - @Model.Sum(a => a.particost.PClothing) < 0)
+                        {
+                            <div style="color: red">
+                                @Math.Round(@item.budgetcosts.Clothing - @Model.Sum(a => a.particost.PClothing)).ToString("C")
+                            </div>
+                        }
+                        else
+                        {
+                            @Math.Round(@item.budgetcosts.Clothing - @Model.Sum(a => a.particost.PClothing)).ToString("C")
+                        }
+                    </td>
+                    <td>
+                        @if (item.budgetcosts.Food - @Model.Sum(a => a.particost.PFood) < 0)
+                        {
+                            <div style="color: red">
+                                @Math.Round(@item.budgetcosts.Food - @Model.Sum(a => a.particost.PFood)).ToString("C")
+                            </div>
+                        }
+                        else
+                        {
+                            @Math.Round(@item.budgetcosts.Food - @Model.Sum(a => a.particost.PFood)).ToString("C")
+                        }
+                    </td>
+                    <td>
+                        @if (item.budgetcosts.Supplies - @Model.Sum(a => a.particost.PSupplies) < 0)
+                        {
+                            <div style="color: red">
+                                @Math.Round(@item.budgetcosts.Supplies - @Model.Sum(a => a.particost.PSupplies)).ToString("C")
+                            </div>
+                        }
+                        else
+                        {
+                            @Math.Round(@item.budgetcosts.Supplies - @Model.Sum(a => a.particost.PSupplies)).ToString("C")
+                        }
+                    </td>
+                    <td>
+                        @if (item.budgetcosts.RFO - @Model.Sum(a => a.particost.POther) < 0)
+                        {
+                            <div style="color: red">
+                                @Math.Round(@item.budgetcosts.RFO - @Model.Sum(a => a.particost.POther)).ToString("C")
+                            </div>
+                        }
+                        else
+                        {
+                            @Math.Round(@item.budgetcosts.RFO - @Model.Sum(a => a.particost.POther)).ToString("C")
+                        }
+                    </td>
+                    <td>
+                        @if (item.budgetcosts.RFO - @Model.Sum(a => a.particost.POther2) < 0)
+                        {
+                            <div style="color: red">
+                                @Math.Round(@item.budgetcosts.RFO - @Model.Sum(a => a.particost.POther2)).ToString("C")
+                            </div>
+                        }
+                        else
+                        {
+                            @Math.Round(@item.budgetcosts.RFO - @Model.Sum(a => a.particost.POther2)).ToString("C")
+                        }
+                    </td>
+                    <td>
+                        @if (item.budgetcosts.RFO - @Model.Sum(a => a.particost.POther3) < 0)
+                        {
+                            <div style="color: red">
+                                @Math.Round(@item.budgetcosts.RFO - @Model.Sum(a => a.particost.POther3)).ToString("C")
+                            </div>
+                        }
+                        else
+                        {
+                            @Math.Round(@item.budgetcosts.RFO - @Model.Sum(a => a.particost.POther3)).ToString("C")
+                        }
+                    </td>
+                    <td>
+                        @if (item.budgetcosts.BTotal - @Model.Sum(a => a.particost.PTotals) < 0)
+                        {
+                            <div style="color: red">
+                                @Math.Round(@item.budgetcosts.BTotal - @Model.Sum(a => a.particost.PTotals)).ToString("C")
+                            </div>
+                        }
+                        else
+                        {
+                            @Math.Round(@item.budgetcosts.BTotal - @Model.Sum(a => a.particost.PTotals)).ToString("C")
+                        }
                     </td>
                 </tr>
             }
@@ -106,8 +852,6 @@
         }
     </p>
 
-    <p>
-    </p>
     <br />
 
     Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
