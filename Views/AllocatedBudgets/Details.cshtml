@@ -1,0 +1,75 @@
+﻿@model Alliance_for_Life.Models.AllocatedBudget
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>AllocatedBudget</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Subcontractor.OrgName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Subcontractor.OrgName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Region)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Region)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Month)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Month)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Year)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Year)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AllocatedNewBudget)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AllocatedNewBudget)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AllocatedOldBudget)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AllocatedOldBudget)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AllocationAdjustedDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AllocationAdjustedDate)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.AllocatedBudgetID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

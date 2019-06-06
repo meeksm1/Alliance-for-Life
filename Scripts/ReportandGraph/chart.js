@@ -407,7 +407,7 @@ function drawTable(responses) {
             fourthquarterlyadmincost = admincosts(responses[i]);
             fourthquarterlyparticost = particosts(responses[i]);
         }
-        else {}
+       
         i++;
     }
 
@@ -421,7 +421,7 @@ function drawTable(responses) {
         ['Second Quarter', { v: secondquarterlyadmincost, f: '$' + secondquarterlyadmincost.toFixed(2) }, { v: secondquarterlyparticost, f: '$' + secondquarterlyparticost.toFixed(2) }, { v: (secondquarterlyadmincost + secondquarterlyparticost) * .1, f: '$' + ((secondquarterlyadmincost + secondquarterlyparticost) * .1).toFixed(2) }, { v: secondquarterlyadmincost + secondquarterlyparticost, f: '$' + ((secondquarterlyadmincost + secondquarterlyparticost) + (secondquarterlyadmincost + secondquarterlyparticost) * .1).toFixed(2) }],
         ['Third Quarter', { v: thirdquarterlyadmincost, f: '$' + thirdquarterlyadmincost.toFixed(2) }, { v: thirdquarterlyparticost, f: '$' + thirdquarterlyparticost.toFixed(2) }, { v: (thirdquarterlyadmincost + thirdquarterlyparticost) * .1, f: '$' + ((thirdquarterlyadmincost + thirdquarterlyparticost) * .1).toFixed(2) }, { v: thirdquarterlyadmincost + thirdquarterlyparticost, f: '$' + ((thirdquarterlyadmincost + thirdquarterlyparticost) + (thirdquarterlyadmincost + thirdquarterlyparticost) * .1).toFixed(2) }],
         ['Fourth Quarter', { v: fourthquarterlyadmincost, f: '$' + fourthquarterlyadmincost.toFixed(2) }, { v: fourthquarterlyparticost, f: '$' + fourthquarterlyparticost.toFixed(2) }, { v: (fourthquarterlyadmincost + fourthquarterlyparticost) * .1, f: '$' + ((fourthquarterlyadmincost + fourthquarterlyparticost) * .1).toFixed(2) }, { v: fourthquarterlyadmincost + fourthquarterlyparticost, f: '$' + ((fourthquarterlyadmincost + fourthquarterlyparticost) + (fourthquarterlyadmincost + fourthquarterlyparticost) * .1).toFixed(2) }],
-        ['Total', , , , { v: totalyearcost+totalyearcost * .1, f: '$' + (totalyearcost + totalyearcost*.1).toFixed(2) }]
+        //['Total', , , , { v: totalyearcost+totalyearcost * .1, f: '$' + (totalyearcost + totalyearcost*.1).toFixed(2) }]
 
     ]);
 

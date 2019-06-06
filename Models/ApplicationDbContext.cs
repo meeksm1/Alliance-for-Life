@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNet.Identity.EntityFramework;
+﻿
+using Microsoft.AspNet.Identity.EntityFramework;
 using System.Data.Entity;
 
 namespace Alliance_for_Life.Models
@@ -14,6 +15,7 @@ namespace Alliance_for_Life.Models
         public DbSet<BudgetCosts> BudgetCosts { get; set; }
         public DbSet<Surveys> Surveys { get; set; }
         public DbSet<Invoice> Invoices { get; set; }
+        public DbSet<AllocatedBudget> AllocatedBudget { get; set; }
         public DbSet<QuarterlyState> QuarterlyStates { get; set; }
 
         public ApplicationDbContext()

@@ -102,40 +102,40 @@
                 @item.Year
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.TotBedNights)
+                @item.TotBedNights.ToString("#,##0")
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.TotA2AEnrollment)
+                @item.TotA2AEnrollment.ToString("#,##0")
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.TotA2ABedNights)
+                @item.TotA2ABedNights.ToString("#,##0")
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.MA2Apercent)
+                @item.MA2Apercent.ToString("#,##0")
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.TotOverallServed)
+                @item.TotOverallServed.ToString("#,##0")
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ClientsJobEduServ)
+                @item.ClientsJobEduServ.ToString("#,##0")
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ParticipatingFathers)
+                @item.ParticipatingFathers.ToString("#,##0")
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.TotEduClasses)
+                @item.TotEduClasses.ToString("#,##0")
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.TotClientsinEduClasses)
+                @item.TotClientsinEduClasses.ToString("#,##0")
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.TotCaseHrs)
+                @item.TotCaseHrs.ToString("#,##0")
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.TotClientsCaseHrs)
+                @item.TotClientsCaseHrs.ToString("#,##0")
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.TotOtherClasses)
+                @item.TotOtherClasses.ToString("#,##0")
             </td>
 
             <td>
@@ -225,34 +225,34 @@
                 @items.Year
             </td>
             <td>
-                @items.TotA2AEnrollment
+                @items.TotA2AEnrollment.ToString("#,##0")
             </td>
             <td>
-                @items.MA2Apercent
+                @items.MA2Apercent.ToString("#,##0")
             </td>
             <td>
-                @items.TotOverallServed
+                @items.TotOverallServed.ToString("#,##0")
             </td>
             <td>
-                @items.ClientsJobEduServ
+                @items.ClientsJobEduServ.ToString("#,##0")
             </td>
             <td>
-                @items.ParticipatingFathers
+                @items.ParticipatingFathers.ToString("#,##0")
             </td>
             <td>
-                @items.TotEduClasses
+                @items.TotEduClasses.ToString("#,##0")
             </td>
             <td>
-                @items.TotClientsinEduClasses
+                @items.TotClientsinEduClasses.ToString("#,##0")
             </td>
             <td>
-                @items.TotCaseHrs
+                @items.TotCaseHrs.ToString("#,##0")
             </td>
             <td>
-                @items.TotClientsCaseHrs
+                @items.TotClientsCaseHrs.ToString("#,##0")
             </td>
             <td>
-                @items.TotOtherClasses
+                @items.TotOtherClasses.ToString("#,##0")
             </td>
             <td>
                 @Html.ActionLink("Details", "Details", new { id = items.Id })

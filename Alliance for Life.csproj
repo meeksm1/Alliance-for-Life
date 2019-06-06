@@ -238,6 +238,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdministrationCostController.cs" />
     <Compile Include="Controllers\AFLFormController.cs" />
+    <Compile Include="Controllers\AllocatedBudgetsController.cs" />
     <Compile Include="Controllers\BudgetCostsController.cs" />
     <Compile Include="Controllers\ClientListController.cs" />
     <Compile Include="Controllers\ContractorFormController.cs" />
@@ -249,6 +250,15 @@
     <Compile Include="Controllers\QuarterlyStatesController.cs" />
     <Compile Include="Controllers\ResidentialMIRsController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
+    <Compile Include="Migrations\201906061432151_allocatedbudget.cs" />
+    <Compile Include="Migrations\201906061432151_allocatedbudget.Designer.cs">
+      <DependentUpon>201906061432151_allocatedbudget.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906061434432_allocatedbudget1.cs" />
+    <Compile Include="Migrations\201906061434432_allocatedbudget1.Designer.cs">
+      <DependentUpon>201906061434432_allocatedbudget1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AllocatedBudget.cs" />
     <Compile Include="Migrations\201903142114531_update.cs" />
     <Compile Include="Migrations\201903142114531_update.Designer.cs">
       <DependentUpon>201903142114531_update.cs</DependentUpon>
@@ -793,6 +803,11 @@
     <Content Include="Views\Role\AssignRoleToUser.cshtml" />
     <Content Include="Views\Account\Delete.cshtml" />
     <Content Include="Views\Account\Index.cshtml" />
+    <Content Include="Views\AllocatedBudgets\Create.cshtml" />
+    <Content Include="Views\AllocatedBudgets\Delete.cshtml" />
+    <Content Include="Views\AllocatedBudgets\Details.cshtml" />
+    <Content Include="Views\AllocatedBudgets\Edit.cshtml" />
+    <Content Include="Views\AllocatedBudgets\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config">
@@ -840,6 +855,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201906051400496_updatedAdminCostClass.resx">
       <DependentUpon>201906051400496_updatedAdminCostClass.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906061432151_allocatedbudget.resx">
+      <DependentUpon>201906061432151_allocatedbudget.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906061434432_allocatedbudget1.resx">
+      <DependentUpon>201906061434432_allocatedbudget1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

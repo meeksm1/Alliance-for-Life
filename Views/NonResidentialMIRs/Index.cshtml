@@ -63,43 +63,43 @@
             @item.Subcontractor.OrgName
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.TotA2AEnrollment)
+            @item.TotA2AEnrollment.ToString("#,##0")
+          
+        <td>
+            @item.SubmittedDate.ToShortDateString()
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.SubmittedDate)
+            @item.MA2Apercent.ToString("#,##0")
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.MA2Apercent)
+            @item.ClientsJobEduServ.ToString("#,##0")
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.ClientsJobEduServ)
+            @item.ParticipatingFathers.ToString("#,##0")
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.ParticipatingFathers)
+            @item.TotEduClasses.ToString("#,##0")
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.TotEduClasses)
+            @item.TotClientsinEduClasses.ToString("#,##0")
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.TotClientsinEduClasses)
+            @item.TotCaseHrs.ToString("#,##0")
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.TotCaseHrs)
+            @item.TotClientsCaseHrs.ToString("#,##0")
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.TotClientsCaseHrs)
+            @item.TotOtherClasses.ToString("#,##0")
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.TotOtherClasses)
+            @item.Year
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Year)
+            @item.TotOverallServed.ToString("#,##0")
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.TotOverallServed)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Month)
+            @item.Month
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
