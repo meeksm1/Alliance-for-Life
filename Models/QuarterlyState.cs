@@ -30,7 +30,7 @@ namespace Alliance_for_Life.Models
         public Months? Month { get; set; }
 
         public System.Guid SubcontractorId { get; set; }
-      public System.Guid AdminCostId { get; set; }
+        public System.Guid AdminCostId { get; set; }
         public System.Guid ParticipationCostId { get; set; }
 
 

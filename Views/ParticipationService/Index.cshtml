@@ -22,7 +22,7 @@
             Organization
         </th>
         <th>
-            Region
+            Region&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         </th>
         <th>
             Month
@@ -91,7 +91,7 @@
             @item.Subcontractor.OrgName
         </td>
         <td>
-            @item.Region
+            @item.Region.GetDisplayName()
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Month)
