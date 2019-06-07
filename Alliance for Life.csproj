@@ -238,7 +238,6 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdministrationCostController.cs" />
     <Compile Include="Controllers\AFLFormController.cs" />
-    <Compile Include="Controllers\AllocatedBudgets1Controller.cs" />
     <Compile Include="Controllers\AllocatedBudgetsController.cs" />
     <Compile Include="Controllers\BudgetCostsController.cs" />
     <Compile Include="Controllers\ClientListController.cs" />
@@ -818,11 +817,6 @@
     <Content Include="Views\AllocatedBudgets\Details.cshtml" />
     <Content Include="Views\AllocatedBudgets\Edit.cshtml" />
     <Content Include="Views\AllocatedBudgets\Index.cshtml" />
-    <Content Include="Views\AllocatedBudgets1\Create.cshtml" />
-    <Content Include="Views\AllocatedBudgets1\Delete.cshtml" />
-    <Content Include="Views\AllocatedBudgets1\Details.cshtml" />
-    <Content Include="Views\AllocatedBudgets1\Edit.cshtml" />
-    <Content Include="Views\AllocatedBudgets1\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config">

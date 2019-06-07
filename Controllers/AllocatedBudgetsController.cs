@@ -15,6 +15,7 @@ namespace Alliance_for_Life.Controllers
         public ActionResult Index()
         {
             var allocatedBudget = db.AllocatedBudget.Include(a => a.Subcontractor);
+
             return View(allocatedBudget.ToList());
         }
 
@@ -36,7 +37,7 @@ namespace Alliance_for_Life.Controllers
         // GET: AllocatedBudgets/Create
         public ActionResult Create()
         {
-            ViewBag.SubcontractorId = new SelectList(db.SubContractors, "SubcontractorId", "OrgName");
+            ViewBag.SubcontractorId = new SelectList(db.SubContractors, "SubcontractorId", "AdministratorId");
             return View();
         }
 
@@ -45,7 +46,7 @@ namespace Alliance_for_Life.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "AllocatedBudgetID,SubcontractorId,Region,Month,Year,AllocatedNewBudget,AllocatedOldBudget,AllocationAdjustedDate")] AllocatedBudget allocatedBudget)
+        public ActionResult Create([Bind(Include = "AllocatedBudgetID,SubcontractorId,CycleEndAdjustments,Year,AllocatedNewBudget,AllocatedOldBudget,AllocationAdjustedDate,Month")] AllocatedBudget allocatedBudget)
         {
             if (ModelState.IsValid)
             {
@@ -55,7 +56,7 @@ namespace Alliance_for_Life.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.SubcontractorId = new SelectList(db.SubContractors, "SubcontractorId", "OrgName", allocatedBudget.SubcontractorId);
+            ViewBag.SubcontractorId = new SelectList(db.SubContractors, "SubcontractorId", "AdministratorId", allocatedBudget.SubcontractorId);
             return View(allocatedBudget);
         }
 
@@ -71,7 +72,7 @@ namespace Alliance_for_Life.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.SubcontractorId = new SelectList(db.SubContractors, "SubcontractorId", "OrgName", allocatedBudget.SubcontractorId);
+            ViewBag.SubcontractorId = new SelectList(db.SubContractors, "SubcontractorId", "AdministratorId", allocatedBudget.SubcontractorId);
             return View(allocatedBudget);
         }
 
@@ -80,7 +81,7 @@ namespace Alliance_for_Life.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "AllocatedBudgetID,SubcontractorId,Region,Month,Year,AllocatedNewBudget,AllocatedOldBudget,AllocationAdjustedDate")] AllocatedBudget allocatedBudget)
+        public ActionResult Edit([Bind(Include = "AllocatedBudgetID,SubcontractorId,CycleEndAdjustments,Year,AllocatedNewBudget,AllocatedOldBudget,AllocationAdjustedDate,Month")] AllocatedBudget allocatedBudget)
         {
             if (ModelState.IsValid)
             {
@@ -88,7 +89,7 @@ namespace Alliance_for_Life.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.SubcontractorId = new SelectList(db.SubContractors, "SubcontractorId", "OrgName", allocatedBudget.SubcontractorId);
+            ViewBag.SubcontractorId = new SelectList(db.SubContractors, "SubcontractorId", "AdministratorId", allocatedBudget.SubcontractorId);
             return View(allocatedBudget);
         }
 
