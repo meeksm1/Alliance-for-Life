@@ -1,0 +1,70 @@
+﻿@model IEnumerable<Alliance_for_Life.Models.AllocatedBudget>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Subcontractor.AdministratorId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CycleEndAdjustments)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Year)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AllocatedNewBudget)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AllocatedOldBudget)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AllocationAdjustedDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Month)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Subcontractor.AdministratorId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CycleEndAdjustments)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Year)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AllocatedNewBudget)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AllocatedOldBudget)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AllocationAdjustedDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Month)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.AllocatedBudgetID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.AllocatedBudgetID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.AllocatedBudgetID })
+        </td>
+    </tr>
+}
+
+</table>

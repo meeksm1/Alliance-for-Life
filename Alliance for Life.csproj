@@ -238,6 +238,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdministrationCostController.cs" />
     <Compile Include="Controllers\AFLFormController.cs" />
+    <Compile Include="Controllers\AllocatedBudgets1Controller.cs" />
     <Compile Include="Controllers\AllocatedBudgetsController.cs" />
     <Compile Include="Controllers\BudgetCostsController.cs" />
     <Compile Include="Controllers\ClientListController.cs" />
@@ -258,6 +259,15 @@
     <Compile Include="Migrations\201906061434432_allocatedbudget1.Designer.cs">
       <DependentUpon>201906061434432_allocatedbudget1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201906071633426_CreateAllocationClasses.cs" />
+    <Compile Include="Migrations\201906071633426_CreateAllocationClasses.Designer.cs">
+      <DependentUpon>201906071633426_CreateAllocationClasses.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906071637260_CreateAllocationClasses1.cs" />
+    <Compile Include="Migrations\201906071637260_CreateAllocationClasses1.Designer.cs">
+      <DependentUpon>201906071637260_CreateAllocationClasses1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\A2AAllocatedYearlyBudget.cs" />
     <Compile Include="Models\AllocatedBudget.cs" />
     <Compile Include="Migrations\201903142114531_update.cs" />
     <Compile Include="Migrations\201903142114531_update.Designer.cs">
@@ -808,6 +818,11 @@
     <Content Include="Views\AllocatedBudgets\Details.cshtml" />
     <Content Include="Views\AllocatedBudgets\Edit.cshtml" />
     <Content Include="Views\AllocatedBudgets\Index.cshtml" />
+    <Content Include="Views\AllocatedBudgets1\Create.cshtml" />
+    <Content Include="Views\AllocatedBudgets1\Delete.cshtml" />
+    <Content Include="Views\AllocatedBudgets1\Details.cshtml" />
+    <Content Include="Views\AllocatedBudgets1\Edit.cshtml" />
+    <Content Include="Views\AllocatedBudgets1\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config">
@@ -861,6 +876,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201906061434432_allocatedbudget1.resx">
       <DependentUpon>201906061434432_allocatedbudget1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906071633426_CreateAllocationClasses.resx">
+      <DependentUpon>201906071633426_CreateAllocationClasses.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906071637260_CreateAllocationClasses1.resx">
+      <DependentUpon>201906071637260_CreateAllocationClasses1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

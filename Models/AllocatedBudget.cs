@@ -5,15 +5,19 @@ namespace Alliance_for_Life.Models
 {
     public class AllocatedBudget
     {
-        public System.Guid AllocatedBudgetID { get; set; }
-        public System.Guid SubcontractorId { get; set; }
+        public Guid AllocatedBudgetID { get; set; }
+        public Guid SubcontractorId { get; set; }
+        public double CycleEndAdjustments { get; set; }
 
-        public GeoRegion? Region { get; set; }
-        public Months? Month { get; set; }
+
         public int Year { get; set; }
         public double AllocatedNewBudget { get; set; }
         public double AllocatedOldBudget { get; set; }
         public DateTime AllocationAdjustedDate { get; set; }
         public SubContractor Subcontractor { get; set; }
+        public Invoice Invoice { get; set; }
+        public Months? Month { get; set; }
+
+
     }
 }

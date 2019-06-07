@@ -56,8 +56,6 @@ namespace Alliance_for_Life.Controllers
                 EIN = viewModel.EIN,
                 Address1 = viewModel.Address1,
                 PoBox = viewModel.PoBox,
-                AllocatedContractAmount = viewModel.AllocatedContractAmount,
-                AllocatedAdjustments = viewModel.AllocatedAdjustments,
                 Active = viewModel.Active,
                 SubmittedDate = DateTime.Now
             };
@@ -92,8 +90,6 @@ namespace Alliance_for_Life.Controllers
             contractor.EIN = viewModel.EIN;
             contractor.Address1 = viewModel.Address1;
             contractor.PoBox = viewModel.PoBox;
-            contractor.AllocatedContractAmount = viewModel.AllocatedContractAmount;
-            contractor.AllocatedAdjustments = viewModel.AllocatedAdjustments;
             contractor.Active = viewModel.Active;
 
 
@@ -122,8 +118,6 @@ namespace Alliance_for_Life.Controllers
                 PoBox = org.PoBox,
                 OrgName = org.OrgName,
                 Active = org.Active,
-                AllocatedContractAmount = org.AllocatedContractAmount,
-                AllocatedAdjustments = org.AllocatedAdjustments,
                 SubmittedDate = DateTime.Now
             };
             return View("SubContractorForm", viewModel);

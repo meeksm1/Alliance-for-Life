@@ -91,7 +91,7 @@ function drawCharts(responses) {
     drawTable(responses);
 
     //excel output
-    drawToolbar(responses)
+    //drawToolbar(responses)
 }
 
 //calculating admin total
@@ -366,7 +366,7 @@ function drawTable(responses) {
 
         //calculate the first quater price
 
-        if (responses[i].Month <= 3) {
+        if (responses[i].admincosts.Month <= 3) {
             //increment the cost
             firstquarterlyadmincost += firstquarterlyadmincost;
             firstquarterlyparticost += firstquarterlyparticost;
@@ -376,7 +376,7 @@ function drawTable(responses) {
             firstquarterlyparticost = particosts(responses[i]);
         }
         // second quarter
-        else if (responses[i].Month <= 6) {
+        else if (responses[i].admincosts.Month <= 6) {
              //increment the cost
             secondquarterlyadmincost += secondquarterlyadmincost;
             secondquarterlyparticost += secondquarterlyparticost;
@@ -387,7 +387,7 @@ function drawTable(responses) {
 
         }
         //third quater
-        else if (responses[i].Month <= 9) {
+        else if (responses[i].admincosts.Month <= 9) {
              //increment the cost
             thirdquarterlyadmincost += thirdquarterlyadmincost;
             thirdquarterlyparticost += thirdquarterlyparticost;
@@ -398,7 +398,7 @@ function drawTable(responses) {
 
         }
         //fourthquater
-        else if (responses[i].Month >= 10) {
+        else if (responses[i].admincosts.Month >= 10 && responses[i].particosts.Month >= 10 ) {
              //increment the cost
             fourthquarterlyadmincost += fourthquarterlyadmincost;
             fourthquarterlyparticost += fourthquarterlyparticost;
@@ -421,7 +421,7 @@ function drawTable(responses) {
         ['Second Quarter', { v: secondquarterlyadmincost, f: '$' + secondquarterlyadmincost.toFixed(2) }, { v: secondquarterlyparticost, f: '$' + secondquarterlyparticost.toFixed(2) }, { v: (secondquarterlyadmincost + secondquarterlyparticost) * .1, f: '$' + ((secondquarterlyadmincost + secondquarterlyparticost) * .1).toFixed(2) }, { v: secondquarterlyadmincost + secondquarterlyparticost, f: '$' + ((secondquarterlyadmincost + secondquarterlyparticost) + (secondquarterlyadmincost + secondquarterlyparticost) * .1).toFixed(2) }],
         ['Third Quarter', { v: thirdquarterlyadmincost, f: '$' + thirdquarterlyadmincost.toFixed(2) }, { v: thirdquarterlyparticost, f: '$' + thirdquarterlyparticost.toFixed(2) }, { v: (thirdquarterlyadmincost + thirdquarterlyparticost) * .1, f: '$' + ((thirdquarterlyadmincost + thirdquarterlyparticost) * .1).toFixed(2) }, { v: thirdquarterlyadmincost + thirdquarterlyparticost, f: '$' + ((thirdquarterlyadmincost + thirdquarterlyparticost) + (thirdquarterlyadmincost + thirdquarterlyparticost) * .1).toFixed(2) }],
         ['Fourth Quarter', { v: fourthquarterlyadmincost, f: '$' + fourthquarterlyadmincost.toFixed(2) }, { v: fourthquarterlyparticost, f: '$' + fourthquarterlyparticost.toFixed(2) }, { v: (fourthquarterlyadmincost + fourthquarterlyparticost) * .1, f: '$' + ((fourthquarterlyadmincost + fourthquarterlyparticost) * .1).toFixed(2) }, { v: fourthquarterlyadmincost + fourthquarterlyparticost, f: '$' + ((fourthquarterlyadmincost + fourthquarterlyparticost) + (fourthquarterlyadmincost + fourthquarterlyparticost) * .1).toFixed(2) }],
-        //['Total', , , , { v: totalyearcost+totalyearcost * .1, f: '$' + (totalyearcost + totalyearcost*.1).toFixed(2) }]
+        ['Total', , , , { v: totalyearcost+totalyearcost * .1, f: '$' + (totalyearcost + totalyearcost*.1).toFixed(2) }]
 
     ]);
 
@@ -432,34 +432,34 @@ function drawTable(responses) {
     table.draw(data, { showRowNumber: true, width: '100%', height: '100%' });
 }
 
-function drawToolbar(responses) {
+//function drawToolbar(responses) {
 
-    var data = new google.visualization.DataTable();
+//    var data = new google.visualization.DataTable();
 
-    // Declare columns
-    data.addColumn('string', 'Employee Name');
-    data.addColumn('datetime', 'Hire Date');
+//    // Declare columns
+//    data.addColumn('string', 'Employee Name');
+//    data.addColumn('datetime', 'Hire Date');
 
-    // Add data.
-    data.addRows([
-        ['Mike', { v: new Date(2008, 1, 28), f: 'February 28, 2008' }], // Example of specifying actual and formatted values.
-        ['Bob', new Date(2007, 5, 1)],                              // More typically this would be done using a
-        ['Alice', new Date(2006, 7, 16)],                           // formatter.
-        ['Frank', new Date(2007, 11, 28)],
-        ['Floyd', new Date(2005, 3, 13)],
-        ['Fritz', new Date(2011, 6, 1)]
-    ]);
+//    // Add data.
+//    data.addRows([
+//        ['Mike', { v: new Date(2008, 1, 28), f: 'February 28, 2008' }], // Example of specifying actual and formatted values.
+//        ['Bob', new Date(2007, 5, 1)],                              // More typically this would be done using a
+//        ['Alice', new Date(2006, 7, 16)],                           // formatter.
+//        ['Frank', new Date(2007, 11, 28)],
+//        ['Floyd', new Date(2005, 3, 13)],
+//        ['Fritz', new Date(2011, 6, 1)]
+//    ]);
 
-    var csv = google.visualization.dataTableToCsv(data);
-    console.log(csv);
+//    var csv = google.visualization.dataTableToCsv(data);
+//    console.log(csv);
 
-    var components = [
-        {
-            type: 'html', datasource: csv },
-        { type: 'csv', datasource: data }
+//    var components = [
+//        {
+//            type: 'html', datasource: csv },
+//        { type: 'csv', datasource: data }
         
-    ];
+//    ];
 
-    var container = document.getElementById('toolbar_div');
-    google.visualization.drawToolbar(container, components);
-}
+//    var container = document.getElementById('toolbar_div');
+//    google.visualization.drawToolbar(container, components);
+//}

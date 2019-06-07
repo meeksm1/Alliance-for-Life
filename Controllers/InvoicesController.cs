@@ -153,8 +153,8 @@ namespace Alliance_for_Life.ReportControllers
                 var subcontractorbalance = db.SubContractors
                     .Where(s => s.SubcontractorId == invoice.SubcontractorId);
 
-                invoice.BeginningAllocation = subcontractorbalance.FirstOrDefault().AllocatedContractAmount;
-                invoice.AdjustedAllocation = subcontractorbalance.FirstOrDefault().AllocatedAdjustments;
+                //invoice.BeginningAllocation = subcontractorbalance.FirstOrDefault().AllocatedContractAmount;
+                //invoice.AdjustedAllocation = subcontractorbalance.FirstOrDefault().AllocatedAdjustments;
 
                 //calculating the rest
                 invoice.BalanceRemaining = invoice.BeginningAllocation - invoice.AdjustedAllocation;
@@ -215,8 +215,8 @@ namespace Alliance_for_Life.ReportControllers
             var subcontractorbalance = db.SubContractors
                 .Where(s => s.SubcontractorId == invoice.SubcontractorId);
 
-            invoice.BeginningAllocation = subcontractorbalance.FirstOrDefault().AllocatedContractAmount;
-            invoice.AdjustedAllocation = subcontractorbalance.FirstOrDefault().AllocatedAdjustments;
+            //invoice.BeginningAllocation = subcontractorbalance.FirstOrDefault().AllocatedContractAmount;
+            //invoice.AdjustedAllocation = subcontractorbalance.FirstOrDefault().AllocatedAdjustments;
 
             //calculating the rest
             invoice.BalanceRemaining = invoice.BeginningAllocation + invoice.AdjustedAllocation;
