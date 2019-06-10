@@ -81,7 +81,7 @@ namespace Alliance_for_Life.Controllers
             return RedirectToAction("Create", "ContractorForm");
         }
 
-       // GET: ClientList/Details/5
+        // GET: ClientList/Details/5
         public ActionResult Details(Guid? id)
         {
             if (id == null)
@@ -132,7 +132,7 @@ namespace Alliance_for_Life.Controllers
             {
                 if (client.Active)
                 {
-                     return RedirectToAction("AllActiveClients", "ClientList");
+                    return RedirectToAction("AllActiveClients", "ClientList");
                 }
                 return RedirectToAction("AllNonActiveClients", "ClientList");
             }
@@ -162,7 +162,7 @@ namespace Alliance_for_Life.Controllers
             return View("ClientListForm", viewModel);
         }
 
-        public ViewResult AllActiveClients(string sortOrder, string searchString, string currentFilter, int? page, string pgSize)
+        public ViewResult AllActiveClients(string sortOrder, Guid? searchString, string currentFilter, int? page, string pgSize)
         {
 
             int pageSize = Convert.ToInt16(pgSize);
@@ -171,16 +171,17 @@ namespace Alliance_for_Life.Controllers
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
             ViewBag.LastNameSortParm = sortOrder == "LastName" ? "last_desc" : "LastName";
+            ViewBag.Subcontractor =  new SelectList(db.SubContractors,"SubcontractorId", "OrgName");
 
-           // looking for the searchstring
+            // looking for the searchstring
             if (searchString != null)
-                {
-                    page = 1;
-                }
-                else
-                {
-                    searchString = currentFilter;
-                }
+            {
+                page = 1;
+            }
+            else
+            {
+                currentFilter = searchString.ToString();
+            }
             ViewBag.CurrentFilter = searchString;
 
             var clients = db.ClientLists.Include(s => s.Subcontractor)
@@ -196,10 +197,9 @@ namespace Alliance_for_Life.Controllers
                           select s;
             }
 
-            if (!String.IsNullOrEmpty(searchString))
+            if (!String.IsNullOrEmpty(searchString.ToString()))
             {
-                clients = clients.Where(a => a.Subcontractor.OrgName.Contains(searchString)
-                || a.LastName.ToString().Contains(searchString));
+                clients = clients.Where(a => a.Subcontractor.SubcontractorId == searchString);
             }
 
             switch (sortOrder)
@@ -401,7 +401,7 @@ namespace Alliance_for_Life.Controllers
             }
         }
 
-        public ActionResult AllNonActiveClients(string sortOrder, string searchString, string currentFilter, int? page, string pgSize)
+        public ActionResult AllNonActiveClients(string sortOrder, Guid? searchString, string currentFilter, int? page, string pgSize)
         {
 
             int pageSize = Convert.ToInt16(pgSize);
@@ -410,25 +410,25 @@ namespace Alliance_for_Life.Controllers
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
             ViewBag.LastNameSortParm = sortOrder == "LastName" ? "last_desc" : "LastName";
+            ViewBag.Subcontractor = new SelectList(db.SubContractors, "SubcontractorId", "OrgName");
 
             //looking for the searchstring
             if (searchString != null)
-                {
-                    page = 1;
-                }
-                else
-                {
-                    searchString = currentFilter;
-                }
+            {
+                page = 1;
+            }
+            else
+            {
+                currentFilter  = searchString.ToString();
+            }
             ViewBag.CurrentFilter = searchString;
 
             var clients = db.ClientLists.Include(s => s.Subcontractor)
                 .Where(s => s.Active == false);
 
-            if (!String.IsNullOrEmpty(searchString))
+            if (!String.IsNullOrEmpty(searchString.ToString()))
             {
-                clients = clients.Where(a => a.Subcontractor.OrgName.Contains(searchString)
-                || a.LastName.ToString().Contains(searchString));
+                clients = clients.Where(a => a.Subcontractor.SubcontractorId == searchString);
             }
 
             switch (sortOrder)

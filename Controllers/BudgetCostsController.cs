@@ -43,8 +43,6 @@ namespace Alliance_for_Life.Controllers
             var budgetsearch = from s in db.BudgetCosts
                                select s;
 
-
-
             if (!String.IsNullOrEmpty(searchString) || !String.IsNullOrEmpty(yearsearch.ToString()))
             {
                 var yearSearch = (yearsearch);

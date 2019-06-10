@@ -1,4 +1,6 @@
-﻿@model IEnumerable<Alliance_for_Life.Models.Userinformation>
+﻿@model PagedList.IPagedList<Alliance_for_Life.Models.Userinformation>
+    @using PagedList.Mvc;
+
 
 @{
     ViewBag.Title = "IndexforRegisteredUsers";
@@ -11,20 +13,36 @@
     @Html.ActionLink("Add new user", "Register", "Account")
 </p>
 
+<form>
+    @using (Html.BeginForm(FormMethod.Post))
+    {
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-5th-1 col-sm-3" style="align-content:center;">
+                    Search By Organization: @Html.DropDownList("searchString", (IEnumerable<SelectListItem>)ViewBag.Subcontractor, "", htmlAttributes: new { @class = "form-control", onchange = "this.form.submit()" })
+                </div>
+                <div class="col-xs-5th-1 col-sm-3" style="align-content:center;">
+                    Results per Page: @Html.DropDownList("pgSize", new SelectList(new[] { 10, 20, 30, 40, 50 }), htmlAttributes: new { @class = "form-control", onchange = "this.form.submit()" })
+                </div>
+            </div>
+        </div>
+        <br />
+    }
+</form>
 
 <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Firstname)
+            First Name
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Lastname)
+            Last Name
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Email)
+            Email
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Role)
+            Role
         </th>
         <th>
             @Html.DisplayName("Organization")
@@ -38,34 +56,38 @@
     </tr>
 
     @foreach (var item in Model)
-    {  
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Firstname)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Lastname)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Role)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Organization)
-        </td>
-        <td>
-            <a href="@Url.Action("Edit", "Account", new { id = item.Id }, Request.Url.Scheme)">
-                <i style="font-size:16px; color:#3498DB" class="fa">&#xf044;</i>
-            </a>
-        </td>
-        <td>
-            <a href="@Url.Action("Delete", "Account", new { id = item.Id }, Request.Url.Scheme)">
-                <i style="font-size:16px; color:red" class=" fa fa-trash"></i>
-            </a>
-        </td>
-    </tr>
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Firstname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Lastname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Role)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Organization)
+            </td>
+            <td>
+                <a href="@Url.Action("Edit", "Account", new { id = item.Id }, Request.Url.Scheme)">
+                    <i style="font-size:16px; color:#3498DB" class="fa">&#xf044;</i>
+                </a>
+            </td>
+            <td>
+                <a href="@Url.Action("Delete", "Account", new { id = item.Id }, Request.Url.Scheme)">
+                    <i style="font-size:16px; color:red" class=" fa fa-trash"></i>
+                </a>
+            </td>
+        </tr>
     }
 
 </table>
+ Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter, @class="pagination" }))

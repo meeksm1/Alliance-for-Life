@@ -88,7 +88,6 @@ namespace Alliance_for_Life.ReportControllers
             ViewBag.Year = new SelectList(datelist);
             ViewBag.SubcontractorId = new SelectList(db.SubContractors, "SubcontractorId", "OrgName");
             ViewBag.Month = new SelectList(Enum.GetValues(typeof(Months)));
-            //ModelState.Clear();
 
             if (pageSize < 1)
             {
@@ -96,7 +95,6 @@ namespace Alliance_for_Life.ReportControllers
             }
             int pageNumber = (page ?? 1);
             return View(invoices.ToPagedList(pageNumber, pageSize));
-            // return View(invoices.ToList());
         }
 
         //create report
@@ -146,15 +144,12 @@ namespace Alliance_for_Life.ReportControllers
                 invoice.GrandTotal = invoice.DirectAdminCost + invoice.ParticipantServices;
 
                 //lessmanagementFee
-                invoice.LessManagementFee = invoice.GrandTotal * .03;
+                invoice.LessManagementFee = invoice.DirectAdminCost * .03;
                 invoice.DepositAmount = invoice.GrandTotal - invoice.LessManagementFee;
 
                 //getting contractor Allocated amount
                 var subcontractorbalance = db.SubContractors
                     .Where(s => s.SubcontractorId == invoice.SubcontractorId);
-
-                //invoice.BeginningAllocation = subcontractorbalance.FirstOrDefault().AllocatedContractAmount;
-                //invoice.AdjustedAllocation = subcontractorbalance.FirstOrDefault().AllocatedAdjustments;
 
                 //calculating the rest
                 invoice.BalanceRemaining = invoice.BeginningAllocation - invoice.AdjustedAllocation;
@@ -162,6 +157,7 @@ namespace Alliance_for_Life.ReportControllers
                 invoice.BillingDate = DateTime.Parse(billingdate);
                 invoice.SubmittedDate = DateTime.Now;
                 invoice.OrgName = db.SubContractors.Find(invoice.SubcontractorId).OrgName;
+
                 //add to the Invoice table and save data
                 db.Invoices.Add(invoice);
                 db.SaveChanges();
@@ -184,7 +180,9 @@ namespace Alliance_for_Life.ReportControllers
             invoice.SubmittedDate = System.DateTime.Now;
 
             var admincost = db.AdminCosts
-    .Where(s => s.SubcontractorId == invoice.SubcontractorId && s.Year == invoice.Year && s.Month == invoice.Month);
+                            .Where(s => s.SubcontractorId == invoice.SubcontractorId && 
+                             s.Year == invoice.Year && 
+                             s.Month == invoice.Month);
 
             //getting participation total
             var particost = db.ParticipationServices

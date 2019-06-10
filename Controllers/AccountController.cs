@@ -4,6 +4,7 @@ using Alliance_for_Life.ViewModels;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -152,8 +153,11 @@ namespace Alliance_for_Life.Controllers
 
         //list user information
         [Authorize]
-        public ActionResult IndexforRegisteredUsers()
+        public ActionResult IndexforRegisteredUsers(Guid? searchString, string currentFilter, int? page, string pgSize)
         {
+            int pageSize = Convert.ToInt16(pgSize);
+            ViewBag.Subcontractor = new SelectList(db.SubContractors, "OrgName", "OrgName");
+
             List<Userinformation> modelLst = new List<Userinformation>();
             var role = db.Roles.Include(x => x.Users).ToList();
             foreach (var r in role)
@@ -168,7 +172,39 @@ namespace Alliance_for_Life.Controllers
                         usersub = "";
                     }
 
+                    // looking for the searchstring
+                    if (searchString != null)
+                    {
+                        page = 1;
+                    }
+                    else
+                    {
+                        currentFilter = searchString.ToString();
+                    }
 
+                    ViewBag.CurrentFilter = searchString;
+
+                    if (!String.IsNullOrEmpty(searchString.ToString()))
+                    {
+                        
+                        var user = new Userinformation
+                        {
+                            Id = new Guid(usr.Id),
+                            Firstname = usr.FirstName,
+                            Lastname = usr.LastName,
+                            Email = usr.Email,
+                            Role = r.Name,
+                            Organization = usersub
+                        };
+                        modelLst.Add(user);
+
+                        if (pageSize < 1)
+                        {
+                            pageSize = 10;
+                        }
+
+                        return View(modelLst.Where(a => a.Organization == searchString.ToString()).ToPagedList(page ?? 1, pageSize));
+                    }
                     var obj = new Userinformation
                     {
                         Id = new Guid(usr.Id),
@@ -179,10 +215,17 @@ namespace Alliance_for_Life.Controllers
                         Organization = usersub
                     };
 
+
                     modelLst.Add(obj);
                 }
             }
-            return View(modelLst.OrderBy(s => s.Organization));
+            if (pageSize < 1)
+            {
+                pageSize = 10;
+            }
+
+            int pageNumber = (page ?? 1);
+            return View(modelLst.OrderBy(s => s.Organization).ToPagedList(pageNumber, pageSize));
         }
 
         [Authorize]
