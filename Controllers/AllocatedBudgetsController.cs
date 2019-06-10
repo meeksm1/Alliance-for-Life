@@ -14,9 +14,16 @@ namespace Alliance_for_Life.Controllers
         // GET: AllocatedBudgets
         public ActionResult Index()
         {
-            var allocatedBudget = db.AllocatedBudget.Include(a => a.Subcontractor);
+            int year = 2019;
+            var allocatedBudget = db.AllocatedBudget.Include(a => a.Subcontractor)
+                .Include(a => a.Invoice);
 
-            return View(allocatedBudget.ToList());
+            allocatedBudget = allocatedBudget.Where(a => a.Year == year);
+
+
+            return View(allocatedBudget.ToList().OrderBy(a => a.Subcontractor.SubcontractorId));
+
+
         }
 
         // GET: AllocatedBudgets/Details/5
@@ -37,7 +44,7 @@ namespace Alliance_for_Life.Controllers
         // GET: AllocatedBudgets/Create
         public ActionResult Create()
         {
-            ViewBag.SubcontractorId = new SelectList(db.SubContractors, "SubcontractorId", "AdministratorId");
+            ViewBag.SubcontractorId = new SelectList(db.SubContractors, "SubcontractorId", "OrgName");
             return View();
         }
 
@@ -56,7 +63,7 @@ namespace Alliance_for_Life.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.SubcontractorId = new SelectList(db.SubContractors, "SubcontractorId", "AdministratorId", allocatedBudget.SubcontractorId);
+            ViewBag.SubcontractorId = new SelectList(db.SubContractors, "SubcontractorId", "OrgName", allocatedBudget.SubcontractorId);
             return View(allocatedBudget);
         }
 
@@ -72,7 +79,7 @@ namespace Alliance_for_Life.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.SubcontractorId = new SelectList(db.SubContractors, "SubcontractorId", "AdministratorId", allocatedBudget.SubcontractorId);
+            ViewBag.SubcontractorId = new SelectList(db.SubContractors, "SubcontractorId", "OrgName", allocatedBudget.SubcontractorId);
             return View(allocatedBudget);
         }
 
@@ -89,7 +96,7 @@ namespace Alliance_for_Life.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.SubcontractorId = new SelectList(db.SubContractors, "SubcontractorId", "AdministratorId", allocatedBudget.SubcontractorId);
+            ViewBag.SubcontractorId = new SelectList(db.SubContractors, "SubcontractorId", "OrgName", allocatedBudget.SubcontractorId);
             return View(allocatedBudget);
         }
 

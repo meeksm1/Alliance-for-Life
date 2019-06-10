@@ -116,6 +116,10 @@ namespace Alliance_for_Life.ReportControllers
             var particost = db.ParticipationServices
                 .Where(s => s.SubcontractorId == invoice.SubcontractorId && s.Year == invoice.Year && s.Month == invoice.Month);
 
+            //set the invoice Admin and Participation ID to Null
+            invoice.AdminCostId = Guid.Empty;
+            invoice.PSId = Guid.Empty;
+
             //set totals to zero
             invoice.DirectAdminCost = 0;
             invoice.ParticipantServices = 0;
