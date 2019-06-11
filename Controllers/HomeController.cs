@@ -21,8 +21,8 @@ namespace Alliance_for_Life.Controllers
         public ActionResult Index()
         {
             var subcontractors = db.SubContractors
-             .Include(s => s.Administrator)
-             .Where(s => s.Active);
+                       .Include(s => s.Administrator)
+                       .Where(s => s.Active);
 
             var id = User.Identity.GetUserId();
 
@@ -33,27 +33,36 @@ namespace Alliance_for_Life.Controllers
             var usr = db.Users.Find(id);
 
             var usersub = db.SubContractors.Find(usr.SubcontractorId);
-            organization = usersub.OrgName;
-            if (organization == null)
-            {
-                organization = "";
 
-            }
-            foreach (var users in db.Users.Where(s => s.SubcontractorId == usersub.SubcontractorId))
+            //if (usersub == null)
+            //{
+            //    usersub.OrgName = User.Identity.Name;
+
+            //}
+
+            if (usersub != null)
             {
-                var obj = new Userinformation
+                foreach (var users in db.Users.Where(s => s.SubcontractorId == usersub.SubcontractorId))
                 {
-                    Id = new Guid(users.Id),
-                    Firstname = users.FirstName,
-                    Lastname = users.LastName,
-                    Email = users.Email,
-                };
+                    var obj = new Userinformation
+                    {
+                        Id = new Guid(users.Id),
+                        Firstname = users.FirstName,
+                        Lastname = users.LastName,
+                        Email = users.Email,
+                    };
 
-                userlist.Add(obj);
+                    userlist.Add(obj);
+                }
             }
+
+            var affiliatesRegion = usersub.AffiliateRegion;
+            var region = usersub.Region;
 
             ViewBag.Orgname = organization;
             ViewBag.Users = userlist;
+            ViewBag.AR = affiliatesRegion;
+            ViewBag.Region = region.GetDisplayName();
 
             return View(subcontractors);
         }
