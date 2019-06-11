@@ -52,7 +52,7 @@
                     @item.Subcontractors.OrgName
                 </td>
                 <td>
-                    @item.SurveysCompleted
+                    @item.SurveysCompleted.ToString("#,##0")
                 </td>
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { id = item.SurveyId }) |
