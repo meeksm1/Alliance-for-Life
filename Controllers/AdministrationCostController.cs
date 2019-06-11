@@ -1,6 +1,7 @@
 ﻿using Alliance_for_Life.Models;
 using ClosedXML.Excel;
 using Microsoft.AspNet.Identity;
+using PagedList;
 using System;
 using System.Data;
 using System.Data.Entity;
@@ -17,15 +18,29 @@ namespace Alliance_for_Life.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: AdministrationCost
-        public ActionResult Index(string sortOrder, string searchString)
+        public ActionResult Index(string sortOrder, Guid? searchString, string currentFilter, int? page, string pgSize)
         {
+            int pageSize = Convert.ToInt16(pgSize);
+
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
+            ViewBag.Subcontractor = new SelectList(db.SubContractors, "SubcontractorId", "OrgName");
+
+            //looking for the searchstring
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                currentFilter = searchString.ToString();
+            }
+
+            ViewBag.CurrentFilter = searchString;
 
             var adminSearch = db.AdminCosts
             .Include(a => a.Subcontractor)
             .Where(a => a.SubcontractorId == a.Subcontractor.SubcontractorId);
-
 
             if (!User.IsInRole("Admin"))
             {
@@ -37,12 +52,9 @@ namespace Alliance_for_Life.Controllers
                               select s;
             }
 
-
-
-            if (!String.IsNullOrEmpty(searchString))
+            if (!String.IsNullOrEmpty(searchString.ToString()))
             {
-                adminSearch = adminSearch.Where(a => a.Subcontractor.OrgName.Contains(searchString)
-                || a.Subcontractor.SubmittedDate.ToString().Contains(searchString));
+                adminSearch = adminSearch.Where(a => a.Subcontractor.SubcontractorId == searchString);
             }
 
             switch (sortOrder)
@@ -61,7 +73,13 @@ namespace Alliance_for_Life.Controllers
                     break;
             }
 
-            return View(adminSearch.ToList());
+            if (pageSize < 1)
+            {
+                pageSize = 10;
+            }
+
+            int pageNumber = (page ?? 1);
+            return View(adminSearch.ToPagedList(pageNumber, pageSize));
         }
 
         // GET: AdministrationCost/Details/5

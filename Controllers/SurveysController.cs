@@ -1,6 +1,7 @@
 ﻿using Alliance_for_Life.Models;
 using ClosedXML.Excel;
 using Microsoft.AspNet.Identity;
+using PagedList;
 using System;
 using System.Data;
 using System.Data.Entity;
@@ -18,8 +19,26 @@ namespace Alliance_for_Life.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Surveys
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder, Guid? searchString, string currentFilter, int? page, string pgSize)
         {
+            int pageSize = Convert.ToInt16(pgSize);
+
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
+            ViewBag.Subcontractor = new SelectList(db.SubContractors, "SubcontractorId", "OrgName");
+
+            //looking for the searchstring
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                currentFilter = searchString.ToString();
+            }
+
+            ViewBag.CurrentFilter = searchString;
+
             var surveys = db.Surveys.Include(s => s.Subcontractors);
 
             if (!User.IsInRole("Admin"))
@@ -31,7 +50,34 @@ namespace Alliance_for_Life.Controllers
                           where usersubid == s.SubcontractorId
                           select s;
             }
-            return View(surveys.ToList());
+            if (!String.IsNullOrEmpty(searchString.ToString()))
+            {
+                surveys = surveys.Where(a => a.Subcontractors.SubcontractorId == searchString);
+            }
+
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    surveys = surveys.OrderByDescending(s => s.Subcontractors.OrgName);
+                    break;
+                case "Date":
+                    surveys = surveys.OrderBy(s => s.SubmittedDate);
+                    break;
+                case "date_desc":
+                    surveys = surveys.OrderByDescending(s => s.SubmittedDate);
+                    break;
+                default:
+                    surveys = surveys.OrderBy(s => s.Subcontractors.OrgName);
+                    break;
+            }
+
+            if (pageSize < 1)
+            {
+                pageSize = 10;
+            }
+
+            int pageNumber = (page ?? 1);
+            return View(surveys.ToPagedList(pageNumber, pageSize));
         }
 
         // GET: Surveys/Details/5

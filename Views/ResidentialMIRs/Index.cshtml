@@ -9,18 +9,25 @@
 
 <div class="container">
     <h2>@ViewBag.Title</h2>
-    @using (Html.BeginForm())
-    {
-        <p>
-            Find by Organization Name: @Html.TextBox("SearchString")
-            <input type="submit" value="Search" />
-        </p>
 
-    }
+    <form>
+        @using (Html.BeginForm(FormMethod.Post))
+        {
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-5th-1 col-sm-3" style="align-content:center;">
+                        Search By Organization: @Html.DropDownList("searchString", (IEnumerable<SelectListItem>)ViewBag.Subcontractor, "", htmlAttributes: new { @class = "form-control", onchange = "this.form.submit()" })
+                    </div>
+                    <div class="col-xs-5th-1 col-sm-3" style="align-content:center;">
+                        Results per Page: @Html.DropDownList("pgSize", new SelectList(new[] { 10, 20, 30, 40, 50 }), htmlAttributes: new { @class = "form-control", onchange = "this.form.submit()" })
+                    </div>
+                </div>
+            </div>
+        }
+    </form>
 
-    <p>
-        <h3>Residental </h3>
-    </p>
+    <h3>Residental </h3>
+
     <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100">
         <thead>
             <tr style="font-size:16px">
@@ -86,71 +93,71 @@
                     </th>
                 }
 
-</thead>
+        </thead>
 
         @foreach (var item in Model)
         {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Subcontractor.OrgName)
-
-            </td>
-            <td>
-                @item.Month
-            </td>
-            <td>
-                @item.Year
-            </td>
-            <td>
-                @item.TotBedNights.ToString("#,##0")
-            </td>
-            <td>
-                @item.TotA2AEnrollment.ToString("#,##0")
-            </td>
-            <td>
-                @item.TotA2ABedNights.ToString("#,##0")
-            </td>
-            <td>
-                @item.MA2Apercent.ToString("#,##0")
-            </td>
-            <td>
-                @item.TotOverallServed.ToString("#,##0")
-            </td>
-            <td>
-                @item.ClientsJobEduServ.ToString("#,##0")
-            </td>
-            <td>
-                @item.ParticipatingFathers.ToString("#,##0")
-            </td>
-            <td>
-                @item.TotEduClasses.ToString("#,##0")
-            </td>
-            <td>
-                @item.TotClientsinEduClasses.ToString("#,##0")
-            </td>
-            <td>
-                @item.TotCaseHrs.ToString("#,##0")
-            </td>
-            <td>
-                @item.TotClientsCaseHrs.ToString("#,##0")
-            </td>
-            <td>
-                @item.TotOtherClasses.ToString("#,##0")
-            </td>
-
-            <td>
-                @Html.ActionLink("Details", "Details", new { id = item.Id })
-            </td>
-            @if (!User.IsInRole("Admin"))
-            {
+            <tr>
                 <td>
-                    <a href="@Url.Action("Edit", "ResidentialMIRs", new { id = item.Id }, Request.Url.Scheme)">
-                        <i style="font-size:16px; color:#3498DB" class="fa">&#xf044;</i>
-                    </a>
-                </td>
-            }
+                    @Html.DisplayFor(modelItem => item.Subcontractor.OrgName)
 
-        </tr>
+                </td>
+                <td>
+                    @item.Month
+                </td>
+                <td>
+                    @item.Year
+                </td>
+                <td>
+                    @item.TotBedNights.ToString("#,##0")
+                </td>
+                <td>
+                    @item.TotA2AEnrollment.ToString("#,##0")
+                </td>
+                <td>
+                    @item.TotA2ABedNights.ToString("#,##0")
+                </td>
+                <td>
+                    @item.MA2Apercent.ToString("#,##0")
+                </td>
+                <td>
+                    @item.TotOverallServed.ToString("#,##0")
+                </td>
+                <td>
+                    @item.ClientsJobEduServ.ToString("#,##0")
+                </td>
+                <td>
+                    @item.ParticipatingFathers.ToString("#,##0")
+                </td>
+                <td>
+                    @item.TotEduClasses.ToString("#,##0")
+                </td>
+                <td>
+                    @item.TotClientsinEduClasses.ToString("#,##0")
+                </td>
+                <td>
+                    @item.TotCaseHrs.ToString("#,##0")
+                </td>
+                <td>
+                    @item.TotClientsCaseHrs.ToString("#,##0")
+                </td>
+                <td>
+                    @item.TotOtherClasses.ToString("#,##0")
+                </td>
+
+                <td>
+                    @Html.ActionLink("Details", "Details", new { id = item.Id })
+                </td>
+                @if (!User.IsInRole("Admin"))
+                {
+                    <td>
+                        <a href="@Url.Action("Edit", "ResidentialMIRs", new { id = item.Id }, Request.Url.Scheme)">
+                            <i style="font-size:16px; color:#3498DB" class="fa">&#xf044;</i>
+                        </a>
+                    </td>
+                }
+
+            </tr>
         }
     </table>
 
@@ -210,63 +217,63 @@
                         Edit
                     </th>
                 }
-</thead>
+        </thead>
 
         @foreach (var items in ViewBag.nonResidentialMIRs)
         {
-        <tr>
-            <td>
-                @items.Subcontractor.OrgName
-            </td>
-            <td>
-                @items.Month
-            </td>
-            <td>
-                @items.Year
-            </td>
-            <td>
-                @items.TotA2AEnrollment.ToString("#,##0")
-            </td>
-            <td>
-                @items.MA2Apercent.ToString("#,##0")
-            </td>
-            <td>
-                @items.TotOverallServed.ToString("#,##0")
-            </td>
-            <td>
-                @items.ClientsJobEduServ.ToString("#,##0")
-            </td>
-            <td>
-                @items.ParticipatingFathers.ToString("#,##0")
-            </td>
-            <td>
-                @items.TotEduClasses.ToString("#,##0")
-            </td>
-            <td>
-                @items.TotClientsinEduClasses.ToString("#,##0")
-            </td>
-            <td>
-                @items.TotCaseHrs.ToString("#,##0")
-            </td>
-            <td>
-                @items.TotClientsCaseHrs.ToString("#,##0")
-            </td>
-            <td>
-                @items.TotOtherClasses.ToString("#,##0")
-            </td>
-            <td>
-                @Html.ActionLink("Details", "Details", new { id = items.Id })
-            </td>
-            @if (!User.IsInRole("Admin"))
-            {
+            <tr>
                 <td>
-                    <a href="@Url.Action("Edit", "NonResidentialMIRs", new { id = items.Id }, Request.Url.Scheme)">
-                        <i style="font-size:16px; color:#3498DB" class="fa">&#xf044;</i>
-                    </a>
+                    @items.Subcontractor.OrgName
                 </td>
-            }
+                <td>
+                    @items.Month
+                </td>
+                <td>
+                    @items.Year
+                </td>
+                <td>
+                    @items.TotA2AEnrollment.ToString("#,##0")
+                </td>
+                <td>
+                    @items.MA2Apercent.ToString("#,##0")
+                </td>
+                <td>
+                    @items.TotOverallServed.ToString("#,##0")
+                </td>
+                <td>
+                    @items.ClientsJobEduServ.ToString("#,##0")
+                </td>
+                <td>
+                    @items.ParticipatingFathers.ToString("#,##0")
+                </td>
+                <td>
+                    @items.TotEduClasses.ToString("#,##0")
+                </td>
+                <td>
+                    @items.TotClientsinEduClasses.ToString("#,##0")
+                </td>
+                <td>
+                    @items.TotCaseHrs.ToString("#,##0")
+                </td>
+                <td>
+                    @items.TotClientsCaseHrs.ToString("#,##0")
+                </td>
+                <td>
+                    @items.TotOtherClasses.ToString("#,##0")
+                </td>
+                <td>
+                    @Html.ActionLink("Details", "Details", new { id = items.Id })
+                </td>
+                @if (!User.IsInRole("Admin"))
+                {
+                    <td>
+                        <a href="@Url.Action("Edit", "NonResidentialMIRs", new { id = items.Id }, Request.Url.Scheme)">
+                            <i style="font-size:16px; color:#3498DB" class="fa">&#xf044;</i>
+                        </a>
+                    </td>
+                }
 
-        </tr>
+            </tr>
         }
     </table>
 

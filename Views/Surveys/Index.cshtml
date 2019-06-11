@@ -1,4 +1,7 @@
-﻿@model IEnumerable<Alliance_for_Life.Models.Surveys>
+﻿@model PagedList.IPagedList<Alliance_for_Life.Models.Surveys>
+@using PagedList.Mvc;
+
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 @{
     ViewBag.Title = "Index";
@@ -7,45 +10,66 @@
 
 <h2>Returned Surveys</h2>
 
-<p>
-    @Html.ActionLink("Add Returned Surveys", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Month)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Subcontractors.OrgName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SurveysCompleted)
-        </th>
-        <th></th>
-    </tr>
+<div class="container">
+    <h2>@ViewBag.Title</h2>
 
-    @foreach (var item in Model)
-    {
+    <form>
+        @using (Html.BeginForm(FormMethod.Post))
+        {
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-5th-1 col-sm-3" style="align-content:center;">
+                        Search By Organization: @Html.DropDownList("searchString", (IEnumerable<SelectListItem>)ViewBag.Subcontractor, "", htmlAttributes: new { @class = "form-control", onchange = "this.form.submit()" })
+                    </div>
+                    <div class="col-xs-5th-1 col-sm-3" style="align-content:center;">
+                        Results per Page: @Html.DropDownList("pgSize", new SelectList(new[] { 10, 20, 30, 40, 50 }), htmlAttributes: new { @class = "form-control", onchange = "this.form.submit()" })
+                    </div>
+                </div>
+            </div>
+            <br />
+        }
+    </form>
+    <table class="table">
         <tr>
-            <td>
-                @item.Month
-            </td>
-            <td>
-                @item.Subcontractors.OrgName
-            </td>
-            <td>
-                @item.SurveysCompleted
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.SurveyId }) |
-                @Html.ActionLink("Details", "Details", new { id = item.SurveyId }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.SurveyId })
-            </td>
+            <th>
+                Month
+            </th>
+            <th>
+                @Html.ActionLink("Organization", "Index", new { sortOrder = ViewBag.NameSortParm })
+            </th>
+            <th>
+                Surveys Completed
+            <th></th>
         </tr>
-    }
-</table>
 
-@using (Html.BeginForm("Export", "Surveys", FormMethod.Post))
-{
-    <input type="submit" value="Export to Excel" class="btn btn-group-sm btn-primary" />
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.Month
+                </td>
+                <td>
+                    @item.Subcontractors.OrgName
+                </td>
+                <td>
+                    @item.SurveysCompleted
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.SurveyId }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.SurveyId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.SurveyId })
+                </td>
+            </tr>
+        }
+    </table>
+
+    @using (Html.BeginForm("Export", "Surveys", FormMethod.Post))
+    {
+        <input type="submit" value="Export to Excel" class="btn btn-group-sm btn-primary" />
+    }
+
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("Index",
+        new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter, @class="pagination" }))
+</div>

@@ -1,197 +1,216 @@
-﻿@model IEnumerable<Alliance_for_Life.Models.AdminCosts>
+﻿@model PagedList.IPagedList<Alliance_for_Life.Models.AdminCosts>
+@using PagedList.Mvc;
+
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 @{
     ViewBag.Title = "Direct Administrative Cost Report";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>@ViewBag.Title</h2>
+<div class="container">
+    <h2>@ViewBag.Title</h2>
 
-@using (Html.BeginForm())
-{
-    <p>
-        Find by Organization Name or Submitted Date Year: @Html.TextBox("SearchString")
-        <input type="submit" value="Search" />
-    </p>
-}
-
-<table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100">
-    <tr>
-        @if (!User.IsInRole("Admin"))
+    <form>
+        @using (Html.BeginForm(FormMethod.Post))
         {
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-5th-1 col-sm-3" style="align-content:center;">
+                        Search By Organization: @Html.DropDownList("searchString", (IEnumerable<SelectListItem>)ViewBag.Subcontractor, "", htmlAttributes: new { @class = "form-control", onchange = "this.form.submit()" })
+                    </div>
+                    <div class="col-xs-5th-1 col-sm-3" style="align-content:center;">
+                        Results per Page: @Html.DropDownList("pgSize", new SelectList(new[] { 10, 20, 30, 40, 50 }), htmlAttributes: new { @class = "form-control", onchange = "this.form.submit()" })
+                    </div>
+                </div>
+            </div>
+            <br />
+        }
+    </form>
+
+    <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100">
+        <tr>
+            @if (!User.IsInRole("Admin"))
+            {
+                <th>
+
+                </th>
+            }
+
             <th>
 
             </th>
-        }
+            <th>
+                @Html.ActionLink("Organization", "Index", new { sortOrder = ViewBag.NameSortParm })
+            </th>
+            <th>
+                @Html.ActionLink("Submitted Date", "Index", new { sortOrder = ViewBag.DateSortParm })
+            </th>
+            <th>
+                Region&nbsp;&nbsp;&nbsp;&nbsp;
+            </th>
+            <th>
+                Salaries and Wages
+            </th>
+            <th>
+                Employee Benefits
+            </th>
+            <th>
+                Employee Travel
+            </th>
+            <th>
+                Employee Training
+            </th>
+            <th>
+                Office Rent
+            </th>
+            <th>
+                Office Utilities
+            </th>
+            <th>
+                Facility Insurance
+            </th>
+            <th>
+                Office Supplies
+            </th>
+            <th>
+                Equipment
+            </th>
+            <th>
+                Office Communications
+            </th>
+            <th>
+                Office Maintenance
+            </th>
+            <th>
+                Consulting Fee's
+            </th>
+            <th>
+                Janitor Services
+            </th>
+            <th>
+                Depreciation
+            </th>
+            <th>
+                Tech Support
+            </th>
+            <th>
+                Security
+            </th>
+            <th>
+                Other
+            </th>
+            <th>
+                Other
+            </th>
+            <th>
+                Other
+            </th>
+            <th>
+                Total Cost
+            </th>
+            <th></th>
+        </tr>
 
-        <th>
-
-        </th>
-        <th>
-            @Html.ActionLink("Organization", "Index", new { sortOrder = ViewBag.NameSortParm })
-        </th>
-        <th>
-            @Html.ActionLink("Submitted Date", "Index", new { sortOrder = ViewBag.DateSortParm })
-        </th>
-        <th>
-            Region&nbsp;&nbsp;&nbsp;&nbsp;
-        </th>
-        <th>
-            Salaries and Wages
-        </th>
-        <th>
-            Employee Benefits
-        </th>
-        <th>
-            Employee Travel
-        </th>
-        <th>
-            Employee Training
-        </th>
-        <th>
-            Office Rent
-        </th>
-        <th>
-            Office Utilities
-        </th>
-        <th>
-            Facility Insurance
-        </th>
-        <th>
-            Office Supplies
-        </th>
-        <th>
-            Equipment
-        </th>
-        <th>
-            Office Communications
-        </th>
-        <th>
-            Office Maintenance
-        </th>
-        <th>
-            Consulting Fee's
-        </th>
-        <th>
-            Janitor Services
-        </th>
-        <th>
-            Depreciation
-        </th>
-        <th>
-            Tech Support
-        </th>
-        <th>
-            Security
-        </th>
-        <th>
-            Other
-        </th>
-        <th>
-            Other
-        </th>
-        <th>
-            Other
-        </th>
-        <th>
-            Total Cost
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-    <tr>
-        @if (!User.IsInRole("Admin"))
+        @foreach (var item in Model)
         {
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.AdminCostId })
-            </td>
+            <tr>
+                @if (!User.IsInRole("Admin"))
+                {
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.AdminCostId })
+                    </td>
+                }
+
+                <td>
+                    @Html.ActionLink("Details", "Details", new { id = item.AdminCostId })
+                </td>
+                <td>
+                    @item.Subcontractor.OrgName
+                </td>
+                <td>
+                    @item.SubmittedDate.ToShortDateString()
+                </td>
+                <td>
+                    @item.Region.GetDisplayName()
+                </td>
+                <td>
+                    @item.ASalandWages.ToString("C")
+                </td>
+                <td>
+                    @item.AEmpBenefits.ToString("C")
+                </td>
+                <td>
+                    @item.AEmpTravel.ToString("C")
+                </td>
+                <td>
+                    @item.AEmpTraining.ToString("C")
+                </td>
+                <td>
+                    @item.AOfficeRent.ToString("C")
+                </td>
+                <td>
+                    @item.AOfficeUtilities.ToString("C")
+                </td>
+                <td>
+                    @item.AFacilityIns.ToString("C")
+                </td>
+                <td>
+                    @item.AOfficeSupplies.ToString("C")
+                </td>
+                <td>
+                    @item.AEquipment.ToString("C")
+                </td>
+                <td>
+                    @item.AOfficeCommunications.ToString("C")
+                </td>
+                <td>
+                    @item.AOfficeMaint.ToString("C")
+                </td>
+                <td>
+                    @item.AConsulting.ToString("C")
+                </td>
+                <td>
+                    @item.AJanitorServices.ToString("C")
+                </td>
+                <td>
+                    @item.ADepreciation.ToString("C")
+                </td>
+                <td>
+                    @item.ATechSupport.ToString("C")
+                </td>
+                <td>
+                    @item.ASecurityServices.ToString("C")
+                </td>
+                <td>
+                    @item.AOther.ToString("C")
+                </td>
+                <td>
+                    @item.AOther2.ToString("C")
+                </td>
+                <td>
+                    @item.AOther3.ToString("C")
+                </td>
+                <td>
+                    @item.ATotCosts.ToString("C")
+                </td>
+            </tr>
         }
+    </table>
 
-        <td>
-            @Html.ActionLink("Details", "Details", new { id = item.AdminCostId })
-        </td>
-        <td>
-            @item.Subcontractor.OrgName
-        </td>
-        <td>
-            @item.SubmittedDate.ToShortDateString()
-        </td>
-        <td>
-            @item.Region.GetDisplayName()
-        </td>
-        <td>
-            @item.ASalandWages.ToString("C")
-        </td>
-        <td>
-            @item.AEmpBenefits.ToString("C")
-        </td>
-        <td>
-            @item.AEmpTravel.ToString("C")
-        </td>
-        <td>
-            @item.AEmpTraining.ToString("C")
-        </td>
-        <td>
-            @item.AOfficeRent.ToString("C")
-        </td>
-        <td>
-            @item.AOfficeUtilities.ToString("C")
-        </td>
-        <td>
-            @item.AFacilityIns.ToString("C")
-        </td>
-        <td>
-            @item.AOfficeSupplies.ToString("C")
-        </td>
-        <td>
-            @item.AEquipment.ToString("C")
-        </td>
-        <td>
-            @item.AOfficeCommunications.ToString("C")
-        </td>
-        <td>
-            @item.AOfficeMaint.ToString("C")
-        </td>
-        <td>
-            @item.AConsulting.ToString("C")
-        </td>
-        <td>
-            @item.AJanitorServices.ToString("C")
-        </td>
-        <td>
-            @item.ADepreciation.ToString("C")
-        </td>
-        <td>
-            @item.ATechSupport.ToString("C")
-        </td>
-        <td>
-            @item.ASecurityServices.ToString("C")
-        </td>
-        <td>
-            @item.AOther.ToString("C")
-        </td>
-        <td>
-            @item.AOther2.ToString("C")
-        </td>
-        <td>
-            @item.AOther3.ToString("C")
-        </td>
-        <td>
-            @item.ATotCosts.ToString("C")
-        </td>
-    </tr>
+    @*This is how you do a Sum in Linq to apply a total based on a model property*@
+    <h3>Total Administrative Cost</h3>
+    <p>
+        <ul>@Model.Sum(m => m.ATotCosts).ToString("c")</ul>
+    </p>
+    <br /><br />
+    @using (Html.BeginForm("Export", "AdministrationCost", FormMethod.Post))
+    {
+        <input type="submit" value="Export to Excel" class="btn btn-group-sm btn-primary" />
     }
-</table>
 
-@*This is how you do a Sum in Linq to apply a total based on a model property*@
-<h3>Total Administrative Cost</h3>
-<tr>
-    <td>@Model.Sum(m => m.ATotCosts).ToString("c")</td>
-</tr>
-<br /><br />
-@using (Html.BeginForm("Export", "AdministrationCost", FormMethod.Post))
-{
-    <input type="submit" value="Export to Excel" class="btn btn-group-sm btn-primary" />
-}
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("Index",
+        new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter, @class="pagination" }))
+</div>

@@ -17,7 +17,7 @@ namespace Alliance_for_Life.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: ResidentialMIRs
-        public ActionResult Index(string sortOrder, string searchString, string currentFilter, int? page, string pgSize)
+        public ActionResult Index(string sortOrder, Guid? searchString, string currentFilter, int? page, string pgSize)
         {
 
             int pageSize = Convert.ToInt16(pgSize);
@@ -25,6 +25,7 @@ namespace Alliance_for_Life.Controllers
             ViewBag.CurrentSort = sortOrder;
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
+            ViewBag.Subcontractor = new SelectList(db.SubContractors, "SubcontractorId", "OrgName");
 
             //looking for the searchstring
             if (searchString != null)
@@ -33,7 +34,7 @@ namespace Alliance_for_Life.Controllers
             }
             else
             {
-                searchString = currentFilter;
+                currentFilter = searchString.ToString();
             }
             ViewBag.CurrentFilter = searchString;
 
@@ -56,14 +57,11 @@ namespace Alliance_for_Life.Controllers
             }
             
 
-            if (!String.IsNullOrEmpty(searchString))
+            if (!String.IsNullOrEmpty(searchString.ToString()))
             {
-                ressearch = ressearch.Where(a => a.Subcontractor.OrgName.Contains(searchString)
-                || a.Subcontractor.SubmittedDate.ToString().Contains(searchString));
+                ressearch = ressearch.Where(a => a.Subcontractor.SubcontractorId == searchString);
 
-
-                nonresidental = nonresidental.Where(a => a.Subcontractor.OrgName.Contains(searchString)
-                 || a.Subcontractor.SubmittedDate.ToString().Contains(searchString));
+                nonresidental = nonresidental.Where(a => a.Subcontractor.SubcontractorId == searchString);
             }
 
             ViewBag.nonResidentialMIRs = nonresidental.ToList();

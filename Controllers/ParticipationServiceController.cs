@@ -1,6 +1,7 @@
 ﻿using Alliance_for_Life.Models;
 using ClosedXML.Excel;
 using Microsoft.AspNet.Identity;
+using PagedList;
 using System;
 using System.Data;
 using System.Data.Entity;
@@ -17,9 +18,28 @@ namespace Alliance_for_Life.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: ParticipationCost
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder, Guid? searchString, string currentFilter, int? page, string pgSize)
         {
+            int pageSize = Convert.ToInt16(pgSize);
+
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
+            ViewBag.Subcontractor = new SelectList(db.SubContractors, "SubcontractorId", "OrgName");
+
+            //looking for the searchstring
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                currentFilter = searchString.ToString();
+            }
+
+            ViewBag.CurrentFilter = searchString;
+
             var participationServices = db.ParticipationServices.Include(p => p.Subcontractor);
+
             if (!User.IsInRole("Admin"))
             {
                 var id = User.Identity.GetUserId();
@@ -29,7 +49,35 @@ namespace Alliance_for_Life.Controllers
                                         where usersubid == s.SubcontractorId
                                         select s;
             }
-            return View(participationServices.ToList());
+
+            if (!String.IsNullOrEmpty(searchString.ToString()))
+            {
+                participationServices = participationServices.Where(a => a.Subcontractor.SubcontractorId == searchString);
+            }
+
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    participationServices = participationServices.OrderByDescending(s => s.Subcontractor.OrgName);
+                    break;
+                case "Date":
+                    participationServices = participationServices.OrderBy(s => s.SubmittedDate);
+                    break;
+                case "date_desc":
+                    participationServices = participationServices.OrderByDescending(s => s.SubmittedDate);
+                    break;
+                default:
+                    participationServices = participationServices.OrderBy(s => s.Subcontractor.OrgName);
+                    break;
+            }
+
+            if (pageSize < 1)
+            {
+                pageSize = 10;
+            }
+
+            int pageNumber = (page ?? 1);
+            return View(participationServices.ToPagedList(pageNumber, pageSize));
         }
 
         // GET: ParticipationCost/Details/5
