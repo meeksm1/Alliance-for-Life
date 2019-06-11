@@ -2,6 +2,7 @@
 using Alliance_for_Life.ViewModels;
 using ClosedXML.Excel;
 using Microsoft.AspNet.Identity;
+using PagedList;
 using System;
 using System.Data;
 using System.IO;
@@ -129,8 +130,19 @@ namespace Alliance_for_Life.Controllers
             return View(db.SubContractors.ToList());
         }
 
-        public ActionResult Reports()
+        public ActionResult Reports(string sortOrder, string searchString, int? yearsearch, string currentFilter, int? page, string pgSize)
         {
+            int pageSize = Convert.ToInt16(pgSize);
+
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
             var subcontractors = from s in db.SubContractors
                                  select new SubcontractorReport
                                  {
@@ -143,7 +155,13 @@ namespace Alliance_for_Life.Controllers
                                      SubmittedDate = DateTime.Now
                                  };
 
-            return View(subcontractors.OrderBy(r => r.OrgName));
+            if (pageSize < 1)
+            {
+                pageSize = 10;
+            }
+
+            int pageNumber = (page ?? 1);
+            return View(subcontractors.OrderBy(r => r.OrgName).ToPagedList(pageNumber, pageSize));
         }
 
         [HttpPost]

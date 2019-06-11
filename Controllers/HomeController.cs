@@ -31,14 +31,8 @@ namespace Alliance_for_Life.Controllers
             var organization = "";
 
             var usr = db.Users.Find(id);
-
+            organization = db.SubContractors.Find(usr.SubcontractorId).OrgName;
             var usersub = db.SubContractors.Find(usr.SubcontractorId);
-
-            //if (usersub == null)
-            //{
-            //    usersub.OrgName = User.Identity.Name;
-
-            //}
 
             if (usersub != null)
             {
