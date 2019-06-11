@@ -124,7 +124,7 @@ namespace Alliance_for_Life.ReportControllers
             invoice.DirectAdminCost = 0;
             invoice.ParticipantServices = 0;
 
-            if ((admincost.Count() == 0) && (particost.Count() == 0))
+            if ((admincost.Count() == 0) || (particost.Count() == 0))
             {
                 ViewBag.error = "Invoice for " + db.SubContractors.Find(new Guid(orgname)).OrgName
                          + " for " + Month + ", " + Year + " cannot be generated. Admin cost or Participation cost does not exist.";

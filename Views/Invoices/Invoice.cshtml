@@ -36,7 +36,8 @@
                         </div>
                         <ul class="media-body list-unstyled">
                             <li><strong>Alliance For Life</strong></li>
-                            <li> 487 SW Ward Rd, Lee’s Summit, MO 64081 </li>
+                            <li> 487 SW Ward Rd</li>
+                            <li> Lee’s Summit, MO 64081 </li>
                             <li><i class="fa fa-phone"> 816-806-4168</i></li>
                         </ul>
                     </div>
@@ -44,7 +45,8 @@
                 <br />
                 <div>
                     <h2> <strong>Monthly Invoice </strong></h2>
-                    <h4 class="text-muted"> Date: @System.DateTime.Now.ToString("MMMM dd, yyyy")</h4>
+                    <h3 style="text-align:left;">@Model.Month,&nbsp; @Model.Year</h3>
+                    
                 </div>
 
             </div>
@@ -58,11 +60,12 @@
                             <dt style="text-align:left;">Name</dt>
                             <dd style="text-align:left;">@Model.Subcontractor.OrgName</dd>
                             <dt style="text-align:left;">Address</dt>
-                            <dd >@Model.Subcontractor.Address1, @Model.Subcontractor.County, @Model.Subcontractor.City   @Model.Subcontractor.State  @Model.Subcontractor.ZipCode , USA </p> </dd>
+                            <dd style="text-align:left;">@Model.Subcontractor.Address1 </dd>
+                            <dd style="text-align:left;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@Model.Subcontractor.City,&nbsp;@Model.Subcontractor.State&nbsp; @Model.Subcontractor.ZipCode</dd>
                             <dt style="text-align:left;"> Key Contact</dt>
                             <dd style="text-align:left;">@Model.Subcontractor.Director</dd>
-                            <dt style="text-align:left;">Invoice Month</dt>
-                            <dd style="text-align:left;">@Model.Month, @Model.Year</dd>
+                            <dt style="text-align:left;">Invoice Date</dt>
+                            <dd class="text-muted"> Date: @System.DateTime.Now.ToString("MMMM dd, yyyy")</dd>
                         </dl>
                     </div>
                 </div>
@@ -98,6 +101,14 @@
                         </td>
                     </tr>
                     <tr>
+                        <th>
+                            Grand Total
+                        </th>
+                        <td class="text-right">
+                            <span class="mono">@Model.GrandTotal.ToString("C")</span>
+                        </td>
+                    </tr>
+                    <tr>
                         <td>
                             Less Management Fee
                         </td>
@@ -113,20 +124,11 @@
                             <span class="mono">@Model.DepositAmount.ToString("C")</span>
                         </td>
                     </tr>
-                    <tr>
-                        <th>
-                            Grand Total
-                        </th>
-                        <td class="text-right">
-                            <span class="mono">@Model.GrandTotal.ToString("C")</span>
-                        </td>
-                    </tr>
                 </tbody>
             </table>
         </div>
         <div class="panel panel-default">
             <table class="table table-bordered table-condensed">
-                <thead>
                     <tr>
                         <td class="text-left ">Beginning Allocation</td>
                         <td class="text-right ">@Model.BeginningAllocation.ToString("C")</td>
@@ -138,15 +140,19 @@
                     </tr>
                     <tr>
                         <td class="text-left ">Remaining Balance</td>
-                        <td class="text-right ">@Model.BalanceRemaining.ToString("C")</td>
-
+                        @if (Model.BeginningAllocation - Model.AdjustedAllocation < 0)
+                        {
+                            <td class="text-right" style="color: red">
+                                @Math.Round(Model.BeginningAllocation - Model.AdjustedAllocation).ToString("C")
+                            </td>
+                        }
+                        else
+                        {
+                            <td class="text-right">
+                                @Math.Round(Model.BeginningAllocation - Model.AdjustedAllocation).ToString("C")
+                            </td>
+                        }
                     </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                     
-                    </tr>
-                </tbody>
             </table>
         </div>
         <br />
