@@ -17,33 +17,126 @@
         <div class='row'>
             @foreach (var subcontractor in Model)
             {
-                <div class='col-xs-2'>
-                    <div class='item'>
-                        <div style="font-size:17px; text-align:center; text-decoration: underline; color:white;"> <strong> @subcontractor.OrgName </strong></div><br />
-                        <div style="font-size:14px; text-align:center; ">
-                            <i class="fa fa-user" style="font-size:24px; color:white;"></i>&nbsp; &nbsp;
-                            <font style="color:white;">@subcontractor.Director</font>
-                        </div>
-                       
-                        <div style="font-size:14px; text-align:center; ">
-                            <i class="fa fa-map-pin" style="font-size:24px; color:white;"></i>&nbsp; &nbsp;
-                            <font style="color:white;">@subcontractor.Region.GetDisplayName()</font>
-                        </div>
-                        <div style="font-size:14px; text-align:center; ">
-                            <i class="fa fa-map-marker" style="font-size:24px; color:white;"></i>&nbsp; &nbsp;
-                            <font style="color:white;">@subcontractor.AffiliateRegion</font>
-                        </div>
-                        <br />
-                        @if (ViewContext.HttpContext.User.IsInRole("Admin"))
-                        {
-                            <div style="text-align:center;">
-                                <a style="color: white;" href="@Url.Action("Edit", "SubContractor", new { id = subcontractor.SubcontractorId })">
-                                    Edit
-                                </a>
+                if ("West" == subcontractor.AffiliateRegion.ToString())
+                {
+                    <div class='col-sm-2'>
+                        <div class='item6'>
+                            <div style="font-size:17px; text-align:center; text-decoration: underline; "> <strong> @subcontractor.OrgName </strong></div><br />
+                            <div style="font-size:14px; text-align:center; ">
+                                <i class="fa fa-user" style="font-size:24px;"></i> &nbsp;
+                                <font>@subcontractor.Director</font>
                             </div>
-                        }
+                            <div style="font-size:14px; text-align:center; ">
+                                <i class="fa fa-map-pin" style="font-size:24px;"></i>&nbsp; &nbsp;
+                                <font>@subcontractor.Region.GetDisplayName()</font>
+                            </div>
+                            <div style="font-size:14px; text-align:center; ">
+                                <i class="fa fa-map-marker" style="font-size:24px;"></i>&nbsp; &nbsp;
+                                <font>@subcontractor.AffiliateRegion</font>
+                            </div><br />
+                        </div>
                     </div>
-                </div>
+                }
+                else if ("North" == subcontractor.AffiliateRegion.ToString())
+                {
+                    <div class='col-sm-2'>
+                        <div class='item1'>
+                            <div style="font-size:17px; text-align:center; text-decoration: underline; "> <strong> @subcontractor.OrgName </strong></div><br />
+                            <div style="font-size:14px; text-align:center; ">
+                                <i class="fa fa-user" style="font-size:24px;"></i>&nbsp; &nbsp;
+                                <font>@subcontractor.Director</font>
+                            </div>
+                            <div style="font-size:14px; text-align:center; ">
+                                <i class="fa fa-map-pin" style="font-size:24px;"></i>&nbsp; &nbsp;
+                                <font>@subcontractor.Region.GetDisplayName()</font>
+                            </div>
+                            <div style="font-size:14px; text-align:center; ">
+                                <i class="fa fa-map-marker" style="font-size:24px;"></i>&nbsp; &nbsp;
+                                <font>@subcontractor.AffiliateRegion</font>
+                            </div><br />
+                        </div>
+                    </div>
+                }
+                else if ("East" == subcontractor.AffiliateRegion.ToString())
+                {
+                    <div class='col-sm-2'>
+                        <div class='item2'>
+                            <div style="font-size:17px; text-align:center; text-decoration: underline; "> <strong> @subcontractor.OrgName </strong></div><br />
+                            <div style="font-size:14px; text-align:center; ">
+                                <i class="fa fa-user" style="font-size:24px;"></i>&nbsp; &nbsp;
+                                <font>@subcontractor.Director</font>
+                            </div>
+                            <div style="font-size:14px; text-align:center; ">
+                                <i class="fa fa-map-pin" style="font-size:24px;"></i>&nbsp; &nbsp;
+                                <font>@subcontractor.Region.GetDisplayName()</font>
+                            </div>
+                            <div style="font-size:14px; text-align:center; ">
+                                <i class="fa fa-map-marker" style="font-size:24px;"></i>&nbsp; &nbsp;
+                                <font>@subcontractor.AffiliateRegion</font>
+                            </div><br />
+                        </div>
+                    </div>
+                }
+                else if ("Southwest" == subcontractor.AffiliateRegion.ToString())
+                {
+                    <div class='col-sm-2'>
+                        <div class='item3'>
+                            <div style="font-size:17px; text-align:center; text-decoration: underline; "> <strong> @subcontractor.OrgName </strong></div><br />
+                            <div style="font-size:14px; text-align:center; ">
+                                <i class="fa fa-user" style="font-size:24px;"></i>&nbsp; &nbsp;
+                                <font>@subcontractor.Director</font>
+                            </div>
+                            <div style="font-size:14px; text-align:center; ">
+                                <i class="fa fa-map-pin" style="font-size:24px;"></i>&nbsp; &nbsp;
+                                <font>@subcontractor.Region.GetDisplayName()</font>
+                            </div>
+                            <div style="font-size:14px; text-align:center; ">
+                                <i class="fa fa-map-marker" style="font-size:24px;"></i>&nbsp; &nbsp;
+                                <font>@subcontractor.AffiliateRegion</font>
+                            </div><br />
+                        </div>
+                    </div>
+                }
+                else if ("Southeast" == subcontractor.AffiliateRegion.ToString())
+                {
+                    <div class='col-sm-2'>
+                        <div class='item4'>
+                            <div style="font-size:17px; text-align:center; text-decoration: underline; "> <strong> @subcontractor.OrgName </strong></div><br />
+                            <div style="font-size:14px; text-align:center; ">
+                                <i class="fa fa-user" style="font-size:24px;"></i>&nbsp; &nbsp;
+                                <font>@subcontractor.Director</font>
+                            </div>
+                            <div style="font-size:14px; text-align:center; ">
+                                <i class="fa fa-map-pin" style="font-size:24px;"></i>&nbsp; &nbsp;
+                                <font>@subcontractor.Region.GetDisplayName()</font>
+                            </div>
+                            <div style="font-size:14px; text-align:center; ">
+                                <i class="fa fa-map-marker" style="font-size:24px;"></i>&nbsp; &nbsp;
+                                <font>@subcontractor.AffiliateRegion</font>
+                            </div><br />
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class='col-sm-2'>
+                        <div class='item5'>
+                            <div style="font-size:17px; text-align:center; text-decoration: underline; "> <strong> @subcontractor.OrgName </strong></div><br />
+                            <div style="font-size:14px; text-align:center; ">
+                                <i class="fa fa-user" style="font-size:24px;"></i>&nbsp; &nbsp;
+                                <font>@subcontractor.Director</font>
+                            </div>
+                            <div style="font-size:14px; text-align:center; ">
+                                <i class="fa fa-map-pin" style="font-size:24px;"></i>&nbsp; &nbsp;
+                                <font>@subcontractor.Region.GetDisplayName()</font>
+                            </div>
+                            <div style="font-size:14px; text-align:center; ">
+                                <i class="fa fa-map-marker" style="font-size:24px;"></i>&nbsp; &nbsp;
+                                <font>@subcontractor.AffiliateRegion</font>
+                            </div><br />
+                        </div>
+                    </div>
+                }
             }
         </div>
     </div>

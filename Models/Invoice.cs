@@ -5,6 +5,7 @@ namespace Alliance_for_Life.Models
 {
     public class Invoice
     {
+        [Key]
         public System.Guid InvoiceId { get; set; }
 
         public string OrgName { get; set; }
