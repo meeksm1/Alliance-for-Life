@@ -123,7 +123,6 @@ namespace Alliance_for_Life.Controllers
                 var usersubid = db.Users.Find(id).SubcontractorId;
 
                 list = list.Where(s => s.SubcontractorId == usersubid).ToList();
-
             }
 
             var datelist = Enumerable.Range(System.DateTime.Now.Year - 4, 10).ToList();
