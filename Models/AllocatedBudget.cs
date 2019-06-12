@@ -9,7 +9,6 @@ namespace Alliance_for_Life.Models
         public Guid AllocatedBudgetId { get; set; }
         public Guid SubcontractorId { get; set; }
         public double CycleEndAdjustments { get; set; }
-        public Guid InvoiceId { get; set; }
         public int Year { get; set; }
         public double AllocatedNewBudget { get; set; }
         public double AllocatedOldBudget { get; set; }
