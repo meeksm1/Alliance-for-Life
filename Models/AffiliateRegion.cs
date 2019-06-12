@@ -7,10 +7,11 @@ namespace Alliance_for_Life.Models
 {
         public enum AffiliatesRegion
         {
-            Northwest = 1,
-            Northeast = 2,
-            Southwest = 3,
-            Southeast = 4,
-            Central = 5
+            North = 1,
+            East = 2,
+            Southeast = 3,
+            West = 4,
+            Southwest = 5,
+            Central = 6
         }
 }
