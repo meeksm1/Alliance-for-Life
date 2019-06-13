@@ -13,13 +13,50 @@
 <table class="table">
     <tr>
         <th>
+            @Html.DisplayNameFor(model => model.Subcontractor.EIN)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.Subcontractor.OrgName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.CycleEndAdjustments)
+            @Html.DisplayName("July Biling")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Year)
+            @Html.DisplayName("August Biling")
+        </th>
+        <th>
+            @Html.DisplayName("September Biling")
+        </th>
+        <th>
+            @Html.DisplayName("October Biling")
+        </th>
+        <th>
+            @Html.DisplayName("November Biling")
+
+        </th>
+        <th>
+            @Html.DisplayName("December Biling")
+        </th>
+        <th>
+            @Html.DisplayName("January Biling")
+        </th>
+        <th>
+            @Html.DisplayName("February Biling")
+        </th>
+        <th>
+            @Html.DisplayName("March Biling")
+        </th>
+        <th>
+            @Html.DisplayName("April Biling")
+        </th>
+        <th>
+            @Html.DisplayName("May Biling")
+        </th>
+        <th>
+            @Html.DisplayName("June Biling")
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CycleEndAdjustments)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.AllocatedNewBudget)
@@ -30,35 +67,156 @@
         <th>
             @Html.DisplayNameFor(model => model.AllocationAdjustedDate)
         </th>
+
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Subcontractor.OrgName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CycleEndAdjustments)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Year)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AllocatedNewBudget)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AllocatedOldBudget)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AllocationAdjustedDate)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.AllocatedBudgetId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.AllocatedBudgetId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.AllocatedBudgetId })
-        </td>
-    </tr>
-}
+    @foreach (var group in Model.GroupBy(item => item.Subcontractor.OrgName))
+    {
+        <tr>
 
+            <td>
+                @Html.Encode(group.FirstOrDefault().Subcontractor.EIN)
+            </td>
+            <td>
+                @Html.Encode(group.Key)
+            </td>
+            <td>
+
+                @foreach (var item in group)
+                {
+                    if (item.Invoice.Select(a => a.Month).Contains(Alliance_for_Life.Models.Months.July))
+                    {
+
+                  @item.Invoice.Where(a => a.Month == Alliance_for_Life.Models.Months.July).Select(a => a.GrandTotal).SingleOrDefault().ToString("C")
+                    }
+                }
+            </td>
+            <td>
+                @foreach (var item in group)
+                {
+                    if (item.Invoice.Select(a => a.Month).Contains(Alliance_for_Life.Models.Months.August))
+                    {
+                        @item.Invoice.Where(a => a.Month == Alliance_for_Life.Models.Months.August).Select(a => a.GrandTotal).SingleOrDefault().ToString("C")
+
+                    }
+
+                }
+            </td>
+            <td>
+                @foreach (var item in group)
+                {
+                    if (item.Invoice.Select(a => a.Month).Contains(Alliance_for_Life.Models.Months.September))
+                    {
+                    @item.Invoice.Where(a => a.Month == Alliance_for_Life.Models.Months.September).Select(a => a.GrandTotal).SingleOrDefault().ToString("C")
+                    }
+                }
+            </td>
+            <td>
+                @foreach (var item in group)
+                {
+                    if (item.Invoice.Select(a => a.Month).Contains(Alliance_for_Life.Models.Months.October))
+                    {
+
+                    @item.Invoice.Where(a => a.Month == Alliance_for_Life.Models.Months.October).Select(a => a.GrandTotal).SingleOrDefault().ToString("C")
+                    }
+                }
+            </td>
+            <td>
+                @foreach (var item in group)
+                {
+                    if (item.Invoice.Select(a => a.Month).Contains(Alliance_for_Life.Models.Months.November))
+                    {
+                    @item.Invoice.Where(a => a.Month == Alliance_for_Life.Models.Months.November).Select(a => a.GrandTotal).SingleOrDefault().ToString("C")
+                    }
+                }
+            </td>
+            <td>
+                @foreach (var item in group)
+                {
+                    if (item.Invoice.Select(a => a.Month).Contains(Alliance_for_Life.Models.Months.December))
+                    {
+
+                    @item.Invoice.Where(a => a.Month == Alliance_for_Life.Models.Months.December).Select(a => a.GrandTotal).SingleOrDefault().ToString("C")
+                    }
+                }
+            </td>
+            <td>
+                @foreach (var item in group)
+                {
+                    if (item.Invoice.Select(a => a.Month).Contains(Alliance_for_Life.Models.Months.January))
+                    {
+
+                    @item.Invoice.Where(a => a.Month == Alliance_for_Life.Models.Months.January).Select(a => a.GrandTotal).SingleOrDefault().ToString("C")
+                    }
+                }
+            </td>
+
+            <td>
+                @foreach (var item in group)
+                {
+                    if (item.Invoice.Select(a => a.Month).Contains(Alliance_for_Life.Models.Months.February))
+                    {
+
+                    @item.Invoice.Where(a => a.Month == Alliance_for_Life.Models.Months.February).Select(a => a.GrandTotal).SingleOrDefault().ToString("C")
+                    }
+                }
+            </td>
+
+            <td>
+                @foreach (var item in group)
+                { if (item.Invoice.Select(a => a.Month).Contains(Alliance_for_Life.Models.Months.March))
+                    {
+
+                    @item.Invoice.Where(a => a.Month == Alliance_for_Life.Models.Months.March).Select(a => a.GrandTotal).SingleOrDefault().ToString("C")
+                    }
+                }
+            </td>
+
+            <td>
+                @foreach (var item in group)
+                {
+                    if (item.Invoice.Select(a => a.Month).Contains(Alliance_for_Life.Models.Months.April))
+                    {
+
+                    @item.Invoice.Where(a => a.Month == Alliance_for_Life.Models.Months.April).Select(a => a.GrandTotal).SingleOrDefault().ToString("C")
+                    }
+                }
+            </td>
+            <td>
+                @foreach (var item in group)
+                {
+                    if (item.Invoice.Select(a => a.Month).Contains(Alliance_for_Life.Models.Months.May))
+                    {
+                    @item.Invoice.Where(a => a.Month == Alliance_for_Life.Models.Months.May).Select(a => a.GrandTotal).SingleOrDefault().ToString("C")
+                    }
+                }
+            </td>
+            <td>
+                @foreach (var item in group)
+                {
+                    if (item.Invoice.Select(a => a.Month).Contains(Alliance_for_Life.Models.Months.June))
+                    {
+
+                    @item.Invoice.Where(a => a.Month == Alliance_for_Life.Models.Months.June).Select(a => a.GrandTotal).SingleOrDefault().ToString("C")
+                    }
+                }
+            </td>
+
+
+            <td>
+                @Html.Encode(group.FirstOrDefault().CycleEndAdjustments.ToString("C"))
+            </td>
+            <td>
+                @Html.Encode(group.FirstOrDefault().AllocatedNewBudget.ToString("C"))
+            </td>
+            <td>
+                @Html.Encode(group.FirstOrDefault().AllocatedOldBudget.ToString("C"))
+            </td>
+            <td>
+                @Html.Encode(group.FirstOrDefault().AllocationAdjustedDate.ToShortDateString())
+            </td>
+        </tr>
+    }
 </table>
+

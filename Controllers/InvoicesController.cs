@@ -63,7 +63,7 @@ namespace Alliance_for_Life.Controllers
                 var id = User.Identity.GetUserId();
                 var usersubid = db.Users.Find(id).SubcontractorId;
 
-                invoices = from s in db.Invoices
+                invoices = from s in invoices
                            where usersubid == s.SubcontractorId
                            select s;
             }

@@ -14,7 +14,8 @@ namespace Alliance_for_Life.Controllers
         // GET: AllocatedBudgets
         public ActionResult Index()
         {
-            var allocatedBudget = db.AllocatedBudget.Include(a => a.Subcontractor);
+            var allocatedBudget = db.AllocatedBudget.Include(a => a.Subcontractor).Include(a => a.Invoice);
+
             return View(allocatedBudget.ToList());
         }
 
