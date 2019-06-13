@@ -11,7 +11,7 @@
     @using (Html.BeginForm())
     {
         <p>
-            Find by Organization Name or Last Name: @Html.TextBox("SearchString")
+            Find by Last Name: @Html.TextBox("SearchString")
             <input type="submit" value="Search" />
         </p>
     }
@@ -19,17 +19,17 @@
     <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100">
         <tr>
             <th>
-                @Html.ActionLink("Organization", "AllActiveClients", new { sortOrder = ViewBag.NameSortParm })
+                Organization
             </th>
 
             <th>
                 First Name
             </th>
             <th>
-                @Html.ActionLink("Last Name", "AllActiveClients", new { sortOrder = ViewBag.LastNameSortParm })
+                @Html.ActionLink("Last Name", "NonActiveClients", new { sortOrder = ViewBag.LastNameSortParm })
             </th>
             <th>
-                @Html.ActionLink("Due date", "AllActiveClients", new { sortOrder = ViewBag.DateSortParm })
+                @Html.ActionLink("Due date", "NonActiveClients", new { sortOrder = ViewBag.DateSortParm })
             </th>
             <th>
                 Birthday

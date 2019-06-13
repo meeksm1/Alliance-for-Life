@@ -28,17 +28,17 @@
     <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100">
         <tr>
             <th>
-                @Html.ActionLink("Organization", "AllActiveClients", new { sortOrder = ViewBag.NameSortParm })
+                @Html.ActionLink("Organization", "AllNonActiveClients", new { sortOrder = ViewBag.NameSortParm })
             </th>
 
             <th>
                 First Name
             </th>
             <th>
-                @Html.ActionLink("Last Name", "AllActiveClients", new { sortOrder = ViewBag.LastNameSortParm })
+                @Html.ActionLink("Last Name", "AllNonActiveClients", new { sortOrder = ViewBag.LastNameSortParm })
             </th>
             <th>
-                @Html.ActionLink("Due date", "AllActiveClients", new { sortOrder = ViewBag.DateSortParm })
+                @Html.ActionLink("Due date", "AllNonActiveClients", new { sortOrder = ViewBag.DateSortParm })
             </th>
             <th>
                 Birthday
