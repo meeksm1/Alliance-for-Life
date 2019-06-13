@@ -1,4 +1,4 @@
-﻿@model  Alliance_for_Life.Models.Invoice
+﻿@model  Alliance_for_Life.Models.Invoices
 
 @{
     Layout = "~/Views/Shared/_InvoiceLayout.cshtml";
@@ -46,7 +46,7 @@
                 <div>
                     <h2> <strong>Monthly Invoice </strong></h2>
                     <h3 style="text-align:left;">@Model.Month,&nbsp; @Model.Year</h3>
-                    
+
                 </div>
 
             </div>
@@ -129,30 +129,30 @@
         </div>
         <div class="panel panel-default">
             <table class="table table-bordered table-condensed">
-                    <tr>
-                        <td class="text-left ">Beginning Allocation</td>
-                        <td class="text-right ">@Model.BeginningAllocation.ToString("C")</td>
-                    </tr>
-                    <tr>
-                        <td class="text-left ">Adjusted Allocation</td>
-                        <td class="text-right ">@Model.AdjustedAllocation.ToString("C")</td>
+                <tr>
+                    <td class="text-left ">Beginning Allocation</td>
+                    <td class="text-right ">@Model.AllocatedBudget.AllocatedOldBudget.ToString("C")</td>
+                </tr>
+                <tr>
+                    <td class="text-left ">Adjusted Allocation</td>
+                    <td class="text-right ">@Model.AllocatedBudget.AllocatedNewBudget.ToString("C")</td>
 
-                    </tr>
-                    <tr>
-                        <td class="text-left ">Remaining Balance</td>
-                        @if (Model.BeginningAllocation - Model.AdjustedAllocation < 0)
-                        {
-                            <td class="text-right" style="color: red">
-                                @Math.Round(Model.BeginningAllocation - Model.AdjustedAllocation).ToString("C")
-                            </td>
-                        }
-                        else
-                        {
-                            <td class="text-right">
-                                @Math.Round(Model.BeginningAllocation - Model.AdjustedAllocation).ToString("C")
-                            </td>
-                        }
-                    </tr>
+                </tr>
+                <tr>
+                    <td class="text-left ">Remaining Balance</td>
+                    @if (Model.BalanceRemaining < 0)
+                    {
+                        <td class="text-right" style="color: red">
+                            @Math.Round(Model.BalanceRemaining).ToString("C")
+                        </td>
+                    }
+                    else
+                    {
+                        <td class="text-right">
+                            @Math.Round(Model.BalanceRemaining).ToString("C")
+                        </td>
+                    }
+                </tr>
             </table>
         </div>
         <br />
@@ -166,7 +166,7 @@
                         <strong>Signature:</strong> ____________________________________________________
                         <ul class="list-unstyled">
                             <li style="font-size:12px; text-align:center;">
-                                *Signing of invoice indicates that all charges have been verified and 
+                                *Signing of invoice indicates that all charges have been verified and
                                 are true and accurate to the best of sub-contractor’s knowledge.
                             </li>
                         </ul>

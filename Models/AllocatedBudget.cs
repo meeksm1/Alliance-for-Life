@@ -15,7 +15,7 @@ namespace Alliance_for_Life.Models
         public DateTime AllocationAdjustedDate { get; set; }
         public SubContractor Subcontractor { get; set; }
 
-        public ICollection<Invoice> Invoice { get; set; }
+        public ICollection<Invoices> Invoice { get; set; }
 
     }
 }
