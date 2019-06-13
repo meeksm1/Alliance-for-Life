@@ -1,20 +1,15 @@
 ﻿@model IEnumerable<Alliance_for_Life.Models.AllocatedBudget>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Allocated Budgets";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>@ViewBag.Title</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Subcontractor.EIN)
-        </th>
+        <th></th>
         <th>
             @Html.DisplayNameFor(model => model.Subcontractor.OrgName)
         </th>
@@ -56,16 +51,16 @@
             @Html.DisplayName("June Biling")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.CycleEndAdjustments)
+           Cycle End Adjustments
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.AllocatedNewBudget)
+            Allocation Adjustments
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.AllocatedOldBudget)
+            Begining Allocated Amount
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.AllocationAdjustedDate)
+            Adjustment Date
         </th>
 
         <th></th>
@@ -74,9 +69,8 @@
     @foreach (var group in Model.GroupBy(item => item.Subcontractor.OrgName))
     {
         <tr>
-
             <td>
-                @Html.Encode(group.FirstOrDefault().Subcontractor.EIN)
+                @*@Html.ActionLink("Details", "Details", new { group = Model.AllocatedBudgetId })*@
             </td>
             <td>
                 @Html.Encode(group.Key)

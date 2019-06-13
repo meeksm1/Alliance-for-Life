@@ -7,12 +7,11 @@
 <h2>AFL Reports</h2>
 
 <ul>
-    <text><strong>Budget Price Analysis Reports</strong></text>
+    <text><strong>Analysis Reports</strong></text>
     <li><a href="@Url.Action("Index", "BudgetCosts")">Budget Price Analysis Report</a></li>
-    <li><a href="@Url.Action("FirstQuarter", "BudgetCosts")">Budget Price Analysis First Quarter</a></li>
-    <li><a href="@Url.Action("SecondQuarter", "BudgetCosts")">Budget Price Analysis Second Quarter</a></li>
-    <li><a href="@Url.Action("ThirdQuarter", "BudgetCosts")">Budget Price Analysis Third Quarter</a></li>
-    <li><a href="@Url.Action("FourthQuarter", "BudgetCosts")">Budget Price Analysis Fourth Quarter</a></li>
+    <li><a href="@Url.Action("FirstQuarter", "BudgetCosts")">Cost Analysis Reports</a></li>
+    <li><a href="@Url.Action("Index", "AllocatedBudgets")">Allocation Analysis Reports</a></li>
+    <li><a href="@Url.Action("Index", "ResidentialMIRs")">Monthly Service Reports</a></li>
     @*<li><a href="@Url.Action("GraphIndex", "BudgetCosts")">Budget Graph Reports</a></li>*@
     <br />
     <text><strong>Client Reports</strong></text>
@@ -21,12 +20,8 @@
     <br />
     <text><strong>Other Reports</strong></text>
     <li><a href="@Url.Action("IndexforRegisteredUsers", "Account")">Registered Users</a></li>
-    <li><a href="@Url.Action("Reports", "SubContractor")">Subcontractor Reports</a></li>
-    <li><a href="@Url.Action("Index", "ResidentialMIRs")">Monthly Service Reports</a></li>
-    <li><a href="@Url.Action("Index", "AdministrationCost")"> Direct Administrative Cost Report </a></li>
-    <li><a href="@Url.Action("Index", "ParticipationService")"> Participation Cost Report </a></li>
-    <br />
-    <text><strong>Surveys</strong></text>
+    <li><a href="@Url.Action("Reports", "SubContractor")"> Current Subcontractor Report</a></li>
     <li><a href="@Url.Action("Index", "Surveys")">Completed Surveys</a></li>
+
 </ul>
 
