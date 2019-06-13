@@ -153,11 +153,13 @@ namespace Alliance_for_Life.Controllers
                     invoice.PSId = particost.FirstOrDefault().PSId;
                 }
 
+                invoice.LessManagementFee = invoice.DirectAdminCost * 0.03;
+
                 //grand total
                 invoice.GrandTotal = invoice.DirectAdminCost + invoice.ParticipantServices;
 
                 //lessmanagementFee
-                invoice.LessManagementFee = invoice.DirectAdminCost * .03;
+ 
                 invoice.DepositAmount = invoice.GrandTotal - invoice.LessManagementFee;
 
                 //getting contractor Allocated amount

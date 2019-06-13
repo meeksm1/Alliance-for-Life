@@ -1,52 +1,30 @@
-
-/*.row .item {
-  positon: relative;
-  cursor: pointer;
-  opacity: 0;
-  padding-top:2px;
-  -moz-transform: scale(0);
-  -webkit-transform: scale(0);
-  transform: scale(0);
-  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-  background-clip: padding-box !important;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-}
-.row .item.shown {
-  opacity: 1;
-  -moz-transform: scale(1);
-  -webkit-transform: scale(1);
-  transform: scale(1);
-}
-
-.row .item h4 {
-  color: white;
-  font-weight: 300;
-  position: absolute;
-  bottom: 0;
-  left: 10px;
-}*/
-
 .item6 {
     background: #fffa00;
     color: black;
+    margin:2px;
 }
- .item1 {
-  background: #ff6a00;
-  color:white;
+.item1 {
+    background: #ff6a00;
+    color: white;
+    margin: 2px;
 }
 .item2 {
     background: #ff00f2;
     color: black;
+    margin: 2px;
 }
 .item3 {
     background: #56d708;
     color: white;
+    margin: 2px;
 }
 .item4 {
     background: #fb0303;
     color: white;
+    margin: 2px;
 }
 .item5 {
     background: #6000ff;
     color: white;
+    margin: 2px;
 }
