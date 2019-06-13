@@ -1,5 +1,4 @@
 ﻿using Alliance_for_Life.Models;
-using Alliance_for_Life.ViewModels;
 using Microsoft.AspNet.Identity;
 using PagedList;
 using System;
@@ -8,12 +7,13 @@ using System.Linq;
 using System.Net;
 using System.Web.Mvc;
 
-namespace Alliance_for_Life.ReportControllers
+namespace Alliance_for_Life.Controllers
 {
-    [Authorize]
     public class InvoicesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
+
+        // GET: Invoices1
         public ActionResult Index(string sortOrder, string searchString, string SubcontractorId, string Month, string Year, string billingdate, string currentFilter, int? page, string pgSize)
         {
             int pageSize = Convert.ToInt16(pgSize);
@@ -56,8 +56,7 @@ namespace Alliance_for_Life.ReportControllers
                     GenerateInvoice(SubcontractorId, Month, Year, billingdate);
                 }
             }
-
-            var invoices = db.Invoices.Include(s => s.Subcontractor);
+            var invoices = db.Invoices.Include(i => i.AdminCosts).Include(i => i.AllocatedBudget).Include(i => i.ParticipationService).Include(i => i.Subcontractor);
 
             if (!User.IsInRole("Admin"))
             {
@@ -97,11 +96,11 @@ namespace Alliance_for_Life.ReportControllers
             return View(invoices.ToPagedList(pageNumber, pageSize));
         }
 
-        //create report
-        //generate invoice function
+
+        //Generate Invoice
         public ActionResult GenerateInvoice(string orgname, string Month, string Year, string billingdate)
         {
-            Invoice invoice = new Invoice();
+            Invoices invoice = new Invoices();
 
             invoice.InvoiceId = Guid.NewGuid();
             invoice.SubcontractorId = new Guid(orgname);
@@ -116,6 +115,9 @@ namespace Alliance_for_Life.ReportControllers
             var particost = db.ParticipationServices
                 .Where(s => s.SubcontractorId == invoice.SubcontractorId && s.Year == invoice.Year && s.Month == invoice.Month);
 
+            var allocatedbudget = db.AllocatedBudget
+                .Where(s => s.SubcontractorId == invoice.SubcontractorId && s.Year == invoice.Year);
+
             //set the invoice Admin and Participation ID to Null
             invoice.AdminCostId = Guid.Empty;
             invoice.PSId = Guid.Empty;
@@ -129,6 +131,13 @@ namespace Alliance_for_Life.ReportControllers
                 ViewBag.error = "Invoice for " + db.SubContractors.Find(new Guid(orgname)).OrgName
                          + " for " + Month + ", " + Year + " cannot be generated. Admin cost or Participation cost does not exist.";
                 ModelState.Clear();
+            }
+            else if (allocatedbudget.Count() == 0)
+            {
+                ViewBag.error = "Invoice for " + db.SubContractors.Find(new Guid(orgname)).OrgName
+                        + " for " + Year + " cannot be generated. Budget is not allocated for the given year.";
+                ModelState.Clear();
+
             }
             else
             {
@@ -156,11 +165,12 @@ namespace Alliance_for_Life.ReportControllers
                     .Where(s => s.SubcontractorId == invoice.SubcontractorId);
 
                 //calculating the rest
-                //invoice.BalanceRemaining = invoice.BeginningAllocation - invoice.AdjustedAllocation;
+                invoice.BalanceRemaining = allocatedbudget.FirstOrDefault().AllocatedNewBudget - allocatedbudget.FirstOrDefault().AllocatedOldBudget;
                 invoice.Region = subcontractorbalance.FirstOrDefault().Region;
                 invoice.BillingDate = DateTime.Parse(billingdate);
                 invoice.SubmittedDate = DateTime.Now;
                 invoice.OrgName = db.SubContractors.Find(invoice.SubcontractorId).OrgName;
+                invoice.AllocatedBudgetId = allocatedbudget.FirstOrDefault().AllocatedBudgetId;
 
                 //add to the Invoice table and save data
                 db.Invoices.Add(invoice);
@@ -171,9 +181,8 @@ namespace Alliance_for_Life.ReportControllers
             ModelState.Clear();
             return View();
         }
-        //needs work on
 
-
+        //update invoice
         [HttpPost]
         public ActionResult UpdateInvoice()
         {
@@ -184,13 +193,17 @@ namespace Alliance_for_Life.ReportControllers
             invoice.SubmittedDate = System.DateTime.Now;
 
             var admincost = db.AdminCosts
-                            .Where(s => s.SubcontractorId == invoice.SubcontractorId && 
-                             s.Year == invoice.Year && 
+                            .Where(s => s.SubcontractorId == invoice.SubcontractorId &&
+                             s.Year == invoice.Year &&
                              s.Month == invoice.Month);
 
             //getting participation total
             var particost = db.ParticipationServices
                 .Where(s => s.SubcontractorId == invoice.SubcontractorId && s.Year == invoice.Year && s.Month == invoice.Month);
+
+            //allocation budget
+            var allocatedbudget = db.AllocatedBudget
+              .Where(s => s.SubcontractorId == invoice.SubcontractorId && s.Year == invoice.Year);
 
             //set totals to zero
             invoice.DirectAdminCost = 0;
@@ -213,15 +226,9 @@ namespace Alliance_for_Life.ReportControllers
             invoice.LessManagementFee = invoice.GrandTotal * .03;
             invoice.DepositAmount = invoice.GrandTotal - invoice.LessManagementFee;
 
-            //getting contractor Allocated amount
-            var subcontractorbalance = db.SubContractors
-                .Where(s => s.SubcontractorId == invoice.SubcontractorId);
 
-            //invoice.BeginningAllocation = subcontractorbalance.FirstOrDefault().AllocatedContractAmount;
-            //invoice.AdjustedAllocation = subcontractorbalance.FirstOrDefault().AllocatedAdjustments;
-
-            //calculating the rest
-            //invoice.BalanceRemaining = invoice.BeginningAllocation + invoice.AdjustedAllocation;
+            // calculating the rest
+            invoice.BalanceRemaining = allocatedbudget.FirstOrDefault().AllocatedNewBudget - allocatedbudget.FirstOrDefault().AllocatedOldBudget;
             invoice.OrgName = db.SubContractors.Find(invoice.SubcontractorId).OrgName;
             db.Entry(invoice).State = EntityState.Modified;
             db.SaveChanges();
@@ -229,16 +236,17 @@ namespace Alliance_for_Life.ReportControllers
             return RedirectToAction("Index");
         }
 
-
+        //print invoice
         public ActionResult Invoice(Guid? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Invoice invoices = db.Invoices
-
+            Invoices invoices = db.Invoices
                 .Include(a => a.Subcontractor)
+                .Include(i => i.AdminCosts).Include(i => i.AllocatedBudget)
+                .Include(i => i.ParticipationService)
                 .SingleOrDefault(a => a.InvoiceId == id);
 
             if (invoices == null)
@@ -247,155 +255,48 @@ namespace Alliance_for_Life.ReportControllers
             }
             return View(invoices);
         }
-        // GET: Invoices/Create
-        public ActionResult Create()
-        {
-            var datelist = Enumerable.Range(System.DateTime.Now.Year - 4, 10).ToList();
-            ViewBag.Year = new SelectList(datelist);
-            ViewBag.SubcontractorId = new SelectList(db.SubContractors, "SubcontractorId", "OrgName");
-
-            return View();
-        }
-
-        // POST: Invoices/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "InvoiceId,OrgName,Month,Region,Year,SubcontractorId,DirectAdminCost,ParticipantServices,GrandTotal,LessManagementFee,DepositAmount,BeginningAllocation,AdjustedAllocation,BillingDate,BalanceRemaining")] Invoice invoice)
-        {
-            if (ModelState.IsValid)
-            {
-                var dataexist = from s in db.Invoices
-                                where
-                                s.SubcontractorId == invoice.SubcontractorId &&
-                                s.Year == invoice.Year &&
-                                s.Region == invoice.Region &&
-                                s.Month == invoice.Month
-                                select s;
-                if (dataexist.Count() >= 1)
-                {
-                    ViewBag.error = "Data already exists. Please change the params or search in the Reports tab for the current Record.";
-                }
-                else
-                {
-                    invoice.InvoiceId = Guid.NewGuid();
-                    invoice.OrgName = User.Identity.Name;
-                    invoice.SubmittedDate = System.DateTime.Now;
-                    db.Invoices.Add(invoice);
-                    db.SaveChanges();
-                    return RedirectToAction("Index");
-                }
-            }
-
-            var datelist = Enumerable.Range(System.DateTime.Now.Year - 4, 10).ToList();
-
-            ViewBag.Year = new SelectList(datelist);
-            ViewBag.SubcontractorId = new SelectList(db.SubContractors, "SubcontractorId", "OrgName", invoice.SubcontractorId);
-
-            return View(invoice);
-        }
-
-        // GET: Invoices/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Invoice invoice = db.Invoices.Find(id);
-
-            if (invoice == null)
-            {
-                return HttpNotFound();
-            }
-
-            var datelist = Enumerable.Range(System.DateTime.Now.Year - 4, 10).ToList();
-            ViewBag.Year = new SelectList(datelist);
-            ViewBag.SubcontractorId = new SelectList(db.SubContractors, "SubcontractorId", "OrgName", invoice.SubcontractorId);
-
-            return View(invoice);
-        }
-
-
-        //Detail
+        // GET: Invoices1/Details/5
         public ActionResult Details(Guid? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Invoice invoices = db.Invoices
-
-                .Include(a => a.Subcontractor)
-                .SingleOrDefault(a => a.InvoiceId == id);
-
+            Invoices invoices = db.Invoices.Find(id);
             if (invoices == null)
             {
                 return HttpNotFound();
             }
             return View(invoices);
         }
-        // POST: Invoices/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "InvoiceId,OrgName,Month,Region,Year,SubcontractorId,DirectAdminCost,ParticipantServices,GrandTotal,LessManagementFee,DepositAmount,BeginningAllocation,AdjustedAllocation,BillingDate,BalanceRemaining")] Invoice invoice)
-        {
-            if (ModelState.IsValid)
-            {
-                invoice.SubmittedDate = System.DateTime.Now;
-                db.Entry(invoice).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
 
-            var datelist = Enumerable.Range(System.DateTime.Now.Year - 4, 10).ToList();
-            ViewBag.Year = new SelectList(datelist);
-            ViewBag.SubcontractorId = new SelectList(db.SubContractors, "SubcontractorId", "OrgName");
 
-            return View(invoice);
-        }
 
-        // GET: Invoices/Delete/5
+
+        // GET: Invoices1/Delete/5
         public ActionResult Delete(Guid? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Invoice invoice = db.Invoices
-
-                .Include(a => a.Subcontractor)
-                .SingleOrDefault(a => a.InvoiceId == id);
-
-            if (invoice == null)
+            Invoices invoices = db.Invoices.Find(id);
+            if (invoices == null)
             {
                 return HttpNotFound();
             }
-            return View(invoice);
+            return View(invoices);
         }
 
-        // POST: Invoices/Delete/5
+        // POST: Invoices1/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(Guid id)
         {
-            Invoice invoice = db.Invoices
-                .Include(a => a.Subcontractor)
-                .SingleOrDefault(a => a.InvoiceId == id);
-
-            db.Invoices.Remove(invoice);
+            Invoices invoices = db.Invoices.Find(id);
+            db.Invoices.Remove(invoices);
             db.SaveChanges();
             return RedirectToAction("Index");
-        }
-
-        [WordDocument]
-        public ActionResult Print()
-        {
-            ViewBag.WordDocumentFilename = "Invoice";
-            return View("Details");
         }
 
         protected override void Dispose(bool disposing)

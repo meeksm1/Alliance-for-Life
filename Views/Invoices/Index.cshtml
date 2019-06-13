@@ -1,11 +1,10 @@
 ﻿
-@model PagedList.IPagedList<Alliance_for_Life.Models.Invoice>
+@model PagedList.IPagedList<Alliance_for_Life.Models.Invoices>
 @using PagedList.Mvc;
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<h2>Invoice Details</h2>
 
 @using (Html.BeginForm())
 {
@@ -87,8 +86,8 @@
     @ViewBag.error
 </p>
 <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100">
-  <tr>
-      <thead>
+    <tr>
+    <thead>
         <tr style="font-size:15px; text-align:center;">
             <th class="th-sm">
                 @Html.ActionLink("Organization", "Index", new { sortOrder = ViewBag.NameSortParm })
@@ -137,7 +136,7 @@
             <th class="th-sm">
 
             </th>
-    </tr>
+        </tr>
     </thead>
     <tbody>
         @foreach (var invoice in Model)
@@ -174,13 +173,13 @@
                 </td>
 
                 <td>
-                    <div class="due">@invoice.BeginningAllocation.ToString("C")</div>
+                    <div class="due">@invoice.AllocatedBudget.AllocatedOldBudget.ToString("C")</div>
                 </td>
                 <td>
-                    <div class="lname">@invoice.AdjustedAllocation.ToString("C")</div>
+                    <div class="lname">@invoice.AllocatedBudget.AllocatedNewBudget.ToString("C")</div>
                 </td>
                 <td>
-                    <div class="due">@invoice.BalanceRemaining.ToString("C")</div>
+                    <div> @invoice.BalanceRemaining.ToString("C") </div>
                 </td>
                 <td>
                     <div class="due">@invoice.SubmittedDate.ToShortDateString()</div>
@@ -199,8 +198,6 @@
                         <a href="@Url.Action("Delete", "Invoices", new { id = invoice.InvoiceId }, Request.Url.Scheme)">
                             <i style="font-size:16px; color:red;" class="fa fa-trash"></i>
                         </a>
-
-                        @*@Html.ActionLink("Delete", "Delete", new { id = invoice.Id })*@
                     </form>
                 </td>
             </tr>
@@ -218,5 +215,5 @@
     Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
 
     @Html.PagedListPager(Model, page => Url.Action("Index",
-        new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter, @class="pagination" }))
+        new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter, @class = "pagination" }))
 </p>

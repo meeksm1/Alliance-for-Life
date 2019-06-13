@@ -238,6 +238,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdministrationCostController.cs" />
     <Compile Include="Controllers\AFLFormController.cs" />
+    <Compile Include="Controllers\AllocatedBudgetsController.cs" />
     <Compile Include="Controllers\BudgetCostsController.cs" />
     <Compile Include="Controllers\ClientListController.cs" />
     <Compile Include="Controllers\ContractorFormController.cs" />
@@ -249,89 +250,13 @@
     <Compile Include="Controllers\QuarterlyStatesController.cs" />
     <Compile Include="Controllers\ResidentialMIRsController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
-    <Compile Include="Migrations\201906061432151_allocatedbudget.cs" />
-    <Compile Include="Migrations\201906061432151_allocatedbudget.Designer.cs">
-      <DependentUpon>201906061432151_allocatedbudget.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201906061434432_allocatedbudget1.cs" />
-    <Compile Include="Migrations\201906061434432_allocatedbudget1.Designer.cs">
-      <DependentUpon>201906061434432_allocatedbudget1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201906071633426_CreateAllocationClasses.cs" />
-    <Compile Include="Migrations\201906071633426_CreateAllocationClasses.Designer.cs">
-      <DependentUpon>201906071633426_CreateAllocationClasses.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201906071637260_CreateAllocationClasses1.cs" />
-    <Compile Include="Migrations\201906071637260_CreateAllocationClasses1.Designer.cs">
-      <DependentUpon>201906071637260_CreateAllocationClasses1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201906101744151_updatedallocated.cs" />
-    <Compile Include="Migrations\201906101744151_updatedallocated.Designer.cs">
-      <DependentUpon>201906101744151_updatedallocated.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201906121655251_UpdateInvoiceClass.cs" />
-    <Compile Include="Migrations\201906121655251_UpdateInvoiceClass.Designer.cs">
-      <DependentUpon>201906121655251_UpdateInvoiceClass.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201906121659038_UpdateAllocated.cs" />
-    <Compile Include="Migrations\201906121659038_UpdateAllocated.Designer.cs">
-      <DependentUpon>201906121659038_UpdateAllocated.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201906121913191_change.cs" />
-    <Compile Include="Migrations\201906121913191_change.Designer.cs">
-      <DependentUpon>201906121913191_change.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201906122041545_change2.cs" />
-    <Compile Include="Migrations\201906122041545_change2.Designer.cs">
-      <DependentUpon>201906122041545_change2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201906122053027_Invoice.cs" />
-    <Compile Include="Migrations\201906122053027_Invoice.Designer.cs">
-      <DependentUpon>201906122053027_Invoice.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Models\A2AAllocatedYearlyBudget.cs" />
-    <Compile Include="Models\AllocatedBudget.cs" />
-    <Compile Include="Migrations\201903142114531_update.cs" />
-    <Compile Include="Migrations\201903142114531_update.Designer.cs">
-      <DependentUpon>201903142114531_update.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201905031914060_CreateAffiliateEnum.cs" />
-    <Compile Include="Migrations\201905031914060_CreateAffiliateEnum.Designer.cs">
-      <DependentUpon>201905031914060_CreateAffiliateEnum.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201905161442144_RemovedBudgetCostMonths.cs" />
-    <Compile Include="Migrations\201905161442144_RemovedBudgetCostMonths.Designer.cs">
-      <DependentUpon>201905161442144_RemovedBudgetCostMonths.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201905161623510_RemoveBedNightsNonMir.cs" />
-    <Compile Include="Migrations\201905161623510_RemoveBedNightsNonMir.Designer.cs">
-      <DependentUpon>201905161623510_RemoveBedNightsNonMir.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201905161648513_RemovedBackGroundBirthCerts.cs" />
-    <Compile Include="Migrations\201905161648513_RemovedBackGroundBirthCerts.Designer.cs">
-      <DependentUpon>201905161648513_RemovedBackGroundBirthCerts.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201905201841549_RefractorRESandNONRESMIRStoMonthlyServices.cs" />
-    <Compile Include="Migrations\201905201841549_RefractorRESandNONRESMIRStoMonthlyServices.Designer.cs">
-      <DependentUpon>201905201841549_RefractorRESandNONRESMIRStoMonthlyServices.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201905222102050_UpdatestoNONandRESClasses.cs" />
-    <Compile Include="Migrations\201905222102050_UpdatestoNONandRESClasses.Designer.cs">
-      <DependentUpon>201905222102050_UpdatestoNONandRESClasses.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201906031455498_UPdateAdminAndPartClasseswithRegionProperties.cs" />
-    <Compile Include="Migrations\201906031455498_UPdateAdminAndPartClasseswithRegionProperties.Designer.cs">
-      <DependentUpon>201906031455498_UPdateAdminAndPartClasseswithRegionProperties.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201906041528231_DeleteMonthlyServiceClassesControlersViews.cs" />
-    <Compile Include="Migrations\201906041528231_DeleteMonthlyServiceClassesControlersViews.Designer.cs">
-      <DependentUpon>201906041528231_DeleteMonthlyServiceClassesControlersViews.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201906051400496_updatedAdminCostClass.cs" />
-    <Compile Include="Migrations\201906051400496_updatedAdminCostClass.Designer.cs">
-      <DependentUpon>201906051400496_updatedAdminCostClass.cs</DependentUpon>
+    <Compile Include="Migrations\201906131531489_initial-creation.cs" />
+    <Compile Include="Migrations\201906131531489_initial-creation.Designer.cs">
+      <DependentUpon>201906131531489_initial-creation.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\A2AAllocatedYearlyBudget.cs" />
+    <Compile Include="Models\AllocatedBudget.cs" />
     <Compile Include="Models\AffiliateRegion.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Models\SearchData.cs" />
@@ -342,7 +267,7 @@
     <Compile Include="DTO\Userinformation.cs" />
     <Compile Include="Models\QuarterlyState.cs" />
     <Compile Include="DTO\BudgetReport.cs" />
-    <Compile Include="Models\Invoice.cs" />
+    <Compile Include="Models\Invoices.cs" />
     <Compile Include="DTO\MIRReport.cs" />
     <Compile Include="DTO\ParticipationServiceReport.cs" />
     <Compile Include="DTO\SubcontractorReport.cs" />
@@ -399,6 +324,10 @@
     <Compile Include="ViewModels\VerifyPhoneNumberViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\AFLLocalConnection.mdf" />
+    <Content Include="App_Data\AFLLocalConnection_log.ldf">
+      <DependentUpon>AFLLocalConnection.mdf</DependentUpon>
+    </Content>
     <Content Include="App_Data\LocalConnection.mdf" />
     <Content Include="App_Data\LocalConnection_log.ldf">
       <DependentUpon>LocalConnection.mdf</DependentUpon>
@@ -785,11 +714,6 @@
     <Content Include="Views\AflForm\Reports.cshtml" />
     <Content Include="Views\SubContractor\Reports.cshtml" />
     <Content Include="Views\Shared\_LayoutWord.cshtml" />
-    <Content Include="Views\Invoices\Create.cshtml" />
-    <Content Include="Views\Invoices\Delete.cshtml" />
-    <Content Include="Views\Invoices\Details.cshtml" />
-    <Content Include="Views\Invoices\Edit.cshtml" />
-    <Content Include="Views\Invoices\Index.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\Currency.cshtml" />
     <Content Include="Views\AdministrationCost\Create.cshtml" />
     <Content Include="Views\AdministrationCost\Delete.cshtml" />
@@ -819,7 +743,6 @@
     <Content Include="Views\BudgetCosts\Edit.cshtml" />
     <Content Include="Views\ClientList\Details.cshtml" />
     <Content Include="Views\BudgetCosts\Index.cshtml" />
-    <Content Include="Views\Invoices\Invoice.cshtml" />
     <Content Include="Views\Shared\_InvoiceLayout.cshtml" />
     <Content Include="Views\NonResidentialMIRs\Create.cshtml" />
     <Content Include="Views\NonResidentialMIRs\Delete.cshtml" />
@@ -835,16 +758,20 @@
     <Content Include="Views\Role\AssignRoleToUser.cshtml" />
     <Content Include="Views\Account\Delete.cshtml" />
     <Content Include="Views\Account\Index.cshtml" />
-    <Content Include="Views\AllocatedBudgets\Create.cshtml" />
-    <Content Include="Views\AllocatedBudgets\Delete.cshtml" />
-    <Content Include="Views\AllocatedBudgets\Details.cshtml" />
-    <Content Include="Views\AllocatedBudgets\Edit.cshtml" />
-    <Content Include="Views\AllocatedBudgets\Index.cshtml" />
     <Content Include="Views\AllocatedBudgets1\Create.cshtml" />
     <Content Include="Views\AllocatedBudgets1\Delete.cshtml" />
     <Content Include="Views\AllocatedBudgets1\Details.cshtml" />
     <Content Include="Views\AllocatedBudgets1\Edit.cshtml" />
     <Content Include="Views\AllocatedBudgets1\Index.cshtml" />
+    <Content Include="Views\Invoices\Delete.cshtml" />
+    <Content Include="Views\Invoices\Details.cshtml" />
+    <Content Include="Views\Invoices\Index.cshtml" />
+    <Content Include="Views\Invoices\Invoice.cshtml" />
+    <Content Include="Views\AllocatedBudgets\Create.cshtml" />
+    <Content Include="Views\AllocatedBudgets\Delete.cshtml" />
+    <Content Include="Views\AllocatedBudgets\Details.cshtml" />
+    <Content Include="Views\AllocatedBudgets\Edit.cshtml" />
+    <Content Include="Views\AllocatedBudgets\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config">
@@ -863,68 +790,10 @@
     <TypeScriptCompile Include="Scripts\index.d.ts" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201903142114531_update.resx">
-      <DependentUpon>201903142114531_update.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905031914060_CreateAffiliateEnum.resx">
-      <DependentUpon>201905031914060_CreateAffiliateEnum.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905161442144_RemovedBudgetCostMonths.resx">
-      <DependentUpon>201905161442144_RemovedBudgetCostMonths.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905161623510_RemoveBedNightsNonMir.resx">
-      <DependentUpon>201905161623510_RemoveBedNightsNonMir.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905161648513_RemovedBackGroundBirthCerts.resx">
-      <DependentUpon>201905161648513_RemovedBackGroundBirthCerts.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905201841549_RefractorRESandNONRESMIRStoMonthlyServices.resx">
-      <DependentUpon>201905201841549_RefractorRESandNONRESMIRStoMonthlyServices.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905222102050_UpdatestoNONandRESClasses.resx">
-      <DependentUpon>201905222102050_UpdatestoNONandRESClasses.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201906031455498_UPdateAdminAndPartClasseswithRegionProperties.resx">
-      <DependentUpon>201906031455498_UPdateAdminAndPartClasseswithRegionProperties.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201906041528231_DeleteMonthlyServiceClassesControlersViews.resx">
-      <DependentUpon>201906041528231_DeleteMonthlyServiceClassesControlersViews.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201906051400496_updatedAdminCostClass.resx">
-      <DependentUpon>201906051400496_updatedAdminCostClass.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201906061432151_allocatedbudget.resx">
-      <DependentUpon>201906061432151_allocatedbudget.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201906061434432_allocatedbudget1.resx">
-      <DependentUpon>201906061434432_allocatedbudget1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201906071633426_CreateAllocationClasses.resx">
-      <DependentUpon>201906071633426_CreateAllocationClasses.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201906071637260_CreateAllocationClasses1.resx">
-      <DependentUpon>201906071637260_CreateAllocationClasses1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201906101744151_updatedallocated.resx">
-      <DependentUpon>201906101744151_updatedallocated.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201906121655251_UpdateInvoiceClass.resx">
-      <DependentUpon>201906121655251_UpdateInvoiceClass.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201906121659038_UpdateAllocated.resx">
-      <DependentUpon>201906121659038_UpdateAllocated.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201906121913191_change.resx">
-      <DependentUpon>201906121913191_change.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201906122041545_change2.resx">
-      <DependentUpon>201906122041545_change2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201906122053027_Invoice.resx">
-      <DependentUpon>201906122053027_Invoice.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201906131531489_initial-creation.resx">
+      <DependentUpon>201906131531489_initial-creation.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
