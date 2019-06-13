@@ -42,12 +42,17 @@ namespace Alliance_for_Life.Controllers
 
             if (!User.IsInRole("Admin"))
             {
+                var organization = "";
                 var id = User.Identity.GetUserId();
+                var usr = db.Users.Find(id);
+                organization = db.SubContractors.Find(usr.SubcontractorId).OrgName;
                 var usersubid = db.Users.Find(id).SubcontractorId;
 
                 participationServices = from s in participationServices
                                         where usersubid == s.SubcontractorId
                                         select s;
+
+                ViewBag.Subcontractor = organization;
             }
 
             if (!String.IsNullOrEmpty(searchString.ToString()))

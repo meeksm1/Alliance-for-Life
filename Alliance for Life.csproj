@@ -250,9 +250,9 @@
     <Compile Include="Controllers\QuarterlyStatesController.cs" />
     <Compile Include="Controllers\ResidentialMIRsController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
-    <Compile Include="Migrations\201906131531489_initial-creation.cs" />
-    <Compile Include="Migrations\201906131531489_initial-creation.Designer.cs">
-      <DependentUpon>201906131531489_initial-creation.cs</DependentUpon>
+    <Compile Include="Migrations\201906131606226_NewDB.cs" />
+    <Compile Include="Migrations\201906131606226_NewDB.Designer.cs">
+      <DependentUpon>201906131606226_NewDB.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\A2AAllocatedYearlyBudget.cs" />
@@ -785,8 +785,8 @@
     <TypeScriptCompile Include="Scripts\index.d.ts" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201906131531489_initial-creation.resx">
-      <DependentUpon>201906131531489_initial-creation.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201906131606226_NewDB.resx">
+      <DependentUpon>201906131606226_NewDB.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

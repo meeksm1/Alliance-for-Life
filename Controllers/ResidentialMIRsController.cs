@@ -44,7 +44,10 @@ namespace Alliance_for_Life.Controllers
 
             if (!User.IsInRole("Admin"))
             {
+                var organization = "";
                 var id = User.Identity.GetUserId();
+                var usr = db.Users.Find(id);
+                organization = db.SubContractors.Find(usr.SubcontractorId).OrgName;
                 var usersubid = db.Users.Find(id).SubcontractorId;
 
                 ressearch = from s in ressearch
@@ -54,6 +57,7 @@ namespace Alliance_for_Life.Controllers
                 nonresidental = from t in nonresidental
                                 where usersubid == t.SubcontractorId
                                 select t;
+                ViewBag.Subcontractor = organization;
             }
             
 

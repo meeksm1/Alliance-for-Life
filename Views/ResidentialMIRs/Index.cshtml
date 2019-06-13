@@ -8,23 +8,43 @@
 }
 
 <div class="container">
-    <h2>@ViewBag.Title</h2>
 
-    <form>
-        @using (Html.BeginForm(FormMethod.Post))
-        {
-            <div class="container">
-                <div class="row">
-                    <div class="col-xs-5th-1 col-sm-3" style="align-content:center;">
-                        Search By Organization: @Html.DropDownList("searchString", (IEnumerable<SelectListItem>)ViewBag.Subcontractor, "", htmlAttributes: new { @class = "form-control", onchange = "this.form.submit()" })
-                    </div>
-                    <div class="col-xs-5th-1 col-sm-3" style="align-content:center;">
-                        Results per Page: @Html.DropDownList("pgSize", new SelectList(new[] { 10, 20, 30, 40, 50 }), htmlAttributes: new { @class = "form-control", onchange = "this.form.submit()" })
+    @if (!User.IsInRole("Admin"))
+    {
+        <h2>@ViewBag.Title's for @ViewBag.Subcontractor</h2>
+        <form>
+            @using (Html.BeginForm(FormMethod.Post))
+            {
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-5th-1 col-sm-3" style="align-content:center;">
+                            Results per Page: @Html.DropDownList("pgSize", new SelectList(new[] { 10, 20, 30, 40, 50 }), htmlAttributes: new { @class = "form-control", onchange = "this.form.submit()" })
+                        </div>
                     </div>
                 </div>
-            </div>
-        }
-    </form>
+            }
+        </form>
+    }
+    else
+    {
+        <h2>@ViewBag.Title</h2>
+        <form>
+            @using (Html.BeginForm(FormMethod.Post))
+            {
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-5th-1 col-sm-3" style="align-content:center;">
+                            Search By Organization: @Html.DropDownList("searchString", (IEnumerable<SelectListItem>)ViewBag.Subcontractor, "", htmlAttributes: new { @class = "form-control", onchange = "this.form.submit()" })
+                        </div>
+                        <div class="col-xs-5th-1 col-sm-3" style="align-content:center;">
+                            Results per Page: @Html.DropDownList("pgSize", new SelectList(new[] { 10, 20, 30, 40, 50 }), htmlAttributes: new { @class = "form-control", onchange = "this.form.submit()" })
+                        </div>
+                    </div>
+                </div>
+            }
+        </form>
+    }
+
 
     <h3>Residental </h3>
 
