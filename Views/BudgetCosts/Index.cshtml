@@ -33,6 +33,9 @@
         <thead>
             <tr style="font-size:16px">
                 <th class="th-sm">
+                    Details
+                </th>
+                <th class="th-sm">
                     @Html.ActionLink("Year", "Index", new { sortOrder = ViewBag.YearSortParm })
 
                 </th>
@@ -145,15 +148,16 @@
                 <th class="th-sm">
                     Admin and Participation Total Costs
                 </th>
-                <th class="th-sm">
 
-                </th>
 </thead>
         <tbody>
             @foreach (var item in Model)
             {
             <tr>
-
+                <td>
+                    <a href="@Url.Action("Details", "BudgetCosts", new { id = item.BudgetInvoiceId }, Request.Url.Scheme)">
+                    Details</a>
+                </td>
                 <td>
                     @item.Year
                 </td>
@@ -266,17 +270,9 @@
                 <td>
                     @item.Maxtot.ToString("C")
                 </td>
-                <td>
-                    <form action="/BudgetCosts/Export" method="post">
-                        <button style='font-size:16px; background:none; border:none' value="@item.BudgetInvoiceId" name="BudgetInvoiceId" id="@item.BudgetInvoiceId"><i class='fa fa-file' style="font-size:16px;color:#2ECC71"></i></button>
-                        |
-                        <a href="@Url.Action("Details", "BudgetCosts", new { id = item.BudgetInvoiceId }, Request.Url.Scheme)">
-                            <i style="font-size:16px; color:#3498DB" class="fa">&#xf06e;</i>
-                        </a>
-                    </form>
-                </td>
             </tr>
             <tr>
+                <td></td>
                 <td></td>
                 <td></td>
                 <td>
