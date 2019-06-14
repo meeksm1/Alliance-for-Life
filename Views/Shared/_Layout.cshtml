@@ -12,10 +12,11 @@
     @Scripts.Render("~/bundles/modernizr")
 
 </head>
+
 <body>
-    <p>
-        <img src="~/Content/DataTables/images/afllogo.png" style="padding-top:10px;"/>
-    </p>
+    <div>
+        <img src="~/Content/DataTables/images/afllogo.png" style="padding-top:10px;" />
+    </div>
 
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
@@ -29,11 +30,12 @@
                     <span class="icon-bar"></span>
                 </button>
 
-                @if (ViewContext.HttpContext.User.IsInRole("Admin")|| ViewContext.HttpContext.User.IsInRole("User"))
+                @if (ViewContext.HttpContext.User.IsInRole("Admin") || ViewContext.HttpContext.User.IsInRole("User"))
                 {
                     @Html.ActionLink("AFL", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
                 }
-                else {    @Html.ActionLink("AFL", "Index", "Account", new { area = "" }, new { @class = "navbar-brand" })}
+                else
+                { @Html.ActionLink("AFL", "Index", "Account", new { area = "" }, new { @class = "navbar-brand" })}
             </div>
             <div class="navbar-collapse collapse">
 
@@ -58,18 +60,22 @@
     </div>
 
     <br />
-    <div class="container body-content">
-        @RenderBody()
+    <div class="container-fluid reports" style=" padding-left:50px; padding-right: 50px;">
+        <div class="row">
+            <div class="col-sm-12">
+                @RenderBody()
+            </div>
+        </div>
     </div>
     <br />
-    <footer >
+    <footer>
         <div style="background-color:white;">
             <div class="footer-alignment2"><em>*If you experience issues with the database, please contact Mary at<a href="mailto:mary@allianceforlifemissouri.com"> mary@allianceforlifemissouri.com</a></em></div>
             <div class="footer-alignment">
                 &copy; @DateTime.Now.Year <a href="https://www.CornerstoneMarketingStrategies.com" style="color:#000">Cornerstone Marketing Strategies</a>
             </div>
         </div>
-       
+
     </footer>
 
     @Scripts.Render("~/bundles/jquery")

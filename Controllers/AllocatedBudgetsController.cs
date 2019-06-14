@@ -1,4 +1,5 @@
 ﻿using Alliance_for_Life.Models;
+using PagedList;
 using System;
 using System.Data.Entity;
 using System.Linq;
@@ -37,6 +38,7 @@ namespace Alliance_for_Life.Controllers
                 year_search = Convert.ToInt16(Year);
             }
 
+            var admincosts = db.AdminCosts;
 
             var allocatedBudget = db.AllocatedBudget
                 .Include(a => a.Subcontractor)
@@ -53,7 +55,17 @@ namespace Alliance_for_Life.Controllers
                 ViewBag.error = "No Report available for the year " + year_search;
             }
 
-            return View(allocatedBudget.ToList());
+            if (pageSize < 1)
+            {
+                pageSize = 10;
+            }
+
+
+            var testsum = allocatedBudget.Where(a => a.Invoice.Select(b => b.Month) == admincosts.Select(b => b.Month));
+
+                //a=>a.Invoice.Where(k => k.AdminCosts.Month == Alliance_for_Life.Models.Months.July && k.AdminCosts.Year == ViewBag.yearselected).Select(b => b.AdminCosts.ATotCosts).SingleOrDefault()
+            int pageNumber = (page ?? 1);
+            return View(allocatedBudget.OrderBy(y => y.Year).ToPagedList(pageNumber, pageSize));
         }
 
         // GET: AllocatedBudgets/Details/5
