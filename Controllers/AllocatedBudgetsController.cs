@@ -12,9 +12,46 @@ namespace Alliance_for_Life.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: AllocatedBudgets
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder, string Year, string searchString, string currentFilter, int? page, string pgSize)
         {
-            var allocatedBudget = db.AllocatedBudget.Include(a => a.Subcontractor).Include(a => a.Invoice);
+
+            //variable that stores the current year
+            var year_search = DateTime.Now.Year;
+
+            int pageSize = Convert.ToInt16(pgSize);
+
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+            ViewBag.CurrentFilter = searchString;
+
+            if ((Year != null) && Year.Length > 1)
+            {
+                year_search = Convert.ToInt16(Year);
+            }
+
+
+            var allocatedBudget = db.AllocatedBudget
+                .Include(a => a.Subcontractor)
+                .Include(a => a.Invoice)
+                .Where(a => a.Year == year_search);
+
+            var datelist = Enumerable.Range(System.DateTime.Now.Year - 4, 10).ToList();
+            ViewBag.Year = new SelectList(datelist);
+            ViewBag.ReportTitle = "Report Year -  " + year_search;
+            ViewBag.yearselected = year_search;
+            //checking to see if there are any data available
+            if (allocatedBudget.Count() == 0)
+            {
+                ViewBag.error = "No Report available for the year " + year_search;
+            }
 
             return View(allocatedBudget.ToList());
         }
