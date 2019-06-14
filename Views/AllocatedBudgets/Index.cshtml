@@ -5,7 +5,6 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<<<<<<< HEAD
     <h2 style="color:green; text-align:center;">@ViewBag.ReportTitle</h2>
 
 <div class="container">
@@ -108,78 +107,11 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var group in Model.GroupBy(item => item.Subcontractor.OrgName))
-        {
-        <tr style="font-size:14px; text-align:center;">
-
-=======
-<h2>@ViewBag.Title</h2>
-
-<table class="table">
-    <tr>
-        <th></th>
-        <th>
-            @Html.DisplayNameFor(model => model.Subcontractor.OrgName)
-        </th>
-        <th>
-            @Html.DisplayName("July Biling")
-        </th>
-        <th>
-            @Html.DisplayName("August Biling")
-        </th>
-        <th>
-            @Html.DisplayName("September Biling")
-        </th>
-        <th>
-            @Html.DisplayName("October Biling")
-        </th>
-        <th>
-            @Html.DisplayName("November Biling")
-
-        </th>
-        <th>
-            @Html.DisplayName("December Biling")
-        </th>
-        <th>
-            @Html.DisplayName("January Biling")
-        </th>
-        <th>
-            @Html.DisplayName("February Biling")
-        </th>
-        <th>
-            @Html.DisplayName("March Biling")
-        </th>
-        <th>
-            @Html.DisplayName("April Biling")
-        </th>
-        <th>
-            @Html.DisplayName("May Biling")
-        </th>
-        <th>
-            @Html.DisplayName("June Biling")
-        </th>
-        <th>
-           Cycle End Adjustments
-        </th>
-        <th>
-            Allocation Adjustments
-        </th>
-        <th>
-            Begining Allocated Amount
-        </th>
-        <th>
-            Adjustment Date
-        </th>
-
-        <th></th>
-    </tr>
-
     @foreach (var group in Model.GroupBy(item => item.Subcontractor.OrgName))
     {
-        <tr>
->>>>>>> 12d2111aeb2c2393de0c2572e358c4bf75354b17
+        <tr style="font-size:14px; text-align:center;">
             <td>
-                @*@Html.ActionLink("Details", "Details", new { group = Model.AllocatedBudgetId })*@
+                @Html.Encode(group.FirstOrDefault().Subcontractor.EIN)
             </td>
             <td>
                 @Html.Encode(group.Key)
@@ -341,6 +273,9 @@
             </td>
             <td>
                 @Html.Encode(group.FirstOrDefault().CycleEndAdjustments.ToString("C"))
+            </td>
+            <td>
+
             </td>
             <td>
 
