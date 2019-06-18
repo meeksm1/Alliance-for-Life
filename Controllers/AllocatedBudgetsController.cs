@@ -82,15 +82,42 @@ namespace Alliance_for_Life.Controllers
             }
 
             var SecondQuarter = from qs in db.Invoices
-                               where (int)qs.Month >= 4 && (int)qs.Month <= 6  && qs.Year == year_search
-                               select qs.GrandTotal;
+                                where (int)qs.Month >= 4 && (int)qs.Month <= 6 && qs.Year == year_search
+                                select qs.GrandTotal;
 
             if (SecondQuarter.Count() > 0)
             {
                 ViewBag.SecondQuarter = SecondQuarter.Sum().ToString("C");
             }
 
+            var ThirdQuarter = from qs in db.Invoices
+                               where (int)qs.Month >= 7 && (int)qs.Month <= 9  && qs.Year == year_search
+                               select qs.GrandTotal;
 
+            if (ThirdQuarter.Count() > 0)
+            {
+                ViewBag.ThirdQuarter = ThirdQuarter.Sum().ToString("C");
+            }
+
+           
+
+            var FourthQuarter = from qs in db.Invoices
+                                where (int)qs.Month >= 10 && qs.Year == year_search
+                                select qs.GrandTotal;
+
+            if (FourthQuarter.Count() > 0)
+            {
+                ViewBag.FourthQuarter = FourthQuarter.Sum().ToString("C");
+            }
+
+            var QuarterTotals = from qs in db.Invoices
+                                where (int)qs.Month <= 12 && qs.Year == year_search
+                                select qs.GrandTotal;
+            if (QuarterTotals.Count() > 0)
+            {
+                ViewBag.QuarterTotals = QuarterTotals.Sum().ToString("C");
+
+            }
 
 
 
