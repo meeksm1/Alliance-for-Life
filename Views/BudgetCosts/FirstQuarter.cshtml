@@ -168,7 +168,7 @@
                     @group.FirstOrDefault().budgetcosts.Region
                 </td>
                 <td>
-                    @Model.Sum(a => a.budgetcosts.ASalandWages).ToString("C")
+                    @Model.Sum(a => a.admincost.ASalandWages).ToString("C")
                 </td>
                 <td>
                     @Model.Sum(a => a.budgetcosts.AEmpBenefits).ToString("C")

@@ -57,30 +57,6 @@
         </div>
     </div>
 }
-<div class="container-fluid">
-    <form>
-        @using (Html.BeginForm())
-        {
-            <br />
-            <div class="container">
-                <div class="row">
-                    <div class="col-xs-5th-1 col-sm-6" style="align-content:center;">
-                        @Html.TextBox("SearchString", null, new { placeholder = "Search Organization" })
-                        <input type="submit" value="Search" />
-                    </div>
-                    <div class="col-xs-5th-1 col-sm-6" style="align-content:center;">
-                        Select Page:
-                        @Html.DropDownList("pgSize", new SelectList(new[] { 10, 20, 30, 40, 50 }), htmlAttributes: new { @class = "", onchange = "this.form.submit()" })
-
-                    </div>
-                </div>
-            </div>
-        }
-
-    </form>
-</div>
-
-<br />
 
 <p style="color:red; text-align:center;">
     @ViewBag.error
@@ -208,12 +184,28 @@
 <p>
     <input type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" value="Generate Invoice">
 </p>
+<div class="container-fluid">
+    <form>
+        @using (Html.BeginForm())
+        {
+            <br />
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-2">
+                        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
 
-<p>
-    <br />
+                        @Html.PagedListPager(Model, page => Url.Action("Index",
+                            new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter, @class = "pagination" }))
+                    </div>
+                    <div class="col-sm-2">
+                        Select Page:
+                        @Html.DropDownList("pgSize", new SelectList(new[] { 10, 20, 30, 40, 50 }), htmlAttributes: new { @class = "", onchange = "this.form.submit()" })
+                    </div>
+                </div>
+            </div>
+        }
+    </form>
+</div>
 
-    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
 
-    @Html.PagedListPager(Model, page => Url.Action("Index",
-        new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter, @class = "pagination" }))
-</p>
+
