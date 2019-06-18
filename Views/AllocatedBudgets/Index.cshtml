@@ -284,43 +284,43 @@
             <th class="th-sm">
 
             </th>
-            <th class="th-sm">
+            <th class="th-sm tablehearder" >
                 @Html.DisplayName("July")
             </th>
-            <th class="th-sm">
+            <th class="th-sm tablehearder">
                 @Html.DisplayName("August")
             </th>
-            <th class="th-sm">
+            <th class="th-sm tablehearder">
                 @Html.DisplayName("September")
             </th>
-            <th class="th-sm">
+            <th class="th-sm tablehearder">
                 @Html.DisplayName("October")
             </th>
-            <th class="th-sm">
+            <th class="th-sm tablehearder">
                 @Html.DisplayName("November")
             </th>
-            <th class="th-sm">
+            <th class="th-sm tablehearder">
                 @Html.DisplayName("December")
             </th>
-            <th class="th-sm">
+            <th class="th-sm tablehearder">
                 @Html.DisplayName("January")
             </th>
-            <th class="th-sm">
+            <th class="th-sm tablehearder">
                 @Html.DisplayName("February")
             </th>
-            <th class="th-sm">
+            <th class="th-sm tablehearder">
                 @Html.DisplayName("March")
             </th>
-            <th class="th-sm">
+            <th class="th-sm tablehearder">
                 @Html.DisplayName("April")
             </th>
-            <th class="th-sm">
+            <th class="th-sm tablehearder">
                 @Html.DisplayName("May")
             </th>
-            <th class="th-sm">
+            <th class="th-sm tablehearder">
                 @Html.DisplayName("June")
             </th>
-            <th>
+            <th class="th-sm tablehearder">
                 Total
             </th>
         <tr />
@@ -670,7 +670,6 @@
 
                 <td>
                     @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.July).Select(b => b.GrandTotal).SingleOrDefault() * .13).ToString("C")
-
                 </td>
                 <td>
                     @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.August).Select(b => b.GrandTotal).SingleOrDefault() * .13).ToString("C")
@@ -967,3 +966,15 @@
             @Html.PagedListPager(Model, page => Url.Action("Index",
                 new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter, @class="pagination" }))
         </div>
+
+    @Html.PagedListPager(Model, page => Url.Action("Index",
+        new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter, @class="pagination" }))
+</div>
+
+<style>
+    .tablehearder{
+        text-align:center;
+        font-size:14px;
+    }
+</style>
+
