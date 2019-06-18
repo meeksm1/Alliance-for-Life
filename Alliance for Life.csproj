@@ -263,7 +263,7 @@
       <DependentUpon>201906181354199_test.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\A2AAllocatedYearlyBudget.cs" />
+    <Compile Include="Models\A2AAllocatedBudget.cs" />
     <Compile Include="Models\AllocatedBudget.cs" />
     <Compile Include="Models\AffiliateRegion.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
