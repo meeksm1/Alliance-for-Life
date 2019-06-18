@@ -258,6 +258,10 @@
     <Compile Include="Migrations\201906142101493_admincostupdated.Designer.cs">
       <DependentUpon>201906142101493_admincostupdated.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201906181354199_test.cs" />
+    <Compile Include="Migrations\201906181354199_test.Designer.cs">
+      <DependentUpon>201906181354199_test.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\A2AAllocatedYearlyBudget.cs" />
     <Compile Include="Models\AllocatedBudget.cs" />
@@ -794,6 +798,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201906142101493_admincostupdated.resx">
       <DependentUpon>201906142101493_admincostupdated.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906181354199_test.resx">
+      <DependentUpon>201906181354199_test.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

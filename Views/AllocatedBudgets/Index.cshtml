@@ -32,7 +32,7 @@
 <table id="dtBasicExample" class="table table-striped table-bordered table-sm" style="font-size:16px" cellspacing="0" width="100">
     <tr>
     <thead>
-        <tr style="font-size:13px; text-align:center;">
+        <tr style="font-size:13px; text-align:center;background-color:#c3e1f7;">
             <th class="th-sm">
                 EIN
             </th>
@@ -280,7 +280,7 @@
 <table id="dtBasicExample" class="table table-striped table-bordered table-sm" style="font-size:16px" cellspacing="0" width="100">
     <tr>
     <thead>
-        <tr style="font-size:13px; text-align:center;">
+        <tr style="font-size:13px; text-align:center; background-color:#d1f5b1;">
             <th class="th-sm">
 
             </th>
@@ -319,6 +319,9 @@
             </th>
             <th class="th-sm">
                 @Html.DisplayName("June")
+            </th>
+            <th>
+                Total
             </th>
         <tr />
         <tr style="font-size:13px; text-align:center;">
@@ -367,64 +370,16 @@
                 <td>
                     @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.June).Select(b => b.GrandTotal).SingleOrDefault() * .1).ToString("C")
                 </td>
+                <td style="background-color:#fedada">
+
+                    @Model.Sum(a => a.Invoice.Sum(c => c.GrandTotal)*.1).ToString("C")
+                </td>
             }
         <tr />
-        
         <tr style="font-size:13px; text-align:center;">
             <th class="th-sm">
                 Invoice
             </th>
-            @foreach (var group in Model.GroupBy(item => item.Subcontractor.OrgName))
-            {
-                var test = Model.Sum(a => a.AdminCost.Where(b => b.Month == Alliance_for_Life.Models.Months.January && b.Year == 1).Sum(c => c.ATotCosts)).ToString("C");
-
-                <td>
-
-                    @group.Sum(a => a.AdminCost.Where(b => b.Month == Alliance_for_Life.Models.Months.July && b.Year == 1).Sum(c => c.ATotCosts)).ToString("C")
-
-                </td>
-                <td>
-                    @group.Sum(a => a.AdminCost.Where(b => b.Month == Alliance_for_Life.Models.Months.August && b.Year == 2).Sum(c => c.ATotCosts)).ToString("C")
-                </td>
-                <td>
-                    @group.Sum(a => a.AdminCost.Where(b => b.Month == Alliance_for_Life.Models.Months.September && b.Year == 3).Sum(c => c.ATotCosts)).ToString("C")
-                </td>
-                <td>
-                    @group.Sum(a => a.AdminCost.Where(b => b.Month == Alliance_for_Life.Models.Months.October && b.Year == 4).Sum(c => c.ATotCosts)).ToString("C")
-                </td>
-                <td>
-                    @group.Sum(a => a.AdminCost.Where(b => b.Month == Alliance_for_Life.Models.Months.November && b.Year == 5).Sum(c => c.ATotCosts)).ToString("C")
-                </td>
-                <td>
-                    @group.Sum(a => a.AdminCost.Where(b => b.Month == Alliance_for_Life.Models.Months.December && b.Year == 6).Sum(c => c.ATotCosts)).ToString("C")
-                </td>
-                <td>
-                    @group.Sum(a => a.AdminCost.Where(b => b.Month == Alliance_for_Life.Models.Months.January && b.Year == 7).Sum(c => c.ATotCosts)).ToString("C")
-                </td>
-                <td>
-                    @group.Sum(a => a.AdminCost.Where(b => b.Month == Alliance_for_Life.Models.Months.February && b.Year == 8).Sum(c => c.ATotCosts)).ToString("C")
-                </td>
-                <td>
-                    @group.Sum(a => a.AdminCost.Where(b => b.Month == Alliance_for_Life.Models.Months.March && b.Year == 9).Sum(c => c.ATotCosts)).ToString("C")
-                </td>
-                <td>
-                    @group.Sum(a => a.AdminCost.Where(b => b.Month == Alliance_for_Life.Models.Months.April && b.Year == 10).Sum(c => c.ATotCosts)).ToString("C")
-                </td>
-                <td>
-                    @group.Sum(a => a.AdminCost.Where(b => b.Month == Alliance_for_Life.Models.Months.May && b.Year == 11).Sum(c => c.ATotCosts)).ToString("C")
-                </td>
-                <td>
-                    @group.Sum(a => a.AdminCost.Where(b => b.Month == Alliance_for_Life.Models.Months.June && b.Year == 12).Sum(c => c.ATotCosts)).ToString("C")
-                </td>
-            }
-        <tr />
-        <tr style="font-size:13px; text-align:center;">
-            <th class="th-sm">
-                Sub 3% Admin Fee
-            </th>
-            @Model.Sum(item => item.AdminCost.Where(b => b.Month == Alliance_for_Life.Models.Months.February && b.Year== 2015).Select(b=>b.ATotCosts).SingleOrDefault()).ToString()
-
-          
 
             @foreach (var group in Model.GroupBy(item => item.Subcontractor.OrgName))
             {
@@ -466,21 +421,59 @@
                 <td>
                     @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.June).Select(b => b.GrandTotal).SingleOrDefault()).ToString("C")
                 </td>
+                <td style="background-color:#fedada">
+                    @Model.Sum(a=>a.Invoice.Sum(c=>c.GrandTotal)).ToString("C")
+                </td>
             }
-<tr />
+        <tr />
+        <tr style="font-size:13px; text-align:center;">
+            <th class="th-sm">
+                Sub 3% Admin Fee
+            </th>
+            <td>
+                @ViewBag.JulFee
+            </td>
+            <td>
+                @ViewBag.AugFee
+            </td>
+            <td>
+                @ViewBag.SepFee
+            </td>
+            <td>
+                @ViewBag.OctFee
+            </td>
+            <td>
+                @ViewBag.NovFee
+            </td>
+            <td>
+                @ViewBag.DecFee
+            </td>
+            <td>
+                @ViewBag.JanFee
+            </td>
+            <td>
+                @ViewBag.FebFee
+            </td>
+            <td>
+                @ViewBag.MarFee
+            </td>
+            <td>
+                @ViewBag.AprFee
+            </td>
+            <td>
+                @ViewBag.MayFee
+            </td>
+            <td>
+                @ViewBag.JunFee
+            </td>
+            <td style="background-color:#fedada">
+                @ViewBag.TotalFee
+            </td>
+        <tr />
     </thead>
 </table>
 <div class="col-xs-5th-1 col-sm-6" style="align-content:center;">
     Results Shown per Page: @Html.DropDownList("pgSize", new SelectList(new[] { 10, 20, 30, 40, 50 }), htmlAttributes: new { @class = "", onchange = "this.form.submit()" })
-
-    @*<p>
-            @using (Html.BeginForm("Export", "BudgetCosts", FormMethod.Post))
-            {
-                @Html.AntiForgeryToken()
-                <input type="submit" name="BudgetInvoiceId" id="BudgetInvoiceId" value="Export All to Excel" class="btn btn-group-sm btn-success" />
-            }
-        </p>*@
-
     <br />
 
     Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount

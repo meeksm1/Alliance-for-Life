@@ -51,6 +51,29 @@ namespace Alliance_for_Life.Controllers
             ViewBag.ReportTitle = "Report Year -  " + year_search;
             ViewBag.yearselected = year_search;
             //checking to see if there are any data available
+
+
+            //pulling admincost 
+            var admincost = db.AdminCosts.Where(a => a.Year == year_search).ToList();
+
+            //calculating Sub 3% Admin Fee per month and returning it as viewbag
+            ViewBag.JanFee = (admincost.Where(a => a.Month == Months.January).Sum(a => a.ATotCosts) * 0.03).ToString("C");
+            ViewBag.FebFee = (admincost.Where(a => a.Month == Months.February).Sum(a => a.ATotCosts) * 0.03).ToString("C");
+            ViewBag.MarFee = (admincost.Where(a => a.Month == Months.March).Sum(a => a.ATotCosts) * 0.03).ToString("C");
+            ViewBag.AprFee = (admincost.Where(a => a.Month == Months.April).Sum(a => a.ATotCosts) * 0.03).ToString("C");
+            ViewBag.MayFee = (admincost.Where(a => a.Month == Months.May).Sum(a => a.ATotCosts) * 0.03).ToString("C");
+            ViewBag.JunFee = (admincost.Where(a => a.Month == Months.June).Sum(a => a.ATotCosts) * 0.03).ToString("C");
+            ViewBag.JulFee = (admincost.Where(a => a.Month == Months.July).Sum(a => a.ATotCosts) * 0.03).ToString("C");
+            ViewBag.AugFee = (admincost.Where(a => a.Month == Months.August).Sum(a => a.ATotCosts) * 0.03).ToString("C");
+            ViewBag.SepFee = (admincost.Where(a => a.Month == Months.September).Sum(a => a.ATotCosts) * 0.03).ToString("C");
+            ViewBag.OctFee = (admincost.Where(a => a.Month == Months.October).Sum(a => a.ATotCosts) * 0.03).ToString("C");
+            ViewBag.NovFee = (admincost.Where(a => a.Month == Months.November).Sum(a => a.ATotCosts) * 0.03).ToString("C");
+            ViewBag.DecFee = (admincost.Where(a => a.Month == Months.December).Sum(a => a.ATotCosts) * 0.03).ToString("C");
+            ViewBag.TotalFee = (admincost.Sum(a => a.ATotCosts) * 0.03).ToString("C");
+
+
+
+
             if (allocatedBudget.Count() == 0)
             {
                 ViewBag.error = "No Report available for the year " + year_search;
@@ -60,15 +83,6 @@ namespace Alliance_for_Life.Controllers
             {
                 pageSize = 10;
             }
-            //var firstquarter = from qs in db.QuarterlyStates
-            //                   join s in db.SubContractors on qs.SubcontractorId equals s.SubcontractorId
-            //                   join a in db.AdminCosts on qs.AdminCostId equals a.AdminCostId
-            //                   join p in db.ParticipationServices on qs.ParticipationCostId equals p.PSId
-            //                   where (int)qs.Month <= 7 && (int)qs.Month >= 9
-            //                   select qs;
-
-
-            //a=>a.Invoice.Where(k => k.AdminCosts.Month == Alliance_for_Life.Models.Months.July && k.AdminCosts.Year == ViewBag.yearselected).Select(b => b.AdminCosts.ATotCosts).SingleOrDefault()
             int pageNumber = (page ?? 1);
             return View(allocatedBudget.OrderBy(y => y.Year).ToPagedList(pageNumber, pageSize));
         }
