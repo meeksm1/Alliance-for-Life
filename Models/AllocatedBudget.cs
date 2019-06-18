@@ -16,6 +16,8 @@ namespace Alliance_for_Life.Models
         public SubContractor Subcontractor { get; set; }
 
         public ICollection<Invoices> Invoice { get; set; }
+        public ICollection<AdminCosts> AdminCost { get; set; }
+        //public ICollection<Invoices> Invoice { get; set; }
 
     }
 }

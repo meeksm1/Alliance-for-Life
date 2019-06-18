@@ -43,6 +43,7 @@ namespace Alliance_for_Life.Controllers
             var allocatedBudget = db.AllocatedBudget
                 .Include(a => a.Subcontractor)
                 .Include(a => a.Invoice)
+                .Include(a => a.AdminCost)
                 .Where(a => a.Year == year_search);
 
             var datelist = Enumerable.Range(System.DateTime.Now.Year - 4, 10).ToList();
@@ -61,9 +62,8 @@ namespace Alliance_for_Life.Controllers
             }
 
 
-            var testsum = allocatedBudget.Where(a => a.Invoice.Select(b => b.Month) == admincosts.Select(b => b.Month));
 
-                //a=>a.Invoice.Where(k => k.AdminCosts.Month == Alliance_for_Life.Models.Months.July && k.AdminCosts.Year == ViewBag.yearselected).Select(b => b.AdminCosts.ATotCosts).SingleOrDefault()
+            //a=>a.Invoice.Where(k => k.AdminCosts.Month == Alliance_for_Life.Models.Months.July && k.AdminCosts.Year == ViewBag.yearselected).Select(b => b.AdminCosts.ATotCosts).SingleOrDefault()
             int pageNumber = (page ?? 1);
             return View(allocatedBudget.OrderBy(y => y.Year).ToPagedList(pageNumber, pageSize));
         }
