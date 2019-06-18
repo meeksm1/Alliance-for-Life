@@ -933,27 +933,24 @@
             </th>
         <tr />
         <tr style="font-size:13px; text-align:center;">
-            @foreach (var group in Model.GroupBy(item => item.Subcontractor.OrgName))
-            {
+
                 <th class="th-sm">
                     QER Totals:
                 </th>
                 <td>
-                    @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.July).Select(b => b.GrandTotal).SingleOrDefault()).ToString("C")
+                    @ViewBag.FirstQuarter
+
                 </td>
                 <td>
-                    @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.November).Select(b => b.GrandTotal).SingleOrDefault()).ToString("C")
+                    @ViewBag.SecondQuarter
                 </td>
                 <td>
-                    @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.December).Select(b => b.GrandTotal).SingleOrDefault()).ToString("C")
                 </td>
                 <td>
-                    @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.January).Select(b => b.GrandTotal).SingleOrDefault()).ToString("C")
                 </td>
                 <td>
-                    @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.February).Select(b => b.GrandTotal).SingleOrDefault()).ToString("C")
                 </td>
-             }
+             
         <tr />
     </thead>
 </table>
@@ -966,11 +963,6 @@
             @Html.PagedListPager(Model, page => Url.Action("Index",
                 new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter, @class="pagination" }))
         </div>
-
-    @Html.PagedListPager(Model, page => Url.Action("Index",
-        new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter, @class="pagination" }))
-</div>
-
 <style>
     .tablehearder{
         text-align:center;

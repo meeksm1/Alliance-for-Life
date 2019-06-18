@@ -25,6 +25,8 @@ namespace Alliance_for_Life.Controllers
             //paged view
             ViewBag.CurrentSort = sortOrder;
 
+            var datelist = Enumerable.Range(System.DateTime.Now.Year - 4, 10).ToList();
+            ViewBag.Year = new SelectList(datelist);
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.YearSortParm = sortOrder == "Year" ? "year_desc" : "Year";
             ViewBag.RegionSortParm = sortOrder == "Region" ? "region_desc" : "Region";
@@ -153,6 +155,8 @@ namespace Alliance_for_Life.Controllers
             //paged view
             ViewBag.CurrentSort = sortOrder;
 
+            var datelist = Enumerable.Range(System.DateTime.Now.Year - 4, 10).ToList();
+            ViewBag.Year = new SelectList(datelist);
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.YearSortParm = sortOrder == "Year" ? "year_desc" : "Year";
             ViewBag.RegionSortParm = sortOrder == "Region" ? "region_desc" : "Region";
@@ -231,7 +235,8 @@ namespace Alliance_for_Life.Controllers
             int pageSize = Convert.ToInt16(pgSize);
             //paged view
             ViewBag.CurrentSort = sortOrder;
-
+            var datelist = Enumerable.Range(System.DateTime.Now.Year - 4, 10).ToList();
+            ViewBag.Year = new SelectList(datelist);
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.YearSortParm = sortOrder == "Year" ? "year_desc" : "Year";
             ViewBag.RegionSortParm = sortOrder == "Region" ? "region_desc" : "Region";
@@ -310,7 +315,8 @@ namespace Alliance_for_Life.Controllers
             int pageSize = Convert.ToInt16(pgSize);
             //paged view
             ViewBag.CurrentSort = sortOrder;
-
+            var datelist = Enumerable.Range(System.DateTime.Now.Year - 4, 10).ToList();
+            ViewBag.Year = new SelectList(datelist);
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.YearSortParm = sortOrder == "Year" ? "year_desc" : "Year";
             ViewBag.RegionSortParm = sortOrder == "Region" ? "region_desc" : "Region";
@@ -389,7 +395,8 @@ namespace Alliance_for_Life.Controllers
             int pageSize = Convert.ToInt16(pgSize);
             //paged view
             ViewBag.CurrentSort = sortOrder;
-
+            var datelist = Enumerable.Range(System.DateTime.Now.Year - 4, 10).ToList();
+            ViewBag.Year = new SelectList(datelist);
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.YearSortParm = sortOrder == "Year" ? "year_desc" : "Year";
             ViewBag.RegionSortParm = sortOrder == "Region" ? "region_desc" : "Region";

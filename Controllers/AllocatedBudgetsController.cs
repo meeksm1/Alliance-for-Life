@@ -71,6 +71,27 @@ namespace Alliance_for_Life.Controllers
             ViewBag.DecFee = (admincost.Where(a => a.Month == Months.December).Sum(a => a.ATotCosts) * 0.03).ToString("C");
             ViewBag.TotalFee = (admincost.Sum(a => a.ATotCosts) * 0.03).ToString("C");
 
+            // quarterly calculations
+            var FirstQuarter = from qs in db.Invoices
+                               where (int)qs.Month <= 3 && qs.Year == year_search
+                               select qs.GrandTotal;
+
+            if (FirstQuarter.Count() > 0)
+            {
+                ViewBag.FirstQuarter = FirstQuarter.Sum().ToString("C");
+            }
+
+            var SecondQuarter = from qs in db.Invoices
+                               where (int)qs.Month >= 4 && (int)qs.Month <= 6  && qs.Year == year_search
+                               select qs.GrandTotal;
+
+            if (SecondQuarter.Count() > 0)
+            {
+                ViewBag.SecondQuarter = SecondQuarter.Sum().ToString("C");
+            }
+
+
+
 
 
 
