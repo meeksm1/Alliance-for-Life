@@ -60,7 +60,12 @@ namespace Alliance_for_Life.Controllers
             {
                 pageSize = 10;
             }
-
+            //var firstquarter = from qs in db.QuarterlyStates
+            //                   join s in db.SubContractors on qs.SubcontractorId equals s.SubcontractorId
+            //                   join a in db.AdminCosts on qs.AdminCostId equals a.AdminCostId
+            //                   join p in db.ParticipationServices on qs.ParticipationCostId equals p.PSId
+            //                   where (int)qs.Month <= 7 && (int)qs.Month >= 9
+            //                   select qs;
 
 
             //a=>a.Invoice.Where(k => k.AdminCosts.Month == Alliance_for_Life.Models.Months.July && k.AdminCosts.Year == ViewBag.yearselected).Select(b => b.AdminCosts.ATotCosts).SingleOrDefault()
