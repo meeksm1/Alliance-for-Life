@@ -50,81 +50,16 @@ namespace Alliance_for_Life.Controllers
             ViewBag.Year = new SelectList(datelist);
             ViewBag.ReportTitle = "Report Year -  " + year_search;
             ViewBag.yearselected = year_search;
-            //checking to see if there are any data available
-
 
             //pulling admincost 
-            var admincost = db.AdminCosts.Where(a => a.Year == year_search).ToList();
-
-            //calculating Sub 3% Admin Fee per month and returning it as viewbag
-            ViewBag.JanFee = (admincost.Where(a => a.Month == Months.January).Sum(a => a.ATotCosts) * 0.03).ToString("C");
-            ViewBag.FebFee = (admincost.Where(a => a.Month == Months.February).Sum(a => a.ATotCosts) * 0.03).ToString("C");
-            ViewBag.MarFee = (admincost.Where(a => a.Month == Months.March).Sum(a => a.ATotCosts) * 0.03).ToString("C");
-            ViewBag.AprFee = (admincost.Where(a => a.Month == Months.April).Sum(a => a.ATotCosts) * 0.03).ToString("C");
-            ViewBag.MayFee = (admincost.Where(a => a.Month == Months.May).Sum(a => a.ATotCosts) * 0.03).ToString("C");
-            ViewBag.JunFee = (admincost.Where(a => a.Month == Months.June).Sum(a => a.ATotCosts) * 0.03).ToString("C");
-            ViewBag.JulFee = (admincost.Where(a => a.Month == Months.July).Sum(a => a.ATotCosts) * 0.03).ToString("C");
-            ViewBag.AugFee = (admincost.Where(a => a.Month == Months.August).Sum(a => a.ATotCosts) * 0.03).ToString("C");
-            ViewBag.SepFee = (admincost.Where(a => a.Month == Months.September).Sum(a => a.ATotCosts) * 0.03).ToString("C");
-            ViewBag.OctFee = (admincost.Where(a => a.Month == Months.October).Sum(a => a.ATotCosts) * 0.03).ToString("C");
-            ViewBag.NovFee = (admincost.Where(a => a.Month == Months.November).Sum(a => a.ATotCosts) * 0.03).ToString("C");
-            ViewBag.DecFee = (admincost.Where(a => a.Month == Months.December).Sum(a => a.ATotCosts) * 0.03).ToString("C");
-            ViewBag.TotalFee = (admincost.Sum(a => a.ATotCosts) * 0.03).ToString("C");
+            AdminCostCalculation(year_search);
 
             // quarterly calculations
-            var FirstQuarter = from qs in db.Invoices
-                               where (int)qs.Month <= 3 && qs.Year == year_search
-                               select qs.GrandTotal;
-
-            if (FirstQuarter.Count() > 0)
-            {
-                ViewBag.FirstQuarter = FirstQuarter.Sum().ToString("C");
-            }
-
-            var SecondQuarter = from qs in db.Invoices
-                                where (int)qs.Month >= 4 && (int)qs.Month <= 6 && qs.Year == year_search
-                                select qs.GrandTotal;
-
-            if (SecondQuarter.Count() > 0)
-            {
-                ViewBag.SecondQuarter = SecondQuarter.Sum().ToString("C");
-            }
-
-            var ThirdQuarter = from qs in db.Invoices
-                               where (int)qs.Month >= 7 && (int)qs.Month <= 9 && qs.Year == year_search
-                               select qs.GrandTotal;
-
-            if (ThirdQuarter.Count() > 0)
-            {
-                ViewBag.ThirdQuarter = ThirdQuarter.Sum().ToString("C");
-            }
-
-
-
-            var FourthQuarter = from qs in db.Invoices
-                                where (int)qs.Month >= 10 && qs.Year == year_search
-                                select qs.GrandTotal;
-
-            if (FourthQuarter.Count() > 0)
-            {
-                ViewBag.FourthQuarter = FourthQuarter.Sum().ToString("C");
-            }
-
-            var QuarterTotals = from qs in db.Invoices
-                                where (int)qs.Month <= 12 && qs.Year == year_search
-                                select qs.GrandTotal;
-            if (QuarterTotals.Count() > 0)
-            {
-                ViewBag.QuarterTotals = QuarterTotals.Sum().ToString("C");
-
-            }
-
+            QuaterlyViewBag(year_search);
 
             //CREATING THE VIEWBAG TO PULL afl ALLOCATED BUDGET
             ViewBag.aflallocation = db.AFLAllocation.Where(a => a.Year == year_search).ToList();
 
-
-            //creating viewbag for the state deposit
             //call the function that does all this
             StateDepositeViewBag(year_search);
 
@@ -215,7 +150,79 @@ namespace Alliance_for_Life.Controllers
 
         }
 
+        //calculate quaterly
+        public void QuaterlyViewBag(int year_search)
+        {
+            var FirstQuarter = from qs in db.Invoices
+                               where (int)qs.Month <= 3 && qs.Year == year_search
+                               select qs.GrandTotal;
 
+            if (FirstQuarter.Count() > 0)
+            {
+                ViewBag.FirstQuarter = FirstQuarter.Sum().ToString("C");
+            }
+
+            var SecondQuarter = from qs in db.Invoices
+                                where (int)qs.Month >= 4 && (int)qs.Month <= 6 && qs.Year == year_search
+                                select qs.GrandTotal;
+
+            if (SecondQuarter.Count() > 0)
+            {
+                ViewBag.SecondQuarter = SecondQuarter.Sum().ToString("C");
+            }
+
+            var ThirdQuarter = from qs in db.Invoices
+                               where (int)qs.Month >= 7 && (int)qs.Month <= 9 && qs.Year == year_search
+                               select qs.GrandTotal;
+
+            if (ThirdQuarter.Count() > 0)
+            {
+                ViewBag.ThirdQuarter = ThirdQuarter.Sum().ToString("C");
+            }
+
+
+
+            var FourthQuarter = from qs in db.Invoices
+                                where (int)qs.Month >= 10 && qs.Year == year_search
+                                select qs.GrandTotal;
+
+            if (FourthQuarter.Count() > 0)
+            {
+                ViewBag.FourthQuarter = FourthQuarter.Sum().ToString("C");
+            }
+
+            var QuarterTotals = from qs in db.Invoices
+                                where (int)qs.Month <= 12 && qs.Year == year_search
+                                select qs.GrandTotal;
+            if (QuarterTotals.Count() > 0)
+            {
+                ViewBag.QuarterTotals = QuarterTotals.Sum().ToString("C");
+
+            }
+
+        }
+
+        //working with admin cost
+        public void AdminCostCalculation(int year_search)
+        {
+            var admincost = db.AdminCosts.Where(a => a.Year == year_search).ToList();
+
+            //calculating Sub 3% Admin Fee per month and returning it as viewbag
+            ViewBag.JanFee = (admincost.Where(a => a.Month == Months.January).Sum(a => a.ATotCosts) * 0.03).ToString("C");
+            ViewBag.FebFee = (admincost.Where(a => a.Month == Months.February).Sum(a => a.ATotCosts) * 0.03).ToString("C");
+            ViewBag.MarFee = (admincost.Where(a => a.Month == Months.March).Sum(a => a.ATotCosts) * 0.03).ToString("C");
+            ViewBag.AprFee = (admincost.Where(a => a.Month == Months.April).Sum(a => a.ATotCosts) * 0.03).ToString("C");
+            ViewBag.MayFee = (admincost.Where(a => a.Month == Months.May).Sum(a => a.ATotCosts) * 0.03).ToString("C");
+            ViewBag.JunFee = (admincost.Where(a => a.Month == Months.June).Sum(a => a.ATotCosts) * 0.03).ToString("C");
+            ViewBag.JulFee = (admincost.Where(a => a.Month == Months.July).Sum(a => a.ATotCosts) * 0.03).ToString("C");
+            ViewBag.AugFee = (admincost.Where(a => a.Month == Months.August).Sum(a => a.ATotCosts) * 0.03).ToString("C");
+            ViewBag.SepFee = (admincost.Where(a => a.Month == Months.September).Sum(a => a.ATotCosts) * 0.03).ToString("C");
+            ViewBag.OctFee = (admincost.Where(a => a.Month == Months.October).Sum(a => a.ATotCosts) * 0.03).ToString("C");
+            ViewBag.NovFee = (admincost.Where(a => a.Month == Months.November).Sum(a => a.ATotCosts) * 0.03).ToString("C");
+            ViewBag.DecFee = (admincost.Where(a => a.Month == Months.December).Sum(a => a.ATotCosts) * 0.03).ToString("C");
+            ViewBag.TotalFee = (admincost.Sum(a => a.ATotCosts) * 0.03).ToString("C");
+
+        }
         // GET: AllocatedBudgets/Details/5
         public ActionResult Details(Guid? id)
         {
