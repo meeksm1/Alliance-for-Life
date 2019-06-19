@@ -18,13 +18,12 @@ namespace Alliance_for_Life.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: BudgetCosts
-        public ViewResult Index(string sortOrder, string searchString, int? yearsearch, string currentFilter, int? page, string pgSize)
+        public ViewResult Index(string sortOrder, string searchString, string Year, string currentFilter, int? page, string pgSize)
         {
             int pageSize = Convert.ToInt16(pgSize);
 
             //paged view
             ViewBag.CurrentSort = sortOrder;
-
             var datelist = Enumerable.Range(System.DateTime.Now.Year - 4, 10).ToList();
             ViewBag.Year = new SelectList(datelist);
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
@@ -45,25 +44,30 @@ namespace Alliance_for_Life.Controllers
             var budgetsearch = from s in db.BudgetCosts
                                select s;
 
-            if (!String.IsNullOrEmpty(searchString) || !String.IsNullOrEmpty(yearsearch.ToString()))
+            var year_search = "";
+
+            if ((Year != null) && Year.Length > 1)
             {
-                var yearSearch = (yearsearch);
+                year_search = (Year);
+            }
+
+            if (!String.IsNullOrEmpty(searchString) || !String.IsNullOrEmpty(Year))
+            {
+                var yearSearch = (Year);
 
                 if (String.IsNullOrEmpty(searchString))
                 {
-                    budgetsearch = budgetsearch.Where(r => r.Year == yearsearch).OrderBy(r => r.Region);
+                    budgetsearch = budgetsearch.Where(r => r.Year.ToString() == Year).OrderBy(r => r.Region);
                 }
-                else if (String.IsNullOrEmpty(yearsearch.ToString()))
+                else if (String.IsNullOrEmpty(Year.ToString()))
                 {
                     var regionSearch = Enum.Parse(typeof(GeoRegion), searchString);
                     budgetsearch = budgetsearch.Where(r => r.Region == (GeoRegion)regionSearch).OrderBy(r => r.Region);
-
                 }
                 else
                 {
                     var regionSearch = Enum.Parse(typeof(GeoRegion), searchString);
-                    budgetsearch = budgetsearch.Where(r => r.Region == (GeoRegion)regionSearch && r.Year == yearsearch).OrderBy(r => r.Region);
-
+                    budgetsearch = budgetsearch.Where(r => r.Region == (GeoRegion)regionSearch && r.Year.ToString() == Year).OrderBy(r => r.Region);
                 }
             }
 
@@ -149,12 +153,13 @@ namespace Alliance_for_Life.Controllers
             return Json(costlist.ToList(), JsonRequestBehavior.AllowGet);
         }
         //#############################################################################################
+
+
         public ViewResult FirstQuarter(string sortOrder, string searchString, string Year, string currentFilter, int? page, string pgSize)
         {
             int pageSize = Convert.ToInt16(pgSize);
             //paged view
             ViewBag.CurrentSort = sortOrder;
-            // var year_search = Convert.ToInt16( Year);
             var datelist = Enumerable.Range(System.DateTime.Now.Year - 4, 10).ToList();
             ViewBag.Year = new SelectList(datelist);
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
@@ -172,11 +177,6 @@ namespace Alliance_for_Life.Controllers
             }
             ViewBag.CurrentFilter = searchString;
 
-            //Sets all of the data
-
-            //var budgetsearch = from s in db.BudgetCosts
-            //                   select s;
-
             var budgetsearch = from s in db.BudgetCosts
                                join a in db.AdminCosts on s.Region equals a.Region
                                join b in db.ParticipationServices on s.Region equals b.Region
@@ -192,9 +192,6 @@ namespace Alliance_for_Life.Controllers
 
             if (!String.IsNullOrEmpty(searchString) || !String.IsNullOrEmpty(Year))
             {
-
-
-
                 if (String.IsNullOrEmpty(searchString))
                 {
                     budgetsearch = budgetsearch.Where(r => r.budgetcosts.Year.ToString() == year_search).OrderBy(r => r.budgetcosts.Region);

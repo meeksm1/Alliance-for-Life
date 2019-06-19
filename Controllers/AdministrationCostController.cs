@@ -18,13 +18,17 @@ namespace Alliance_for_Life.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: AdministrationCost
-        public ActionResult Index(string sortOrder, Guid? searchString, string currentFilter, int? page, string pgSize)
+        public ActionResult Index(string sortOrder, Guid? searchString, Enum Month, string Year, string currentFilter, int? page, string pgSize)
         {
             int pageSize = Convert.ToInt16(pgSize);
 
+            //paged view
+            ViewBag.CurrentSort = sortOrder;
+            var datelist = Enumerable.Range(System.DateTime.Now.Year - 4, 10).ToList();
+            ViewBag.Year = new SelectList(datelist);
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
-            ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
-            ViewBag.Subcontractor = new SelectList(db.SubContractors, "SubcontractorId", "OrgName");
+            ViewBag.YearSortParm = sortOrder == "Year" ? "year_desc" : "Year";
+            ViewBag.RegionSortParm = sortOrder == "Region" ? "region_desc" : "Region";
 
             //looking for the searchstring
             if (searchString != null)
@@ -57,9 +61,31 @@ namespace Alliance_for_Life.Controllers
                 ViewBag.Subcontractor = organization;
             }
 
-            if (!String.IsNullOrEmpty(searchString.ToString()))
+            var year_search = "";
+
+            if ((Year != null) && Year.Length > 1)
             {
-                adminSearch = adminSearch.Where(a => a.Subcontractor.SubcontractorId == searchString);
+                year_search = (Year);
+            }
+
+            if (!String.IsNullOrEmpty(searchString.ToString()) || !String.IsNullOrEmpty(Year) || !String.IsNullOrEmpty(Month.ToString()))
+            {
+                var yearSearch = (Year);
+
+                if (String.IsNullOrEmpty(searchString.ToString()))
+                {
+                    adminSearch = adminSearch.Where(r => r.Year.ToString() == Year).OrderBy(r => r.Month);
+                }
+                else if (String.IsNullOrEmpty(Year.ToString()))
+                {
+                    var monthSearch = Enum.Parse(typeof(Months), Month.ToString());
+                    adminSearch = adminSearch.Where(r => r.Month == (Months)monthSearch).OrderBy(r => r.Month);
+                }
+                else
+                {
+                    var monthSearch = Enum.Parse(typeof(Months), Month.ToString());
+                    adminSearch = adminSearch.Where(r => r.Month == (Months)monthSearch && r.Year.ToString() == Year).OrderBy(r => r.Month);
+                }
             }
 
             switch (sortOrder)
