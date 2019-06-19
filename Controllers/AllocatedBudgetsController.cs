@@ -91,7 +91,7 @@ namespace Alliance_for_Life.Controllers
             }
 
             var ThirdQuarter = from qs in db.Invoices
-                               where (int)qs.Month >= 7 && (int)qs.Month <= 9  && qs.Year == year_search
+                               where (int)qs.Month >= 7 && (int)qs.Month <= 9 && qs.Year == year_search
                                select qs.GrandTotal;
 
             if (ThirdQuarter.Count() > 0)
@@ -99,7 +99,7 @@ namespace Alliance_for_Life.Controllers
                 ViewBag.ThirdQuarter = ThirdQuarter.Sum().ToString("C");
             }
 
-           
+
 
             var FourthQuarter = from qs in db.Invoices
                                 where (int)qs.Month >= 10 && qs.Year == year_search
@@ -120,6 +120,8 @@ namespace Alliance_for_Life.Controllers
             }
 
 
+            //CREATING THE VIEWBAG TO PULL afl ALLOCATED BUDGET
+            ViewBag.aflallocation = db.AFLAllocation.Where(a => a.Year == year_search).ToList();
 
 
             if (allocatedBudget.Count() == 0)
