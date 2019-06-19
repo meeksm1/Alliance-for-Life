@@ -124,6 +124,12 @@ namespace Alliance_for_Life.Controllers
             ViewBag.aflallocation = db.AFLAllocation.Where(a => a.Year == year_search).ToList();
 
 
+            //creating viewbag for the state deposit
+            //call the function that does all this
+            StateDepositeViewBag(year_search);
+
+
+
             if (allocatedBudget.Count() == 0)
             {
                 ViewBag.error = "No Report available for the year " + year_search;
@@ -136,6 +142,79 @@ namespace Alliance_for_Life.Controllers
             int pageNumber = (page ?? 1);
             return View(allocatedBudget.OrderBy(y => y.Year).ToPagedList(pageNumber, pageSize));
         }
+
+        //this function works with the state deposite
+        public void StateDepositeViewBag(int year_search)
+        {
+            var statedepo = db.StateDeposit.Where(b => b.Year == year_search);
+            if (statedepo.Count() != 0)
+            {
+                if (statedepo.Where(a => a.Month == Months.January).Count() != 0)
+                {
+                    ViewBag.DepoJan = statedepo.Where(a => a.Month == Months.January).FirstOrDefault().StateDeposits.ToString("C");
+
+                }
+                if (statedepo.Where(a => a.Month == Months.February).Count() != 0)
+                {
+                    ViewBag.DepoFeb = statedepo.Where(a => a.Month == Months.February).FirstOrDefault().StateDeposits.ToString("C");
+                }
+                if (statedepo.Where(a => a.Month == Months.March).Count() != 0)
+                {
+                    ViewBag.DepoMar = statedepo.Where(a => a.Month == Months.March).FirstOrDefault().StateDeposits.ToString("C");
+
+                }
+                if (statedepo.Where(a => a.Month == Months.April).Count() != 0)
+                {
+
+                    ViewBag.DepoApr = statedepo.Where(a => a.Month == Months.April).FirstOrDefault().StateDeposits.ToString("C");
+                }
+                if (statedepo.Where(a => a.Month == Months.May).Count() != 0)
+                {
+                    ViewBag.DepoMay = statedepo.Where(a => a.Month == Months.May).FirstOrDefault().StateDeposits.ToString("C");
+
+                }
+                if (statedepo.Where(a => a.Month == Months.June).Count() != 0)
+                {
+
+                    ViewBag.DepoJun = statedepo.Where(a => a.Month == Months.June).FirstOrDefault().StateDeposits.ToString("C");
+                }
+                if (statedepo.Where(a => a.Month == Months.July).Count() != 0)
+                {
+
+                    ViewBag.DepoJul = statedepo.Where(a => a.Month == Months.July).FirstOrDefault().StateDeposits.ToString("C");
+                }
+                if (statedepo.Where(a => a.Month == Months.August).Count() != 0)
+                {
+
+                    ViewBag.DepoAug = statedepo.Where(a => a.Month == Months.August).FirstOrDefault().StateDeposits.ToString("C");
+                }
+                if (statedepo.Where(a => a.Month == Months.September).Count() != 0)
+                {
+                    ViewBag.DepoSep = statedepo.Where(a => a.Month == Months.September).FirstOrDefault().StateDeposits.ToString("C");
+
+                }
+                if (statedepo.Where(a => a.Month == Months.October).Count() != 0)
+                {
+                    ViewBag.DepoOct = statedepo.Where(a => a.Month == Months.October).FirstOrDefault().StateDeposits.ToString("C");
+
+                }
+                if (statedepo.Where(a => a.Month == Months.November).Count() != 0)
+                {
+                    ViewBag.DepoNov = statedepo.Where(a => a.Month == Months.November).FirstOrDefault().StateDeposits.ToString("C");
+
+                }
+                if (statedepo.Where(a => a.Month == Months.December).Count() != 0)
+                {
+                    ViewBag.DepoDec = statedepo.Where(a => a.Month == Months.December).FirstOrDefault().StateDeposits.ToString("C");
+
+                }
+
+                //total state deposit
+                ViewBag.StateDeposit = statedepo.Sum(a => a.StateDeposits).ToString("C");
+            }
+
+        }
+
 
         // GET: AllocatedBudgets/Details/5
         public ActionResult Details(Guid? id)

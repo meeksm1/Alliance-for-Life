@@ -20,7 +20,8 @@ namespace Alliance_for_Life.Models
         {
             get; set;
         }
-         public DbSet<A2AAllocatedBudget> AFLAllocation { get; set; }
+        public DbSet<A2AAllocatedBudget> AFLAllocation { get; set; }
+        public DbSet<A2AStateDeposits> StateDeposit { get; set; }
 
         public ApplicationDbContext()
             // : base("DefaultConnection", throwIfV1Schema: false)

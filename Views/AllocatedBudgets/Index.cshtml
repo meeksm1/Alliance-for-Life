@@ -576,7 +576,7 @@
                 </td>
             }
         <tr />
-        <tr style="font-size:13px; text-align:center;">
+        @*<tr style="font-size:13px; text-align:center;">
             <th class="th-sm">
                 Invoice Totals
             </th>
@@ -624,7 +624,7 @@
                 <td style="background-color:#fedada">
                     @Model.Sum(a => a.Invoice.Sum(c => c.GrandTotal)).ToString("C")
                 </td>
-            }
+            }*@
         <tr />
         <tr style="font-size:13px; text-align:center;">
             <th class="th-sm">
@@ -875,46 +875,45 @@
             @foreach (var group in Model.GroupBy(item => item.Subcontractor.OrgName))
             {
 
+        <td>
+            @ViewBag.DepoJul
+        </td>
+        <td>
+            @ViewBag.DepoAug
+        </td>
+        <td>
+            @ViewBag.DepoSep
+        </td>
+        <td>
+            @ViewBag.DepoOct
+        </td>
+        <td>
+            @ViewBag.DepoNov
+        </td>
+        <td>
+            @ViewBag.DepoDec
+        </td>
                 <td>
-                    @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.July).Select(b => b.GrandTotal).SingleOrDefault() * .13).ToString("C")
-
+                    @ViewBag.DepoJan
                 </td>
                 <td>
-                    @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.August).Select(b => b.GrandTotal).SingleOrDefault() * .13).ToString("C")
+                    @ViewBag.DepoFeb
                 </td>
                 <td>
-                    @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.September).Select(b => b.GrandTotal).SingleOrDefault() * .13).ToString("C")
+                    @ViewBag.DepoMar
                 </td>
                 <td>
-                    @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.October).Select(b => b.GrandTotal).SingleOrDefault() * .13).ToString("C")
+                    @ViewBag.DepoApr
                 </td>
                 <td>
-                    @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.November).Select(b => b.GrandTotal).SingleOrDefault() * .13).ToString("C")
+                    @ViewBag.DepoMay
                 </td>
                 <td>
-                    @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.December).Select(b => b.GrandTotal).SingleOrDefault() * .13).ToString("C")
-                </td>
-                <td>
-                    @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.January).Select(b => b.GrandTotal).SingleOrDefault() * .13).ToString("C")
-                </td>
-                <td>
-                    @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.February).Select(b => b.GrandTotal).SingleOrDefault() * .13).ToString("C")
-                </td>
-                <td>
-                    @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.March).Select(b => b.GrandTotal).SingleOrDefault() * .13).ToString("C")
-                </td>
-                <td>
-                    @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.April).Select(b => b.GrandTotal).SingleOrDefault() * .13).ToString("C")
-                </td>
-                <td>
-                    @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.May).Select(b => b.GrandTotal).SingleOrDefault() * .13).ToString("C")
-                </td>
-                <td>
-                    @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.June).Select(b => b.GrandTotal).SingleOrDefault() * .13).ToString("C")
+                    @ViewBag.Depojun
                 </td>
                 <td style="background-color:#fedada">
 
-                    @Model.Sum(a => a.Invoice.Sum(c => c.GrandTotal) * .1).ToString("C")
+                    @ViewBag.StateDeposit
                 </td>
             }
         <tr />
@@ -1176,26 +1175,32 @@
             <td>
                 @Html.DisplayName("Begining Allocation Amount")
             </td>
-            <td></td>
-        </tr>
-        <tr>
             <td>
-                @Html.DisplayName("State Deposits to-date")
-            </td>
-            <td>
-                @items.StateDeposits.ToString("C")
+                @items.BeginingBalance.ToString("C")
             </td>
         </tr>
-        <tr>
-            <td>
-                @Html.DisplayName("Remaining Allocation Available")
-            </td>
-            <td></td>
-        </tr>
-            }
+    }
+    <tr>
+        <td>
+            @Html.DisplayName("State Deposits to-date")
+        </td>
+        <td>
+           @ViewBag.StateDeposit
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Html.DisplayName("Remaining Allocation Available")
+        </td>
+        <td>
+            
+
+        </td>
+    </tr>
 
 
-    </table>
+
+</table>
         <div class="col-xs-5th-1 col-sm-6" style="align-content:center;">
             Results Shown per Page: @Html.DropDownList("pgSize", new SelectList(new[] { 10, 20, 30, 40, 50 }), htmlAttributes: new { @class = "", onchange = "this.form.submit()" })
             <br />

@@ -13,7 +13,7 @@ namespace Alliance_for_Life.Models
         public double ABackgroundCheck { get; set; }
 
         public double EFTFees { get; set; }
-        
+
         public double AEmpBenefits { get; set; }
 
         public double AEmpTravel { get; set; }
@@ -51,7 +51,7 @@ namespace Alliance_for_Life.Models
         public double AOther3 { get; set; }
 
         public double StateAdminFee { get; set; }
-        
+
         public double ATotCosts { get; set; }
 
         public DateTime SubmittedDate { get; set; }

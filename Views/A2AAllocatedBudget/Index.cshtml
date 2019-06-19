@@ -18,12 +18,6 @@
         <th>
             @Html.DisplayNameFor(model => model.BeginingBalance)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.StateDeposits)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Month)
-        </th>
         <th></th>
     </tr>
 
@@ -34,12 +28,6 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.BeginingBalance)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.StateDeposits)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Month)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.A2AAllocatedBudgetId }) |
