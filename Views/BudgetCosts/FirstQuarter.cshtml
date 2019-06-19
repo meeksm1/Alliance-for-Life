@@ -30,7 +30,7 @@
     </form>
     <table id="dtBasicExample" class="table table-striped table-bordered table-sm" style="font-size:16px" cellspacing="0" width="100">
         <thead>
-            <tr style="font-size:16px">
+            <tr style="font-size:14px; text-align:center;background-color:#c3e1f7;">
                 <th></th>
                 <th class="th-sm">
                     @Html.ActionLink("Year", "Index", new { sortOrder = ViewBag.YearSortParm })
@@ -155,13 +155,13 @@
                     Admin and Participation Total Costs
                 </th>
         </thead>
-        <tr>
+        <tr >
 
             @foreach (var group in Model.GroupBy(item => item.budgetcosts.Region))
             {
                 foreach (var item in group.GroupBy(a => a.budgetcosts.Year))
                 {
-                <tr>
+                <tr style="font-size:14px;">
                     <th class="th-sm">
                         Budgeted Amounts
                     </th>
@@ -284,7 +284,7 @@
                         @item.FirstOrDefault().budgetcosts.Maxtot.ToString("C")
                     </td>
                 </tr>
-                <tr>
+                <tr style="font-size:14px;">
                     <td class="th-sm">
                         Admin Totals
                     </td>
@@ -404,7 +404,7 @@
                         @item.Sum((a => a.admincost.ATotCosts + a.particost.PTotals)).ToString("C")
                     </td>
                 </tr>
-                <tr>
+                <tr style="background-color:#fedada; font-size:14px;">
                     <th class="th-sm">
                         Remaining Budget
                     </th>

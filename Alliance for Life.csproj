@@ -235,6 +235,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\A2AAllocatedBudgetController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdministrationCostController.cs" />
     <Compile Include="Controllers\AFLFormController.cs" />
@@ -258,9 +259,9 @@
     <Compile Include="Migrations\201906142101493_admincostupdated.Designer.cs">
       <DependentUpon>201906142101493_admincostupdated.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201906181354199_test.cs" />
-    <Compile Include="Migrations\201906181354199_test.Designer.cs">
-      <DependentUpon>201906181354199_test.cs</DependentUpon>
+    <Compile Include="Migrations\201906191411124_aflallocationbudget.cs" />
+    <Compile Include="Migrations\201906191411124_aflallocationbudget.Designer.cs">
+      <DependentUpon>201906191411124_aflallocationbudget.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\A2AAllocatedBudget.cs" />
@@ -775,6 +776,11 @@
     <Content Include="Views\AllocatedBudgets\Details.cshtml" />
     <Content Include="Views\AllocatedBudgets\Edit.cshtml" />
     <Content Include="Views\AllocatedBudgets\Index.cshtml" />
+    <Content Include="Views\A2AAllocatedBudget\Create.cshtml" />
+    <Content Include="Views\A2AAllocatedBudget\Delete.cshtml" />
+    <Content Include="Views\A2AAllocatedBudget\Details.cshtml" />
+    <Content Include="Views\A2AAllocatedBudget\Edit.cshtml" />
+    <Content Include="Views\A2AAllocatedBudget\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config">
@@ -799,8 +805,8 @@
     <EmbeddedResource Include="Migrations\201906142101493_admincostupdated.resx">
       <DependentUpon>201906142101493_admincostupdated.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201906181354199_test.resx">
-      <DependentUpon>201906181354199_test.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201906191411124_aflallocationbudget.resx">
+      <DependentUpon>201906191411124_aflallocationbudget.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
