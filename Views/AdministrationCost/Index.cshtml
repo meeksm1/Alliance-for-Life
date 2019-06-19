@@ -13,7 +13,23 @@
     @if (!User.IsInRole("Admin"))
     {
         <h2>@ViewBag.Title's for @ViewBag.Subcontractor</h2>
-        <br />
+        <form>
+            @using (Html.BeginForm(FormMethod.Post))
+            {
+                <br />
+                <div class="container-fluid" style="padding-left: 15px;">
+                    <div class="row">
+                        <div class="col-xs-5th-1 col-sm-3" style="align-content:center;">
+                            Search By Month: @Html.DropDownList("Month", new SelectList(new[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 }), "Select Month", htmlAttributes: new { @class = "form-control", required = "required", onchange = "this.form.submit()" })
+                        </div>
+                        <div class="col-xs-5th-1 col-sm-3" style="align-content:center;">
+                            Search By Year: @Html.DropDownList("Year", null, "Select Year", htmlAttributes: new { @class = "form-control", onchange = "this.form.submit()" })
+                        </div>
+                    </div>
+                </div>
+                <br />
+            }
+        </form>
     }
     else
     {
@@ -51,11 +67,17 @@
                 @Html.ActionLink("Organization", "Index", new { sortOrder = ViewBag.NameSortParm })
             </th>
             <th>
-                @Html.ActionLink("Submitted Date", "Index", new { sortOrder = ViewBag.DateSortParm })
+                Month
             </th>
             <th>
-                Region&nbsp;&nbsp;&nbsp;&nbsp;
+                Year
             </th>
+            @if (!User.IsInRole("User"))
+            {
+                <th>
+                    Region&nbsp;&nbsp;&nbsp;&nbsp;
+                </th>
+            }
             <th>
                 Salaries and Wages
             </th>
@@ -136,11 +158,17 @@
                     @item.Subcontractor.OrgName
                 </td>
                 <td>
-                    @item.SubmittedDate.ToShortDateString()
+                    @item.Month
                 </td>
                 <td>
-                    @item.Region.GetDisplayName()
+                    @item.Year
                 </td>
+                @if (!User.IsInRole("User"))
+                {
+                    <td>
+                        @item.Region.GetDisplayName()
+                    </td>
+                }
                 <td>
                     @item.ASalandWages.ToString("C")
                 </td>
