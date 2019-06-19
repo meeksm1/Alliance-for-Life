@@ -149,12 +149,12 @@ namespace Alliance_for_Life.Controllers
             return Json(costlist.ToList(), JsonRequestBehavior.AllowGet);
         }
         //#############################################################################################
-        public ViewResult FirstQuarter(string sortOrder, string searchString, int? yearsearch, string currentFilter, int? page, string pgSize)
+        public ViewResult FirstQuarter(string sortOrder, string searchString, string Year, string currentFilter, int? page, string pgSize)
         {
             int pageSize = Convert.ToInt16(pgSize);
             //paged view
             ViewBag.CurrentSort = sortOrder;
-
+            // var year_search = Convert.ToInt16( Year);
             var datelist = Enumerable.Range(System.DateTime.Now.Year - 4, 10).ToList();
             ViewBag.Year = new SelectList(datelist);
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
@@ -173,21 +173,33 @@ namespace Alliance_for_Life.Controllers
             ViewBag.CurrentFilter = searchString;
 
             //Sets all of the data
+
+            //var budgetsearch = from s in db.BudgetCosts
+            //                   select s;
+
             var budgetsearch = from s in db.BudgetCosts
                                join a in db.AdminCosts on s.Region equals a.Region
                                join b in db.ParticipationServices on s.Region equals b.Region
-                               where s.Year == a.Year && s.Year == b.Year
+                               where s.Year == a.Year && s.Year == b.Year && a.Month == b.Month
                                select new BudgetViewModel { budgetcosts = s, admincost = a, particost = b };
 
-            if (!String.IsNullOrEmpty(searchString) || !String.IsNullOrEmpty(yearsearch.ToString()))
+            var year_search = "";
+
+            if ((Year != null) && Year.Length > 1)
             {
-                var yearSearch = (yearsearch);
+                year_search = (Year);
+            }
+
+            if (!String.IsNullOrEmpty(searchString) || !String.IsNullOrEmpty(Year))
+            {
+
+
 
                 if (String.IsNullOrEmpty(searchString))
                 {
-                    budgetsearch = budgetsearch.Where(r => r.budgetcosts.Year == yearsearch).OrderBy(r => r.budgetcosts.Region);
+                    budgetsearch = budgetsearch.Where(r => r.budgetcosts.Year.ToString() == year_search).OrderBy(r => r.budgetcosts.Region);
                 }
-                else if (String.IsNullOrEmpty(yearsearch.ToString()))
+                else if (String.IsNullOrEmpty(Year))
                 {
                     var regionSearch = Enum.Parse(typeof(GeoRegion), searchString);
                     budgetsearch = budgetsearch.Where(r => r.budgetcosts.Region == (GeoRegion)regionSearch).OrderBy(r => r.budgetcosts.Region);
@@ -195,7 +207,7 @@ namespace Alliance_for_Life.Controllers
                 else
                 {
                     var regionSearch = Enum.Parse(typeof(GeoRegion), searchString);
-                    budgetsearch = budgetsearch.Where(r => r.budgetcosts.Region == (GeoRegion)regionSearch && r.budgetcosts.Year == yearsearch).OrderBy(r => r.budgetcosts.Region);
+                    budgetsearch = budgetsearch.Where(r => r.budgetcosts.Region == (GeoRegion)regionSearch && r.budgetcosts.Year.ToString() == year_search).OrderBy(r => r.budgetcosts.Region);
                 }
             }
 
