@@ -68,7 +68,7 @@ namespace Alliance_for_Life.Controllers
                 year_search = (Year);
             }
 
-            if (!String.IsNullOrEmpty(searchString.ToString()) || !String.IsNullOrEmpty(Year) || !String.IsNullOrEmpty(Month.ToString()))
+            if (!String.IsNullOrEmpty(searchString.ToString()) || !String.IsNullOrEmpty(Year)/* || !String.IsNullOrEmpty(Month.ToString())*/)
             {
                 var yearSearch = (Year);
 
