@@ -1,9 +1,12 @@
-﻿using Alliance_for_Life.Models;
-using System;
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Web;
 using System.Web.Mvc;
+using Alliance_for_Life.Models;
 
 namespace Alliance_for_Life.Controllers
 {
@@ -43,7 +46,7 @@ namespace Alliance_for_Life.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "A2AAllocatedBudgetId,Year,BeginingBalance,StateDeposits,Month")] A2AAllocatedBudget a2AAllocatedBudget)
+        public ActionResult Create([Bind(Include = "A2AAllocatedBudgetId,Year,BeginingBalance")] A2AAllocatedBudget a2AAllocatedBudget)
         {
             if (ModelState.IsValid)
             {
@@ -76,7 +79,7 @@ namespace Alliance_for_Life.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "A2AAllocatedBudgetId,Year,BeginingBalance,StateDeposits,Month")] A2AAllocatedBudget a2AAllocatedBudget)
+        public ActionResult Edit([Bind(Include = "A2AAllocatedBudgetId,Year,BeginingBalance")] A2AAllocatedBudget a2AAllocatedBudget)
         {
             if (ModelState.IsValid)
             {

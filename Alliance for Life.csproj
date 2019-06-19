@@ -236,6 +236,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\A2AAllocatedBudgetController.cs" />
+    <Compile Include="Controllers\A2AStateDepositsController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdministrationCostController.cs" />
     <Compile Include="Controllers\AFLFormController.cs" />
@@ -263,8 +264,13 @@
     <Compile Include="Migrations\201906191411124_aflallocationbudget.Designer.cs">
       <DependentUpon>201906191411124_aflallocationbudget.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201906191549519_aflstatedeposite.cs" />
+    <Compile Include="Migrations\201906191549519_aflstatedeposite.Designer.cs">
+      <DependentUpon>201906191549519_aflstatedeposite.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\A2AAllocatedBudget.cs" />
+    <Compile Include="Models\A2AStateDeposits.cs" />
     <Compile Include="Models\AllocatedBudget.cs" />
     <Compile Include="Models\AffiliateRegion.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
@@ -781,6 +787,11 @@
     <Content Include="Views\A2AAllocatedBudget\Details.cshtml" />
     <Content Include="Views\A2AAllocatedBudget\Edit.cshtml" />
     <Content Include="Views\A2AAllocatedBudget\Index.cshtml" />
+    <Content Include="Views\A2AStateDeposits\Create.cshtml" />
+    <Content Include="Views\A2AStateDeposits\Delete.cshtml" />
+    <Content Include="Views\A2AStateDeposits\Details.cshtml" />
+    <Content Include="Views\A2AStateDeposits\Edit.cshtml" />
+    <Content Include="Views\A2AStateDeposits\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config">
@@ -807,6 +818,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201906191411124_aflallocationbudget.resx">
       <DependentUpon>201906191411124_aflallocationbudget.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906191549519_aflstatedeposite.resx">
+      <DependentUpon>201906191549519_aflstatedeposite.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
