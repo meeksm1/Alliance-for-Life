@@ -207,22 +207,23 @@ namespace Alliance_for_Life.Controllers
         {
             var admincost = db.AdminCosts.Where(a => a.Year == year_search).ToList();
 
-            //calculating Sub 3% Admin Fee per month and returning it as viewbag
-            ViewBag.JanFee = (admincost.Where(a => a.Month == Months.January).Sum(a => a.ATotCosts) * 0.03).ToString("C");
-            ViewBag.FebFee = (admincost.Where(a => a.Month == Months.February).Sum(a => a.ATotCosts) * 0.03).ToString("C");
-            ViewBag.MarFee = (admincost.Where(a => a.Month == Months.March).Sum(a => a.ATotCosts) * 0.03).ToString("C");
-            ViewBag.AprFee = (admincost.Where(a => a.Month == Months.April).Sum(a => a.ATotCosts) * 0.03).ToString("C");
-            ViewBag.MayFee = (admincost.Where(a => a.Month == Months.May).Sum(a => a.ATotCosts) * 0.03).ToString("C");
-            ViewBag.JunFee = (admincost.Where(a => a.Month == Months.June).Sum(a => a.ATotCosts) * 0.03).ToString("C");
-            ViewBag.JulFee = (admincost.Where(a => a.Month == Months.July).Sum(a => a.ATotCosts) * 0.03).ToString("C");
-            ViewBag.AugFee = (admincost.Where(a => a.Month == Months.August).Sum(a => a.ATotCosts) * 0.03).ToString("C");
-            ViewBag.SepFee = (admincost.Where(a => a.Month == Months.September).Sum(a => a.ATotCosts) * 0.03).ToString("C");
-            ViewBag.OctFee = (admincost.Where(a => a.Month == Months.October).Sum(a => a.ATotCosts) * 0.03).ToString("C");
-            ViewBag.NovFee = (admincost.Where(a => a.Month == Months.November).Sum(a => a.ATotCosts) * 0.03).ToString("C");
-            ViewBag.DecFee = (admincost.Where(a => a.Month == Months.December).Sum(a => a.ATotCosts) * 0.03).ToString("C");
-            ViewBag.TotalFee = (admincost.Sum(a => a.ATotCosts) * 0.03).ToString("C");
+            //calculating Admin Total Cost per month and returning it as viewbag
+            ViewBag.JanFee = (admincost.Where(a => a.Month == Months.January).Sum(a => a.ATotCosts));
+            ViewBag.FebFee = (admincost.Where(a => a.Month == Months.February).Sum(a => a.ATotCosts));
+            ViewBag.MarFee = (admincost.Where(a => a.Month == Months.March).Sum(a => a.ATotCosts));
+            ViewBag.AprFee = (admincost.Where(a => a.Month == Months.April).Sum(a => a.ATotCosts));
+            ViewBag.MayFee = (admincost.Where(a => a.Month == Months.May).Sum(a => a.ATotCosts));
+            ViewBag.JunFee = (admincost.Where(a => a.Month == Months.June).Sum(a => a.ATotCosts));
+            ViewBag.JulFee = (admincost.Where(a => a.Month == Months.July).Sum(a => a.ATotCosts));
+            ViewBag.AugFee = (admincost.Where(a => a.Month == Months.August).Sum(a => a.ATotCosts));
+            ViewBag.SepFee = (admincost.Where(a => a.Month == Months.September).Sum(a => a.ATotCosts));
+            ViewBag.OctFee = (admincost.Where(a => a.Month == Months.October).Sum(a => a.ATotCosts));
+            ViewBag.NovFee = (admincost.Where(a => a.Month == Months.November).Sum(a => a.ATotCosts));
+            ViewBag.DecFee = (admincost.Where(a => a.Month == Months.December).Sum(a => a.ATotCosts));
+            ViewBag.TotalFee = (admincost.Sum(a => a.ATotCosts));
 
         }
+
         // GET: AllocatedBudgets/Details/5
         public ActionResult Details(Guid? id)
         {
