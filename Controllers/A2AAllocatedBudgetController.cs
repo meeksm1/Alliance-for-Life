@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Alliance_for_Life.Models;
+using System;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using Alliance_for_Life.Models;
 
 namespace Alliance_for_Life.Controllers
 {
@@ -38,6 +36,8 @@ namespace Alliance_for_Life.Controllers
         // GET: A2AAllocatedBudget/Create
         public ActionResult Create()
         {
+            var datelist = Enumerable.Range(System.DateTime.Now.Year - 4, 10).ToList();
+            ViewBag.Year = new SelectList(datelist);
             return View();
         }
 
@@ -50,12 +50,28 @@ namespace Alliance_for_Life.Controllers
         {
             if (ModelState.IsValid)
             {
-                a2AAllocatedBudget.A2AAllocatedBudgetId = Guid.NewGuid();
-                db.AFLAllocation.Add(a2AAllocatedBudget);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+                var dataexist = from s in db.AFLAllocation
+                                where
+                                s.Year == a2AAllocatedBudget.Year
+                                select s;
 
+                if (dataexist.Count() >= 1)
+                {
+                    ViewBag.error = "Allocation Budget for " + a2AAllocatedBudget.Year
+                         + " already exists.";
+
+                    ModelState.Clear();
+                }
+                else
+                {
+                    a2AAllocatedBudget.A2AAllocatedBudgetId = Guid.NewGuid();
+                    db.AFLAllocation.Add(a2AAllocatedBudget);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+            }
+            var datelist = Enumerable.Range(System.DateTime.Now.Year - 4, 10).ToList();
+            ViewBag.Year = new SelectList(datelist);
             return View(a2AAllocatedBudget);
         }
 

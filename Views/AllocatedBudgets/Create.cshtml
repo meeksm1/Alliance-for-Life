@@ -9,6 +9,10 @@
 
 @using (Html.BeginForm()) 
 {
+<div style="color:red; text-align:center;">
+    @ViewBag.Error
+</div>
+
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
@@ -33,7 +37,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Year, htmlAttributes: new { @class = "control-label col-md-2"})
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Year, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DropDownList("Year", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Year, "", new { @class = "text-danger" })
             </div>
         </div>

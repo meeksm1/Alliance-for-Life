@@ -242,6 +242,8 @@ namespace Alliance_for_Life.Controllers
         // GET: AllocatedBudgets/Create
         public ActionResult Create()
         {
+            var datelist = Enumerable.Range(System.DateTime.Now.Year - 4, 10).ToList();
+            ViewBag.Year = new SelectList(datelist);
             ViewBag.SubcontractorId = new SelectList(db.SubContractors, "SubcontractorId", "OrgName");
             return View();
         }
@@ -255,12 +257,29 @@ namespace Alliance_for_Life.Controllers
         {
             if (ModelState.IsValid)
             {
-                allocatedBudget.AllocatedBudgetId = Guid.NewGuid();
-                db.AllocatedBudget.Add(allocatedBudget);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+                var dataexist = from s in db.AllocatedBudget.ToList()
+                                where
+                                s.SubcontractorId == allocatedBudget.SubcontractorId &&
+                                s.Year == allocatedBudget.Year
+                                select s;
 
+                if (dataexist.Count() >= 1)
+                {
+                    ViewBag.error = "Allocation Budget for " + db.SubContractors.Find(allocatedBudget.SubcontractorId).OrgName
+                        + " for " + allocatedBudget.Year + " already exists.";
+
+                    ModelState.Clear();
+                }
+                else
+                {
+                    allocatedBudget.AllocatedBudgetId = Guid.NewGuid();
+                    db.AllocatedBudget.Add(allocatedBudget);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+            }
+            var datelist = Enumerable.Range(System.DateTime.Now.Year - 4, 10).ToList();
+            ViewBag.Year = new SelectList(datelist);
             ViewBag.SubcontractorId = new SelectList(db.SubContractors, "SubcontractorId", "OrgName", allocatedBudget.SubcontractorId);
             return View(allocatedBudget);
         }
