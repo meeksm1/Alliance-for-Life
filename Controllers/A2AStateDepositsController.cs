@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using Alliance_for_Life.Models;
+using System;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using Alliance_for_Life.Models;
 
 namespace Alliance_for_Life.Controllers
 {
@@ -38,6 +35,8 @@ namespace Alliance_for_Life.Controllers
         // GET: A2AStateDeposits/Create
         public ActionResult Create()
         {
+            var datelist = Enumerable.Range(System.DateTime.Now.Year - 4, 10).ToList();
+            ViewBag.Year = new SelectList(datelist);
             return View();
         }
 
@@ -50,12 +49,31 @@ namespace Alliance_for_Life.Controllers
         {
             if (ModelState.IsValid)
             {
-                a2AStateDeposits.A2AStateDepositsId = Guid.NewGuid();
-                db.StateDeposit.Add(a2AStateDeposits);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                var dataexist = from s in db.StateDeposit.ToList()
+                                where
+                                s.Month == a2AStateDeposits.Month &&
+                                s.Year == a2AStateDeposits.Year
+                                select s;
+
+                if (dataexist.Count() >= 1)
+                {
+                    ViewBag.error = "State Budget for " + a2AStateDeposits.Month
+                        + " - " + a2AStateDeposits.Year + " already exists.";
+
+                    ModelState.Clear();
+                }
+                else
+                {
+                    a2AStateDeposits.A2AStateDepositsId = Guid.NewGuid();
+                    db.StateDeposit.Add(a2AStateDeposits);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+
             }
 
+            var datelist = Enumerable.Range(System.DateTime.Now.Year - 4, 10).ToList();
+            ViewBag.Year = new SelectList(datelist);
             return View(a2AStateDeposits);
         }
 
