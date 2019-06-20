@@ -1,0 +1,1501 @@
+﻿@model PagedList.IPagedList<Alliance_for_Life.Models.AllocatedBudget>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewBag.Title = "Allocated Budgets";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 style="color:green; text-align:center;">@ViewBag.ReportTitle</h2>
+
+<div class="container-fluid">
+    <form>
+        @using (Html.BeginForm())
+        {
+            <br />
+            <div class="container-fluid" style="padding-left: 15px;">
+                <div class="row">
+                    <div class="col-xs-5th-1 col-sm-6">
+                        @Html.DropDownList("Year", null, "Select Year", htmlAttributes: new { @class = "form-control", onchange = "this.form.submit()" })
+                    </div>
+                </div>
+            </div>
+        }
+    </form>
+</div>
+
+<br />
+<p style="color:red; text-align:center;">
+    @ViewBag.error
+</p>
+<table id="dtBasicExample" class="table table-striped table-bordered table-sm" style="font-size:16px" cellspacing="0" width="100">
+    <tr>
+    <thead>
+        <tr style="font-size:13px; text-align:center;background-color:#c3e1f7;">
+            <th class="th-sm">
+                EIN
+            </th>
+            <th class="th-sm">
+                @Html.ActionLink("Organization", "Index", new { sortOrder = ViewBag.NameSortParm })
+            </th>
+            <th class="th-sm">
+                @Html.DisplayName("July Biling")
+            </th>
+            <th class="th-sm">
+                @Html.DisplayName("August Biling")
+            </th>
+            <th class="th-sm">
+                @Html.DisplayName("September Biling")
+            </th>
+            <th class="th-sm">
+                @Html.DisplayName("October Biling")
+            </th>
+            <th class="th-sm">
+                @Html.DisplayName("November Biling")
+            </th>
+            <th class="th-sm">
+                @Html.DisplayName("December Biling")
+            </th>
+            <th class="th-sm">
+                @Html.DisplayName("January Biling")
+            </th>
+            <th class="th-sm">
+                @Html.DisplayName("February Biling")
+            </th>
+            <th class="th-sm">
+                @Html.DisplayName("March Biling")
+            </th>
+            <th class="th-sm">
+                @Html.DisplayName("April Biling")
+            </th>
+            <th class="th-sm">
+                @Html.DisplayName("May Biling")
+            </th>
+            <th class="th-sm">
+                @Html.DisplayName("June Biling")
+            </th>
+            <th class="th-sm">
+                @Html.DisplayName("Total Biling")
+            </th>
+            <th class="th-sm">
+                @Html.DisplayName("Allocations")
+            </th>
+            <th class="th-sm">
+                @Html.DisplayName("Original Allocation")
+            </th>
+            <th class="th-sm">
+                @Html.DisplayName("Left to Spend")
+            </th>
+            <th class="th-sm">
+                @Html.DisplayName("Additional Allocation")
+            </th>
+            <th class="th-sm" style="color:red;">
+                @Html.DisplayName("Allocation Reduced")
+            </th>
+            <th class="th-sm">
+                @Html.DisplayName("Monthly Average")
+            </th>
+            <th class="th-sm">
+                @ViewBag.yearselected  Cycle End Adjustment
+            </th>
+            <th class="th-sm"> Final Check Amount</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var group in Model.GroupBy(item => item.Subcontractor.OrgName))
+        {
+            <tr style="font-size:14px; text-align:center;">
+                <td>
+                    @Html.Encode(group.FirstOrDefault().Subcontractor.EIN)
+                </td>
+                <td>
+                    @Html.Encode(group.Key)
+                </td>
+                <td>
+
+                    @foreach (var item in group)
+                    {
+                        if (item.Invoice.Select(a => a.Month).Contains(Alliance_for_Life.Models.Months.July))
+                        {
+
+                            @item.Invoice.Where(a => a.Month == Alliance_for_Life.Models.Months.July).Select(a => a.GrandTotal).SingleOrDefault().ToString("C")
+                        }
+                    }
+                </td>
+                <td>
+                    @foreach (var item in group)
+                    {
+                        if (item.Invoice.Select(a => a.Month).Contains(Alliance_for_Life.Models.Months.August))
+                        {
+                            @item.Invoice.Where(a => a.Month == Alliance_for_Life.Models.Months.August).Select(a => a.GrandTotal).SingleOrDefault().ToString("C")
+
+                        }
+
+                    }
+                </td>
+                <td>
+                    @foreach (var item in group)
+                    {
+                        if (item.Invoice.Select(a => a.Month).Contains(Alliance_for_Life.Models.Months.September))
+                        {
+                            @item.Invoice.Where(a => a.Month == Alliance_for_Life.Models.Months.September).Select(a => a.GrandTotal).SingleOrDefault().ToString("C")
+                        }
+                    }
+                </td>
+                <td>
+                    @foreach (var item in group)
+                    {
+                        if (item.Invoice.Select(a => a.Month).Contains(Alliance_for_Life.Models.Months.October))
+                        {
+
+                            @item.Invoice.Where(a => a.Month == Alliance_for_Life.Models.Months.October).Select(a => a.GrandTotal).SingleOrDefault().ToString("C")
+                        }
+                    }
+                </td>
+                <td>
+                    @foreach (var item in group)
+                    {
+                        if (item.Invoice.Select(a => a.Month).Contains(Alliance_for_Life.Models.Months.November))
+                        {
+                            @item.Invoice.Where(a => a.Month == Alliance_for_Life.Models.Months.November).Select(a => a.GrandTotal).SingleOrDefault().ToString("C")
+                        }
+                    }
+                </td>
+                <td>
+                    @foreach (var item in group)
+                    {
+                        if (item.Invoice.Select(a => a.Month).Contains(Alliance_for_Life.Models.Months.December))
+                        {
+
+                            @item.Invoice.Where(a => a.Month == Alliance_for_Life.Models.Months.December).Select(a => a.GrandTotal).SingleOrDefault().ToString("C")
+                        }
+                    }
+                </td>
+                <td>
+                    @foreach (var item in group)
+                    {
+                        if (item.Invoice.Select(a => a.Month).Contains(Alliance_for_Life.Models.Months.January))
+                        {
+
+                            @item.Invoice.Where(a => a.Month == Alliance_for_Life.Models.Months.January).Select(a => a.GrandTotal).SingleOrDefault().ToString("C")
+                        }
+                    }
+                </td>
+
+                <td>
+                    @foreach (var item in group)
+                    {
+                        if (item.Invoice.Select(a => a.Month).Contains(Alliance_for_Life.Models.Months.February))
+                        {
+
+                            @item.Invoice.Where(a => a.Month == Alliance_for_Life.Models.Months.February).Select(a => a.GrandTotal).SingleOrDefault().ToString("C")
+                        }
+                    }
+                </td>
+
+                <td>
+                    @foreach (var item in group)
+                    {
+                        if (item.Invoice.Select(a => a.Month).Contains(Alliance_for_Life.Models.Months.March))
+                        {
+
+                            @item.Invoice.Where(a => a.Month == Alliance_for_Life.Models.Months.March).Select(a => a.GrandTotal).SingleOrDefault().ToString("C")
+                        }
+                    }
+                </td>
+
+                <td>
+                    @foreach (var item in group)
+                    {
+                        if (item.Invoice.Select(a => a.Month).Contains(Alliance_for_Life.Models.Months.April))
+                        {
+
+                            @item.Invoice.Where(a => a.Month == Alliance_for_Life.Models.Months.April).Select(a => a.GrandTotal).SingleOrDefault().ToString("C")
+                        }
+                    }
+                </td>
+                <td>
+                    @foreach (var item in group)
+                    {
+                        if (item.Invoice.Select(a => a.Month).Contains(Alliance_for_Life.Models.Months.May))
+                        {
+                            @item.Invoice.Where(a => a.Month == Alliance_for_Life.Models.Months.May).Select(a => a.GrandTotal).SingleOrDefault().ToString("C")
+                        }
+                    }
+                </td>
+                <td>
+                    @foreach (var item in group)
+                    {
+                        if (item.Invoice.Select(a => a.Month).Contains(Alliance_for_Life.Models.Months.June))
+                        {
+
+                            @item.Invoice.Where(a => a.Month == Alliance_for_Life.Models.Months.June).Select(a => a.GrandTotal).SingleOrDefault().ToString("C")
+                        }
+                    }
+                </td>
+                <td>
+
+                    @group.Sum(a => a.Invoice.Sum(b => b.GrandTotal)).ToString("C")
+
+                </td>
+                <td>
+                    @Html.Encode(group.FirstOrDefault().AllocatedNewBudget.ToString("C"))
+                </td>
+                <td>
+                    @Html.Encode(group.FirstOrDefault().AllocatedOldBudget.ToString("C"))
+                </td>
+                <td>
+                    @Math.Round(group.FirstOrDefault().AllocatedNewBudget - group.Sum(a => a.Invoice.Sum(b => b.GrandTotal))).ToString("C")
+
+                </td>
+                <td>
+                    @if ((group.FirstOrDefault().AllocatedOldBudget) <= (group.FirstOrDefault().AllocatedNewBudget))
+                    {
+                        @Math.Round(group.FirstOrDefault().AllocatedNewBudget - group.FirstOrDefault().AllocatedOldBudget).ToString("C")
+                    }
+                </td>
+                <td style="color:red;">
+                    @if (group.FirstOrDefault().AllocatedNewBudget <= group.FirstOrDefault().AllocatedOldBudget)
+                    {
+                        @Math.Round(group.FirstOrDefault().AllocatedOldBudget - group.FirstOrDefault().AllocatedNewBudget).ToString("C")
+                    }
+                </td>
+
+                <td>
+                    @group.Sum(a => a.Invoice.Sum(b => b.GrandTotal) / 12).ToString("C")
+                </td>
+                <td>
+                    @Html.Encode(group.FirstOrDefault().CycleEndAdjustments.ToString("C"))
+                </td>
+                <td></td>
+            </tr>
+        }
+        <tr style="font-size:14px; text-align:center;">
+            <th>
+                Totals:
+            </th>
+            <td></td>
+            <td>
+                @Model.Sum(a => a.Invoice.Where(m => m.Month == Alliance_for_Life.Models.Months.July).Sum(b => b.GrandTotal)).ToString("C")
+            <td>
+                @Model.Sum(a => a.Invoice.Where(m => m.Month == Alliance_for_Life.Models.Months.August).Sum(b => b.GrandTotal)).ToString("C")
+            </td>
+            <td>
+                @Model.Sum(a => a.Invoice.Where(m => m.Month == Alliance_for_Life.Models.Months.September).Sum(b => b.GrandTotal)).ToString("C")
+            </td>
+            <td>
+                @Model.Sum(a => a.Invoice.Where(m => m.Month == Alliance_for_Life.Models.Months.October).Sum(b => b.GrandTotal)).ToString("C")
+            </td>
+            <td>
+                @Model.Sum(a => a.Invoice.Where(m => m.Month == Alliance_for_Life.Models.Months.November).Sum(b => b.GrandTotal)).ToString("C")
+            </td>
+            <td>
+                @Model.Sum(a => a.Invoice.Where(m => m.Month == Alliance_for_Life.Models.Months.December).Sum(b => b.GrandTotal)).ToString("C")
+            </td>
+            <td>
+                @Model.Sum(a => a.Invoice.Where(m => m.Month == Alliance_for_Life.Models.Months.January).Sum(b => b.GrandTotal)).ToString("C")
+            </td>
+            <td>
+                @Model.Sum(a => a.Invoice.Where(m => m.Month == Alliance_for_Life.Models.Months.February).Sum(b => b.GrandTotal)).ToString("C")
+            </td>
+            <td>
+                @Model.Sum(a => a.Invoice.Where(m => m.Month == Alliance_for_Life.Models.Months.March).Sum(b => b.GrandTotal)).ToString("C")
+            </td>
+            <td>
+                @Model.Sum(a => a.Invoice.Where(m => m.Month == Alliance_for_Life.Models.Months.April).Sum(b => b.GrandTotal)).ToString("C")
+            </td>
+            <td>
+                @Model.Sum(a => a.Invoice.Where(m => m.Month == Alliance_for_Life.Models.Months.May).Sum(b => b.GrandTotal)).ToString("C")
+            </td>
+            <td>
+                @Model.Sum(a => a.Invoice.Where(m => m.Month == Alliance_for_Life.Models.Months.June).Sum(b => b.GrandTotal)).ToString("C")
+            </td>
+            <td>
+                @Model.Sum(a => a.Invoice.Sum(b => b.GrandTotal)).ToString("C")
+            </td>
+            <td>
+                @Html.Encode(Model.Sum(a => a.AllocatedNewBudget).ToString("C"))
+            </td>
+            <td>
+                @Html.Encode(Model.Sum(a => a.AllocatedOldBudget).ToString("C"))
+            </td>
+            <td>
+                @Math.Round(Model.Sum(a => a.AllocatedNewBudget) - Model.Sum(a => a.Invoice.Sum(b => b.GrandTotal))).ToString("C")
+=======
+            <tr style="font-size:14px; text-align:center; background-color:#fedada;">
+                <th>
+                    Totals:
+                </th>
+                <td></td>
+                <td>
+                    @foreach (var item in group)
+                    {
+                        if (item.Invoice.Select(a => a.Month).Contains(Alliance_for_Life.Models.Months.July))
+                        {
+
+                            @item.Invoice.Where(a => a.Month == Alliance_for_Life.Models.Months.July).Sum(a => a.GrandTotal).ToString("C")
+                        }
+                    }
+                </td>
+                <td>
+                    @foreach (var item in group)
+                    {
+                        if (item.Invoice.Select(a => a.Month).Contains(Alliance_for_Life.Models.Months.August))
+                        {
+
+                            @item.Invoice.Where(a => a.Month == Alliance_for_Life.Models.Months.August).Sum(a => a.GrandTotal).ToString("C")
+                        }
+                    }
+                </td>
+                <td>
+                    @foreach (var item in group)
+                    {
+                        if (item.Invoice.Select(a => a.Month).Contains(Alliance_for_Life.Models.Months.September))
+                        {
+
+                            @item.Invoice.Where(a => a.Month == Alliance_for_Life.Models.Months.September).Sum(a => a.GrandTotal).ToString("C")
+                        }
+                    }
+                </td>
+                <td>
+                    @foreach (var item in group)
+                    {
+                        if (item.Invoice.Select(a => a.Month).Contains(Alliance_for_Life.Models.Months.October))
+                        {
+
+                            @item.Invoice.Where(a => a.Month == Alliance_for_Life.Models.Months.October).Sum(a => a.GrandTotal).ToString("C")
+                        }
+                    }
+                </td>
+                <td>
+                    @foreach (var item in group)
+                    {
+                        if (item.Invoice.Select(a => a.Month).Contains(Alliance_for_Life.Models.Months.November))
+                        {
+
+                            @item.Invoice.Where(a => a.Month == Alliance_for_Life.Models.Months.November).Sum(a => a.GrandTotal).ToString("C")
+                        }
+                    }
+                </td>
+                <td>
+                    @foreach (var item in group)
+                    {
+                        if (item.Invoice.Select(a => a.Month).Contains(Alliance_for_Life.Models.Months.December))
+                        {
+
+                            @item.Invoice.Where(a => a.Month == Alliance_for_Life.Models.Months.December).Sum(a => a.GrandTotal).ToString("C")
+                        }
+                    }
+                </td>
+                <td>
+                    @foreach (var item in group)
+                    {
+                        if (item.Invoice.Select(a => a.Month).Contains(Alliance_for_Life.Models.Months.January))
+                        {
+
+                            @item.Invoice.Where(a => a.Month == Alliance_for_Life.Models.Months.January).Sum(a => a.GrandTotal).ToString("C")
+                        }
+                    }
+                </td>
+                <td>
+                    @foreach (var item in group)
+                    {
+                        if (item.Invoice.Select(a => a.Month).Contains(Alliance_for_Life.Models.Months.February))
+                        {
+
+                            @item.Invoice.Where(a => a.Month == Alliance_for_Life.Models.Months.February).Sum(a => a.GrandTotal).ToString("C")
+                        }
+                    }
+                </td>
+                <td>
+                    @foreach (var item in group)
+                    {
+                        if (item.Invoice.Select(a => a.Month).Contains(Alliance_for_Life.Models.Months.March))
+                        {
+
+                            @item.Invoice.Where(a => a.Month == Alliance_for_Life.Models.Months.March).Sum(a => a.GrandTotal).ToString("C")
+                        }
+                    }
+                </td>
+                <td>
+                    @foreach (var item in group)
+                    {
+                        if (item.Invoice.Select(a => a.Month).Contains(Alliance_for_Life.Models.Months.April))
+                        {
+
+                            @item.Invoice.Where(a => a.Month == Alliance_for_Life.Models.Months.April).Sum(a => a.GrandTotal).ToString("C")
+                        }
+                    }
+                </td>
+                <td>
+                    @foreach (var item in group)
+                    {
+                        if (item.Invoice.Select(a => a.Month).Contains(Alliance_for_Life.Models.Months.May))
+                        {
+
+                            @item.Invoice.Where(a => a.Month == Alliance_for_Life.Models.Months.May).Sum(a => a.GrandTotal).ToString("C")
+                        }
+                    }
+                </td>
+                <td>
+                    @foreach (var item in group)
+                    {
+                        if (item.Invoice.Select(a => a.Month).Contains(Alliance_for_Life.Models.Months.June))
+                        {
+
+                            @item.Invoice.Where(a => a.Month == Alliance_for_Life.Models.Months.June).Sum(a => a.GrandTotal).ToString("C")
+                        }
+                    }
+                </td>
+                <td>
+                    @group.Sum(a => a.Invoice.Sum(b => b.GrandTotal)).ToString("C")
+                </td>
+                <td>
+                    @Html.Encode(group.Sum(a => a.AllocatedNewBudget).ToString("C"))
+                </td>
+                <td>
+                    @Html.Encode(group.Sum(a => a.AllocatedOldBudget).ToString("C"))
+                </td>
+                <td>
+                    @Math.Round(group.Sum(a => a.AllocatedNewBudget) - group.Sum(a => a.Invoice.Sum(b => b.GrandTotal))).ToString("C")
+
+                </td>
+                <td>
+                    @if ((group.Sum(a => a.AllocatedOldBudget)) <= (group.Sum(a => a.AllocatedNewBudget)))
+                    {
+                        @Math.Round(group.Sum(a => a.AllocatedNewBudget) - group.Sum(a => a.AllocatedOldBudget)).ToString("C")
+                    }
+                </td>
+                <td style="color:red;">
+                    @if (group.Sum(a => a.AllocatedNewBudget) <= group.Sum(a => a.AllocatedOldBudget))
+                    {
+                        @Math.Round(group.Sum(a => a.AllocatedOldBudget) - group.Sum(a => a.AllocatedNewBudget)).ToString("C")
+                    }
+                </td>
+>>>>>>> 196a9624779faac8e9fcafce69583f585cb4da0a
+
+            </td>
+            <td>
+                @if ((Model.Sum(a => a.AllocatedOldBudget)) <= (Model.Sum(a => a.AllocatedNewBudget)))
+                {
+                    @Math.Round(Model.Sum(a => a.AllocatedNewBudget) - Model.Sum(a => a.AllocatedOldBudget)).ToString("C")
+                }
+            </td>
+            <td style="color:red;">
+                @if (Model.Sum(a => a.AllocatedNewBudget) <= Model.Sum(a => a.AllocatedOldBudget))
+                {
+                    @Math.Round(Model.Sum(a => a.AllocatedOldBudget) - Model.Sum(a => a.AllocatedNewBudget)).ToString("C")
+                }
+            </td>
+
+            <td>
+                @Model.Sum(a => a.Invoice.Sum(b => b.GrandTotal) / 12).ToString("C")
+            </td>
+            <td>
+                @Html.Encode(Model.Sum(a => a.CycleEndAdjustments).ToString("C"))
+            </td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+
+
+<table id="dtBasicExample" class="table table-striped table-bordered table-sm" style="font-size:16px" cellspacing="0" width="100">
+    <tr>
+    <thead>
+        <tr style="font-size:13px; text-align:center; background-color:#d1f5b1;">
+            <th class="th-sm">
+
+            </th>
+            <th class="th-sm tablehearder">
+                @Html.DisplayName("July")
+            </th>
+            <th class="th-sm tablehearder">
+                @Html.DisplayName("August")
+            </th>
+            <th class="th-sm tablehearder">
+                @Html.DisplayName("September")
+            </th>
+            <th class="th-sm tablehearder">
+                @Html.DisplayName("October")
+            </th>
+            <th class="th-sm tablehearder">
+                @Html.DisplayName("November")
+            </th>
+            <th class="th-sm tablehearder">
+                @Html.DisplayName("December")
+            </th>
+            <th class="th-sm tablehearder">
+                @Html.DisplayName("January")
+            </th>
+            <th class="th-sm tablehearder">
+                @Html.DisplayName("February")
+            </th>
+            <th class="th-sm tablehearder">
+                @Html.DisplayName("March")
+            </th>
+            <th class="th-sm tablehearder">
+                @Html.DisplayName("April")
+            </th>
+            <th class="th-sm tablehearder">
+                @Html.DisplayName("May")
+            </th>
+            <th class="th-sm tablehearder">
+                @Html.DisplayName("June")
+            </th>
+            <th class="th-sm tablehearder">
+                Total
+            </th>
+        <tr />
+        <tr style="font-size:13px; text-align:center;">
+            <th class="th-sm">
+                AFL Billable
+            </th>
+            <td>
+                @String.Format("{0:C}", ViewBag.JulFee * 0.03)
+            </td>
+            <td>
+                @String.Format("{0:C}", ViewBag.AugFee * 0.03)
+            </td>
+            <td>
+                @String.Format("{0:C}", ViewBag.SepFee * 0.03)
+            </td>
+            <td>
+                @String.Format("{0:C}", ViewBag.OctFee * 0.03)
+            </td>
+            <td>
+                @String.Format("{0:C}", ViewBag.NovFee * 0.03)
+            </td>
+            <td>
+                @String.Format("{0:C}", ViewBag.DecFee * 0.03)
+            </td>
+            <td>
+                @String.Format("{0:C}", ViewBag.JanFee * 0.03)
+            </td>
+            <td>
+                @String.Format("{0:C}", ViewBag.FebFee * 0.03)
+            </td>
+            <td>
+                @String.Format("{0:C}", ViewBag.MarFee * 0.03)
+            </td>
+            <td>
+                @String.Format("{0:C}", ViewBag.AprFee * 0.03)
+            </td>
+            <td>
+                @String.Format("{0:C}", ViewBag.MayFee * 0.03)
+            </td>
+            <td>
+                @String.Format("{0:C}", ViewBag.JunFee * 0.03)
+            </td>
+            <td style="background-color:#fedada">
+                @String.Format("{0:C}", ViewBag.TotalFee * 0.03)
+            </td>
+        <tr />
+        <tr style="font-size:13px; text-align:center;">
+            <th class="th-sm">
+                AFL 10% Admin Fee
+            </th>
+<<<<<<< HEAD
+            <td>
+                @String.Format("{0:C}", ViewBag.JulFee * 0.1)
+            </td>
+            <td>
+                @String.Format("{0:C}", ViewBag.AugFee * 0.1)
+            </td>
+            <td>
+                @String.Format("{0:C}", ViewBag.SepFee * 0.1)
+            </td>
+            <td>
+                @String.Format("{0:C}", ViewBag.OctFee * 0.1)
+            </td>
+            <td>
+                @String.Format("{0:C}", ViewBag.NovFee * 0.1)
+            </td>
+            <td>
+                @String.Format("{0:C}", ViewBag.DecFee * 0.1)
+            </td>
+            <td>
+                @String.Format("{0:C}", ViewBag.JanFee * 0.1)
+            </td>
+            <td>
+                @String.Format("{0:C}", ViewBag.FebFee * 0.1)
+            </td>
+            <td>
+                @String.Format("{0:C}", ViewBag.MarFee * 0.1)
+            </td>
+            <td>
+                @String.Format("{0:C}", ViewBag.AprFee * 0.1)
+            </td>
+            <td>
+                @String.Format("{0:C}", ViewBag.MayFee * 0.1)
+            </td>
+            <td>
+                @String.Format("{0:C}", ViewBag.JunFee * 0.1)
+            </td>
+            <td style="background-color:#fedada">
+                @String.Format("{0:C}", ViewBag.TotalFee * 0.1)
+            </td>
+
+<tr />
+        <tr style="font-size:13px; text-align:center;">
+=======
+
+            <td>
+                @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.July).Select(b => b.GrandTotal).SingleOrDefault() * .1).ToString("C")
+
+            </td>
+            <td>
+                @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.August).Select(b => b.GrandTotal).SingleOrDefault() * .1).ToString("C")
+            </td>
+            <td>
+                @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.September).Select(b => b.GrandTotal).SingleOrDefault() * .1).ToString("C")
+            </td>
+            <td>
+                @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.October).Select(b => b.GrandTotal).SingleOrDefault() * .1).ToString("C")
+            </td>
+            <td>
+                @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.November).Select(b => b.GrandTotal).SingleOrDefault() * .1).ToString("C")
+            </td>
+            <td>
+                @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.December).Select(b => b.GrandTotal).SingleOrDefault() * .1).ToString("C")
+            </td>
+            <td>
+                @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.January).Select(b => b.GrandTotal).SingleOrDefault() * .1).ToString("C")
+            </td>
+            <td>
+                @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.February).Select(b => b.GrandTotal).SingleOrDefault() * .1).ToString("C")
+            </td>
+            <td>
+                @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.March).Select(b => b.GrandTotal).SingleOrDefault() * .1).ToString("C")
+            </td>
+            <td>
+                @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.April).Select(b => b.GrandTotal).SingleOrDefault() * .1).ToString("C")
+            </td>
+            <td>
+                @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.May).Select(b => b.GrandTotal).SingleOrDefault() * .1).ToString("C")
+            </td>
+            <td>
+                @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.June).Select(b => b.GrandTotal).SingleOrDefault() * .1).ToString("C")
+            </td>
+            <td style="background-color:#fedada">
+
+                @Model.Sum(a => a.Invoice.Sum(c => c.GrandTotal) * .1).ToString("C")
+            </td>
+
+        <tr />
+        @*<tr style="font-size:13px; text-align:center;">
+>>>>>>> 196a9624779faac8e9fcafce69583f585cb4da0a
+            <th class="th-sm">
+                Invoice Totals
+            </th>
+                <td>
+                    @Math.Round(Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.July).Sum(b => b.GrandTotal)) + (ViewBag.JulFee * .16), 2).ToString("C")
+                </td>
+                <td>
+                    @Math.Round(Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.August).Sum(b => b.GrandTotal)) + (ViewBag.AugFee * .16), 2).ToString("C")
+                </td>
+                <td>
+                    @Math.Round(Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.September).Sum(b => b.GrandTotal)) + (ViewBag.SepFee * .16), 2).ToString("C")
+                </td>
+                <td>
+                    @Math.Round(Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.October).Sum(b => b.GrandTotal)) + (ViewBag.OctFee * .16), 2).ToString("C")
+                </td>
+                <td>
+                    @Math.Round(Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.November).Sum(b => b.GrandTotal)) + (ViewBag.NovFee * .16), 2).ToString("C")
+                </td>
+                <td>
+                    @Math.Round(Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.December).Sum(b => b.GrandTotal)) + (ViewBag.DecFee * .16), 2).ToString("C")
+                </td>
+                <td>
+                    @Math.Round(Model.Sum(a => a.Invoice.Where(m => m.Month == Alliance_for_Life.Models.Months.January).Sum(b => b.GrandTotal)) + (ViewBag.JanFee * .16), 2).ToString("C")
+                </td>
+                <td>
+                    @Math.Round(Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.February).Sum(b => b.GrandTotal)) + (ViewBag.FebFee * .16), 2).ToString("C")
+                </td>
+                <td>
+                    @Math.Round(Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.March).Sum(b => b.GrandTotal)) + (ViewBag.MarFee * .16), 2).ToString("C")
+                </td>
+                <td>
+                    @Math.Round(Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.April).Sum(b => b.GrandTotal)) + (ViewBag.AprFee * .16), 2).ToString("C")
+                </td>
+                <td>
+                    @Math.Round(Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.May).Sum(b => b.GrandTotal)) + (ViewBag.MayFee * .16), 2).ToString("C")
+                </td>
+                <td>
+                    @Math.Round(Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.June).Sum(b => b.GrandTotal)) + (ViewBag.JunFee * .16), 2).ToString("C")
+                </td>
+                <td style="background-color:#fedada">
+                    @Math.Round(Model.Sum(a => a.Invoice.Sum(c => c.GrandTotal)) + (ViewBag.TotalFee * 0.16), 2).ToString("C")
+
+        <tr />
+        <tr style="font-size:13px; text-align:center;">
+            <th class="th-sm">
+                Sub 3% Admin Fee
+            </th>
+            <td>
+                @String.Format("{0:C}", ViewBag.JulFee * 0.03)
+            </td>
+            <td>
+                @String.Format("{0:C}", ViewBag.AugFee * 0.03)
+            </td>
+            <td>
+                @String.Format("{0:C}", ViewBag.SepFee * 0.03)
+            </td>
+            <td>
+                @String.Format("{0:C}", ViewBag.OctFee * 0.03)
+            </td>
+            <td>
+                @String.Format("{0:C}", ViewBag.NovFee * 0.03)
+            </td>
+            <td>
+                @String.Format("{0:C}", ViewBag.DecFee * 0.03)
+            </td>
+            <td>
+                @String.Format("{0:C}", ViewBag.JanFee * 0.03)
+            </td>
+            <td>
+                @String.Format("{0:C}", ViewBag.FebFee * 0.03)
+            </td>
+            <td>
+                @String.Format("{0:C}", ViewBag.MarFee * 0.03)
+            </td>
+            <td>
+                @String.Format("{0:C}", ViewBag.AprFee * 0.03)
+            </td>
+            <td>
+                @String.Format("{0:C}", ViewBag.MayFee * 0.03)
+            </td>
+            <td>
+                @String.Format("{0:C}", ViewBag.JunFee * 0.03)
+            </td>
+            <td style="background-color:#fedada">
+                @String.Format("{0:C}", ViewBag.TotalFee * 0.03)
+            </td>
+<tr />
+        <tr style="font-size:13px; text-align:center;">
+            <th class="th-sm">
+                Paid to Subs Total:
+            </th>
+<<<<<<< HEAD
+                <td>
+                    @Math.Round(Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.July).Sum(b => b.GrandTotal) * .97), 2).ToString("C")
+                </td>
+                <td>
+                    @Math.Round(Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.August).Sum(b => b.GrandTotal) * .97), 2).ToString("C")
+                </td>
+                <td>
+                    @Math.Round(Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.September).Sum(b => b.GrandTotal) * .97), 2).ToString("C")
+                </td>
+                <td>
+                    @Math.Round(Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.October).Sum(b => b.GrandTotal) * .97), 2).ToString("C")
+                </td>
+                <td>
+                    @Math.Round(Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.November).Sum(b => b.GrandTotal) * .97), 2).ToString("C")
+                </td>
+                <td>
+                    @Math.Round(Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.December).Sum(b => b.GrandTotal) * .97), 2).ToString("C")
+                </td>
+                <td>
+                    @Math.Round(Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.January).Sum(b => b.GrandTotal) * .97), 2).ToString("C")
+                </td>
+                <td>
+                    @Math.Round(Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.February).Sum(b => b.GrandTotal) * .97), 2).ToString("C")
+                </td>
+                <td>
+                    @Math.Round(Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.March).Sum(b => b.GrandTotal) * .97), 2).ToString("C")
+                </td>
+                <td>
+                    @Math.Round(Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.April).Sum(b => b.GrandTotal) * .97), 2).ToString("C")
+                </td>
+                <td>
+                    @Math.Round(Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.May).Sum(b => b.GrandTotal) * .97), 2).ToString("C")
+                </td>
+                <td>
+                    @Math.Round(Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.June).Sum(b => b.GrandTotal) * .97), 2).ToString("C")
+                </td>
+                <td style="background-color:#fedada">
+                    @Math.Round(Model.Sum(a => a.Invoice.Sum(c => c.GrandTotal) * .97), 2).ToString("C")
+                </td>
+=======
+            <td>
+                @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.July).Select(b => b.GrandTotal).SingleOrDefault() * .97).ToString("C")
+            </td>
+            <td>
+                @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.August).Select(b => b.GrandTotal).SingleOrDefault() * .97).ToString("C")
+            </td>
+            <td>
+                @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.September).Select(b => b.GrandTotal).SingleOrDefault() * .97).ToString("C")
+            </td>
+            <td>
+                @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.October).Select(b => b.GrandTotal).SingleOrDefault() * .97).ToString("C")
+            </td>
+            <td>
+                @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.November).Select(b => b.GrandTotal).SingleOrDefault() * .97).ToString("C")
+            </td>
+            <td>
+                @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.December).Select(b => b.GrandTotal).SingleOrDefault() * .97).ToString("C")
+            </td>
+            <td>
+                @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.January).Select(b => b.GrandTotal).SingleOrDefault() * .97).ToString("C")
+            </td>
+            <td>
+                @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.February).Select(b => b.GrandTotal).SingleOrDefault() * .97).ToString("C")
+            </td>
+            <td>
+                @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.March).Select(b => b.GrandTotal).SingleOrDefault() * .97).ToString("C")
+            </td>
+            <td>
+                @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.April).Select(b => b.GrandTotal).SingleOrDefault() * .97).ToString("C")
+            </td>
+            <td>
+                @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.May).Select(b => b.GrandTotal).SingleOrDefault() * .97).ToString("C")
+            </td>
+            <td>
+                @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.June).Select(b => b.GrandTotal).SingleOrDefault() * .97).ToString("C")
+            </td>
+            <td style="background-color:#fedada">
+                @Model.Sum(a => a.Invoice.Sum(c => c.GrandTotal)).ToString("C")
+            </td>
+>>>>>>> 196a9624779faac8e9fcafce69583f585cb4da0a
+        <tr />
+        <tr style="font-size:13px; text-align:center;">
+            <th class="th-sm">
+                Total Paid to AFL:
+            </th>
+<<<<<<< HEAD
+
+                <td>
+                    @Math.Round(Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.July).Sum(b => b.GrandTotal) * .06) + (ViewBag.JulFee * .1), 2).ToString("C")
+                </td>
+                <td>
+                    @Math.Round(Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.August).Sum(b => b.GrandTotal) * .06) + (ViewBag.AugFee * .1), 2).ToString("C")
+                </td>
+                <td>
+                    @Math.Round(Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.September).Sum(b => b.GrandTotal) * .06) + (ViewBag.SepFee * .1), 2).ToString("C")
+                </td>
+                <td>
+                    @Math.Round(Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.October).Sum(b => b.GrandTotal) * .06) + (ViewBag.OctFee * .1), 2).ToString("C")
+                </td>
+                <td>
+                    @Math.Round(Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.November).Sum(b => b.GrandTotal) * .06) + (ViewBag.NovFee * .1), 2).ToString("C")
+                </td>
+                <td>
+                    @Math.Round(Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.December).Sum(b => b.GrandTotal) * .06) + (ViewBag.DecFee * .1), 2).ToString("C")
+                </td>
+                <td>
+                    @Math.Round(Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.January).Sum(b => b.GrandTotal) * .06) + (ViewBag.JanFee * .1), 2).ToString("C")
+                </td>
+                <td>
+                    @Math.Round(Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.February).Sum(b => b.GrandTotal) * .06) + (ViewBag.FebFee * .1), 2).ToString("C")
+                </td>
+                <td>
+                    @Math.Round(Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.March).Sum(b => b.GrandTotal) * .06) + (ViewBag.MarFee * .1), 2).ToString("C")
+                </td>
+                <td>
+                    @Math.Round(Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.April).Sum(b => b.GrandTotal) * .06) + (ViewBag.AprFee * .1), 2).ToString("C")
+                </td>
+                <td>
+                    @Math.Round(Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.May).Sum(b => b.GrandTotal) * .06) + (ViewBag.MayFee * .1), 2).ToString("C")
+                </td>
+                <td>
+                    @Math.Round(Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.June).Sum(b => b.GrandTotal) * .06) + (ViewBag.Junee * .1), 2).ToString("C")
+                </td>
+                <td style="background-color:#fedada">
+
+                    @Math.Round(Model.Sum(a => a.Invoice.Sum(c => c.GrandTotal) * .06) + (ViewBag.TotalFee * .1), 2).ToString("C")
+                </td>
+=======
+            <td>
+                @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.July).Select(b => b.GrandTotal).SingleOrDefault() * .13).ToString("C")
+
+            </td>
+            <td>
+                @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.August).Select(b => b.GrandTotal).SingleOrDefault() * .13).ToString("C")
+            </td>
+            <td>
+                @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.September).Select(b => b.GrandTotal).SingleOrDefault() * .13).ToString("C")
+            </td>
+            <td>
+                @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.October).Select(b => b.GrandTotal).SingleOrDefault() * .13).ToString("C")
+            </td>
+            <td>
+                @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.November).Select(b => b.GrandTotal).SingleOrDefault() * .13).ToString("C")
+            </td>
+            <td>
+                @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.December).Select(b => b.GrandTotal).SingleOrDefault() * .13).ToString("C")
+            </td>
+            <td>
+                @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.January).Select(b => b.GrandTotal).SingleOrDefault() * .13).ToString("C")
+            </td>
+            <td>
+                @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.February).Select(b => b.GrandTotal).SingleOrDefault() * .13).ToString("C")
+            </td>
+            <td>
+                @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.March).Select(b => b.GrandTotal).SingleOrDefault() * .13).ToString("C")
+            </td>
+            <td>
+                @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.April).Select(b => b.GrandTotal).SingleOrDefault() * .13).ToString("C")
+            </td>
+            <td>
+                @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.May).Select(b => b.GrandTotal).SingleOrDefault() * .13).ToString("C")
+            </td>
+            <td>
+                @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.June).Select(b => b.GrandTotal).SingleOrDefault() * .13).ToString("C")
+            </td>
+            <td style="background-color:#fedada">
+
+                @Model.Sum(a => a.Invoice.Sum(c => c.GrandTotal) * .1).ToString("C")
+            </td>
+>>>>>>> 196a9624779faac8e9fcafce69583f585cb4da0a
+        <tr />
+    </thead>
+</table>
+<table id="dtBasicExample" class="table table-striped table-bordered table-sm" style="font-size:16px" cellspacing="0" width="100">
+    <tr>
+    <thead>
+        <tr style="font-size:13px; text-align:center; background-color:#d1f5b1;">
+            <th class="th-sm">
+
+            </th>
+            <th class="th-sm">
+                @Html.DisplayName("July")
+            </th>
+            <th class="th-sm">
+                @Html.DisplayName("August")
+            </th>
+            <th class="th-sm">
+                @Html.DisplayName("September")
+            </th>
+            <th class="th-sm">
+                @Html.DisplayName("October")
+            </th>
+            <th class="th-sm">
+                @Html.DisplayName("November")
+            </th>
+            <th class="th-sm">
+                @Html.DisplayName("December")
+            </th>
+            <th class="th-sm">
+                @Html.DisplayName("January")
+            </th>
+            <th class="th-sm">
+                @Html.DisplayName("February")
+            </th>
+            <th class="th-sm">
+                @Html.DisplayName("March")
+            </th>
+            <th class="th-sm">
+                @Html.DisplayName("April")
+            </th>
+            <th class="th-sm">
+                @Html.DisplayName("May")
+            </th>
+            <th class="th-sm">
+                @Html.DisplayName("June")
+            </th>
+            <th>
+                Total
+            </th>
+        <tr />
+        <tr style="font-size:13px; text-align:center;">
+            <th class="th-sm">
+                Begining Balance:
+            </th>
+<<<<<<< HEAD
+
+                <td>
+                    @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.July).Select(b => b.GrandTotal).SingleOrDefault() * .13).ToString("C")
+                </td>
+                <td>
+                    @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.August).Select(b => b.GrandTotal).SingleOrDefault() * .13).ToString("C")
+                </td>
+                <td>
+                    @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.September).Select(b => b.GrandTotal).SingleOrDefault() * .13).ToString("C")
+                </td>
+                <td>
+                    @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.October).Select(b => b.GrandTotal).SingleOrDefault() * .13).ToString("C")
+                </td>
+                <td>
+                    @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.November).Select(b => b.GrandTotal).SingleOrDefault() * .13).ToString("C")
+                </td>
+                <td>
+                    @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.December).Select(b => b.GrandTotal).SingleOrDefault() * .13).ToString("C")
+                </td>
+                <td>
+                    @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.January).Select(b => b.GrandTotal).SingleOrDefault() * .13).ToString("C")
+                </td>
+                <td>
+                    @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.February).Select(b => b.GrandTotal).SingleOrDefault() * .13).ToString("C")
+                </td>
+                <td>
+                    @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.March).Select(b => b.GrandTotal).SingleOrDefault() * .13).ToString("C")
+                </td>
+                <td>
+                    @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.April).Select(b => b.GrandTotal).SingleOrDefault() * .13).ToString("C")
+                </td>
+                <td>
+                    @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.May).Select(b => b.GrandTotal).SingleOrDefault() * .13).ToString("C")
+                </td>
+                <td>
+                    @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.June).Select(b => b.GrandTotal).SingleOrDefault() * .13).ToString("C")
+                </td>
+                <td style="background-color:#fedada">
+
+                    @Model.Sum(a => a.Invoice.Sum(c => c.GrandTotal) * .1).ToString("C")
+                </td>
+  
+=======
+            <td>
+                @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.July).Select(b => b.GrandTotal).SingleOrDefault() * .13).ToString("C")
+            </td>
+            <td>
+                @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.August).Select(b => b.GrandTotal).SingleOrDefault() * .13).ToString("C")
+            </td>
+            <td>
+                @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.September).Select(b => b.GrandTotal).SingleOrDefault() * .13).ToString("C")
+            </td>
+            <td>
+                @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.October).Select(b => b.GrandTotal).SingleOrDefault() * .13).ToString("C")
+            </td>
+            <td>
+                @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.November).Select(b => b.GrandTotal).SingleOrDefault() * .13).ToString("C")
+            </td>
+            <td>
+                @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.December).Select(b => b.GrandTotal).SingleOrDefault() * .13).ToString("C")
+            </td>
+            <td>
+                @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.January).Select(b => b.GrandTotal).SingleOrDefault() * .13).ToString("C")
+            </td>
+            <td>
+                @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.February).Select(b => b.GrandTotal).SingleOrDefault() * .13).ToString("C")
+            </td>
+            <td>
+                @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.March).Select(b => b.GrandTotal).SingleOrDefault() * .13).ToString("C")
+            </td>
+            <td>
+                @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.April).Select(b => b.GrandTotal).SingleOrDefault() * .13).ToString("C")
+            </td>
+            <td>
+                @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.May).Select(b => b.GrandTotal).SingleOrDefault() * .13).ToString("C")
+            </td>
+            <td>
+                @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.June).Select(b => b.GrandTotal).SingleOrDefault() * .13).ToString("C")
+            </td>
+            <td style="background-color:#fedada">
+
+                @Model.Sum(a => a.Invoice.Sum(c => c.GrandTotal) * .1).ToString("C")
+            </td>
+>>>>>>> 196a9624779faac8e9fcafce69583f585cb4da0a
+        <tr />
+        <tr style="font-size:13px; text-align:center;">
+            <th class="th-sm">
+                State Deposits:
+            </th>
+<<<<<<< HEAD
+  
+        <td>
+            @ViewBag.DepoJul
+        </td>
+        <td>
+            @ViewBag.DepoAug
+        </td>
+        <td>
+            @ViewBag.DepoSep
+        </td>
+        <td>
+            @ViewBag.DepoOct
+        </td>
+        <td>
+            @ViewBag.DepoNov
+        </td>
+        <td>
+            @ViewBag.DepoDec
+        </td>
+                <td>
+                    @ViewBag.DepoJan
+                </td>
+                <td>
+                    @ViewBag.DepoFeb
+                </td>
+                <td>
+                    @ViewBag.DepoMar
+                </td>
+                <td>
+                    @ViewBag.DepoApr
+                </td>
+                <td>
+                    @ViewBag.DepoMay
+                </td>
+                <td>
+                    @ViewBag.Depojun
+                </td>
+                <td style="background-color:#fedada">
+
+                    @ViewBag.StateDeposit
+                </td>
+
+=======
+            <td>
+                @ViewBag.DepoJul
+            </td>
+            <td>
+                @ViewBag.DepoAug
+            </td>
+            <td>
+                @ViewBag.DepoSep
+            </td>
+            <td>
+                @ViewBag.DepoOct
+            </td>
+            <td>
+                @ViewBag.DepoNov
+            </td>
+            <td>
+                @ViewBag.DepoDec
+            </td>
+            <td>
+                @ViewBag.DepoJan
+            </td>
+            <td>
+                @ViewBag.DepoFeb
+            </td>
+            <td>
+                @ViewBag.DepoMar
+            </td>
+            <td>
+                @ViewBag.DepoApr
+            </td>
+            <td>
+                @ViewBag.DepoMay
+            </td>
+            <td>
+                @ViewBag.Depojun
+            </td>
+            <td style="background-color:#fedada">
+
+                @ViewBag.StateDeposit
+            </td>
+>>>>>>> 196a9624779faac8e9fcafce69583f585cb4da0a
+        <tr />
+        <tr style="font-size:13px; text-align:center;">
+            <th class="th-sm">
+                Total $ Available:
+            </th>
+<<<<<<< HEAD
+
+                <td>
+                    @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.July).Select(b => b.GrandTotal).SingleOrDefault() * .13).ToString("C")
+=======
+            <td>
+                @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.July).Select(b => b.GrandTotal).SingleOrDefault() * .13).ToString("C")
+>>>>>>> 196a9624779faac8e9fcafce69583f585cb4da0a
+
+            </td>
+            <td>
+                @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.August).Select(b => b.GrandTotal).SingleOrDefault() * .13).ToString("C")
+            </td>
+            <td>
+                @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.September).Select(b => b.GrandTotal).SingleOrDefault() * .13).ToString("C")
+            </td>
+            <td>
+                @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.October).Select(b => b.GrandTotal).SingleOrDefault() * .13).ToString("C")
+            </td>
+            <td>
+                @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.November).Select(b => b.GrandTotal).SingleOrDefault() * .13).ToString("C")
+            </td>
+            <td>
+                @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.December).Select(b => b.GrandTotal).SingleOrDefault() * .13).ToString("C")
+            </td>
+            <td>
+                @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.January).Select(b => b.GrandTotal).SingleOrDefault() * .13).ToString("C")
+            </td>
+            <td>
+                @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.February).Select(b => b.GrandTotal).SingleOrDefault() * .13).ToString("C")
+            </td>
+            <td>
+                @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.March).Select(b => b.GrandTotal).SingleOrDefault() * .13).ToString("C")
+            </td>
+            <td>
+                @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.April).Select(b => b.GrandTotal).SingleOrDefault() * .13).ToString("C")
+            </td>
+            <td>
+                @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.May).Select(b => b.GrandTotal).SingleOrDefault() * .13).ToString("C")
+            </td>
+            <td>
+                @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.June).Select(b => b.GrandTotal).SingleOrDefault() * .13).ToString("C")
+            </td>
+            <td style="background-color:#fedada">
+
+<<<<<<< HEAD
+                    @Model.Sum(a => a.Invoice.Sum(c => c.GrandTotal) * .1).ToString("C")
+                </td>
+   
+=======
+                @Model.Sum(a => a.Invoice.Sum(c => c.GrandTotal) * .1).ToString("C")
+            </td>
+>>>>>>> 196a9624779faac8e9fcafce69583f585cb4da0a
+        <tr />
+        <tr style="font-size:13px; text-align:center;">
+            <th class="th-sm">
+                Invoice Totals:
+            </th>
+<<<<<<< HEAD
+
+                <td>
+                    @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.July).Select(b => b.GrandTotal).SingleOrDefault() * .13).ToString("C")
+=======
+            <td>
+                @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.July).Select(b => b.GrandTotal).SingleOrDefault() * .13).ToString("C")
+>>>>>>> 196a9624779faac8e9fcafce69583f585cb4da0a
+
+            </td>
+            <td>
+                @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.August).Select(b => b.GrandTotal).SingleOrDefault() * .13).ToString("C")
+            </td>
+            <td>
+                @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.September).Select(b => b.GrandTotal).SingleOrDefault() * .13).ToString("C")
+            </td>
+            <td>
+                @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.October).Select(b => b.GrandTotal).SingleOrDefault() * .13).ToString("C")
+            </td>
+            <td>
+                @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.November).Select(b => b.GrandTotal).SingleOrDefault() * .13).ToString("C")
+            </td>
+            <td>
+                @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.December).Select(b => b.GrandTotal).SingleOrDefault() * .13).ToString("C")
+            </td>
+            <td>
+                @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.January).Select(b => b.GrandTotal).SingleOrDefault() * .13).ToString("C")
+            </td>
+            <td>
+                @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.February).Select(b => b.GrandTotal).SingleOrDefault() * .13).ToString("C")
+            </td>
+            <td>
+                @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.March).Select(b => b.GrandTotal).SingleOrDefault() * .13).ToString("C")
+            </td>
+            <td>
+                @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.April).Select(b => b.GrandTotal).SingleOrDefault() * .13).ToString("C")
+            </td>
+            <td>
+                @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.May).Select(b => b.GrandTotal).SingleOrDefault() * .13).ToString("C")
+            </td>
+            <td>
+                @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.June).Select(b => b.GrandTotal).SingleOrDefault() * .13).ToString("C")
+            </td>
+            <td style="background-color:#fedada">
+
+<<<<<<< HEAD
+                    @Model.Sum(a => a.Invoice.Sum(c => c.GrandTotal) * .1).ToString("C")
+                </td>
+
+=======
+                @Model.Sum(a => a.Invoice.Sum(c => c.GrandTotal) * .1).ToString("C")
+            </td>
+>>>>>>> 196a9624779faac8e9fcafce69583f585cb4da0a
+        <tr />
+        <tr style="font-size:13px; text-align:center;">
+            <th class="th-sm">
+                Remaining Balance:
+            </th>
+<<<<<<< HEAD
+
+                <td>
+                    @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.July).Select(b => b.GrandTotal).SingleOrDefault() * .13).ToString("C")
+=======
+            <td>
+                @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.July).Select(b => b.GrandTotal).SingleOrDefault() * .13).ToString("C")
+>>>>>>> 196a9624779faac8e9fcafce69583f585cb4da0a
+
+            </td>
+            <td>
+                @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.August).Select(b => b.GrandTotal).SingleOrDefault() * .13).ToString("C")
+            </td>
+            <td>
+                @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.September).Select(b => b.GrandTotal).SingleOrDefault() * .13).ToString("C")
+            </td>
+            <td>
+                @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.October).Select(b => b.GrandTotal).SingleOrDefault() * .13).ToString("C")
+            </td>
+            <td>
+                @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.November).Select(b => b.GrandTotal).SingleOrDefault() * .13).ToString("C")
+            </td>
+            <td>
+                @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.December).Select(b => b.GrandTotal).SingleOrDefault() * .13).ToString("C")
+            </td>
+            <td>
+                @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.January).Select(b => b.GrandTotal).SingleOrDefault() * .13).ToString("C")
+            </td>
+            <td>
+                @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.February).Select(b => b.GrandTotal).SingleOrDefault() * .13).ToString("C")
+            </td>
+            <td>
+                @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.March).Select(b => b.GrandTotal).SingleOrDefault() * .13).ToString("C")
+            </td>
+            <td>
+                @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.April).Select(b => b.GrandTotal).SingleOrDefault() * .13).ToString("C")
+            </td>
+            <td>
+                @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.May).Select(b => b.GrandTotal).SingleOrDefault() * .13).ToString("C")
+            </td>
+            <td>
+                @Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.June).Select(b => b.GrandTotal).SingleOrDefault() * .13).ToString("C")
+            </td>
+            <td style="background-color:#fedada">
+
+<<<<<<< HEAD
+                    @Model.Sum(a => a.Invoice.Sum(c => c.GrandTotal) * .1).ToString("C")
+                </td>
+
+=======
+                @Model.Sum(a => a.Invoice.Sum(c => c.GrandTotal) * .1).ToString("C")
+            </td>
+>>>>>>> 196a9624779faac8e9fcafce69583f585cb4da0a
+        <tr />
+</table>
+<table id="dtBasicExample" class="table table-striped table-bordered table-sm" style="font-size:16px" cellspacing="0" width="100">
+    <tr>
+    <thead>
+        <tr style="font-size:13px; text-align:center;">
+            <th></th>
+            <th class="th-sm" style="text-align:center;">
+                @Html.DisplayName("First Quarter")
+            </th>
+            <th class="th-sm" style="text-align:center;">
+                @Html.DisplayName("Second Quarter")
+            </th>
+            <th class="th-sm" style="text-align:center;">
+                @Html.DisplayName("Third Quarter")
+            </th>
+            <th class="th-sm" style="text-align:center;">
+                @Html.DisplayName("Fourth Quarter")
+            </th>
+            <th class="th-sm" style="text-align:center;">
+                @Html.DisplayName("Total")
+            </th>
+        <tr />
+        <tr style="font-size:13px; text-align:center;">
+
+            <th class="th-sm">
+                QER Totals:
+            </th>
+            <td>
+                @ViewBag.FirstQuarter
+
+            </td>
+            <td>
+                @ViewBag.SecondQuarter
+            </td>
+            <td>
+                @ViewBag.ThirdQuarter
+            </td>
+            <td>
+                @ViewBag.FourthQuarter
+            </td>
+            <td>
+                @ViewBag.QuarterTotals
+            </td>
+        <tr />
+    </thead>
+</table>
+<table id="dtBasicExample" class="table table-striped table-bordered table-sm" style="font-size:16px" cellspacing="0" width="100">
+    <tr>
+        <td>
+            @Html.DisplayName("Total Sub Allocation")
+        </td>
+        <td>
+            @Math.Round(Model.Sum(a => a.AllocatedNewBudget)).ToString("C")
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Html.Encode("10% calculation based on allocation amt.")
+        </td>
+        <td>
+            @Math.Round(Model.Sum(a => a.AllocatedNewBudget) * .1).ToString("C")
+        </td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>
+            @Math.Round(Model.Sum(a => a.AllocatedNewBudget) * 0.10 + Model.Sum(a => a.AllocatedNewBudget)).ToString("C")
+        </td>
+    </tr>
+
+    @foreach (var items in ViewBag.aflallocation)
+    {
+        <tr>
+            <td>
+                @Html.DisplayName("Starting Allocation")
+            </td>
+            <td>
+                @items.BeginingBalance.ToString("C")
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayName("Allocation Reserve")
+            </td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayName("Committed Allocation")
+            </td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayName("Begining Allocation Amount")
+            </td>
+            <td>
+                @items.BeginingBalance.ToString("C")
+            </td>
+        </tr>
+    }
+    <tr>
+        <td>
+            @Html.DisplayName("State Deposits to-date")
+        </td>
+        <td>
+            @ViewBag.StateDeposit
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Html.DisplayName("Remaining Allocation Available")
+        </td>
+        <td></td>
+    </tr>
+
+
+
+</table>
+<div class="col-xs-5th-1 col-sm-6" style="align-content:center;">
+    Results Shown per Page: @Html.DropDownList("pgSize", new SelectList(new[] { 10, 20, 30, 40, 50 }), htmlAttributes: new { @class = "", onchange = "this.form.submit()" })
+    <br />
+
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("Index",
+        new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter, @class = "pagination" }))
+</div>
+<style>
+    .tablehearder {
+        text-align: center;
+        font-size: 14px;
+    }
+</style>
+
