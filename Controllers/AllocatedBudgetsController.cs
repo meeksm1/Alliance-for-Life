@@ -63,7 +63,12 @@ namespace Alliance_for_Life.Controllers
             //call the function that does all this
             StateDepositeViewBag(year_search);
 
+            //Starting Deposit Balance
+            var beginingBalance = 0;
+            ViewBag.BegBal = beginingBalance;
 
+            //Get Total $ Available
+            TotalAvailable(year_search);
 
             if (allocatedBudget.Count() == 0)
             {
@@ -224,6 +229,23 @@ namespace Alliance_for_Life.Controllers
 
         }
 
+        public void TotalAvailable(int year_search)
+        {
+            var totalcost = db.StateDeposit.Where(a => a.Year == year_search).ToList();
+            ViewBag.JanTot = (totalcost.Where(a => a.Month == Months.January).Sum(a => a.StateDeposits) + (ViewBag.BegBal));
+            ViewBag.FebTot = (totalcost.Where(a => a.Month == Months.February).Sum(a => a.StateDeposits) + (ViewBag.BegBal));
+            ViewBag.MarTot = (totalcost.Where(a => a.Month == Months.March).Sum(a => a.StateDeposits) + (ViewBag.BegBal));
+            ViewBag.AprTot = (totalcost.Where(a => a.Month == Months.April).Sum(a => a.StateDeposits) + (ViewBag.BegBal));
+            ViewBag.MayTot = (totalcost.Where(a => a.Month == Months.May).Sum(a => a.StateDeposits) + (ViewBag.BegBal));
+            ViewBag.JunTot = (totalcost.Where(a => a.Month == Months.June).Sum(a => a.StateDeposits) + (ViewBag.BegBal));
+            ViewBag.JulTot = (totalcost.Where(a => a.Month == Months.July).Sum(a => a.StateDeposits) + (ViewBag.BegBal));
+            ViewBag.AugTot = (totalcost.Where(a => a.Month == Months.August).Sum(a => a.StateDeposits) + (ViewBag.BegBal));
+            ViewBag.SepTot = (totalcost.Where(a => a.Month == Months.September).Sum(a => a.StateDeposits) + (ViewBag.BegBal));
+            ViewBag.OctTot = (totalcost.Where(a => a.Month == Months.October).Sum(a => a.StateDeposits) + (ViewBag.BegBal));
+            ViewBag.NovTot = (totalcost.Where(a => a.Month == Months.November).Sum(a => a.StateDeposits) + (ViewBag.BegBal));
+            ViewBag.DecTot = (totalcost.Where(a => a.Month == Months.December).Sum(a => a.StateDeposits) + (ViewBag.BegBal));
+            ViewBag.TotalCost = (totalcost.Sum(a => a.StateDeposits) + ViewBag.BegBal);
+        }
         // GET: AllocatedBudgets/Details/5
         public ActionResult Details(Guid? id)
         {

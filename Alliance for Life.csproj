@@ -740,11 +740,6 @@
     <Content Include="Views\AdministrationCost\Edit.cshtml" />
     <Content Include="Views\AdministrationCost\Index.cshtml" />
     <Content Include="Views\BudgetCosts\CostAnalysis.cshtml" />
-    <Content Include="Views\QuarterlyStates\Delete.cshtml" />
-    <Content Include="Views\QuarterlyStates\Details.cshtml" />
-    <Content Include="Views\QuarterlyStates\Edit.cshtml" />
-    <Content Include="Views\QuarterlyStates\Index.cshtml" />
-    <Content Include="Views\QuarterlyStates\FirstQuarterReport.cshtml" />
     <Content Include="Views\ParticipationService\Create.cshtml" />
     <Content Include="Views\ParticipationService\Delete.cshtml" />
     <Content Include="Views\ParticipationService\Details.cshtml" />
@@ -752,9 +747,6 @@
     <Content Include="Views\ParticipationService\Index.cshtml" />
     <Content Include="Views\Account\IndexforRegisteredUsers.cshtml" />
     <Content Include="Views\BudgetCosts\GraphIndex.cshtml" />
-    <Content Include="Views\QuarterlyStates\FourthQuarterReport.cshtml" />
-    <Content Include="Views\QuarterlyStates\SecondQuarterReport.cshtml" />
-    <Content Include="Views\QuarterlyStates\ThirdQuarterReport.cshtml" />
     <Content Include="Views\Account\Edit.cshtml" />
     <Content Include="Views\BudgetCosts\Edit.cshtml" />
     <Content Include="Views\ClientList\Details.cshtml" />
