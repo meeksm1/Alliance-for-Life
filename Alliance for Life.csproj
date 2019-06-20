@@ -268,6 +268,10 @@
     <Compile Include="Migrations\201906191549519_aflstatedeposite.Designer.cs">
       <DependentUpon>201906191549519_aflstatedeposite.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201906201543098_UpdateAdminCost.cs" />
+    <Compile Include="Migrations\201906201543098_UpdateAdminCost.Designer.cs">
+      <DependentUpon>201906201543098_UpdateAdminCost.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\A2AAllocatedBudget.cs" />
     <Compile Include="Models\A2AStateDeposits.cs" />
@@ -735,10 +739,7 @@
     <Content Include="Views\AdministrationCost\Details.cshtml" />
     <Content Include="Views\AdministrationCost\Edit.cshtml" />
     <Content Include="Views\AdministrationCost\Index.cshtml" />
-    <Content Include="Views\BudgetCosts\FirstQuarter.cshtml" />
-    <Content Include="Views\BudgetCosts\SecondQuarter.cshtml" />
-    <Content Include="Views\BudgetCosts\FourthQuarter.cshtml" />
-    <Content Include="Views\BudgetCosts\ThirdQuarter.cshtml" />
+    <Content Include="Views\BudgetCosts\CostAnalysis.cshtml" />
     <Content Include="Views\QuarterlyStates\Delete.cshtml" />
     <Content Include="Views\QuarterlyStates\Details.cshtml" />
     <Content Include="Views\QuarterlyStates\Edit.cshtml" />
@@ -821,6 +822,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201906191549519_aflstatedeposite.resx">
       <DependentUpon>201906191549519_aflstatedeposite.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906201543098_UpdateAdminCost.resx">
+      <DependentUpon>201906201543098_UpdateAdminCost.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

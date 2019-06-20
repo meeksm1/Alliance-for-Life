@@ -156,7 +156,7 @@ namespace Alliance_for_Life.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "AdminCostId,ASalandWages,AEmpBenefits,AEmpTravel,AEmpTraining,AOfficeRent,AOfficeUtilities,AFacilityIns,AOfficeSupplies,AEquipment,AOfficeCommunications,AOfficeMaint,AConsulting,AJanitorServices,ADepreciation,ATechSupport,ASecurityServices,AOther,AOther2,AOther3,ATotCosts,Region,Month,SubcontractorId,Year,SubmittedDate")] AdminCosts adminCosts)
+        public ActionResult Create([Bind(Include = "AdminCostId,ASalandWages,AflBillable,AEmpBenefits,AEmpTravel,AEmpTraining,AOfficeRent,AOfficeUtilities,AFacilityIns,AOfficeSupplies,AEquipment,AOfficeCommunications,AOfficeMaint,AConsulting,AJanitorServices,ADepreciation,ATechSupport,ASecurityServices,AOther,AOther2,AOther3,ATotCosts,Region,Month,SubcontractorId,Year,SubmittedDate")] AdminCosts adminCosts)
         {
             if (ModelState.IsValid)
             {
@@ -211,7 +211,7 @@ namespace Alliance_for_Life.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "AdminCostId,ASalandWages,AEmpBenefits,AEmpTravel,AEmpTraining,AOfficeRent,AOfficeUtilities,AFacilityIns,AOfficeSupplies,AEquipment,AOfficeCommunications,AOfficeMaint,AConsulting,AJanitorServices,ADepreciation,ATechSupport,ASecurityServices,AOther,AOther2,AOther3,ATotCosts,Region,Month,SubcontractorId,Year,SubmittedDate")] AdminCosts adminCosts)
+        public ActionResult Edit([Bind(Include = "AdminCostId,ASalandWages,AEmpBenefits,AflBillable,AEmpTravel,AEmpTraining,AOfficeRent,AOfficeUtilities,AFacilityIns,AOfficeSupplies,AEquipment,AOfficeCommunications,AOfficeMaint,AConsulting,AJanitorServices,ADepreciation,ATechSupport,ASecurityServices,AOther,AOther2,AOther3,ATotCosts,Region,Month,SubcontractorId,Year,SubmittedDate")] AdminCosts adminCosts)
         {
             if (ModelState.IsValid)
             {
@@ -276,7 +276,7 @@ namespace Alliance_for_Life.Controllers
         public FileResult Export()
         {
             DataTable dt = new DataTable("Grid");
-            dt.Columns.AddRange(new DataColumn[26]
+            dt.Columns.AddRange(new DataColumn[27]
             {
                 new DataColumn ("Administration Invoice Id"),
                 new DataColumn ("Date Submitted"),
@@ -284,6 +284,7 @@ namespace Alliance_for_Life.Controllers
                 new DataColumn ("Month"),
                 new DataColumn ("Region"),
                 new DataColumn ("Year"),
+                new DataColumn ("AflBillable"),
                 new DataColumn ("Salary/Wages"),
                 new DataColumn ("Employee Benefits"),
                 new DataColumn ("Employee Travel"),
@@ -316,6 +317,7 @@ namespace Alliance_for_Life.Controllers
                             OrgName = s.OrgName,
                             MonthName = a.Month.ToString(),
                             YearName = a.Year,
+                            AflBillable = a.AflBillable,
                             ASalandWages = a.ASalandWages,
                             AEmpBenefits = a.AEmpBenefits,
                             AEmpTravel = a.AEmpTravel,
@@ -340,7 +342,7 @@ namespace Alliance_for_Life.Controllers
 
             foreach (var item in costs)
             {
-                dt.Rows.Add(item.AdminCostId, item.SubmittedDate, item.OrgName, item.MonthName, item.RegionName, item.YearName, item.ASalandWages, item.AEmpBenefits,
+                dt.Rows.Add(item.AdminCostId, item.SubmittedDate, item.OrgName, item.MonthName, item.RegionName, item.YearName, item.AflBillable, item.ASalandWages, item.AEmpBenefits,
                     item.AEmpTravel, item.AEmpTraining, item.AOfficeRent, item.AOfficeUtilities, item.AFacilityIns, item.AOfficeSupplies, item.AEquipment,
                     item.AOfficeCommunications, item.AOfficeMaint, item.AConsulting, item.AJanitorServices, item.ADepreciation,
                     item.ATechSupport, item.ASecurityServices, item.AOther, item.AOther2, item.AOther3, item.ATotCosts);

@@ -10,6 +10,8 @@ namespace Alliance_for_Life.Models
 
         public double ASalandWages { get; set; }
 
+        public double AflBillable { get; set; }
+
         public double ABackgroundCheck { get; set; }
 
         public double EFTFees { get; set; }

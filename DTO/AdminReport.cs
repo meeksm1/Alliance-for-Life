@@ -30,5 +30,8 @@ namespace Alliance_for_Life.Models
         public double AOther { get; set; }
         public double AOther2 { get; set; }
         public double AOther3 { get; set; }
+
+        public double AflBillable { get; set; }
+
     }
 }
