@@ -721,37 +721,37 @@
                 @Html.Encode("$0.00")
             </td>
             <td>
-                @ViewBag.AugBeg
+                @ViewBag.AugBeg.ToString("C")
             </td>
             <td>
-                @ViewBag.SepBeg
+                @ViewBag.SepBeg.ToString("C")
             </td>
             <td>
-                @ViewBag.OctBeg
+                @ViewBag.OctBeg.ToString("C")
             </td>
             <td>
-                @ViewBag.NovBeg
+                @ViewBag.NovBeg.ToString("C")
             </td>
             <td>
-                @ViewBag.DecBeg
+                @ViewBag.DecBeg.ToString("C")
             </td>
             <td>
-                @ViewBag.JanBeg
+                @ViewBag.JanBeg.ToString("C")
             </td>
             <td>
-                @ViewBag.FebBeg
+                @ViewBag.FebBeg.ToString("C")
             </td>
             <td>
-                @ViewBag.MarBeg
+                @ViewBag.MarBeg.ToString("C")
             </td>
             <td>
-                @ViewBag.AprBeg
+                @ViewBag.AprBeg.ToString("C")
             </td>
             <td>
-                @ViewBag.MayBeg
+                @ViewBag.MayBeg.ToString("C")
             </td>
             <td>
-                @ViewBag.JunBeg
+                @ViewBag.JunBeg.ToString("C")
             </td>
             <td style="background-color:#fedada">
                 @Math.Round((ViewBag.JunTot) - (Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.June).Sum(b => b.GrandTotal)) + (ViewBag.JunFee * .13)), 2).ToString("C")
@@ -762,41 +762,40 @@
                 State Deposits:
             </th>
             <td>
-                @ViewBag.DepoJul
-                
+                @ViewBag.DepoJul.ToString("C")
             </td>
             <td>
-              @ViewBag.DepoAug
+                @ViewBag.DepoAug.ToString("C")
             </td>
             <td>
-                @ViewBag.DepoSep
+                @ViewBag.DepoSep.ToString("C")
             </td>
             <td>
-                @ViewBag.DepoOct
+                @ViewBag.DepoOct.ToString("C")
             </td>
             <td>
-                @ViewBag.DepoNov
+                @ViewBag.DepoNov.ToString("C")
             </td>
             <td>
-                @ViewBag.DepoDec
+                @ViewBag.DepoDec.ToString("C")
             </td>
             <td>
-                @ViewBag.DepoJan
+                @ViewBag.DepoJan.ToString("C")
             </td>
             <td>
-                @ViewBag.DepoFeb
+                @ViewBag.DepoFeb.ToString("C")
             </td>
             <td>
-                @ViewBag.DepoMar
+                @ViewBag.DepoMar.ToString("C")
             </td>
             <td>
-                @ViewBag.DepoApr
+                @ViewBag.DepoApr.ToString("C")
             </td>
             <td>
-                @ViewBag.DepoMay
+                @ViewBag.DepoMay.ToString("C")
             </td>
             <td>
-                @ViewBag.Depojun
+                @ViewBag.Depojun.ToString("C")
             </td>
             <td style="background-color:#fedada">
 
@@ -809,40 +808,40 @@
             </th>
 
             <td>
-                @ViewBag.JulTot
+                @ViewBag.JulTot.ToString("C")
             </td>
             <td>
-                @ViewBag.AugTot
+                @ViewBag.AugTot.ToString("C")
             </td>
             <td>
-                @ViewBag.SepTot
+                @ViewBag.SepTot.ToString("C")
             </td>
             <td>
-                @ViewBag.OctTot
+                @ViewBag.OctTot.ToString("C")
             </td>
             <td>
-                @ViewBag.NovTot
+                @ViewBag.NovTot.ToString("C")
             </td>
             <td>
-                @ViewBag.DecTot
+                @ViewBag.DecTot.ToString("C")
             </td>
             <td>
-                @ViewBag.JanTot
+                @ViewBag.JanTot.ToString("C")
             </td>
             <td>
-                @ViewBag.FebTot
+                @ViewBag.FebTot.ToString("C")
             </td>
             <td>
-                @ViewBag.MarTot
+                @ViewBag.MarTot.ToString("C")
             </td>
             <td>
-                @ViewBag.AprTot
+                @ViewBag.AprTot.ToString("C")
             </td>
             <td>
-                @ViewBag.MayTot
+                @ViewBag.MayTot.ToString("C")
             </td>
             <td>
-                @ViewBag.JunTot
+                @ViewBag.JunTot.ToString("C")
             </td>
             <td style="background-color:#fedada">
                 @ViewBag.TotalCost.ToString("C")
@@ -853,40 +852,40 @@
                 Invoice Totals
             </th>
             <td>
-                @ViewBag.JulInv
+                @ViewBag.JulInv.ToString("C")
             </td>
             <td>
-                @ViewBag.AugInv
+                @ViewBag.AugInv.ToString("C")
             </td>
             <td>
-                @ViewBag.SepInv
+                @ViewBag.SepInv.ToString("C")
             </td>
             <td>
-                @ViewBag.OctInv
+                @ViewBag.OctInv.ToString("C")
             </td>
             <td>
-                @ViewBag.NovInv
+                @ViewBag.NovInv.ToString("C")
             </td>
             <td>
-                @ViewBag.DecInv
+                @ViewBag.DecInv.ToString("C")
             </td>
             <td>
-                @ViewBag.JanInv
+                @ViewBag.JanInv.ToString("C")
             </td>
             <td>
-                @ViewBag.FebInv
+                @ViewBag.FebInv.ToString("C")
             </td>
             <td>
-                @ViewBag.MarInv
+                @ViewBag.MarInv.ToString("C")
             </td>
             <td>
-                @ViewBag.AprInv
+                @ViewBag.AprInv.ToString("C")
             </td>
             <td>
-                @ViewBag.MayInv
+                @ViewBag.MayInv.ToString("C")
             </td>
             <td>
-                @ViewBag.JunInv
+                @ViewBag.JunInv.ToString("C")
             </td>
             <td style="background-color:#fedada">
                 @Math.Round(Model.Sum(a => a.Invoice.Sum(c => c.GrandTotal)) + (ViewBag.TotalFee * 0.13), 2).ToString("C")
@@ -897,40 +896,40 @@
                 Remaining Balance:
             </th>
             <td>
-                @ViewBag.JulRem
+                @ViewBag.JulRem.ToString("C")
             </td>
             <td>
-                @ViewBag.AugRem
+                @ViewBag.AugRem.ToString("C")
             </td>
             <td>
-                @ViewBag.SepRem
+                @ViewBag.SepRem.ToString("C")
             </td>
             <td>
-                @ViewBag.OctRem
+                @ViewBag.OctRem.ToString("C")
             </td>
             <td>
-                @ViewBag.NovRem
+                @ViewBag.NovRem.ToString("C")
             </td>
             <td>
-                @ViewBag.DecRem
+                @ViewBag.DecRem.ToString("C")
             </td>
             <td>
-                @ViewBag.JanRem
+                @ViewBag.JanRem.ToString("C")
             </td>
             <td>
-                @ViewBag.FebRem
+                @ViewBag.FebRem.ToString("C")
             </td>
             <td>
-                @ViewBag.MarRem
+                @ViewBag.MarRem.ToString("C")
             </td>
             <td>
-                @ViewBag.AprRem
+                @ViewBag.AprRem.ToString("C")
             </td>
             <td>
-                @ViewBag.MayRem
+                @ViewBag.MayRem.ToString("C")
             </td>
             <td>
-                @ViewBag.JunRem
+                @ViewBag.JunRem.ToString("C")
             </td>
             <td style="background-color:#fedada">
                 @Math.Round((ViewBag.TotalCost) - (Model.Sum(a => a.Invoice.Sum(c => c.GrandTotal)) + (ViewBag.TotalFee * 0.13)), 2).ToString("C")
