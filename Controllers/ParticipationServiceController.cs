@@ -101,10 +101,12 @@ namespace Alliance_for_Life.Controllers
             return View(participationServices.ToPagedList(pageNumber, pageSize));
         }
 
-        public ActionResult TotalCostReport(string sortOrder, Guid? searchString, string currentFilter, int? page, string pgSize)
+        public ActionResult TotalCostReport(string sortOrder, Guid? searchString, string Year, string currentFilter, int? page, string pgSize)
         {
+            ViewBag.CurrentSort = sortOrder;
             int pageSize = Convert.ToInt16(pgSize);
-
+            var datelist = Enumerable.Range(System.DateTime.Now.Year - 4, 10).ToList();
+            ViewBag.Year = new SelectList(datelist);
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
             ViewBag.Subcontractor = new SelectList(db.SubContractors, "SubcontractorId", "OrgName");
@@ -117,6 +119,13 @@ namespace Alliance_for_Life.Controllers
             else
             {
                 currentFilter = searchString.ToString();
+            }
+
+            var year_search = "";
+
+            if ((Year != null) && Year.Length > 1)
+            {
+                year_search = (Year);
             }
 
             ViewBag.CurrentFilter = searchString;
@@ -146,10 +155,25 @@ namespace Alliance_for_Life.Controllers
                 ViewBag.Subcontractor = organization;
             }
 
-            if (!String.IsNullOrEmpty(searchString.ToString()))
+            if (!String.IsNullOrEmpty(searchString.ToString()) /*|| !String.IsNullOrEmpty(Year)*/)
             {
-                participationServices = participationServices.Where(a => a.Subcontractor.SubcontractorId == searchString);
-                adminSearch = adminSearch.Where(a => a.Subcontractor.SubcontractorId == searchString);
+                //var yearSearch = (Year);
+
+                //if(String.IsNullOrEmpty(searchString.ToString()))
+                //{
+                //    participationServices = participationServices.Where(r => r.Year.ToString() == Year);
+                //    adminSearch = adminSearch.Where(r => r.Year.ToString() == Year);
+                //}
+                //else if(String.IsNullOrEmpty(Year.ToString()))
+                //{
+                //    participationServices = participationServices.Where(a => a.Subcontractor.SubcontractorId == searchString);
+                //    adminSearch = adminSearch.Where(a => a.Subcontractor.SubcontractorId == searchString);
+                //}
+
+                    participationServices = participationServices.Where(a => a.Subcontractor.SubcontractorId == searchString);
+                    adminSearch = adminSearch.Where(a => a.Subcontractor.SubcontractorId == searchString);
+                
+
             }
 
             switch (sortOrder)
@@ -178,7 +202,7 @@ namespace Alliance_for_Life.Controllers
             }
 
             ViewBag.AdminCost = adminSearch.ToList();
-            ViewBag.Admintotal = adminSearch.Sum(a => a.ATotCosts).ToString("C");
+            ViewBag.Admintotal = adminSearch.Sum(a => a.ATotCosts);
 
             int pageNumber = (page ?? 1);
             return View(participationServices.ToPagedList(pageNumber, pageSize));
