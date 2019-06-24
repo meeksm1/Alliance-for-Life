@@ -17,9 +17,13 @@ namespace Alliance_for_Life.Controllers
         public ActionResult Index(string sortOrder, string searchString, string SubcontractorId, string Month, string Year, string billingdate, string currentFilter, int? page, string pgSize)
         {
             int pageSize = Convert.ToInt16(pgSize);
-            //paged view
+            var datelist = Enumerable.Range(System.DateTime.Now.Year - 4, 10).ToList();
+            ViewBag.Year = new SelectList(datelist);
+            ViewBag.SubcontractorId = new SelectList(db.SubContractors, "SubcontractorId", "OrgName");
+            ViewBag.Month = new SelectList(Enum.GetValues(typeof(Months)));
             ViewBag.CurrentSort = sortOrder;
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+
             if (searchString != null)
             {
                 page = 1;
@@ -56,6 +60,7 @@ namespace Alliance_for_Life.Controllers
                     GenerateInvoice(SubcontractorId, Month, Year, billingdate);
                 }
             }
+
             var invoices = db.Invoices.Include(i => i.AdminCosts).Include(i => i.AllocatedBudget).Include(i => i.ParticipationService).Include(i => i.Subcontractor);
 
             if (!User.IsInRole("Admin"))
@@ -68,9 +73,11 @@ namespace Alliance_for_Life.Controllers
                            select s;
             }
 
-            if (!String.IsNullOrEmpty(searchString))
+            if (!String.IsNullOrEmpty(searchString) || !String.IsNullOrEmpty(Year))
             {
-                invoices = invoices.Where(a => a.Subcontractor.OrgName.Contains(searchString));
+                var yearSearch = (Year);
+
+                invoices = invoices.Where(a => a.Subcontractor.OrgName.Contains(searchString) || a.Year.ToString() == yearSearch);
             }
 
             switch (sortOrder)
@@ -82,11 +89,6 @@ namespace Alliance_for_Life.Controllers
                     invoices = invoices.OrderBy(s => s.Subcontractor.OrgName);
                     break;
             }
-
-            var datelist = Enumerable.Range(System.DateTime.Now.Year - 4, 10).ToList();
-            ViewBag.Year = new SelectList(datelist);
-            ViewBag.SubcontractorId = new SelectList(db.SubContractors, "SubcontractorId", "OrgName");
-            ViewBag.Month = new SelectList(Enum.GetValues(typeof(Months)));
 
             if (pageSize < 1)
             {
