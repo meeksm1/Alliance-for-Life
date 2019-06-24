@@ -16,10 +16,6 @@ namespace Alliance_for_Life.Models
         public DbSet<Surveys> Surveys { get; set; }
         public DbSet<Invoices> Invoices { get; set; }
         public DbSet<AllocatedBudget> AllocatedBudget { get; set; }
-        public DbSet<QuarterlyState> QuarterlyStates
-        {
-            get; set;
-        }
         public DbSet<A2AAllocatedBudget> AFLAllocation { get; set; }
         public DbSet<A2AStateDeposits> StateDeposit { get; set; }
 

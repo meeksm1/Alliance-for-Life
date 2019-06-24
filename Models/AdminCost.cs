@@ -12,10 +12,6 @@ namespace Alliance_for_Life.Models
 
         public double AflBillable { get; set; }
 
-        public double ABackgroundCheck { get; set; }
-
-        public double EFTFees { get; set; }
-
         public double AEmpBenefits { get; set; }
 
         public double AEmpTravel { get; set; }
@@ -46,13 +42,17 @@ namespace Alliance_for_Life.Models
 
         public double ASecurityServices { get; set; }
 
+        public string AOtherInput { get; set; }
+
+        public string AOtherInput2 { get; set; }
+
+        public string AOtherInput3 { get; set; }
+
         public double AOther { get; set; }
 
         public double AOther2 { get; set; }
 
         public double AOther3 { get; set; }
-
-        public double StateAdminFee { get; set; }
 
         public double ATotCosts { get; set; }
 

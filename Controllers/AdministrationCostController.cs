@@ -156,7 +156,7 @@ namespace Alliance_for_Life.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "AdminCostId,ASalandWages,AflBillable,AEmpBenefits,AEmpTravel,AEmpTraining,AOfficeRent,AOfficeUtilities,AFacilityIns,AOfficeSupplies,AEquipment,AOfficeCommunications,AOfficeMaint,AConsulting,AJanitorServices,ADepreciation,ATechSupport,ASecurityServices,AOther,AOther2,AOther3,ATotCosts,Region,Month,SubcontractorId,Year,SubmittedDate")] AdminCosts adminCosts)
+        public ActionResult Create([Bind(Include = "AdminCostId,AOtherInput,AOtherInput2,AOtherInput3,ASalandWages,AflBillable,AEmpBenefits,AEmpTravel,AEmpTraining,AOfficeRent,AOfficeUtilities,AFacilityIns,AOfficeSupplies,AEquipment,AOfficeCommunications,AOfficeMaint,AConsulting,AJanitorServices,ADepreciation,ATechSupport,ASecurityServices,AOther,AOther2,AOther3,ATotCosts,Region,Month,SubcontractorId,Year,SubmittedDate")] AdminCosts adminCosts)
         {
             if (ModelState.IsValid)
             {
@@ -211,7 +211,7 @@ namespace Alliance_for_Life.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "AdminCostId,ASalandWages,AEmpBenefits,AflBillable,AEmpTravel,AEmpTraining,AOfficeRent,AOfficeUtilities,AFacilityIns,AOfficeSupplies,AEquipment,AOfficeCommunications,AOfficeMaint,AConsulting,AJanitorServices,ADepreciation,ATechSupport,ASecurityServices,AOther,AOther2,AOther3,ATotCosts,Region,Month,SubcontractorId,Year,SubmittedDate")] AdminCosts adminCosts)
+        public ActionResult Edit([Bind(Include = "AdminCostId,AOtherInput,AOtherInput2,AOtherInput3,ASalandWages,AEmpBenefits,AflBillable,AEmpTravel,AEmpTraining,AOfficeRent,AOfficeUtilities,AFacilityIns,AOfficeSupplies,AEquipment,AOfficeCommunications,AOfficeMaint,AConsulting,AJanitorServices,ADepreciation,ATechSupport,ASecurityServices,AOther,AOther2,AOther3,ATotCosts,Region,Month,SubcontractorId,Year,SubmittedDate")] AdminCosts adminCosts)
         {
             if (ModelState.IsValid)
             {

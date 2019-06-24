@@ -30,6 +30,12 @@ namespace Alliance_for_Life.Models
 
         public double PSupplies { get; set; }
 
+        public string POtherInput { get; set; }
+
+        public string POtherInput2 { get; set; }
+
+        public string POtherInput3 { get; set; }
+
         public double POther { get; set; }
 
         public double POther2 { get; set; }

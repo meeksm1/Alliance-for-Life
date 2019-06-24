@@ -185,31 +185,44 @@
             @Html.ValidationMessageFor(model => model.ASecurityServices, "", new { @class = "text-danger" })
         </div>
     </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.AOther, "Other", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.AOther, new { htmlAttributes = new { @class = "form-control numAdd" } })
+    <h4><strong>Other Costs:</strong></h4>
+    <div class="form-inline col-md-offset-2">
+        <div class="form-group col-md-3">
+            @Html.EditorFor(model => model.AOtherInput, new { htmlAttributes = new { @class = "form-control", placeholder = "Label" } })
+            @Html.ValidationMessageFor(model => model.AOtherInput, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group col-md-9">
+            @Html.EditorFor(model => model.AOther, new { htmlAttributes = new { @class = "form-control numAdd", placeholder = "$Amount" } })
             @Html.ValidationMessageFor(model => model.AOther, "", new { @class = "text-danger" })
         </div>
     </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.AOther2, "Other", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.AOther2, new { htmlAttributes = new { @class = "form-control numAdd" } })
+    <br />
+    <br />
+    <div class="form-inline col-md-offset-2">
+        <div class="form-group col-md-3">
+            @Html.EditorFor(model => model.AOtherInput2, new { htmlAttributes = new { @class = "form-control", placeholder = "Label" } })
+            @Html.ValidationMessageFor(model => model.AOtherInput2, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group col-md-9">
+            @Html.EditorFor(model => model.AOther2, new { htmlAttributes = new { @class = "form-control numAdd", placeholder = "$Amount" } })
             @Html.ValidationMessageFor(model => model.AOther2, "", new { @class = "text-danger" })
         </div>
     </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.AOther3, "Other", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.AOther3, new { htmlAttributes = new { @class = "form-control numAdd" } })
+    <br />
+    <br />
+    <div class="form-inline col-md-offset-2">
+        <div class="form-group col-md-3">
+            @Html.EditorFor(model => model.AOtherInput3, new { htmlAttributes = new { @class = "form-control", placeholder = "Label" } })
+            @Html.ValidationMessageFor(model => model.AOtherInput3, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group col-md-9">
+            @Html.EditorFor(model => model.AOther3, new { htmlAttributes = new { @class = "form-control numAdd", placeholder = "$Amount" } })
             @Html.ValidationMessageFor(model => model.AOther3, "", new { @class = "text-danger" })
         </div>
     </div>
-
+    <br />
+    <br />
+    <br />
     <div class="form-group">
         @Html.LabelFor(model => model.ATotCosts, "Total Costs", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
@@ -224,6 +237,7 @@
         </div>
     </div>
 </div>
+
 }
 
 <div>

@@ -127,7 +127,7 @@
         </dd>
 
         <dt>
-            Other
+            @Model.POtherInput
         </dt>
 
         <dd>
@@ -135,7 +135,7 @@
         </dd>
 
         <dt>
-            Other
+            @Model.POtherInput2
         </dt>
 
         <dd>
@@ -143,7 +143,7 @@
         </dd>
 
         <dt>
-            Other
+            @Model.POtherInput3
         </dt>
 
         <dd>
@@ -157,14 +157,12 @@
         <dd>
             @Model.PTotals.ToString("C")
         </dd>
-
     </dl>
 
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
 
-        <hr />
         <h3>Are you sure you want to delete this?</h3>
         <div class="form-actions no-color">
             <input type="submit" value="Delete" class="btn btn-danger" /> |

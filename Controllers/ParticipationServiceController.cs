@@ -133,7 +133,7 @@ namespace Alliance_for_Life.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "PSId,PTranspotation,PJobTrain,PEducationAssistance,PResidentialCare,PUtilities,PHousingEmergency,PHousingAssistance,PChildCare,PClothing,PFood,PSupplies,POther,POther2,POther3,PTotals,Region,Month,SubcontractorId,Year,SubmittedDate")] ParticipationService participationService)
+        public ActionResult Create([Bind(Include = "PSId,PTranspotation,POtherInput,POtherInput2,POtherInput3,PJobTrain,PEducationAssistance,PResidentialCare,PUtilities,PHousingEmergency,PHousingAssistance,PChildCare,PClothing,PFood,PSupplies,POther,POther2,POther3,PTotals,Region,Month,SubcontractorId,Year,SubmittedDate")] ParticipationService participationService)
         {
             if (ModelState.IsValid)
             {
@@ -187,7 +187,7 @@ namespace Alliance_for_Life.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "PSId,PTranspotation,PJobTrain,PEducationAssistance,PResidentialCare,PUtilities,PHousingEmergency,PHousingAssistance,PChildCare,PClothing,PFood,PSupplies,POther,POther2,POther3,PTotals,Region,Month,SubcontractorId,Year,SubmittedDate")] ParticipationService participationService)
+        public ActionResult Edit([Bind(Include = "PSId,PTranspotation,POtherInput,POtherInput2,POtherInput3,PJobTrain,PEducationAssistance,PResidentialCare,PUtilities,PHousingEmergency,PHousingAssistance,PChildCare,PClothing,PFood,PSupplies,POther,POther2,POther3,PTotals,Region,Month,SubcontractorId,Year,SubmittedDate")] ParticipationService participationService)
         {
             if (ModelState.IsValid)
             {

@@ -180,7 +180,7 @@
         </dd>
 
         <dt>
-            Other
+            @Model.AOtherInput
         </dt>
 
         <dd>
@@ -188,7 +188,7 @@
         </dd>
 
         <dt>
-            Other
+            @Model.AOtherInput2
         </dt>
 
         <dd>
@@ -196,7 +196,7 @@
         </dd>
 
         <dt>
-            Other
+            @Model.AOtherInput3
         </dt>
 
         <dd>
@@ -210,17 +210,20 @@
         <dd>
             @Model.ATotCosts.ToString("C")
         </dd>
-
     </dl>
 
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
-        <hr />
         <h3>Are you sure you want to delete this?</h3>
         <div class="form-actions no-color">
             <input type="submit" value="Delete" class="btn btn-danger" /> |
             @Html.ActionLink("Back to List", "Index")
         </div>
+        <br />
+        <br />
+        <br />
+
     }
 </div>

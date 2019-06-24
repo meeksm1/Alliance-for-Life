@@ -249,7 +249,6 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\NonResidentialMIRsController.cs" />
     <Compile Include="Controllers\ParticipationServiceController.cs" />
-    <Compile Include="Controllers\QuarterlyStatesController.cs" />
     <Compile Include="Controllers\ResidentialMIRsController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Migrations\201906131606226_NewDB.cs" />
@@ -272,6 +271,10 @@
     <Compile Include="Migrations\201906201543098_UpdateAdminCost.Designer.cs">
       <DependentUpon>201906201543098_UpdateAdminCost.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201906241635438_AddedOtherInputs.cs" />
+    <Compile Include="Migrations\201906241635438_AddedOtherInputs.Designer.cs">
+      <DependentUpon>201906241635438_AddedOtherInputs.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\A2AAllocatedBudget.cs" />
     <Compile Include="Models\A2AStateDeposits.cs" />
@@ -284,7 +287,6 @@
     <Compile Include="DTO\AdminReport.cs" />
     <Compile Include="DTO\QuarterlyStateReport.cs" />
     <Compile Include="DTO\Userinformation.cs" />
-    <Compile Include="Models\QuarterlyState.cs" />
     <Compile Include="DTO\BudgetReport.cs" />
     <Compile Include="Models\Invoices.cs" />
     <Compile Include="DTO\MIRReport.cs" />
@@ -817,6 +819,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201906201543098_UpdateAdminCost.resx">
       <DependentUpon>201906201543098_UpdateAdminCost.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906241635438_AddedOtherInputs.resx">
+      <DependentUpon>201906241635438_AddedOtherInputs.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
