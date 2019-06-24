@@ -15,10 +15,12 @@ namespace Alliance_for_Life.Controllers
         // GET: AllocatedBudgets
         public ActionResult Index(string sortOrder, string Year, string searchString, string currentFilter, int? page, string pgSize)
         {
-
             //variable that stores the current year
             var year_search = DateTime.Now.Year;
 
+            //Starting Deposit Balance
+            var beginingBalance = 0;
+            ViewBag.BegBal = beginingBalance;
             int pageSize = Convert.ToInt16(pgSize);
 
             ViewBag.CurrentSort = sortOrder;
@@ -51,8 +53,6 @@ namespace Alliance_for_Life.Controllers
             ViewBag.ReportTitle = "Report Year -  " + year_search;
             ViewBag.yearselected = year_search;
 
-            //pulling admincost 
-            //  AdminCostCalculation(year_search);
 
             // quarterly calculations
             QuaterlyViewBag(year_search);
@@ -62,9 +62,6 @@ namespace Alliance_for_Life.Controllers
 
             //calling main function
             beginingbalance(year_search);
-            //Starting Deposit Balance
-            var beginingBalance = 0;
-            ViewBag.BegBal = beginingBalance;
 
 
             if (allocatedBudget.Count() == 0)
