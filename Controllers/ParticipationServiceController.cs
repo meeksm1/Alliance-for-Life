@@ -101,6 +101,89 @@ namespace Alliance_for_Life.Controllers
             return View(participationServices.ToPagedList(pageNumber, pageSize));
         }
 
+        public ActionResult TotalCostReport(string sortOrder, Guid? searchString, string currentFilter, int? page, string pgSize)
+        {
+            int pageSize = Convert.ToInt16(pgSize);
+
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
+            ViewBag.Subcontractor = new SelectList(db.SubContractors, "SubcontractorId", "OrgName");
+
+            //looking for the searchstring
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                currentFilter = searchString.ToString();
+            }
+
+            ViewBag.CurrentFilter = searchString;
+
+            var participationServices = db.ParticipationServices.Include(p => p.Subcontractor);
+
+            var adminSearch = db.AdminCosts
+            .Include(a => a.Subcontractor)
+            .Where(a => a.SubcontractorId == a.Subcontractor.SubcontractorId);
+
+            if (!User.IsInRole("Admin"))
+            {
+                var organization = "";
+                var id = User.Identity.GetUserId();
+                var usr = db.Users.Find(id);
+                organization = db.SubContractors.Find(usr.SubcontractorId).OrgName;
+                var usersubid = db.Users.Find(id).SubcontractorId;
+
+                participationServices = from s in participationServices
+                                        where usersubid == s.SubcontractorId
+                                        select s;
+
+                adminSearch = from t in adminSearch
+                              where usersubid == t.SubcontractorId
+                              select t;
+
+                ViewBag.Subcontractor = organization;
+            }
+
+            if (!String.IsNullOrEmpty(searchString.ToString()))
+            {
+                participationServices = participationServices.Where(a => a.Subcontractor.SubcontractorId == searchString);
+                adminSearch = adminSearch.Where(a => a.Subcontractor.SubcontractorId == searchString);
+            }
+
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    participationServices = participationServices.OrderByDescending(s => s.Subcontractor.OrgName);
+                    adminSearch = adminSearch.OrderByDescending(s => s.Subcontractor.OrgName);
+                    break;
+                case "Date":
+                    participationServices = participationServices.OrderBy(s => s.SubmittedDate);
+                    adminSearch = adminSearch.OrderBy(s => s.SubmittedDate);
+                    break;
+                case "date_desc":
+                    participationServices = participationServices.OrderByDescending(s => s.SubmittedDate);
+                    adminSearch = adminSearch.OrderByDescending(s => s.SubmittedDate);
+                    break;
+                default:
+                    participationServices = participationServices.OrderBy(s => s.Subcontractor.OrgName);
+                    adminSearch = adminSearch.OrderBy(s => s.Subcontractor.OrgName);
+                    break;
+            }
+
+            if (pageSize < 1)
+            {
+                pageSize = 10;
+            }
+
+            ViewBag.AdminCost = adminSearch.ToList();
+            ViewBag.Admintotal = adminSearch.Sum(a => a.ATotCosts).ToString("C");
+
+            int pageNumber = (page ?? 1);
+            return View(participationServices.ToPagedList(pageNumber, pageSize));
+        }
+
         // GET: ParticipationCost/Details/5
         public ActionResult Details(Guid? id)
         {

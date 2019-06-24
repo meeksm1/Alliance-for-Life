@@ -787,6 +787,8 @@
     <Content Include="Views\A2AStateDeposits\Details.cshtml" />
     <Content Include="Views\A2AStateDeposits\Edit.cshtml" />
     <Content Include="Views\A2AStateDeposits\Index.cshtml" />
+    <Content Include="Views\AllocatedBudgets\Balance.cshtml" />
+    <Content Include="Views\ParticipationService\TotalCostReport.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config">

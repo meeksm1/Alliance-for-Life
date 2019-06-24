@@ -53,16 +53,8 @@ namespace Alliance_for_Life.Controllers
             ViewBag.ReportTitle = "Report Year -  " + year_search;
             ViewBag.yearselected = year_search;
 
-
             // quarterly calculations
             QuaterlyViewBag(year_search);
-
-            //CREATING THE VIEWBAG TO PULL afl ALLOCATED BUDGET
-            ViewBag.aflallocation = db.AFLAllocation.Where(a => a.Year == year_search).ToList();
-
-            //calling main function
-            beginingbalance(year_search);
-
 
             if (allocatedBudget.Count() == 0)
             {
@@ -76,7 +68,47 @@ namespace Alliance_for_Life.Controllers
             int pageNumber = (page ?? 1);
             return View(allocatedBudget.OrderBy(y => y.Year).ToPagedList(pageNumber, pageSize));
         }
-     
+
+        public ActionResult Balance(string sortOrder, string Year, /*string searchString, string currentFilter, */int? page, string pgSize)
+        {
+            //variable that stores the current year
+            var year_search = DateTime.Now.Year;
+            int pageSize = Convert.ToInt16(pgSize);
+            var datelist = Enumerable.Range(System.DateTime.Now.Year - 4, 10).ToList();
+            ViewBag.Year = new SelectList(datelist);
+            ViewBag.ReportTitle = "Report Year -  " + year_search;
+            ViewBag.yearselected = year_search;
+
+
+            if ((Year != null) && Year.Length > 1)
+            {
+                year_search = Convert.ToInt16(Year);
+            }
+
+            var allocatedBudget = db.AllocatedBudget
+                .Include(a => a.Subcontractor)
+                .Include(a => a.Invoice)
+                .Include(a => a.AdminCost)
+                .Where(a => a.Year == year_search);
+
+            //calling main function
+            beginingbalance(year_search);
+
+            //CREATING THE VIEWBAG TO PULL afl ALLOCATED BUDGET
+            ViewBag.aflallocation = db.AFLAllocation.Where(a => a.Year == year_search).ToList();
+
+            if (allocatedBudget.Count() == 0)
+            {
+                ViewBag.error = "No Report available for the year " + year_search;
+            }
+
+            if (pageSize < 1)
+            {
+                pageSize = 10;
+            }
+            int pageNumber = (page ?? 1);
+            return View(allocatedBudget.OrderBy(y => y.Year).ToPagedList(pageNumber, pageSize));
+        }
 
         //calculate quaterly
         public void QuaterlyViewBag(int year_search)

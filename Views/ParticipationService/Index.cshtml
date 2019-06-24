@@ -30,6 +30,7 @@
                         </div>
                     </div>
                 </div>
+                <br />
             }
         </form>
     }
@@ -39,11 +40,11 @@
             @if (!User.IsInRole("Admin"))
             {
                 <th>
-
+                    Edit
                 </th>
             }
             <th>
-
+                Details
             </th>
             <th>
                 @Html.ActionLink("Organization", "Index", new { sortOrder = ViewBag.NameSortParm })
@@ -175,200 +176,6 @@
     <h3>Total Participation Cost</h3>
     <p>
         @Model.Sum(m => m.PTotals).ToString("c")
-    </p>
-    <br /><br />
-    <table id="dtBasicExample" class="table table-striped table-bordered table-sm" style="font-size:16px" cellspacing="0" width="100">
-        <tr>
-            @if (!User.IsInRole("Admin"))
-            {
-                <th>
-
-                </th>
-            }
-
-            <th>
-
-            </th>
-            <th>
-                @Html.ActionLink("Organization", "Index", new { sortOrder = ViewBag.NameSortParm })
-            </th>
-            <th>
-                Month
-            </th>
-            <th>
-                Year
-            </th>
-            @if (!User.IsInRole("User"))
-            {
-                <th>
-                    AFL Billable
-                </th>
-                <th>
-                    Region&nbsp;&nbsp;&nbsp;&nbsp;
-                </th>
-            }
-            <th>
-                Salaries and Wages
-            </th>
-            <th>
-                Employee Benefits
-            </th>
-            <th>
-                Employee Travel
-            </th>
-            <th>
-                Employee Training
-            </th>
-            <th>
-                Office Rent
-            </th>
-            <th>
-                Office Utilities
-            </th>
-            <th>
-                Facility Insurance
-            </th>
-            <th>
-                Office Supplies
-            </th>
-            <th>
-                Equipment
-            </th>
-            <th>
-                Office Communications
-            </th>
-            <th>
-                Office Maintenance
-            </th>
-            <th>
-                Consulting Fee's
-            </th>
-            <th>
-                Janitor Services
-            </th>
-            <th>
-                Depreciation
-            </th>
-            <th>
-                Tech Support
-            </th>
-            <th>
-                Security
-            </th>
-            <th>
-                Other
-            </th>
-            <th>
-                Other
-            </th>
-            <th>
-                Other
-            </th>
-            <th>
-                Total Cost
-            </th>
-            <th></th>
-        </tr>
-
-        @foreach (var item in ViewBag.AdminCost)
-        {
-            <tr>
-                @if (!User.IsInRole("Admin"))
-                {
-                    <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.AdminCostId })
-                    </td>
-                }
-
-                <td>
-                    @Html.ActionLink("Details", "Details", new { id = item.AdminCostId })
-                </td>
-                <td>
-                    @item.Subcontractor.OrgName
-                </td>
-                <td>
-                    @item.Month
-                </td>
-                <td>
-                    @item.Year
-                </td>
-                @if (!User.IsInRole("User"))
-                {
-                    <td>
-                        @item.AflBillable.ToString("C")
-                    </td>
-                    <td>
-                        @*@item.Region.GetDisplayName()*@
-                    </td>
-                }
-                <td>
-                    @item.ASalandWages.ToString("C")
-                </td>
-                <td>
-                    @item.AEmpBenefits.ToString("C")
-                </td>
-                <td>
-                    @item.AEmpTravel.ToString("C")
-                </td>
-                <td>
-                    @item.AEmpTraining.ToString("C")
-                </td>
-                <td>
-                    @item.AOfficeRent.ToString("C")
-                </td>
-                <td>
-                    @item.AOfficeUtilities.ToString("C")
-                </td>
-                <td>
-                    @item.AFacilityIns.ToString("C")
-                </td>
-                <td>
-                    @item.AOfficeSupplies.ToString("C")
-                </td>
-                <td>
-                    @item.AEquipment.ToString("C")
-                </td>
-                <td>
-                    @item.AOfficeCommunications.ToString("C")
-                </td>
-                <td>
-                    @item.AOfficeMaint.ToString("C")
-                </td>
-                <td>
-                    @item.AConsulting.ToString("C")
-                </td>
-                <td>
-                    @item.AJanitorServices.ToString("C")
-                </td>
-                <td>
-                    @item.ADepreciation.ToString("C")
-                </td>
-                <td>
-                    @item.ATechSupport.ToString("C")
-                </td>
-                <td>
-                    @item.ASecurityServices.ToString("C")
-                </td>
-                <td>
-                    @item.AOther.ToString("C")
-                </td>
-                <td>
-                    @item.AOther2.ToString("C")
-                </td>
-                <td>
-                    @item.AOther3.ToString("C")
-                </td>
-                <td>
-                    @item.ATotCosts.ToString("C")
-                </td>
-            </tr>
-        }
-    </table>
-
-    @*This is how you do a Sum in Linq to apply a total based on a model property*@
-    <h3>Total Administrative Cost</h3>
-    <p>
-        <ul> @*@Math.Round(ViewBag.AdminCost.Sum(m)).ToString("c")*@</ul>
     </p>
     <br /><br />
     @using (Html.BeginForm("Export", "ParticipationCost", FormMethod.Post))
