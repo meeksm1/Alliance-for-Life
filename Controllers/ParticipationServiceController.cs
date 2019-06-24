@@ -20,6 +20,7 @@ namespace Alliance_for_Life.Controllers
         // GET: ParticipationCost
         public ActionResult Index(string sortOrder, Guid? searchString, string currentFilter, int? page, string pgSize)
         {
+
             int pageSize = Convert.ToInt16(pgSize);
 
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
@@ -40,6 +41,10 @@ namespace Alliance_for_Life.Controllers
 
             var participationServices = db.ParticipationServices.Include(p => p.Subcontractor);
 
+            var adminSearch = db.AdminCosts
+            .Include(a => a.Subcontractor)
+            .Where(a => a.SubcontractorId == a.Subcontractor.SubcontractorId);
+
             if (!User.IsInRole("Admin"))
             {
                 var organization = "";
@@ -52,27 +57,36 @@ namespace Alliance_for_Life.Controllers
                                         where usersubid == s.SubcontractorId
                                         select s;
 
+                adminSearch = from t in adminSearch
+                              where usersubid == t.SubcontractorId
+                              select t;
+
                 ViewBag.Subcontractor = organization;
             }
 
             if (!String.IsNullOrEmpty(searchString.ToString()))
             {
                 participationServices = participationServices.Where(a => a.Subcontractor.SubcontractorId == searchString);
+                adminSearch = adminSearch.Where(a => a.Subcontractor.SubcontractorId == searchString);
             }
 
             switch (sortOrder)
             {
                 case "name_desc":
                     participationServices = participationServices.OrderByDescending(s => s.Subcontractor.OrgName);
+                    adminSearch = adminSearch.OrderByDescending(s => s.Subcontractor.OrgName);
                     break;
                 case "Date":
                     participationServices = participationServices.OrderBy(s => s.SubmittedDate);
+                    adminSearch = adminSearch.OrderBy(s => s.SubmittedDate);
                     break;
                 case "date_desc":
                     participationServices = participationServices.OrderByDescending(s => s.SubmittedDate);
+                    adminSearch = adminSearch.OrderByDescending(s => s.SubmittedDate);
                     break;
                 default:
                     participationServices = participationServices.OrderBy(s => s.Subcontractor.OrgName);
+                    adminSearch = adminSearch.OrderBy(s => s.Subcontractor.OrgName);
                     break;
             }
 
@@ -80,6 +94,8 @@ namespace Alliance_for_Life.Controllers
             {
                 pageSize = 10;
             }
+
+            ViewBag.AdminCost = adminSearch.ToList();
 
             int pageNumber = (page ?? 1);
             return View(participationServices.ToPagedList(pageNumber, pageSize));
