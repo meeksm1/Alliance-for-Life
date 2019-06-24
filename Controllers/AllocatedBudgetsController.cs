@@ -52,7 +52,7 @@ namespace Alliance_for_Life.Controllers
             ViewBag.yearselected = year_search;
 
             //pulling admincost 
-            AdminCostCalculation(year_search);
+            //  AdminCostCalculation(year_search);
 
             // quarterly calculations
             QuaterlyViewBag(year_search);
@@ -62,7 +62,7 @@ namespace Alliance_for_Life.Controllers
 
 
             //call the function that does all this
-            StateDepositeViewBag(year_search);
+            // StateDepositeViewBag(year_search);
 
             //calling main function
             beginingbalance(year_search);
@@ -235,13 +235,29 @@ namespace Alliance_for_Life.Controllers
 
         public void beginingbalance(int year_search)
         {
+            //initializing the viewbag to zero
+            ViewBag.DepoJan = 0;
+            ViewBag.DepoFeb = 0;
+            ViewBag.DepoMar = 0;
+            ViewBag.DepoApr = 0;
+            ViewBag.DepoMay = 0;
+            ViewBag.DepoJun = 0;
+            ViewBag.DepoJul = 0;
+            ViewBag.DepoAug = 0;
+            ViewBag.DepoSep = 0;
+            ViewBag.DepoOct = 0;
+            ViewBag.DepoNov = 0;
+            ViewBag.DepoDec = 0;
+
+
+            //statedeposite loop
+
             var statedepo = db.StateDeposit.Where(b => b.Year == year_search);
             if (statedepo.Count() != 0)
             {
                 if (statedepo.Where(a => a.Month == Months.January).Count() != 0)
                 {
                     ViewBag.DepoJan = statedepo.Where(a => a.Month == Months.January).FirstOrDefault().StateDeposits;
-
                 }
                 if (statedepo.Where(a => a.Month == Months.February).Count() != 0)
                 {
@@ -323,32 +339,66 @@ namespace Alliance_for_Life.Controllers
             var invoice = db.Invoices.Where(a => a.Year == year_search);
 
             //for July
-
-            ViewBag.JulTot = (ViewBag.DepoJul);
-            ViewBag.JulInv = invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.July).Sum(b => b.GrandTotal) + (ViewBag.JulFee * .13);
-            ViewBag.JulRem = (ViewBag.JulTot + ViewBag.JulInv);
+            ViewBag.JulTot = ViewBag.DepoJul ?? 0;
+            ViewBag.JulInv = (invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.July).Select(b => b.GrandTotal).DefaultIfEmpty(0).Sum() + (ViewBag.JulFee * .13));
+            ViewBag.JulRem = Math.Round(ViewBag.JulTot + ViewBag.JulInv);
 
             //for august
             ViewBag.AugBeg = ViewBag.JulRem;
-            ViewBag.AugTot = (ViewBag.AugBeg + ViewBag.DepoAug);
-            ViewBag.JulInv = invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.August).Sum(b => b.GrandTotal) + (ViewBag.AugFee * .13);
-            ViewBag.JulRem = (ViewBag.AugTot + ViewBag.AugInv);
+            ViewBag.AugTot = Math.Round(ViewBag.AugBeg + ViewBag.DepoAug);
+            ViewBag.AugInv = invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.August).Select(b => b.GrandTotal).DefaultIfEmpty(0).Sum() + (ViewBag.AugFee * .13);
+            ViewBag.AugRem = Math.Round(ViewBag.AugTot + ViewBag.AugInv);
 
-            //ViewBag.JanTot = (totalcost.Where(a => a.Month == Months.January).Sum(a => a.StateDeposits));
-            //ViewBag.FebTot = (totalcost.Where(a => a.Month == Months.February).Sum(a => a.StateDeposits));
-            //ViewBag.MarTot = (totalcost.Where(a => a.Month == Months.March).Sum(a => a.StateDeposits));
-            //ViewBag.AprTot = (totalcost.Where(a => a.Month == Months.April).Sum(a => a.StateDeposits));
-            //ViewBag.MayTot = (totalcost.Where(a => a.Month == Months.May).Sum(a => a.StateDeposits));
-            //ViewBag.JunTot = (totalcost.Where(a => a.Month == Months.June).Sum(a => a.StateDeposits));
-            //ViewBag.JulTot = 0;
-            //ViewBag.AugTot = (totalcost.Where(a => a.Month == Months.August).Sum(a => a.StateDeposits));
-            //ViewBag.SepTot = (totalcost.Where(a => a.Month == Months.September).Sum(a => a.StateDeposits));
-            //ViewBag.OctTot = (totalcost.Where(a => a.Month == Months.October).Sum(a => a.StateDeposits));
-            //ViewBag.NovTot = (totalcost.Where(a => a.Month == Months.November).Sum(a => a.StateDeposits));
-            //ViewBag.DecTot = (totalcost.Where(a => a.Month == Months.December).Sum(a => a.StateDeposits));
-            //ViewBag.TotalCost = (totalcost.Sum(a => a.StateDeposits));
-            //@Math.Round((ViewBag.JulTot) - (Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.July).Sum(b => b.GrandTotal)) + (ViewBag.JulFee * .13)), 2).ToString("C")
-
+            //for september
+            ViewBag.SepBeg = ViewBag.AugRem;
+            ViewBag.SepTot = Math.Round(ViewBag.SepBeg + ViewBag.DepoSep);
+            ViewBag.SepInv = invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.September).Select(b => b.GrandTotal).DefaultIfEmpty(0).Sum() + (ViewBag.SepFee * .13);
+            ViewBag.SepRem = Math.Round(ViewBag.SepTot + ViewBag.SepInv);
+            //for october
+            ViewBag.OctBeg = ViewBag.SepRem;
+            ViewBag.OctTot = Math.Round(ViewBag.OctBeg + ViewBag.DepoOct);
+            ViewBag.OctInv = invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.October).Select(b => b.GrandTotal).DefaultIfEmpty(0).Sum() + (ViewBag.OctFee * .13);
+            ViewBag.OctRem = Math.Round(ViewBag.OctTot + ViewBag.OctInv);
+            //for november
+            ViewBag.NovBeg = ViewBag.OctRem;
+            ViewBag.NovTot = Math.Round(ViewBag.NovBeg + ViewBag.DepoNov);
+            ViewBag.NovInv = invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.November).Select(b => b.GrandTotal).DefaultIfEmpty(0).Sum() + (ViewBag.NovFee * .13);
+            ViewBag.NovRem = Math.Round(ViewBag.NovTot + ViewBag.NovInv);
+            //for december
+            ViewBag.DecBeg = ViewBag.NovRem;
+            ViewBag.DecTot = Math.Round(ViewBag.DecBeg + ViewBag.DepoDec);
+            ViewBag.DecInv = invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.December).Select(b => b.GrandTotal).DefaultIfEmpty(0).Sum() + (ViewBag.DecFee * .13);
+            ViewBag.DecRem = Math.Round(ViewBag.DecTot + ViewBag.DecInv);
+            //for january
+            ViewBag.JanBeg = ViewBag.DecRem;
+            ViewBag.JanTot = Math.Round(ViewBag.JanBeg + ViewBag.DepoJan);
+            ViewBag.JanInv = invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.January).Select(b => b.GrandTotal).DefaultIfEmpty(0).Sum() + (ViewBag.JanFee * .13);
+            ViewBag.JanRem = Math.Round(ViewBag.JanTot + ViewBag.JanInv);
+            //for february
+            ViewBag.FebBeg = ViewBag.JanRem;
+            ViewBag.FebTot = Math.Round(ViewBag.FebBeg + ViewBag.DepoFeb);
+            ViewBag.FebInv = invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.February).Select(b => b.GrandTotal).DefaultIfEmpty(0).Sum() + (ViewBag.FebFee * .13);
+            ViewBag.FebRem = Math.Round(ViewBag.FebTot + ViewBag.FebInv);
+            //for march
+            ViewBag.MarBeg = ViewBag.FebRem;
+            ViewBag.MarTot = Math.Round(ViewBag.MarBeg + ViewBag.DepoMar);
+            ViewBag.MarInv = invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.March).Select(b => b.GrandTotal).DefaultIfEmpty(0).Sum() + (ViewBag.MarFee * .13);
+            ViewBag.MarRem = Math.Round(ViewBag.MarTot + ViewBag.MarInv);
+            //for april
+            ViewBag.AprBeg = ViewBag.MarRem;
+            ViewBag.AprTot = Math.Round(ViewBag.AprBeg + ViewBag.DepoApr);
+            ViewBag.AprInv = invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.April).Select(b => b.GrandTotal).DefaultIfEmpty(0).Sum() + (ViewBag.AprFee * .13);
+            ViewBag.AprRem = Math.Round(ViewBag.AprTot + ViewBag.AprInv);
+            //for may
+            ViewBag.MayBeg = ViewBag.AprRem;
+            ViewBag.MayTot = Math.Round(ViewBag.MayBeg + ViewBag.DepoMay);
+            ViewBag.MayInv = invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.May).Select(b => b.GrandTotal).DefaultIfEmpty(0).Sum() + (ViewBag.MayFee * .13);
+            ViewBag.MayRem = Math.Round(ViewBag.MayTot + ViewBag.MayInv);
+            //for june
+            ViewBag.JunBeg = ViewBag.MayRem;
+            ViewBag.JunTot = Math.Round(ViewBag.JunBeg + ViewBag.DepoJun);
+            ViewBag.JunInv = invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.June).Select(b => b.GrandTotal).DefaultIfEmpty(0).Sum() + (ViewBag.JunFee * .13);
+            ViewBag.JunRem = Math.Round(ViewBag.JunTot + ViewBag.JunInv);
 
 
         }
