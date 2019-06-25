@@ -74,12 +74,9 @@
             </th>
             @if (!User.IsInRole("User"))
             {
-                <th>
-                    AFL Billable
-                </th>
-                <th>
-                    Region&nbsp;&nbsp;&nbsp;&nbsp;
-                </th>
+            <th>
+                Region&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </th>
             }
             <th>
                 Salaries and Wages
@@ -168,9 +165,6 @@
                 </td>
                 @if (!User.IsInRole("User"))
                 {
-                    <td>
-                        @item.AflBillable.ToString("C")
-                    </td>
                     <td>
                         @item.Region.GetDisplayName()
                     </td>

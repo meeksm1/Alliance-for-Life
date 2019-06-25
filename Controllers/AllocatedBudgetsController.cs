@@ -74,10 +74,7 @@ namespace Alliance_for_Life.Controllers
             //variable that stores the current year
             var year_search = DateTime.Now.Year;
             int pageSize = Convert.ToInt16(pgSize);
-            var datelist = Enumerable.Range(System.DateTime.Now.Year - 4, 10).ToList();
-            ViewBag.Year = new SelectList(datelist);
-            ViewBag.ReportTitle = "Report Year -  " + year_search;
-            ViewBag.yearselected = year_search;
+
 
 
             if ((Year != null) && Year.Length > 1)
@@ -90,6 +87,11 @@ namespace Alliance_for_Life.Controllers
                 .Include(a => a.Invoice)
                 .Include(a => a.AdminCost)
                 .Where(a => a.Year == year_search);
+
+            var datelist = Enumerable.Range(System.DateTime.Now.Year - 4, 10).ToList();
+            ViewBag.Year = new SelectList(datelist);
+            ViewBag.ReportTitle = "Report Year -  " + year_search;
+            ViewBag.yearselected = year_search;
 
             //calling main function
             beginingbalance(year_search);

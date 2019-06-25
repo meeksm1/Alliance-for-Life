@@ -50,13 +50,13 @@
                 @Html.ActionLink("Organization", "Index", new { sortOrder = ViewBag.NameSortParm })
             </th>
             <th>
-                Region&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            </th>
-            <th>
                 Month
             </th>
             <th>
                 Year
+            </th>
+            <th>
+                Region&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             </th>
             <th>
                 Transportation
@@ -107,75 +107,75 @@
 
         @foreach (var item in Model)
         {
-            <tr>
-                @if (!User.IsInRole("Admin"))
-                {
-                    <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.PSId })
-                    </td>
-                }
+        <tr>
+            @if (!User.IsInRole("Admin"))
+            {
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.PSId })
+                </td>
+            }
 
-                <td>
-                    @Html.ActionLink("Details", "Details", new { id = item.PSId })
-                </td>
-                <td>
-                    @item.Subcontractor.OrgName
-                </td>
-                <td>
-                    @item.Region.GetDisplayName()
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Month)
-                </td>
-                <td>
-                    @item.Year
-                </td>
-                <td>
-                    @item.PTranspotation.ToString("C")
-                </td>
-                <td>
-                    @item.PJobTrain.ToString("C")
-                </td>
-                <td>
-                    @item.PEducationAssistance.ToString("C")
-                </td>
-                <td>
-                    @item.PResidentialCare.ToString("C")
-                </td>
-                <td>
-                    @item.PUtilities.ToString("C")
-                </td>
-                <td>
-                    @item.PHousingEmergency.ToString("C")
-                </td>
-                <td>
-                    @item.PHousingAssistance.ToString("C")
-                </td>
-                <td>
-                    @item.PChildCare.ToString("C")
-                </td>
-                <td>
-                    @item.PClothing.ToString("C")
-                </td>
-                <td>
-                    @item.PFood.ToString("C")
-                </td>
-                <td>
-                    @item.PSupplies.ToString("C")
-                </td>
-                <td>
-                    @item.POther.ToString("C")
-                </td>
-                <td>
-                    @item.POther2.ToString("C")
-                </td>
-                <td>
-                    @item.POther3.ToString("C")
-                </td>
-                <td>
-                    @item.PTotals.ToString("C")
-                </td>
-            </tr>
+            <td>
+                @Html.ActionLink("Details", "Details", new { id = item.PSId })
+            </td>
+            <td>
+                @item.Subcontractor.OrgName
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Month)
+            </td>
+            <td>
+                @item.Year
+            </td>
+            <td>
+                @item.Region.GetDisplayName()
+            </td>
+            <td>
+                @item.PTranspotation.ToString("C")
+            </td>
+            <td>
+                @item.PJobTrain.ToString("C")
+            </td>
+            <td>
+                @item.PEducationAssistance.ToString("C")
+            </td>
+            <td>
+                @item.PResidentialCare.ToString("C")
+            </td>
+            <td>
+                @item.PUtilities.ToString("C")
+            </td>
+            <td>
+                @item.PHousingEmergency.ToString("C")
+            </td>
+            <td>
+                @item.PHousingAssistance.ToString("C")
+            </td>
+            <td>
+                @item.PChildCare.ToString("C")
+            </td>
+            <td>
+                @item.PClothing.ToString("C")
+            </td>
+            <td>
+                @item.PFood.ToString("C")
+            </td>
+            <td>
+                @item.PSupplies.ToString("C")
+            </td>
+            <td>
+                @item.POther.ToString("C")
+            </td>
+            <td>
+                @item.POther2.ToString("C")
+            </td>
+            <td>
+                @item.POther3.ToString("C")
+            </td>
+            <td>
+                @item.PTotals.ToString("C")
+            </td>
+        </tr>
         }
     </table>
 
