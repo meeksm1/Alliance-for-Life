@@ -28,7 +28,8 @@ namespace Alliance_for_Life.Controllers
             ViewBag.Year = new SelectList(datelist);
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.YearSortParm = sortOrder == "Year" ? "year_desc" : "Year";
-            ViewBag.RegionSortParm = sortOrder == "Region" ? "region_desc" : "Region";
+            ViewBag.Subcontractor = new SelectList(db.SubContractors, "SubcontractorId", "OrgName");
+
 
             //looking for the searchstring
             if (searchString != null)
