@@ -19,7 +19,19 @@ namespace Alliance_for_Life.Controllers
             int pageSize = Convert.ToInt16(pgSize);
             var datelist = Enumerable.Range(System.DateTime.Now.Year - 4, 10).ToList();
             ViewBag.Year = new SelectList(datelist);
-            ViewBag.SubcontractorId = new SelectList(db.SubContractors, "SubcontractorId", "OrgName");
+            var Subcontractors = db.SubContractors.ToList();
+
+            if (!User.IsInRole("Admin"))
+            {
+
+                var id = User.Identity.GetUserId();
+                var usersubid = db.Users.Find(id).SubcontractorId;
+
+                Subcontractors = db.SubContractors.Where(s => s.SubcontractorId == usersubid).ToList();
+            }
+
+
+            ViewBag.SubcontractorId = new SelectList(Subcontractors, "SubcontractorId", "OrgName");
             ViewBag.Month = new SelectList(Enum.GetValues(typeof(Months)));
             ViewBag.CurrentSort = sortOrder;
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
@@ -161,7 +173,7 @@ namespace Alliance_for_Life.Controllers
                 invoice.GrandTotal = invoice.DirectAdminCost + invoice.ParticipantServices;
 
                 //lessmanagementFee
- 
+
                 invoice.DepositAmount = invoice.GrandTotal - invoice.LessManagementFee;
 
                 //getting contractor Allocated amount
