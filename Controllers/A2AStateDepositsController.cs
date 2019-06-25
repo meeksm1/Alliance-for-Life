@@ -20,19 +20,33 @@ namespace Alliance_for_Life.Controllers
 
 
             var statedeposit = db.StateDeposit.ToList();
-            if (!String.IsNullOrEmpty(Year.ToString()))
+
+            var year_search = "";
+
+            if ((Year != null) && Year.ToString().Length > 1)
             {
-                statedeposit = db.StateDeposit.Where(a => a.Year == Year).ToList();
-
-
-            }
-            //if month is not null
-            if (!String.IsNullOrEmpty(Month.ToString()))
-            {
-                statedeposit = db.StateDeposit.Where(a => a.Month.ToString() == Month).ToList();
-
+                year_search = Year.ToString();
             }
 
+            if (!String.IsNullOrEmpty(Month) || !String.IsNullOrEmpty(Year.ToString()))
+            {
+                var yearSearch = (Year);
+
+                if (String.IsNullOrEmpty(Month))
+                {
+                    statedeposit = statedeposit.Where(r => r.Year == Year).ToList();
+                }
+                else if (String.IsNullOrEmpty(Year.ToString()))
+                {
+                    var regionSearch = Enum.Parse(typeof(Months), Month);
+                    statedeposit = statedeposit.Where(r => r.Month == (Months)regionSearch).ToList();
+                }
+                else
+                {
+                    var regionSearch = Enum.Parse(typeof(Months), Month);
+                    statedeposit = statedeposit.Where(r => r.Month == (Months)regionSearch && r.Year == Year).ToList();
+                }
+            }
             return View(statedeposit);
         }
 
