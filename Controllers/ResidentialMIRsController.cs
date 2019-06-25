@@ -52,7 +52,7 @@ namespace Alliance_for_Life.Controllers
                 nonresidental = nonresidental.Where(a => a.Year == Year);
             }
             //if month is not null
-            if (!String.IsNullOrEmpty(Month.ToString()))
+            if (!String.IsNullOrEmpty(Month))
             {
                 ressearch = ressearch.Where(a => a.Month.ToString() == Month);
 
