@@ -27,6 +27,9 @@
     <table id="dtBasicExample" class="table table-striped table-bordered table-sm" style="font-size:16px" cellspacing="0" width="100">
         <tr>
             <th>
+                Date Submitted
+            </th>
+            <th>
                 Month
             </th>
             <th>
@@ -41,6 +44,9 @@
         @foreach (var item in Model)
         {
             <tr>
+                <td>
+                    @item.SubmittedDate.ToShortDateString()
+                </td>
                 <td>
                     @item.Month
                 </td>
