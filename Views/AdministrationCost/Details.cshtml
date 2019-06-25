@@ -40,17 +40,6 @@
           @Model.Year
       </dd>
 
-      @if (!User.IsInRole("User"))
-      {
-          <dt>
-              AFL Billable
-          </dt>
-
-          <dd>
-              @Model.AflBillable.ToString("C")
-          </dd>
-      }
-
       <dt>
           Salaries and Wages
       </dt>
@@ -180,7 +169,7 @@
       </dd>
 
       <dt>
-         @Model.AOtherInput
+          @Model.AOtherInput
       </dt>
 
       <dd>

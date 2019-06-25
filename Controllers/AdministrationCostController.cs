@@ -174,6 +174,7 @@ namespace Alliance_for_Life.Controllers
                 {
                     adminCosts.AdminCostId = Guid.NewGuid();
                     adminCosts.SubmittedDate = System.DateTime.Now;
+                    adminCosts.AflBillable = 0;
                     adminCosts.Region = db.SubContractors.Where(A => A.SubcontractorId == adminCosts.SubcontractorId).FirstOrDefault().Region;
                     db.AdminCosts.Add(adminCosts);
                     db.SaveChanges();

@@ -181,7 +181,7 @@ namespace Alliance_for_Life.Controllers
                     .Where(s => s.SubcontractorId == invoice.SubcontractorId);
 
                 //calculating the rest
-                invoice.BalanceRemaining = allocatedbudget.FirstOrDefault().AllocatedNewBudget - allocatedbudget.FirstOrDefault().AllocatedOldBudget;
+                invoice.BalanceRemaining = allocatedbudget.FirstOrDefault().AllocatedOldBudget - allocatedbudget.FirstOrDefault().AllocatedNewBudget;
                 invoice.Region = subcontractorbalance.FirstOrDefault().Region;
                 invoice.BillingDate = DateTime.Parse(billingdate);
                 invoice.SubmittedDate = DateTime.Now;
@@ -244,7 +244,7 @@ namespace Alliance_for_Life.Controllers
 
 
             // calculating the rest
-            invoice.BalanceRemaining = allocatedbudget.FirstOrDefault().AllocatedNewBudget - allocatedbudget.FirstOrDefault().AllocatedOldBudget;
+            invoice.BalanceRemaining = allocatedbudget.FirstOrDefault().AllocatedOldBudget - allocatedbudget.FirstOrDefault().AllocatedNewBudget;
             invoice.OrgName = db.SubContractors.Find(invoice.SubcontractorId).OrgName;
             db.Entry(invoice).State = EntityState.Modified;
             db.SaveChanges();
