@@ -596,46 +596,165 @@
             <th class="th-sm">
                 Total $ Available:
             </th>
+            @if (@ViewBag.JulTot < 0)
+            {
+                <td style="color: red;">
+                    @ViewBag.JulTot.ToString("C")
+                </td>
+            }
+            else
+            {
+                <td>
+                    @ViewBag.JulTot.ToString("C")
+                </td>
+            }
 
-            <td>
-                @ViewBag.JulTot.ToString("C")
-            </td>
-            <td>
-                @ViewBag.AugTot.ToString("C")
-            </td>
-            <td>
-                @ViewBag.SepTot.ToString("C")
-            </td>
-            <td>
-                @ViewBag.OctTot.ToString("C")
-            </td>
-            <td>
-                @ViewBag.NovTot.ToString("C")
-            </td>
-            <td>
-                @ViewBag.DecTot.ToString("C")
-            </td>
-            <td>
-                @ViewBag.JanTot.ToString("C")
-            </td>
-            <td>
-                @ViewBag.FebTot.ToString("C")
-            </td>
-            <td>
-                @ViewBag.MarTot.ToString("C")
-            </td>
-            <td>
-                @ViewBag.AprTot.ToString("C")
-            </td>
-            <td>
-                @ViewBag.MayTot.ToString("C")
-            </td>
-            <td>
-                @ViewBag.JunTot.ToString("C")
-            </td>
-            <td style="background-color:#fedada">
-                @ViewBag.TotalCost.ToString("C")
-            </td>
+            @if (ViewBag.AugBeg < 0)
+            {
+                <td style="color: red;">
+                    @ViewBag.AugTot.ToString("C")
+                </td>
+            }
+            else
+            {
+                <td>
+                    @ViewBag.AugTot.ToString("C")
+                </td>
+            }
+
+            @if (ViewBag.SepTot < 0)
+            {
+                <td style="color: red;">
+                    @ViewBag.SepTot.ToString("C")
+                </td>
+            }
+            else
+            {
+                <td>
+                    @ViewBag.SepTot.ToString("C")
+                </td>
+            }
+
+            @if (ViewBag.OctTot < 0)
+            {
+                <td style="color: red;">
+                    @ViewBag.OctTot.ToString("C")
+                </td>
+            }
+            else
+            {
+                <td>
+                    @ViewBag.OctTot.ToString("C")
+                </td>
+            }
+
+            @if (ViewBag.NovTot < 0)
+            {
+                <td style="color: red;">
+                    @ViewBag.NovTot.ToString("C")
+                </td>
+            }
+            else
+            {
+                <td>
+                    @ViewBag.NovTot.ToString("C")
+                </td>
+            }
+
+            @if (ViewBag.DecTot < 0)
+            {
+                <td style="color: red;">
+                    @ViewBag.DecTot.ToString("C")
+                </td>
+            }
+            else
+            {
+                <td>
+                    @ViewBag.DecTot.ToString("C")
+                </td>
+            }
+
+            @if (ViewBag.JanTot < 0)
+            {
+                <td style="color: red;">
+                    @ViewBag.JanTot.ToString("C")
+                </td>
+            }
+            else
+            {
+                <td>
+                    @ViewBag.JanTot.ToString("C")
+                </td>
+            }
+
+            @if (ViewBag.FebTot < 0)
+            {
+                <td style="color: red;">
+                    @ViewBag.FebTot.ToString("C")
+                </td>
+            }
+            else
+            {
+                <td>
+                    @ViewBag.FebTot.ToString("C")
+                </td>
+            }
+
+            @if (ViewBag.MarTot < 0)
+            {
+                <td style="color: red;">
+                    @ViewBag.MarTot.ToString("C")
+                </td>
+            }
+            else
+            {
+                <td>
+                    @ViewBag.MarTot.ToString("C")
+                </td>
+            }
+
+            @if (ViewBag.AprTot < 0)
+            {
+                <td style="color: red;">
+                    @ViewBag.AprTot.ToString("C")
+                </td>
+            }
+            else
+            {
+                <td>
+                    @ViewBag.AprTot.ToString("C")
+                </td>
+            }
+
+            @if (ViewBag.MayTot < 0)
+            {
+                <td style="color: red;">
+                    @ViewBag.MayTot.ToString("C")
+                </td>
+            }
+            else
+            {
+                <td>
+                    @ViewBag.MayTot.ToString("C")
+                </td>
+            }
+
+            @if (ViewBag.JunTot < 0)
+            {
+                <td style="color: red;">
+                    @ViewBag.JunTot.ToString("C")
+                </td>
+            }
+            else
+            {
+                <td>
+                    @ViewBag.JunTot.ToString("C")
+                </td>
+            }
+
+                <td style="background-color:#fedada">
+                   @Math.Round(((ViewBag.JunTot) + (ViewBag.TotalCost)) - (Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.June).Sum(b => b.GrandTotal)) + (ViewBag.JunFee * .13)), 2).ToString("C")
+                </td>
         <tr />
         <tr style="font-size:13px; text-align:center;">
             <th class="th-sm">
@@ -685,46 +804,166 @@
             <th class="th-sm">
                 Remaining Balance:
             </th>
-            <td>
-                @ViewBag.JulRem.ToString("C")
-            </td>
-            <td>
-                @ViewBag.AugRem.ToString("C")
-            </td>
-            <td>
-                @ViewBag.SepRem.ToString("C")
-            </td>
-            <td>
-                @ViewBag.OctRem.ToString("C")
-            </td>
-            <td>
-                @ViewBag.NovRem.ToString("C")
-            </td>
-            <td>
-                @ViewBag.DecRem.ToString("C")
-            </td>
-            <td>
-                @ViewBag.JanRem.ToString("C")
-            </td>
-            <td>
-                @ViewBag.FebRem.ToString("C")
-            </td>
-            <td>
-                @ViewBag.MarRem.ToString("C")
-            </td>
-            <td>
-                @ViewBag.AprRem.ToString("C")
-            </td>
-            <td>
-                @ViewBag.MayRem.ToString("C")
-            </td>
-            <td>
-                @ViewBag.JunRem.ToString("C")
-            </td>
+            @if (@ViewBag.JulRem < 0)
+            {
+                <td style="color: red;">
+                    @ViewBag.JulRem.ToString("C")
+                </td>
+            }
+            else
+            {
+                <td>
+                    @ViewBag.JulRem.ToString("C")
+                </td>
+            }
+
+            @if (ViewBag.AugRem < 0)
+            {
+                <td style="color: red;">
+                    @ViewBag.AugRem.ToString("C")
+                </td>
+            }
+            else
+            {
+                <td>
+                    @ViewBag.AugRem.ToString("C")
+                </td>
+            }
+
+            @if (ViewBag.SepRem < 0)
+            {
+                <td style="color: red;">
+                    @ViewBag.SepRem.ToString("C")
+                </td>
+            }
+            else
+            {
+                <td>
+                    @ViewBag.SepRem.ToString("C")
+                </td>
+            }
+
+            @if (ViewBag.OctRem < 0)
+            {
+                <td style="color: red;">
+                    @ViewBag.OctRem.ToString("C")
+                </td>
+            }
+            else
+            {
+                <td>
+                    @ViewBag.OctRem.ToString("C")
+                </td>
+            }
+
+            @if (ViewBag.NovRem < 0)
+            {
+                <td style="color: red;">
+                    @ViewBag.NovRem.ToString("C")
+                </td>
+            }
+            else
+            {
+                <td>
+                    @ViewBag.NovRem.ToString("C")
+                </td>
+            }
+
+            @if (ViewBag.DecRem < 0)
+            {
+                <td style="color: red;">
+                    @ViewBag.DecRem.ToString("C")
+                </td>
+            }
+            else
+            {
+                <td>
+                    @ViewBag.DecRem.ToString("C")
+                </td>
+            }
+
+            @if (ViewBag.JanRem < 0)
+            {
+                <td style="color: red;">
+                    @ViewBag.JanRem.ToString("C")
+                </td>
+            }
+            else
+            {
+                <td>
+                    @ViewBag.JanRem.ToString("C")
+                </td>
+            }
+
+            @if (ViewBag.FebRem < 0)
+            {
+                <td style="color: red;">
+                    @ViewBag.FebRem.ToString("C")
+                </td>
+            }
+            else
+            {
+                <td>
+                    @ViewBag.FebRem.ToString("C")
+                </td>
+            }
+
+            @if (ViewBag.MarRem < 0)
+            {
+                <td style="color: red;">
+                    @ViewBag.MarRem.ToString("C")
+                </td>
+            }
+            else
+            {
+                <td>
+                    @ViewBag.MarRem.ToString("C")
+                </td>
+            }
+
+            @if (ViewBag.AprRem < 0)
+            {
+                <td style="color: red;">
+                    @ViewBag.AprRem.ToString("C")
+                </td>
+            }
+            else
+            {
+                <td>
+                    @ViewBag.AprRem.ToString("C")
+                </td>
+            }
+
+            @if (ViewBag.MayRem < 0)
+            {
+                <td style="color: red;">
+                    @ViewBag.MayRem.ToString("C")
+                </td>
+            }
+            else
+            {
+                <td>
+                    @ViewBag.MayRem.ToString("C")
+                </td>
+            }
+
+            @if (ViewBag.JunRem < 0)
+            {
+                <td style="color: red;">
+                    @ViewBag.JunRem.ToString("C")
+                </td>
+            }
+            else
+            {
+                <td>
+                    @ViewBag.JunRem.ToString("C")
+                </td>
+            }
+           
             <td style="background-color:#fedada">
                 @Math.Round((ViewBag.TotalCost) - (Model.Sum(a => a.Invoice.Sum(c => c.GrandTotal)) + (ViewBag.TotalFee * 0.13)), 2).ToString("C")
             </td>
-        <tr />
+<tr />
 </table>
 
 <table id="dtBasicExample" class="table table-striped table-bordered table-sm" style="font-size:16px" cellspacing="0" width="100">
