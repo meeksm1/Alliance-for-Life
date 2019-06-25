@@ -170,9 +170,9 @@ namespace Alliance_for_Life.Controllers
                 //    adminSearch = adminSearch.Where(a => a.Subcontractor.SubcontractorId == searchString);
                 //}
 
-                    participationServices = participationServices.Where(a => a.Subcontractor.SubcontractorId == searchString);
-                    adminSearch = adminSearch.Where(a => a.Subcontractor.SubcontractorId == searchString);
-                
+                participationServices = participationServices.Where(a => a.Subcontractor.SubcontractorId == searchString);
+                adminSearch = adminSearch.Where(a => a.Subcontractor.SubcontractorId == searchString);
+
 
             }
 
@@ -275,6 +275,8 @@ namespace Alliance_for_Life.Controllers
                     participationService.PSId = Guid.NewGuid();
                     participationService.SubmittedDate = DateTime.Now;
                     db.ParticipationServices.Add(participationService);
+                    participationService.Region = db.SubContractors.Where(A => A.SubcontractorId == participationService.SubcontractorId).FirstOrDefault().Region;
+
                     db.SaveChanges();
                     return RedirectToAction("Index");
                 }

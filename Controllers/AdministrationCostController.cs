@@ -174,6 +174,7 @@ namespace Alliance_for_Life.Controllers
                 {
                     adminCosts.AdminCostId = Guid.NewGuid();
                     adminCosts.SubmittedDate = System.DateTime.Now;
+                    adminCosts.Region = db.SubContractors.Where(A => A.SubcontractorId == adminCosts.SubcontractorId).FirstOrDefault().Region;
                     db.AdminCosts.Add(adminCosts);
                     db.SaveChanges();
                     return RedirectToAction("Index");
@@ -203,7 +204,7 @@ namespace Alliance_for_Life.Controllers
             var datelist = Enumerable.Range(System.DateTime.Now.Year - 4, 10).ToList();
             ViewBag.Year = new SelectList(datelist);
             ViewBag.SubcontractorId = new SelectList(db.SubContractors.Where(a => a.SubcontractorId == adminCosts.SubcontractorId), "SubcontractorId", "OrgName");
-            
+
             return View(adminCosts);
         }
 
