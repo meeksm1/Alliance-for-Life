@@ -12,9 +12,28 @@ namespace Alliance_for_Life.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: A2AStateDeposits
-        public ActionResult Index()
+        public ActionResult Index(int? Year, string Month)
         {
-            return View(db.StateDeposit.ToList());
+            var datelist = Enumerable.Range(System.DateTime.Now.Year - 4, 10).ToList();
+            ViewBag.Year = new SelectList(datelist);
+            ViewBag.Month = new SelectList(Enum.GetValues(typeof(Months)).Cast<Months>());
+
+
+            var statedeposit = db.StateDeposit.ToList();
+            if (!String.IsNullOrEmpty(Year.ToString()))
+            {
+                statedeposit = db.StateDeposit.Where(a => a.Year == Year).ToList();
+
+
+            }
+            //if month is not null
+            if (!String.IsNullOrEmpty(Month.ToString()))
+            {
+                statedeposit = db.StateDeposit.Where(a => a.Month.ToString() == Month).ToList();
+
+            }
+
+            return View(statedeposit);
         }
 
         // GET: A2AStateDeposits/Details/5

@@ -18,7 +18,7 @@ namespace Alliance_for_Life.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: AdministrationCost
-        public ActionResult Index(string sortOrder, Guid? searchString, Enum Month, string Year, string currentFilter, int? page, string pgSize)
+        public ActionResult Index(string sortOrder, Guid? searchString, string Month, string Year, string currentFilter, int? page, string pgSize)
         {
             int pageSize = Convert.ToInt16(pgSize);
 
@@ -69,23 +69,23 @@ namespace Alliance_for_Life.Controllers
                 year_search = (Year);
             }
 
-            if (!String.IsNullOrEmpty(searchString.ToString()) || !String.IsNullOrEmpty(Year)/* || !String.IsNullOrEmpty(Month.ToString())*/)
+            if (!String.IsNullOrEmpty(searchString.ToString()) || !String.IsNullOrEmpty(Year) || !String.IsNullOrEmpty(Month))
             {
                 var yearSearch = (Year);
 
-                if (String.IsNullOrEmpty(searchString.ToString()))
+                if (!String.IsNullOrEmpty(searchString.ToString()))
                 {
-                    adminSearch = adminSearch.Where(r => r.Year.ToString() == Year).OrderBy(r => r.Month);
+                    adminSearch = adminSearch.Where(r => r.SubcontractorId == searchString).OrderBy(r => r.Month).OrderBy(a => a.Year);
                 }
-                else if (String.IsNullOrEmpty(Year.ToString()))
+                else if (!String.IsNullOrEmpty(Year))
                 {
-                    var monthSearch = Enum.Parse(typeof(Months), Month.ToString());
-                    adminSearch = adminSearch.Where(r => r.Month == (Months)monthSearch).OrderBy(r => r.Month);
+
+                    adminSearch = adminSearch.Where(r => r.Year.ToString() == Year).OrderBy(r => r.Month).OrderBy(a => a.Year);
                 }
-                else
+                else if (!String.IsNullOrEmpty(Month))
                 {
-                    var monthSearch = Enum.Parse(typeof(Months), Month.ToString());
-                    adminSearch = adminSearch.Where(r => r.Month == (Months)monthSearch && r.Year.ToString() == Year).OrderBy(r => r.Month);
+
+                    adminSearch = adminSearch.Where(r => r.Month.ToString() == Month && r.Year.ToString() == Year).OrderBy(r => r.Month).OrderBy(a => a.Year);
                 }
             }
 

@@ -127,11 +127,13 @@ namespace Alliance_for_Life.Controllers
         // GET: BudgetReports
         public ActionResult Index()
         {
+
             return View(db.SubContractors.ToList());
         }
 
-        public ActionResult Reports(string sortOrder, string searchString, int? yearsearch, string currentFilter, int? page, string pgSize)
+        public ActionResult Reports(string sortOrder, Guid? searchString, int? yearsearch, string currentFilter, int? page, string pgSize)
         {
+            ViewBag.Subcontractor = new SelectList(db.SubContractors, "SubcontractorId", "OrgName");
             int pageSize = Convert.ToInt16(pgSize);
 
             if (searchString != null)
@@ -140,7 +142,7 @@ namespace Alliance_for_Life.Controllers
             }
             else
             {
-                searchString = currentFilter;
+                currentFilter = searchString.ToString();
             }
 
             var subcontractors = from s in db.SubContractors
@@ -154,6 +156,12 @@ namespace Alliance_for_Life.Controllers
                                      Active = s.Active,
                                      SubmittedDate = DateTime.Now
                                  };
+
+            if (!String.IsNullOrEmpty(searchString.ToString()))
+            {
+                subcontractors = subcontractors.Where(a => a.SubcontractorId == searchString);
+
+            }
 
             if (pageSize < 1)
             {

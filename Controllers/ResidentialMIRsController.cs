@@ -17,11 +17,13 @@ namespace Alliance_for_Life.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: ResidentialMIRs
-        public ActionResult Index(string sortOrder, Guid? searchString, string currentFilter, int? page, string pgSize)
+        public ActionResult Index(string sortOrder, int? Year, string Month, Guid? searchString, string currentFilter, int? page, string pgSize)
         {
 
             int pageSize = Convert.ToInt16(pgSize);
-
+            var datelist = Enumerable.Range(System.DateTime.Now.Year - 4, 10).ToList();
+            ViewBag.Year = new SelectList(datelist);
+            ViewBag.Month = new SelectList(Enum.GetValues(typeof(Months)).Cast<Months>());
             ViewBag.CurrentSort = sortOrder;
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
@@ -42,6 +44,21 @@ namespace Alliance_for_Life.Controllers
 
             var nonresidental = db.NonResidentialMIRs.Include(n => n.Subcontractor);
 
+            //if year is not null
+            if (Year != null)
+            {
+                ressearch = ressearch.Where(a => a.Year == Year);
+
+                nonresidental = nonresidental.Where(a => a.Year == Year);
+            }
+            //if month is not null
+            if (!String.IsNullOrEmpty(Month.ToString()))
+            {
+                ressearch = ressearch.Where(a => a.Month.ToString() == Month);
+
+                nonresidental = nonresidental.Where(a => a.Month.ToString() == Month);
+            }
+
             if (!User.IsInRole("Admin"))
             {
                 var organization = "";
@@ -59,7 +76,7 @@ namespace Alliance_for_Life.Controllers
                                 select t;
                 ViewBag.Subcontractor = organization;
             }
-            
+
 
             if (!String.IsNullOrEmpty(searchString.ToString()))
             {
