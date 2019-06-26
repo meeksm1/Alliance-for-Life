@@ -13,6 +13,21 @@
     {
         <h2>@ViewBag.Title's for @ViewBag.Subcontractor</h2>
         <br />
+        <form>
+            @using (Html.BeginForm(FormMethod.Post))
+            {
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-xs-5th-1 col-sm-3" style="align-content:center;">
+                            Search By Year: @Html.DropDownList("Year", null, "Select Year", htmlAttributes: new { @class = "form-control", onchange = "this.form.submit()" })
+                        </div>
+                        <div class="col-xs-5th-1 col-sm-3" style="align-content:center;">
+                            Search By Month: @Html.DropDownList("Month", null, "Select Month", htmlAttributes: new { @class = "form-control", onchange = "this.form.submit()" })
+                        </div>
+                    </div>
+                </div>
+            }
+        </form>
     }
     else
     {
@@ -29,7 +44,7 @@
                             Search By Year: @Html.DropDownList("Year", null, "Select Year", htmlAttributes: new { @class = "form-control", onchange = "this.form.submit()" })
                         </div>
                         <div class="col-xs-5th-1 col-sm-3" style="align-content:center;">
-                            Search By Month: @Html.DropDownList("Month", null,"Select Month", htmlAttributes: new { @class = "form-control", onchange = "this.form.submit()" })
+                            Search By Month: @Html.DropDownList("Month", null, "Select Month", htmlAttributes: new { @class = "form-control", onchange = "this.form.submit()" })
                         </div>
                     </div>
                 </div>

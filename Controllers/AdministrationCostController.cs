@@ -74,36 +74,44 @@ namespace Alliance_for_Life.Controllers
                 var yearSearch = (Year);
 
                 // if fields Month and Year are empty
-                if (!String.IsNullOrEmpty(searchString.ToString()))
+                if (String.IsNullOrEmpty(Month) && String.IsNullOrEmpty(Year.ToString()))
                 {
                     adminSearch = adminSearch.Where(r => r.Subcontractor.SubcontractorId == searchString);
-                }                
-                else if (String.IsNullOrEmpty(Year.ToString()))
+                }   
+                // if fields Year and Org are empty
+                else if(String.IsNullOrEmpty(Year.ToString()) && String.IsNullOrEmpty(searchString.ToString()))
                 {
                     var regionSearch = Enum.Parse(typeof(Months), Month);
-                    adminSearch = adminSearch.Where(r => r.Month == (Months)regionSearch && r.Subcontractor.SubcontractorId == searchString);
+                    adminSearch = adminSearch.Where(r => r.Month == (Months)regionSearch);
                 }
-                // if 1 field is empty
+                // if fields Org and Month are empty
+                else if (String.IsNullOrEmpty(searchString.ToString()) && String.IsNullOrEmpty(Month))
+                {
+                    adminSearch = adminSearch.Where(r => r.Year == yearSearch);
+                }
+
+                // if Month field is empty
                 else if (String.IsNullOrEmpty(Month))
                 {
                     adminSearch = adminSearch.Where(r => r.Year == yearSearch && r.Subcontractor.SubcontractorId == searchString);
                 }
+                //if Year is empty
                 else if (String.IsNullOrEmpty(Year.ToString()))
                 {
                     var regionSearch = Enum.Parse(typeof(Months), Month);
                     adminSearch = adminSearch.Where(r => r.Month == (Months)regionSearch && r.Subcontractor.SubcontractorId == searchString);
                 }
+                // if Org is empty
                 else if (String.IsNullOrEmpty(searchString.ToString()))
                 {
                     var regionSearch = Enum.Parse(typeof(Months), Month);
                     adminSearch = adminSearch.Where(r => r.Month == (Months)regionSearch && r.Year == yearSearch);
                 }
+                // if none are empty
                 else
                 {
                     var regionSearch = Enum.Parse(typeof(Months), Month);
-                    adminSearch = adminSearch.Where(r => r.Month == (Months)regionSearch 
-                                                    && r.Year == yearSearch
-                                                    && r.Subcontractor.SubcontractorId == searchString);
+                    adminSearch = adminSearch.Where(r => r.Month == (Months)regionSearch && r.Year == yearSearch && r.Subcontractor.SubcontractorId == searchString);
                 }
             }
 

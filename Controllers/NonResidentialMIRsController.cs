@@ -183,7 +183,7 @@ namespace Alliance_for_Life.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,SubcontractorId,TotBedNights,TotA2AEnrollment,TotOverallServed,TotA2ABedNights,SubmittedDate,MA2Apercent,ClientsJobEduServ,ParticipatingFathers,TotEduClasses,TotClientsinEduClasses,TotCaseHrs,TotClientsCaseHrs,TotOtherClasses,Year,Month")] NonResidentialMIR nonResidentialMIR)
+        public ActionResult Edit([Bind(Include = "Id,SubcontractorId,TotBedNights,TotA2AEnrollment,TotOverallServed,TotA2ABedNights,SubmittedDate,MA2Apercent,ClientsJobEduServ,ParticipatingFathers,TotEduClasses,TotClientsinEduClasses,TotCaseHrs,TotClientsCaseHrs,TotOtherClasses,Year,Months")] NonResidentialMIR nonResidentialMIR)
         {
             if (ModelState.IsValid)
             {

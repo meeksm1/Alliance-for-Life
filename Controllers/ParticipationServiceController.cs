@@ -18,14 +18,18 @@ namespace Alliance_for_Life.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: ParticipationCost
-        public ActionResult Index(string sortOrder, Guid? searchString, string currentFilter, int? page, string pgSize)
+        public ActionResult Index(string sortOrder, Guid? searchString, string Month, int? Year, string currentFilter, int? page, string pgSize)
         {
 
             int pageSize = Convert.ToInt16(pgSize);
 
+            ViewBag.CurrentSort = sortOrder;
+            var datelist = Enumerable.Range(System.DateTime.Now.Year - 4, 10).ToList();
+            ViewBag.Year = new SelectList(datelist);
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
-            ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
+            ViewBag.YearSortParm = sortOrder == "Year" ? "year_desc" : "Year";
             ViewBag.Subcontractor = new SelectList(db.SubContractors, "SubcontractorId", "OrgName");
+            ViewBag.Month = new SelectList(Enum.GetValues(typeof(Months)).Cast<Months>());
 
             //looking for the searchstring
             if (searchString != null)
@@ -64,10 +68,50 @@ namespace Alliance_for_Life.Controllers
                 ViewBag.Subcontractor = organization;
             }
 
-            if (!String.IsNullOrEmpty(searchString.ToString()))
+            if (!String.IsNullOrEmpty(Month) || !String.IsNullOrEmpty(Year.ToString()) || !String.IsNullOrEmpty(searchString.ToString()))
             {
-                participationServices = participationServices.Where(a => a.Subcontractor.SubcontractorId == searchString);
-                adminSearch = adminSearch.Where(a => a.Subcontractor.SubcontractorId == searchString);
+                var yearSearch = (Year);
+
+                // if fields Month and Year are empty
+                if (String.IsNullOrEmpty(Month) && String.IsNullOrEmpty(Year.ToString()))
+                {
+                    participationServices = participationServices.Where(r => r.Subcontractor.SubcontractorId == searchString);
+                }
+                // if fields Year and Org are empty
+                else if (String.IsNullOrEmpty(Year.ToString()) && String.IsNullOrEmpty(searchString.ToString()))
+                {
+                    var regionSearch = Enum.Parse(typeof(Months), Month);
+                    participationServices = participationServices.Where(r => r.Month == (Months)regionSearch);
+                }
+                // if fields Org and Month are empty
+                else if (String.IsNullOrEmpty(searchString.ToString()) && String.IsNullOrEmpty(Month))
+                {
+                    participationServices = participationServices.Where(r => r.Year == yearSearch);
+                }
+
+                // if Month field is empty
+                else if (String.IsNullOrEmpty(Month))
+                {
+                    participationServices = participationServices.Where(r => r.Year == yearSearch && r.Subcontractor.SubcontractorId == searchString);
+                }
+                //if Year is empty
+                else if (String.IsNullOrEmpty(Year.ToString()))
+                {
+                    var regionSearch = Enum.Parse(typeof(Months), Month);
+                    participationServices = participationServices.Where(r => r.Month == (Months)regionSearch && r.Subcontractor.SubcontractorId == searchString);
+                }
+                // if Org is empty
+                else if (String.IsNullOrEmpty(searchString.ToString()))
+                {
+                    var regionSearch = Enum.Parse(typeof(Months), Month);
+                    participationServices = participationServices.Where(r => r.Month == (Months)regionSearch && r.Year == yearSearch);
+                }
+                // if none are empty
+                else
+                {
+                    var regionSearch = Enum.Parse(typeof(Months), Month);
+                    participationServices = participationServices.Where(r => r.Month == (Months)regionSearch && r.Year == yearSearch && r.Subcontractor.SubcontractorId == searchString);
+                }
             }
 
             switch (sortOrder)
@@ -101,16 +145,17 @@ namespace Alliance_for_Life.Controllers
             return View(participationServices.ToPagedList(pageNumber, pageSize));
         }
 
-        public ActionResult TotalCostReport(string sortOrder, Guid? searchString, string Month, string Year, string currentFilter, int? page, string pgSize)
+        public ActionResult TotalCostReport(string sortOrder, Guid? searchString, string Month, int? Year, string currentFilter, int? page, string pgSize)
         {
-            ViewBag.CurrentSort = sortOrder;
             int pageSize = Convert.ToInt16(pgSize);
+
+            ViewBag.CurrentSort = sortOrder;
             var datelist = Enumerable.Range(System.DateTime.Now.Year - 4, 10).ToList();
             ViewBag.Year = new SelectList(datelist);
-            ViewBag.Month = new SelectList(Enum.GetValues(typeof(Months)).Cast<Months>());
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
-            ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
+            ViewBag.YearSortParm = sortOrder == "Year" ? "year_desc" : "Year";
             ViewBag.Subcontractor = new SelectList(db.SubContractors, "SubcontractorId", "OrgName");
+            ViewBag.Month = new SelectList(Enum.GetValues(typeof(Months)).Cast<Months>());
 
             //looking for the searchstring
             if (searchString != null)
@@ -124,9 +169,9 @@ namespace Alliance_for_Life.Controllers
 
             var year_search = "";
 
-            if ((Year != null) && Year.Length > 1)
+            if ((Year != null) && Year.ToString().Length > 1)
             {
-                year_search = (Year);
+                year_search = (Year.ToString());
             }
 
             ViewBag.CurrentFilter = searchString;
@@ -155,48 +200,58 @@ namespace Alliance_for_Life.Controllers
 
                 ViewBag.Subcontractor = organization;
             }
-            //if year is not null
-            if (Year != null)
+            if (!String.IsNullOrEmpty(Month) || !String.IsNullOrEmpty(Year.ToString()) || !String.IsNullOrEmpty(searchString.ToString()))
             {
-                participationServices = participationServices.Where(a => a.Year.ToString() == Year);
+                var yearSearch = (Year);
 
-                adminSearch = adminSearch.Where(a => a.Year.ToString() == Year);
+                // if fields Month and Year are empty
+                if (String.IsNullOrEmpty(Month) && String.IsNullOrEmpty(Year.ToString()))
+                {
+                    adminSearch = adminSearch.Where(r => r.Subcontractor.SubcontractorId == searchString);
+                    participationServices = participationServices.Where(r => r.Subcontractor.SubcontractorId == searchString);
+                }
+                // if fields Year and Org are empty
+                else if (String.IsNullOrEmpty(Year.ToString()) && String.IsNullOrEmpty(searchString.ToString()))
+                {
+                    var regionSearch = Enum.Parse(typeof(Months), Month);
+                    adminSearch = adminSearch.Where(r => r.Month == (Months)regionSearch);
+                    participationServices = participationServices.Where(r => r.Month == (Months)regionSearch);
+                }
+                // if fields Org and Month are empty
+                else if (String.IsNullOrEmpty(searchString.ToString()) && String.IsNullOrEmpty(Month))
+                {
+                    adminSearch = adminSearch.Where(r => r.Year == yearSearch);
+                    participationServices = participationServices.Where(r => r.Year == yearSearch);
+                }
+
+                // if Month field is empty
+                else if (String.IsNullOrEmpty(Month))
+                {
+                    adminSearch = adminSearch.Where(r => r.Year == yearSearch && r.Subcontractor.SubcontractorId == searchString);
+                    participationServices = participationServices.Where(r => r.Year == yearSearch && r.Subcontractor.SubcontractorId == searchString);
+                }
+                //if Year is empty
+                else if (String.IsNullOrEmpty(Year.ToString()))
+                {
+                    var regionSearch = Enum.Parse(typeof(Months), Month);
+                    adminSearch = adminSearch.Where(r => r.Month == (Months)regionSearch && r.Subcontractor.SubcontractorId == searchString);
+                    participationServices = participationServices.Where(r => r.Month == (Months)regionSearch && r.Subcontractor.SubcontractorId == searchString);
+                }
+                // if Org is empty
+                else if (String.IsNullOrEmpty(searchString.ToString()))
+                {
+                    var regionSearch = Enum.Parse(typeof(Months), Month);
+                    adminSearch = adminSearch.Where(r => r.Month == (Months)regionSearch && r.Year == yearSearch);
+                    participationServices = participationServices.Where(r => r.Month == (Months)regionSearch && r.Year == yearSearch);
+                }
+                // if none are empty
+                else
+                {
+                    var regionSearch = Enum.Parse(typeof(Months), Month);
+                    adminSearch = adminSearch.Where(r => r.Month == (Months)regionSearch && r.Year == yearSearch && r.Subcontractor.SubcontractorId == searchString);
+                    participationServices = participationServices.Where(r => r.Month == (Months)regionSearch && r.Year == yearSearch && r.Subcontractor.SubcontractorId == searchString);
+                }
             }
-            //if month is not null
-            if (!String.IsNullOrEmpty(Month))
-            {
-                participationServices = participationServices.Where(a => a.Month.ToString() == Month);
-
-                adminSearch = adminSearch.Where(a => a.Month.ToString() == Month);
-            }
-
-            if (!String.IsNullOrEmpty(searchString.ToString()))
-            {
-                participationServices = participationServices.Where(a => a.Subcontractor.SubcontractorId == searchString);
-
-                adminSearch = adminSearch.Where(a => a.Subcontractor.SubcontractorId == searchString);
-            }
-
-            //if (!String.IsNullOrEmpty(searchString.ToString()) || !String.IsNullOrEmpty(Year))
-            //{
-            //    var yearSearch = (Year);
-
-            //    if (String.IsNullOrEmpty(searchString.ToString()))
-            //    {
-            //        participationServices = participationServices.Where(r => r.Year.ToString() == Year);
-            //        adminSearch = adminSearch.Where(r => r.Year.ToString() == Year);
-            //    }
-            //    else if (String.IsNullOrEmpty(Year.ToString()))
-            //    {
-            //        participationServices = participationServices.Where(a => a.Subcontractor.SubcontractorId == searchString);
-            //        adminSearch = adminSearch.Where(a => a.Subcontractor.SubcontractorId == searchString);
-            //    }
-
-            //    participationServices = participationServices.Where(a => a.Subcontractor.SubcontractorId == searchString);
-            //    adminSearch = adminSearch.Where(a => a.Subcontractor.SubcontractorId == searchString);
-
-
-            //}
 
             switch (sortOrder)
             {
@@ -223,9 +278,9 @@ namespace Alliance_for_Life.Controllers
                 pageSize = 10;
             }
 
-            ViewBag.AdminCost = adminSearch.ToList();
-            ViewBag.Admintotal = adminSearch.Sum(a => a.ATotCosts);
 
+            ViewBag.AdminCost = adminSearch.ToList();
+            ViewBag.AdminTotal = Math.Round(adminSearch.Select(a => a.ATotCosts).DefaultIfEmpty(0).Sum(), 2);
             int pageNumber = (page ?? 1);
             return View(participationServices.ToPagedList(pageNumber, pageSize));
         }
