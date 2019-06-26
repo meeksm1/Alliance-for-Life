@@ -19,9 +19,10 @@ namespace Alliance_for_Life.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Surveys
-        public ActionResult Index(string sortOrder, Guid? searchString, string currentFilter, int? page, string pgSize)
+        public ActionResult Index(string sortOrder, Guid? searchString, string Month, string currentFilter, int? page, string pgSize)
         {
             int pageSize = Convert.ToInt16(pgSize);
+            ViewBag.Month = new SelectList(Enum.GetValues(typeof(Months)).Cast<Months>());
 
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
@@ -50,9 +51,24 @@ namespace Alliance_for_Life.Controllers
                           where usersubid == s.SubcontractorId
                           select s;
             }
-            if (!String.IsNullOrEmpty(searchString.ToString()))
+
+            if (!String.IsNullOrEmpty(Month) || !String.IsNullOrEmpty(searchString.ToString()))
             {
-                surveys = surveys.Where(a => a.Subcontractors.SubcontractorId == searchString);
+
+                if (String.IsNullOrEmpty(Month))
+                {
+                    surveys = surveys.Where(a => a.Subcontractors.SubcontractorId == searchString);
+                }
+                else if (String.IsNullOrEmpty(searchString.ToString()))
+                {
+                    var regionSearch = Enum.Parse(typeof(Months), Month);
+                    surveys = surveys.Where(r => r.Month == (Months)regionSearch);
+                }
+                else
+                {
+                    var regionSearch = Enum.Parse(typeof(Months), Month);
+                    surveys = surveys.Where(r => r.Month == (Months)regionSearch && r.Subcontractors.SubcontractorId == searchString);
+                }
             }
 
             switch (sortOrder)

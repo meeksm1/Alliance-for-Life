@@ -134,7 +134,7 @@ namespace Alliance_for_Life.Controllers
                 var dataexist = from s in db.NonResidentialMIRs
                                 where s.SubcontractorId == nonResidentialMIR.SubcontractorId &&
                                 s.Year == nonResidentialMIR.Year &&
-                                s.Month == nonResidentialMIR.Month
+                                s.Months == nonResidentialMIR.Months
                                 select s;
                 if (dataexist.Count() >= 1)
                 {
@@ -252,7 +252,7 @@ namespace Alliance_for_Life.Controllers
                              Id = res.Id,
                              SubmittedDate = res.SubmittedDate,
                              OrgName = s.OrgName,
-                             Month = res.Month.ToString(),
+                             Month = res.Months.ToString(),
                              YearName = res.Year,
                              TotA2AEnrollment = res.TotA2AEnrollment,
                              MA2Apercent = res.MA2Apercent,
@@ -298,7 +298,7 @@ namespace Alliance_for_Life.Controllers
                              Id = res.Id,
                              SubmittedDate = res.SubmittedDate,
                              OrgName = s.OrgName,
-                             Month = res.Month.ToString(),
+                             Month = res.Months.ToString(),
                              YearName = res.Year,
                              TotA2AEnrollment = res.TotA2AEnrollment,
                              MA2Apercent = res.MA2Apercent,

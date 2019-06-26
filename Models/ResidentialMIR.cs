@@ -41,9 +41,6 @@ namespace Alliance_for_Life.Models
 
         public double TotOverallServed { get; set; }
 
-        public Guid NonResidentialId { get; set; }
-
-
 
         /*Navigation Properties*/
         public Months? Month { get; set; }

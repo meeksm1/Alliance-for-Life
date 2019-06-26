@@ -275,6 +275,14 @@
     <Compile Include="Migrations\201906241635438_AddedOtherInputs.Designer.cs">
       <DependentUpon>201906241635438_AddedOtherInputs.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201906261345571_removedNonResProp.cs" />
+    <Compile Include="Migrations\201906261345571_removedNonResProp.Designer.cs">
+      <DependentUpon>201906261345571_removedNonResProp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906261433544_NONRMIupdatedmonth.cs" />
+    <Compile Include="Migrations\201906261433544_NONRMIupdatedmonth.Designer.cs">
+      <DependentUpon>201906261433544_NONRMIupdatedmonth.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\A2AAllocatedBudget.cs" />
     <Compile Include="Models\A2AStateDeposits.cs" />
@@ -824,6 +832,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201906241635438_AddedOtherInputs.resx">
       <DependentUpon>201906241635438_AddedOtherInputs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906261345571_removedNonResProp.resx">
+      <DependentUpon>201906261345571_removedNonResProp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906261433544_NONRMIupdatedmonth.resx">
+      <DependentUpon>201906261433544_NONRMIupdatedmonth.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

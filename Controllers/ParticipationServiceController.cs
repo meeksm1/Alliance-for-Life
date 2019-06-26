@@ -101,12 +101,13 @@ namespace Alliance_for_Life.Controllers
             return View(participationServices.ToPagedList(pageNumber, pageSize));
         }
 
-        public ActionResult TotalCostReport(string sortOrder, Guid? searchString, string Year, string currentFilter, int? page, string pgSize)
+        public ActionResult TotalCostReport(string sortOrder, Guid? searchString, string Month, string Year, string currentFilter, int? page, string pgSize)
         {
             ViewBag.CurrentSort = sortOrder;
             int pageSize = Convert.ToInt16(pgSize);
             var datelist = Enumerable.Range(System.DateTime.Now.Year - 4, 10).ToList();
             ViewBag.Year = new SelectList(datelist);
+            ViewBag.Month = new SelectList(Enum.GetValues(typeof(Months)).Cast<Months>());
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
             ViewBag.Subcontractor = new SelectList(db.SubContractors, "SubcontractorId", "OrgName");
@@ -154,27 +155,48 @@ namespace Alliance_for_Life.Controllers
 
                 ViewBag.Subcontractor = organization;
             }
-
-            if (!String.IsNullOrEmpty(searchString.ToString()) /*|| !String.IsNullOrEmpty(Year)*/)
+            //if year is not null
+            if (Year != null)
             {
-                //var yearSearch = (Year);
+                participationServices = participationServices.Where(a => a.Year.ToString() == Year);
 
-                //if(String.IsNullOrEmpty(searchString.ToString()))
-                //{
-                //    participationServices = participationServices.Where(r => r.Year.ToString() == Year);
-                //    adminSearch = adminSearch.Where(r => r.Year.ToString() == Year);
-                //}
-                //else if(String.IsNullOrEmpty(Year.ToString()))
-                //{
-                //    participationServices = participationServices.Where(a => a.Subcontractor.SubcontractorId == searchString);
-                //    adminSearch = adminSearch.Where(a => a.Subcontractor.SubcontractorId == searchString);
-                //}
-
-                participationServices = participationServices.Where(a => a.Subcontractor.SubcontractorId == searchString);
-                adminSearch = adminSearch.Where(a => a.Subcontractor.SubcontractorId == searchString);
-
-
+                adminSearch = adminSearch.Where(a => a.Year.ToString() == Year);
             }
+            //if month is not null
+            if (!String.IsNullOrEmpty(Month))
+            {
+                participationServices = participationServices.Where(a => a.Month.ToString() == Month);
+
+                adminSearch = adminSearch.Where(a => a.Month.ToString() == Month);
+            }
+
+            if (!String.IsNullOrEmpty(searchString.ToString()))
+            {
+                participationServices = participationServices.Where(a => a.Subcontractor.SubcontractorId == searchString);
+
+                adminSearch = adminSearch.Where(a => a.Subcontractor.SubcontractorId == searchString);
+            }
+
+            //if (!String.IsNullOrEmpty(searchString.ToString()) || !String.IsNullOrEmpty(Year))
+            //{
+            //    var yearSearch = (Year);
+
+            //    if (String.IsNullOrEmpty(searchString.ToString()))
+            //    {
+            //        participationServices = participationServices.Where(r => r.Year.ToString() == Year);
+            //        adminSearch = adminSearch.Where(r => r.Year.ToString() == Year);
+            //    }
+            //    else if (String.IsNullOrEmpty(Year.ToString()))
+            //    {
+            //        participationServices = participationServices.Where(a => a.Subcontractor.SubcontractorId == searchString);
+            //        adminSearch = adminSearch.Where(a => a.Subcontractor.SubcontractorId == searchString);
+            //    }
+
+            //    participationServices = participationServices.Where(a => a.Subcontractor.SubcontractorId == searchString);
+            //    adminSearch = adminSearch.Where(a => a.Subcontractor.SubcontractorId == searchString);
+
+
+            //}
 
             switch (sortOrder)
             {

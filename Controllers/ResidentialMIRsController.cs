@@ -42,21 +42,23 @@ namespace Alliance_for_Life.Controllers
 
             var ressearch = db.ResidentialMIRs.Include(a => a.Subcontractor);
 
-            var nonresidental = db.NonResidentialMIRs.Include(n => n.Subcontractor);
+            var nonresidental = db.NonResidentialMIRs.Include(a => a.Subcontractor)
+                .Where(a => a.SubcontractorId == a.Subcontractor.SubcontractorId).ToList();
+           
 
             //if year is not null
             if (Year != null)
             {
                 ressearch = ressearch.Where(a => a.Year == Year);
 
-                nonresidental = nonresidental.Where(a => a.Year == Year);
+                nonresidental = nonresidental.Where(a => a.Year == Year).ToList();
             }
             //if month is not null
             if (!String.IsNullOrEmpty(Month))
             {
                 ressearch = ressearch.Where(a => a.Month.ToString() == Month);
 
-                nonresidental = nonresidental.Where(a => a.Month.ToString() == Month);
+                nonresidental = nonresidental.Where(a => a.Months.ToString() == Month).ToList();
             }
 
             if (!User.IsInRole("Admin"))
@@ -71,9 +73,8 @@ namespace Alliance_for_Life.Controllers
                             where usersubid == s.SubcontractorId
                             select s;
 
-                nonresidental = from t in nonresidental
-                                where usersubid == t.SubcontractorId
-                                select t;
+                nonresidental = nonresidental.Where(t => t.SubcontractorId == usersubid).ToList();
+
                 ViewBag.Subcontractor = organization;
             }
 
@@ -82,34 +83,36 @@ namespace Alliance_for_Life.Controllers
             {
                 ressearch = ressearch.Where(a => a.Subcontractor.SubcontractorId == searchString);
 
-                nonresidental = nonresidental.Where(a => a.Subcontractor.SubcontractorId == searchString);
+                nonresidental = nonresidental.Where(a => a.Subcontractor.SubcontractorId == searchString).ToList();
             }
 
-            ViewBag.nonResidentialMIRs = nonresidental.ToList();
+
 
             switch (sortOrder)
             {
                 case "name_desc":
                     ressearch = ressearch.OrderByDescending(s => s.Subcontractor.OrgName);
-                    nonresidental = nonresidental.OrderByDescending(s => s.Subcontractor.OrgName);
+                    nonresidental = nonresidental.OrderByDescending(s => s.Subcontractor.OrgName).ToList();
                     break;
                 case "Date":
                     ressearch = ressearch.OrderBy(s => s.SubmittedDate);
-                    nonresidental = nonresidental.OrderBy(s => s.SubmittedDate);
+                    nonresidental = nonresidental.OrderBy(s => s.SubmittedDate).ToList();
                     break;
                 case "date_desc":
                     ressearch = ressearch.OrderByDescending(s => s.SubmittedDate);
-                    nonresidental = nonresidental.OrderByDescending(s => s.SubmittedDate);
+                    nonresidental = nonresidental.OrderByDescending(s => s.SubmittedDate).ToList();
                     break;
                 default:
                     ressearch = ressearch.OrderBy(s => s.Subcontractor.OrgName);
-                    nonresidental = nonresidental.OrderBy(s => s.Subcontractor.OrgName);
+                    nonresidental = nonresidental.OrderBy(s => s.Subcontractor.OrgName).ToList();
                     break;
             }
             if (pageSize < 1)
             {
                 pageSize = 10;
             }
+
+            ViewBag.nonResidentialMIRs = nonresidental.ToList();
 
             int pageNumber = (page ?? 1);
             return View(ressearch.ToPagedList(pageNumber, pageSize));

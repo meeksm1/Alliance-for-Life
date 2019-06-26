@@ -19,7 +19,7 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-xs-5th-1 col-sm-3" style="align-content:center;">
-                            Search By Month: @Html.DropDownList("Month", new SelectList(new[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 }), "Select Month", htmlAttributes: new { @class = "form-control", required = "required", onchange = "this.form.submit()" })
+                            Search By Month: @Html.DropDownList("Month", null, "Select Month", htmlAttributes: new { @class = "form-control", onchange = "this.form.submit()" })
                         </div>
                         <div class="col-xs-5th-1 col-sm-3" style="align-content:center;">
                             Search By Year: @Html.DropDownList("Year", null, "Select Year", htmlAttributes: new { @class = "form-control", onchange = "this.form.submit()" })
@@ -40,6 +40,12 @@
                     <div class="row">
                         <div class="col-xs-5th-1 col-sm-3" style="align-content:center;">
                             Search By Organization: @Html.DropDownList("searchString", (IEnumerable<SelectListItem>)ViewBag.Subcontractor, "", htmlAttributes: new { @class = "form-control", onchange = "this.form.submit()" })
+                        </div>
+                        <div class="col-xs-5th-1 col-sm-3" style="align-content:center;">
+                            Search By Month: @Html.DropDownList("Month", null, "Select Month", htmlAttributes: new { @class = "form-control", onchange = "this.form.submit()" })
+                        </div>
+                        <div class="col-xs-5th-1 col-sm-3" style="align-content:center;">
+                            Search By Year: @Html.DropDownList("Year", null, "Select Year", htmlAttributes: new { @class = "form-control", onchange = "this.form.submit()" })
                         </div>
                         <div class="col-xs-5th-1 col-sm-3" style="align-content:center;">
                             Results per Page: @Html.DropDownList("pgSize", new SelectList(new[] { 10, 20, 30, 40, 50 }), htmlAttributes: new { @class = "form-control", onchange = "this.form.submit()" })

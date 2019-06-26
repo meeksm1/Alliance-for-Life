@@ -18,7 +18,7 @@ namespace Alliance_for_Life.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: AdministrationCost
-        public ActionResult Index(string sortOrder, Guid? searchString, string Month, string Year, string currentFilter, int? page, string pgSize)
+        public ActionResult Index(string sortOrder, Guid? searchString, string Month, int? Year, string currentFilter, int? page, string pgSize)
         {
             int pageSize = Convert.ToInt16(pgSize);
 
@@ -29,7 +29,7 @@ namespace Alliance_for_Life.Controllers
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.YearSortParm = sortOrder == "Year" ? "year_desc" : "Year";
             ViewBag.Subcontractor = new SelectList(db.SubContractors, "SubcontractorId", "OrgName");
-
+            ViewBag.Month = new SelectList(Enum.GetValues(typeof(Months)).Cast<Months>());
 
             //looking for the searchstring
             if (searchString != null)
@@ -64,28 +64,46 @@ namespace Alliance_for_Life.Controllers
 
             var year_search = "";
 
-            if ((Year != null) && Year.Length > 1)
+            if ((Year != null) && Year.ToString().Length > 1)
             {
-                year_search = (Year);
+                year_search = Year.ToString();
             }
 
-            if (!String.IsNullOrEmpty(searchString.ToString()) || !String.IsNullOrEmpty(Year) || !String.IsNullOrEmpty(Month))
+            if (!String.IsNullOrEmpty(Month) || !String.IsNullOrEmpty(Year.ToString()) || !String.IsNullOrEmpty(searchString.ToString()))
             {
                 var yearSearch = (Year);
 
+                // if fields Month and Year are empty
                 if (!String.IsNullOrEmpty(searchString.ToString()))
                 {
-                    adminSearch = adminSearch.Where(r => r.SubcontractorId == searchString).OrderBy(r => r.Month).OrderBy(a => a.Year);
-                }
-                else if (!String.IsNullOrEmpty(Year))
+                    adminSearch = adminSearch.Where(r => r.Subcontractor.SubcontractorId == searchString);
+                }                
+                else if (String.IsNullOrEmpty(Year.ToString()))
                 {
-
-                    adminSearch = adminSearch.Where(r => r.Year.ToString() == Year).OrderBy(r => r.Month).OrderBy(a => a.Year);
+                    var regionSearch = Enum.Parse(typeof(Months), Month);
+                    adminSearch = adminSearch.Where(r => r.Month == (Months)regionSearch && r.Subcontractor.SubcontractorId == searchString);
                 }
-                else if (!String.IsNullOrEmpty(Month))
+                // if 1 field is empty
+                else if (String.IsNullOrEmpty(Month))
                 {
-
-                    adminSearch = adminSearch.Where(r => r.Month.ToString() == Month && r.Year.ToString() == Year).OrderBy(r => r.Month).OrderBy(a => a.Year);
+                    adminSearch = adminSearch.Where(r => r.Year == yearSearch && r.Subcontractor.SubcontractorId == searchString);
+                }
+                else if (String.IsNullOrEmpty(Year.ToString()))
+                {
+                    var regionSearch = Enum.Parse(typeof(Months), Month);
+                    adminSearch = adminSearch.Where(r => r.Month == (Months)regionSearch && r.Subcontractor.SubcontractorId == searchString);
+                }
+                else if (String.IsNullOrEmpty(searchString.ToString()))
+                {
+                    var regionSearch = Enum.Parse(typeof(Months), Month);
+                    adminSearch = adminSearch.Where(r => r.Month == (Months)regionSearch && r.Year == yearSearch);
+                }
+                else
+                {
+                    var regionSearch = Enum.Parse(typeof(Months), Month);
+                    adminSearch = adminSearch.Where(r => r.Month == (Months)regionSearch 
+                                                    && r.Year == yearSearch
+                                                    && r.Subcontractor.SubcontractorId == searchString);
                 }
             }
 
