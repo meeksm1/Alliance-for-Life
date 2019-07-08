@@ -357,10 +357,6 @@
     <Content Include="App_Data\AFLLocalConnection_log.ldf">
       <DependentUpon>AFLLocalConnection.mdf</DependentUpon>
     </Content>
-    <Content Include="App_Data\LocalConnection.mdf" />
-    <Content Include="App_Data\LocalConnection_log.ldf">
-      <DependentUpon>LocalConnection.mdf</DependentUpon>
-    </Content>
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-reboot.css" />
