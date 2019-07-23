@@ -311,7 +311,7 @@ namespace Alliance_for_Life.Controllers
         {
             var viewModel = new RegisterViewModel
             {
-                Subcontractors = db.SubContractors.ToList()
+                Subcontractors = db.SubContractors.OrderBy(a => a.OrgName).ToList()
             };
 
             ViewBag.RoleName = new SelectList(db.Roles.ToList(), "Name", "Name");
