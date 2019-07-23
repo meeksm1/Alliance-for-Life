@@ -614,7 +614,6 @@ namespace Alliance_for_Life.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-            HttpContext.Session.Timeout = 45;
             return RedirectToAction("Index", "Account");
         }
 

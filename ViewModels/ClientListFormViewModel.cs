@@ -21,7 +21,7 @@ namespace Alliance_for_Life.ViewModels
         public int UserId { get; set; }
 
         [Required]
-        [Display(Name = "Clients First Initial of First Name")]
+        [Display(Name = "Clients First Name")]
         public string FirstName { get; set; }
 
         [Required]

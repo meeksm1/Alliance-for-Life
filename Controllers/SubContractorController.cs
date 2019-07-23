@@ -21,7 +21,6 @@ namespace Alliance_for_Life.Controllers
             db = new ApplicationDbContext();
         }
 
-
         public ActionResult Create()
         {
             var viewModel = new SubContractorFormViewModel
@@ -79,7 +78,7 @@ namespace Alliance_for_Life.Controllers
             }
 
             var userId = User.Identity.GetUserId();
-            var contractor = db.SubContractors.SingleOrDefault(s => s.SubcontractorId == viewModel.Id && s.AdministratorId == userId);
+            var contractor = db.SubContractors.SingleOrDefault(s => s.SubcontractorId == viewModel.Id);
             contractor.Region = viewModel.Region;
             contractor.AffiliateRegion = viewModel.AffiliateRegion;
             contractor.OrgName = viewModel.OrgName;
@@ -122,13 +121,6 @@ namespace Alliance_for_Life.Controllers
                 SubmittedDate = DateTime.Now
             };
             return View("SubContractorForm", viewModel);
-        }
-
-        // GET: BudgetReports
-        public ActionResult Index()
-        {
-
-            return View(db.SubContractors.ToList());
         }
 
         public ActionResult Reports(string sortOrder, Guid? searchString, int? yearsearch, string currentFilter, int? page, string pgSize)
