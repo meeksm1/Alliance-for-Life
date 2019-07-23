@@ -58,7 +58,7 @@ namespace Alliance_for_Life.Controllers
             ViewBag.AR = affiliatesRegion;
             ViewBag.Region = region.GetDisplayName();
 
-            return View(subcontractors.OrderBy(a=>a.OrgName));
+            return View(subcontractors.OrderBy(a => a.OrgName));
         }
 
 

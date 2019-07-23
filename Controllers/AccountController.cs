@@ -64,7 +64,7 @@ namespace Alliance_for_Life.Controllers
         {
             ViewBag.ReturnUrl = returnUrl;
 
-            List<SubContractor> OrgList = db.SubContractors.ToList();
+            List<SubContractor> OrgList = db.SubContractors.OrderBy(a => a.OrgName).ToList();
             ViewBag.Subcontractors = OrgList;
 
 
