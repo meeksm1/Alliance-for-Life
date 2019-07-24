@@ -98,7 +98,7 @@ namespace Alliance_for_Life.Controllers
                 .Include(a => a.AdminCost)
                 .Where(a => a.Year == year_search);
 
-            var datelist = Enumerable.Range(System.DateTime.Now.Year - 4, 10).ToList();
+            var datelist = Enumerable.Range(System.DateTime.Now.Year, 5).ToList();
             ViewBag.Year = new SelectList(datelist);
             ViewBag.ReportTitle = "Report Year -  " + year_search;
             ViewBag.yearselected = year_search;
@@ -366,7 +366,7 @@ namespace Alliance_for_Life.Controllers
         // GET: AllocatedBudgets/Create
         public ActionResult Create()
         {
-            var datelist = Enumerable.Range(System.DateTime.Now.Year - 4, 10).ToList();
+            var datelist = Enumerable.Range(System.DateTime.Now.Year, 5).ToList();
             ViewBag.Year = new SelectList(datelist);
             ViewBag.SubcontractorId = new SelectList(db.SubContractors, "SubcontractorId", "OrgName");
             return View();
@@ -402,7 +402,7 @@ namespace Alliance_for_Life.Controllers
                     return RedirectToAction("Index");
                 }
             }
-            var datelist = Enumerable.Range(System.DateTime.Now.Year - 4, 10).ToList();
+            var datelist = Enumerable.Range(System.DateTime.Now.Year, 5).ToList();
             ViewBag.Year = new SelectList(datelist);
             ViewBag.SubcontractorId = new SelectList(db.SubContractors, "SubcontractorId", "OrgName", allocatedBudget.SubcontractorId);
             return View(allocatedBudget);

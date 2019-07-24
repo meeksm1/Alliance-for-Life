@@ -21,7 +21,7 @@ namespace Alliance_for_Life.Controllers
         {
 
             int pageSize = Convert.ToInt16(pgSize);
-            var datelist = Enumerable.Range(System.DateTime.Now.Year - 4, 10).ToList();
+            var datelist = Enumerable.Range(System.DateTime.Now.Year, 5).ToList();
             ViewBag.Year = new SelectList(datelist);
             ViewBag.Month = new SelectList(Enum.GetValues(typeof(Months)).Cast<Months>());
             ViewBag.CurrentSort = sortOrder;
@@ -149,7 +149,7 @@ namespace Alliance_for_Life.Controllers
                 list = list.Where(s => s.SubcontractorId == usersubid).ToList();
             }
 
-            var datelist = Enumerable.Range(System.DateTime.Now.Year - 4, 10).ToList();
+            var datelist = Enumerable.Range(System.DateTime.Now.Year, 5).ToList();
             ViewBag.Year = new SelectList(datelist);
             ViewBag.SubcontractorId = new SelectList(list, "SubcontractorId", "OrgName");
 
@@ -183,7 +183,7 @@ namespace Alliance_for_Life.Controllers
                     return RedirectToAction("Index");
                 }
             }
-            var datelist = Enumerable.Range(System.DateTime.Now.Year - 4, 10).ToList();
+            var datelist = Enumerable.Range(System.DateTime.Now.Year, 5).ToList();
 
             ViewBag.Year = new SelectList(datelist);
             ViewBag.SubcontractorId = new SelectList(db.SubContractors, "SubcontractorId", "OrgName", residentialMIR.SubcontractorId);
@@ -204,7 +204,7 @@ namespace Alliance_for_Life.Controllers
                 return HttpNotFound();
             }
 
-            var datelist = Enumerable.Range(System.DateTime.Now.Year - 4, 10).ToList();
+            var datelist = Enumerable.Range(System.DateTime.Now.Year, 5).ToList();
 
             ViewBag.Year = new SelectList(datelist);
             ViewBag.SubcontractorId = new SelectList(db.SubContractors.Where(a => a.SubcontractorId == residentialMIR.SubcontractorId), "SubcontractorId", "OrgName");
@@ -227,7 +227,7 @@ namespace Alliance_for_Life.Controllers
                 return RedirectToAction("Index");
             }
 
-            var datelist = Enumerable.Range(System.DateTime.Now.Year - 4, 10).ToList();
+            var datelist = Enumerable.Range(System.DateTime.Now.Year, 5).ToList();
 
             ViewBag.Year = new SelectList(datelist);
             ViewBag.SubcontractorId = new SelectList(db.SubContractors, "SubcontractorId", "OrgName", residentialMIR.SubcontractorId);

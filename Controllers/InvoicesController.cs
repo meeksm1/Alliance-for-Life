@@ -17,7 +17,7 @@ namespace Alliance_for_Life.Controllers
         public ActionResult Index(string sortOrder, string searchString, string SubcontractorId, string Month, string Year, string billingdate, string currentFilter, int? page, string pgSize)
         {
             int pageSize = Convert.ToInt16(pgSize);
-            var datelist = Enumerable.Range(System.DateTime.Now.Year - 4, 10).ToList();
+            var datelist = Enumerable.Range(System.DateTime.Now.Year, 5).ToList();
             ViewBag.Year = new SelectList(datelist);
             var Subcontractors = db.SubContractors.ToList();
 

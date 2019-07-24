@@ -24,7 +24,7 @@ namespace Alliance_for_Life.Controllers
             int pageSize = Convert.ToInt16(pgSize);
 
             ViewBag.CurrentSort = sortOrder;
-            var datelist = Enumerable.Range(System.DateTime.Now.Year - 4, 10).ToList();
+            var datelist = Enumerable.Range(System.DateTime.Now.Year, 5).ToList();
             ViewBag.Year = new SelectList(datelist);
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.YearSortParm = sortOrder == "Year" ? "year_desc" : "Year";
@@ -150,7 +150,7 @@ namespace Alliance_for_Life.Controllers
             int pageSize = Convert.ToInt16(pgSize);
 
             ViewBag.CurrentSort = sortOrder;
-            var datelist = Enumerable.Range(System.DateTime.Now.Year - 4, 10).ToList();
+            var datelist = Enumerable.Range(System.DateTime.Now.Year, 5).ToList();
             ViewBag.Year = new SelectList(datelist);
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.YearSortParm = sortOrder == "Year" ? "year_desc" : "Year";
@@ -321,7 +321,7 @@ namespace Alliance_for_Life.Controllers
 
             }
 
-            var datelist = Enumerable.Range(System.DateTime.Now.Year - 4, 10).ToList();
+            var datelist = Enumerable.Range(System.DateTime.Now.Year, 5).ToList();
             ViewBag.Year = new SelectList(datelist);
             ViewBag.SubcontractorId = new SelectList(list, "SubcontractorId", "OrgName");
 
@@ -359,7 +359,7 @@ namespace Alliance_for_Life.Controllers
                 }
             }
 
-            var datelist = Enumerable.Range(System.DateTime.Now.Year - 4, 10).ToList();
+            var datelist = Enumerable.Range(System.DateTime.Now.Year, 5).ToList();
             ViewBag.Year = new SelectList(datelist);
             ViewBag.SubcontractorId = new SelectList(db.SubContractors, "SubcontractorId", "OrgName", participationService.SubcontractorId);
             return View(participationService);
@@ -378,7 +378,7 @@ namespace Alliance_for_Life.Controllers
                 return HttpNotFound();
             }
 
-            var datelist = Enumerable.Range(System.DateTime.Now.Year - 4, 10).ToList();
+            var datelist = Enumerable.Range(System.DateTime.Now.Year, 5).ToList();
             ViewBag.Year = new SelectList(datelist);
             ViewBag.SubcontractorId = new SelectList(db.SubContractors.Where(a => a.SubcontractorId == participationService.SubcontractorId), "SubcontractorId", "OrgName");
             return View(participationService);
@@ -399,7 +399,7 @@ namespace Alliance_for_Life.Controllers
                 return RedirectToAction("Index");
             }
 
-            var datelist = Enumerable.Range(System.DateTime.Now.Year - 4, 10).ToList();
+            var datelist = Enumerable.Range(System.DateTime.Now.Year, 5).ToList();
             ViewBag.Year = new SelectList(datelist);
             ViewBag.SubcontractorId = new SelectList(db.SubContractors, "SubcontractorId", "OrgName", participationService.SubcontractorId);
             return View(participationService);
