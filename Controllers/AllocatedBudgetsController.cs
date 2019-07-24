@@ -1,7 +1,6 @@
 ﻿using Alliance_for_Life.Models;
 using PagedList;
 using System;
-using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
@@ -50,25 +49,8 @@ namespace Alliance_for_Life.Controllers
                 .Where(a => a.Year == year_search || a.Year == year_search + 1);
 
 
-            List<AllocatedBudget> new_budget = allocatedBudget.ToList();
 
-            foreach (var items in new_budget)
-            {
-                if (items.AdminCost.SingleOrDefault().Month >= (Months)6)
-
-                {
-                    new_budget.Add(items);
-
-                }
-                else if (items.AdminCost.SingleOrDefault().Month <= (Months)7 && items.AdminCost.SingleOrDefault().Year == year_search + 1)
-                {
-
-                    new_budget.Add(items);
-
-                }
-            }
-
-            var datelist = Enumerable.Range(System.DateTime.Now.Year - 4, 10).ToList();
+            var datelist = Enumerable.Range(System.DateTime.Now.Year, 5).ToList();
             ViewBag.Year = new SelectList(datelist);
             ViewBag.ReportTitle = "Report Year -  " + year_search;
             ViewBag.yearselected = year_search;
@@ -76,7 +58,7 @@ namespace Alliance_for_Life.Controllers
             // quarterly calculations
             QuaterlyViewBag(year_search);
 
-            if (new_budget.Count() == 0)
+            if (allocatedBudget.Count() == 0)
             {
                 ViewBag.error = "No Report available for the year " + year_search;
             }
@@ -86,7 +68,15 @@ namespace Alliance_for_Life.Controllers
                 pageSize = 10;
             }
             int pageNumber = (page ?? 1);
-            return View(new_budget.OrderBy(y => y.Year).ToPagedList(pageNumber, pageSize));
+
+
+            //calculating grand total
+            //var sum2 = allocatedBudget.Where(k => k.AdminCost.FirstOrDefault().Month >= (Months)7).Sum(a => a.Invoice.Where(m => m.Year == year_search + 1).Sum(b => b.GrandTotal));
+            //var sum1 = allocatedBudget.Where(k => k.AdminCost.FirstOrDefault().Month <= (Months)6).Sum(a => a.Invoice.Where(m => m.Year == year_search).Sum(b => b.GrandTotal));
+            //ViewBag.GrandTotal = sum1 + sum2.ToString("C");
+
+
+            return View(allocatedBudget.OrderBy(y => y.Year).ToPagedList(pageNumber, pageSize));
         }
 
         public ActionResult Balance(string sortOrder, string Year, /*string searchString, string currentFilter, */int? page, string pgSize)

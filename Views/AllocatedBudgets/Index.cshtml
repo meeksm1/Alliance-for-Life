@@ -179,7 +179,7 @@
             <td>
                 @foreach (var item in group)
                 {
-                    if (item.Invoice.Select(a => a.Month).Contains(Alliance_for_Life.Models.Months.January))
+                    if (item.Invoice.Where(b=>b.Year == ViewBag.yearselected+1).Select(a => a.Month).Contains(Alliance_for_Life.Models.Months.January))
                     {
 
                         @item.Invoice.Where(a => a.Month == Alliance_for_Life.Models.Months.January).Select(a => a.GrandTotal).SingleOrDefault().ToString("C")
@@ -190,7 +190,7 @@
             <td>
                 @foreach (var item in group)
                 {
-                    if (item.Invoice.Select(a => a.Month).Contains(Alliance_for_Life.Models.Months.February))
+                    if (item.Invoice.Where(b=>b.Year == ViewBag.yearselected+1).Select(a => a.Month).Contains(Alliance_for_Life.Models.Months.February))
                     {
 
                         @item.Invoice.Where(a => a.Month == Alliance_for_Life.Models.Months.February).Select(a => a.GrandTotal).SingleOrDefault().ToString("C")
@@ -201,7 +201,7 @@
             <td>
                 @foreach (var item in group)
                 {
-                    if (item.Invoice.Select(a => a.Month).Contains(Alliance_for_Life.Models.Months.March))
+                    if (item.Invoice.Where(b=>b.Year == ViewBag.yearselected+1).Select(a => a.Month).Contains(Alliance_for_Life.Models.Months.March))
                     {
 
                         @item.Invoice.Where(a => a.Month == Alliance_for_Life.Models.Months.March).Select(a => a.GrandTotal).SingleOrDefault().ToString("C")
@@ -212,7 +212,7 @@
             <td>
                 @foreach (var item in group)
                 {
-                    if (item.Invoice.Select(a => a.Month).Contains(Alliance_for_Life.Models.Months.April))
+                    if (item.Invoice.Where(b=>b.Year == ViewBag.yearselected+1).Select(a => a.Month).Contains(Alliance_for_Life.Models.Months.April))
                     {
 
                         @item.Invoice.Where(a => a.Month == Alliance_for_Life.Models.Months.April).Select(a => a.GrandTotal).SingleOrDefault().ToString("C")
@@ -222,7 +222,7 @@
             <td>
                 @foreach (var item in group)
                 {
-                    if (item.Invoice.Select(a => a.Month).Contains(Alliance_for_Life.Models.Months.May))
+                    if (item.Invoice.Where(b=>b.Year == ViewBag.yearselected+1).Select(a => a.Month).Contains(Alliance_for_Life.Models.Months.May))
                     {
                         @item.Invoice.Where(a => a.Month == Alliance_for_Life.Models.Months.May).Select(a => a.GrandTotal).SingleOrDefault().ToString("C")
                     }
@@ -231,7 +231,7 @@
             <td>
                 @foreach (var item in group)
                 {
-                    if (item.Invoice.Select(a => a.Month).Contains(Alliance_for_Life.Models.Months.June))
+                    if (item.Invoice.Where(b=>b.Year == ViewBag.yearselected+1).Select(a => a.Month).Contains(Alliance_for_Life.Models.Months.June))
                     {
 
                         @item.Invoice.Where(a => a.Month == Alliance_for_Life.Models.Months.June).Select(a => a.GrandTotal).SingleOrDefault().ToString("C")
@@ -240,6 +240,7 @@
             </td>
             <td>
 
+                @*@ViewBag.GrandTotal*@
                 @group.Sum(a => a.Invoice.Sum(b => b.GrandTotal)).ToString("C")
 
             </td>

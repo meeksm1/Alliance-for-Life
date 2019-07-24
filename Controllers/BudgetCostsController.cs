@@ -24,7 +24,7 @@ namespace Alliance_for_Life.Controllers
 
             //paged view
             ViewBag.CurrentSort = sortOrder;
-            var datelist = Enumerable.Range(System.DateTime.Now.Year - 4, 10).ToList();
+            var datelist = Enumerable.Range(System.DateTime.Now.Year, 5).ToList();
             ViewBag.Year = new SelectList(datelist);
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.YearSortParm = sortOrder == "Year" ? "year_desc" : "Year";
@@ -102,56 +102,56 @@ namespace Alliance_for_Life.Controllers
 
         //#############################################################################################
         //Graphing the data
-        public ActionResult GraphIndex()
-        {
-            var datelist = Enumerable.Range(System.DateTime.Now.Year - 4, 10).ToList();
-            ViewBag.Year = new SelectList(datelist, "Year");
-            ViewBag.Region = new SelectList(Enum.GetNames(typeof(GeoRegion)), "Region");
-            return View();
-        }
+        //public ActionResult GraphIndex()
+        //{
+        //    var datelist = Enumerable.Range(System.DateTime.Now.Year - 4, 10).ToList();
+        //    ViewBag.Year = new SelectList(datelist, "Year");
+        //    ViewBag.Region = new SelectList(Enum.GetNames(typeof(GeoRegion)), "Region");
+        //    return View();
+        //}
 
-        //populate graph based on the user 
+        ////populate graph based on the user 
 
-        public JsonResult GraphDataIndex(string yearsearch)
-        {
-            int thisyear = DateTime.Now.Year;
-            var region = 1;
+        //public JsonResult GraphDataIndex(string yearsearch)
+        //{
+        //    int thisyear = DateTime.Now.Year;
+        //    var region = 1;
 
-            if (!String.IsNullOrEmpty(yearsearch))
-            {
-                region = Int32.Parse(yearsearch.Substring(10, 1));
-                thisyear = Int32.Parse(yearsearch.Substring(0, 4));
-            }
+        //    if (!String.IsNullOrEmpty(yearsearch))
+        //    {
+        //        region = Int32.Parse(yearsearch.Substring(10, 1));
+        //        thisyear = Int32.Parse(yearsearch.Substring(0, 4));
+        //    }
 
-            var costlist = db.BudgetCosts
-                .Where(s => s.Year == thisyear && (int)s.Region.Value == region);
+        //    var costlist = db.BudgetCosts
+        //        .Where(s => s.Year == thisyear && (int)s.Region.Value == region);
 
-            return Json(costlist.ToList(), JsonRequestBehavior.AllowGet);
-        }
-        public JsonResult GraphDataIndexTest(string yearsearch)
-        {
-            int thisyear = DateTime.Now.Year;
-            var region = 1;
+        //    return Json(costlist.ToList(), JsonRequestBehavior.AllowGet);
+        //}
+        //public JsonResult GraphDataIndexTest(string yearsearch)
+        //{
+        //    int thisyear = DateTime.Now.Year;
+        //    var region = 1;
 
-            //checking the url string for the returned value
-            if (!String.IsNullOrEmpty(yearsearch))
-            {
-                if (yearsearch.Length > 7)
-                {
-                    thisyear = Int32.Parse(yearsearch.Substring(0, 4));
-                    region = Int32.Parse(yearsearch.Substring(10, 1));
-                }
-                else
-                {
-                    region = Int32.Parse(yearsearch.Substring(6, 1));
-                }
-            }
+        //    //checking the url string for the returned value
+        //    if (!String.IsNullOrEmpty(yearsearch))
+        //    {
+        //        if (yearsearch.Length > 7)
+        //        {
+        //            thisyear = Int32.Parse(yearsearch.Substring(0, 4));
+        //            region = Int32.Parse(yearsearch.Substring(10, 1));
+        //        }
+        //        else
+        //        {
+        //            region = Int32.Parse(yearsearch.Substring(6, 1));
+        //        }
+        //    }
 
-            var costlist = db.BudgetCosts
-                .Where(s => s.Year == thisyear && (int)s.Region.Value == region);
+        //    var costlist = db.BudgetCosts
+        //        .Where(s => s.Year == thisyear && (int)s.Region.Value == region);
 
-            return Json(costlist.ToList(), JsonRequestBehavior.AllowGet);
-        }
+        //    return Json(costlist.ToList(), JsonRequestBehavior.AllowGet);
+        //}
         //#############################################################################################
 
 
@@ -160,7 +160,7 @@ namespace Alliance_for_Life.Controllers
             int pageSize = Convert.ToInt16(pgSize);
             //paged view
             ViewBag.CurrentSort = sortOrder;
-            var datelist = Enumerable.Range(System.DateTime.Now.Year - 4, 10).ToList();
+            var datelist = Enumerable.Range(System.DateTime.Now.Year, 5).ToList();
             ViewBag.Year = new SelectList(datelist);
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.YearSortParm = sortOrder == "Year" ? "year_desc" : "Year";
