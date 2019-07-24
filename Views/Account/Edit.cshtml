@@ -9,14 +9,14 @@
 @using (Html.BeginForm("Edit", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()
- 
+
     <hr />
     @Html.ValidationSummary("", new { @class = "text-danger" })
 
     <div class="form-group">
         @Html.LabelFor(model => model.SubcontractorId, "Organization", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.DropDownList("SubcontractorId", null, new { @class = "form-control", id="SubcontractorId"})
+            @Html.DropDownList("SubcontractorId", null, new { @class = "form-control", id = "SubcontractorId" })
             @Html.ValidationMessageFor(m => m.SubcontractorId)
         </div>
     </div>
@@ -36,6 +36,18 @@
         @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
         <div class="col-md-4">
             @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+        <div class="col-md-4">
+            @Html.TextBoxFor(m => m.Password, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
+        <div class="col-md-4">
+            @Html.TextBoxFor(m => m.ConfirmPassword, new { @class = "form-control" })
         </div>
     </div>
     <div class="form-group">

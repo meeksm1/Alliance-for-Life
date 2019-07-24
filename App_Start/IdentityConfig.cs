@@ -82,6 +82,11 @@ namespace Alliance_for_Life
             }
             return manager;
         }
+
+        internal void ResetPassword<T>(string v1, string v2)
+        {
+            throw new NotImplementedException();
+        }
     }
 
     // Configure the application sign-in manager which is used in this application.

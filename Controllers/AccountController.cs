@@ -2,6 +2,7 @@
 using Alliance_for_Life.Models;
 using Alliance_for_Life.ViewModels;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using PagedList;
@@ -244,9 +245,11 @@ namespace Alliance_for_Life.Controllers
         public ActionResult Edit(Userinformation user)
         {
             var client = db.Users.Find(user.Id.ToString());
+            var oldPW = db.Users.SingleOrDefault(p => p.PasswordHash == client.PasswordHash);
             var clientrole = client.Roles.FirstOrDefault().RoleId;
             var oldrolename = db.Roles.SingleOrDefault(r => r.Id == clientrole).Name;
             var org = Request["SubcontractorId"];
+
             //updating database
             if (ModelState.IsValid)
             {
@@ -261,6 +264,11 @@ namespace Alliance_for_Life.Controllers
                 {
                     UserManager.RemoveFromRole(user.Id.ToString(), oldrolename);
                     UserManager.AddToRole(user.Id.ToString(), db.Roles.SingleOrDefault(r => r.Id == user.Role).Name);
+                }
+
+                if (oldPW != db.Users.Find(user.Password.ToString()))
+                {
+                    UserManager.ResetPassword<Userinformation>(user.Password.ToString(), oldPW.ToString());
                 }
 
                 db.Entry(updateduser).State = EntityState.Modified;
@@ -327,9 +335,7 @@ namespace Alliance_for_Life.Controllers
         {
             if (!ModelState.IsValid)
             {
-                //var userRole = new RoleManager<IdentityRole>(new IQueryableRoleStore<IdentityRole>(db));
                 viewModel.Subcontractors = db.SubContractors.ToList();
-                //viewModel.Roles = db.Roles.ToList();
                 return View("Create", viewModel);
             }
 

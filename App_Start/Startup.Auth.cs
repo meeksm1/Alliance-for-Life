@@ -33,7 +33,9 @@ namespace Alliance_for_Life
                     OnValidateIdentity = SecurityStampValidator.OnValidateIdentity<ApplicationUserManager, Role>(
                         validateInterval: TimeSpan.FromMinutes(30),
                         regenerateIdentity: (manager, user) => user.GenerateUserIdentityAsync(manager))
-                }
+                },
+                LogoutPath = new PathString("/Account/LogOff"),
+                ExpireTimeSpan = TimeSpan.FromMinutes(30.0)
             });            
             app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
 
