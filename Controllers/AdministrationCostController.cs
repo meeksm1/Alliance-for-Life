@@ -28,7 +28,7 @@ namespace Alliance_for_Life.Controllers
             ViewBag.Year = new SelectList(datelist);
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.YearSortParm = sortOrder == "Year" ? "year_desc" : "Year";
-            ViewBag.Subcontractor = new SelectList(db.SubContractors, "SubcontractorId", "OrgName");
+            ViewBag.Subcontractor = new SelectList(db.SubContractors.OrderBy(a => a.OrgName), "SubcontractorId", "OrgName");
             ViewBag.Month = new SelectList(Enum.GetValues(typeof(Months)).Cast<Months>());
 
             //looking for the searchstring
@@ -173,7 +173,7 @@ namespace Alliance_for_Life.Controllers
 
             var datelist = Enumerable.Range(System.DateTime.Now.Year, 5).ToList();
             ViewBag.Year = new SelectList(datelist);
-            ViewBag.SubcontractorId = new SelectList(list, "SubcontractorId", "OrgName");
+            ViewBag.SubcontractorId = new SelectList(list.OrderBy(a => a.OrgName), "SubcontractorId", "OrgName");
 
             return View();
         }
@@ -210,7 +210,7 @@ namespace Alliance_for_Life.Controllers
             var datelist = Enumerable.Range(System.DateTime.Now.Year, 5).ToList();
 
             ViewBag.Year = new SelectList(datelist);
-            ViewBag.SubcontractorId = new SelectList(db.SubContractors, "SubcontractorId", "OrgName", adminCosts.SubcontractorId);
+            ViewBag.SubcontractorId = new SelectList(db.SubContractors.OrderBy(a => a.OrgName), "SubcontractorId", "OrgName", adminCosts.SubcontractorId);
 
             return View(adminCosts);
         }
@@ -230,7 +230,7 @@ namespace Alliance_for_Life.Controllers
 
             var datelist = Enumerable.Range(System.DateTime.Now.Year, 5).ToList();
             ViewBag.Year = new SelectList(datelist);
-            ViewBag.SubcontractorId = new SelectList(db.SubContractors.Where(a => a.SubcontractorId == adminCosts.SubcontractorId), "SubcontractorId", "OrgName");
+            ViewBag.SubcontractorId = new SelectList(db.SubContractors.Where(a => a.SubcontractorId == adminCosts.SubcontractorId).OrderBy(a => a.OrgName), "SubcontractorId", "OrgName");
 
             return View(adminCosts);
         }
@@ -254,7 +254,7 @@ namespace Alliance_for_Life.Controllers
 
 
             ViewBag.Year = new SelectList(datelist);
-            ViewBag.SubcontractorId = new SelectList(db.SubContractors.Where(s => s.SubcontractorId == adminCosts.SubcontractorId), "SubcontractorId", "OrgName");
+            ViewBag.SubcontractorId = new SelectList(db.SubContractors.Where(s => s.SubcontractorId == adminCosts.SubcontractorId).OrderBy(a => a.OrgName), "SubcontractorId", "OrgName");
             return View(adminCosts);
         }
 

@@ -157,7 +157,7 @@ namespace Alliance_for_Life.Controllers
         public ActionResult IndexforRegisteredUsers(string searchString, string currentFilter, int? page, string pgSize)
         {
             int pageSize = Convert.ToInt16(pgSize);
-            ViewBag.Subcontractor = new SelectList(db.SubContractors, "OrgName", "OrgName");
+            ViewBag.Subcontractor = new SelectList(db.SubContractors.OrderBy(a => a.OrgName), "OrgName", "OrgName");
 
             List<Userinformation> modelLst = new List<Userinformation>();
             var role = db.Roles.Include(x => x.Users).ToList();

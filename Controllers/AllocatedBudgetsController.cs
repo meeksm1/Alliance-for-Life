@@ -69,13 +69,6 @@ namespace Alliance_for_Life.Controllers
             }
             int pageNumber = (page ?? 1);
 
-
-            //calculating grand total
-            //var sum2 = allocatedBudget.Where(k => k.AdminCost.FirstOrDefault().Month >= (Months)7).Sum(a => a.Invoice.Where(m => m.Year == year_search + 1).Sum(b => b.GrandTotal));
-            //var sum1 = allocatedBudget.Where(k => k.AdminCost.FirstOrDefault().Month <= (Months)6).Sum(a => a.Invoice.Where(m => m.Year == year_search).Sum(b => b.GrandTotal));
-            //ViewBag.GrandTotal = sum1 + sum2.ToString("C");
-
-
             return View(allocatedBudget.OrderBy(y => y.Year).ToPagedList(pageNumber, pageSize));
         }
 
