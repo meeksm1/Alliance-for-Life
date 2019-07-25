@@ -86,11 +86,11 @@
                             Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
 
                             @Html.PagedListPager(Model, page => Url.Action("AllNonActiveClients",
-                                new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter, @class = "pagination" }))
+                            new { page, pgSize = ViewBag.psize, @class = "pagination", onchange = "this.form.submit()" }))
                         </div>
                         <div class="col-sm-2">
                             Results per Page:
-                            @Html.DropDownList("pgSize", new SelectList(new[] { 10, 20, 30, 40, 50 }), htmlAttributes: new { @class = "", onchange = "this.form.submit()" })
+                            @Html.DropDownList("pgSize", (IEnumerable<SelectListItem>)ViewBag.PageSize, "", htmlAttributes: new { @class = "form-control", onchange = "this.form.submit()" })
                         </div>
                     </div>
                 </div>

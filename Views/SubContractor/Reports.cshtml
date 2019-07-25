@@ -18,7 +18,7 @@
                         Search By Organization: @Html.DropDownList("searchString", (IEnumerable<SelectListItem>)ViewBag.Subcontractor, "", htmlAttributes: new { @class = "form-control", onchange = "this.form.submit()" })
                     </div>
                     <div class="col-xs-5th-1 col-sm-3" style="align-content:center;">
-                        Results per Page: @Html.DropDownList("pgSize", new SelectList(new[] { 10, 20, 30, 40, 50 }), htmlAttributes: new { @class = "form-control", onchange = "this.form.submit()" })
+                        Results per Page: @Html.DropDownList("pgSize", (IEnumerable<SelectListItem>)ViewBag.PageSize, "", htmlAttributes: new { @class = "form-control", onchange = "this.form.submit()" })
                     </div>
                 </div>
             </div>
@@ -105,5 +105,5 @@
 
    
     @Html.PagedListPager(Model, page => Url.Action("Reports",
-        new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter, @class = "pagination" }))
+        new { page, pgSize = ViewBag.psize, @class = "pagination", onchange = "this.form.submit()" }))
 </div>

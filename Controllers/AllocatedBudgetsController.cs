@@ -1,6 +1,7 @@
 ﻿using Alliance_for_Life.Models;
 using PagedList;
 using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
@@ -13,7 +14,7 @@ namespace Alliance_for_Life.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: AllocatedBudgets
-        public ActionResult Index(string sortOrder, string Year, string searchString, string currentFilter, int? page, string pgSize)
+        public ActionResult Index(string sortOrder, string Year, string searchString, string currentFilter, int? page, int? pgSize)
         {
             //variable that stores the current year
             var year_search = DateTime.Now.Year;
@@ -63,13 +64,20 @@ namespace Alliance_for_Life.Controllers
                 ViewBag.error = "No Report available for the year " + year_search;
             }
 
-            if (pageSize < 1)
-            {
-                pageSize = 10;
-            }
             int pageNumber = (page ?? 1);
+            int defaSize = (pgSize ?? 5);
 
-            return View(allocatedBudget.OrderBy(y => y.Year).ToPagedList(pageNumber, pageSize));
+            ViewBag.psize = defaSize;
+
+            ViewBag.PageSize = new List<SelectListItem>()
+            {
+                new SelectListItem() { Value="10", Text= "10" },
+                new SelectListItem() { Value="20", Text= "20" },
+                new SelectListItem() { Value="30", Text= "30" },
+                new SelectListItem() { Value="40", Text= "40" },
+            };
+
+            return View(allocatedBudget.OrderBy(y => y.Year).ToPagedList(pageNumber, defaSize));
         }
 
         public ActionResult Balance(string sortOrder, string Year, /*string searchString, string currentFilter, */int? page, string pgSize)

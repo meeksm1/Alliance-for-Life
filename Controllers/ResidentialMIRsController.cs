@@ -2,6 +2,7 @@
 using Microsoft.AspNet.Identity;
 using PagedList;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
@@ -17,10 +18,8 @@ namespace Alliance_for_Life.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: ResidentialMIRs
-        public ActionResult Index(string sortOrder, int? Year, string Month, Guid? searchString, string currentFilter, int? page, string pgSize)
+        public ActionResult Index(string sortOrder, int? Year, string Month, Guid? searchString, string currentFilter, int? page, int? pgSize)
         {
-
-            int pageSize = Convert.ToInt16(pgSize);
             var datelist = Enumerable.Range(System.DateTime.Now.Year, 5).ToList();
             ViewBag.Year = new SelectList(datelist);
             ViewBag.Month = new SelectList(Enum.GetValues(typeof(Months)).Cast<Months>());
@@ -107,15 +106,23 @@ namespace Alliance_for_Life.Controllers
                     nonresidental = nonresidental.OrderBy(s => s.Subcontractor.OrgName).ToList();
                     break;
             }
-            if (pageSize < 1)
+
+            int pageNumber = (page ?? 1);
+            int defaSize = (pgSize ?? 5);
+
+            ViewBag.psize = defaSize;
+
+            ViewBag.PageSize = new List<SelectListItem>()
             {
-                pageSize = 10;
-            }
+                new SelectListItem() { Value="10", Text= "10" },
+                new SelectListItem() { Value="20", Text= "20" },
+                new SelectListItem() { Value="30", Text= "30" },
+                new SelectListItem() { Value="40", Text= "40" },
+            };
 
             ViewBag.nonResidentialMIRs = nonresidental.ToList();
 
-            int pageNumber = (page ?? 1);
-            return View(ressearch.ToPagedList(pageNumber, pageSize));
+            return View(ressearch.ToPagedList(pageNumber, defaSize));
         }
 
         // GET: ResidentialMIRs/Details/5

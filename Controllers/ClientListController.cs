@@ -4,6 +4,7 @@ using ClosedXML.Excel;
 using Microsoft.AspNet.Identity;
 using PagedList;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.IO;
@@ -162,12 +163,9 @@ namespace Alliance_for_Life.Controllers
             return View("ClientListForm", viewModel);
         }
 
-        public ViewResult AllActiveClients(string sortOrder, Guid? searchString, string currentFilter, int? page, string pgSize)
+        public ViewResult AllActiveClients(string sortOrder, Guid? searchString, string currentFilter, int? page, int? pgSize)
         {
-
-            int pageSize = Convert.ToInt16(pgSize);
             ViewBag.CurrentSort = sortOrder;
-
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
             ViewBag.LastNameSortParm = sortOrder == "LastName" ? "last_desc" : "LastName";
@@ -223,13 +221,21 @@ namespace Alliance_for_Life.Controllers
                     clients = clients.OrderBy(s => s.Subcontractor.OrgName);
                     break;
             }
-            if (pageSize < 1)
-            {
-                pageSize = 10;
-            }
 
             int pageNumber = (page ?? 1);
-            return View(clients.ToPagedList(pageNumber, pageSize));
+            int defaSize = (pgSize ?? 5);
+
+            ViewBag.psize = defaSize;
+
+            ViewBag.PageSize = new List<SelectListItem>()
+            {
+                new SelectListItem() { Value="10", Text= "10" },
+                new SelectListItem() { Value="20", Text= "20" },
+                new SelectListItem() { Value="30", Text= "30" },
+                new SelectListItem() { Value="40", Text= "40" },
+            };
+
+            return View(clients.ToPagedList(pageNumber, defaSize));
         }
 
         public FileResult ExportAllActive()
@@ -277,11 +283,9 @@ namespace Alliance_for_Life.Controllers
             }
         }
 
-        public ActionResult ActiveClients(string sortOrder, string searchString, string currentFilter, int? page, string pgSize)
+        public ActionResult ActiveClients(string sortOrder, string searchString, string currentFilter, int? page, int? pgSize)
         {
-            int pageSize = Convert.ToInt16(pgSize);
             ViewBag.CurrentSort = sortOrder;
-
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
             ViewBag.LastNameSortParm = sortOrder == "LastName" ? "last_desc" : "LastName";
@@ -347,13 +351,21 @@ namespace Alliance_for_Life.Controllers
                     clients = clients.OrderBy(s => s.Subcontractor.OrgName);
                     break;
             }
-            if (pageSize < 1)
-            {
-                pageSize = 10;
-            }
 
             int pageNumber = (page ?? 1);
-            return View(clients.ToPagedList(pageNumber, pageSize));
+            int defaSize = (pgSize ?? 5);
+
+            ViewBag.psize = defaSize;
+
+            ViewBag.PageSize = new List<SelectListItem>()
+            {
+                new SelectListItem() { Value="10", Text= "10" },
+                new SelectListItem() { Value="20", Text= "20" },
+                new SelectListItem() { Value="30", Text= "30" },
+                new SelectListItem() { Value="40", Text= "40" },
+            };
+
+            return View(clients.ToPagedList(pageNumber, defaSize));
         }
 
         [HttpPost]
@@ -401,12 +413,9 @@ namespace Alliance_for_Life.Controllers
             }
         }
 
-        public ActionResult AllNonActiveClients(string sortOrder, Guid? searchString, string currentFilter, int? page, string pgSize)
+        public ActionResult AllNonActiveClients(string sortOrder, Guid? searchString, string currentFilter, int? page, int? pgSize)
         {
-
-            int pageSize = Convert.ToInt16(pgSize);
             ViewBag.CurrentSort = sortOrder;
-
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
             ViewBag.LastNameSortParm = sortOrder == "LastName" ? "last_desc" : "LastName";
@@ -452,13 +461,21 @@ namespace Alliance_for_Life.Controllers
                     clients = clients.OrderBy(s => s.Subcontractor.OrgName);
                     break;
             }
-            if (pageSize < 1)
-            {
-                pageSize = 10;
-            }
 
             int pageNumber = (page ?? 1);
-            return View(clients.ToPagedList(pageNumber, pageSize));
+            int defaSize = (pgSize ?? 5);
+
+            ViewBag.psize = defaSize;
+
+            ViewBag.PageSize = new List<SelectListItem>()
+            {
+                new SelectListItem() { Value="10", Text= "10" },
+                new SelectListItem() { Value="20", Text= "20" },
+                new SelectListItem() { Value="30", Text= "30" },
+                new SelectListItem() { Value="40", Text= "40" },
+            };
+
+            return View(clients.ToPagedList(pageNumber, defaSize));
         }
 
         [HttpPost]
@@ -505,12 +522,9 @@ namespace Alliance_for_Life.Controllers
             }
         }
 
-        public ActionResult NonActiveClients(string sortOrder, string searchString, string currentFilter, int? page, string pgSize)
+        public ActionResult NonActiveClients(string sortOrder, string searchString, string currentFilter, int? page, int? pgSize)
         {
-
-            int pageSize = Convert.ToInt16(pgSize);
             ViewBag.CurrentSort = sortOrder;
-
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
             ViewBag.LastNameSortParm = sortOrder == "LastName" ? "last_desc" : "LastName";
@@ -575,13 +589,21 @@ namespace Alliance_for_Life.Controllers
                     clients = clients.OrderBy(s => s.Subcontractor.OrgName);
                     break;
             }
-            if (pageSize < 1)
-            {
-                pageSize = 10;
-            }
 
             int pageNumber = (page ?? 1);
-            return View(clients.ToPagedList(pageNumber, pageSize));
+            int defaSize = (pgSize ?? 5);
+
+            ViewBag.psize = defaSize;
+
+            ViewBag.PageSize = new List<SelectListItem>()
+            {
+                new SelectListItem() { Value="10", Text= "10" },
+                new SelectListItem() { Value="20", Text= "20" },
+                new SelectListItem() { Value="30", Text= "30" },
+                new SelectListItem() { Value="40", Text= "40" },
+            };
+
+            return View(clients.ToPagedList(pageNumber, defaSize));
         }
 
         [HttpPost]

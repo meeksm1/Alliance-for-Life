@@ -3,6 +3,7 @@ using ClosedXML.Excel;
 using Microsoft.AspNet.Identity;
 using PagedList;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.IO;
@@ -19,11 +20,9 @@ namespace Alliance_for_Life.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Surveys
-        public ActionResult Index(string sortOrder, Guid? searchString, string Month, string currentFilter, int? page, string pgSize)
+        public ActionResult Index(string sortOrder, Guid? searchString, string Month, string currentFilter, int? page, int? pgSize)
         {
-            int pageSize = Convert.ToInt16(pgSize);
             ViewBag.Month = new SelectList(Enum.GetValues(typeof(Months)).Cast<Months>());
-
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
             ViewBag.Subcontractor = new SelectList(db.SubContractors.OrderBy(a => a.OrgName), "SubcontractorId", "OrgName");
@@ -87,13 +86,20 @@ namespace Alliance_for_Life.Controllers
                     break;
             }
 
-            if (pageSize < 1)
-            {
-                pageSize = 10;
-            }
-
             int pageNumber = (page ?? 1);
-            return View(surveys.ToPagedList(pageNumber, pageSize));
+            int defaSize = (pgSize ?? 5);
+
+            ViewBag.psize = defaSize;
+
+            ViewBag.PageSize = new List<SelectListItem>()
+            {
+                new SelectListItem() { Value="10", Text= "10" },
+                new SelectListItem() { Value="20", Text= "20" },
+                new SelectListItem() { Value="30", Text= "30" },
+                new SelectListItem() { Value="40", Text= "40" },
+            };
+
+            return View(surveys.ToPagedList(pageNumber, defaSize));
         }
 
         // GET: Surveys/Details/5

@@ -3,6 +3,7 @@ using Alliance_for_Life.ViewModels;
 using ClosedXML.Excel;
 using PagedList;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.IO;
@@ -18,10 +19,8 @@ namespace Alliance_for_Life.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: BudgetCosts
-        public ViewResult Index(string sortOrder, string searchString, string Year, string currentFilter, int? page, string pgSize)
+        public ViewResult Index(string sortOrder, string searchString, string Year, string currentFilter, int? page, int? pgSize)
         {
-            int pageSize = Convert.ToInt16(pgSize);
-
             //paged view
             ViewBag.CurrentSort = sortOrder;
             var datelist = Enumerable.Range(System.DateTime.Now.Year, 5).ToList();
@@ -90,74 +89,25 @@ namespace Alliance_for_Life.Controllers
                     break;
             }
 
-            if (pageSize < 1)
-            {
-                pageSize = 10;
-            }
-
             int pageNumber = (page ?? 1);
-            return View(budgetsearch.ToPagedList(pageNumber, pageSize));
+            int defaSize = (pgSize ?? 5);
+
+            ViewBag.psize = defaSize;
+
+            ViewBag.PageSize = new List<SelectListItem>()
+            {
+                new SelectListItem() { Value="10", Text= "10" },
+                new SelectListItem() { Value="20", Text= "20" },
+                new SelectListItem() { Value="30", Text= "30" },
+                new SelectListItem() { Value="40", Text= "40" },
+            };
+
+            return View(budgetsearch.ToPagedList(pageNumber, defaSize));
 
         }
 
-        //#############################################################################################
-        //Graphing the data
-        //public ActionResult GraphIndex()
-        //{
-        //    var datelist = Enumerable.Range(System.DateTime.Now.Year - 4, 10).ToList();
-        //    ViewBag.Year = new SelectList(datelist, "Year");
-        //    ViewBag.Region = new SelectList(Enum.GetNames(typeof(GeoRegion)), "Region");
-        //    return View();
-        //}
-
-        ////populate graph based on the user 
-
-        //public JsonResult GraphDataIndex(string yearsearch)
-        //{
-        //    int thisyear = DateTime.Now.Year;
-        //    var region = 1;
-
-        //    if (!String.IsNullOrEmpty(yearsearch))
-        //    {
-        //        region = Int32.Parse(yearsearch.Substring(10, 1));
-        //        thisyear = Int32.Parse(yearsearch.Substring(0, 4));
-        //    }
-
-        //    var costlist = db.BudgetCosts
-        //        .Where(s => s.Year == thisyear && (int)s.Region.Value == region);
-
-        //    return Json(costlist.ToList(), JsonRequestBehavior.AllowGet);
-        //}
-        //public JsonResult GraphDataIndexTest(string yearsearch)
-        //{
-        //    int thisyear = DateTime.Now.Year;
-        //    var region = 1;
-
-        //    //checking the url string for the returned value
-        //    if (!String.IsNullOrEmpty(yearsearch))
-        //    {
-        //        if (yearsearch.Length > 7)
-        //        {
-        //            thisyear = Int32.Parse(yearsearch.Substring(0, 4));
-        //            region = Int32.Parse(yearsearch.Substring(10, 1));
-        //        }
-        //        else
-        //        {
-        //            region = Int32.Parse(yearsearch.Substring(6, 1));
-        //        }
-        //    }
-
-        //    var costlist = db.BudgetCosts
-        //        .Where(s => s.Year == thisyear && (int)s.Region.Value == region);
-
-        //    return Json(costlist.ToList(), JsonRequestBehavior.AllowGet);
-        //}
-        //#############################################################################################
-
-
-        public ViewResult CostAnalysis(string sortOrder, string searchString, string Year, string currentFilter, int? page, string pgSize)
+        public ViewResult CostAnalysis(string sortOrder, string searchString, string Year, string currentFilter, int? page, int? pgSize)
         {
-            int pageSize = Convert.ToInt16(pgSize);
             //paged view
             ViewBag.CurrentSort = sortOrder;
             var datelist = Enumerable.Range(System.DateTime.Now.Year, 5).ToList();
@@ -229,14 +179,20 @@ namespace Alliance_for_Life.Controllers
                     break;
             }
 
-            if (pageSize < 1)
-            {
-                pageSize = 10;
-            }
-
             int pageNumber = (page ?? 1);
-            return View(budgetsearch.ToPagedList(pageNumber, pageSize));
+            int defaSize = (pgSize ?? 5);
 
+            ViewBag.psize = defaSize;
+
+            ViewBag.PageSize = new List<SelectListItem>()
+            {
+                new SelectListItem() { Value="10", Text= "10" },
+                new SelectListItem() { Value="20", Text= "20" },
+                new SelectListItem() { Value="30", Text= "30" },
+                new SelectListItem() { Value="40", Text= "40" },
+            };
+
+            return View(budgetsearch.ToPagedList(pageNumber, defaSize));
         }
 
         // GET: BudgetCosts/Details/5

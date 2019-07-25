@@ -411,13 +411,14 @@
 
 
 <div class="col-xs-5th-1 col-sm-6" style="align-content:center;">
-    Results Shown per Page: @Html.DropDownList("pgSize", new SelectList(new[] { 10, 20, 30, 40, 50 }), htmlAttributes: new { @class = "", onchange = "this.form.submit()" })
+    Results Shown per Page: @Html.DropDownList("pgSize", (IEnumerable<SelectListItem>)ViewBag.PageSize, "",
+htmlAttributes: new { @class = "form-control", onchange = "this.form.submit()" })
     <br />
 
     Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
 
     @Html.PagedListPager(Model, page => Url.Action("Index",
-        new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter, @class = "pagination" }))
+new { page, pgSize = ViewBag.psize, @class = "pagination", onchange = "this.form.submit()" }))
 </div>
 <style>
     .tablehearder {

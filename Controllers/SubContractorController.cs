@@ -4,6 +4,7 @@ using ClosedXML.Excel;
 using Microsoft.AspNet.Identity;
 using PagedList;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Linq;
@@ -123,10 +124,9 @@ namespace Alliance_for_Life.Controllers
             return View("SubContractorForm", viewModel);
         }
 
-        public ActionResult Reports(string sortOrder, Guid? searchString, int? yearsearch, string currentFilter, int? page, string pgSize)
+        public ActionResult Reports(string sortOrder, Guid? searchString, int? yearsearch, string currentFilter, int? page, int? pgSize)
         {
             ViewBag.Subcontractor = new SelectList(db.SubContractors.OrderBy(a => a.OrgName), "SubcontractorId", "OrgName");
-            int pageSize = Convert.ToInt16(pgSize);
 
             if (searchString != null)
             {
@@ -155,13 +155,20 @@ namespace Alliance_for_Life.Controllers
 
             }
 
-            if (pageSize < 1)
-            {
-                pageSize = 10;
-            }
-
             int pageNumber = (page ?? 1);
-            return View(subcontractors.OrderBy(r => r.OrgName).ToPagedList(pageNumber, pageSize));
+            int defaSize = (pgSize ?? 5);
+
+            ViewBag.psize = defaSize;
+
+            ViewBag.PageSize = new List<SelectListItem>()
+            {
+                new SelectListItem() { Value="10", Text= "10" },
+                new SelectListItem() { Value="20", Text= "20" },
+                new SelectListItem() { Value="30", Text= "30" },
+                new SelectListItem() { Value="40", Text= "40" },
+            };
+
+            return View(subcontractors.OrderBy(r => r.OrgName).ToPagedList(pageNumber, defaSize));
         }
 
         [HttpPost]

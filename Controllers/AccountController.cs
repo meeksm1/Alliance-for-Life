@@ -154,9 +154,8 @@ namespace Alliance_for_Life.Controllers
 
         //list user information
         [Authorize]
-        public ActionResult IndexforRegisteredUsers(string searchString, string currentFilter, int? page, string pgSize)
+        public ActionResult IndexforRegisteredUsers(string searchString, string currentFilter, int? page, int? pgSize)
         {
-            int pageSize = Convert.ToInt16(pgSize);
             ViewBag.Subcontractor = new SelectList(db.SubContractors.OrderBy(a => a.OrgName), "OrgName", "OrgName");
 
             List<Userinformation> modelLst = new List<Userinformation>();
@@ -172,6 +171,7 @@ namespace Alliance_for_Life.Controllers
                     {
                         usersub = "";
                     }
+
 
                     // looking for the searchstring
                     if (searchString != null)
@@ -209,13 +209,21 @@ namespace Alliance_for_Life.Controllers
                     }
                 }
             }
-            if (pageSize < 1)
-            {
-                pageSize = 10;
-            }
 
             int pageNumber = (page ?? 1);
-            return View(modelLst.OrderBy(s => s.Organization).ToPagedList(pageNumber, pageSize));
+            int defaSize = (pgSize ?? 5);
+
+            ViewBag.psize = defaSize;
+
+            ViewBag.PageSize = new List<SelectListItem>()
+            {
+                new SelectListItem() { Value="10", Text= "10" },
+                new SelectListItem() { Value="20", Text= "20" },
+                new SelectListItem() { Value="30", Text= "30" },
+                new SelectListItem() { Value="40", Text= "40" },
+            };
+            
+            return View(modelLst.OrderBy(s => s.Organization).ToPagedList(pageNumber, defaSize));
         }
 
         [Authorize]

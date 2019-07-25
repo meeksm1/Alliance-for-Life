@@ -32,7 +32,7 @@
                             Search By Month: @Html.DropDownList("Month", null, "Select Month", htmlAttributes: new { @class = "form-control", onchange = "this.form.submit()" })
                         </div>
                         <div class="col-xs-5th-1 col-sm-3" style="align-content:center;">
-                            Results per Page: @Html.DropDownList("pgSize", new SelectList(new[] { 10, 20, 30, 40, 50 }), htmlAttributes: new { @class = "form-control", onchange = "this.form.submit()" })
+                            Results per Page: @Html.DropDownList("pgSize", (IEnumerable<SelectListItem>)ViewBag.PageSize, "", htmlAttributes: new { @class = "form-control", onchange = "this.form.submit()" })
                         </div>
                     </div>
                 </div>
@@ -438,11 +438,7 @@
                             Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
 
                             @Html.PagedListPager(Model, page => Url.Action("TotalCostReport",
-                                new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter, @class = "pagination" }))
-                        </div>
-                        <div class="col-sm-2">
-                            Select Page:
-                            @Html.DropDownList("pgSize", new SelectList(new[] { 10, 20, 30, 40, 50 }), htmlAttributes: new { @class = "", onchange = "this.form.submit()" })
+                                new { page, pgSize = ViewBag.psize, @class = "pagination", onchange = "this.form.submit()" }))   
                         </div>
                     </div>
                 </div>

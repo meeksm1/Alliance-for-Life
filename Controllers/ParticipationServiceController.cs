@@ -3,6 +3,7 @@ using ClosedXML.Excel;
 using Microsoft.AspNet.Identity;
 using PagedList;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.IO;
@@ -18,11 +19,8 @@ namespace Alliance_for_Life.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: ParticipationCost
-        public ActionResult Index(string sortOrder, Guid? searchString, string Month, int? Year, string currentFilter, int? page, string pgSize)
+        public ActionResult Index(string sortOrder, Guid? searchString, string Month, int? Year, string currentFilter, int? page, int? pgSize)
         {
-
-            int pageSize = Convert.ToInt16(pgSize);
-
             ViewBag.CurrentSort = sortOrder;
             var datelist = Enumerable.Range(System.DateTime.Now.Year, 5).ToList();
             ViewBag.Year = new SelectList(datelist);
@@ -134,21 +132,27 @@ namespace Alliance_for_Life.Controllers
                     break;
             }
 
-            if (pageSize < 1)
+            int pageNumber = (page ?? 1);
+            int defaSize = (pgSize ?? 5);
+
+            ViewBag.psize = defaSize;
+
+            ViewBag.PageSize = new List<SelectListItem>()
             {
-                pageSize = 10;
-            }
+                new SelectListItem() { Value="10", Text= "10" },
+                new SelectListItem() { Value="20", Text= "20" },
+                new SelectListItem() { Value="30", Text= "30" },
+                new SelectListItem() { Value="40", Text= "40" },
+            };
 
             ViewBag.AdminCost = adminSearch.ToList();
 
-            int pageNumber = (page ?? 1);
-            return View(participationServices.ToPagedList(pageNumber, pageSize));
+
+            return View(participationServices.ToPagedList(pageNumber, defaSize));
         }
 
-        public ActionResult TotalCostReport(string sortOrder, Guid? searchString, string Month, int? Year, string currentFilter, int? page, string pgSize)
+        public ActionResult TotalCostReport(string sortOrder, Guid? searchString, string Month, int? Year, string currentFilter, int? page, int? pgSize)
         {
-            int pageSize = Convert.ToInt16(pgSize);
-
             ViewBag.CurrentSort = sortOrder;
             var datelist = Enumerable.Range(System.DateTime.Now.Year, 5).ToList();
             ViewBag.Year = new SelectList(datelist);
@@ -273,16 +277,24 @@ namespace Alliance_for_Life.Controllers
                     break;
             }
 
-            if (pageSize < 1)
+            int pageNumber = (page ?? 1);
+            int defaSize = (pgSize ?? 5);
+
+            ViewBag.psize = defaSize;
+
+            ViewBag.PageSize = new List<SelectListItem>()
             {
-                pageSize = 10;
-            }
+                new SelectListItem() { Value="10", Text= "10" },
+                new SelectListItem() { Value="20", Text= "20" },
+                new SelectListItem() { Value="30", Text= "30" },
+                new SelectListItem() { Value="40", Text= "40" },
+            };
 
 
             ViewBag.AdminCost = adminSearch.ToList();
             ViewBag.AdminTotal = Math.Round(adminSearch.Select(a => a.ATotCosts).DefaultIfEmpty(0).Sum(), 2);
-            int pageNumber = (page ?? 1);
-            return View(participationServices.ToPagedList(pageNumber, pageSize));
+
+            return View(participationServices.ToPagedList(pageNumber, defaSize));
         }
 
         // GET: ParticipationCost/Details/5
