@@ -793,6 +793,7 @@
     <Content Include="Views\A2AStateDeposits\Index.cshtml" />
     <Content Include="Views\AllocatedBudgets\Balance.cshtml" />
     <Content Include="Views\ParticipationService\TotalCostReport.cshtml" />
+    <Content Include="Views\ClientList\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config">

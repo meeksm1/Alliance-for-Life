@@ -106,7 +106,7 @@
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.AEquipment, "Equipment", htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.AEquipment, "Office equipment/computers", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.EditorFor(model => model.AEquipment, new { htmlAttributes = new { @class = "form-control numAdd" } })
             @Html.ValidationMessageFor(model => model.AEquipment, "", new { @class = "text-danger" })

@@ -972,7 +972,7 @@
             @Html.DisplayName("Total Sub Allocation")
         </td>
         <td>
-            @Math.Round(Model.Sum(a => a.AllocatedNewBudget)).ToString("C")
+            @Math.Round(Model.Sum(a => a.AllocatedOldBudget)).ToString("C")
         </td>
     </tr>
     <tr>
@@ -980,13 +980,13 @@
             @Html.Encode("10% calculation based on allocation amt.")
         </td>
         <td>
-            @Math.Round(Model.Sum(a => a.AllocatedNewBudget) * .1).ToString("C")
+            @Math.Round(Model.Sum(a => a.AllocatedOldBudget) * .1).ToString("C")
         </td>
     </tr>
     <tr>
         <td></td>
         <td>
-            @Math.Round(Model.Sum(a => a.AllocatedNewBudget) * 0.10 + Model.Sum(a => a.AllocatedNewBudget)).ToString("C")
+            @Math.Round(Model.Sum(a => a.AllocatedOldBudget) * 0.10 + Model.Sum(a => a.AllocatedNewBudget)).ToString("C")
         </td>
     </tr>
 

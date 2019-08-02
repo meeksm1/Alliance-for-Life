@@ -247,7 +247,7 @@ namespace Alliance_for_Life.Controllers
             //set totals to zero
 
             invoice.GrandTotal = invoice.DirectAdminCost + invoice.ParticipantServices;
-            invoice.LessManagementFee = invoice.GrandTotal * .03;
+            invoice.LessManagementFee = invoice.DirectAdminCost * .03;
             invoice.DepositAmount = invoice.GrandTotal - invoice.LessManagementFee;
 
 

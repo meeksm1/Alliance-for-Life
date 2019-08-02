@@ -1,4 +1,5 @@
 ﻿using Alliance_for_Life.Models;
+using Microsoft.AspNet.Identity;
 using PagedList;
 using System;
 using System.Collections.Generic;
@@ -261,21 +262,24 @@ namespace Alliance_for_Life.Controllers
             }
 
             var admincost = db.AdminCosts.Where(a => a.Year == year_search).ToList();
+            var id = User.Identity.GetUserId();
+            var usr = db.Users.Find(id);
+            var usersubid = db.Users.Find(id).SubcontractorId;
 
             //calculating Admin Total Cost per month and returning it as viewbag
-            ViewBag.JanFee = (admincost.Where(a => a.Month == Months.January && a.SubcontractorId.ToString() == "1d8212d8-7eb9-46b1-a6b2-bb26f08b6d87").Sum(a => a.ATotCosts));
-            ViewBag.FebFee = (admincost.Where(a => a.Month == Months.February && a.SubcontractorId.ToString() == "1d8212d8-7eb9-46b1-a6b2-bb26f08b6d87").Sum(a => a.ATotCosts));
-            ViewBag.MarFee = (admincost.Where(a => a.Month == Months.March && a.SubcontractorId.ToString() == "1d8212d8-7eb9-46b1-a6b2-bb26f08b6d87").Sum(a => a.ATotCosts));
-            ViewBag.AprFee = (admincost.Where(a => a.Month == Months.April && a.SubcontractorId.ToString() == "1d8212d8-7eb9-46b1-a6b2-bb26f08b6d87").Sum(a => a.ATotCosts));
-            ViewBag.MayFee = (admincost.Where(a => a.Month == Months.May && a.SubcontractorId.ToString() == "1d8212d8-7eb9-46b1-a6b2-bb26f08b6d87").Sum(a => a.ATotCosts));
-            ViewBag.JunFee = (admincost.Where(a => a.Month == Months.June && a.SubcontractorId.ToString() == "1d8212d8-7eb9-46b1-a6b2-bb26f08b6d87").Sum(a => a.ATotCosts));
-            ViewBag.JulFee = (admincost.Where(a => a.Month == Months.July && a.SubcontractorId.ToString() == "1d8212d8-7eb9-46b1-a6b2-bb26f08b6d87").Sum(a => a.ATotCosts));
-            ViewBag.AugFee = (admincost.Where(a => a.Month == Months.August && a.SubcontractorId.ToString() == "1d8212d8-7eb9-46b1-a6b2-bb26f08b6d87").Sum(a => a.ATotCosts));
-            ViewBag.SepFee = (admincost.Where(a => a.Month == Months.September && a.SubcontractorId.ToString() == "1d8212d8-7eb9-46b1-a6b2-bb26f08b6d87").Sum(a => a.ATotCosts));
-            ViewBag.OctFee = (admincost.Where(a => a.Month == Months.October && a.SubcontractorId.ToString() == "1d8212d8-7eb9-46b1-a6b2-bb26f08b6d87").Sum(a => a.ATotCosts));
-            ViewBag.NovFee = (admincost.Where(a => a.Month == Months.November && a.SubcontractorId.ToString() == "1d8212d8-7eb9-46b1-a6b2-bb26f08b6d87").Sum(a => a.ATotCosts));
-            ViewBag.DecFee = (admincost.Where(a => a.Month == Months.December && a.SubcontractorId.ToString() == "1d8212d8-7eb9-46b1-a6b2-bb26f08b6d87").Sum(a => a.ATotCosts));
-            ViewBag.TotalFee = (admincost.Where(a => a.SubcontractorId.ToString() == "1d8212d8-7eb9-46b1-a6b2-bb26f08b6d87").Sum(a => a.ATotCosts));
+            ViewBag.JanFee = (admincost.Where(a => a.Month == Months.January && a.SubcontractorId == usersubid).Sum(a => a.ATotCosts));
+            ViewBag.FebFee = (admincost.Where(a => a.Month == Months.February && a.SubcontractorId == usersubid).Sum(a => a.ATotCosts));
+            ViewBag.MarFee = (admincost.Where(a => a.Month == Months.March && a.SubcontractorId == usersubid).Sum(a => a.ATotCosts));
+            ViewBag.AprFee = (admincost.Where(a => a.Month == Months.April && a.SubcontractorId == usersubid).Sum(a => a.ATotCosts));
+            ViewBag.MayFee = (admincost.Where(a => a.Month == Months.May && a.SubcontractorId == usersubid).Sum(a => a.ATotCosts));
+            ViewBag.JunFee = (admincost.Where(a => a.Month == Months.June && a.SubcontractorId == usersubid).Sum(a => a.ATotCosts));
+            ViewBag.JulFee = (admincost.Where(a => a.Month == Months.July && a.SubcontractorId == usersubid).Sum(a => a.ATotCosts));
+            ViewBag.AugFee = (admincost.Where(a => a.Month == Months.August && a.SubcontractorId == usersubid).Sum(a => a.ATotCosts));
+            ViewBag.SepFee = (admincost.Where(a => a.Month == Months.September && a.SubcontractorId == usersubid).Sum(a => a.ATotCosts));
+            ViewBag.OctFee = (admincost.Where(a => a.Month == Months.October && a.SubcontractorId == usersubid).Sum(a => a.ATotCosts));
+            ViewBag.NovFee = (admincost.Where(a => a.Month == Months.November && a.SubcontractorId == usersubid).Sum(a => a.ATotCosts));
+            ViewBag.DecFee = (admincost.Where(a => a.Month == Months.December && a.SubcontractorId == usersubid).Sum(a => a.ATotCosts));
+            ViewBag.TotalFee = (admincost.Where(a => a.SubcontractorId == usersubid).Sum(a => a.ATotCosts));
 
             //calculating other studd
             var invoice = db.Invoices.Where(a => a.Year == year_search);

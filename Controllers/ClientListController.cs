@@ -99,6 +99,40 @@ namespace Alliance_for_Life.Controllers
             return View(client);
         }
 
+        // GET: AdministrationCost/Delete/5
+        public ActionResult Delete(Guid? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            ClientList client = db.ClientLists
+
+                .Include(a => a.Subcontractor)
+                .SingleOrDefault(a => a.Id == id);
+
+            if (client == null)
+            {
+                return HttpNotFound();
+            }
+            return View(client);
+        }
+
+        // POST: AdministrationCost/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(Guid id)
+        {
+            ClientList client = db.ClientLists
+
+                .Include(a => a.Subcontractor)
+                .SingleOrDefault(a => a.Id == id);
+
+            db.ClientLists.Remove(client);
+            db.SaveChanges();
+            return RedirectToAction("AllActiveClients");
+        }
+
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]

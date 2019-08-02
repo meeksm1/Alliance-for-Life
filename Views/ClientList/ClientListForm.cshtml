@@ -56,8 +56,8 @@
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.Active)
-        @Html.RadioButtonFor(m => m.Active, "True", new { @class = "form-group" })Yes.
-        @Html.RadioButtonFor(m => m.Active, "False", new { @class = "form-group" })No.
+        @Html.RadioButtonFor(m => m.Active, "True", new { @class = "form-group", @checked="checked"})Yes.
+        @Html.RadioButtonFor(m => m.Active,  new { @class = "form-group" })No.
     </div>
     <button type="submit" class="btn btn-group-sm btn-primary">Submit</button>
     <br />
