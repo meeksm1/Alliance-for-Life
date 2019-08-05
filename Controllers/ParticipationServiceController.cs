@@ -277,6 +277,31 @@ namespace Alliance_for_Life.Controllers
                     break;
             }
 
+            //Getting the admin cost totals
+            var admincost = db.AdminCosts.Where(a => a.Year.ToString() == year_search).ToList();
+
+            //calculating Admin Total Cost per month and returning it as viewbag
+            ViewBag.SalTot = (admincost.Sum(a => a.ASalandWages));
+            ViewBag.AEmpBenefits = (admincost.Sum(a => a.AEmpBenefits));
+            ViewBag.AEmpTravel = (admincost.Sum(a => a.AEmpTravel));
+            ViewBag.AEmpTraining = (admincost.Sum(a => a.AEmpTraining));
+            ViewBag.AOfficeRent = (admincost.Sum(a => a.AOfficeRent));
+            ViewBag.AOfficeUtilities = (admincost.Sum(a => a.AOfficeUtilities));
+            ViewBag.AFacilityIns = (admincost.Sum(a => a.AFacilityIns));
+            ViewBag.AOfficeSupplies = (admincost.Sum(a => a.AOfficeSupplies));
+            ViewBag.AEquipment = (admincost.Sum(a => a.AEquipment));
+            ViewBag.AOfficeCommunications = (admincost.Sum(a => a.AOfficeCommunications));
+            ViewBag.AOfficeMaint = (admincost.Sum(a => a.AOfficeMaint));
+            ViewBag.AConsulting = (admincost.Sum(a => a.AConsulting));
+            ViewBag.AJanitorServices = (admincost.Sum(a => a.AJanitorServices));
+            ViewBag.ADepreciation = (admincost.Sum(a => a.ADepreciation));
+            ViewBag.ATechSupport = (admincost.Sum(a => a.ATechSupport));
+            ViewBag.ASecurityServices = (admincost.Sum(a => a.ASecurityServices));
+            ViewBag.AOther = (admincost.Sum(a => a.AOther));
+            ViewBag.AOther2 = (admincost.Sum(a => a.AOther2));
+            ViewBag.AOther3 = (admincost.Sum(a => a.AOther3));
+            ViewBag.Total = (admincost.Sum(a => a.ATotCosts));
+
             int pageNumber = (page ?? 1);
             int defaSize = (pgSize ?? 5);
 

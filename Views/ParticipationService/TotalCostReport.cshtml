@@ -184,12 +184,75 @@
             </tr>
         }
     </table>
-
-    <h3>Total Participation Cost</h3>
-    <p>
-        @Model.Sum(m => m.PTotals).ToString("c")
-    </p>
-    <br /><br />
+    <table id="dtBasicExample" class="table table-striped table-bordered table-sm" style="font-size:16px" cellspacing="0" width="100">
+        <tr>
+            <th>
+                Totals
+            </th>
+            <th>
+                Transportation
+            </th>
+            <th>
+                Job Training / Placement
+            </th>
+            <th>
+                Eduacation/Tuition Assistance
+            </th>
+            <th>
+                Residental Care
+            </th>
+            <th>
+                Utilities
+            </th>
+            <th>
+                Housing/Emergency
+            </th>
+            <th>
+                Housing Assistance
+            </th>
+            <th>
+                Child Care
+            </th>
+            <th>
+                Clothing
+            </th>
+            <th>
+                Food
+            </th>
+            <th>
+                Supplies
+            </th>
+            <th>
+                Other
+            </th>
+            <th>
+                Other
+            </th>
+            <th>
+                Other
+            </th>
+            <th>
+                Participation Totals
+            </th>
+        </tr>
+        <td> </td>
+        <td> @Model.Sum(a => a.PTranspotation).ToString("c")</td>
+        <td> @Model.Sum(a => a.PJobTrain).ToString("c")</td>
+        <td> @Model.Sum(a => a.PEducationAssistance).ToString("c")</td>
+        <td> @Model.Sum(a => a.PResidentialCare).ToString("c")</td>
+        <td> @Model.Sum(a => a.PUtilities).ToString("c")</td>
+        <td> @Model.Sum(a => a.PHousingEmergency).ToString("c")</td>
+        <td> @Model.Sum(a => a.PHousingAssistance).ToString("c")</td>
+        <td> @Model.Sum(a => a.PChildCare).ToString("c")</td>
+        <td> @Model.Sum(a => a.PClothing).ToString("c")</td>
+        <td> @Model.Sum(a => a.PFood).ToString("c")</td>
+        <td> @Model.Sum(a => a.PSupplies).ToString("c")</td>
+        <td> @Model.Sum(a => a.POther).ToString("c")</td>
+        <td> @Model.Sum(a => a.POther2).ToString("c")</td>
+        <td> @Model.Sum(a => a.POther3).ToString("c")</td>
+        <td> @Model.Sum(a => a.PTotals).ToString("c")</td>
+        </tr>
+    </table>
 
     <h3>Administration Costs</h3>
     <table id="dtBasicExample" class="table table-striped table-bordered table-sm" style="font-size:16px" cellspacing="0" width="100">
@@ -417,12 +480,138 @@
         }
     </table>
 
-    @*This is how you do a Sum in Linq to apply a total based on a model property*@
-    <h3>Total Administrative Cost</h3>
-    <p>
-            @ViewBag.Admintotal.ToString("c")
-    </p>
-    <br /><br />
+    <table id="dtBasicExample" class="table table-striped table-bordered table-sm" style="font-size:16px" cellspacing="0" width="100">
+        <tr>
+            <th>
+                Totals
+            </th>
+            <th>
+                Salaries and Wages
+            </th>
+            <th>
+                Employee Benefits
+            </th>
+            <th>
+                Employee Travel
+            </th>
+            <th>
+                Employee Training
+            </th>
+            <th>
+                Office Rent
+            </th>
+            <th>
+                Office Utilities
+            </th>
+            <th>
+                Facility Insurance
+            </th>
+            <th>
+                Office Supplies
+            </th>
+            <th>
+                Equipment
+            </th>
+            <th>
+                Office Communications
+            </th>
+            <th>
+                Office Maintenance
+            </th>
+            <th>
+                Consulting Fee's
+            </th>
+            <th>
+                Janitor Services
+            </th>
+            <th>
+                Depreciation
+            </th>
+            <th>
+                Tech Support
+            </th>
+            <th>
+                Security
+            </th>
+            <th>
+                Other
+            </th>
+            <th>
+                Other
+            </th>
+            <th>
+                Other
+            </th>
+            <th>
+                Total Cost
+            </th>
+        </tr>
+
+        <tr>
+            <td> Totals</td>
+            <td>
+                @ViewBag.SalTot.ToString("C")
+            </td>
+            <td>
+                @ViewBag.AEmpBenefits.ToString("C")
+            </td>
+            <td>
+                @ViewBag.AEmpTravel.ToString("C")
+            </td>
+            <td>
+                @ViewBag.AEmpTraining.ToString("C")
+            </td>
+            <td>
+                @ViewBag.AOfficeRent.ToString("C")
+            </td>
+            <td>
+                @ViewBag.AOfficeUtilities.ToString("C")
+            </td>
+            <td>
+                @ViewBag.AFacilityIns.ToString("C")
+            </td>
+            <td>
+                @ViewBag.AOfficeSupplies.ToString("C")
+            </td>
+            <td>
+                @ViewBag.AEquipment.ToString("C")
+            </td>
+            <td>
+                @ViewBag.AOfficeCommunications.ToString("C")
+            </td>
+            <td>
+                @ViewBag.AOfficeMaint.ToString("C")
+            </td>
+            <td>
+                @ViewBag.AConsulting.ToString("C")
+            </td>
+            <td>
+                @ViewBag.AJanitorServices.ToString("C")
+            </td>
+            <td>
+                @ViewBag.ADepreciation.ToString("C")
+            </td>
+            <td>
+                @ViewBag.ATechSupport.ToString("C")
+            </td>
+            <td>
+                @ViewBag.ASecurityServices.ToString("C")
+            </td>
+            <td>
+                @ViewBag.AOther.ToString("C")
+            </td>
+            <td>
+                @ViewBag.AOther2.ToString("C")
+            </td>
+            <td>
+                @ViewBag.AOther3.ToString("C")
+            </td>
+            <td>
+               @ViewBag.Total.ToString("c")
+            </td>
+        </tr>
+    </table>
+
     @using (Html.BeginForm("Export", "ParticipationCost", FormMethod.Post))
     {
         <input type="submit" value="Export to Excel" class="btn btn-group-sm btn-primary" />
@@ -438,7 +627,7 @@
                             Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
 
                             @Html.PagedListPager(Model, page => Url.Action("TotalCostReport",
-                                new { page, pgSize = ViewBag.psize, @class = "pagination", onchange = "this.form.submit()" }))   
+                                new { page, pgSize = ViewBag.psize, @class = "pagination", onchange = "this.form.submit()" }))
                         </div>
                     </div>
                 </div>
