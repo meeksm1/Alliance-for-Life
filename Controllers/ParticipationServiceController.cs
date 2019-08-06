@@ -278,7 +278,13 @@ namespace Alliance_for_Life.Controllers
             }
 
             //Getting the admin cost totals
-            var admincost = db.AdminCosts.Where(a => a.Year.ToString() == year_search).ToList();
+
+            var admincost = db.AdminCosts.ToList();
+
+            if (year_search != "")
+            {
+                admincost = admincost.Where(a => a.Year.ToString() == year_search).ToList();
+            }
 
             //calculating Admin Total Cost per month and returning it as viewbag
             ViewBag.SalTot = (admincost.Sum(a => a.ASalandWages));
