@@ -275,15 +275,14 @@ namespace Alliance_for_Life.Controllers
         public FileResult ExportAllActive()
         {
             DataTable dt = new DataTable("Grid");
-            dt.Columns.AddRange(new DataColumn[7]
+            dt.Columns.AddRange(new DataColumn[6]
             {
                 new DataColumn ("Client ID"),
                 new DataColumn ("Organization"),
                 new DataColumn ("First Name"),
                 new DataColumn ("Last Name"),
-                new DataColumn ("Due Date"),
                 new DataColumn ("Birthday"),
-                new DataColumn ("Date Submitted")
+                new DataColumn ("Due Date"),
             });
 
             var user1 = User.Identity.GetUserId();
@@ -303,7 +302,7 @@ namespace Alliance_for_Life.Controllers
 
             foreach (var item in query)
             {
-                dt.Rows.Add(item.Id, item.Orgname, item.FirstName, item.LastName, item.DOB.ToShortDateString(), item.DueDate.ToShortDateString(), item.SubmittedDate);
+                dt.Rows.Add(item.Id, item.Orgname, item.FirstName, item.LastName, item.DOB.ToShortDateString(), item.DueDate.ToShortDateString());
             }
 
             using (XLWorkbook wb = new XLWorkbook())
@@ -412,8 +411,8 @@ namespace Alliance_for_Life.Controllers
                 new DataColumn ("Organization"),
                 new DataColumn ("First Name"),
                 new DataColumn ("Last Name"),
-                new DataColumn ("Due Date"),
-                new DataColumn ("Birthday")
+                new DataColumn ("Birthday"),
+                new DataColumn ("Due Date")
             });
 
             var user1 = User.Identity.GetUserId();
@@ -522,8 +521,8 @@ namespace Alliance_for_Life.Controllers
                 new DataColumn ("Organization"),
                 new DataColumn ("First Name"),
                 new DataColumn ("Last Name"),
-                new DataColumn ("Due Date"),
-                new DataColumn ("Birthday")
+                new DataColumn ("Birthday"),
+                new DataColumn ("Due Date")
             });
 
             var user1 = User.Identity.GetUserId();
@@ -650,8 +649,8 @@ namespace Alliance_for_Life.Controllers
                 new DataColumn ("Organization"),
                 new DataColumn ("First Name"),
                 new DataColumn ("Last Name"),
-                new DataColumn ("Due Date"),
-                new DataColumn ("Birthday")
+                new DataColumn ("Birthday"),
+                new DataColumn ("Due Date")
             });
 
             var user1 = User.Identity.GetUserId();
