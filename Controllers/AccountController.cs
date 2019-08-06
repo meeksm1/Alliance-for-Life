@@ -211,7 +211,7 @@ namespace Alliance_for_Life.Controllers
             }
 
             int pageNumber = (page ?? 1);
-            int defaSize = (pgSize ?? 5);
+            int defaSize = (pgSize ?? 10);
 
             ViewBag.psize = defaSize;
 

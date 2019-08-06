@@ -133,7 +133,7 @@ namespace Alliance_for_Life.Controllers
             }
 
             int pageNumber = (page ?? 1);
-            int defaSize = (pgSize ?? 5);
+            int defaSize = (pgSize ?? 10);
 
             ViewBag.psize = defaSize;
 
@@ -309,7 +309,7 @@ namespace Alliance_for_Life.Controllers
             ViewBag.Total = (admincost.Sum(a => a.ATotCosts));
 
             int pageNumber = (page ?? 1);
-            int defaSize = (pgSize ?? 5);
+            int defaSize = (pgSize ?? 10);
 
             ViewBag.psize = defaSize;
 
@@ -491,13 +491,12 @@ namespace Alliance_for_Life.Controllers
             base.Dispose(disposing);
         }
 
-        [HttpPost]
+
         public FileResult Export()
         {
-            DataTable dt = new DataTable("Grid");
-            dt.Columns.AddRange(new DataColumn[21]
+            DataTable dt = new DataTable("Total Cost Report");
+            dt.Columns.AddRange(new DataColumn[20]
             {
-                new DataColumn ("Participation Invoice Id"),
                 new DataColumn ("Organization"),
                 new DataColumn ("Month"),
                 new DataColumn ("Region"),
@@ -525,8 +524,7 @@ namespace Alliance_for_Life.Controllers
                         where a.SubcontractorId == s.SubcontractorId
                         select new ParticipationServiceReport
                         {
-                            PSId = a.PSId,
-                            OrgName = s.OrgName,
+                            OrgName = a.Subcontractor.OrgName,
                             MonthName = a.Month.ToString(),
                             RegionName = s.Region.ToString(),
                             YearName = a.Year,
@@ -548,9 +546,9 @@ namespace Alliance_for_Life.Controllers
                             PTotals = a.PTotals
                         };
 
-            foreach (var item in costs)
+            foreach (var item in costs.OrderBy(a => a.OrgName))
             {
-                dt.Rows.Add(item.PSId, item.MonthName, item.RegionName, item.YearName, item.EIN, item.PTranspotation, item.PJobTrain,
+                dt.Rows.Add(item.OrgName, item.MonthName, item.RegionName, item.YearName, item.EIN, item.PTranspotation, item.PJobTrain,
                     item.PJobTrain, item.PResidentialCare, item.PUtilities, item.PHousingEmergency, item.PHousingAssistance, item.PChildCare,
                     item.PClothing, item.PFood, item.PSupplies, item.POther, item.POther2, item.POther3, item.PTotals);
             }
@@ -561,7 +559,7 @@ namespace Alliance_for_Life.Controllers
                 using (MemoryStream stream = new MemoryStream())
                 {
                     wb.SaveAs(stream);
-                    return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Grid.xlsx");
+                    return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Total Cost Report.xlsx");
                 }
             }
         }
