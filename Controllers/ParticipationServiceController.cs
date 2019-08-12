@@ -494,124 +494,251 @@ namespace Alliance_for_Life.Controllers
         }
 
 
-        public FileResult Export()
+        //public FileResult Export()
+        //{
+        //    DataTable dt = new DataTable("Total Cost Report");
+        //    dt.Columns.AddRange(new DataColumn[20]
+        //    {
+        //        new DataColumn ("Organization"),
+        //        new DataColumn ("Month"),
+        //        new DataColumn ("Region"),
+        //        new DataColumn ("Year"),
+        //        new DataColumn ("Transportation"),
+        //        new DataColumn ("Job Training"),
+        //        new DataColumn ("Education"),
+        //        new DataColumn ("Education Assistance"),
+        //        new DataColumn ("Residential Care"),
+        //        new DataColumn ("Utilities"),
+        //        new DataColumn ("Housing Emergencies"),
+        //        new DataColumn ("Housing Assistance"),
+        //        new DataColumn ("Child Care"),
+        //        new DataColumn ("Clothing"),
+        //        new DataColumn ("Food"),
+        //        new DataColumn ("Supplies"),
+        //        new DataColumn ("Participation Other"),
+        //        new DataColumn ("Participation Other 2"),
+        //        new DataColumn ("Participation Other 3"),
+        //        new DataColumn ("Participation Total Costs")
+        //    });
+
+        //    var costs = from a in db.ParticipationServices
+        //                join s in db.SubContractors on a.SubcontractorId equals s.SubcontractorId
+        //                where a.SubcontractorId == s.SubcontractorId
+        //                select new ParticipationServiceReport
+        //                {
+        //                    OrgName = a.Subcontractor.OrgName,
+        //                    MonthName = a.Month.ToString(),
+        //                    RegionName = s.Region.ToString(),
+        //                    YearName = a.Year,
+        //                    EIN = s.EIN,
+        //                    PTranspotation = a.PTranspotation,
+        //                    PJobTrain = a.PJobTrain,
+        //                    PEducationAssistance = a.PEducationAssistance,
+        //                    PResidentialCare = a.PResidentialCare,
+        //                    PUtilities = a.PUtilities,
+        //                    PHousingEmergency = a.PHousingEmergency,
+        //                    PHousingAssistance = a.PHousingAssistance,
+        //                    PChildCare = a.PChildCare,
+        //                    PClothing = a.PClothing,
+        //                    PFood = a.PFood,
+        //                    PSupplies = a.PSupplies,
+        //                    POther = a.POther,
+        //                    POther2 = a.POther2,
+        //                    POther3 = a.POther3,
+        //                    PTotals = a.PTotals
+        //                };
+
+        //    if (!User.IsInRole("Admin"))
+        //    {
+        //        var id = User.Identity.GetUserId();
+
+        //        costs = from a in db.ParticipationServices
+        //                join s in db.SubContractors on a.SubcontractorId equals s.SubcontractorId
+        //                join us in db.Users on s.SubcontractorId equals us.SubcontractorId
+        //                where a.SubcontractorId == s.SubcontractorId && us.Id == id
+        //                select new ParticipationServiceReport
+        //                {
+        //                    OrgName = a.Subcontractor.OrgName,
+        //                    MonthName = a.Month.ToString(),
+        //                    RegionName = s.Region.ToString(),
+        //                    YearName = a.Year,
+        //                    EIN = s.EIN,
+        //                    PTranspotation = a.PTranspotation,
+        //                    PJobTrain = a.PJobTrain,
+        //                    PEducationAssistance = a.PEducationAssistance,
+        //                    PResidentialCare = a.PResidentialCare,
+        //                    PUtilities = a.PUtilities,
+        //                    PHousingEmergency = a.PHousingEmergency,
+        //                    PHousingAssistance = a.PHousingAssistance,
+        //                    PChildCare = a.PChildCare,
+        //                    PClothing = a.PClothing,
+        //                    PFood = a.PFood,
+        //                    PSupplies = a.PSupplies,
+        //                    POther = a.POther,
+        //                    POther2 = a.POther2,
+        //                    POther3 = a.POther3,
+        //                    PTotals = a.PTotals
+        //                };
+
+        //    }
+
+        //    foreach (var item in costs.OrderBy(a => a.OrgName))
+        //    {
+        //        dt.Rows.Add(item.OrgName, item.MonthName, item.RegionName, item.YearName, item.EIN, item.PTranspotation, item.PJobTrain,
+        //            item.PJobTrain, item.PResidentialCare, item.PUtilities, item.PHousingEmergency, item.PHousingAssistance, item.PChildCare,
+        //            item.PClothing, item.PFood, item.PSupplies, item.POther, item.POther2, item.POther3, item.PTotals);
+        //    }
+
+        //    using (XLWorkbook wb = new XLWorkbook())
+        //    {
+        //        wb.Worksheets.Add(dt);
+        //        using (MemoryStream stream = new MemoryStream())
+        //        {
+        //            wb.SaveAs(stream);
+        //            return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Total Cost Report.xlsx");
+        //        }
+        //    }
+        //}
+
+        ////exporting Administration cost
+        //public FileResult ExportAdmincost()
+        //{
+        //    DataTable dt = new DataTable("Grid");
+        //    dt.Columns.AddRange(new DataColumn[27]
+        //    {
+        //        new DataColumn ("Administration Invoice Id"),
+        //        new DataColumn ("Date Submitted"),
+        //        new DataColumn ("Organization"),
+        //        new DataColumn ("Month"),
+        //        new DataColumn ("Region"),
+        //        new DataColumn ("Year"),
+        //        new DataColumn ("AflBillable"),
+        //        new DataColumn ("Salary/Wages"),
+        //        new DataColumn ("Employee Benefits"),
+        //        new DataColumn ("Employee Travel"),
+        //        new DataColumn ("Employee Training"),
+        //        new DataColumn ("Office Rent"),
+        //        new DataColumn ("Office Utilities"),
+        //        new DataColumn ("Facility Insurance"),
+        //        new DataColumn ("Office Supplies"),
+        //        new DataColumn ("Equipment"),
+        //        new DataColumn ("Office Communications"),
+        //        new DataColumn ("Office Maintenance"),
+        //        new DataColumn ("Consulting Fees"),
+        //        new DataColumn ("Janitor Services"),
+        //        new DataColumn ("Depreciation"),
+        //        new DataColumn ("Technical Support"),
+        //        new DataColumn ("Security Services"),
+        //        new DataColumn ("Other"),
+        //        new DataColumn ("Other 2"),
+        //        new DataColumn ("Other 3"),
+        //        new DataColumn ("Total Costs"),
+        //    });
+
+        //    var costs = from a in db.AdminCosts
+        //                join s in db.SubContractors on a.SubcontractorId equals s.SubcontractorId
+        //                join us in db.Users on s.SubcontractorId equals us.SubcontractorId
+        //                where a.SubcontractorId == s.SubcontractorId
+        //                select new AdminReport
+        //                {
+        //                    AdminCostId = a.AdminCostId,
+        //                    SubmittedDate = a.SubmittedDate,
+        //                    OrgName = s.OrgName,
+        //                    MonthName = a.Month.ToString(),
+        //                    YearName = a.Year,
+        //                    AflBillable = a.AflBillable,
+        //                    ASalandWages = a.ASalandWages,
+        //                    AEmpBenefits = a.AEmpBenefits,
+        //                    AEmpTravel = a.AEmpTravel,
+        //                    AEmpTraining = a.AEmpTraining,
+        //                    AOfficeRent = a.AOfficeRent,
+        //                    AOfficeUtilities = a.AOfficeUtilities,
+        //                    AFacilityIns = a.AFacilityIns,
+        //                    AOfficeSupplies = a.AOfficeSupplies,
+        //                    AEquipment = a.AEquipment,
+        //                    AOfficeCommunications = a.AOfficeCommunications,
+        //                    AOfficeMaint = a.AOfficeMaint,
+        //                    AConsulting = a.AConsulting,
+        //                    AJanitorServices = a.AJanitorServices,
+        //                    ADepreciation = a.ADepreciation,
+        //                    ATechSupport = a.ATechSupport,
+        //                    ASecurityServices = a.ASecurityServices,
+        //                    AOther = a.AOther,
+        //                    AOther2 = a.AOther2,
+        //                    AOther3 = a.AOther3,
+        //                    ATotCosts = a.ATotCosts
+        //                };
+
+        //    if (!User.IsInRole("Admin"))
+        //    {
+        //        var id = User.Identity.GetUserId();
+
+        //        costs = from a in db.AdminCosts
+        //                join s in db.SubContractors on a.SubcontractorId equals s.SubcontractorId
+        //                join us in db.Users on s.SubcontractorId equals us.SubcontractorId
+        //                where a.SubcontractorId == s.SubcontractorId && us.Id == id
+        //                select new AdminReport
+        //                {
+        //                    AdminCostId = a.AdminCostId,
+        //                    SubmittedDate = a.SubmittedDate,
+        //                    OrgName = s.OrgName,
+        //                    MonthName = a.Month.ToString(),
+        //                    YearName = a.Year,
+        //                    AflBillable = a.AflBillable,
+        //                    ASalandWages = a.ASalandWages,
+        //                    AEmpBenefits = a.AEmpBenefits,
+        //                    AEmpTravel = a.AEmpTravel,
+        //                    AEmpTraining = a.AEmpTraining,
+        //                    AOfficeRent = a.AOfficeRent,
+        //                    AOfficeUtilities = a.AOfficeUtilities,
+        //                    AFacilityIns = a.AFacilityIns,
+        //                    AOfficeSupplies = a.AOfficeSupplies,
+        //                    AEquipment = a.AEquipment,
+        //                    AOfficeCommunications = a.AOfficeCommunications,
+        //                    AOfficeMaint = a.AOfficeMaint,
+        //                    AConsulting = a.AConsulting,
+        //                    AJanitorServices = a.AJanitorServices,
+        //                    ADepreciation = a.ADepreciation,
+        //                    ATechSupport = a.ATechSupport,
+        //                    ASecurityServices = a.ASecurityServices,
+        //                    AOther = a.AOther,
+        //                    AOther2 = a.AOther2,
+        //                    AOther3 = a.AOther3,
+        //                    ATotCosts = a.ATotCosts
+        //                };
+
+        //    }
+        //    foreach (var item in costs)
+        //    {
+        //        dt.Rows.Add(item.AdminCostId, item.SubmittedDate, item.OrgName, item.MonthName, item.RegionName, item.YearName, item.AflBillable, item.ASalandWages, item.AEmpBenefits,
+        //            item.AEmpTravel, item.AEmpTraining, item.AOfficeRent, item.AOfficeUtilities, item.AFacilityIns, item.AOfficeSupplies, item.AEquipment,
+        //            item.AOfficeCommunications, item.AOfficeMaint, item.AConsulting, item.AJanitorServices, item.ADepreciation,
+        //            item.ATechSupport, item.ASecurityServices, item.AOther, item.AOther2, item.AOther3, item.ATotCosts);
+        //    }
+
+        //    using (XLWorkbook wb = new XLWorkbook())
+        //    {
+        //        wb.Worksheets.Add(dt);
+        //        using (MemoryStream stream = new MemoryStream())
+        //        {
+        //            wb.SaveAs(stream);
+        //            return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Grid.xlsx");
+        //        }
+        //    }
+        //}
+
+        //paticipation and total cost merged
+        public FileResult ExportAdminParticost()
         {
-            DataTable dt = new DataTable("Total Cost Report");
-            dt.Columns.AddRange(new DataColumn[20]
+            DataTable dt = new DataTable("Total Cost");
+            dt.Columns.AddRange(new DataColumn[41]
             {
+                new DataColumn ("EIN"),
                 new DataColumn ("Organization"),
-                new DataColumn ("Month"),
                 new DataColumn ("Region"),
-                new DataColumn ("Year"),
-                new DataColumn ("Transportation"),
-                new DataColumn ("Job Training"),
-                new DataColumn ("Education"),
-                new DataColumn ("Education Assistance"),
-                new DataColumn ("Residential Care"),
-                new DataColumn ("Utilities"),
-                new DataColumn ("Housing Emergencies"),
-                new DataColumn ("Housing Assistance"),
-                new DataColumn ("Child Care"),
-                new DataColumn ("Clothing"),
-                new DataColumn ("Food"),
-                new DataColumn ("Supplies"),
-                new DataColumn ("Other"),
-                new DataColumn ("Other 2"),
-                new DataColumn ("Other 3"),
-                new DataColumn ("Total Costs")
-            });
-
-            var costs = from a in db.ParticipationServices
-                        join s in db.SubContractors on a.SubcontractorId equals s.SubcontractorId
-                        where a.SubcontractorId == s.SubcontractorId
-                        select new ParticipationServiceReport
-                        {
-                            OrgName = a.Subcontractor.OrgName,
-                            MonthName = a.Month.ToString(),
-                            RegionName = s.Region.ToString(),
-                            YearName = a.Year,
-                            EIN = s.EIN,
-                            PTranspotation = a.PTranspotation,
-                            PJobTrain = a.PJobTrain,
-                            PEducationAssistance = a.PEducationAssistance,
-                            PResidentialCare = a.PResidentialCare,
-                            PUtilities = a.PUtilities,
-                            PHousingEmergency = a.PHousingEmergency,
-                            PHousingAssistance = a.PHousingAssistance,
-                            PChildCare = a.PChildCare,
-                            PClothing = a.PClothing,
-                            PFood = a.PFood,
-                            PSupplies = a.PSupplies,
-                            POther = a.POther,
-                            POther2 = a.POther2,
-                            POther3 = a.POther3,
-                            PTotals = a.PTotals
-                        };
-
-            if (!User.IsInRole("Admin"))
-            {
-                var id = User.Identity.GetUserId();
-
-                costs = from a in db.ParticipationServices
-                        join s in db.SubContractors on a.SubcontractorId equals s.SubcontractorId
-                        join us in db.Users on s.SubcontractorId equals us.SubcontractorId
-                        where a.SubcontractorId == s.SubcontractorId && us.Id == id
-                        select new ParticipationServiceReport
-                        {
-                            OrgName = a.Subcontractor.OrgName,
-                            MonthName = a.Month.ToString(),
-                            RegionName = s.Region.ToString(),
-                            YearName = a.Year,
-                            EIN = s.EIN,
-                            PTranspotation = a.PTranspotation,
-                            PJobTrain = a.PJobTrain,
-                            PEducationAssistance = a.PEducationAssistance,
-                            PResidentialCare = a.PResidentialCare,
-                            PUtilities = a.PUtilities,
-                            PHousingEmergency = a.PHousingEmergency,
-                            PHousingAssistance = a.PHousingAssistance,
-                            PChildCare = a.PChildCare,
-                            PClothing = a.PClothing,
-                            PFood = a.PFood,
-                            PSupplies = a.PSupplies,
-                            POther = a.POther,
-                            POther2 = a.POther2,
-                            POther3 = a.POther3,
-                            PTotals = a.PTotals
-                        };
-
-            }
-
-            foreach (var item in costs.OrderBy(a => a.OrgName))
-            {
-                dt.Rows.Add(item.OrgName, item.MonthName, item.RegionName, item.YearName, item.EIN, item.PTranspotation, item.PJobTrain,
-                    item.PJobTrain, item.PResidentialCare, item.PUtilities, item.PHousingEmergency, item.PHousingAssistance, item.PChildCare,
-                    item.PClothing, item.PFood, item.PSupplies, item.POther, item.POther2, item.POther3, item.PTotals);
-            }
-
-            using (XLWorkbook wb = new XLWorkbook())
-            {
-                wb.Worksheets.Add(dt);
-                using (MemoryStream stream = new MemoryStream())
-                {
-                    wb.SaveAs(stream);
-                    return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Total Cost Report.xlsx");
-                }
-            }
-        }
-      
-        //exporting Administration cost
-        public FileResult ExportAdmincost()
-        {
-            DataTable dt = new DataTable("Grid");
-            dt.Columns.AddRange(new DataColumn[27]
-            {
-                new DataColumn ("Administration Invoice Id"),
-                new DataColumn ("Date Submitted"),
-                new DataColumn ("Organization"),
                 new DataColumn ("Month"),
-                new DataColumn ("Region"),
                 new DataColumn ("Year"),
+                //admincost
                 new DataColumn ("AflBillable"),
                 new DataColumn ("Salary/Wages"),
                 new DataColumn ("Employee Benefits"),
@@ -629,23 +756,43 @@ namespace Alliance_for_Life.Controllers
                 new DataColumn ("Depreciation"),
                 new DataColumn ("Technical Support"),
                 new DataColumn ("Security Services"),
-                new DataColumn ("Other"),
-                new DataColumn ("Other 2"),
-                new DataColumn ("Other 3"),
-                new DataColumn ("Total Costs"),
+                new DataColumn ("Admin Other"),
+                new DataColumn ("Admin Other 2"),
+                new DataColumn ("Admin Other 3"),
+                new DataColumn ("Admin Total Costs"),
+                //participation cost
+                 new DataColumn ("Transportation"),
+                new DataColumn ("Job Training"),
+                new DataColumn ("Education Assistance"),
+                new DataColumn ("Residential Care"),
+                new DataColumn ("Utilities"),
+                new DataColumn ("Housing Emergencies"),
+                new DataColumn ("Housing Assistance"),
+                new DataColumn ("Child Care"),
+                new DataColumn ("Clothing"),
+                new DataColumn ("Food"),
+                new DataColumn ("Supplies"),
+                new DataColumn ("Participation Other"),
+                new DataColumn ("Participation Other 2"),
+                new DataColumn ("Participation Other 3"),
+                new DataColumn ("Participation Total Costs")
             });
 
             var costs = from a in db.AdminCosts
-                        join s in db.SubContractors on a.SubcontractorId equals s.SubcontractorId
-                        join us in db.Users on s.SubcontractorId equals us.SubcontractorId
-                        where a.SubcontractorId == s.SubcontractorId
-                        select new AdminReport
+                        join b in db.ParticipationServices on a.SubcontractorId equals b.SubcontractorId
+                        join c in db.SubContractors on a.SubcontractorId equals c.SubcontractorId
+                        where b.SubcontractorId == c.SubcontractorId && a.Year == b.Year && a.SubcontractorId == b.SubcontractorId
+                        && a.Month == b.Month
+                        select new Report
                         {
-                            AdminCostId = a.AdminCostId,
-                            SubmittedDate = a.SubmittedDate,
-                            OrgName = s.OrgName,
-                            MonthName = a.Month.ToString(),
-                            YearName = a.Year,
+                            //organization information
+                            OrgName = c.OrgName,
+                            Month = a.Month.ToString(),
+                            Year = a.Year,
+                            Region = a.Region.ToString(),
+                            EIN = c.EIN,
+
+                            //AdminCost
                             AflBillable = a.AflBillable,
                             ASalandWages = a.ASalandWages,
                             AEmpBenefits = a.AEmpBenefits,
@@ -666,24 +813,50 @@ namespace Alliance_for_Life.Controllers
                             AOther = a.AOther,
                             AOther2 = a.AOther2,
                             AOther3 = a.AOther3,
-                            ATotCosts = a.ATotCosts
+                            ATotCosts = a.ATotCosts,
+
+                            //participation cost
+                            PTranspotation = b.PTranspotation,
+                            PJobTrain = b.PJobTrain,
+                            PEducationAssistance = b.PEducationAssistance,
+                            PResidentialCare = b.PResidentialCare,
+                            PUtilities = b.PUtilities,
+                            PHousingEmergency = b.PHousingEmergency,
+                            PHousingAssistance = b.PHousingAssistance,
+                            PChildCare = b.PChildCare,
+                            PClothing = b.PClothing,
+                            PFood = b.PFood,
+                            PSupplies = b.PSupplies,
+                            POther = b.POther,
+                            POther2 = b.POther2,
+                            POther3 = b.POther3,
+                            PTotals = b.PTotals
                         };
+
+
+
+
+
 
             if (!User.IsInRole("Admin"))
             {
                 var id = User.Identity.GetUserId();
-
                 costs = from a in db.AdminCosts
-                        join s in db.SubContractors on a.SubcontractorId equals s.SubcontractorId
-                        join us in db.Users on s.SubcontractorId equals us.SubcontractorId
-                        where a.SubcontractorId == s.SubcontractorId && us.Id == id
-                        select new AdminReport
+                        join b in db.ParticipationServices on a.SubcontractorId equals b.SubcontractorId
+                        join c in db.SubContractors on a.SubcontractorId equals c.SubcontractorId
+                        join us in db.Users on c.SubcontractorId equals us.SubcontractorId
+                        where b.SubcontractorId == c.SubcontractorId && a.Year == b.Year && a.SubcontractorId == b.SubcontractorId
+                        && a.Month == b.Month && us.Id == id
+                        select new Report
                         {
-                            AdminCostId = a.AdminCostId,
-                            SubmittedDate = a.SubmittedDate,
-                            OrgName = s.OrgName,
-                            MonthName = a.Month.ToString(),
-                            YearName = a.Year,
+                            //organization information
+                            OrgName = c.OrgName,
+                            Month = a.Month.ToString(),
+                            Year = a.Year,
+                            Region = a.Region.ToString(),
+                            EIN = c.EIN,
+
+                            //AdminCost
                             AflBillable = a.AflBillable,
                             ASalandWages = a.ASalandWages,
                             AEmpBenefits = a.AEmpBenefits,
@@ -704,16 +877,36 @@ namespace Alliance_for_Life.Controllers
                             AOther = a.AOther,
                             AOther2 = a.AOther2,
                             AOther3 = a.AOther3,
-                            ATotCosts = a.ATotCosts
-                        };
+                            ATotCosts = a.ATotCosts,
 
+                            //participation cost
+                            PTranspotation = b.PTranspotation,
+                            PJobTrain = b.PJobTrain,
+                            PEducationAssistance = b.PEducationAssistance,
+                            PResidentialCare = b.PResidentialCare,
+                            PUtilities = b.PUtilities,
+                            PHousingEmergency = b.PHousingEmergency,
+                            PHousingAssistance = b.PHousingAssistance,
+                            PChildCare = b.PChildCare,
+                            PClothing = b.PClothing,
+                            PFood = b.PFood,
+                            PSupplies = b.PSupplies,
+                            POther = b.POther,
+                            POther2 = b.POther2,
+                            POther3 = b.POther3,
+                            PTotals = b.PTotals
+                        };
             }
-            foreach (var item in costs)
+
+            //orderby year / month / orgname
+            foreach (var item in costs.OrderBy(a => a.Year).ThenBy(b => b.Month).ThenBy(c => c.OrgName))
             {
-                dt.Rows.Add(item.AdminCostId, item.SubmittedDate, item.OrgName, item.MonthName, item.RegionName, item.YearName, item.AflBillable, item.ASalandWages, item.AEmpBenefits,
+                dt.Rows.Add(item.EIN, item.OrgName, item.Region, item.Month, item.Year, item.AflBillable, item.ASalandWages, item.AEmpBenefits,
                     item.AEmpTravel, item.AEmpTraining, item.AOfficeRent, item.AOfficeUtilities, item.AFacilityIns, item.AOfficeSupplies, item.AEquipment,
                     item.AOfficeCommunications, item.AOfficeMaint, item.AConsulting, item.AJanitorServices, item.ADepreciation,
-                    item.ATechSupport, item.ASecurityServices, item.AOther, item.AOther2, item.AOther3, item.ATotCosts);
+                    item.ATechSupport, item.ASecurityServices, item.AOther, item.AOther2, item.AOther3, item.ATotCosts, item.PTranspotation,
+                    item.PJobTrain, item.PEducationAssistance, item.PResidentialCare, item.PUtilities, item.PHousingEmergency, item.PHousingAssistance, item.PChildCare,
+                    item.PClothing, item.PFood, item.PSupplies, item.POther, item.POther2, item.POther3, item.PTotals);
             }
 
             using (XLWorkbook wb = new XLWorkbook())
@@ -722,7 +915,7 @@ namespace Alliance_for_Life.Controllers
                 using (MemoryStream stream = new MemoryStream())
                 {
                     wb.SaveAs(stream);
-                    return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Grid.xlsx");
+                    return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Total Cost.xlsx");
                 }
             }
         }

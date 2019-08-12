@@ -251,6 +251,7 @@
     <Compile Include="Controllers\ParticipationServiceController.cs" />
     <Compile Include="Controllers\ResidentialMIRsController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
+    <Compile Include="DTO\Report .cs" />
     <Compile Include="Migrations\201906131606226_NewDB.cs" />
     <Compile Include="Migrations\201906131606226_NewDB.Designer.cs">
       <DependentUpon>201906131606226_NewDB.cs</DependentUpon>
