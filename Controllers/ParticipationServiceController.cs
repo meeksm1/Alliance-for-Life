@@ -546,6 +546,40 @@ namespace Alliance_for_Life.Controllers
                             PTotals = a.PTotals
                         };
 
+            if (!User.IsInRole("Admin"))
+            {
+                var id = User.Identity.GetUserId();
+
+                 costs = from a in db.ParticipationServices
+                            join s in db.SubContractors on a.SubcontractorId equals s.SubcontractorId
+                            join us in db.Users on s.SubcontractorId equals us.SubcontractorId
+                            where a.SubcontractorId == s.SubcontractorId && us.Id == id
+                        select new ParticipationServiceReport
+                        {
+                            OrgName = a.Subcontractor.OrgName,
+                            MonthName = a.Month.ToString(),
+                            RegionName = s.Region.ToString(),
+                            YearName = a.Year,
+                            EIN = s.EIN,
+                            PTranspotation = a.PTranspotation,
+                            PJobTrain = a.PJobTrain,
+                            PEducationAssistance = a.PEducationAssistance,
+                            PResidentialCare = a.PResidentialCare,
+                            PUtilities = a.PUtilities,
+                            PHousingEmergency = a.PHousingEmergency,
+                            PHousingAssistance = a.PHousingAssistance,
+                            PChildCare = a.PChildCare,
+                            PClothing = a.PClothing,
+                            PFood = a.PFood,
+                            PSupplies = a.PSupplies,
+                            POther = a.POther,
+                            POther2 = a.POther2,
+                            POther3 = a.POther3,
+                            PTotals = a.PTotals
+                        };
+
+            }
+
             foreach (var item in costs.OrderBy(a => a.OrgName))
             {
                 dt.Rows.Add(item.OrgName, item.MonthName, item.RegionName, item.YearName, item.EIN, item.PTranspotation, item.PJobTrain,

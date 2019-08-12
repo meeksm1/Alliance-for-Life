@@ -342,9 +342,48 @@ namespace Alliance_for_Life.Controllers
                 new DataColumn ("Total Costs"),
             });
 
-            var costs = from a in db.AdminCosts
+                var costs = from a in db.AdminCosts
+                            join s in db.SubContractors on a.SubcontractorId equals s.SubcontractorId
+                            join us in db.Users on s.SubcontractorId equals us.SubcontractorId
+                            where a.SubcontractorId == s.SubcontractorId
+                            select new AdminReport
+                            {
+                                AdminCostId = a.AdminCostId,
+                                SubmittedDate = a.SubmittedDate,
+                                OrgName = s.OrgName,
+                                MonthName = a.Month.ToString(),
+                                YearName = a.Year,
+                                AflBillable = a.AflBillable,
+                                ASalandWages = a.ASalandWages,
+                                AEmpBenefits = a.AEmpBenefits,
+                                AEmpTravel = a.AEmpTravel,
+                                AEmpTraining = a.AEmpTraining,
+                                AOfficeRent = a.AOfficeRent,
+                                AOfficeUtilities = a.AOfficeUtilities,
+                                AFacilityIns = a.AFacilityIns,
+                                AOfficeSupplies = a.AOfficeSupplies,
+                                AEquipment = a.AEquipment,
+                                AOfficeCommunications = a.AOfficeCommunications,
+                                AOfficeMaint = a.AOfficeMaint,
+                                AConsulting = a.AConsulting,
+                                AJanitorServices = a.AJanitorServices,
+                                ADepreciation = a.ADepreciation,
+                                ATechSupport = a.ATechSupport,
+                                ASecurityServices = a.ASecurityServices,
+                                AOther = a.AOther,
+                                AOther2 = a.AOther2,
+                                AOther3 = a.AOther3,
+                                ATotCosts = a.ATotCosts
+                            };
+
+            if (!User.IsInRole("Admin"))
+            {
+                var id = User.Identity.GetUserId();
+
+                costs = from a in db.AdminCosts
                         join s in db.SubContractors on a.SubcontractorId equals s.SubcontractorId
-                        where a.SubcontractorId == s.SubcontractorId
+                        join us in db.Users on s.SubcontractorId equals us.SubcontractorId
+                        where a.SubcontractorId == s.SubcontractorId && us.Id == id
                         select new AdminReport
                         {
                             AdminCostId = a.AdminCostId,
@@ -374,14 +413,15 @@ namespace Alliance_for_Life.Controllers
                             AOther3 = a.AOther3,
                             ATotCosts = a.ATotCosts
                         };
-
-            foreach (var item in costs)
-            {
-                dt.Rows.Add(item.AdminCostId, item.SubmittedDate, item.OrgName, item.MonthName, item.RegionName, item.YearName, item.AflBillable, item.ASalandWages, item.AEmpBenefits,
-                    item.AEmpTravel, item.AEmpTraining, item.AOfficeRent, item.AOfficeUtilities, item.AFacilityIns, item.AOfficeSupplies, item.AEquipment,
-                    item.AOfficeCommunications, item.AOfficeMaint, item.AConsulting, item.AJanitorServices, item.ADepreciation,
-                    item.ATechSupport, item.ASecurityServices, item.AOther, item.AOther2, item.AOther3, item.ATotCosts);
+            
             }
+                foreach (var item in costs)
+                {
+                    dt.Rows.Add(item.AdminCostId, item.SubmittedDate, item.OrgName, item.MonthName, item.RegionName, item.YearName, item.AflBillable, item.ASalandWages, item.AEmpBenefits,
+                        item.AEmpTravel, item.AEmpTraining, item.AOfficeRent, item.AOfficeUtilities, item.AFacilityIns, item.AOfficeSupplies, item.AEquipment,
+                        item.AOfficeCommunications, item.AOfficeMaint, item.AConsulting, item.AJanitorServices, item.ADepreciation,
+                        item.ATechSupport, item.ASecurityServices, item.AOther, item.AOther2, item.AOther3, item.ATotCosts);
+                }
 
             using (XLWorkbook wb = new XLWorkbook())
             {
