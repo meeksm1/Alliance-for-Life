@@ -11,8 +11,8 @@
 <div>
     <h4>Invoices</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
+    <dl >
+        <dt class="col-md-2">
             @Html.DisplayNameFor(model => model.OrgName)
         </dt>
 
@@ -20,14 +20,14 @@
             @Html.DisplayFor(model => model.OrgName)
         </dd>
 
-        <dt>
+        <dt class="col-md-2">
             @Html.DisplayNameFor(model => model.Region)
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Region)
         </dd>
 
-        <dt>
+        <dt class="col-md-2">
             @Html.DisplayNameFor(model => model.Month)
         </dt>
 
@@ -35,7 +35,7 @@
             @Html.DisplayFor(model => model.Month)
         </dd>
 
-        <dt>
+        <dt class="col-md-2">
             @Html.DisplayNameFor(model => model.Year)
         </dt>
 
@@ -43,7 +43,7 @@
             @Html.DisplayFor(model => model.Year)
         </dd>
 
-        <dt>
+        <dt class="col-md-2">
             DirectAdminCost
         </dt>
 
@@ -51,7 +51,7 @@
             @Model.DirectAdminCost.ToString("C")
         </dd>
 
-        <dt>
+        <dt class="col-md-2">
             @Html.DisplayNameFor(model => model.ParticipantServices)
         </dt>
 
@@ -59,7 +59,7 @@
             @Model.ParticipantServices.ToString("C")
         </dd>
 
-        <dt>
+        <dt class="col-md-2">
             @Html.DisplayNameFor(model => model.GrandTotal)
         </dt>
 
@@ -67,7 +67,7 @@
             @Model.GrandTotal.ToString("C")
         </dd>
 
-        <dt>
+        <dt class="col-md-2">
             @Html.DisplayNameFor(model => model.LessManagementFee)
         </dt>
 
@@ -75,7 +75,7 @@
             @Model.LessManagementFee.ToString("C")
         </dd>
 
-        <dt>
+        <dt class="col-md-2">
             @Html.DisplayNameFor(model => model.DepositAmount)
 
         </dt>
@@ -84,7 +84,7 @@
             @Model.DepositAmount.ToString("C")
         </dd>
 
-        <dt>
+        <dt class="col-md-2">
             @Html.DisplayNameFor(model => model.BillingDate)
         </dt>
 
@@ -92,7 +92,7 @@
             @Model.BillingDate.ToShortDateString()
         </dd>
 
-        <dt>
+        <dt class="col-md-2">
             @Html.DisplayNameFor(model => model.BalanceRemaining)
         </dt>
 
@@ -100,7 +100,7 @@
             @Model.BalanceRemaining.ToString("C")
         </dd>
 
-        <dt>
+        <dt class="col-md-2">
             @Html.DisplayNameFor(model => model.SubmittedDate)
         </dt>
 

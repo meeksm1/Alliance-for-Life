@@ -9,8 +9,8 @@
 
 <div>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
+    <dl >
+        <dt class="col-md-2">
             @Html.DisplayNameFor(model => model.Subcontractor.OrgName)
         </dt>
 
@@ -18,7 +18,7 @@
             @Html.DisplayFor(model => model.Subcontractor.OrgName)
         </dd>
 
-        <dt>
+        <dt class="col-md-2">
             Date form was submitted
         </dt>
 
@@ -26,7 +26,7 @@
             @Model.SubmittedDate.ToShortDateString()
         </dd>
 
-        <dt>
+        <dt class="col-md-2">
             @Html.DisplayNameFor(model => model.Months)
         </dt>
 
@@ -34,7 +34,7 @@
             @Model.Months
         </dd>
 
-        <dt>
+        <dt class="col-md-2">
             @Html.DisplayNameFor(model => model.Year)
         </dt>
 
@@ -42,7 +42,7 @@
             @Html.DisplayFor(model => model.Year)
         </dd>
 
-        <dt>
+        <dt class="col-md-2">
             A2A Enrollment
         </dt>
 
@@ -50,7 +50,7 @@
             @Model.TotA2AEnrollment.ToString("#,##0")
         </dd>
 
-        <dt>
+        <dt class="col-md-2">
             Monthly A2A Clients Served
         </dt>
 
@@ -58,7 +58,7 @@
             @Model.MA2Apercent.ToString("#,##0")
         </dd>
 
-        <dt>
+        <dt class="col-md-2">
             Total Clients Served
         </dt>
 
@@ -66,7 +66,7 @@
             @Model.TotOverallServed.ToString("#,##0")
         </dd>
 
-        <dt>
+        <dt class="col-md-2">
             Job or Educational Services
         </dt>
 
@@ -74,7 +74,7 @@
             @Model.ClientsJobEduServ.ToString("#,##0")
         </dd>
 
-        <dt>
+        <dt class="col-md-2">
             Participating Fathers
         </dt>
 
@@ -82,7 +82,7 @@
             @Model.ParticipatingFathers.ToString("#,##0")
         </dd>
 
-        <dt>
+        <dt class="col-md-2">
             Prenatal & Parenting Classes Offered
         </dt>
 
@@ -90,7 +90,7 @@
             @Model.TotEduClasses.ToString("#,##0")
         </dd>
 
-        <dt>
+        <dt class="col-md-2">
             Prenatal & Parenting Classes Attended
         </dt>
 
@@ -98,7 +98,7 @@
             @Model.TotClientsinEduClasses.ToString("#,##0")
         </dd>
 
-        <dt>
+        <dt class="col-md-2">
             Case Management Hours
         </dt>
 
@@ -106,7 +106,7 @@
             @Model.TotCaseHrs.ToString("#,##0")
         </dd>
 
-        <dt>
+        <dt class="col-md-2">
             Participants in Case Management
         </dt>
 
@@ -114,7 +114,7 @@
             @Model.TotClientsCaseHrs.ToString("#,##0")
         </dd>
 
-        <dt>
+        <dt class="col-md-2">
             Other Classes Offered
         </dt>
 

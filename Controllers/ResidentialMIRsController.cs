@@ -135,7 +135,7 @@ namespace Alliance_for_Life.Controllers
 
             ResidentialMIR residentialMIR = db.ResidentialMIRs
                  .Include(s => s.Subcontractor)
-                 .SingleOrDefault();
+                 .SingleOrDefault(a => a.Id == id);
 
             if (residentialMIR == null)
             {
