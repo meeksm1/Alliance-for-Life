@@ -83,11 +83,11 @@
 
     <p>
         Clients Shown Per Page:
-        @Html.DropDownList("pgSize", (IEnumerable<SelectListItem>)ViewBag.PageSize, "", htmlAttributes: new { @class = "form-control", onchange = "this.form.submit()" })
+        @Html.DropDownList("pgSize", (IEnumerable<SelectListItem>)ViewBag.PageSize, "", htmlAttributes: new { @class = "form-control"})
     </p>
 
     Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
 
     @Html.PagedListPager(Model, page => Url.Action("ActiveClients",
-            new { page, pgSize = ViewBag.psize, @class = "pagination", onchange = "this.form.submit()" }))
+            new { page, pgSize = ViewBag.psize, @class = "pagination"}))
 </div>

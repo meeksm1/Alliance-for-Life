@@ -105,5 +105,5 @@
 
    
     @Html.PagedListPager(Model, page => Url.Action("Reports",
-        new { page, pgSize = ViewBag.psize, @class = "pagination", onchange = "this.form.submit()" }))
+        new { page, pgSize = ViewBag.psize, @class = "pagination"}))
 </div>
