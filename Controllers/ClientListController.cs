@@ -138,11 +138,11 @@ namespace Alliance_for_Life.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Update(ClientListFormViewModel viewModel)
         {
-            //if (!ModelState.IsValid)
-            //{
-            //    viewModel.Subcontractors = db.SubContractors.ToList();
-            //    return View("ClientListForm", viewModel);
-            //}
+            if (!ModelState.IsValid)
+            {
+                viewModel.Subcontractors = db.SubContractors.ToList();
+                return View("ClientListForm", viewModel);
+            }
 
             var client = db.ClientLists.SingleOrDefault(s => s.Id == viewModel.Id);
             {

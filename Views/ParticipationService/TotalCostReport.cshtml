@@ -39,6 +39,176 @@
             }
         </form>
     }
+
+    <h3>Participation Costs</h3>
+    <table id="dtBasicExample" class="table table-striped table-bordered table-sm" style="font-size:16px" cellspacing="0" width="100">
+        <tr>
+            @if (!User.IsInRole("Admin"))
+            {
+                <th style="background-color:#C1F7C1; color:black;">
+                    Edit
+                </th>
+            }
+            <th style="background-color:#C1F7C1; color:black;">
+                Details
+            </th>
+            <th style="background-color:#C1F7C1; color:black;">
+                @Html.ActionLink("Organization", "Index", new { sortOrder = ViewBag.NameSortParm })
+            </th>
+            <th style="background-color:#C1F7C1; color:black;">
+                Month
+            </th>
+            <th style="background-color:#C1F7C1; color:black;">
+                Year
+            </th>
+            <th style="background-color:#C1F7C1; color:black;">
+                Region&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </th>
+            <th style="background-color:#C1F7C1; color:black;">
+                Transportation
+            </th>
+            <th style="background-color:#C1F7C1; color:black;">
+                Job Training / Placement
+            </th>
+            <th style="background-color:#C1F7C1; color:black;">
+                Eduacation/Tuition Assistance
+            </th>
+            <th style="background-color:#C1F7C1; color:black;">
+                Residental Care
+            </th>
+            <th style="background-color:#C1F7C1; color:black;">
+                Utilities
+            </th>
+            <th style="background-color:#C1F7C1; color:black;">
+                Housing/Emergency
+            </th>
+            <th style="background-color:#C1F7C1; color:black;">
+                Housing Assistance
+            </th>
+            <th style="background-color:#C1F7C1; color:black;">
+                Child Care
+            </th>
+            <th style="background-color:#C1F7C1; color:black;">
+                Clothing
+            </th>
+            <th style="background-color:#C1F7C1; color:black;">
+                Food
+            </th>
+            <th style="background-color:#C1F7C1; color:black;">
+                Supplies
+            </th>
+            <th style="background-color:#C1F7C1; color:black;">
+                Other
+            </th>
+            <th style="background-color:#C1F7C1; color:black;">
+                Other
+            </th>
+            <th style="background-color:#C1F7C1; color:black;">
+                Other
+            </th>
+            <th style="background-color:#C1F7C1; color:black;">
+                Participation Totals
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                @if (!User.IsInRole("Admin"))
+                {
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.PSId })
+                    </td>
+                }
+
+                <td>
+                    @Html.ActionLink("Details", "Details", new { id = item.PSId })
+                </td>
+                <td>
+                    @item.Subcontractor.OrgName
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Month)
+                </td>
+                <td>
+                    @item.Year
+                </td>
+                <td>
+                    @item.Region.GetDisplayName()
+                </td>
+                <td>
+                    @item.PTranspotation.ToString("C")
+                </td>
+                <td>
+                    @item.PJobTrain.ToString("C")
+                </td>
+                <td>
+                    @item.PEducationAssistance.ToString("C")
+                </td>
+                <td>
+                    @item.PResidentialCare.ToString("C")
+                </td>
+                <td>
+                    @item.PUtilities.ToString("C")
+                </td>
+                <td>
+                    @item.PHousingEmergency.ToString("C")
+                </td>
+                <td>
+                    @item.PHousingAssistance.ToString("C")
+                </td>
+                <td>
+                    @item.PChildCare.ToString("C")
+                </td>
+                <td>
+                    @item.PClothing.ToString("C")
+                </td>
+                <td>
+                    @item.PFood.ToString("C")
+                </td>
+                <td>
+                    @item.PSupplies.ToString("C")
+                </td>
+                <td>
+                    @item.POther.ToString("C")
+                </td>
+                <td>
+                    @item.POther2.ToString("C")
+                </td>
+                <td>
+                    @item.POther3.ToString("C")
+                </td>
+                <td>
+                    @item.PTotals.ToString("C")
+                </td>
+            </tr>
+        }
+        <tr>
+
+            <td style="background-color:#AACAFC; color:black;"> Total:</td>
+            <td style="background-color:#AACAFC; color:black;"> </td>
+            <td style="background-color:#AACAFC; color:black;"> </td>
+            <td style="background-color:#AACAFC; color:black;"> </td>
+            <td style="background-color:#AACAFC; color:black;"> </td>
+            <td style="background-color:#AACAFC; color:black;"> @Model.Sum(a => a.PTranspotation).ToString("c")</td>
+            <td style="background-color:#AACAFC; color:black;"> @Model.Sum(a => a.PJobTrain).ToString("c")</td>
+            <td style="background-color:#AACAFC; color:black;"> @Model.Sum(a => a.PEducationAssistance).ToString("c")</td>
+            <td style="background-color:#AACAFC; color:black;"> @Model.Sum(a => a.PResidentialCare).ToString("c")</td>
+            <td style="background-color:#AACAFC; color:black;"> @Model.Sum(a => a.PUtilities).ToString("c")</td>
+            <td style="background-color:#AACAFC; color:black;"> @Model.Sum(a => a.PHousingEmergency).ToString("c")</td>
+            <td style="background-color:#AACAFC; color:black;"> @Model.Sum(a => a.PHousingAssistance).ToString("c")</td>
+            <td style="background-color:#AACAFC; color:black;"> @Model.Sum(a => a.PChildCare).ToString("c")</td>
+            <td style="background-color:#AACAFC; color:black;"> @Model.Sum(a => a.PClothing).ToString("c")</td>
+            <td style="background-color:#AACAFC; color:black;"> @Model.Sum(a => a.PFood).ToString("c")</td>
+            <td style="background-color:#AACAFC; color:black;"> @Model.Sum(a => a.PSupplies).ToString("c")</td>
+            <td style="background-color:#AACAFC; color:black;"> @Model.Sum(a => a.POther).ToString("c")</td>
+            <td style="background-color:#AACAFC; color:black;"> @Model.Sum(a => a.POther2).ToString("c")</td>
+            <td style="background-color:#AACAFC; color:black;"> @Model.Sum(a => a.POther3).ToString("c")</td>
+            <td style="background-color:#AACAFC; color:black;"> @Model.Sum(a => a.PTotals).ToString("c")</td>
+        </tr>
+    </table>
+
+
     <h3>Administration Costs</h3>
     <table id="dtBasicExample" class="table table-striped table-bordered table-sm" style="font-size:16px" cellspacing="0" width="100">
         <tr>
@@ -66,7 +236,7 @@
                     Region&nbsp;&nbsp;&nbsp;&nbsp;
                 </th>
             }
-
+            
             <th style="background-color:#C1F7C1; color:black;">
                 Salaries and Wages
             </th>
@@ -265,274 +435,100 @@
             </tr>
         }
 
-        <tr>
+    <tr>
 
-            <td style="background-color:#AACAFC; color:black;"> Total:</td>
-            <td style="background-color:#AACAFC; color:black;"> </td>
-            <td style="background-color:#AACAFC; color:black;"> </td>
-            <td style="background-color:#AACAFC; color:black;"> </td>
-            <td style="background-color:#AACAFC; color:black;"> </td>
-            <td style="background-color:#AACAFC; color:black;">
-                @ViewBag.SalTot.ToString("C")
-            </td>
-            <td style="background-color:#AACAFC; color:black;">
-                @ViewBag.AEmpBenefits.ToString("C")
-            </td>
-            <td style="background-color:#AACAFC; color:black;">
-                @ViewBag.AEmpTravel.ToString("C")
-            </td>
-            <td style="background-color:#AACAFC; color:black;">
-                @ViewBag.AEmpTraining.ToString("C")
-            </td>
-            <td style="background-color:#AACAFC; color:black;">
-                @ViewBag.AOfficeRent.ToString("C")
-            </td>
-            <td style="background-color:#AACAFC; color:black;">
-                @ViewBag.AOfficeUtilities.ToString("C")
-            </td>
-            <td style="background-color:#AACAFC; color:black;">
-                @ViewBag.AFacilityIns.ToString("C")
-            </td>
-            <td style="background-color:#AACAFC; color:black;">
-                @ViewBag.AOfficeSupplies.ToString("C")
-            </td>
-            <td style="background-color:#AACAFC; color:black;">
-                @ViewBag.AEquipment.ToString("C")
-            </td>
-            <td style="background-color:#AACAFC; color:black;">
-                @ViewBag.AOfficeCommunications.ToString("C")
-            </td>
-            <td style="background-color:#AACAFC; color:black;">
-                @ViewBag.AOfficeMaint.ToString("C")
-            </td>
-            <td style="background-color:#AACAFC; color:black;">
-                @ViewBag.AConsulting.ToString("C")
-            </td>
-            <td style="background-color:#AACAFC; color:black;">
-                @ViewBag.AJanitorServices.ToString("C")
-            </td>
-            <td style="background-color:#AACAFC; color:black;">
-                @ViewBag.ADepreciation.ToString("C")
-            </td>
-            <td style="background-color:#AACAFC; color:black;">
-                @ViewBag.ATechSupport.ToString("C")
-            </td>
-            <td style="background-color:#AACAFC; color:black;">
-                @ViewBag.ASecurityServices.ToString("C")
-            </td>
-            <td style="background-color:#AACAFC; color:black;">
-                @ViewBag.AOther.ToString("C")
-            </td>
-            <td style="background-color:#AACAFC; color:black;">
-                @ViewBag.AOther2.ToString("C")
-            </td>
-            <td style="background-color:#AACAFC; color:black;">
-                @ViewBag.AOther3.ToString("C")
-            </td>
-            <td style="background-color:#AACAFC; color:black;">
-                @ViewBag.Total.ToString("c")
-            </td>
-        </tr>
+        <td style="background-color:#AACAFC; color:black;"> Total:</td>
+        <td style="background-color:#AACAFC; color:black;"> </td>
+        <td style="background-color:#AACAFC; color:black;"> </td>
+        <td style="background-color:#AACAFC; color:black;"> </td>
+        <td style="background-color:#AACAFC; color:black;"> </td>
+        <td style="background-color:#AACAFC; color:black;">
+            @ViewBag.SalTot.ToString("C")
+        </td>
+        <td style="background-color:#AACAFC; color:black;">
+            @ViewBag.AEmpBenefits.ToString("C")
+        </td>
+        <td style="background-color:#AACAFC; color:black;">
+            @ViewBag.AEmpTravel.ToString("C")
+        </td>
+        <td style="background-color:#AACAFC; color:black;">
+            @ViewBag.AEmpTraining.ToString("C")
+        </td>
+        <td style="background-color:#AACAFC; color:black;">
+            @ViewBag.AOfficeRent.ToString("C")
+        </td>
+        <td style="background-color:#AACAFC; color:black;">
+            @ViewBag.AOfficeUtilities.ToString("C")
+        </td>
+        <td style="background-color:#AACAFC; color:black;">
+            @ViewBag.AFacilityIns.ToString("C")
+        </td>
+        <td style="background-color:#AACAFC; color:black;">
+            @ViewBag.AOfficeSupplies.ToString("C")
+        </td>
+        <td style="background-color:#AACAFC; color:black;">
+            @ViewBag.AEquipment.ToString("C")
+        </td>
+        <td style="background-color:#AACAFC; color:black;">
+            @ViewBag.AOfficeCommunications.ToString("C")
+        </td>
+        <td style="background-color:#AACAFC; color:black;">
+            @ViewBag.AOfficeMaint.ToString("C")
+        </td>
+        <td style="background-color:#AACAFC; color:black;">
+            @ViewBag.AConsulting.ToString("C")
+        </td>
+        <td style="background-color:#AACAFC; color:black;">
+            @ViewBag.AJanitorServices.ToString("C")
+        </td>
+        <td style="background-color:#AACAFC; color:black;">
+            @ViewBag.ADepreciation.ToString("C")
+        </td>
+        <td style="background-color:#AACAFC; color:black;">
+            @ViewBag.ATechSupport.ToString("C")
+        </td>
+        <td style="background-color:#AACAFC; color:black;">
+            @ViewBag.ASecurityServices.ToString("C")
+        </td>
+        <td style="background-color:#AACAFC; color:black;">
+            @ViewBag.AOther.ToString("C")
+        </td>
+        <td style="background-color:#AACAFC; color:black;">
+            @ViewBag.AOther2.ToString("C")
+        </td>
+        <td style="background-color:#AACAFC; color:black;">
+            @ViewBag.AOther3.ToString("C")
+        </td>
+        <td style="background-color:#AACAFC; color:black;">
+            @ViewBag.Total.ToString("c")
+        </td>
+    </tr>
     </table>
 
-
-
-    @using (Html.BeginForm("ExportAdmincost", "ParticipationService", FormMethod.Post))
-    {
-        <input type="submit" value="Export to Administration Cost" class="btn btn-group-sm btn-primary" />
-
-    }
-    <h3>Participation Costs</h3>
-    <table id="dtBasicExample" class="table table-striped table-bordered table-sm" style="font-size:16px" cellspacing="0" width="100">
-        <tr>
-            @if (!User.IsInRole("Admin"))
-            {
-                <th style="background-color:#C1F7C1; color:black;">
-                    Edit
-                </th>
-            }
-            <th style="background-color:#C1F7C1; color:black;">
-                Details
-            </th>
-            <th style="background-color:#C1F7C1; color:black;">
-                @Html.ActionLink("Organization", "Index", new { sortOrder = ViewBag.NameSortParm })
-            </th>
-            <th style="background-color:#C1F7C1; color:black;">
-                Month
-            </th>
-            <th style="background-color:#C1F7C1; color:black;">
-                Year
-            </th>
-            <th style="background-color:#C1F7C1; color:black;">
-                Region&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            </th>
-            <th style="background-color:#C1F7C1; color:black;">
-                Transportation
-            </th>
-            <th style="background-color:#C1F7C1; color:black;">
-                Job Training / Placement
-            </th>
-            <th style="background-color:#C1F7C1; color:black;">
-                Eduacation/Tuition Assistance
-            </th>
-            <th style="background-color:#C1F7C1; color:black;">
-                Residental Care
-            </th>
-            <th style="background-color:#C1F7C1; color:black;">
-                Utilities
-            </th>
-            <th style="background-color:#C1F7C1; color:black;">
-                Housing/Emergency
-            </th>
-            <th style="background-color:#C1F7C1; color:black;">
-                Housing Assistance
-            </th>
-            <th style="background-color:#C1F7C1; color:black;">
-                Child Care
-            </th>
-            <th style="background-color:#C1F7C1; color:black;">
-                Clothing
-            </th>
-            <th style="background-color:#C1F7C1; color:black;">
-                Food
-            </th>
-            <th style="background-color:#C1F7C1; color:black;">
-                Supplies
-            </th>
-            <th style="background-color:#C1F7C1; color:black;">
-                Other
-            </th>
-            <th style="background-color:#C1F7C1; color:black;">
-                Other
-            </th>
-            <th style="background-color:#C1F7C1; color:black;">
-                Other
-            </th>
-            <th style="background-color:#C1F7C1; color:black;">
-                Participation Totals
-            </th>
-        </tr>
-
-        @foreach (var item in Model)
-        {
-            <tr>
-                @if (!User.IsInRole("Admin"))
-                {
-                    <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.PSId })
-                    </td>
-                }
-
-                <td>
-                    @Html.ActionLink("Details", "Details", new { id = item.PSId })
-                </td>
-                <td>
-                    @item.Subcontractor.OrgName
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Month)
-                </td>
-                <td>
-                    @item.Year
-                </td>
-                <td>
-                    @item.Region.GetDisplayName()
-                </td>
-                <td>
-                    @item.PTranspotation.ToString("C")
-                </td>
-                <td>
-                    @item.PJobTrain.ToString("C")
-                </td>
-                <td>
-                    @item.PEducationAssistance.ToString("C")
-                </td>
-                <td>
-                    @item.PResidentialCare.ToString("C")
-                </td>
-                <td>
-                    @item.PUtilities.ToString("C")
-                </td>
-                <td>
-                    @item.PHousingEmergency.ToString("C")
-                </td>
-                <td>
-                    @item.PHousingAssistance.ToString("C")
-                </td>
-                <td>
-                    @item.PChildCare.ToString("C")
-                </td>
-                <td>
-                    @item.PClothing.ToString("C")
-                </td>
-                <td>
-                    @item.PFood.ToString("C")
-                </td>
-                <td>
-                    @item.PSupplies.ToString("C")
-                </td>
-                <td>
-                    @item.POther.ToString("C")
-                </td>
-                <td>
-                    @item.POther2.ToString("C")
-                </td>
-                <td>
-                    @item.POther3.ToString("C")
-                </td>
-                <td>
-                    @item.PTotals.ToString("C")
-                </td>
-            </tr>
-        }
-        <tr>
-
-            <td style="background-color:#AACAFC; color:black;"> Total:</td>
-            <td style="background-color:#AACAFC; color:black;"> </td>
-            <td style="background-color:#AACAFC; color:black;"> </td>
-            <td style="background-color:#AACAFC; color:black;"> </td>
-            <td style="background-color:#AACAFC; color:black;"> </td>
-            <td style="background-color:#AACAFC; color:black;"> @Model.Sum(a => a.PTranspotation).ToString("c")</td>
-            <td style="background-color:#AACAFC; color:black;"> @Model.Sum(a => a.PJobTrain).ToString("c")</td>
-            <td style="background-color:#AACAFC; color:black;"> @Model.Sum(a => a.PEducationAssistance).ToString("c")</td>
-            <td style="background-color:#AACAFC; color:black;"> @Model.Sum(a => a.PResidentialCare).ToString("c")</td>
-            <td style="background-color:#AACAFC; color:black;"> @Model.Sum(a => a.PUtilities).ToString("c")</td>
-            <td style="background-color:#AACAFC; color:black;"> @Model.Sum(a => a.PHousingEmergency).ToString("c")</td>
-            <td style="background-color:#AACAFC; color:black;"> @Model.Sum(a => a.PHousingAssistance).ToString("c")</td>
-            <td style="background-color:#AACAFC; color:black;"> @Model.Sum(a => a.PChildCare).ToString("c")</td>
-            <td style="background-color:#AACAFC; color:black;"> @Model.Sum(a => a.PClothing).ToString("c")</td>
-            <td style="background-color:#AACAFC; color:black;"> @Model.Sum(a => a.PFood).ToString("c")</td>
-            <td style="background-color:#AACAFC; color:black;"> @Model.Sum(a => a.PSupplies).ToString("c")</td>
-            <td style="background-color:#AACAFC; color:black;"> @Model.Sum(a => a.POther).ToString("c")</td>
-            <td style="background-color:#AACAFC; color:black;"> @Model.Sum(a => a.POther2).ToString("c")</td>
-            <td style="background-color:#AACAFC; color:black;"> @Model.Sum(a => a.POther3).ToString("c")</td>
-            <td style="background-color:#AACAFC; color:black;"> @Model.Sum(a => a.PTotals).ToString("c")</td>
-        </tr>
-    </table>
+   
 
     @using (Html.BeginForm("Export", "ParticipationService", FormMethod.Post))
     {
-        <input type="submit" value="Export to Participation Cost" class="btn btn-group-sm btn-primary" />
-
-    }
-
-    <div class="container-fluid">
-        <form>
-            @using (Html.BeginForm())
-            {
-                <br />
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-sm-2">
-                            Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
-
-                            @Html.PagedListPager(Model, page => Url.Action("TotalCostReport",
-                                new { page, pgSize = ViewBag.psize, @class = "pagination", onchange = "this.form.submit()" }))
-                        </div>
-                    </div>
-                </div>
+        <input type="submit" value="Export to Excel" class="btn btn-group-sm btn-primary" />
+      
             }
-        </form>
+            <div class="container-fluid">
+                <form>
+                    @using (Html.BeginForm())
+                    {
+                        <br />
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-sm-2">
+                                    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+                                    @Html.PagedListPager(Model, page => Url.Action("TotalCostReport",
+                                        new { page, pgSize = ViewBag.psize, @class = "pagination", onchange = "this.form.submit()" }))
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </form>
+            </div>
     </div>
-</div>
 
