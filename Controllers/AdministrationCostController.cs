@@ -76,9 +76,9 @@ namespace Alliance_for_Life.Controllers
                 if (String.IsNullOrEmpty(Month) && String.IsNullOrEmpty(Year.ToString()))
                 {
                     adminSearch = adminSearch.Where(r => r.Subcontractor.SubcontractorId == searchString);
-                }   
+                }
                 // if fields Year and Org are empty
-                else if(String.IsNullOrEmpty(Year.ToString()) && String.IsNullOrEmpty(searchString.ToString()))
+                else if (String.IsNullOrEmpty(Year.ToString()) && String.IsNullOrEmpty(searchString.ToString()))
                 {
                     var regionSearch = Enum.Parse(typeof(Months), Month);
                     adminSearch = adminSearch.Where(r => r.Month == (Months)regionSearch);
@@ -342,39 +342,39 @@ namespace Alliance_for_Life.Controllers
                 new DataColumn ("Total Costs"),
             });
 
-                var costs = from a in db.AdminCosts
-                            join s in db.SubContractors on a.SubcontractorId equals s.SubcontractorId
-                            join us in db.Users on s.SubcontractorId equals us.SubcontractorId
-                            where a.SubcontractorId == s.SubcontractorId
-                            select new AdminReport
-                            {
-                                AdminCostId = a.AdminCostId,
-                                SubmittedDate = a.SubmittedDate,
-                                OrgName = s.OrgName,
-                                MonthName = a.Month.ToString(),
-                                YearName = a.Year,
-                                AflBillable = a.AflBillable,
-                                ASalandWages = a.ASalandWages,
-                                AEmpBenefits = a.AEmpBenefits,
-                                AEmpTravel = a.AEmpTravel,
-                                AEmpTraining = a.AEmpTraining,
-                                AOfficeRent = a.AOfficeRent,
-                                AOfficeUtilities = a.AOfficeUtilities,
-                                AFacilityIns = a.AFacilityIns,
-                                AOfficeSupplies = a.AOfficeSupplies,
-                                AEquipment = a.AEquipment,
-                                AOfficeCommunications = a.AOfficeCommunications,
-                                AOfficeMaint = a.AOfficeMaint,
-                                AConsulting = a.AConsulting,
-                                AJanitorServices = a.AJanitorServices,
-                                ADepreciation = a.ADepreciation,
-                                ATechSupport = a.ATechSupport,
-                                ASecurityServices = a.ASecurityServices,
-                                AOther = a.AOther,
-                                AOther2 = a.AOther2,
-                                AOther3 = a.AOther3,
-                                ATotCosts = a.ATotCosts
-                            };
+            var costs = from a in db.AdminCosts
+                        join s in db.SubContractors on a.SubcontractorId equals s.SubcontractorId
+                        join us in db.Users on s.SubcontractorId equals us.SubcontractorId
+                        where a.SubcontractorId == s.SubcontractorId
+                        select new AdminReport
+                        {
+                            AdminCostId = a.AdminCostId,
+                            SubmittedDate = a.SubmittedDate,
+                            OrgName = s.OrgName,
+                            MonthName = a.Month.ToString(),
+                            YearName = a.Year,
+                            AflBillable = a.AflBillable,
+                            ASalandWages = a.ASalandWages,
+                            AEmpBenefits = a.AEmpBenefits,
+                            AEmpTravel = a.AEmpTravel,
+                            AEmpTraining = a.AEmpTraining,
+                            AOfficeRent = a.AOfficeRent,
+                            AOfficeUtilities = a.AOfficeUtilities,
+                            AFacilityIns = a.AFacilityIns,
+                            AOfficeSupplies = a.AOfficeSupplies,
+                            AEquipment = a.AEquipment,
+                            AOfficeCommunications = a.AOfficeCommunications,
+                            AOfficeMaint = a.AOfficeMaint,
+                            AConsulting = a.AConsulting,
+                            AJanitorServices = a.AJanitorServices,
+                            ADepreciation = a.ADepreciation,
+                            ATechSupport = a.ATechSupport,
+                            ASecurityServices = a.ASecurityServices,
+                            AOther = a.AOther,
+                            AOther2 = a.AOther2,
+                            AOther3 = a.AOther3,
+                            ATotCosts = a.ATotCosts
+                        };
 
             if (!User.IsInRole("Admin"))
             {
@@ -413,15 +413,15 @@ namespace Alliance_for_Life.Controllers
                             AOther3 = a.AOther3,
                             ATotCosts = a.ATotCosts
                         };
-            
+
             }
-                foreach (var item in costs)
-                {
-                    dt.Rows.Add(item.AdminCostId, item.SubmittedDate, item.OrgName, item.MonthName, item.RegionName, item.YearName, item.AflBillable, item.ASalandWages, item.AEmpBenefits,
-                        item.AEmpTravel, item.AEmpTraining, item.AOfficeRent, item.AOfficeUtilities, item.AFacilityIns, item.AOfficeSupplies, item.AEquipment,
-                        item.AOfficeCommunications, item.AOfficeMaint, item.AConsulting, item.AJanitorServices, item.ADepreciation,
-                        item.ATechSupport, item.ASecurityServices, item.AOther, item.AOther2, item.AOther3, item.ATotCosts);
-                }
+            foreach (var item in costs)
+            {
+                dt.Rows.Add(item.AdminCostId, item.SubmittedDate, item.OrgName, item.MonthName, item.RegionName, item.YearName, item.AflBillable, item.ASalandWages, item.AEmpBenefits,
+                    item.AEmpTravel, item.AEmpTraining, item.AOfficeRent, item.AOfficeUtilities, item.AFacilityIns, item.AOfficeSupplies, item.AEquipment,
+                    item.AOfficeCommunications, item.AOfficeMaint, item.AConsulting, item.AJanitorServices, item.ADepreciation,
+                    item.ATechSupport, item.ASecurityServices, item.AOther, item.AOther2, item.AOther3, item.ATotCosts);
+            }
 
             using (XLWorkbook wb = new XLWorkbook())
             {
@@ -429,7 +429,7 @@ namespace Alliance_for_Life.Controllers
                 using (MemoryStream stream = new MemoryStream())
                 {
                     wb.SaveAs(stream);
-                    return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Grid.xlsx");
+                    return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "AdministrationCosts.xlsx");
                 }
             }
         }
