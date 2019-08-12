@@ -138,11 +138,11 @@ namespace Alliance_for_Life.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Update(ClientListFormViewModel viewModel)
         {
-            if (!ModelState.IsValid)
-            {
-                viewModel.Subcontractors = db.SubContractors.ToList();
-                return View("ClientListForm", viewModel);
-            }
+            //if (!ModelState.IsValid)
+            //{
+            //    viewModel.Subcontractors = db.SubContractors.ToList();
+            //    return View("ClientListForm", viewModel);
+            //}
 
             var client = db.ClientLists.SingleOrDefault(s => s.Id == viewModel.Id);
             {
@@ -203,7 +203,7 @@ namespace Alliance_for_Life.Controllers
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
             ViewBag.LastNameSortParm = sortOrder == "LastName" ? "last_desc" : "LastName";
-            ViewBag.Subcontractor =  new SelectList(db.SubContractors.OrderBy(a => a.OrgName), "SubcontractorId", "OrgName");
+            ViewBag.Subcontractor = new SelectList(db.SubContractors.OrderBy(a => a.OrgName), "SubcontractorId", "OrgName");
 
             // looking for the searchstring
             if (searchString != null)
@@ -461,7 +461,7 @@ namespace Alliance_for_Life.Controllers
             }
             else
             {
-                currentFilter  = searchString.ToString();
+                currentFilter = searchString.ToString();
             }
             ViewBag.CurrentFilter = searchString;
 
