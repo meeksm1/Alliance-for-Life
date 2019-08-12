@@ -353,10 +353,6 @@
     <Compile Include="ViewModels\VerifyPhoneNumberViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\AFLLocalConnection.mdf" />
-    <Content Include="App_Data\AFLLocalConnection_log.ldf">
-      <DependentUpon>AFLLocalConnection.mdf</DependentUpon>
-    </Content>
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-reboot.css" />
@@ -836,6 +832,9 @@
     <EmbeddedResource Include="Migrations\201906261433544_NONRMIupdatedmonth.resx">
       <DependentUpon>201906261433544_NONRMIupdatedmonth.cs</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
