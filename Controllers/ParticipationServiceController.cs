@@ -368,6 +368,8 @@ namespace Alliance_for_Life.Controllers
             ViewBag.Year = new SelectList(datelist);
             ViewBag.SubcontractorId = new SelectList(list, "SubcontractorId", "OrgName");
 
+
+
             return View();
         }
 
@@ -550,10 +552,10 @@ namespace Alliance_for_Life.Controllers
             {
                 var id = User.Identity.GetUserId();
 
-                 costs = from a in db.ParticipationServices
-                            join s in db.SubContractors on a.SubcontractorId equals s.SubcontractorId
-                            join us in db.Users on s.SubcontractorId equals us.SubcontractorId
-                            where a.SubcontractorId == s.SubcontractorId && us.Id == id
+                costs = from a in db.ParticipationServices
+                        join s in db.SubContractors on a.SubcontractorId equals s.SubcontractorId
+                        join us in db.Users on s.SubcontractorId equals us.SubcontractorId
+                        where a.SubcontractorId == s.SubcontractorId && us.Id == id
                         select new ParticipationServiceReport
                         {
                             OrgName = a.Subcontractor.OrgName,
@@ -594,6 +596,135 @@ namespace Alliance_for_Life.Controllers
                 {
                     wb.SaveAs(stream);
                     return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Total Cost Report.xlsx");
+                }
+            }
+        }
+
+
+
+        //exporting Administration cost
+        public FileResult ExportAdmincost()
+        {
+            DataTable dt = new DataTable("Grid");
+            dt.Columns.AddRange(new DataColumn[27]
+            {
+                new DataColumn ("Administration Invoice Id"),
+                new DataColumn ("Date Submitted"),
+                new DataColumn ("Organization"),
+                new DataColumn ("Month"),
+                new DataColumn ("Region"),
+                new DataColumn ("Year"),
+                new DataColumn ("AflBillable"),
+                new DataColumn ("Salary/Wages"),
+                new DataColumn ("Employee Benefits"),
+                new DataColumn ("Employee Travel"),
+                new DataColumn ("Employee Training"),
+                new DataColumn ("Office Rent"),
+                new DataColumn ("Office Utilities"),
+                new DataColumn ("Facility Insurance"),
+                new DataColumn ("Office Supplies"),
+                new DataColumn ("Equipment"),
+                new DataColumn ("Office Communications"),
+                new DataColumn ("Office Maintenance"),
+                new DataColumn ("Consulting Fees"),
+                new DataColumn ("Janitor Services"),
+                new DataColumn ("Depreciation"),
+                new DataColumn ("Technical Support"),
+                new DataColumn ("Security Services"),
+                new DataColumn ("Other"),
+                new DataColumn ("Other 2"),
+                new DataColumn ("Other 3"),
+                new DataColumn ("Total Costs"),
+            });
+
+            var costs = from a in db.AdminCosts
+                        join s in db.SubContractors on a.SubcontractorId equals s.SubcontractorId
+                        join us in db.Users on s.SubcontractorId equals us.SubcontractorId
+                        where a.SubcontractorId == s.SubcontractorId
+                        select new AdminReport
+                        {
+                            AdminCostId = a.AdminCostId,
+                            SubmittedDate = a.SubmittedDate,
+                            OrgName = s.OrgName,
+                            MonthName = a.Month.ToString(),
+                            YearName = a.Year,
+                            AflBillable = a.AflBillable,
+                            ASalandWages = a.ASalandWages,
+                            AEmpBenefits = a.AEmpBenefits,
+                            AEmpTravel = a.AEmpTravel,
+                            AEmpTraining = a.AEmpTraining,
+                            AOfficeRent = a.AOfficeRent,
+                            AOfficeUtilities = a.AOfficeUtilities,
+                            AFacilityIns = a.AFacilityIns,
+                            AOfficeSupplies = a.AOfficeSupplies,
+                            AEquipment = a.AEquipment,
+                            AOfficeCommunications = a.AOfficeCommunications,
+                            AOfficeMaint = a.AOfficeMaint,
+                            AConsulting = a.AConsulting,
+                            AJanitorServices = a.AJanitorServices,
+                            ADepreciation = a.ADepreciation,
+                            ATechSupport = a.ATechSupport,
+                            ASecurityServices = a.ASecurityServices,
+                            AOther = a.AOther,
+                            AOther2 = a.AOther2,
+                            AOther3 = a.AOther3,
+                            ATotCosts = a.ATotCosts
+                        };
+
+            if (!User.IsInRole("Admin"))
+            {
+                var id = User.Identity.GetUserId();
+
+                costs = from a in db.AdminCosts
+                        join s in db.SubContractors on a.SubcontractorId equals s.SubcontractorId
+                        join us in db.Users on s.SubcontractorId equals us.SubcontractorId
+                        where a.SubcontractorId == s.SubcontractorId && us.Id == id
+                        select new AdminReport
+                        {
+                            AdminCostId = a.AdminCostId,
+                            SubmittedDate = a.SubmittedDate,
+                            OrgName = s.OrgName,
+                            MonthName = a.Month.ToString(),
+                            YearName = a.Year,
+                            AflBillable = a.AflBillable,
+                            ASalandWages = a.ASalandWages,
+                            AEmpBenefits = a.AEmpBenefits,
+                            AEmpTravel = a.AEmpTravel,
+                            AEmpTraining = a.AEmpTraining,
+                            AOfficeRent = a.AOfficeRent,
+                            AOfficeUtilities = a.AOfficeUtilities,
+                            AFacilityIns = a.AFacilityIns,
+                            AOfficeSupplies = a.AOfficeSupplies,
+                            AEquipment = a.AEquipment,
+                            AOfficeCommunications = a.AOfficeCommunications,
+                            AOfficeMaint = a.AOfficeMaint,
+                            AConsulting = a.AConsulting,
+                            AJanitorServices = a.AJanitorServices,
+                            ADepreciation = a.ADepreciation,
+                            ATechSupport = a.ATechSupport,
+                            ASecurityServices = a.ASecurityServices,
+                            AOther = a.AOther,
+                            AOther2 = a.AOther2,
+                            AOther3 = a.AOther3,
+                            ATotCosts = a.ATotCosts
+                        };
+
+            }
+            foreach (var item in costs)
+            {
+                dt.Rows.Add(item.AdminCostId, item.SubmittedDate, item.OrgName, item.MonthName, item.RegionName, item.YearName, item.AflBillable, item.ASalandWages, item.AEmpBenefits,
+                    item.AEmpTravel, item.AEmpTraining, item.AOfficeRent, item.AOfficeUtilities, item.AFacilityIns, item.AOfficeSupplies, item.AEquipment,
+                    item.AOfficeCommunications, item.AOfficeMaint, item.AConsulting, item.AJanitorServices, item.ADepreciation,
+                    item.ATechSupport, item.ASecurityServices, item.AOther, item.AOther2, item.AOther3, item.ATotCosts);
+            }
+
+            using (XLWorkbook wb = new XLWorkbook())
+            {
+                wb.Worksheets.Add(dt);
+                using (MemoryStream stream = new MemoryStream())
+                {
+                    wb.SaveAs(stream);
+                    return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Grid.xlsx");
                 }
             }
         }

@@ -43,7 +43,7 @@ namespace Alliance_for_Life.Controllers
 
             var nonresidental = db.NonResidentialMIRs.Include(a => a.Subcontractor)
                 .Where(a => a.SubcontractorId == a.Subcontractor.SubcontractorId).ToList();
-           
+
 
             //if year is not null
             if (Year != null)
@@ -158,7 +158,7 @@ namespace Alliance_for_Life.Controllers
 
             var datelist = Enumerable.Range(System.DateTime.Now.Year, 5).ToList();
             ViewBag.Year = new SelectList(datelist);
-            ViewBag.Subcontractor = new SelectList(db.SubContractors.OrderBy(a => a.OrgName), "SubcontractorId", "OrgName");
+            ViewBag.SubcontractorId = new SelectList(db.SubContractors.OrderBy(a => a.OrgName), "SubcontractorId", "OrgName");
 
             return View();
         }
@@ -193,7 +193,7 @@ namespace Alliance_for_Life.Controllers
             var datelist = Enumerable.Range(System.DateTime.Now.Year, 5).ToList();
 
             ViewBag.Year = new SelectList(datelist);
-            ViewBag.SubcontractorId = new SelectList(db.SubContractors.OrderBy(a=>a.OrgName), "SubcontractorId", "OrgName", residentialMIR.SubcontractorId);
+            ViewBag.SubcontractorId = new SelectList(db.SubContractors.OrderBy(a => a.OrgName), "SubcontractorId", "OrgName", residentialMIR.SubcontractorId);
 
             return View(residentialMIR);
         }
@@ -214,7 +214,7 @@ namespace Alliance_for_Life.Controllers
             var datelist = Enumerable.Range(System.DateTime.Now.Year, 5).ToList();
 
             ViewBag.Year = new SelectList(datelist);
-            ViewBag.SubcontractorId = new SelectList(db.SubContractors.Where(a => a.SubcontractorId == residentialMIR.SubcontractorId).OrderBy(a=>a.OrgName), "SubcontractorId", "OrgName");
+            ViewBag.SubcontractorId = new SelectList(db.SubContractors.Where(a => a.SubcontractorId == residentialMIR.SubcontractorId).OrderBy(a => a.OrgName), "SubcontractorId", "OrgName");
 
             return View(residentialMIR);
         }
@@ -237,7 +237,7 @@ namespace Alliance_for_Life.Controllers
             var datelist = Enumerable.Range(System.DateTime.Now.Year, 5).ToList();
 
             ViewBag.Year = new SelectList(datelist);
-            ViewBag.SubcontractorId = new SelectList(db.SubContractors.OrderBy(a=>a.OrgName), "SubcontractorId", "OrgName", residentialMIR.SubcontractorId);
+            ViewBag.SubcontractorId = new SelectList(db.SubContractors.OrderBy(a => a.OrgName), "SubcontractorId", "OrgName", residentialMIR.SubcontractorId);
 
             return View(residentialMIR);
         }

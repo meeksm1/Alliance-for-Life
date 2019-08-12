@@ -9,12 +9,13 @@
 
 <div>
     <hr />
-    <dl class="dl-horizontal">
+    <dl class="dl-horizontal" CellStyle.Wrap ="false">
         <dt>
             Organization
         </dt>
 
         <dd>
+          
             @Model.Subcontractor.OrgName
         </dd>
         <dt>
@@ -116,7 +117,7 @@
             Office Communications
         </dt>
 
-        <dd>
+        <dd >
             @Model.AOfficeCommunications.ToString("C")
         </dd>
 
