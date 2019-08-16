@@ -35,7 +35,7 @@
     <tr>
     <thead>
         <tr style="font-size:13px; text-align:center;background-color:#c3e1f7;">
-             <th></th>
+            <th></th>
             <th class="th-sm">
                 EIN
             </th>
@@ -106,183 +106,183 @@
 
         @foreach (var group in Model.GroupBy(item => item.Subcontractor.OrgName))
         {
-        <tr style="font-size:14px; text-align:center;">
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = group.FirstOrDefault().AllocatedBudgetId })
-            </td>
-            <td>
-                @Html.Encode(group.FirstOrDefault().Subcontractor.EIN)
-            </td>
-            <td>
-                @Html.Encode(group.Key)
-            </td>
-            <td>
-
-                @foreach (var item in group)
-                {
-                    if (item.Invoice.Select(a => a.Month).Contains(Alliance_for_Life.Models.Months.July))
-                    {
-
-                        @item.Invoice.Where(a => a.Month == Alliance_for_Life.Models.Months.July).Select(a => a.GrandTotal).SingleOrDefault().ToString("C")
-                    }
-                }
-            </td>
-            <td>
-                @foreach (var item in group)
-                {
-                    if (item.Invoice.Select(a => a.Month).Contains(Alliance_for_Life.Models.Months.August))
-                    {
-                        @item.Invoice.Where(a => a.Month == Alliance_for_Life.Models.Months.August).Select(a => a.GrandTotal).SingleOrDefault().ToString("C")
-
-                    }
-
-                }
-            </td>
-            <td>
-                @foreach (var item in group)
-                {
-                    if (item.Invoice.Select(a => a.Month).Contains(Alliance_for_Life.Models.Months.September))
-                    {
-                        @item.Invoice.Where(a => a.Month == Alliance_for_Life.Models.Months.September).Select(a => a.GrandTotal).SingleOrDefault().ToString("C")
-                    }
-                }
-            </td>
-            <td>
-                @foreach (var item in group)
-                {
-                    if (item.Invoice.Select(a => a.Month).Contains(Alliance_for_Life.Models.Months.October))
-                    {
-
-                        @item.Invoice.Where(a => a.Month == Alliance_for_Life.Models.Months.October).Select(a => a.GrandTotal).SingleOrDefault().ToString("C")
-                    }
-                }
-            </td>
-            <td>
-                @foreach (var item in group)
-                {
-                    if (item.Invoice.Select(a => a.Month).Contains(Alliance_for_Life.Models.Months.November))
-                    {
-                        @item.Invoice.Where(a => a.Month == Alliance_for_Life.Models.Months.November).Select(a => a.GrandTotal).SingleOrDefault().ToString("C")
-                    }
-                }
-            </td>
-            <td>
-                @foreach (var item in group)
-                {
-                    if (item.Invoice.Select(a => a.Month).Contains(Alliance_for_Life.Models.Months.December))
-                    {
-
-                        @item.Invoice.Where(a => a.Month == Alliance_for_Life.Models.Months.December).Select(a => a.GrandTotal).SingleOrDefault().ToString("C")
-                    }
-                }
-            </td>
-            <td>
-                @foreach (var item in group)
-                {
-                    if (item.Invoice.Where(b=>b.Year == ViewBag.yearselected+1).Select(a => a.Month).Contains(Alliance_for_Life.Models.Months.January))
-                    {
-
-                        @item.Invoice.Where(a => a.Month == Alliance_for_Life.Models.Months.January && a.Year == ViewBag.yearselected + 1).Select(a => a.GrandTotal).SingleOrDefault().ToString("C")
-                    }
-                }
-            </td>
-
-            <td>
-                @foreach (var item in group)
-                {
-                    if (item.Invoice.Where(b=>b.Year == ViewBag.yearselected+1).Select(a => a.Month).Contains(Alliance_for_Life.Models.Months.February))
-                    {
-
-                        @item.Invoice.Where(a => a.Month == Alliance_for_Life.Models.Months.February && a.Year == ViewBag.yearselected + 1).Select(a => a.GrandTotal).SingleOrDefault().ToString("C")
-                    }
-                }
-            </td>
-
-            <td>
-                @foreach (var item in group)
-                {
-                    if (item.Invoice.Where(b=>b.Year == ViewBag.yearselected+1).Select(a => a.Month).Contains(Alliance_for_Life.Models.Months.March))
-                    {
-
-                        @item.Invoice.Where(a => a.Month == Alliance_for_Life.Models.Months.March && a.Year == ViewBag.yearselected + 1).Select(a => a.GrandTotal).SingleOrDefault().ToString("C")
-                    }
-                }
-            </td>
-
-            <td>
-                @foreach (var item in group)
-                {
-                    if (item.Invoice.Where(b=>b.Year == ViewBag.yearselected+1).Select(a => a.Month).Contains(Alliance_for_Life.Models.Months.April))
-                    {
-
-                        @item.Invoice.Where(a => a.Month == Alliance_for_Life.Models.Months.April && a.Year == ViewBag.yearselected + 1).Select(a => a.GrandTotal).SingleOrDefault().ToString("C")
-                    }
-                }
-            </td>
-            <td>
-                @foreach (var item in group)
-                {
-                    if (item.Invoice.Where(b=>b.Year == ViewBag.yearselected+1).Select(a => a.Month).Contains(Alliance_for_Life.Models.Months.May))
-                    {
-                        @item.Invoice.Where(a => a.Month == Alliance_for_Life.Models.Months.May && a.Year == ViewBag.yearselected + 1).Select(a => a.GrandTotal).SingleOrDefault().ToString("C")
-                    }
-                }
-            </td>
-            <td>
-                @foreach (var item in group)
-                {
-                    if (item.Invoice.Where(b=>b.Year == ViewBag.yearselected+1).Select(a => a.Month).Contains(Alliance_for_Life.Models.Months.June))
-                    {
-
-                        @item.Invoice.Where(a => a.Month == Alliance_for_Life.Models.Months.June && a.Year == ViewBag.yearselected + 1).Select(a => a.GrandTotal).SingleOrDefault().ToString("C")
-                    }
-                }
-            </td>
-            <td>
-                @Math.Round(group.Sum(a => a.Invoice.Where(c => c.Month <= (Alliance_for_Life.Models.Months)6 && c.Year == ViewBag.yearselected).Sum(b => b.GrandTotal)) +
-                group.Sum(a => a.Invoice.Where(c => c.Month >= (Alliance_for_Life.Models.Months)7 && c.Year == ViewBag.yearselected+1).Sum(b => b.GrandTotal))).ToString("c")
-            </td>
-            <td>
-                @Math.Round((group.FirstOrDefault().AllocatedOldBudget + (group.FirstOrDefault().AllocatedNewBudget)), 2).ToString("C")
-            </td>
-            <td>
-                @Html.Encode(group.FirstOrDefault().AllocatedOldBudget.ToString("C"))
-            </td>
-            <td>
-                @Math.Round(group.FirstOrDefault().AllocatedOldBudget + group.FirstOrDefault().AllocatedNewBudget - group.Sum(a => a.Invoice.Where(c => c.Month <= (Alliance_for_Life.Models.Months)6 && c.Year == ViewBag.yearselected).Sum(b => b.GrandTotal)) -
-                group.Sum(a => a.Invoice.Where(c => c.Month >= (Alliance_for_Life.Models.Months)7 && c.Year == ViewBag.yearselected + 1).Sum(b => b.GrandTotal))).ToString("c")
-
-            </td>
-
-            @if ((group.FirstOrDefault().AllocatedNewBudget) >= 0)
-            {
+            <tr style="font-size:14px; text-align:center;">
                 <td>
-                    @Html.Encode(group.FirstOrDefault().AllocatedNewBudget.ToString("C"))
+                    @Html.ActionLink("Edit", "Edit", new { id = group.FirstOrDefault().AllocatedBudgetId })
                 </td>
-            }
-            else
-            {
-                <td style="color:red;">
-                    @if (group.FirstOrDefault().AllocatedNewBudget <= 0)
+                <td>
+                    @Html.Encode(group.FirstOrDefault().Subcontractor.EIN)
+                </td>
+                <td>
+                    @Html.Encode(group.Key)
+                </td>
+                <td>
+
+                    @foreach (var item in group)
                     {
+                        if (item.Invoice.Select(a => a.Month).Contains(Alliance_for_Life.Models.Months.July))
+                        {
+
+                            @item.Invoice.Where(a => a.Month == Alliance_for_Life.Models.Months.July).Select(a => a.GrandTotal).SingleOrDefault().ToString("C")
+                        }
+                    }
+                </td>
+                <td>
+                    @foreach (var item in group)
+                    {
+                        if (item.Invoice.Select(a => a.Month).Contains(Alliance_for_Life.Models.Months.August))
+                        {
+                            @item.Invoice.Where(a => a.Month == Alliance_for_Life.Models.Months.August).Select(a => a.GrandTotal).SingleOrDefault().ToString("C")
+
+                        }
+
+                    }
+                </td>
+                <td>
+                    @foreach (var item in group)
+                    {
+                        if (item.Invoice.Select(a => a.Month).Contains(Alliance_for_Life.Models.Months.September))
+                        {
+                            @item.Invoice.Where(a => a.Month == Alliance_for_Life.Models.Months.September).Select(a => a.GrandTotal).SingleOrDefault().ToString("C")
+                        }
+                    }
+                </td>
+                <td>
+                    @foreach (var item in group)
+                    {
+                        if (item.Invoice.Select(a => a.Month).Contains(Alliance_for_Life.Models.Months.October))
+                        {
+
+                            @item.Invoice.Where(a => a.Month == Alliance_for_Life.Models.Months.October).Select(a => a.GrandTotal).SingleOrDefault().ToString("C")
+                        }
+                    }
+                </td>
+                <td>
+                    @foreach (var item in group)
+                    {
+                        if (item.Invoice.Select(a => a.Month).Contains(Alliance_for_Life.Models.Months.November))
+                        {
+                            @item.Invoice.Where(a => a.Month == Alliance_for_Life.Models.Months.November).Select(a => a.GrandTotal).SingleOrDefault().ToString("C")
+                        }
+                    }
+                </td>
+                <td>
+                    @foreach (var item in group)
+                    {
+                        if (item.Invoice.Select(a => a.Month).Contains(Alliance_for_Life.Models.Months.December))
+                        {
+
+                            @item.Invoice.Where(a => a.Month == Alliance_for_Life.Models.Months.December).Select(a => a.GrandTotal).SingleOrDefault().ToString("C")
+                        }
+                    }
+                </td>
+                <td>
+                    @foreach (var item in group)
+                    {
+                        if (item.Invoice.Where(b => b.Year == ViewBag.yearselected + 1).Select(a => a.Month).Contains(Alliance_for_Life.Models.Months.January))
+                        {
+
+                            @item.Invoice.Where(a => a.Month == Alliance_for_Life.Models.Months.January && a.Year == ViewBag.yearselected + 1).Select(a => a.GrandTotal).SingleOrDefault().ToString("C")
+                        }
+                    }
+                </td>
+
+                <td>
+                    @foreach (var item in group)
+                    {
+                        if (item.Invoice.Where(b => b.Year == ViewBag.yearselected + 1).Select(a => a.Month).Contains(Alliance_for_Life.Models.Months.February))
+                        {
+
+                            @item.Invoice.Where(a => a.Month == Alliance_for_Life.Models.Months.February && a.Year == ViewBag.yearselected + 1).Select(a => a.GrandTotal).SingleOrDefault().ToString("C")
+                        }
+                    }
+                </td>
+
+                <td>
+                    @foreach (var item in group)
+                    {
+                        if (item.Invoice.Where(b => b.Year == ViewBag.yearselected + 1).Select(a => a.Month).Contains(Alliance_for_Life.Models.Months.March))
+                        {
+
+                            @item.Invoice.Where(a => a.Month == Alliance_for_Life.Models.Months.March && a.Year == ViewBag.yearselected + 1).Select(a => a.GrandTotal).SingleOrDefault().ToString("C")
+                        }
+                    }
+                </td>
+
+                <td>
+                    @foreach (var item in group)
+                    {
+                        if (item.Invoice.Where(b => b.Year == ViewBag.yearselected + 1).Select(a => a.Month).Contains(Alliance_for_Life.Models.Months.April))
+                        {
+
+                            @item.Invoice.Where(a => a.Month == Alliance_for_Life.Models.Months.April && a.Year == ViewBag.yearselected + 1).Select(a => a.GrandTotal).SingleOrDefault().ToString("C")
+                        }
+                    }
+                </td>
+                <td>
+                    @foreach (var item in group)
+                    {
+                        if (item.Invoice.Where(b => b.Year == ViewBag.yearselected + 1).Select(a => a.Month).Contains(Alliance_for_Life.Models.Months.May))
+                        {
+                            @item.Invoice.Where(a => a.Month == Alliance_for_Life.Models.Months.May && a.Year == ViewBag.yearselected + 1).Select(a => a.GrandTotal).SingleOrDefault().ToString("C")
+                        }
+                    }
+                </td>
+                <td>
+                    @foreach (var item in group)
+                    {
+                        if (item.Invoice.Where(b => b.Year == ViewBag.yearselected + 1).Select(a => a.Month).Contains(Alliance_for_Life.Models.Months.June))
+                        {
+
+                            @item.Invoice.Where(a => a.Month == Alliance_for_Life.Models.Months.June && a.Year == ViewBag.yearselected + 1).Select(a => a.GrandTotal).SingleOrDefault().ToString("C")
+                        }
+                    }
+                </td>
+                <td>
+                    @Math.Round(group.Sum(a => a.Invoice.Where(c => c.Month <= (Alliance_for_Life.Models.Months)6 && c.Year == ViewBag.yearselected).Sum(b => b.GrandTotal)) +
+                    group.Sum(a => a.Invoice.Where(c => c.Month >= (Alliance_for_Life.Models.Months)7 && c.Year == ViewBag.yearselected + 1).Sum(b => b.GrandTotal))).ToString("c")
+                </td>
+                <td>
+                    @Math.Round((group.FirstOrDefault().AllocatedOldBudget + (group.FirstOrDefault().AllocatedNewBudget)), 2).ToString("C")
+                </td>
+                <td>
+                    @Html.Encode(group.FirstOrDefault().AllocatedOldBudget.ToString("C"))
+                </td>
+                <td>
+                    @Math.Round(group.FirstOrDefault().AllocatedOldBudget + group.FirstOrDefault().AllocatedNewBudget - group.Sum(a => a.Invoice.Where(c => c.Month <= (Alliance_for_Life.Models.Months)6 && c.Year == ViewBag.yearselected).Sum(b => b.GrandTotal)) -
+                    group.Sum(a => a.Invoice.Where(c => c.Month >= (Alliance_for_Life.Models.Months)7 && c.Year == ViewBag.yearselected + 1).Sum(b => b.GrandTotal))).ToString("c")
+
+                </td>
+
+                @if ((group.FirstOrDefault().AllocatedNewBudget) >= 0)
+                {
+                    <td>
                         @Html.Encode(group.FirstOrDefault().AllocatedNewBudget.ToString("C"))
-                    }
-                </td>
-            }
+                    </td>
+                }
+                else
+                {
+                    <td style="color:red;">
+                        @if (group.FirstOrDefault().AllocatedNewBudget <= 0)
+                        {
+                            @Html.Encode(group.FirstOrDefault().AllocatedNewBudget.ToString("C"))
+                        }
+                    </td>
+                }
 
                 <td>
-                    @Math.Round((group.Sum(a => a.Invoice.Where(c => c.Month <= (Alliance_for_Life.Models.Months)6 && c.Year == ViewBag.yearselected).Sum(b => b.GrandTotal)/12) +
-                    group.Sum(a => a.Invoice.Where(c => c.Month >= (Alliance_for_Life.Models.Months)7 && c.Year == ViewBag.yearselected+1).Sum(b => b.GrandTotal))/12), 2).ToString("c")
+                    @Math.Round((group.Sum(a => a.Invoice.Where(c => c.Month <= (Alliance_for_Life.Models.Months)6 && c.Year == ViewBag.yearselected).Sum(b => b.GrandTotal) / 12) +
+                    group.Sum(a => a.Invoice.Where(c => c.Month >= (Alliance_for_Life.Models.Months)7 && c.Year == ViewBag.yearselected + 1).Sum(b => b.GrandTotal)) / 12), 2).ToString("c")
                 </td>
-            <td>
-                @Html.Encode(group.FirstOrDefault().CycleEndAdjustments.ToString("C"))
-            </td>
-            <td>
-                @Math.Round((group.FirstOrDefault().AllocatedOldBudget + group.FirstOrDefault().AllocatedNewBudget - (group.Sum(a => a.Invoice.Where(c => c.Month <= (Alliance_for_Life.Models.Months)6 && c.Year == ViewBag.yearselected).Sum(b => b.GrandTotal)) +
-                group.Sum(a => a.Invoice.Where(c => c.Month >= (Alliance_for_Life.Models.Months)7 && c.Year == ViewBag.yearselected + 1).Sum(b => b.GrandTotal))) - group.FirstOrDefault().CycleEndAdjustments), 2).ToString("C")
+                <td>
+                    @Html.Encode(group.FirstOrDefault().CycleEndAdjustments.ToString("C"))
+                </td>
+                <td>
+                    @Math.Round((group.FirstOrDefault().AllocatedOldBudget + group.FirstOrDefault().AllocatedNewBudget - (group.Sum(a => a.Invoice.Where(c => c.Month <= (Alliance_for_Life.Models.Months)6 && c.Year == ViewBag.yearselected).Sum(b => b.GrandTotal)) +
+                    group.Sum(a => a.Invoice.Where(c => c.Month >= (Alliance_for_Life.Models.Months)7 && c.Year == ViewBag.yearselected + 1).Sum(b => b.GrandTotal))) - group.FirstOrDefault().CycleEndAdjustments), 2).ToString("C")
 
-            </td>
-        </tr>
+                </td>
+            </tr>
         }
         <tr style="font-size:14px; text-align:center;">
             <th></th>
@@ -350,16 +350,16 @@
                     @Math.Round(Model.Sum(a => a.AllocatedNewBudget), 2).ToString("C")
                 </td>
             }
-                <td>
-                    @Math.Round(Model.Sum(a => a.Invoice.Sum(b => b.GrandTotal)/12), 2).ToString("C")
-                </td>
+            <td>
+                @Math.Round(Model.Sum(a => a.Invoice.Sum(b => b.GrandTotal) / 12), 2).ToString("C")
+            </td>
             <td>
                 @Math.Round(Model.Sum(a => a.CycleEndAdjustments), 2).ToString("C")
             </td>
             <td>
                 @Math.Round((Model.Sum(a => a.AllocatedOldBudget) + Model.Sum(b => b.AllocatedNewBudget) - Model.Sum(a => a.Invoice.Sum(b => b.GrandTotal)) - Model.Sum(a => a.CycleEndAdjustments)), 2).ToString("C")
             </td>
-        </tr>    
+        </tr>
     </tbody>
 </table>
 
@@ -409,17 +409,20 @@
     </thead>
 </table>
 
+@using (Html.BeginForm(FormMethod.Post))
+{
+    <div class="col-xs-5th-1 col-sm-6" style="align-content:center;">
+        Results Shown per Page: @Html.DropDownList("pgSize", (IEnumerable<SelectListItem>)ViewBag.PageSize, "",
+htmlAttributes: new { @class = "form-control" })
+        <br />
 
-<div class="col-xs-5th-1 col-sm-6" style="align-content:center;">
-    Results Shown per Page: @Html.DropDownList("pgSize", (IEnumerable<SelectListItem>)ViewBag.PageSize, "",
-htmlAttributes: new { @class = "form-control"})
-    <br />
 
-    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
 
-    @Html.PagedListPager(Model, page => Url.Action("Index",
-new { page, pgSize = ViewBag.psize, @class = "pagination"}))
-</div>
+        @Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, pgSize = ViewBag.psize, @class = "pagination" }))
+    </div>
+}
 <style>
     .tablehearder {
         text-align: center;

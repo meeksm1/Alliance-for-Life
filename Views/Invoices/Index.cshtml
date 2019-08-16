@@ -195,11 +195,16 @@
                     </a>
                     |
                     <button style='font-size:16px; background:none; border:none' value="@invoice.InvoiceId" name="InvoiceId" id="@invoice.InvoiceId"><i class='fa fa-refresh' style="font-size:16px;color:#2ECC71"></i></button>
-                    |
-
+                    
+                    @if(User.IsInRole("Admin"))
+                    {
+                      <label>|</label>
                     <a href="@Url.Action("Delete", "Invoices", new { id = invoice.InvoiceId }, Request.Url.Scheme)">
                         <i style="font-size:16px; color:red;" class="fa fa-trash"></i>
                     </a>
+                    }
+
+                   
                 </form>
             </td>
         </tr>

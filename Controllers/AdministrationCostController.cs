@@ -251,6 +251,7 @@ namespace Alliance_for_Life.Controllers
             if (ModelState.IsValid)
             {
                 adminCosts.SubmittedDate = System.DateTime.Now;
+                
                 db.Entry(adminCosts).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -311,10 +312,9 @@ namespace Alliance_for_Life.Controllers
         public FileResult Export()
         {
             DataTable dt = new DataTable("Grid");
-            dt.Columns.AddRange(new DataColumn[27]
+            dt.Columns.AddRange(new DataColumn[26]
             {
-                new DataColumn ("Administration Invoice Id"),
-                new DataColumn ("Date Submitted"),
+
                 new DataColumn ("Organization"),
                 new DataColumn ("Month"),
                 new DataColumn ("Region"),
@@ -340,6 +340,7 @@ namespace Alliance_for_Life.Controllers
                 new DataColumn ("Other 2"),
                 new DataColumn ("Other 3"),
                 new DataColumn ("Total Costs"),
+                 new DataColumn ("Date Submitted"),
             });
 
             var costs = from a in db.AdminCosts
@@ -348,37 +349,37 @@ namespace Alliance_for_Life.Controllers
                         where a.SubcontractorId == s.SubcontractorId
                         select new AdminReport
                         {
-                            AdminCostId = a.AdminCostId,
                             SubmittedDate = a.SubmittedDate,
                             OrgName = s.OrgName,
                             MonthName = a.Month.ToString(),
                             YearName = a.Year,
-                            AflBillable = a.AflBillable,
-                            ASalandWages = a.ASalandWages,
-                            AEmpBenefits = a.AEmpBenefits,
-                            AEmpTravel = a.AEmpTravel,
-                            AEmpTraining = a.AEmpTraining,
-                            AOfficeRent = a.AOfficeRent,
-                            AOfficeUtilities = a.AOfficeUtilities,
-                            AFacilityIns = a.AFacilityIns,
-                            AOfficeSupplies = a.AOfficeSupplies,
-                            AEquipment = a.AEquipment,
-                            AOfficeCommunications = a.AOfficeCommunications,
-                            AOfficeMaint = a.AOfficeMaint,
-                            AConsulting = a.AConsulting,
-                            AJanitorServices = a.AJanitorServices,
-                            ADepreciation = a.ADepreciation,
-                            ATechSupport = a.ATechSupport,
-                            ASecurityServices = a.ASecurityServices,
-                            AOther = a.AOther,
-                            AOther2 = a.AOther2,
-                            AOther3 = a.AOther3,
-                            ATotCosts = a.ATotCosts
+                            AflBillable = "$" + a.AflBillable.ToString(),
+                            ASalandWages = "$" + a.ASalandWages.ToString(),
+                            AEmpBenefits = "$" + a.AEmpBenefits.ToString(),
+                            AEmpTravel = "$" + a.AEmpTravel.ToString(),
+                            AEmpTraining = "$" + a.AEmpTraining.ToString(),
+                            AOfficeRent = "$" + a.AOfficeRent.ToString(),
+                            AOfficeUtilities = "$" + a.AOfficeUtilities.ToString(),
+                            AFacilityIns = "$" + a.AFacilityIns.ToString(),
+                            AOfficeSupplies = "$" + a.AOfficeSupplies.ToString(),
+                            AEquipment = "$" + a.AEquipment.ToString(),
+                            AOfficeCommunications = "$" + a.AOfficeCommunications.ToString(),
+                            AOfficeMaint = "$" + a.AOfficeMaint.ToString(),
+                            AConsulting = "$" + a.AConsulting.ToString(),
+                            AJanitorServices = "$" + a.AJanitorServices.ToString(),
+                            ADepreciation = "$" + a.ADepreciation.ToString(),
+                            ATechSupport = "$" + a.ATechSupport.ToString(),
+                            ASecurityServices = "$" + a.ASecurityServices.ToString(),
+                            AOther = a.AOtherInput + ": $" + a.AOther.ToString(),
+                            AOther2 = a.AOtherInput2 + ": $" + a.AOther2.ToString(),
+                            AOther3 = a.AOtherInput3 + ": $" + a.AOther3.ToString(),
+                            ATotCosts = "$" + a.ATotCosts.ToString()
                         };
 
             if (!User.IsInRole("Admin"))
             {
                 var id = User.Identity.GetUserId();
+
 
                 costs = from a in db.AdminCosts
                         join s in db.SubContractors on a.SubcontractorId equals s.SubcontractorId
@@ -386,41 +387,41 @@ namespace Alliance_for_Life.Controllers
                         where a.SubcontractorId == s.SubcontractorId && us.Id == id
                         select new AdminReport
                         {
-                            AdminCostId = a.AdminCostId,
                             SubmittedDate = a.SubmittedDate,
                             OrgName = s.OrgName,
                             MonthName = a.Month.ToString(),
                             YearName = a.Year,
-                            AflBillable = a.AflBillable,
-                            ASalandWages = a.ASalandWages,
-                            AEmpBenefits = a.AEmpBenefits,
-                            AEmpTravel = a.AEmpTravel,
-                            AEmpTraining = a.AEmpTraining,
-                            AOfficeRent = a.AOfficeRent,
-                            AOfficeUtilities = a.AOfficeUtilities,
-                            AFacilityIns = a.AFacilityIns,
-                            AOfficeSupplies = a.AOfficeSupplies,
-                            AEquipment = a.AEquipment,
-                            AOfficeCommunications = a.AOfficeCommunications,
-                            AOfficeMaint = a.AOfficeMaint,
-                            AConsulting = a.AConsulting,
-                            AJanitorServices = a.AJanitorServices,
-                            ADepreciation = a.ADepreciation,
-                            ATechSupport = a.ATechSupport,
-                            ASecurityServices = a.ASecurityServices,
-                            AOther = a.AOther,
-                            AOther2 = a.AOther2,
-                            AOther3 = a.AOther3,
-                            ATotCosts = a.ATotCosts
+                            AflBillable = "$" + a.AflBillable.ToString(),
+                            ASalandWages = "$" + a.ASalandWages.ToString(),
+                            AEmpBenefits = "$" + a.AEmpBenefits.ToString(),
+                            AEmpTravel = "$" + a.AEmpTravel.ToString(),
+                            AEmpTraining = "$" + a.AEmpTraining.ToString(),
+                            AOfficeRent = "$" + a.AOfficeRent.ToString(),
+                            AOfficeUtilities = "$" + a.AOfficeUtilities.ToString(),
+                            AFacilityIns = "$" + a.AFacilityIns.ToString(),
+                            AOfficeSupplies = "$" + a.AOfficeSupplies.ToString(),
+                            AEquipment = "$" + a.AEquipment.ToString(),
+                            AOfficeCommunications = "$" + a.AOfficeCommunications.ToString(),
+                            AOfficeMaint = "$" + a.AOfficeMaint.ToString(),
+                            AConsulting = "$" + a.AConsulting.ToString(),
+                            AJanitorServices = "$" + a.AJanitorServices.ToString(),
+                            ADepreciation = "$" + a.ADepreciation.ToString(),
+                            ATechSupport = "$" + a.ATechSupport.ToString(),
+                            ASecurityServices = "$" + a.ASecurityServices.ToString(),
+                            AOther = a.AOtherInput + ": $" + a.AOther.ToString(),
+                            AOther2 = a.AOtherInput2 + ": $" + a.AOther2.ToString(),
+                            AOther3 = a.AOtherInput3 + ": $" + a.AOther3.ToString(),
+                            ATotCosts = "$" + a.ATotCosts.ToString()
+
                         };
 
             }
             foreach (var item in costs)
             {
-                dt.Rows.Add(item.AdminCostId, item.SubmittedDate, item.OrgName, item.MonthName, item.RegionName, item.YearName, item.AflBillable, item.ASalandWages, item.AEmpBenefits,
+                dt.Rows.Add(item.OrgName, item.MonthName, item.RegionName, item.YearName, item.AflBillable, item.ASalandWages, item.AEmpBenefits,
                     item.AEmpTravel, item.AEmpTraining, item.AOfficeRent, item.AOfficeUtilities, item.AFacilityIns, item.AOfficeSupplies, item.AEquipment,
                     item.AOfficeCommunications, item.AOfficeMaint, item.AConsulting, item.AJanitorServices, item.ADepreciation,
-                    item.ATechSupport, item.ASecurityServices, item.AOther, item.AOther2, item.AOther3, item.ATotCosts);
+                    item.ATechSupport, item.ASecurityServices, item.AOther, item.AOther2, item.AOther3, item.ATotCosts, item.SubmittedDate);
             }
 
             using (XLWorkbook wb = new XLWorkbook())
