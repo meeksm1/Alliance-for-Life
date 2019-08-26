@@ -27,6 +27,7 @@ namespace Alliance_for_Life.Controllers
 
             ViewBag.CurrentSort = sortOrder;
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+
             if (searchString != null)
             {
                 page = 1;
@@ -35,6 +36,7 @@ namespace Alliance_for_Life.Controllers
             {
                 searchString = currentFilter;
             }
+
             ViewBag.CurrentFilter = searchString;
 
             if ((Year != null) && Year.Length > 1)
@@ -78,7 +80,7 @@ namespace Alliance_for_Life.Controllers
                 new SelectListItem() { Value="40", Text= "40" },
             };
 
-            return View(allocatedBudget.OrderBy(y => y.Year).ToPagedList(pageNumber, defaSize));
+            return View(allocatedBudget.OrderBy(a => a.Year).ToPagedList(pageNumber, defaSize));
         }
 
         public ActionResult Balance(string sortOrder, string Year, /*string searchString, string currentFilter, */int? page, string pgSize)

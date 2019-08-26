@@ -30,6 +30,11 @@ namespace Alliance_for_Life.Models
         public string AOther { get; set; }
         public string AOther2 { get; set; }
         public string AOther3 { get; set; }
+        public string AOtherInput { get; set; }
+
+        public string AOtherInput2 { get; set; }
+
+        public string AOtherInput3 { get; set; }
 
         public string AflBillable { get; set; }
 
