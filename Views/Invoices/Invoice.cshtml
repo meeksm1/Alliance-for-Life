@@ -143,13 +143,13 @@
                     @if ((Model.BalanceRemaining - Model.DepositAmount) < 0)
                     {
                     <td class="text-right" style="color: red">
-                        @Math.Round((Model.BalanceRemaining - Model.DepositAmount), 2).ToString("C")
+                        @Math.Round((Model.BalanceRemaining - Model.GrandTotal), 2).ToString("C")
                     </td>
                     }
                     else
                     {
                         <td class="text-right">
-                            @Math.Round((Model.BalanceRemaining - Model.DepositAmount), 2).ToString("C")
+                            @Math.Round((Model.BalanceRemaining - Model.GrandTotal), 2).ToString("C")
                         </td>
                     }
                 </tr>
