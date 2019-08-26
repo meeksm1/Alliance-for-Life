@@ -266,6 +266,7 @@ namespace Alliance_for_Life.Controllers
                 updateduser.FirstName = user.Firstname;
                 updateduser.LastName = user.Lastname;
                 updateduser.Email = user.Email;
+                updateduser.UserName = user.Email;
                 PasswordHasher password = new PasswordHasher();
                 var passwordhash = password.HashPassword(user.Password);
                 updateduser.PasswordHash = passwordhash;
