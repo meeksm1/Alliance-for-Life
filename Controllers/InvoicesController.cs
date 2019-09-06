@@ -69,11 +69,27 @@ namespace Alliance_for_Life.Controllers
 
                 else
                 {
-                    GenerateInvoice(SubcontractorId, Month, Year, billingdate);
+                    GenerateInvoice(SubcontractorId, Month, year, billingdate);
                 }
             }
 
             var invoices = db.Invoices.Include(i => i.AdminCosts).Include(i => i.AllocatedBudget).Include(i => i.ParticipationService).Include(i => i.Subcontractor);
+
+            ViewBag.AllocatedOldBudget = invoices.FirstOrDefault().AllocatedBudget.AllocatedOldBudget;
+
+            var yrs = Convert.ToInt16(Year);
+            //checking for the begining balance based on month
+
+            if (Month != null && (int)Enum.Parse(typeof(Months), Month) >= 7)
+            {
+                var allocation = from s in db.AllocatedBudget
+                                 where s.Year == yrs - 1 && s.SubcontractorId == invoices.FirstOrDefault().SubcontractorId
+                                 select s.AllocatedOldBudget;
+
+                ViewBag.AllocatedOldBudget = allocation.SingleOrDefault();
+            }
+
+
 
             if (!User.IsInRole("Admin"))
             {
@@ -120,7 +136,7 @@ namespace Alliance_for_Life.Controllers
 
 
         //Generate Invoice
-        public ActionResult GenerateInvoice(string orgname, string Month, string Year, string billingdate)
+        public ActionResult GenerateInvoice(string orgname, string Month, int Year, string billingdate)
         {
             Invoices invoice = new Invoices();
 
@@ -188,8 +204,22 @@ namespace Alliance_for_Life.Controllers
                 var subcontractorbalance = db.SubContractors
                     .Where(s => s.SubcontractorId == invoice.SubcontractorId);
 
+                //get the begining allocation 
+                //The allocation budget created for 2019 should remain the same for all the invoices from July 2019 - June 2020
+
+                var beginbalance = allocatedbudget.FirstOrDefault().AllocatedOldBudget;
+                //check and getting the balance remaining 
+                if ((int)Enum.Parse(typeof(Months), Month) >= 7)
+                {
+                    var allocation = from s in db.AllocatedBudget
+                                     where s.Year == Year - 1 && s.SubcontractorId == invoice.SubcontractorId
+                                     select s.AllocatedOldBudget;
+
+                    beginbalance = allocation.SingleOrDefault();
+                }
+
                 //calculating the rest
-                invoice.BalanceRemaining = allocatedbudget.FirstOrDefault().AllocatedOldBudget - allocatedbudget.FirstOrDefault().AllocatedNewBudget;
+                invoice.BalanceRemaining = beginbalance - allocatedbudget.FirstOrDefault().AllocatedNewBudget;
                 invoice.Region = subcontractorbalance.FirstOrDefault().Region;
                 invoice.BillingDate = DateTime.Parse(billingdate);
                 invoice.SubmittedDate = DateTime.Now;
