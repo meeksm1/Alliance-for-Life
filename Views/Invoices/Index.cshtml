@@ -173,16 +173,16 @@
                 <div class="lname">@invoice.AllocatedBudget.AllocatedNewBudget.ToString("C")</div>
             </td>
 
-            @if ((invoice.BalanceRemaining - invoice.DepositAmount) < 0)
+            @if ((invoice.BalanceRemaining) < 0)
             {
                 <td class="text-right" style="color: red">
-                    @Math.Round((invoice.BalanceRemaining - invoice.GrandTotal), 3).ToString("C")
+                    @Math.Round((invoice.BalanceRemaining), 3).ToString("C")
                 </td>
             }
             else
             {
                 <td class="text-right">
-                    @Math.Round((invoice.BalanceRemaining - invoice.GrandTotal), 3).ToString("C")
+                    @Math.Round((invoice.BalanceRemaining), 3).ToString("C")
                 </td>
             }
             <td>
