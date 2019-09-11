@@ -77,7 +77,7 @@ namespace Alliance_for_Life.Controllers
             // ViewBag.AllocatedOldBudget = 0.00;
             var yrs = DateTime.Now.Year;
 
-            if ( !String.IsNullOrEmpty( Year))
+            if (!String.IsNullOrEmpty(Year))
             {
                 yrs = Convert.ToInt16(Year);
             }
@@ -116,7 +116,7 @@ namespace Alliance_for_Life.Controllers
             if (!String.IsNullOrEmpty(searchString) || !String.IsNullOrEmpty(Year))
             {
                 var yearSearch = (Year);
-                
+
                 invoices = invoices.Where(a => a.Subcontractor.OrgName.Contains(searchString) || a.Year.ToString() == yearSearch);
             }
 
@@ -218,36 +218,47 @@ namespace Alliance_for_Life.Controllers
 
                 //calculating the Balance Remaining
                 //check and getting the balance remaining 
-                var beginbalance1 = allocatedbudget.FirstOrDefault().AllocatedOldBudget;
-                var beginbalance2 = allocatedbudget.FirstOrDefault().AllocatedOldBudget;
 
-                if ((int)Enum.Parse(typeof(Months), Month) > 1 && (int)Enum.Parse(typeof(Months), Month) < 7)
+                //*******************************************************************************************************************
+                //converting month to integer for comparing from the table
+                var month_TO = (int)Enum.Parse(typeof(Months), Month);
+
+                var begbalance = from s in db.Invoices
+                                 where s.Year == Year || s.Year == Year + 1 || s.Year == Year - 1 && s.SubcontractorId == invoice.SubcontractorId
+                                 select s;
+
+                //*******************************************************************************************************************
+                //Finding the balance remaining before the invoice is created
+                var balanceRemaining = allocatedbudget.Where(a => a.Year == Year).FirstOrDefault().AllocatedOldBudget;
+                var i = 1;
+
+                foreach (var items in begbalance.Where(a => a.Year == Year))
                 {
-                    var begbalance = from s in db.Invoices
-                                     where s.Year == Year && s.SubcontractorId == invoice.SubcontractorId && s.Month == invoice.Month - 1
-                                     select s.BalanceRemaining;
 
-                    if (begbalance != null)
+                    if ((int)items.Month < month_TO - i)
                     {
-                        beginbalance1 = begbalance.FirstOrDefault();
+                        balanceRemaining = items.BalanceRemaining;
                     }
-
+                    i++;
                 }
-                else if ((int)Enum.Parse(typeof(Months), Month) >= 7)
+
+                if (month_TO >= 7)
                 {
-                    var begbalance = from s in db.Invoices
-                                     where s.Year == Year - 1 && s.SubcontractorId == invoice.SubcontractorId && s.Month == invoice.Month - 1
-                                     select s.BalanceRemaining;
 
-                    if (begbalance != null)
+                    foreach (var items in begbalance.Where(a => a.Year == Year - 1))
                     {
-                        beginbalance2 = begbalance.FirstOrDefault();
+                        if ((int)items.Month == month_TO - i)
+                        {
+                            balanceRemaining = items.BalanceRemaining;
+                        }
+                       ;
                     }
                 }
+
 
 
                 //calculating the rest
-                invoice.BalanceRemaining = beginbalance1 + beginbalance2 - invoice.GrandTotal;
+                invoice.BalanceRemaining = balanceRemaining - invoice.GrandTotal;
 
                 //calculating the rest
                 invoice.Region = subcontractorbalance.FirstOrDefault().Region;
