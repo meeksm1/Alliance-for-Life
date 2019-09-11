@@ -250,7 +250,7 @@
                 </td>
                 <td>
                     @Math.Round(group.FirstOrDefault().AllocatedOldBudget + group.FirstOrDefault().AllocatedNewBudget - group.Sum(a => a.Invoice.Where(c => c.Month <= (Alliance_for_Life.Models.Months)6 && c.Year == ViewBag.yearselected).Sum(b => b.GrandTotal)) -
-                    group.Sum(a => a.Invoice.Where(c => c.Month >= (Alliance_for_Life.Models.Months)7 && c.Year == ViewBag.yearselected + 1).Sum(b => b.GrandTotal))).ToString("c")
+                    group.Sum(a => a.Invoice.Where(c => c.Month >= (Alliance_for_Life.Models.Months)7 && c.Year == ViewBag.yearselected + 1).Sum(b => b.GrandTotal)), 3).ToString("c")
 
                 </td>
 
@@ -272,14 +272,14 @@
 
                 <td>
                     @Math.Round((group.Sum(a => a.Invoice.Where(c => c.Month <= (Alliance_for_Life.Models.Months)6 && c.Year == ViewBag.yearselected).Sum(b => b.GrandTotal) / 12) +
-                    group.Sum(a => a.Invoice.Where(c => c.Month >= (Alliance_for_Life.Models.Months)7 && c.Year == ViewBag.yearselected + 1).Sum(b => b.GrandTotal)) / 12), 2).ToString("c")
+                    group.Sum(a => a.Invoice.Where(c => c.Month >= (Alliance_for_Life.Models.Months)7 && c.Year == ViewBag.yearselected + 1).Sum(b => b.GrandTotal)) / 12), 3).ToString("c")
                 </td>
                 <td>
                     @Html.Encode(group.FirstOrDefault().CycleEndAdjustments.ToString("C"))
                 </td>
                 <td>
                     @Math.Round((group.FirstOrDefault().AllocatedOldBudget + group.FirstOrDefault().AllocatedNewBudget - (group.Sum(a => a.Invoice.Where(c => c.Month <= (Alliance_for_Life.Models.Months)6 && c.Year == ViewBag.yearselected).Sum(b => b.GrandTotal)) +
-                    group.Sum(a => a.Invoice.Where(c => c.Month >= (Alliance_for_Life.Models.Months)7 && c.Year == ViewBag.yearselected + 1).Sum(b => b.GrandTotal))) - group.FirstOrDefault().CycleEndAdjustments), 2).ToString("C")
+                    group.Sum(a => a.Invoice.Where(c => c.Month >= (Alliance_for_Life.Models.Months)7 && c.Year == ViewBag.yearselected + 1).Sum(b => b.GrandTotal))) - group.FirstOrDefault().CycleEndAdjustments), 3).ToString("C")
 
                 </td>
             </tr>

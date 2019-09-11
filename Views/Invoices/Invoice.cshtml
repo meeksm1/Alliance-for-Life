@@ -140,16 +140,16 @@
                 </tr>
                 <tr>
                     <td class="text-left ">Remaining Balance</td>
-                    @if ((Model.BalanceRemaining) < 0)
+                    @if (Model.BalanceRemaining < 0)
                     {
                     <td class="text-right" style="color: red">
-                        @Math.Round((Model.BalanceRemaining), 2).ToString("C")
+                        @Math.Round((Model.BalanceRemaining), 3).ToString("C")
                     </td>
                     }
                     else
                     {
                         <td class="text-right">
-                            @Math.Round((Model.BalanceRemaining), 2).ToString("C")
+                            @Math.Round((Model.BalanceRemaining), 3).ToString("C")
                         </td>
                     }
                 </tr>
