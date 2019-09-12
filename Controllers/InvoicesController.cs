@@ -116,9 +116,11 @@ namespace Alliance_for_Life.Controllers
 
             if (!String.IsNullOrEmpty(searchString) || !String.IsNullOrEmpty(Year))
             {
-                var yearSearch = (Year);
-
-                invoices = invoices.Where(a => a.Subcontractor.OrgName.Contains(searchString) || a.Year.ToString() == yearSearch);
+                var yearSearch = Convert.ToInt16(Year);
+ 
+                invoices = from s in invoices
+                           where ((int)s.Month < 7 && s.Year == yrs) || ((int)s.Month >= 7 && s.Year == yrs + 1) || s.Subcontractor.OrgName.Contains(searchString)
+                           select s;
             }
 
             switch (sortOrder)
