@@ -359,10 +359,53 @@ namespace Alliance_for_Life.Controllers
             invoice.LessManagementFee = invoice.DirectAdminCost * .03;
             invoice.DepositAmount = invoice.GrandTotal - invoice.LessManagementFee;
 
+            //calculating balance remaining
+
+            //var balanceRemaining = invoice.BalanceRemaining;
+            var begbalance = from s in db.Invoices
+                             where s.Year == invoice.Year || s.Year == invoice.Year + 1 || s.Year == invoice.Year - 1 && s.SubcontractorId == invoice.SubcontractorId
+                             select s;
+            var balanceRemaining = allocatedbudget.Where(a => a.Year == invoice.Year).FirstOrDefault().AllocatedOldBudget;
+            var i = 1;
+
+            foreach (var items in begbalance.Where(a => a.Year == invoice.Year))
+            {
+
+                if ((int)items.Month <= (int)invoice.Month - i)
+                {
+                    balanceRemaining = items.BalanceRemaining;
+                }
+                i++;
+            }
+
+            if ((int)invoice.Month == 7)
+            {
+
+                foreach (var items in begbalance.Where(a => a.Year == invoice.Year - 1))
+                {
+                    if ((int)items.Month < (int)invoice.Month)
+                    {
+                        balanceRemaining = items.BalanceRemaining;
+                    }
+                   ;
+                }
+            }
+            else if ((int)invoice.Month > 7)
+            {
+                foreach (var items in begbalance.Where(a => a.Year == invoice.Year + 1))
+                {
+                    if ((int)items.Month <= (int)invoice.Month - i)
+                    {
+                        balanceRemaining = items.BalanceRemaining;
+                    }
+                   ;
+                }
+            }
+
+
+            invoice.BalanceRemaining = balanceRemaining - invoice.GrandTotal;
 
             // calculating the rest
-            // invoice.AllocatedBudget.AllocatedOldBudget = 200;
-            //invoice.BalanceRemaining = allocatedbudget.FirstOrDefault().AllocatedOldBudget - allocatedbudget.FirstOrDefault().AllocatedNewBudget;
             invoice.OrgName = db.SubContractors.Find(invoice.SubcontractorId).OrgName;
             db.Entry(invoice).State = EntityState.Modified;
             db.SaveChanges();
