@@ -131,11 +131,11 @@
             <table class="table table-bordered table-condensed">
                 <tr>
                     <td class="text-left ">Beginning Allocation</td>
-                    <td class="text-right ">@Model.AllocatedBudget.AllocatedOldBudget.ToString("C")</td>
+                    <td class="text-right ">@ViewBag.AllocatedOldBudget.ToString("C")</td>
                 </tr>
                 <tr>
                     <td class="text-left ">Adjusted Allocation</td>
-                    <td class="text-right ">@Model.AllocatedBudget.AllocatedNewBudget.ToString("C")</td>
+                    <td class="text-right ">@ViewBag.AllocatedAdjustments.ToString("C")</td>
 
                 </tr>
                 <tr>

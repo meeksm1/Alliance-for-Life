@@ -74,7 +74,6 @@ namespace Alliance_for_Life.Controllers
 
             var invoices = db.Invoices.Include(i => i.AdminCosts).Include(i => i.AllocatedBudget).Include(i => i.ParticipationService).Include(i => i.Subcontractor);
 
-            // ViewBag.AllocatedOldBudget = 0.00;
             var yrs = DateTime.Now.Year;
 
             if (!String.IsNullOrEmpty(Year))
@@ -90,17 +89,19 @@ namespace Alliance_for_Life.Controllers
             {
                 var allocation = from s in db.AllocatedBudget
                                  where s.Year == yrs - 1 && s.SubcontractorId == invoices.FirstOrDefault().SubcontractorId
-                                 select s.AllocatedOldBudget;
+                                 select s;
 
-                ViewBag.AllocatedOldBudget = allocation.FirstOrDefault();
+                ViewBag.AllocatedOldBudget = allocation.FirstOrDefault().AllocatedOldBudget;
+                ViewBag.AllocatedAdjustments = allocation.FirstOrDefault().AllocatedNewBudget;
             }
             else
             {
                 var allocation = from s in db.AllocatedBudget
                                  where s.Year == yrs && s.SubcontractorId == invoices.FirstOrDefault().SubcontractorId
-                                 select s.AllocatedOldBudget;
+                                 select s;
 
-                ViewBag.AllocatedOldBudget = allocation.FirstOrDefault();
+                ViewBag.AllocatedOldBudget = allocation.FirstOrDefault().AllocatedOldBudget;
+                ViewBag.AllocatedAdjustments = allocation.FirstOrDefault().AllocatedNewBudget;
             }
 
 
@@ -143,6 +144,7 @@ namespace Alliance_for_Life.Controllers
                 new SelectListItem() { Value="40", Text= "40" },
             };
 
+            invoices = invoices.OrderBy(a => a.Year).OrderBy(a => a.Month);
             return View(invoices.ToPagedList(pageNumber, defaSize));
         }
 
@@ -235,19 +237,30 @@ namespace Alliance_for_Life.Controllers
                 foreach (var items in begbalance.Where(a => a.Year == Year))
                 {
 
-                    if ((int)items.Month < month_TO - i)
+                    if ((int)items.Month <= month_TO - i)
                     {
                         balanceRemaining = items.BalanceRemaining;
                     }
                     i++;
                 }
 
-                if (month_TO >= 7)
+                if (month_TO == 7)
                 {
 
                     foreach (var items in begbalance.Where(a => a.Year == Year - 1))
                     {
-                        if ((int)items.Month == month_TO - i)
+                        if ((int)items.Month <= month_TO - i)
+                        {
+                            balanceRemaining = items.BalanceRemaining;
+                        }
+                       ;
+                    }
+                }
+                else if (month_TO > 7)
+                {
+                    foreach (var items in begbalance.Where(a => a.Year == Year + 1))
+                    {
+                        if ((int)items.Month <= month_TO - i)
                         {
                             balanceRemaining = items.BalanceRemaining;
                         }
@@ -258,14 +271,38 @@ namespace Alliance_for_Life.Controllers
 
 
                 //calculating the rest
-                invoice.BalanceRemaining = balanceRemaining - invoice.GrandTotal;
 
-                //calculating the rest
                 invoice.Region = subcontractorbalance.FirstOrDefault().Region;
                 invoice.BillingDate = DateTime.Parse(billingdate);
                 invoice.SubmittedDate = DateTime.Now;
                 invoice.OrgName = db.SubContractors.Find(invoice.SubcontractorId).OrgName;
                 invoice.AllocatedBudgetId = allocatedbudget.FirstOrDefault().AllocatedBudgetId;
+
+
+
+                if (month_TO >= 7)
+                {
+                    var allocationupdated = from s in db.AllocatedBudget
+                                            where s.Year == (Year - 1) && s.SubcontractorId == invoice.SubcontractorId
+                                            select s.AllocatedNewBudget;
+
+                    balanceRemaining = balanceRemaining + allocationupdated.SingleOrDefault();
+
+                }
+                else
+                {
+                    var allocationupdated = from s in db.AllocatedBudget
+                                            where s.Year == (Year) && s.SubcontractorId == invoice.SubcontractorId
+                                            select s.AllocatedNewBudget;
+
+                    balanceRemaining = balanceRemaining + allocationupdated.SingleOrDefault();
+
+
+                }
+
+
+                //calculating the rest
+                invoice.BalanceRemaining = balanceRemaining - invoice.GrandTotal;
 
                 //add to the Invoice table and save data
                 db.Invoices.Add(invoice);
@@ -345,6 +382,25 @@ namespace Alliance_for_Life.Controllers
                 .Include(i => i.AdminCosts).Include(i => i.AllocatedBudget)
                 .Include(i => i.ParticipationService)
                 .SingleOrDefault(a => a.InvoiceId == id);
+
+            if (invoices.Month != null && (int)invoices.Month >= 7)
+            {
+                var allocation = from s in db.AllocatedBudget
+                                 where s.Year == invoices.Year - 1 && s.SubcontractorId == invoices.SubcontractorId
+                                 select s;
+
+                ViewBag.AllocatedOldBudget = allocation.FirstOrDefault().AllocatedOldBudget;
+                ViewBag.AllocatedAdjustments = allocation.FirstOrDefault().AllocatedNewBudget;
+            }
+            else
+            {
+                var allocation = from s in db.AllocatedBudget
+                                 where s.Year == invoices.Year && s.SubcontractorId == invoices.SubcontractorId
+                                 select s;
+
+                ViewBag.AllocatedOldBudget = allocation.FirstOrDefault().AllocatedOldBudget;
+                ViewBag.AllocatedAdjustments = allocation.FirstOrDefault().AllocatedNewBudget;
+            }
 
             if (invoices == null)
             {

@@ -169,7 +169,7 @@
                 @ViewBag.AllocatedOldBudget.ToString("C")
             </td>
             <td>
-                <div class="lname">@invoice.AllocatedBudget.AllocatedNewBudget.ToString("C")</div>
+                <div class="lname">@ViewBag.AllocatedAdjustments.ToString("C")</div>
             </td>
 
             @if ((invoice.BalanceRemaining) < 0)
