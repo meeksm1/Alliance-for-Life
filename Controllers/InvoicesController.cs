@@ -368,7 +368,7 @@ namespace Alliance_for_Life.Controllers
             var balanceRemaining = allocatedbudget.Where(a => a.Year == invoice.Year).FirstOrDefault().AllocatedOldBudget;
             var i = 1;
 
-            foreach (var items in begbalance.Where(a => a.Year == invoice.Year))
+            foreach (var items in begbalance.Where(a => a.Year == invoice.Year).OrderBy(b=>b.Year).OrderBy(c=>c.Month))
             {
 
                 if ((int)items.Month <= (int)invoice.Month - i)
@@ -381,7 +381,7 @@ namespace Alliance_for_Life.Controllers
             if ((int)invoice.Month == 7)
             {
 
-                foreach (var items in begbalance.Where(a => a.Year == invoice.Year - 1))
+                foreach (var items in begbalance.Where(a => a.Year == invoice.Year - 1).OrderBy(b => b.Year).OrderBy(c => c.Month))
                 {
                     if ((int)items.Month < (int)invoice.Month)
                     {
@@ -392,7 +392,7 @@ namespace Alliance_for_Life.Controllers
             }
             else if ((int)invoice.Month > 7)
             {
-                foreach (var items in begbalance.Where(a => a.Year == invoice.Year + 1))
+                foreach (var items in begbalance.Where(a => a.Year == invoice.Year + 1).OrderBy(b => b.Year).OrderBy(c => c.Month))
                 {
                     if ((int)items.Month <= (int)invoice.Month - i)
                     {
