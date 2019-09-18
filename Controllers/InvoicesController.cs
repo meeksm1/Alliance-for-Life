@@ -105,8 +105,6 @@ namespace Alliance_for_Life.Controllers
             }
 
 
-
-
             if (!User.IsInRole("Admin"))
             {
                 invoices = from s in invoices
@@ -117,7 +115,7 @@ namespace Alliance_for_Life.Controllers
             if (!String.IsNullOrEmpty(searchString) || !String.IsNullOrEmpty(Year))
             {
                 var yearSearch = Convert.ToInt16(Year);
- 
+
                 invoices = from s in invoices
                            where ((int)s.Month < 7 && s.Year == yrs) || ((int)s.Month >= 7 && s.Year == yrs + 1) || s.Subcontractor.OrgName.Contains(searchString)
                            select s;
@@ -362,15 +360,13 @@ namespace Alliance_for_Life.Controllers
             invoice.DepositAmount = invoice.GrandTotal - invoice.LessManagementFee;
 
             //calculating balance remaining
-
-            //var balanceRemaining = invoice.BalanceRemaining;
             var begbalance = from s in db.Invoices
                              where s.Year == invoice.Year || s.Year == invoice.Year + 1 || s.Year == invoice.Year - 1 && s.SubcontractorId == invoice.SubcontractorId
                              select s;
-            var balanceRemaining = allocatedbudget.Where(a => a.Year == invoice.Year).FirstOrDefault().AllocatedOldBudget;
+            var balanceRemaining = allocatedbudget.Where(a => a.Year == invoice.Year).FirstOrDefault().AllocatedOldBudget + invoice.AllocatedBudget.AllocatedNewBudget;
             var i = 1;
 
-            foreach (var items in begbalance.Where(a => a.Year == invoice.Year).OrderBy(b=>b.Year).OrderBy(c=>c.Month))
+            foreach (var items in begbalance.Where(a => a.Year == invoice.Year).OrderBy(b => b.Year).OrderBy(c => c.Month))
             {
 
                 if ((int)items.Month <= (int)invoice.Month - i)
@@ -389,7 +385,6 @@ namespace Alliance_for_Life.Controllers
                     {
                         balanceRemaining = items.BalanceRemaining;
                     }
-                   ;
                 }
             }
             else if ((int)invoice.Month > 7)
@@ -400,7 +395,6 @@ namespace Alliance_for_Life.Controllers
                     {
                         balanceRemaining = items.BalanceRemaining;
                     }
-                   ;
                 }
             }
 
