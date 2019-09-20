@@ -63,13 +63,14 @@ namespace Alliance_for_Life.Controllers
                         + " for " + Month + ", " + year + " already exists. Please find the invoice below";
 
                     searchString = db.SubContractors.Find(new Guid(SubcontractorId)).OrgName;
-                    ModelState.Clear();
                 }
 
                 else
                 {
                     GenerateInvoice(SubcontractorId, Month, year, billingdate);
+
                 }
+
             }
 
             var invoices = db.Invoices.Include(i => i.AdminCosts).Include(i => i.AllocatedBudget).Include(i => i.ParticipationService).Include(i => i.Subcontractor);
@@ -79,29 +80,6 @@ namespace Alliance_for_Life.Controllers
             if (!String.IsNullOrEmpty(Year))
             {
                 yrs = Convert.ToInt16(Year);
-            }
-
-
-
-            //checking for the begining balance based on month
-
-            if (Month != null && (int)Enum.Parse(typeof(Months), Month) >= 7)
-            {
-                var allocation = from s in db.AllocatedBudget
-                                 where s.Year == yrs - 1 && s.SubcontractorId == invoices.FirstOrDefault().SubcontractorId
-                                 select s;
-
-                ViewBag.AllocatedOldBudget = allocation.FirstOrDefault().AllocatedOldBudget;
-                ViewBag.AllocatedAdjustments = allocation.FirstOrDefault().AllocatedNewBudget;
-            }
-            else
-            {
-                var allocation = from s in db.AllocatedBudget
-                                 where s.Year == yrs && s.SubcontractorId == invoices.FirstOrDefault().SubcontractorId
-                                 select s;
-
-                ViewBag.AllocatedOldBudget = allocation.FirstOrDefault().AllocatedOldBudget;
-                ViewBag.AllocatedAdjustments = allocation.FirstOrDefault().AllocatedNewBudget;
             }
 
 
@@ -143,6 +121,7 @@ namespace Alliance_for_Life.Controllers
                 new SelectListItem() { Value="30", Text= "30" },
                 new SelectListItem() { Value="40", Text= "40" },
             };
+
 
             invoices = invoices.OrderBy(a => a.Year).OrderBy(a => a.Month);
             return View(invoices.ToPagedList(pageNumber, defaSize));
@@ -311,7 +290,8 @@ namespace Alliance_for_Life.Controllers
 
             //check if the data exists
             ModelState.Clear();
-            return View();
+            invoice.Year = DateTime.Now.Year;
+            return View("Index");
         }
 
         //update invoice
@@ -363,10 +343,11 @@ namespace Alliance_for_Life.Controllers
             var begbalance = from s in db.Invoices
                              where s.Year == invoice.Year || s.Year == invoice.Year + 1 || s.Year == invoice.Year - 1 && s.SubcontractorId == invoice.SubcontractorId
                              select s;
+
             var balanceRemaining = allocatedbudget.Where(a => a.Year == invoice.Year).FirstOrDefault().AllocatedOldBudget + invoice.AllocatedBudget.AllocatedNewBudget;
             var i = 1;
 
-            foreach (var items in begbalance.Where(a => a.Year == invoice.Year).OrderBy(b => b.Year).OrderBy(c => c.Month))
+            foreach (var items in begbalance.Where(a => a.Year == invoice.Year && a.SubcontractorId == invoice.SubcontractorId).OrderBy(b => b.Year).OrderBy(c => c.Month))
             {
 
                 if ((int)items.Month <= (int)invoice.Month - i)
@@ -379,7 +360,7 @@ namespace Alliance_for_Life.Controllers
             if ((int)invoice.Month == 7)
             {
 
-                foreach (var items in begbalance.Where(a => a.Year == invoice.Year - 1).OrderBy(b => b.Year).OrderBy(c => c.Month))
+                foreach (var items in begbalance.Where(a => a.Year == invoice.Year - 1 && a.SubcontractorId == invoice.SubcontractorId).OrderBy(b => b.Year).OrderBy(c => c.Month))
                 {
                     if ((int)items.Month < (int)invoice.Month)
                     {
@@ -389,7 +370,7 @@ namespace Alliance_for_Life.Controllers
             }
             else if ((int)invoice.Month > 7)
             {
-                foreach (var items in begbalance.Where(a => a.Year == invoice.Year + 1).OrderBy(b => b.Year).OrderBy(c => c.Month))
+                foreach (var items in begbalance.Where(a => a.Year == invoice.Year + 1 && a.SubcontractorId == invoice.SubcontractorId).OrderBy(b => b.Year).OrderBy(c => c.Month))
                 {
                     if ((int)items.Month <= (int)invoice.Month - i)
                     {
