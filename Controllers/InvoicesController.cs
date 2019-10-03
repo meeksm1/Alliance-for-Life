@@ -210,10 +210,10 @@ namespace Alliance_for_Life.Controllers
 
                 //*******************************************************************************************************************
                 //Finding the balance remaining before the invoice is created
-                var balanceRemaining = allocatedbudget.Where(a => a.Year == Year).FirstOrDefault().AllocatedOldBudget;
+                var balanceRemaining = allocatedbudget.Where(a => a.Year == Year && a.SubcontractorId == invoice.SubcontractorId).FirstOrDefault().AllocatedOldBudget;
                 var i = 1;
 
-                foreach (var items in begbalance.Where(a => a.Year == Year))
+                foreach (var items in begbalance.Where(a => a.Year == Year && a.SubcontractorId == invoice.SubcontractorId))
                 {
 
                     if ((int)items.Month <= month_TO - i)
@@ -226,7 +226,7 @@ namespace Alliance_for_Life.Controllers
                 if (month_TO == 7)
                 {
 
-                    foreach (var items in begbalance.Where(a => a.Year == Year - 1))
+                    foreach (var items in begbalance.Where(a => a.Year == Year - 1 && a.SubcontractorId == invoice.SubcontractorId))
                     {
                         if ((int)items.Month <= month_TO - i)
                         {
@@ -237,7 +237,7 @@ namespace Alliance_for_Life.Controllers
                 }
                 else if (month_TO > 7)
                 {
-                    foreach (var items in begbalance.Where(a => a.Year == Year + 1))
+                    foreach (var items in begbalance.Where(a => a.Year == Year + 1 && a.SubcontractorId == invoice.SubcontractorId))
                     {
                         if ((int)items.Month <= month_TO - i)
                         {
@@ -281,7 +281,7 @@ namespace Alliance_for_Life.Controllers
 
 
                 //calculating the rest
-                invoice.BalanceRemaining = balanceRemaining - invoice.GrandTotal;
+                invoice.BalanceRemaining = balanceRemaining - begbalance.Sum(a => a.GrandTotal);
 
                 //add to the Invoice table and save data
                 db.Invoices.Add(invoice);
