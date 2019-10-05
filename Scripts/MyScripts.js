@@ -9,6 +9,9 @@
 
         // Update the total
         $("#ATotCosts").val(total.toFixed(2));
+
+        //AdminFee
+        $("#AdminFee").val((total*0.1).toFixed(2));
     });
 });
 
