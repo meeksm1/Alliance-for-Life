@@ -1,4 +1,4 @@
-﻿@model Alliance_for_Life.Models.Invoice
+﻿@model Alliance_for_Life.Models.Invoices
 
 @{
     ViewBag.Title = "Delete";
@@ -9,10 +9,10 @@
 
 <h3>Are you sure you want to delete this?</h3>
 <div>
-    <h4>Invoice</h4>
+    <h4>Invoices</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
+    <dl >
+        <dt class="col-md-2">
             @Html.DisplayNameFor(model => model.OrgName)
         </dt>
 
@@ -20,81 +20,100 @@
             @Html.DisplayFor(model => model.OrgName)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.DirectAdminCost)
+        <dt class="col-md-2">
+            @Html.DisplayNameFor(model => model.Region)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Region)
+        </dd>
+
+        <dt class="col-md-2">
+            @Html.DisplayNameFor(model => model.Month)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.DirectAdminCost)
+            @Html.DisplayFor(model => model.Month)
         </dd>
 
-        <dt>
+        <dt class="col-md-2">
+            @Html.DisplayNameFor(model => model.Year)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Year)
+        </dd>
+
+        <dt class="col-md-2">
+            DirectAdminCost
+        </dt>
+
+        <dd>
+            @Model.DirectAdminCost.ToString("C")
+        </dd>
+
+        <dt class="col-md-2">
             @Html.DisplayNameFor(model => model.ParticipantServices)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.ParticipantServices)
+            @Model.ParticipantServices.ToString("C")
         </dd>
 
-        <dt>
+        <dt class="col-md-2">
             @Html.DisplayNameFor(model => model.GrandTotal)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.GrandTotal)
+            @Model.GrandTotal.ToString("C")
         </dd>
 
-        <dt>
+        <dt class="col-md-2">
             @Html.DisplayNameFor(model => model.LessManagementFee)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.LessManagementFee)
+            @Model.LessManagementFee.ToString("C")
         </dd>
 
-        <dt>
+        <dt class="col-md-2">
             @Html.DisplayNameFor(model => model.DepositAmount)
+
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.DepositAmount)
+            @Model.DepositAmount.ToString("C")
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.BeginningAllocation)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.BeginningAllocation)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.AdjustedAllocation)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.AdjustedAllocation)
-        </dd>
-
-        <dt>
+        <dt class="col-md-2">
             @Html.DisplayNameFor(model => model.BillingDate)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.BillingDate)
+            @Model.BillingDate.ToShortDateString()
         </dd>
 
-        <dt>
+        <dt class="col-md-2">
             @Html.DisplayNameFor(model => model.BalanceRemaining)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.BalanceRemaining)
+            @Model.BalanceRemaining.ToString("C")
         </dd>
+
+        <dt class="col-md-2">
+            @Html.DisplayNameFor(model => model.SubmittedDate)
+        </dt>
+
+        <dd>
+            @Model.SubmittedDate.ToShortDateString()
+        </dd>
+
+
 
     </dl>
 
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">

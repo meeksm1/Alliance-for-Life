@@ -1,8 +1,10 @@
 ﻿@model Alliance_for_Life.ViewModels.ClientListFormViewModel
 
 @{
-    ViewBag.Title = Model.Heading;
-    Layout = "~/Views/Shared/_Layout.cshtml";
+                /**/
+
+                ViewBag.Title = Model.Heading;
+                Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>@Model.Heading</h2>
@@ -11,8 +13,11 @@
     <p class="alert alert-info">All fields are <strong>required</strong>.</p>
     @Html.AntiForgeryToken()
     <div class="form-group">
+        @Html.HiddenFor(m => m.Id)
+    </div>
+    <div class="form-group">
         @Html.LabelFor(m => m.SubcontractorId)
-        @Html.DropDownListFor(m => m.SubcontractorId, new SelectList(Model.Subcontractors, "SubcontractorId", "OrgName"), "", new { @class = "form-control", id="SubcontractorId" })
+        @Html.DropDownListFor(m => m.SubcontractorId, new SelectList(Model.Subcontractors, "SubcontractorId", "OrgName"), new { @class = "form-control", id = "SubcontractorId" })
         @Html.ValidationMessageFor(m => m.SubcontractorId)
     </div>
     <div class="form-group">
@@ -27,24 +32,37 @@
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.DOB)
-        @Html.TextBoxFor(m => m.DOB, new { @class = "form-control", type = "date", placeholder = "eg 12/18/1980" })
+        @if (Model.Action == "Create")
+        {
+            @Html.TextBoxFor(m => m.DOB, new { @class = "form-control ", type = "date", placeholder = "eg 12/18/2018" })
+        }
+        else
+        {
+            @Html.TextBoxFor(m => m.DOB, "{0:MM/dd/yyyy}", new { @class = "form-control " })
+        }
         @Html.ValidationMessageFor(m => m.DOB)
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.DueDate)
-        @Html.TextBoxFor(m => m.DueDate, new { @class = "form-control ", type = "date", placeholder = "eg 12/18/2018" })
+        @if (Model.Action == "Create")
+        {
+            @Html.TextBoxFor(m => m.DueDate, new { @class = "form-control ", type = "date", placeholder = "eg 12/18/2018" })
+        }
+        else
+        {
+            @Html.TextBoxFor(m => m.DueDate, "{0:MM/dd/yyyy}", new { @class = "form-control " })
+        }
         @Html.ValidationMessageFor(m => m.DueDate)
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.Active)
-        @Html.RadioButtonFor(m => m.Active, "True", new { @class = "form-group" })Yes.
-        @Html.RadioButtonFor(m => m.Active, "False", new { @class = "form-group" })No.
+        @Html.RadioButtonFor(m => m.Active, "True", new { @class = "form-group", @checked="checked"})Yes.
+        @Html.RadioButtonFor(m => m.Active,  new { @class = "form-group" })No.
     </div>
-    <button type="submit" class="btn btn-group-sm btn-primary">Add Client</button>
+    <button type="submit" class="btn btn-group-sm btn-primary">Submit</button>
     <br />
     <br />
     <div>
-        @Html.ActionLink("To Report Page", "Reports")|
         @Html.ActionLink("Cancel", "Index", "Home")
     </div>
 }

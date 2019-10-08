@@ -9,307 +9,301 @@
 
 <div>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
+    <dl >
+        <dt class="col-md-2">
             Year
         </dt>
-        <dd>
-            @Model.Year
-        </dd>
-        <dt>
-            Month
-        </dt>
 
         <dd>
-            @Model.Month
+            @Model.Year 
         </dd>
 
-        <dt>
+        <dt class="col-md-2">
             Region
         </dt>
 
         <dd>
-            @Model.Region
+            @Model.Region.GetDisplayName()
         </dd>
 
-        <dt>
+        <dt class="col-md-2">
             Salaries or Wages
         </dt>
 
         <dd>
-            @Model.ASalandWages.ToString("C")
+            @Model.ASalandWages.ToString("C") &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@Math.Round(((Model.ASalandWages / Model.Maxtot) * 100), 2) %
         </dd>
 
-        <dt>
+        <dt class="col-md-2">
             Employee Benefits
         </dt>
 
         <dd>
-            @Model.AEmpBenefits.ToString("C")
+            @Model.AEmpBenefits.ToString("C") &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@Math.Round(((Model.AEmpBenefits / Model.Maxtot) * 100), 2) %
         </dd>
 
-        <dt>
+        <dt class="col-md-2">
             Employee Travel
         </dt>
 
         <dd>
-            @Model.AEmpTravel.ToString("C")
+            @Model.AEmpTravel.ToString("C") &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@Math.Round(((Model.AEmpTravel / Model.Maxtot) * 100), 2) %
         </dd>
 
-        <dt>
+        <dt class="col-md-2">
             Employee Training
         </dt>
 
         <dd>
-            @Model.AEmpTraining.ToString("C")
+            @Model.AEmpTraining.ToString("C") &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@Math.Round(((Model.AEmpTraining / Model.Maxtot) * 100), 2) %
         </dd>
 
-        <dt>
+        <dt class="col-md-2">
             Office Rent
         </dt>
 
         <dd>
-            @Model.AOfficeRent.ToString("C")
+            @Model.AOfficeRent.ToString("C") &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@Math.Round(((Model.AOfficeRent / Model.Maxtot) * 100), 2) %
         </dd>
 
-        <dt>
+        <dt class="col-md-2">
             Office Utilities
         </dt>
 
         <dd>
-            @Model.AOfficeUtilities.ToString("C")
+            @Model.AOfficeUtilities.ToString("C") &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@Math.Round(((Model.AOfficeUtilities / Model.Maxtot) * 100), 2) %
         </dd>
 
-        <dt>
+        <dt class="col-md-2">
             Facility Insurance
         </dt>
 
         <dd>
-            @Model.AFacilityIns.ToString("C")
+            @Model.AFacilityIns.ToString("C") &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@Math.Round(((Model.AFacilityIns / Model.Maxtot) * 100), 2) %
         </dd>
 
-        <dt>
+        <dt class="col-md-2">
             Office Supplies
         </dt>
 
         <dd>
-            @Model.AOfficeSupplies.ToString("C")
+            @Model.AOfficeSupplies.ToString("C") &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@Math.Round(((Model.AOfficeSupplies / Model.Maxtot) * 100), 2) %
         </dd>
 
-        <dt>
+        <dt class="col-md-2">
             Equipment
         </dt>
 
         <dd>
-            @Model.AEquipment.ToString("C")
+            @Model.AEquipment.ToString("C") &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@Math.Round(((Model.AEquipment / Model.Maxtot) * 100), 2) %
         </dd>
 
-        <dt>
+        <dt class="col-md-2">
             Office Communications
         </dt>
 
         <dd>
-            @Model.AOfficeCommunications.ToString("C")
+            @Model.AOfficeCommunications.ToString("C") &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@Math.Round(((Model.AOfficeCommunications / Model.Maxtot) * 100), 2) %
         </dd>
 
-        <dt>
+        <dt class="col-md-2">
             Office Maintenance
         </dt>
 
         <dd>
-            @Model.AOfficeMaint.ToString("C")
+            @Model.AOfficeMaint.ToString("C") &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@Math.Round(((Model.AOfficeMaint / Model.Maxtot) * 100), 2) %
         </dd>
 
-        <dt>
+        <dt class="col-md-2">
             Consulting Fees
         </dt>
 
         <dd>
-            @Model.AConsulting.ToString("C")
+            @Model.AConsulting.ToString("C") &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@Math.Round(((Model.AConsulting / Model.Maxtot) * 100), 2) %
         </dd>
 
-        <dt>
+        <dt class="col-md-2">
             EFT Fees
         </dt>
 
         <dd>
-            @Model.SubConPayCost.ToString("C")
+            @Model.SubConPayCost.ToString("C") &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@Math.Round(((Model.SubConPayCost / Model.Maxtot) * 100), 2) %
         </dd>
 
-        <dt>
-            Background Check
-        </dt>
-
-        <dd>
-            @Model.BackgrounCheck.ToString("C")
-        </dd>
-
-        <dt>
+        <dt class="col-md-2">
             Other
         </dt>
 
         <dd>
-            @Model.Other.ToString("C")
+            @Model.BackgrounCheck.ToString("C") &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@Math.Round(((Model.BackgrounCheck / Model.Maxtot) * 100), 2) %
         </dd>
 
-        <dt>
+        <dt class="col-md-2">
+            Other
+        </dt>
+
+        <dd>
+            @Model.Other.ToString("C") &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@Math.Round(((Model.AConsulting / Model.Maxtot) * 100), 2) %
+        </dd>
+
+        <dt class="col-md-2">
             Janitorial Services
         </dt>
 
         <dd>
-            @Model.AJanitorServices.ToString("C")
+            @Model.AJanitorServices.ToString("C") &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@Math.Round(((Model.AJanitorServices / Model.Maxtot) * 100), 2) %
         </dd>
 
-        <dt>
+        <dt class="col-md-2">
             Depreciation
         </dt>
 
         <dd>
-            @Model.ADepreciation.ToString("C")
+            @Model.ADepreciation.ToString("C") &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@Math.Round(((Model.ADepreciation / Model.Maxtot) * 100), 2) %
         </dd>
 
-        <dt>
+        <dt class="col-md-2">
             Technical Support
         </dt>
 
         <dd>
-            @Model.ATechSupport.ToString("C")
+            @Model.ATechSupport.ToString("C") &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@Math.Round(((Model.ATechSupport / Model.Maxtot) * 100), 2) %
         </dd>
 
-        <dt>
+        <dt class="col-md-2">
             Security Services
         </dt>
 
         <dd>
-            @Model.ASecurityServices.ToString("C")
+            @Model.ASecurityServices.ToString("C") &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@Math.Round(((Model.ASecurityServices / Model.Maxtot) * 100), 2) %
         </dd>
 
-        <dt>
+        <dt class="col-md-2">
             Admininstration Totals
         </dt>
 
         <dd>
-            @Model.ATotCosts.ToString("C")
+            @Model.ATotCosts.ToString("C") &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@Math.Round(((Model.ATotCosts / Model.Maxtot) * 100), 2) %
         </dd>
 
-        <dt>
+        <dt class="col-md-2">
             Administration Fee
         </dt>
 
         <dd>
-            @Model.AdminFee.ToString("C")
+            @Model.AdminFee.ToString("C") &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@Math.Round(((Model.AdminFee / Model.Maxtot) * 100), 2) %
         </dd>
 
-        <dt>
+        <dt class="col-md-2">
             Transportation
         </dt>
 
         <dd>
-            @Model.Trasportation.ToString("C")
+            @Model.Trasportation.ToString("C") &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@Math.Round(((Model.Trasportation / Model.Maxtot) * 100), 2) %
         </dd>
 
-        <dt>
+        <dt class="col-md-2">
             Job Training
         </dt>
 
         <dd>
-            @Model.JobTraining.ToString("C")
+            @Model.JobTraining.ToString("C") &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@Math.Round(((Model.JobTraining / Model.Maxtot) * 100), 2) %
         </dd>
 
-        <dt>
+        <dt class="col-md-2">
             Tuition Assistance
         </dt>
 
         <dd>
-            @Model.TuitionAssistance.ToString("C")
+            @Model.TuitionAssistance.ToString("C") &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@Math.Round(((Model.TuitionAssistance / Model.Maxtot) * 100), 2) %
         </dd>
 
-        <dt>
+        <dt class="col-md-2">
             Contracted Residential Care
         </dt>
 
         <dd>
-            @Model.ContractedResidential.ToString("C")
+            @Model.ContractedResidential.ToString("C") &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@Math.Round(((Model.ContractedResidential / Model.Maxtot) * 100), 2) %
         </dd>
 
-        <dt>
+        <dt class="col-md-2">
             Utility Assistance
         </dt>
 
         <dd>
-            @Model.UtilityAssistance.ToString("C")
+            @Model.UtilityAssistance.ToString("C") &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@Math.Round(((Model.UtilityAssistance / Model.Maxtot) * 100), 2) %
         </dd>
 
-        <dt>
+        <dt class="col-md-2">
             Emergency Shelter
         </dt>
 
         <dd>
-            @Model.EmergencyShelter.ToString("C")
+            @Model.EmergencyShelter.ToString("C") &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@Math.Round(((Model.EmergencyShelter / Model.Maxtot) * 100), 2) %
         </dd>
 
-        <dt>
+        <dt class="col-md-2">
             Housing Assistance
         </dt>
 
         <dd>
-            @Model.HousingAssistance.ToString("C")
+            @Model.HousingAssistance.ToString("C") &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@Math.Round(((Model.HousingAssistance / Model.Maxtot) * 100), 2) %
         </dd>
 
-        <dt>
+        <dt class="col-md-2">
             Childcare
         </dt>
 
         <dd>
-            @Model.Childcare.ToString("C")
+            @Model.Childcare.ToString("C") &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@Math.Round(((Model.Childcare / Model.Maxtot) * 100), 2) %
         </dd>
 
-        <dt>
+        <dt class="col-md-2">
             Clothing
         </dt>
 
         <dd>
-            @Model.Clothing.ToString("C")
+            @Model.Clothing.ToString("C") &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@Math.Round(((Model.Clothing / Model.Maxtot) * 100), 2) %
         </dd>
 
-        <dt>
+        <dt class="col-md-2">
             Food
         </dt>
 
         <dd>
-            @Model.Food.ToString("C")
+            @Model.Food.ToString("C") &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@Math.Round(((Model.Food / Model.Maxtot) * 100), 2) %
         </dd>
 
-        <dt>
+        <dt class="col-md-2">
             Supplies
         </dt>
 
         <dd>
-            @Model.Supplies.ToString("C")
+            @Model.Supplies.ToString("C") &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@Math.Round(((Model.Supplies / Model.Maxtot) * 100), 2) %
         </dd>
 
-        <dt>
+        <dt class="col-md-2">
             RFO Costs
         </dt>
 
         <dd>
-            @Model.RFO.ToString("C")
+            @Model.RFO.ToString("C") &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@Math.Round(((Model.RFO / Model.Maxtot) * 100), 2) %
         </dd>
 
-        <dt>
+        <dt class="col-md-2">
             Participation Total Costs
         </dt>
 
         <dd>
-            @Model.BTotal.ToString("C")
+            @Model.BTotal.ToString("C") &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@Math.Round(((Model.BTotal / Model.Maxtot) * 100), 2) %
         </dd>
 
-        <dt>
+        <dt class="col-md-2">
             Direct and Participation Total Costs
         </dt>
 
         <dd>
-            @Model.Maxtot.ToString("C")
+            @Model.Maxtot.ToString("C") &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@Math.Round(((Model.Maxtot / Model.Maxtot) * 100), 2) %
         </dd>
     </dl>
 </div>
@@ -317,3 +311,6 @@
     @Html.ActionLink("Back to List", "Index")|
     @Html.ActionLink("Edit", "Edit", new { id = Model.BudgetInvoiceId })
 </p>
+<br />
+<br />
+<br />

@@ -12,14 +12,15 @@
     @Scripts.Render("~/bundles/modernizr")
 
 </head>
+
 <body>
-    <p>
+    <div>
         <img src="~/Content/DataTables/images/afllogo.png" style="padding-top:10px;" />
-    </p>
+    </div>
 
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="@Url.Action("Index", "Home")">
+            <a class="navbar-brand" href="@Url.Action("Index", "Account")">
                 <img src="~/images/log.png" height="25" />
             </a>
             <div class="navbar-header">
@@ -28,26 +29,29 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("AFL", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+
+                @if (ViewContext.HttpContext.User.IsInRole("Admin") || ViewContext.HttpContext.User.IsInRole("User"))
+                {
+                    @Html.ActionLink("AFL", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                }
+                else
+                { @Html.ActionLink("AFL", "Index", "Account", new { area = "" }, new { @class = "navbar-brand" })}
             </div>
             <div class="navbar-collapse collapse">
 
                 @if (ViewContext.HttpContext.User.IsInRole("Admin"))
                 {
                     <ul class="nav navbar-nav">
-                        <li> @Html.ActionLink("Forms", "Create", "AFLForm", new { area = "" }, new { @class = "navbar-brand" })</li>
-                        <li> @Html.ActionLink("Reports", "Reports", "AFLForm", new { area = "" }, new { @class = "navbar-brand" })</li>
-                        <li> @Html.ActionLink("Invoices", "Index", "Invoices", new { area = "" }, new { @class = "navbar-brand" })</li>
-                        <li> @Html.ActionLink("Contractor Forms", "Create", "ContractorForm", new { area = "" }, new { @class = "navbar-brand" })</li>
-                        <li>  @Html.ActionLink("Contractor Reports", "Reports", "ClientList", new { area = "" }, new { @class = "navbar-brand" })</li>
+                        <li> @Html.ActionLink("Contractor Forms", "Create", "AFLForm", new { area = "" }, new { @class = "navbar-brand" })</li>
+                        <li> @Html.ActionLink("Contractor Reports", "Reports", "AFLForm", new { area = "" }, new { @class = "navbar-brand" })</li>
                     </ul>
                 }
                 else if (ViewContext.HttpContext.User.IsInRole("User"))
                 {
                     <ul class="nav navbar-nav">
-                        <li> @Html.ActionLink("Contractor Forms", "Create", "ContractorForm", new { area = "" }, new { @class = "navbar-brand" })</li>
-                        <li>  @Html.ActionLink("Contractor Reports", "Reports", "ClientList", new { area = "" }, new { @class = "navbar-brand" })</li>
-                        <li>  @Html.ActionLink("Invoices", "Index", "Invoices", new { area = "" }, new { @class = "navbar-brand" })</li>
+                        <li> @Html.ActionLink("Forms", "Create", "ContractorForm", new { area = "" }, new { @class = "navbar-brand" })</li>
+                        <li> @Html.ActionLink("Reports", "Reports", "ContractorForm", new { area = "" }, new { @class = "navbar-brand" })</li>
+                        <li> @Html.ActionLink("Invoices", "Index", "Invoices", new { area = "" }, new { @class = "navbar-brand" })</li>
                     </ul>
                 }
                 @Html.Partial("_LoginPartial")
@@ -56,16 +60,22 @@
     </div>
 
     <br />
-    <div class="container body-content">
-        @RenderBody()
+    <div class="container-fluid reports" style=" padding-left:50px; padding-right: 50px;">
+        <div class="row">
+            <div class="col-sm-12">
+                @RenderBody()
+            </div>
+        </div>
     </div>
-
-    <br />
     <br />
     <footer>
-        <div class="footer-alignment">
-            &copy; @DateTime.Now.Year <a href="https://www.CornerstoneMarketingStrategies.com" style="color:#000">Cornerstone Marketing Strategies</a>
+        <div style="background-color:white;">
+            <div class="footer-alignment2"><em>*If you experience issues with the database, please contact Mary at<a href="mailto:mary@allianceforlifemissouri.com"> mary@allianceforlifemissouri.com</a></em></div>
+            <div class="footer-alignment">
+                &copy; @DateTime.Now.Year <a href="https://www.CornerstoneMarketingStrategies.com" style="color:#000">Cornerstone Marketing Strategies</a>
+            </div>
         </div>
+
     </footer>
 
     @Scripts.Render("~/bundles/jquery")
@@ -74,6 +84,4 @@
     <script src="~/Scripts/MyScripts.js"></script>
 </body>
 </html>
-
-
 

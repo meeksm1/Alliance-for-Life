@@ -1,11 +1,10 @@
 ﻿
-@model PagedList.IPagedList<Alliance_for_Life.Models.Invoice>
+@model PagedList.IPagedList<Alliance_for_Life.Models.Invoices>
 @using PagedList.Mvc;
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<h2>Invoice Details</h2>
 
 @using (Html.BeginForm())
 {
@@ -58,37 +57,30 @@
         </div>
     </div>
 }
-<div class="container">
-    <form>
-        @using (Html.BeginForm())
-        {
-            <br />
-            <div class="container">
-                <div class="row">
-                    <div class="col-xs-5th-1 col-sm-6" style="align-content:center;">
-                        @Html.TextBox("SearchString", null, new { placeholder = "Search Organization" })
-                        <input type="submit" value="Search" />
-                    </div>
-                    <div class="col-xs-5th-1 col-sm-6" style="align-content:center;">
-                        Select Page:
-                        @Html.DropDownList("pgSize", new SelectList(new[] { 10, 20, 30, 40, 50 }), htmlAttributes: new { @class = "", onchange = "this.form.submit()" })
-
-                    </div>
-                </div>
-            </div>
-        }
-
-    </form>
-</div>
-
-<br />
 
 <p style="color:red; text-align:center;">
     @ViewBag.error
 </p>
-<table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100">
-  <tr>
-      <thead>
+
+<div class="container-fluid">
+    <form>
+        @using (Html.BeginForm())
+        {
+            <br />
+            <div class="container-fluid" style="padding-left: 15px;">
+                <div class="row">
+                    <div class="col-xs-5th-1 col-sm-6">
+                        @Html.DropDownList("Year", null, "Select Year", htmlAttributes: new { @class = "form-control", onchange = "this.form.submit()" })
+                    </div>
+                </div>
+            </div>
+            <br />
+        }
+    </form>
+</div>
+<table id="dtBasicExample" class="table table-striped table-bordered table-sm" style="font-size:16px" cellspacing="0" width="100">
+    <tr>
+    <thead>
         <tr style="font-size:15px; text-align:center;">
             <th class="th-sm">
                 @Html.ActionLink("Organization", "Index", new { sortOrder = ViewBag.NameSortParm })
@@ -137,66 +129,116 @@
             <th class="th-sm">
 
             </th>
-    </tr>
+        </tr>
     </thead>
     <tbody>
         @foreach (var invoice in Model)
         {
-            <tr style="font-size:14px; text-align:center;">
+        <tr style="font-size:14px; text-align:center;">
+
+            <td>
+                <div class="clientid">@invoice.Subcontractor.OrgName</div>
+            </td>
+            <td>
+                <div class="clientid">@invoice.Month</div>
+            </td>
+            <td>
+                <div class="clientid">@invoice.Year</div>
+            </td>
+            <td>
+                <div class="clientid">@invoice.DirectAdminCost.ToString("C")</div>
+            </td>
+
+            <td>
+                <div class="clientid">@invoice.ParticipantServices.ToString("C")</div>
+            </td>
+
+            <td>
+                <div class="fname">@invoice.GrandTotal.ToString("C")</div>
+            </td>
+
+            <td>
+                <div class="lname">@invoice.LessManagementFee.ToString("C")</div>
+            </td>
+
+            <td>
+                <div class="due">@invoice.DepositAmount.ToString("C")</div>
+            </td>
+
+            @*Beginning Allocation Amount*@
+            @if ((int)invoice.Month >= 7)
+            {
 
                 <td>
-                    <div class="clientid">@invoice.Subcontractor.OrgName</div>
+                    @Model.Where(a => a.Year == invoice.Year - 1).Select(a => a.AllocatedBudget.AllocatedOldBudget).FirstOrDefault().ToString("C")
+
                 </td>
-                <td>
-                    <div class="clientid">@invoice.Month</div>
-                </td>
-                <td>
-                    <div class="clientid">@invoice.Year</div>
-                </td>
-                <td>
-                    <div class="clientid">@invoice.DirectAdminCost.ToString("C")</div>
-                </td>
+            }
+            else
+            {
 
                 <td>
-                    <div class="clientid">@invoice.ParticipantServices.ToString("C")</div>
+                    @Model.Where(a => a.Year == invoice.Year).Select(a => a.AllocatedBudget.AllocatedOldBudget).FirstOrDefault().ToString("C")
+
                 </td>
+            }
+
+            @*Adjusted Allocation Amount*@
+            @if ((int)invoice.Month >= 7)
+            {
 
                 <td>
-                    <div class="fname">@invoice.GrandTotal.ToString("C")</div>
+                    @Model.Where(a => a.Year == invoice.Year - 1).Select(a => a.AllocatedBudget.AllocatedNewBudget).FirstOrDefault().ToString("C")
+
                 </td>
+            }
+            else
+            {
 
                 <td>
-                    <div class="lname">@invoice.LessManagementFee.ToString("C")</div>
-                </td>
+                    @Model.Where(a => a.Year == invoice.Year).Select(a => a.AllocatedBudget.AllocatedNewBudget).FirstOrDefault().ToString("C")
 
-                <td>
-                    <div class="due">@invoice.DepositAmount.ToString("C")</div>
                 </td>
+            }
+          
 
-                <td>
-                    <div class="due">@invoice.BeginningAllocation.ToString("C")</div>
+            @if ((invoice.BalanceRemaining) < 0)
+            {
+                <td class="text-right" style="color: red">
+                    @Math.Round((invoice.BalanceRemaining), 3).ToString("C")
                 </td>
-                <td>
-                    <div class="lname">@invoice.AdjustedAllocation.ToString("C")</div>
+            }
+            else
+            {
+                <td class="text-right">
+                    @Math.Round((invoice.BalanceRemaining), 3).ToString("C")
                 </td>
-                <td>
-                    <div class="due">@invoice.BalanceRemaining.ToString("C")</div>
-                </td>
-                <td>
-                    <div class="due">@invoice.SubmittedDate.ToShortDateString()</div>
-                </td>
+            }
+            <td>
+                <div class="due">@invoice.SubmittedDate.ToShortDateString()</div>
+            </td>
 
-                <td>
-                    <form action="/Invoices/UpdateInvoice" method="post">
+            <td>
+                <form action="/Invoices/UpdateInvoice" method="post">
 
-                        <a href="@Url.Action("Invoice", "Invoices", new { id = invoice.InvoiceId }, Request.Url.Scheme)">
-                            <i style="font-size:16px; color:#3498DB" class="fa fa-print"></i>
+                    <a href="@Url.Action("Invoice", "Invoices", new { id = invoice.InvoiceId }, Request.Url.Scheme)">
+                        <i style="font-size:16px; color:#3498DB" class="fa fa-print"></i>
+                    </a>
+                    |
+                    <button style='font-size:16px; background:none; border:none' value="@invoice.InvoiceId" name="InvoiceId" id="@invoice.InvoiceId"><i class='fa fa-refresh' style="font-size:16px;color:#2ECC71"></i></button>
+
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <label>|</label>
+                        <a href="@Url.Action("Delete", "Invoices", new { id = invoice.InvoiceId }, Request.Url.Scheme)">
+                            <i style="font-size:16px; color:red;" class="fa fa-trash"></i>
                         </a>
-                        |
-                        <button style='font-size:16px; background:none; border:none' value="@invoice.InvoiceId" name="InvoiceId" id="@invoice.InvoiceId"><i class='fa fa-refresh' style="font-size:16px;color:#2ECC71"></i></button>
-                    </form>
-                </td>
-            </tr>
+                    }
+
+
+                </form>
+            </td>
+        </tr>
         }
     </tbody>
 </table>
@@ -204,12 +246,25 @@
 <p>
     <input type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" value="Generate Invoice">
 </p>
+<div class="container-fluid">
+    <form>
+        @using (Html.BeginForm())
+        {
+            <br />
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-2">
+                        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
 
-<p>
-    <br />
-
-    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
-
-    @Html.PagedListPager(Model, page => Url.Action("Index",
-        new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter, @class="pagination" }))
-</p>
+                        @Html.PagedListPager(Model, page => Url.Action("Index",
+                            new { page, pgSize = ViewBag.psize, @class = "pagination"}))
+                    </div>
+                    <div class="col-sm-2">
+                        Select Page:
+                        @Html.DropDownList("pgSize", (IEnumerable<SelectListItem>)ViewBag.PageSize, "", htmlAttributes: new { @class = "form-control"})
+                    </div>
+                </div>
+            </div>
+        }
+    </form>
+</div>

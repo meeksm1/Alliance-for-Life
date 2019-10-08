@@ -9,18 +9,17 @@
 
 <h3>Are you sure you want to delete this?</h3>
 <div>
-    <h4>Surveys</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Months)
+    <dl >
+        <dt class="col-md-2">
+            @Html.DisplayNameFor(model => model.Month)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Months)
+            @Html.DisplayFor(model => model.Month)
         </dd>
 
-        <dt>
+        <dt class="col-md-2">
             @Html.DisplayNameFor(model => model.Subcontractors.OrgName)
         </dt>
 
@@ -28,12 +27,12 @@
             @Html.DisplayFor(model => model.Subcontractors.OrgName)
         </dd>
 
-        <dt>
+        <dt class="col-md-2">
             @Html.DisplayNameFor(model => model.SurveysCompleted)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.SurveysCompleted)
+            @Model.SurveysCompleted.ToString("C")
         </dd>
 
     </dl>

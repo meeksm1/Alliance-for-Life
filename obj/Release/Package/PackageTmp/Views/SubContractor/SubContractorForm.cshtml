@@ -21,6 +21,16 @@
         @Html.ValidationMessageFor(m => m.Director)
     </div>
     <div class="form-group">
+        @Html.LabelFor(m => m.Address1)
+        @Html.TextBoxFor(m => m.Address1, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Address1)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.PoBox)
+        @Html.TextBoxFor(m => m.PoBox, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.PoBox)
+    </div>
+    <div class="form-group">
         @Html.LabelFor(m => m.City)
         @Html.TextBoxFor(m => m.City, new { @class = "form-control" })
         @Html.ValidationMessageFor(m => m.City)
@@ -31,14 +41,19 @@
         @Html.ValidationMessageFor(m => m.State)
     </div>
     <div class="form-group">
+        @Html.LabelFor(m => m.ZipCode)
+        @Html.TextBoxFor(m => m.ZipCode, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.ZipCode)
+    </div>
+    <div class="form-group">
         @Html.LabelFor(m => m.County)
         @Html.TextBoxFor(m => m.County, new { @class = "form-control" })
         @Html.ValidationMessageFor(m => m.County)
     </div>
     <div class="form-group">
-        @Html.LabelFor(m => m.ZipCode)
-        @Html.TextBoxFor(m => m.ZipCode, new { @class = "form-control" })
-        @Html.ValidationMessageFor(m => m.ZipCode)
+        @Html.LabelFor(model => model.AffiliateRegion)
+        @Html.EnumDropDownListFor(model => model.AffiliateRegion, htmlAttributes: new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.AffiliateRegion)
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.Region)
@@ -51,32 +66,12 @@
         @Html.ValidationMessageFor(m => m.EIN)
     </div>
     <div class="form-group">
-        @Html.LabelFor(m => m.Address1)
-        @Html.TextBoxFor(m => m.Address1, new { @class = "form-control" })
-        @Html.ValidationMessageFor(m => m.Address1)
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.PoBox)
-        @Html.TextBoxFor(m => m.PoBox, new { @class = "form-control" })
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.AllocatedContractAmount)
-        @Html.TextBoxFor(m => m.AllocatedContractAmount, new { @class = "form-control" })
-        @Html.ValidationMessageFor(m => m.AllocatedContractAmount)
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.AllocatedAdjustments)
-        @Html.TextBoxFor(m => m.AllocatedAdjustments, new { @class = "form-control" })
-        @Html.ValidationMessageFor(m => m.AllocatedAdjustments)
-    </div>
-    <div class="form-group">
         @Html.LabelFor(m => m.Active)
         @Html.RadioButtonFor(m => m.Active, "True", new { @class = "form-group" })Yes.
         @Html.RadioButtonFor(m => m.Active, "False", new { @class = "form-group" })No.
     </div>
 
     <button type="submit" class="btn btn-group-sm btn-primary">Add Subcontractor</button>
-    <br />
     <br />
     <br />
     <div>

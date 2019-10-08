@@ -102,7 +102,7 @@
                     </div>
                         <div class="col-sm-2">
                             Results per Page:
-                            @Html.DropDownList("pgSize", (IEnumerable<SelectListItem>)ViewBag.PageSize, "", htmlAttributes: new { @class = "form-control"})
+                            @Html.DropDownList("pgSize", (IEnumerable<SelectListItem>)ViewBag.PageSize, "", htmlAttributes: new { @class = "form-control", onchange = "this.form.submit()"})
                     </div>
                 </div>
             }

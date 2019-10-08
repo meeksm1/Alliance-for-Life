@@ -56,7 +56,7 @@ namespace Alliance_for_Life.Controllers
 
             var datelist = Enumerable.Range(System.DateTime.Now.Year, 5).ToList();
             ViewBag.Year = new SelectList(datelist);
-            ViewBag.ReportTitle = "Report Year -  " + year_search;
+            ViewBag.ReportTitle = "Allocation Analysis Report -  " + year_search;
             ViewBag.yearselected = year_search;
 
             // quarterly calculations
@@ -104,7 +104,7 @@ namespace Alliance_for_Life.Controllers
 
             var datelist = Enumerable.Range(System.DateTime.Now.Year, 5).ToList();
             ViewBag.Year = new SelectList(datelist);
-            ViewBag.ReportTitle = "Report Year -  " + year_search;
+            ViewBag.ReportTitle = "Balance Sheet Report -  " + year_search;
             ViewBag.yearselected = year_search;
 
             //calling main function

@@ -1,19 +1,4 @@
-﻿$(function () {
-
-    jQuery("#TotA2AEnrollment,#TotA2ABedNights").keyup(function (e) {
-
-        var q = $("#TotA2ABedNights").val();
-        var p = $("#TotA2AEnrollment").val();
-        var result = "";
-
-        if (q !== "" && p !== "" && $.isNumeric(q) && $.isNumeric(p)) {
-            result = parseFloat(q) / parseFloat(p);
-        }
-        jQuery("#MA2Apercent").val(result * 100);
-    });
-});
-
-$(function addAdministrationTotals() {
+﻿$(function addAdministrationTotals() {
     $('.numAdd').change(function () {
 
         // Loop through all input's and re-calculate the total
@@ -24,10 +9,9 @@ $(function addAdministrationTotals() {
 
         // Update the total
         $("#ATotCosts").val(total.toFixed(2));
-        $("#AdminFee").val((total * .1).toFixed(2));
 
-        var maxtot = (parseFloat($("#ATotCosts").val()) + parseFloat($("#AdminFee").val()) + parseFloat($("#BTotal").val())).toFixed(2)
-        $("#Maxtot").val(maxtot)
+        //AdminFee
+        $("#AdminFee").val((total*0.1).toFixed(2));
     });
 });
 
@@ -88,7 +72,7 @@ $(function calcInvoiceAllocatedFunds() {
         var result = "";
 
         if (q !== "" && p !== "" && $.isNumeric(q) && $.isNumeric(p)) {
-            result = parseFloat(q) - parseFloat(p);
+            result = parseFloat(q) + parseFloat(p);
         }
         jQuery("#BalanceRemaining").val(result);
     });

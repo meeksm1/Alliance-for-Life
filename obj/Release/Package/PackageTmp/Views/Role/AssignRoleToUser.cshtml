@@ -1,5 +1,5 @@
 ﻿@model Microsoft.AspNet.Identity.EntityFramework.IdentityUser
-@{ 
+@{
     ViewBag.Title = "AssignRoleToUser";
 }
 
@@ -13,5 +13,9 @@
     <div>
         @Html.DropDownList("UserName")
     </div>
-    <input class="btn btn-group-sm btn-primary" type="submit" value="Create Role"/>
+    <input class="btn btn-group-sm btn-primary" type="submit" value="Create Role" />
+
+    <div>
+        @Html.ActionLink("Cancel", "Index", "Home")
+    </div>
 }

@@ -2,28 +2,181 @@
 @{
     ViewBag.Title = "Home Page";
 }
-<h1>Welcome to the Alternative to Abortion Database System</h1>
-<h3>Centers we work with:</h3>
-<ul class="subcontractor">
-    @foreach (var subcontractor in Model)
-    {
-        <li class="col-md-4">
-            <div class="details">
-                <div class="orgname">@subcontractor.OrgName</div>
-                <div class="address1"><strong>Key Contact: </strong> @subcontractor.Director</div>
-                <div class="address1"><strong>Address: </strong> @subcontractor.Address1</div>
-                <div class="city">@subcontractor.City</div>
-                <div class="state">@subcontractor.State</div>
-            </div>
-            <div class="actions">
-                @if (ViewContext.HttpContext.User.IsInRole("Admin"))
+
+<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+
+<link href="~/Scripts/Home/Test/style.css" rel="stylesheet" />
+
+@if (ViewContext.HttpContext.User.IsInRole("Admin"))
+{
+    <div style="text-align:center;">
+        <h1>Welcome to the Alternative to Abortion Database System</h1>
+    </div>
+    <hr />
+    <div class='container-fluid'>
+        <div class='row'>
+            @foreach (var subcontractor in Model)
+            {
+                if ("West" == subcontractor.AffiliateRegion.ToString())
                 {
-                    <a href="@Url.Action("Edit", "SubContractor", new { id = subcontractor.SubcontractorId })">Edit</a>
+                    <div class='col-sm-2'>
+                        <div class='item6'>
+                            <div style="font-size:17px; text-align:center; text-decoration: underline; "> <strong> @subcontractor.OrgName </strong></div><br />
+                            <div style="font-size:14px; text-align:center; ">
+                                <i class="fa fa-user" style="font-size:24px;"></i> &nbsp;
+                                <font>@subcontractor.Director</font>
+                            </div>
+                            <div style="font-size:14px; text-align:center; ">
+                                <i class="fa fa-map-pin" style="font-size:24px;"></i>&nbsp; &nbsp;
+                                <font>@subcontractor.Region.GetDisplayName()</font>
+                            </div>
+                            <div style="font-size:14px; text-align:center; ">
+                                <i class="fa fa-map-marker" style="font-size:24px;"></i>&nbsp; &nbsp;
+                                <font>@subcontractor.AffiliateRegion</font>
+                            </div><br />
+                        </div>
+                    </div>
                 }
-                
-            </div>
-        </li>
-    }
-</ul>
+                else if ("North" == subcontractor.AffiliateRegion.ToString())
+                {
+                    <div class='col-sm-2'>
+                        <div class='item1'>
+                            <div style="font-size:17px; text-align:center; text-decoration: underline; "> <strong> @subcontractor.OrgName </strong></div><br />
+                            <div style="font-size:14px; text-align:center; ">
+                                <i class="fa fa-user" style="font-size:24px;"></i>&nbsp; &nbsp;
+                                <font>@subcontractor.Director</font>
+                            </div>
+                            <div style="font-size:14px; text-align:center; ">
+                                <i class="fa fa-map-pin" style="font-size:24px;"></i>&nbsp; &nbsp;
+                                <font>@subcontractor.Region.GetDisplayName()</font>
+                            </div>
+                            <div style="font-size:14px; text-align:center; ">
+                                <i class="fa fa-map-marker" style="font-size:24px;"></i>&nbsp; &nbsp;
+                                <font>@subcontractor.AffiliateRegion</font>
+                            </div><br />
+                        </div>
+                    </div>
+                }
+                else if ("East" == subcontractor.AffiliateRegion.ToString())
+                {
+                    <div class='col-sm-2'>
+                        <div class='item2'>
+                            <div style="font-size:17px; text-align:center; text-decoration: underline; "> <strong> @subcontractor.OrgName </strong></div><br />
+                            <div style="font-size:14px; text-align:center; ">
+                                <i class="fa fa-user" style="font-size:24px;"></i>&nbsp; &nbsp;
+                                <font>@subcontractor.Director</font>
+                            </div>
+                            <div style="font-size:14px; text-align:center; ">
+                                <i class="fa fa-map-pin" style="font-size:24px;"></i>&nbsp; &nbsp;
+                                <font>@subcontractor.Region.GetDisplayName()</font>
+                            </div>
+                            <div style="font-size:14px; text-align:center; ">
+                                <i class="fa fa-map-marker" style="font-size:24px;"></i>&nbsp; &nbsp;
+                                <font>@subcontractor.AffiliateRegion</font>
+                            </div><br />
+                        </div>
+                    </div>
+                }
+                else if ("Southwest" == subcontractor.AffiliateRegion.ToString())
+                {
+                    <div class='col-sm-2'>
+                        <div class='item3'>
+                            <div style="font-size:17px; text-align:center; text-decoration: underline; "> <strong> @subcontractor.OrgName </strong></div><br />
+                            <div style="font-size:14px; text-align:center; ">
+                                <i class="fa fa-user" style="font-size:24px;"></i>&nbsp; &nbsp;
+                                <font>@subcontractor.Director</font>
+                            </div>
+                            <div style="font-size:14px; text-align:center; ">
+                                <i class="fa fa-map-pin" style="font-size:24px;"></i>&nbsp; &nbsp;
+                                <font>@subcontractor.Region.GetDisplayName()</font>
+                            </div>
+                            <div style="font-size:14px; text-align:center; ">
+                                <i class="fa fa-map-marker" style="font-size:24px;"></i>&nbsp; &nbsp;
+                                <font>@subcontractor.AffiliateRegion</font>
+                            </div><br />
+                        </div>
+                    </div>
+                }
+                else if ("Southeast" == subcontractor.AffiliateRegion.ToString())
+                {
+                    <div class='col-sm-2'>
+                        <div class='item4'>
+                            <div style="font-size:17px; text-align:center; text-decoration: underline; "> <strong> @subcontractor.OrgName </strong></div><br />
+                            <div style="font-size:14px; text-align:center; ">
+                                <i class="fa fa-user" style="font-size:24px;"></i>&nbsp; &nbsp;
+                                <font>@subcontractor.Director</font>
+                            </div>
+                            <div style="font-size:14px; text-align:center; ">
+                                <i class="fa fa-map-pin" style="font-size:24px;"></i>&nbsp; &nbsp;
+                                <font>@subcontractor.Region.GetDisplayName()</font>
+                            </div>
+                            <div style="font-size:14px; text-align:center; ">
+                                <i class="fa fa-map-marker" style="font-size:24px;"></i>&nbsp; &nbsp;
+                                <font>@subcontractor.AffiliateRegion</font>
+                            </div><br />
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class='col-sm-2'>
+                        <div class='item5'>
+                            <div style="font-size:17px; text-align:center; text-decoration: underline; "> <strong> @subcontractor.OrgName </strong></div><br />
+                            <div style="font-size:14px; text-align:center; ">
+                                <i class="fa fa-user" style="font-size:24px;"></i>&nbsp; &nbsp;
+                                <font>@subcontractor.Director</font>
+                            </div>
+                            <div style="font-size:14px; text-align:center; ">
+                                <i class="fa fa-map-pin" style="font-size:24px;"></i>&nbsp; &nbsp;
+                                <font>@subcontractor.Region.GetDisplayName()</font>
+                            </div>
+                            <div style="font-size:14px; text-align:center; ">
+                                <i class="fa fa-map-marker" style="font-size:24px;"></i>&nbsp; &nbsp;
+                                <font>@subcontractor.AffiliateRegion</font>
+                            </div><br />
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+}
 
+else
+{
+    <div class="container" style="text-align:center">
+        <h1>Welcome!</h1>
+        <h2>@ViewBag.Orgname</h2>
+        <h3>Affiliate Region: @ViewBag.AR</h3>
+        <h3>A2A @ViewBag.Region</h3>
+    </div>
+    <br/>
+    <h4>Registered User's for @ViewBag.Orgname</h4>
+    <table class="table table-striped table-bordered table-sm">
+        <thead>
+            <tr style="font-size:14px; text-align:center;background-color:#c3e1f7;">
+                <th>
+                    First Name
+                </th>
+                <th>
+                    Last Name
+                </th>
+            </tr>
+        </thead>
 
+            @foreach (var user in ViewBag.Users)
+            {
+        <tr style="font-size:13px;">
+            <td>
+                @user.Firstname
+            </td>
+            <td>
+                @user.Lastname
+            </td>
+        </tr>
+            }  
+</table>
+
+}
+
+<script src="~/Scripts/Home/Test/index.js"></script>
