@@ -44,3 +44,24 @@ C:\Users\manoj\Documents\GitHub\Alliance-for-Life\obj\Release\Alliance for Life.
 C:\Users\manoj\Documents\GitHub\Alliance-for-Life\obj\Release\Alliance for Life.csproj.CopyComplete
 C:\Users\manoj\Documents\GitHub\Alliance-for-Life\obj\Release\Alliance for Life.dll
 C:\Users\manoj\Documents\GitHub\Alliance-for-Life\obj\Release\Alliance for Life.pdb
+C:\Users\manoj\OneDrive\Documents\GitHub\Alliance-for-Life\bin\ApplicationInsights.config
+C:\Users\manoj\OneDrive\Documents\GitHub\Alliance-for-Life\bin\Alliance for Life.dll.config
+C:\Users\manoj\OneDrive\Documents\GitHub\Alliance-for-Life\bin\Alliance for Life.dll
+C:\Users\manoj\OneDrive\Documents\GitHub\Alliance-for-Life\bin\Alliance for Life.pdb
+C:\Users\manoj\OneDrive\Documents\GitHub\Alliance-for-Life\bin\Newtonsoft.Json.dll
+C:\Users\manoj\OneDrive\Documents\GitHub\Alliance-for-Life\bin\PagedList.dll
+C:\Users\manoj\OneDrive\Documents\GitHub\Alliance-for-Life\bin\PagedList.Mvc.dll
+C:\Users\manoj\OneDrive\Documents\GitHub\Alliance-for-Life\bin\PagedList.xml
+C:\Users\manoj\OneDrive\Documents\GitHub\Alliance-for-Life\bin\PagedList.Mvc.xml
+C:\Users\manoj\OneDrive\Documents\GitHub\Alliance-for-Life\obj\Release\Alliance_for_Life.Migrations.NewDB.resources
+C:\Users\manoj\OneDrive\Documents\GitHub\Alliance-for-Life\obj\Release\Alliance_for_Life.Migrations.admincostupdated.resources
+C:\Users\manoj\OneDrive\Documents\GitHub\Alliance-for-Life\obj\Release\Alliance_for_Life.Migrations.aflallocationbudget.resources
+C:\Users\manoj\OneDrive\Documents\GitHub\Alliance-for-Life\obj\Release\Alliance_for_Life.Migrations.aflstatedeposite.resources
+C:\Users\manoj\OneDrive\Documents\GitHub\Alliance-for-Life\obj\Release\Alliance_for_Life.Migrations.UpdateAdminCost.resources
+C:\Users\manoj\OneDrive\Documents\GitHub\Alliance-for-Life\obj\Release\Alliance_for_Life.Migrations.AddedOtherInputs.resources
+C:\Users\manoj\OneDrive\Documents\GitHub\Alliance-for-Life\obj\Release\Alliance_for_Life.Migrations.removedNonResProp.resources
+C:\Users\manoj\OneDrive\Documents\GitHub\Alliance-for-Life\obj\Release\Alliance_for_Life.Migrations.NONRMIupdatedmonth.resources
+C:\Users\manoj\OneDrive\Documents\GitHub\Alliance-for-Life\obj\Release\Alliance for Life.csproj.GenerateResource.cache
+C:\Users\manoj\OneDrive\Documents\GitHub\Alliance-for-Life\obj\Release\Alliance for Life.csproj.CopyComplete
+C:\Users\manoj\OneDrive\Documents\GitHub\Alliance-for-Life\obj\Release\Alliance for Life.dll
+C:\Users\manoj\OneDrive\Documents\GitHub\Alliance-for-Life\obj\Release\Alliance for Life.pdb

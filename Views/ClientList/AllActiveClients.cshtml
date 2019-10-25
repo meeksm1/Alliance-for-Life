@@ -78,7 +78,7 @@
         <tr></tr>
     </table>
 
-    <h3>Total Active Clients @Model.Count()</h3>
+    <h3>Total Active Clients @ViewBag.ActiveClients</h3>
 
 
     @using (Html.BeginForm("ExportAllActive", "ClientList", FormMethod.Post))
@@ -93,18 +93,22 @@
                 <br />
                 <div class="container-fluid">
                     <div class="row">
-                        <div class="col-sm-2">
+                        <div class="col-sm-4">
                             Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
 
                             @Html.PagedListPager(Model, page => Url.Action("AllActiveClients",
-                            new { page, pgSize = ViewBag.psize, @class = "pagination"}))
+                            new { page, pgSize = ViewBag.psize, @class = "pagination" }))
+                        </div>
+
+
+                        <div class="col-sm-4">
+                            Results per Page:
+                            @Html.DropDownList("pgSize", (IEnumerable<SelectListItem>)ViewBag.PageSize, "", htmlAttributes: new { @class = "form-control", onchange = "this.form.submit()" })
                         </div>
                     </div>
-                        <div class="col-sm-2">
-                            Results per Page:
-                            @Html.DropDownList("pgSize", (IEnumerable<SelectListItem>)ViewBag.PageSize, "", htmlAttributes: new { @class = "form-control", onchange = "this.form.submit()"})
-                    </div>
                 </div>
+                <br/>
+
             }
         </form>
     </div>

@@ -93,7 +93,7 @@ namespace Alliance_for_Life.Controllers
             }
             NonResidentialMIR nonResidentialMIR = db.NonResidentialMIRs
                .Include(s => s.Subcontractor)
-               .SingleOrDefault();
+               .SingleOrDefault(a => a.Id == id);
 
             if (nonResidentialMIR == null)
             {

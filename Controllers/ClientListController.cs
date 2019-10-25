@@ -269,6 +269,7 @@ namespace Alliance_for_Life.Controllers
                 new SelectListItem() { Value="40", Text= "40" },
             };
 
+            ViewBag.ActiveClients = clients.Count();
             return View(clients.ToPagedList(pageNumber, defaSize));
         }
 
@@ -473,6 +474,8 @@ namespace Alliance_for_Life.Controllers
                 clients = clients.Where(a => a.Subcontractor.SubcontractorId == searchString);
             }
 
+            //counting the number of non-active clients
+
             switch (sortOrder)
             {
                 case "name_desc":
@@ -507,6 +510,8 @@ namespace Alliance_for_Life.Controllers
                 new SelectListItem() { Value="30", Text= "30" },
                 new SelectListItem() { Value="40", Text= "40" },
             };
+
+            ViewBag.NonActive = clients.Count();
 
             return View(clients.ToPagedList(pageNumber, defaSize));
         }

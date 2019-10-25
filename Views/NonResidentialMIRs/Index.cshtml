@@ -52,7 +52,7 @@
                 @Html.DisplayNameFor(model => model.TotOverallServed)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Month)
+                @*@Html.DisplayNameFor(model => model.Month)*@
             </th>
             <th></th>
         </tr>
@@ -100,7 +100,7 @@
                     @item.TotOverallServed.ToString("#,##0")
                 </td>
                 <td>
-                    @item.Month
+                    @*@item.Month*@
                 </td>
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
