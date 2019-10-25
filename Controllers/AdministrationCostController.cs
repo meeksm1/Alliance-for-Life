@@ -143,6 +143,7 @@ namespace Alliance_for_Life.Controllers
                 new SelectListItem() { Value="40", Text= "40" },
             };
 
+            ViewBag.TotalSum = adminSearch.Sum(m => m.ATotCosts).ToString("C");
             return View(adminSearch.ToPagedList(pageNumber, defaSize));
         }
 

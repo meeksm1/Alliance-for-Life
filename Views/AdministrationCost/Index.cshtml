@@ -237,7 +237,7 @@
     @*This is how you do a Sum in Linq to apply a total based on a model property*@
     <h3>Total Administrative Cost</h3>
     <p>
-        <ul>@Model.Sum(m => m.ATotCosts).ToString("c")</ul>
+        <ul>@ViewBag.TotalSum</ul>
     </p>
     <br /><br />
     @using (Html.BeginForm("Export", "AdministrationCost", FormMethod.Post))

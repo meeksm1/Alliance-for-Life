@@ -147,7 +147,7 @@ namespace Alliance_for_Life.Controllers
 
             ViewBag.AdminCost = adminSearch.ToList();
 
-
+            ViewBag.TotalSum = participationServices.Sum(m => m.PTotals).ToString("C");
             return View(participationServices.ToPagedList(pageNumber, defaSize));
         }
 

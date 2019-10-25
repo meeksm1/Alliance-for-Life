@@ -198,7 +198,7 @@
 
     <h3>Total Participation Cost</h3>
     <p>
-        @Model.Sum(m => m.PTotals).ToString("c")
+        @ViewBag.TotalSum
     </p>
     <br /><br />
     @using (Html.BeginForm("Export", "ParticipationService", FormMethod.Post))
