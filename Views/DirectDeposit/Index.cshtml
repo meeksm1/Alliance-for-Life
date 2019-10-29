@@ -1,0 +1,111 @@
+﻿@model PagedList.IPagedList<Alliance_for_Life.ViewModels.DirectDeposit>
+@using PagedList.Mvc
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+<form>
+    @using (Html.BeginForm(FormMethod.Post))
+    {
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xs-5th-1 col-sm-3" style="align-content:center;">
+                    Search By Organization: @Html.DropDownList("searchString", (IEnumerable<SelectListItem>)ViewBag.Subcontractor, "", htmlAttributes: new { @class = "form-control", onchange = "this.form.submit()" })
+                </div>
+                <div class="col-xs-5th-1 col-sm-3" style="align-content:center;">
+                    Search By Year: @Html.DropDownList("Year", null, "Select Year", htmlAttributes: new { @class = "form-control", onchange = "this.form.submit()" })
+                </div>
+                <div class="col-xs-5th-1 col-sm-3" style="align-content:center;">
+                    Search By Month: @Html.DropDownList("Month", null, "Select Month", htmlAttributes: new { @class = "form-control", onchange = "this.form.submit()" })
+                </div>
+                <div class="col-xs-5th-1 col-sm-3" style="align-content:center;">
+                    Results per Page: @Html.DropDownList("pgSize", (IEnumerable<SelectListItem>)ViewBag.PageSize, "", htmlAttributes: new { @class = "form-control", onchange = "this.form.submit()" })
+                </div>
+            </div>
+        </div>
+    }
+</form>
+
+<br />
+<table id="dtBasicExample" class="table table-striped table-bordered table-sm" style="font-size:16px; text-align" cellspacing="0" width="100">
+    <tr>
+
+        <th style="background-color:#C1F7C1; color:black;">
+            Subcontractors
+        </th>
+        <th style="background-color:#C1F7C1; color:black;">
+            Amount
+        </th>
+        <th style="background-color:#C1F7C1; color:black;">
+            Direct Admin Costs
+        </th>
+        <th style="background-color:#C1F7C1; color:black;">
+            3%
+        </th>
+
+        <th style="background-color:#C1F7C1; color:black;">
+            Subcontractor Direct Deposit Total
+        </th>
+        <th style="background-color:#C1F7C1; color:black;">
+            √
+        </th>
+    </tr>
+
+
+
+
+    @foreach (var items in Model)
+    {
+        <tr>
+            <td>
+                @items.AdminCost.Subcontractor.OrgName
+            </td>
+            <td>
+                @Math.Round(items.AdminCost.ATotCosts + items.ParticipationService.PTotals, 2).ToString("C")
+
+            </td>
+            <td>
+                @items.AdminCost.ATotCosts.ToString("C")
+            </td>
+            <td>
+
+                @Math.Round(items.AdminCost.ATotCosts * 0.03, 2).ToString("C")
+
+
+            </td>
+            <td>
+                @Math.Round((items.AdminCost.ATotCosts + items.ParticipationService.PTotals) - items.AdminCost.ATotCosts * 0.03, 2).ToString("C")
+
+            </td>
+            <td>
+            </td>
+        </tr>
+    }
+
+</table>
+<br />
+@using (Html.BeginForm("Export", "DirectDeposit", FormMethod.Post))
+{
+    <input type="submit" value="Export Direct Deposit" class="btn btn-group-sm btn-primary" />
+
+}
+<div class="container-fluid">
+    <form>
+
+        <br />
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-2">
+                    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+                    @Html.PagedListPager(Model, page => Url.Action("Index",
+                        new { page, pgSize = ViewBag.psize, @class = "pagination", onchange = "this.form.submit()" }))
+                </div>
+            </div>
+        </div>
+
+    </form>
+</div>

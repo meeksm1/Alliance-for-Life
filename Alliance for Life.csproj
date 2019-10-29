@@ -244,6 +244,7 @@
     <Compile Include="Controllers\BudgetCostsController.cs" />
     <Compile Include="Controllers\ClientListController.cs" />
     <Compile Include="Controllers\ContractorFormController.cs" />
+    <Compile Include="Controllers\DirectDepositController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InvoicesController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -331,6 +332,7 @@
     <Compile Include="ViewModels\ClientListReportViewModel.cs" />
     <Compile Include="ViewModels\ConfigureTwoFactorViewModel.cs" />
     <Compile Include="ViewModels\ContractorFormViewModel.cs" />
+    <Compile Include="ViewModels\DirectDeposit.cs" />
     <Compile Include="ViewModels\ExternalLoginConfirmationViewModel.cs" />
     <Compile Include="ViewModels\ExternalLoginListViewModel.cs" />
     <Compile Include="ViewModels\FactorViewModel.cs" />
@@ -791,6 +793,7 @@
     <Content Include="Views\AllocatedBudgets\Balance.cshtml" />
     <Content Include="Views\ParticipationService\TotalCostReport.cshtml" />
     <Content Include="Views\ClientList\Delete.cshtml" />
+    <Content Include="Views\DirectDeposit\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config">
