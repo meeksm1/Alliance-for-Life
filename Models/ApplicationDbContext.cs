@@ -18,7 +18,7 @@ namespace Alliance_for_Life.Models
         public DbSet<AllocatedBudget> AllocatedBudget { get; set; }
         public DbSet<A2AAllocatedBudget> AFLAllocation { get; set; }
         public DbSet<A2AStateDeposits> StateDeposit { get; set; }
-
+        public DbSet<DirectDeposits> DirectDeposit { get; set; }
         public ApplicationDbContext()
              : base("DefaultConnection", throwIfV1Schema: false)
             

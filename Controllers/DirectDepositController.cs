@@ -53,7 +53,7 @@ namespace Alliance_for_Life.Controllers
             var directdeposit = from a in db.AdminCosts
                                 join p in db.ParticipationServices on a.SubcontractorId equals p.SubcontractorId
                                where (a.Year == Year && p.Year == Year) && (a.Month.ToString() == Month && p.Month.ToString() == Month)
-                                select new DirectDeposit
+                                select new DirectDepositView
                                 {
                                     AdminCost = a,
                                     ParticipationService = p
@@ -141,7 +141,7 @@ namespace Alliance_for_Life.Controllers
             var directdeposit = from a in db.AdminCosts
                                 join p in db.ParticipationServices on a.SubcontractorId equals p.SubcontractorId
                                 where (a.Year == Year && p.Year == Year) && (a.Month.ToString() == Month && p.Month.ToString() == Month)
-                                select new DirectDeposit
+                                select new DirectDepositView
                                 {
                                     AdminCost = a,
                                     ParticipationService = p

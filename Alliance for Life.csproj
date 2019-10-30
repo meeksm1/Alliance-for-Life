@@ -245,6 +245,7 @@
     <Compile Include="Controllers\ClientListController.cs" />
     <Compile Include="Controllers\ContractorFormController.cs" />
     <Compile Include="Controllers\DirectDepositController.cs" />
+    <Compile Include="Controllers\DirectDepositsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InvoicesController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -253,37 +254,9 @@
     <Compile Include="Controllers\ResidentialMIRsController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="DTO\Report .cs" />
-    <Compile Include="Migrations\201906131606226_NewDB.cs" />
-    <Compile Include="Migrations\201906131606226_NewDB.Designer.cs">
-      <DependentUpon>201906131606226_NewDB.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201906142101493_admincostupdated.cs" />
-    <Compile Include="Migrations\201906142101493_admincostupdated.Designer.cs">
-      <DependentUpon>201906142101493_admincostupdated.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201906191411124_aflallocationbudget.cs" />
-    <Compile Include="Migrations\201906191411124_aflallocationbudget.Designer.cs">
-      <DependentUpon>201906191411124_aflallocationbudget.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201906191549519_aflstatedeposite.cs" />
-    <Compile Include="Migrations\201906191549519_aflstatedeposite.Designer.cs">
-      <DependentUpon>201906191549519_aflstatedeposite.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201906201543098_UpdateAdminCost.cs" />
-    <Compile Include="Migrations\201906201543098_UpdateAdminCost.Designer.cs">
-      <DependentUpon>201906201543098_UpdateAdminCost.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201906241635438_AddedOtherInputs.cs" />
-    <Compile Include="Migrations\201906241635438_AddedOtherInputs.Designer.cs">
-      <DependentUpon>201906241635438_AddedOtherInputs.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201906261345571_removedNonResProp.cs" />
-    <Compile Include="Migrations\201906261345571_removedNonResProp.Designer.cs">
-      <DependentUpon>201906261345571_removedNonResProp.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201906261433544_NONRMIupdatedmonth.cs" />
-    <Compile Include="Migrations\201906261433544_NONRMIupdatedmonth.Designer.cs">
-      <DependentUpon>201906261433544_NONRMIupdatedmonth.cs</DependentUpon>
+    <Compile Include="Migrations\201910302028019_initialcreation.cs" />
+    <Compile Include="Migrations\201910302028019_initialcreation.Designer.cs">
+      <DependentUpon>201910302028019_initialcreation.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\A2AAllocatedBudget.cs" />
@@ -291,6 +264,7 @@
     <Compile Include="Models\AllocatedBudget.cs" />
     <Compile Include="Models\AffiliateRegion.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
+    <Compile Include="Models\DirectDeposits.cs" />
     <Compile Include="Models\SearchData.cs" />
     <Compile Include="Controllers\SubContractorController.cs" />
     <Compile Include="Controllers\SurveysController.cs" />
@@ -332,7 +306,7 @@
     <Compile Include="ViewModels\ClientListReportViewModel.cs" />
     <Compile Include="ViewModels\ConfigureTwoFactorViewModel.cs" />
     <Compile Include="ViewModels\ContractorFormViewModel.cs" />
-    <Compile Include="ViewModels\DirectDeposit.cs" />
+    <Compile Include="ViewModels\DirectDepositView.cs" />
     <Compile Include="ViewModels\ExternalLoginConfirmationViewModel.cs" />
     <Compile Include="ViewModels\ExternalLoginListViewModel.cs" />
     <Compile Include="ViewModels\FactorViewModel.cs" />
@@ -793,7 +767,11 @@
     <Content Include="Views\AllocatedBudgets\Balance.cshtml" />
     <Content Include="Views\ParticipationService\TotalCostReport.cshtml" />
     <Content Include="Views\ClientList\Delete.cshtml" />
-    <Content Include="Views\DirectDeposit\Index.cshtml" />
+    <Content Include="Views\DirectDeposits\Create.cshtml" />
+    <Content Include="Views\DirectDeposits\Delete.cshtml" />
+    <Content Include="Views\DirectDeposits\Details.cshtml" />
+    <Content Include="Views\DirectDeposits\Edit.cshtml" />
+    <Content Include="Views\DirectDeposits\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config">
@@ -812,33 +790,12 @@
     <TypeScriptCompile Include="Scripts\index.d.ts" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201906131606226_NewDB.resx">
-      <DependentUpon>201906131606226_NewDB.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201906142101493_admincostupdated.resx">
-      <DependentUpon>201906142101493_admincostupdated.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201906191411124_aflallocationbudget.resx">
-      <DependentUpon>201906191411124_aflallocationbudget.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201906191549519_aflstatedeposite.resx">
-      <DependentUpon>201906191549519_aflstatedeposite.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201906201543098_UpdateAdminCost.resx">
-      <DependentUpon>201906201543098_UpdateAdminCost.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201906241635438_AddedOtherInputs.resx">
-      <DependentUpon>201906241635438_AddedOtherInputs.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201906261345571_removedNonResProp.resx">
-      <DependentUpon>201906261345571_removedNonResProp.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201906261433544_NONRMIupdatedmonth.resx">
-      <DependentUpon>201906261433544_NONRMIupdatedmonth.cs</DependentUpon>
-    </EmbeddedResource>
+    <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
+    <EmbeddedResource Include="Migrations\201910302028019_initialcreation.resx">
+      <DependentUpon>201910302028019_initialcreation.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

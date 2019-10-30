@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Alliance_for_Life.Models
@@ -55,5 +56,7 @@ namespace Alliance_for_Life.Models
         public SubContractor Subcontractor { get; set; }
 
         public System.Guid SubcontractorId { get; set; }
+
+        public ICollection<DirectDeposits> DirectDeposits { get; set; }
     }
 }
