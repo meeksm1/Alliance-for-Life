@@ -52,7 +52,7 @@
                 Details
             </th>
             <th style="background-color:#C1F7C1; color:black;">
-                @Html.ActionLink("Organization", "Index", new { sortOrder = ViewBag.NameSortParm })
+                @Html.ActionLink("Organization", "TotalCostReport", new { sortOrder = ViewBag.NameSortParm })
             </th>
             <th style="background-color:#C1F7C1; color:black;">
                 Month
@@ -140,7 +140,7 @@
                 }
 
                 <td>
-                    @Html.ActionLink("Details", "Details", new { id = item.AdminCostId })
+                    @Html.ActionLink("Details", "Details","AdministrationCost", new { id = item.AdminCostId },null)
                 </td>
                 <td>
                     @item.Subcontractor.OrgName
@@ -350,7 +350,7 @@
                 Details
             </th>
             <th style="background-color:#C1F7C1; color:black;">
-                @Html.ActionLink("Organization", "Index", new { sortOrder = ViewBag.NameSortParm })
+                @Html.ActionLink("Organization", "TotalCostReport", new { sortOrder = ViewBag.NameSortParm })
             </th>
             <th style="background-color:#C1F7C1; color:black;">
                 Month
@@ -504,8 +504,17 @@
             <td style="background-color:#AACAFC; color:black;"> @Model.Sum(a => a.PTotals).ToString("c")</td>
         </tr>
     </table>
-
-
+    <table>
+        <tr>
+            <td style="background-color:lightgreen; color:black;font-size:20px;">Grand Total:</td>
+            <td style="background-color:lightgreen; color:black; font-size:20px;">
+                <b>
+                    @Math.Round(ViewBag.Total + Model.Sum(a => a.PTotals), 2).ToString("C")
+                </b>
+            </td>
+        </tr>
+    </table>
+    <br />
 
     @using (Html.BeginForm("ExportAdminParticost", "ParticipationService", FormMethod.Post))
     {

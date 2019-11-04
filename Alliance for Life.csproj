@@ -248,6 +248,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InvoicesController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MonthlyServiceReportController.cs" />
     <Compile Include="Controllers\NonResidentialMIRsController.cs" />
     <Compile Include="Controllers\ParticipationServiceController.cs" />
     <Compile Include="Controllers\ResidentialMIRsController.cs" />
@@ -316,6 +317,7 @@
     <Compile Include="ViewModels\InvoiceViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\ManageLoginsViewModel.cs" />
+    <Compile Include="ViewModels\MonthlyServices.cs" />
     <Compile Include="ViewModels\NonResidentialMIRFormViewModel.cs" />
     <Compile Include="ViewModels\ParticipationServicesViewModel.cs" />
     <Compile Include="ViewModels\RegisterViewModel.cs" />
@@ -771,6 +773,7 @@
     <Content Include="Views\DirectDeposits\Details.cshtml" />
     <Content Include="Views\DirectDeposits\Edit.cshtml" />
     <Content Include="Views\DirectDeposits\Index.cshtml" />
+    <Content Include="Views\MonthlyServiceReport\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config">

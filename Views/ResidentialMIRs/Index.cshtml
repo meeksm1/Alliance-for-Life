@@ -100,11 +100,11 @@
                 <th class="th-sm">
                     Details
                 </th>
-         
-                    <th class="th-sm">
-                        Edit
-                    </th>
-               
+
+                <th class="th-sm">
+                    Edit
+                </th>
+
 
         </thead>
 
@@ -154,20 +154,38 @@
                     <a href="@Url.Action("Details", "ResidentialMIRs", new { id = item.Id }, Request.Url.Scheme)">
                         <i style="font-size:16px; color:#3498DB" class="fa">&#xf06e;</i>
                     </a>
-                   
+
                 </td>
-          
-                    <td>
-                        <a href="@Url.Action("Edit", "ResidentialMIRs", new { id = item.Id }, Request.Url.Scheme)">
-                            <i style="font-size:16px; color:#3498DB" class="fa">&#xf044;</i>
-                        </a>
-                    </td>
-               
+
+                <td>
+                    <a href="@Url.Action("Edit", "ResidentialMIRs", new { id = item.Id }, Request.Url.Scheme)">
+                        <i style="font-size:16px; color:#3498DB" class="fa">&#xf044;</i>
+                    </a>
+                </td>
+
 
             </tr>
         }
-    </table>
+    <tr>
+        <td style="background-color:lightgreen; color:black;font-size:20px;">Total:</td>
+        <td style="background-color:lightgreen; color:black;font-size:20px;"></td>
+        <td style="background-color:lightgreen; color:black;font-size:20px;"></td>
+        <td style="background-color:lightgreen; color:black;font-size:20px;">@Model.Sum(a=>a.TotBedNights).ToString("#,##0")</td>
+        <td style="background-color:lightgreen; color:black;font-size:20px;">@Model.Sum(a => a.TotA2AEnrollment).ToString("#,##0")</td>
+        <td style="background-color:lightgreen; color:black;font-size:20px;">@Model.Sum(a => a.TotA2ABedNights).ToString("#,##0")</td>
+        <td style="background-color:lightgreen; color:black;font-size:20px;">@Model.Sum(a => a.ClientsJobEduServ).ToString("#,##0")</td>
+        <td style="background-color:lightgreen; color:black;font-size:20px;">@Model.Sum(a => a.ParticipatingFathers).ToString("#,##0")</td>
+        <td style="background-color:lightgreen; color:black;font-size:20px;">@Model.Sum(a => a.TotEduClasses).ToString("#,##0")</td>
+        <td style="background-color:lightgreen; color:black;font-size:20px;">@Model.Sum(a => a.TotClientsinEduClasses).ToString("#,##0")</td>
+        <td style="background-color:lightgreen; color:black;font-size:20px;">@Model.Sum(a => a.TotCaseHrs).ToString("#,##0")</td>
+        <td style="background-color:lightgreen; color:black;font-size:20px;">@Model.Sum(a => a.TotClientsCaseHrs).ToString("#,##0")</td>
+        <td style="background-color:lightgreen; color:black;font-size:20px;">@Model.Sum(a => a.TotOtherClasses).ToString("#,##0")</td>
+        <td style="background-color:lightgreen; color:black;font-size:20px;"></td>
+        <td style="background-color:lightgreen; color:black;font-size:20px;"></td>
 
+    </tr>
+    </table>
+   
     <p>
         <h3>Non Residental </h3>
     </p>
@@ -194,7 +212,7 @@
                     Total of Overall Clients Served
                 </th>
                 <th class="th-sm">
-                   # of Clients engaged in  Jobs or Educational Services
+                    # of Clients engaged in  Jobs or Educational Services
                 </th>
                 <th class="th-sm">
                     Total # of Fathers Participating in A2A
@@ -206,10 +224,10 @@
                     Total # of Clients Attending Prenatal & Parenting Classes
                 </th>
                 <th class="th-sm">
-                   Case Management Hours Provided
+                    Case Management Hours Provided
                 </th>
                 <th class="th-sm">
-                   Total # of Participants in Case Management
+                    Total # of Participants in Case Management
                 </th>
                 <th class="th-sm">
                     Total # of Other Classes held (i.e. money management, healthy lifestyles etc.)
@@ -217,11 +235,11 @@
                 <th class="th-sm">
                     Details
                 </th>
-             
-                    <th class="th-sm">
-                        Edit
-                    </th>
-               
+
+                <th class="th-sm">
+                    Edit
+                </th>
+
         </thead>
 
         @foreach (var items in ViewBag.nonResidentialMIRs)
@@ -270,17 +288,35 @@
                     <a href="@Url.Action("Details", "NonResidentialMIRs", new { id = items.Id }, Request.Url.Scheme)">
                         <i style="font-size:16px; color:#3498DB" class="fa">&#xf06e;</i>
                     </a>
-                   
+
                 </td>
 
-                    <td>
-                        <a href="@Url.Action("Edit", "NonResidentialMIRs", new { id = items.Id }, Request.Url.Scheme)">
-                            <i style="font-size:16px; color:#3498DB" class="fa">&#xf044;</i>
-                        </a>
-                    </td>
-               
+                <td>
+                    <a href="@Url.Action("Edit", "NonResidentialMIRs", new { id = items.Id }, Request.Url.Scheme)">
+                        <i style="font-size:16px; color:#3498DB" class="fa">&#xf044;</i>
+                    </a>
+                </td>
+
             </tr>
         }
+        <tr>
+            <td style="background-color:lightgreen; color:black;font-size:20px;">Total:</td>
+            <td style="background-color:lightgreen; color:black;font-size:20px;"></td>
+            <td style="background-color:lightgreen; color:black;font-size:20px;"></td>
+            <td style="background-color:lightgreen; color:black;font-size:20px;"></td>
+            <td style="background-color:lightgreen; color:black;font-size:20px;"></td>
+            <td style="background-color:lightgreen; color:black;font-size:20px;"></td>
+            <td style="background-color:lightgreen; color:black;font-size:20px;"></td>
+            <td style="background-color:lightgreen; color:black;font-size:20px;"></td>
+            <td style="background-color:lightgreen; color:black;font-size:20px;">@Model.Sum(a => a.TotEduClasses).ToString("#,##0")</td>
+            <td style="background-color:lightgreen; color:black;font-size:20px;">@Model.Sum(a => a.TotClientsinEduClasses).ToString("#,##0")</td>
+            <td style="background-color:lightgreen; color:black;font-size:20px;">@Model.Sum(a => a.TotCaseHrs).ToString("#,##0")</td>
+            <td style="background-color:lightgreen; color:black;font-size:20px;">@Model.Sum(a => a.TotClientsCaseHrs).ToString("#,##0")</td>
+            <td style="background-color:lightgreen; color:black;font-size:20px;">@Model.Sum(a => a.TotOtherClasses).ToString("#,##0")</td>
+            <td style="background-color:lightgreen; color:black;font-size:20px;"></td>
+            <td style="background-color:lightgreen; color:black;font-size:20px;"></td>
+
+        </tr>
     </table>
     <div class="container-fluid">
         <form>
@@ -293,11 +329,11 @@
                             Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
 
                             @Html.PagedListPager(Model, page => Url.Action("Index",
-                            new { page, pgSize = ViewBag.psize, @class = "pagination"}))       
+                            new { page, pgSize = ViewBag.psize, @class = "pagination" }))
                         </div>
                         <div class="col-sm-4">
                             Results per Page:
-                            @Html.DropDownList("pgSize", (IEnumerable<SelectListItem>)ViewBag.PageSize, "", htmlAttributes: new { @class = "form-control", onchange = "this.form.submit()"})
+                            @Html.DropDownList("pgSize", (IEnumerable<SelectListItem>)ViewBag.PageSize, "", htmlAttributes: new { @class = "form-control", onchange = "this.form.submit()" })
                         </div>
                     </div>
                 </div>
