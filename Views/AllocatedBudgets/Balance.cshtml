@@ -79,7 +79,7 @@
         <tr />
         <tr style="font-size:13px; text-align:center;">
             <th class="th-sm">
-                AFL Billable
+                Direct Admin Cost
             </th>
             <td>
                 @String.Format("{0:C}", ViewBag.JulFee)
@@ -119,6 +119,94 @@
             </td>
             <td style="background-color:#fedada">
                 @String.Format("{0:C}", ViewBag.TotalFee)
+            </td>
+        <tr />
+        <tr style="font-size:13px; text-align:center;">
+            <th class="th-sm">
+                Participation Cost
+            </th>
+            <td>
+                @String.Format("{0:C}", ViewBag.JulPFee)
+            </td>
+            <td>
+                @String.Format("{0:C}", ViewBag.AugPFee)
+            </td>
+            <td>
+                @String.Format("{0:C}", ViewBag.SepPFee)
+            </td>
+            <td>
+                @String.Format("{0:C}", ViewBag.OctPFee)
+            </td>
+            <td>
+                @String.Format("{0:C}", ViewBag.NovPFee)
+            </td>
+            <td>
+                @String.Format("{0:C}", ViewBag.DecPFee)
+            </td>
+            <td>
+                @String.Format("{0:C}", ViewBag.JanPFee)
+            </td>
+            <td>
+                @String.Format("{0:C}", ViewBag.FebPFee)
+            </td>
+            <td>
+                @String.Format("{0:C}", ViewBag.MarPFee)
+            </td>
+            <td>
+                @String.Format("{0:C}", ViewBag.AprPFee)
+            </td>
+            <td>
+                @String.Format("{0:C}", ViewBag.MayPFee)
+            </td>
+            <td>
+                @String.Format("{0:C}", ViewBag.JunPFee)
+            </td>
+            <td style="background-color:#fedada">
+                @String.Format("{0:C}", ViewBag.TotalPFee)
+            </td>
+        <tr />
+        <tr style="font-size:13px; text-align:center;">
+            <th class="th-sm">
+                Total Program Cost
+            </th>
+            <td>
+                @String.Format("{0:C}", ViewBag.JulPFee + ViewBag.JulFee)
+            </td>
+            <td>
+                @String.Format("{0:C}", ViewBag.AugPFee + ViewBag.AugFee)
+            </td>
+            <td>
+                @String.Format("{0:C}", ViewBag.SepPFee + ViewBag.SepFee)
+            </td>
+            <td>
+                @String.Format("{0:C}", ViewBag.OctPFee + ViewBag.OctFee)
+            </td>
+            <td>
+                @String.Format("{0:C}", ViewBag.NovPFee + ViewBag.NovFee)
+            </td>
+            <td>
+                @String.Format("{0:C}", ViewBag.DecPFee + ViewBag.DecFee)
+            </td>
+            <td>
+                @String.Format("{0:C}", ViewBag.JanPFee + ViewBag.JanFee)
+            </td>
+            <td>
+                @String.Format("{0:C}", ViewBag.FebPFee + ViewBag.FebFee)
+            </td>
+            <td>
+                @String.Format("{0:C}", ViewBag.MarPFee + ViewBag.MarFee)
+            </td>
+            <td>
+                @String.Format("{0:C}", ViewBag.AprPFee + ViewBag.AprFee)
+            </td>
+            <td>
+                @String.Format("{0:C}", ViewBag.MayPFee + ViewBag.MayFee)
+            </td>
+            <td>
+                @String.Format("{0:C}", ViewBag.JunPFee + ViewBag.JunFee)
+            </td>
+            <td style="background-color:#fedada">
+                @String.Format("{0:C}", ViewBag.TotalPFee + ViewBag.TotalFee)
             </td>
         <tr />
         <tr style="font-size:13px; text-align:center;">
@@ -167,51 +255,67 @@
         <tr />
         <tr style="font-size:13px; text-align:center;">
             <th class="th-sm">
-                Invoice Totals
+                Total Invoice
             </th>
             <td>
-                @Math.Round(Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.July).Sum(b => b.GrandTotal)) + (ViewBag.JulFee * .13), 2).ToString("C")
+                @String.Format("{0:C}", ViewBag.JulPFee + ViewBag.JulFee + ViewBag.JulFee * 0.1)
             </td>
             <td>
-                @Math.Round(Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.August).Sum(b => b.GrandTotal)) + (ViewBag.AugFee * .13), 2).ToString("C")
+                @String.Format("{0:C}", ViewBag.AugPFee + ViewBag.AugFee + ViewBag.AugFee * 0.1)
             </td>
             <td>
-                @Math.Round(Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.September).Sum(b => b.GrandTotal)) + (ViewBag.SepFee * .13), 2).ToString("C")
+                @String.Format("{0:C}", ViewBag.SepPFee + ViewBag.SepFee + ViewBag.SepFee * 0.1)
             </td>
             <td>
-                @Math.Round(Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.October).Sum(b => b.GrandTotal)) + (ViewBag.OctFee * .13), 2).ToString("C")
+                @String.Format("{0:C}", ViewBag.OctPFee + ViewBag.OctFee + ViewBag.OctFee * 0.1)
             </td>
             <td>
-                @Math.Round(Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.November).Sum(b => b.GrandTotal)) + (ViewBag.NovFee * .13), 2).ToString("C")
+                @String.Format("{0:C}", ViewBag.NovPFee + ViewBag.NovFee + ViewBag.NovFee * 0.1)
             </td>
             <td>
-                @Math.Round(Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.December).Sum(b => b.GrandTotal)) + (ViewBag.DecFee * .13), 2).ToString("C")
+                @String.Format("{0:C}", ViewBag.DecPFee + ViewBag.DecFee + ViewBag.DecFee * 0.1)
             </td>
             <td>
-                @Math.Round(Model.Sum(a => a.Invoice.Where(m => m.Month == Alliance_for_Life.Models.Months.January).Sum(b => b.GrandTotal)) + (ViewBag.JanFee * .13), 2).ToString("C")
+                @String.Format("{0:C}", ViewBag.JanPFee + ViewBag.JanFee + ViewBag.JanFee * 0.1)
             </td>
             <td>
-                @Math.Round(Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.February).Sum(b => b.GrandTotal)) + (ViewBag.FebFee * .13), 2).ToString("C")
+                @String.Format("{0:C}", ViewBag.FebPFee + ViewBag.FebFee + ViewBag.FebFee * 0.1)
             </td>
             <td>
-                @Math.Round(Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.March).Sum(b => b.GrandTotal)) + (ViewBag.MarFee * .13), 2).ToString("C")
+                @String.Format("{0:C}", ViewBag.MarPFee + ViewBag.MarFee + ViewBag.MarFee * 0.1)
             </td>
             <td>
-                @Math.Round(Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.April).Sum(b => b.GrandTotal)) + (ViewBag.AprFee * .13), 2).ToString("C")
+                @String.Format("{0:C}", ViewBag.AprPFee + ViewBag.AprFee + ViewBag.AprFee * 0.1)
             </td>
             <td>
-                @Math.Round(Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.May).Sum(b => b.GrandTotal)) + (ViewBag.MayFee * .13), 2).ToString("C")
+                @String.Format("{0:C}", ViewBag.MayPFee + ViewBag.MayFee + ViewBag.MayFee * 0.1)
             </td>
             <td>
-                @Math.Round(Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.June).Sum(b => b.GrandTotal)) + (ViewBag.JunFee * .13), 2).ToString("C")
+                @String.Format("{0:C}", ViewBag.JunPFee + ViewBag.JunFee + ViewBag.JunFee * 0.1)
             </td>
             <td style="background-color:#fedada">
-                @Math.Round(Model.Sum(a => a.Invoice.Sum(c => c.GrandTotal)) + (ViewBag.TotalFee * 0.13), 2).ToString("C")
+                @String.Format("{0:C}", ViewBag.TotalPFee + ViewBag.TotalFee + ViewBag.TotalFee * 0.1)
             </td>
         <tr />
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td> </td>
+            <td></td>
+            <td></td>
+            <td> </td>
+            <td></td>
+            <td> </td>
+        </tr>
         <tr style="font-size:13px; text-align:center;">
             <th class="th-sm">
-                Sub 3% Admin Fee
+                3% Management Fee
             </th>
             <td>
                 @String.Format("{0:C}", ViewBag.JulFee * 0.03)
@@ -253,95 +357,6 @@
                 @String.Format("{0:C}", ViewBag.TotalFee * 0.03)
             </td>
 
-        <tr />
-        <tr style="font-size:13px; text-align:center;">
-            <th class="th-sm">
-                Paid to Subs Total:
-            </th>
-            <td>
-                @Math.Round((Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.July).Sum(b => b.GrandTotal)) - (ViewBag.JulFee * 0.03)), 2).ToString("C")
-            </td>
-            <td>
-                @Math.Round((Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.August).Sum(b => b.GrandTotal)) - (ViewBag.AugFee * 0.03)), 2).ToString("C")
-            </td>
-            <td>
-                @Math.Round((Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.September).Sum(b => b.GrandTotal)) - (ViewBag.SepFee * 0.03)), 2).ToString("C")
-            </td>
-            <td>
-                @Math.Round((Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.October).Sum(b => b.GrandTotal)) - (ViewBag.OctFee * 0.03)), 2).ToString("C")
-            </td>
-            <td>
-                @Math.Round((Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.November).Sum(b => b.GrandTotal)) - (ViewBag.NovFee * 0.03)), 2).ToString("C")
-            </td>
-            <td>
-                @Math.Round((Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.December).Sum(b => b.GrandTotal)) - (ViewBag.DecFee * 0.03)), 2).ToString("C")
-            </td>
-            <td>
-                @Math.Round((Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.January).Sum(b => b.GrandTotal)) - (ViewBag.JanFee * 0.03)), 2).ToString("C")
-            </td>
-            <td>
-                @Math.Round((Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.February).Sum(b => b.GrandTotal)) - (ViewBag.FebFee * 0.03)), 2).ToString("C")
-            </td>
-            <td>
-                @Math.Round((Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.March).Sum(b => b.GrandTotal)) - (ViewBag.MarFee * 0.03)), 2).ToString("C")
-            </td>
-            <td>
-                @Math.Round((Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.April).Sum(b => b.GrandTotal)) - (ViewBag.AprFee * 0.03)), 2).ToString("C")
-            </td>
-            <td>
-                @Math.Round((Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.May).Sum(b => b.GrandTotal)) - (ViewBag.MayFee * 0.03)), 2).ToString("C")
-            </td>
-            <td>
-                @Math.Round((Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.June).Sum(b => b.GrandTotal)) - (ViewBag.JunFee * 0.03)), 2).ToString("C")
-            </td>
-            <td style="background-color:#fedada">
-                @Math.Round((Model.Sum(a => a.Invoice.Sum(c => c.GrandTotal)) - (ViewBag.TotalFee * 0.03)), 2).ToString("C")
-            </td>
-
-        <tr />
-        <tr style="font-size:13px; text-align:center;">
-            <th class="th-sm">
-                Total Paid to AFL:
-            </th>
-            <td>
-                @String.Format("{0:C}", ViewBag.JulFee * 0.16)
-            </td>
-            <td>
-                @String.Format("{0:C}", ViewBag.AugFee * 0.16)
-            </td>
-            <td>
-                @String.Format("{0:C}", ViewBag.SepFee * 0.16)
-            </td>
-            <td>
-                @String.Format("{0:C}", ViewBag.OctFee * 0.16)
-            </td>
-            <td>
-                @String.Format("{0:C}", ViewBag.NovFee * 0.16)
-            </td>
-            <td>
-                @String.Format("{0:C}", ViewBag.DecFee * 0.16)
-            </td>
-            <td>
-                @String.Format("{0:C}", ViewBag.JanFee * 0.16)
-            </td>
-            <td>
-                @String.Format("{0:C}", ViewBag.FebFee * 0.16)
-            </td>
-            <td>
-                @String.Format("{0:C}", ViewBag.MarFee * 0.16)
-            </td>
-            <td>
-                @String.Format("{0:C}", ViewBag.AprFee * 0.16)
-            </td>
-            <td>
-                @String.Format("{0:C}", ViewBag.MayFee * 0.16)
-            </td>
-            <td>
-                @String.Format("{0:C}", ViewBag.JunFee * 0.16)
-            </td>
-            <td style="background-color:#fedada">
-                @String.Format("{0:C}", ViewBag.TotalFee * 0.16)
-            </td>
         <tr />
     </thead>
 </table>
@@ -395,7 +410,7 @@
         <tr />
         <tr style="font-size:13px; text-align:center;">
             <th class="th-sm">
-                Begining Balance:
+                Begining Balance
             </th>
             <td>
                 @Html.Encode("$0.00")
@@ -546,10 +561,10 @@
             <td style="background-color:#fedada">
                 @Math.Round((ViewBag.JunTot) - (Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.June).Sum(b => b.GrandTotal)) + (ViewBag.JunFee * .13)), 2).ToString("C")
             </td>
-<tr />
+        <tr />
         <tr style="font-size:13px; text-align:center;">
             <th class="th-sm">
-                State Deposits:
+                State Deposits
             </th>
             <td>
                 @ViewBag.DepoJul.ToString("C")
@@ -594,9 +609,9 @@
         <tr />
         <tr style="font-size:13px; text-align:center;">
             <th class="th-sm">
-                Total $ Available:
+                Total $ Available
             </th>
-            @if (@ViewBag.JulTot < 0)
+            @if (ViewBag.JulTot < 0)
             {
                 <td style="color: red;">
                     @ViewBag.JulTot.ToString("C")
@@ -752,218 +767,219 @@
                 </td>
             }
 
-                <td style="background-color:#fedada">
-                   @Math.Round(((ViewBag.JunTot) + (ViewBag.TotalCost)) - (Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.June).Sum(b => b.GrandTotal)) + (ViewBag.JunFee * .13)), 2).ToString("C")
-                </td>
+            <td style="background-color:#fedada">
+                @Math.Round(((ViewBag.JunTot) + (ViewBag.TotalCost)) - (Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.June).Sum(b => b.GrandTotal)) + (ViewBag.JunFee * .13)), 2).ToString("C")
+            </td>
         <tr />
         <tr style="font-size:13px; text-align:center;">
             <th class="th-sm">
-                Invoice Totals
+                Total Invoice
             </th>
             <td>
-                @ViewBag.JulInv.ToString("C")
+                @String.Format("{0:C}", ViewBag.JulPFee + ViewBag.JulFee + ViewBag.JulFee * 0.1)
             </td>
             <td>
-                @ViewBag.AugInv.ToString("C")
+                @String.Format("{0:C}", ViewBag.AugPFee + ViewBag.AugFee + ViewBag.AugFee * 0.1)
             </td>
             <td>
-                @ViewBag.SepInv.ToString("C")
+                @String.Format("{0:C}", ViewBag.SepPFee + ViewBag.SepFee + ViewBag.SepFee * 0.1)
             </td>
             <td>
-                @ViewBag.OctInv.ToString("C")
+                @String.Format("{0:C}", ViewBag.OctPFee + ViewBag.OctFee + ViewBag.OctFee * 0.1)
             </td>
             <td>
-                @ViewBag.NovInv.ToString("C")
+                @String.Format("{0:C}", ViewBag.NovPFee + ViewBag.NovFee + ViewBag.NovFee * 0.1)
             </td>
             <td>
-                @ViewBag.DecInv.ToString("C")
+                @String.Format("{0:C}", ViewBag.DecPFee + ViewBag.DecFee + ViewBag.DecFee * 0.1)
             </td>
             <td>
-                @ViewBag.JanInv.ToString("C")
+                @String.Format("{0:C}", ViewBag.JanPFee + ViewBag.JanFee + ViewBag.JanFee * 0.1)
             </td>
             <td>
-                @ViewBag.FebInv.ToString("C")
+                @String.Format("{0:C}", ViewBag.FebPFee + ViewBag.FebFee + ViewBag.FebFee * 0.1)
             </td>
             <td>
-                @ViewBag.MarInv.ToString("C")
+                @String.Format("{0:C}", ViewBag.MarPFee + ViewBag.MarFee + ViewBag.MarFee * 0.1)
             </td>
             <td>
-                @ViewBag.AprInv.ToString("C")
+                @String.Format("{0:C}", ViewBag.AprPFee + ViewBag.AprFee + ViewBag.AprFee * 0.1)
             </td>
             <td>
-                @ViewBag.MayInv.ToString("C")
+                @String.Format("{0:C}", ViewBag.MayPFee + ViewBag.MayFee + ViewBag.MayFee * 0.1)
             </td>
             <td>
-                @ViewBag.JunInv.ToString("C")
+                @String.Format("{0:C}", ViewBag.JunPFee + ViewBag.JunFee + ViewBag.JunFee * 0.1)
             </td>
             <td style="background-color:#fedada">
-                @Math.Round(Model.Sum(a => a.Invoice.Sum(c => c.GrandTotal)) + (ViewBag.TotalFee * 0.13), 2).ToString("C")
+                @String.Format("{0:C}", ViewBag.TotalPFee + ViewBag.TotalFee + ViewBag.TotalFee * 0.1)
             </td>
         <tr />
         <tr style="font-size:13px; text-align:center;">
             <th class="th-sm">
-                Remaining Balance:
+                Balance After Invoice Payment
             </th>
-            @if (@ViewBag.JulRem < 0)
+            @if (ViewBag.JulTot - (ViewBag.JulPFee + ViewBag.JulFee + ViewBag.JulFee * 0.1) < 0)
             {
-                <td style="color: red;">
-                    @ViewBag.JulRem.ToString("C")
-                </td>
+        <td style="color: red;">
+            @String.Format("{0:C}", ViewBag.JulTot - (ViewBag.JulPFee + ViewBag.JulFee + ViewBag.JulFee * 0.1)  )
+        </td>
             }
             else
             {
-                <td>
-                    @ViewBag.JulRem.ToString("C")
-                </td>
+        <td>
+            @String.Format("{0:C}",  ViewBag.JulTot - (ViewBag.JulPFee + ViewBag.JulFee + ViewBag.JulFee * 0.1))
+        </td>
             }
 
             @if (ViewBag.AugRem < 0)
             {
-                <td style="color: red;">
-                    @ViewBag.AugRem.ToString("C")
-                </td>
+        <td style="color: red;">
+            @String.Format("{0:C}", ViewBag.AugRem)
+        </td>
             }
             else
             {
-                <td>
-                    @ViewBag.AugRem.ToString("C")
-                </td>
+        <td>
+            @String.Format("{0:C}", ViewBag.AugRem)
+        </td>
             }
 
             @if (ViewBag.SepRem < 0)
             {
-                <td style="color: red;">
-                    @ViewBag.SepRem.ToString("C")
-                </td>
+        <td style="color: red;">
+            @String.Format("{0:C}", ViewBag.SepRem)
+        </td>
             }
             else
             {
-                <td>
-                    @ViewBag.SepRem.ToString("C")
-                </td>
+        <td>
+            @String.Format("{0:C}", ViewBag.SepRem)
+        </td>
             }
 
             @if (ViewBag.OctRem < 0)
             {
-                <td style="color: red;">
-                    @ViewBag.OctRem.ToString("C")
-                </td>
+        <td style="color: red;">
+            @String.Format("{0:C}",  ViewBag.OctRem )
+        </td>
             }
             else
             {
-                <td>
-                    @ViewBag.OctRem.ToString("C")
-                </td>
+        <td>
+            @String.Format("{0:C}",  ViewBag.OctRem)
+        </td>
             }
 
             @if (ViewBag.NovRem < 0)
             {
-                <td style="color: red;">
-                    @ViewBag.NovRem.ToString("C")
-                </td>
+        <td style="color: red;">
+            @String.Format("{0:C}",ViewBag.NovRem )
+        </td>
             }
             else
             {
-                <td>
-                    @ViewBag.NovRem.ToString("C")
-                </td>
+        <td>
+            @String.Format("{0:C}", ViewBag.NovRem)
+        </td>
             }
 
             @if (ViewBag.DecRem < 0)
             {
-                <td style="color: red;">
-                    @ViewBag.DecRem.ToString("C")
-                </td>
+        <td style="color: red;">
+            @String.Format("{0:C}",  ViewBag.DecRem)
+        </td>
             }
             else
             {
-                <td>
-                    @ViewBag.DecRem.ToString("C")
-                </td>
+        <td>
+            @String.Format("{0:C}", ViewBag.DecRem)
+        </td>
             }
 
             @if (ViewBag.JanRem < 0)
             {
-                <td style="color: red;">
-                    @ViewBag.JanRem.ToString("C")
-                </td>
+        <td style="color: red;">
+            @String.Format("{0:C}", ViewBag.JanRem )
+        </td>
             }
             else
             {
-                <td>
-                    @ViewBag.JanRem.ToString("C")
-                </td>
+        <td>
+            @String.Format("{0:C}", ViewBag.JanRem)
+        </td>
             }
 
             @if (ViewBag.FebRem < 0)
             {
-                <td style="color: red;">
-                    @ViewBag.FebRem.ToString("C")
-                </td>
+        <td style="color: red;">
+            @String.Format("{0:C}",  ViewBag.FebRem)
+        </td>
             }
             else
             {
-                <td>
-                    @ViewBag.FebRem.ToString("C")
-                </td>
+        <td>
+            @String.Format("{0:C}",  ViewBag.FebRem)
+        </td>
             }
 
             @if (ViewBag.MarRem < 0)
             {
-                <td style="color: red;">
-                    @ViewBag.MarRem.ToString("C")
-                </td>
+        <td style="color: red;">
+            @String.Format("{0:C}",  ViewBag.MarRem)
+        </td>
             }
             else
             {
-                <td>
-                    @ViewBag.MarRem.ToString("C")
-                </td>
+        <td>
+            @String.Format("{0:C}", ViewBag.MarRem)
+        </td>
             }
 
             @if (ViewBag.AprRem < 0)
             {
-                <td style="color: red;">
-                    @ViewBag.AprRem.ToString("C")
-                </td>
+        <td style="color: red;">
+            @String.Format("{0:C}",  ViewBag.AprRem)
+        </td>
             }
             else
             {
-                <td>
-                    @ViewBag.AprRem.ToString("C")
-                </td>
+        <td>
+            @String.Format("{0:C}", ViewBag.AprRem)
+        </td>
             }
 
             @if (ViewBag.MayRem < 0)
             {
-                <td style="color: red;">
-                    @ViewBag.MayRem.ToString("C")
-                </td>
+        <td style="color: red;">
+            @String.Format("{0:C}", ViewBag.MayRem)
+        </td>
             }
             else
             {
-                <td>
-                    @ViewBag.MayRem.ToString("C")
-                </td>
+        <td>
+            @String.Format("{0:C}", ViewBag.MayRem)
+        </td>
             }
 
             @if (ViewBag.JunRem < 0)
             {
-                <td style="color: red;">
-                    @ViewBag.JunRem.ToString("C")
-                </td>
+        <td style="color: red;">
+            @String.Format("{0:C}",  ViewBag.JunRem)
+        </td>
             }
             else
             {
-                <td>
-                    @ViewBag.JunRem.ToString("C")
-                </td>
+        <td>
+            @String.Format("{0:C}", ViewBag.JunRem)
+          
+        </td>
             }
-           
-            <td style="background-color:#fedada">
-                @Math.Round((ViewBag.TotalCost) - (Model.Sum(a => a.Invoice.Sum(c => c.GrandTotal)) + (ViewBag.TotalFee * 0.13)), 2).ToString("C")
-            </td>
-<tr />
+
+        <td style="background-color:#fedada">
+            @String.Format("{0:C}", ViewBag.TotalPFee + ViewBag.TotalFee + ViewBag.TotalFee * 0.1 -ViewBag.TotalCost )
+        </td>
+        <tr />
 </table>
 
 <table id="dtBasicExample" class="table table-striped table-bordered table-sm" style="font-size:16px" cellspacing="0" width="100">
