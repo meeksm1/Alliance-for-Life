@@ -53,28 +53,38 @@ namespace Alliance_for_Life.Controllers
                 ViewBag.Title = "Monthly Service Report for " + Month + "-" + Year;
             }
 
+            //var residential = from r in db.ResidentialMIRs
+            //                     select new MonthlyServices
+            //                     {
+            //                         Residential = r
+            //                     };
+
+            //var nonresidential = from n in db.NonResidentialMIRs
+            //                  select new MonthlyServices
+            //                  {
+            //                     NonResidential = n
+            //                  };
+
             var monthlyservice = from a in db.ResidentialMIRs
-                                 from p in db.NonResidentialMIRs
-                                 where (a.Year == Year && p.Year == Year) && (a.Month.ToString() == Month && p.Months.ToString() == Month)
-                                 select new MonthlyServices
-                                 {
-                                     Residential = a,
-                                     NonResidential = p
-                                 };
-
-
-
+            where a.Year == Year && a.Month.ToString() == Month
+            from p in db.NonResidentialMIRs
+            where p.Year == Year && p.Months.ToString() == Month
+            select new MonthlyServices
+            {
+                Residential = a,
+                NonResidential = p
+            };
 
             //if year is not null
             if (Year != null)
             {
-                monthlyservice = monthlyservice.Where(a => a.Residential.Year == Year || a.NonResidential.Year == Year);
+                monthlyservice = monthlyservice.Where(a => a.Residential.Year == Year).Where(b => b.NonResidential.Year == Year);
             }
             //if month is not null
             if (!String.IsNullOrEmpty(Month))
             {
 
-                monthlyservice = monthlyservice.Where(a => a.Residential.Month.ToString() == Month || a.NonResidential.Months.ToString() == Month);
+                monthlyservice = monthlyservice.Where(a => a.Residential.Month.ToString() == Month).Where(b=>b.NonResidential.Months.ToString() == Month);
             }
 
             if (!User.IsInRole("Admin"))
@@ -85,7 +95,7 @@ namespace Alliance_for_Life.Controllers
                 organization = db.SubContractors.Find(usr.SubcontractorId).OrgName;
                 var usersubid = db.Users.Find(id).SubcontractorId;
 
-                monthlyservice = monthlyservice.Where(t => t.Residential.SubcontractorId == usersubid && t.NonResidential.SubcontractorId == usersubid);
+                monthlyservice = monthlyservice.Where(t => t.Residential.SubcontractorId == usersubid ).Where(b=>b.NonResidential.SubcontractorId == usersubid);
 
                 ViewBag.Subcontractor = organization;
             }
@@ -93,7 +103,7 @@ namespace Alliance_for_Life.Controllers
 
             if (!String.IsNullOrEmpty(searchString.ToString()))
             {
-                monthlyservice = monthlyservice.Where(t => t.Residential.Subcontractor.SubcontractorId == searchString || t.NonResidential.Subcontractor.SubcontractorId == searchString);
+                monthlyservice = monthlyservice.Where(t => t.Residential.Subcontractor.SubcontractorId == searchString).Where(b => b.NonResidential.Subcontractor.SubcontractorId == searchString);
             }
 
             switch (sortOrder)

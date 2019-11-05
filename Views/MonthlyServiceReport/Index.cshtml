@@ -109,57 +109,58 @@
 
         </thead>
 
-        @foreach (var items in Model)
+        @foreach (var item in Model)
         {
+           
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => items.Residential.Subcontractor.OrgName)
+                    @Html.DisplayFor(modelItem => item.Residential.Subcontractor.OrgName)
                 </td>
                 <td>
-                    @items.Residential.Month
+                    @item.Residential.Month
                 </td>
                 <td>
-                    @items.Residential.Year
+                    @item.Residential.Year
                 </td>
                 <td>
-                    @items.Residential.TotBedNights.ToString("#,##0")
+                    @item.Residential.TotBedNights.ToString("#,##0")
                 </td>
                 <td>
-                    @items.Residential.TotA2AEnrollment.ToString("#,##0")
+                    @item.Residential.TotA2AEnrollment.ToString("#,##0")
                 </td>
                 <td>
-                    @items.Residential.TotA2ABedNights.ToString("#,##0")
+                    @item.Residential.TotA2ABedNights.ToString("#,##0")
                 </td>
                 <td>
-                    @items.Residential.ClientsJobEduServ.ToString("#,##0")
+                    @item.Residential.ClientsJobEduServ.ToString("#,##0")
                 </td>
                 <td>
-                    @items.Residential.ParticipatingFathers.ToString("#,##0")
+                    @item.Residential.ParticipatingFathers.ToString("#,##0")
                 </td>
                 <td>
-                    @items.Residential.TotEduClasses.ToString("#,##0")
+                    @item.Residential.TotEduClasses.ToString("#,##0")
                 </td>
                 <td>
-                    @items.Residential.TotClientsinEduClasses.ToString("#,##0")
+                    @item.Residential.TotClientsinEduClasses.ToString("#,##0")
                 </td>
                 <td>
-                    @items.Residential.TotCaseHrs.ToString("#,##0")
+                    @item.Residential.TotCaseHrs.ToString("#,##0")
                 </td>
                 <td>
-                    @items.Residential.TotClientsCaseHrs.ToString("#,##0")
+                    @item.Residential.TotClientsCaseHrs.ToString("#,##0")
                 </td>
                 <td>
-                    @items.Residential.TotOtherClasses.ToString("#,##0")
+                    @item.Residential.TotOtherClasses.ToString("#,##0")
                 </td>
                 <td>
-                    <a href="@Url.Action("Details", "ResidentialMIRs", new { id = items.Residential.Id }, Request.Url.Scheme)">
+                    <a href="@Url.Action("Details", "ResidentialMIRs", new { id = item.Residential.Id }, Request.Url.Scheme)">
                         <i style="font-size:16px; color:#3498DB" class="fa">&#xf06e;</i>
                     </a>
 
                 </td>
 
                 <td>
-                    <a href="@Url.Action("Edit", "ResidentialMIRs", new { id = items.Residential.Id }, Request.Url.Scheme)">
+                    <a href="@Url.Action("Edit", "ResidentialMIRs", new { id = item.Residential.Id }, Request.Url.Scheme)">
                         <i style="font-size:16px; color:#3498DB" class="fa">&#xf044;</i>
                     </a>
                 </td>
@@ -319,6 +320,7 @@
 
         </tr>
     </table>
+
     <div class="container-fluid">
         <form>
             @using (Html.BeginForm())
