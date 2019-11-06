@@ -13,6 +13,7 @@
         <button id="printInvoice" class="btn btn-success" onclick="window.print();"><i class="fa fa-print"></i> Print</button>
         <a href="">
         </a>
+        <button id="downloadpdfe" class="btn btn-primary" onclick="window.print();"> <i class="fa fa-arrow-down"></i></button>
     </div>
 </div>
 <div class="container invoice" style="padding-top:-10px;" id="invoice">
@@ -177,5 +178,21 @@
     </div>
 </div>
 
-
+<script>
+    $.ajax({
+    url: "/User/DownloadViewAsPDF",
+    data: {
+        encryptId :"downloadpdf",
+    },
+    type: "GET",
+    contentType: "application/json;charset=utf-8",
+    dataType: "json",
+    success: function(result) {
+        alert("Report Downloaded as PDF!!");
+    },
+    error: function(errormessage) {
+        alert(errormessage.responseText);
+    }
+});
+</script>
 

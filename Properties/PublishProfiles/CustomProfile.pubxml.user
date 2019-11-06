@@ -13,11 +13,14 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="ApplicationInsights.config">
       <publishTime>10/30/2019 13:27:31</publishTime>
     </File>
+    <File Include="App_Browsers/qt.browser">
+      <publishTime>11/06/2019 10:20:39</publishTime>
+    </File>
     <File Include="bin/Alliance for Life.dll">
-      <publishTime>10/31/2019 15:47:41</publishTime>
+      <publishTime>11/06/2019 10:28:17</publishTime>
     </File>
     <File Include="bin/Alliance for Life.pdb">
-      <publishTime>10/31/2019 15:47:41</publishTime>
+      <publishTime>11/06/2019 10:28:17</publishTime>
     </File>
     <File Include="bin/Antlr3.Runtime.dll">
       <publishTime>10/30/2019 13:27:32</publishTime>
@@ -113,7 +116,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/30/2019 13:27:34</publishTime>
     </File>
     <File Include="bin/PagedList.Mvc.dll">
-      <publishTime>10/30/2019 13:27:34</publishTime>
+      <publishTime>09/30/2013 18:15:20</publishTime>
+    </File>
+    <File Include="bin/Rotativa.dll">
+      <publishTime>01/17/2018 17:10:42</publishTime>
     </File>
     <File Include="bin/System.Net.Http.Formatting.dll">
       <publishTime>10/30/2019 13:27:32</publishTime>
@@ -671,7 +677,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/30/2019 13:27:31</publishTime>
     </File>
     <File Include="Content/PagedList.css">
-      <publishTime>10/30/2019 13:27:31</publishTime>
+      <publishTime>11/04/2019 15:32:21</publishTime>
     </File>
     <File Include="Content/Site.css">
       <publishTime>10/30/2019 13:27:31</publishTime>
@@ -689,7 +695,19 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/30/2019 13:27:32</publishTime>
     </File>
     <File Include="packages.config">
-      <publishTime>10/30/2019 13:27:32</publishTime>
+      <publishTime>11/06/2019 10:20:39</publishTime>
+    </File>
+    <File Include="Rotativa/help-wkhtmltoimage.txt">
+      <publishTime>11/06/2019 10:20:39</publishTime>
+    </File>
+    <File Include="Rotativa/help-wkhtmltopdf.txt">
+      <publishTime>11/06/2019 10:20:39</publishTime>
+    </File>
+    <File Include="Rotativa/wkhtmltoimage.exe">
+      <publishTime>11/06/2019 10:20:39</publishTime>
+    </File>
+    <File Include="Rotativa/wkhtmltopdf.exe">
+      <publishTime>11/06/2019 10:20:39</publishTime>
     </File>
     <File Include="Scripts/ai.0.22.9-build00167.js">
       <publishTime>10/30/2019 13:27:31</publishTime>
@@ -1202,7 +1220,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/31/2019 15:48:18</publishTime>
     </File>
     <File Include="Views/AllocatedBudgets/Balance.cshtml">
-      <publishTime>10/30/2019 13:27:31</publishTime>
+      <publishTime>11/06/2019 09:27:10</publishTime>
     </File>
     <File Include="Views/AllocatedBudgets/Create.cshtml">
       <publishTime>10/30/2019 13:27:31</publishTime>
@@ -1217,7 +1235,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/30/2019 13:27:31</publishTime>
     </File>
     <File Include="Views/AllocatedBudgets/Index.cshtml">
-      <publishTime>10/30/2019 13:27:31</publishTime>
+      <publishTime>11/06/2019 10:05:16</publishTime>
     </File>
     <File Include="Views/BudgetCosts/AExpenseVSBExpense.cshtml">
       <publishTime>03/14/2019 18:27:47</publishTime>
@@ -1259,7 +1277,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/30/2019 13:27:31</publishTime>
     </File>
     <File Include="Views/ClientList/AllActiveClients.cshtml">
-      <publishTime>10/30/2019 13:27:31</publishTime>
+      <publishTime>11/05/2019 08:55:12</publishTime>
     </File>
     <File Include="Views/ClientList/AllNonActiveClients.cshtml">
       <publishTime>10/30/2019 13:27:31</publishTime>
@@ -1325,7 +1343,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/30/2019 13:27:31</publishTime>
     </File>
     <File Include="Views/Invoices/Invoice.cshtml">
-      <publishTime>10/30/2019 13:27:31</publishTime>
+      <publishTime>11/06/2019 10:27:53</publishTime>
     </File>
     <File Include="Views/Manage/AddPhoneNumber.cshtml">
       <publishTime>10/30/2019 13:27:31</publishTime>
@@ -1344,6 +1362,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="Views/Manage/VerifyPhoneNumber.cshtml">
       <publishTime>10/30/2019 13:27:31</publishTime>
+    </File>
+    <File Include="Views/MonthlyServiceReport/Index.cshtml">
+      <publishTime>11/05/2019 09:59:57</publishTime>
     </File>
     <File Include="Views/NonResidentialMIR/Create.cshtml">
       <publishTime>03/02/2019 09:32:03</publishTime>
@@ -1382,7 +1403,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/30/2019 13:27:31</publishTime>
     </File>
     <File Include="Views/ParticipationService/TotalCostReport.cshtml">
-      <publishTime>10/30/2019 13:27:31</publishTime>
+      <publishTime>11/04/2019 13:01:29</publishTime>
     </File>
     <File Include="Views/QuarterlyStates/Delete.cshtml">
       <publishTime>03/14/2019 18:27:48</publishTime>
@@ -1427,7 +1448,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/30/2019 13:27:31</publishTime>
     </File>
     <File Include="Views/ResidentialMIRs/Index.cshtml">
-      <publishTime>10/30/2019 13:27:31</publishTime>
+      <publishTime>11/04/2019 13:30:33</publishTime>
     </File>
     <File Include="Views/Role/AssignRoleToUser.cshtml">
       <publishTime>10/30/2019 13:27:32</publishTime>
@@ -1490,7 +1511,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/30/2019 13:27:32</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>10/31/2019 15:48:48</publishTime>
+      <publishTime>11/06/2019 10:28:43</publishTime>
     </File>
   </ItemGroup>
 </Project>

@@ -67,6 +67,16 @@ namespace Alliance_for_Life.Controllers
                 ViewBag.error = "No Report available for the year " + year_search;
             }
 
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    allocatedBudget = allocatedBudget.OrderByDescending(x=>x.Subcontractor.OrgName);
+                    break;
+                
+                default:
+                    allocatedBudget = allocatedBudget.OrderBy(x => x.Subcontractor.OrgName);
+                    break;
+            }
             int pageNumber = (page ?? 1);
             int defaSize = (pgSize ?? 10);
 
@@ -80,7 +90,7 @@ namespace Alliance_for_Life.Controllers
                 new SelectListItem() { Value="40", Text= "40" },
             };
 
-            return View(allocatedBudget.OrderBy(a => a.Year).ToPagedList(pageNumber, defaSize));
+            return View(allocatedBudget.ToPagedList(pageNumber, defaSize));
         }
 
         public ActionResult Balance(string sortOrder, string Year, /*string searchString, string currentFilter, */int? page, string pgSize)
