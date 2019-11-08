@@ -9,7 +9,7 @@
 <h2 align="center" style="color:red;">@ViewBag.Title</h2>
 <br />
 <form>
-    @using (Html.BeginForm(FormMethod.Post))
+    @using (Html.BeginForm(FormMethod.Get))
     {
         <div class="container-fluid">
             <div class="row">
@@ -17,99 +17,97 @@
                     Search By Organization: @Html.DropDownList("searchString", (IEnumerable<SelectListItem>)ViewBag.Subcontractor, "", htmlAttributes: new { @class = "form-control", onchange = "this.form.submit()" })
                 </div>
                 <div class="col-xs-5th-1 col-sm-3" style="align-content:center;">
-                    Search By Year: @Html.DropDownList("Year", null, "Select Year", htmlAttributes: new { @class = "form-control", onchange = "this.form.submit()" })
+                    Search By Year: @Html.DropDownList("Year", null, "Select Year", htmlAttributes: new { @class = "form-control", sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter, onchange = "this.form.submit()" })
                 </div>
                 <div class="col-xs-5th-1 col-sm-3" style="align-content:center;">
-                    Search By Month: @Html.DropDownList("Month", null, "Select Month", htmlAttributes: new { @class = "form-control", onchange = "this.form.submit()" })
+                    Search By Month: @Html.DropDownList("Month", null, "Select Month", htmlAttributes: new { @class = "form-control", sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter, onchange = "this.form.submit()" })
                 </div>
                 <div class="col-xs-5th-1 col-sm-3" style="align-content:center;">
-                    Results per Page: @Html.DropDownList("pgSize", (IEnumerable<SelectListItem>)ViewBag.PageSize, "", htmlAttributes: new { @class = "form-control", onchange = "this.form.submit()" })
+                    Results per Page: @Html.DropDownList("pgSize", (IEnumerable<SelectListItem>)ViewBag.PageSize, "", htmlAttributes: new { @class = "form-control", sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter, onchange = "this.form.submit()" })
                 </div>
             </div>
         </div>
     }
-</form>
 
-<br />
-<table id="dtBasicExample" class="table table-striped table-bordered table-sm" style="font-size:16px; text-align" cellspacing="0" width="100">
-    <tr>
+    <br />
+    <table id="dtBasicExample" class="table table-striped table-bordered table-sm" style="font-size:16px; text-align" cellspacing="0" width="100">
+        <tr>
 
-        <th style="background-color:#C1F7C1; color:black;">
-            Subcontractors
-        </th>
-        <th style="background-color:#C1F7C1; color:black;">
-            Amount
-        </th>
-        <th style="background-color:#C1F7C1; color:black;">
-            Direct Admin Costs
-        </th>
-        <th style="background-color:#C1F7C1; color:black;">
-            3%
-        </th>
+            <th style="background-color:#C1F7C1; color:black;">
+                Subcontractors
+            </th>
+            <th style="background-color:#C1F7C1; color:black;">
+                Amount
+            </th>
+            <th style="background-color:#C1F7C1; color:black;">
+                Direct Admin Costs
+            </th>
+            <th style="background-color:#C1F7C1; color:black;">
+                3%
+            </th>
 
-        <th style="background-color:#C1F7C1; color:black;">
-            Subcontractor Direct Deposit Total
-        </th>
-        <th style="background-color:#C1F7C1; color:black;">
-            √
-        </th>
-        <th style="background-color:#C1F7C1; color:black;">
-           
-        </th>
-    </tr>
+            <th style="background-color:#C1F7C1; color:black;">
+                Subcontractor Direct Deposit Total
+            </th>
+            <th style="background-color:#C1F7C1; color:black;">
+                √
+            </th>
+            <th style="background-color:#C1F7C1; color:black;">
 
-    @foreach (var items in Model)
+            </th>
+        </tr>
+
+        @foreach (var items in Model)
+        {
+            <tr>
+                <td>
+                    @items.AdminCost.Subcontractor.OrgName
+                </td>
+                <td>
+                    @Math.Round(items.AdminCost.ATotCosts + items.ParticipationService.PTotals, 2).ToString("C")
+
+                </td>
+                <td>
+                    @items.AdminCost.ATotCosts.ToString("C")
+                </td>
+                <td>
+
+                    @Math.Round(items.AdminCost.ATotCosts * 0.03, 2).ToString("C")
+
+
+                </td>
+                <td>
+                    @Math.Round((items.AdminCost.ATotCosts + items.ParticipationService.PTotals) - items.AdminCost.ATotCosts * 0.03, 2).ToString("C")
+
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => items.IsCheked)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = items.DirectDepositsId, items.PSId, items.AdminCostId })
+                </td>
+            </tr>
+        }
+          
+    </table>
+    <br />
+    @using (Html.BeginForm("Export", "DirectDeposits", FormMethod.Post))
     {
-<tr>
-    <td>
-        @items.AdminCost.Subcontractor.OrgName
-    </td>
-    <td>
-        @Math.Round(items.AdminCost.ATotCosts + items.ParticipationService.PTotals, 2).ToString("C")
+        <input type="submit" value="Export Direct Deposit" class="btn btn-group-sm btn-primary" />
 
-    </td>
-    <td>
-        @items.AdminCost.ATotCosts.ToString("C")
-    </td>
-    <td>
-
-        @Math.Round(items.AdminCost.ATotCosts * 0.03, 2).ToString("C")
-
-
-    </td>
-    <td>
-        @Math.Round((items.AdminCost.ATotCosts + items.ParticipationService.PTotals) - items.AdminCost.ATotCosts * 0.03, 2).ToString("C")
-
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => items.IsCheked)
-    </td>
-    <td>
-        @Html.ActionLink("Edit", "Edit", new { id = items.DirectDepositsId, items.PSId, items.AdminCostId })
-    </td>
-</tr>
     }
-
-</table>
-<br />
-@using (Html.BeginForm("Export", "DirectDeposits", FormMethod.Post))
-{
-    <input type="submit" value="Export Direct Deposit" class="btn btn-group-sm btn-primary" />
-
-}
-<div class="container-fluid">
-    <form>
-        <br />
         <div class="container-fluid">
-            <div class="row">
-                <div class="col-sm-2">
-                    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+            <br />
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-2">
+                        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
 
-                    @Html.PagedListPager(Model, page => Url.Action("Index",
-                     new { page, pgSize = ViewBag.psize, @class = "pagination", onchange = "this.form.submit()"}))
+                        @Html.PagedListPager(Model, page => Url.Action("Index",
+                         new {  searchString = ViewBag.Sub, Year = ViewBag.Yr,Month= ViewBag.Mnth,page,pgSize = ViewBag.psize }))
+                    </div>
                 </div>
             </div>
-        </div>
 
-    </form>
-</div>
+        </div>
+</form>

@@ -87,9 +87,7 @@
     }
     <br />
     <div class="container-fluid">
-        <form>
-            @using (Html.BeginForm())
-            {
+
                 <br />
                 <div class="container-fluid">
                     <div class="row">
@@ -97,7 +95,7 @@
                             Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
 
                             @Html.PagedListPager(Model, page => Url.Action("AllActiveClients",
-                            new { page, pgSize = ViewBag.psize, @class = "pagination" }))
+                            new { searchString = ViewBag.Sub,page,pgSize = ViewBag.psize}))
                         </div>
 
 
@@ -108,8 +106,5 @@
                     </div>
                 </div>
                 <br/>
-
-            }
-        </form>
     </div>
 </div>

@@ -126,6 +126,8 @@ namespace Alliance_for_Life.Controllers
 
         public ActionResult Reports(string sortOrder, Guid? searchString, int? yearsearch, string currentFilter, int? page, int? pgSize)
         {
+            ViewBag.Sub = searchString;
+
             ViewBag.Subcontractor = new SelectList(db.SubContractors.OrderBy(a => a.OrgName), "SubcontractorId", "OrgName");
 
             if (searchString != null)

@@ -21,6 +21,10 @@ namespace Alliance_for_Life.Controllers
         // GET: ParticipationCost
         public ActionResult Index(string sortOrder, Guid? searchString, string Month, int? Year, string currentFilter, int? page, int? pgSize)
         {
+            ViewBag.Sub = searchString;
+            ViewBag.Yr = Year;
+            ViewBag.Mnth = Month;
+
             ViewBag.CurrentSort = sortOrder;
             var datelist = Enumerable.Range(System.DateTime.Now.Year, 5).ToList();
             ViewBag.Year = new SelectList(datelist);
@@ -153,6 +157,10 @@ namespace Alliance_for_Life.Controllers
 
         public ActionResult TotalCostReport(string sortOrder, Guid? searchString, string Month, int? Year, string currentFilter, int? page, int? pgSize)
         {
+            ViewBag.Sub = searchString;
+            ViewBag.Yr = Year;
+            ViewBag.Mnth = Month;
+
             ViewBag.CurrentSort = sortOrder;
             var datelist = Enumerable.Range(System.DateTime.Now.Year, 5).ToList();
             ViewBag.Year = new SelectList(datelist);

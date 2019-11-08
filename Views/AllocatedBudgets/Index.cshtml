@@ -417,7 +417,7 @@
                             Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
 
                             @Html.PagedListPager(Model, page => Url.Action("Index",
-                                new { page, pgSize = ViewBag.psize, @class = "pagination" }))
+                                new {Year = ViewBag.Yr, page, pgSize = ViewBag.psize }))
                         </div>
                     </div>
                 </div>

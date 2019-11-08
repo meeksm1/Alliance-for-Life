@@ -22,6 +22,9 @@ namespace Alliance_for_Life.Controllers
         // GET: Surveys
         public ActionResult Index(string sortOrder, Guid? searchString, string Month, string currentFilter, int? page, int? pgSize)
         {
+            ViewBag.Sub = searchString;
+            ViewBag.Mnth = Month;
+
             ViewBag.Month = new SelectList(Enum.GetValues(typeof(Months)).Cast<Months>());
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";

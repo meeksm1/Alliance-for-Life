@@ -21,8 +21,13 @@ namespace Alliance_for_Life.Controllers
         // GET: DirectDeposits
         public ActionResult Index(string sortOrder, Guid? searchString, string Month, int? Year, string currentFilter, int? page, int? pgSize)
         {
-            DirectDeposits directdepo = new DirectDeposits();
            
+            DirectDeposits directdepo = new DirectDeposits();
+
+            ViewBag.Sub = searchString;
+            ViewBag.Yr = Year;
+            ViewBag.Mnth = Month;
+
             ViewBag.CurrentSort = sortOrder;
             var datelist = Enumerable.Range(System.DateTime.Now.Year, 5).ToList();
             ViewBag.Year = new SelectList(datelist);
@@ -30,6 +35,9 @@ namespace Alliance_for_Life.Controllers
             ViewBag.YearSortParm = sortOrder == "Year" ? "year_desc" : "Year";
             ViewBag.Subcontractor = new SelectList(db.SubContractors.OrderBy(a => a.OrgName), "SubcontractorId", "OrgName");
             ViewBag.Month = new SelectList(Enum.GetValues(typeof(Months)).Cast<Months>());
+
+
+           
             //looking for the searchstring
             if (searchString != null)
             {
@@ -104,7 +112,7 @@ namespace Alliance_for_Life.Controllers
                 else
                 {
                     var regionSearch = Enum.Parse(typeof(Months), Month);
-                    depodb = depodb.Where(r => r.AdminCost.Month == (Months)regionSearch && r.AdminCost.Year == yearSearch && r.AdminCost.Subcontractor.SubcontractorId == searchString).ToList();
+                    depodb = depodb.Where(r => r.AdminCost.Month == (Months)regionSearch && r.AdminCost.Year == yearSearch && r.AdminCost.SubcontractorId == searchString ).ToList();
                 }
             }
             else

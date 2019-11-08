@@ -19,7 +19,7 @@ namespace Alliance_for_Life.Controllers
         {
             //variable that stores the current year
             var year_search = DateTime.Now.Year;
-
+            ViewBag.Yr = Year;
             //Starting Deposit Balance
             var beginingBalance = 0;
             ViewBag.BegBal = beginingBalance;

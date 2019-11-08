@@ -199,6 +199,7 @@ namespace Alliance_for_Life.Controllers
 
         public ViewResult AllActiveClients(string sortOrder, Guid? searchString, string currentFilter, int? page, int? pgSize)
         {
+            ViewBag.Sub = searchString;
             ViewBag.CurrentSort = sortOrder;
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
@@ -319,6 +320,7 @@ namespace Alliance_for_Life.Controllers
 
         public ActionResult ActiveClients(string sortOrder, string searchString, string currentFilter, int? page, int? pgSize)
         {
+            ViewBag.Sub = searchString;
             ViewBag.CurrentSort = sortOrder;
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
@@ -449,6 +451,7 @@ namespace Alliance_for_Life.Controllers
 
         public ActionResult AllNonActiveClients(string sortOrder, Guid? searchString, string currentFilter, int? page, int? pgSize)
         {
+            ViewBag.Sub = searchString;
             ViewBag.CurrentSort = sortOrder;
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
@@ -562,6 +565,7 @@ namespace Alliance_for_Life.Controllers
 
         public ActionResult NonActiveClients(string sortOrder, string searchString, string currentFilter, int? page, int? pgSize)
         {
+            ViewBag.Sub = searchString;
             ViewBag.CurrentSort = sortOrder;
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";

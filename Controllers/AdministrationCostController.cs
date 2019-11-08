@@ -21,6 +21,10 @@ namespace Alliance_for_Life.Controllers
         // GET: AdministrationCost
         public ActionResult Index(string sortOrder, Guid? searchString, string Month, int? Year, string currentFilter, int? page, int? pgSize)
         {
+            ViewBag.Sub = searchString;
+            ViewBag.Yr = Year;
+            ViewBag.Mnth = Month;
+
             //paged view
             ViewBag.CurrentSort = sortOrder;
             var datelist = Enumerable.Range(System.DateTime.Now.Year, 5).ToList();

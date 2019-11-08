@@ -83,7 +83,7 @@
                                 Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
 
                                 @Html.PagedListPager(Model, page => Url.Action("Index",
-                                   new { page, pgSize = ViewBag.psize, @class = "pagination"}))
+                                   new { searchString = ViewBag.Sub,Month= ViewBag.Mnth,page,pgSize = ViewBag.psize}))
                             </div>
                             <div class="col-sm-2">
                                 Results per Page:
