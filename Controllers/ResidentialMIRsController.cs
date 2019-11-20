@@ -27,7 +27,22 @@ namespace Alliance_for_Life.Controllers
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
             ViewBag.Subcontractor = new SelectList(db.SubContractors.OrderBy(a => a.OrgName), "SubcontractorId", "OrgName");
+            //assign default values if Year is empty
+            if (String.IsNullOrEmpty(Year.ToString()))
+            {
+                Year = DateTime.Now.Year;
+            }
 
+            //assign default values if Month is empty
+            if (String.IsNullOrEmpty(Month))
+            {
+                Month = DateTime.Now.Month.ToString();
+                ViewBag.Title = "Monthly Service Report for " + DateTime.Now.ToString("MMMM") + "-" + Year;
+            }
+            else
+            {
+                ViewBag.Title = "Monthly Service Report for " + Month + "-" + Year;
+            }
             //looking for the searchstring
             if (searchString != null)
             {
@@ -85,8 +100,6 @@ namespace Alliance_for_Life.Controllers
                 nonresidental = nonresidental.Where(a => a.Subcontractor.SubcontractorId == searchString).ToList();
             }
 
-
-
             switch (sortOrder)
             {
                 case "name_desc":
@@ -121,7 +134,6 @@ namespace Alliance_for_Life.Controllers
             };
 
             ViewBag.nonResidentialMIRs = nonresidental.ToList();
-
             return View(ressearch.ToPagedList(pageNumber, defaSize));
         }
 

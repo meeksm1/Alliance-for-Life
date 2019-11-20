@@ -64,15 +64,6 @@ namespace Alliance_for_Life.Controllers
                 ViewBag.Title = "Direct Deposit Summary for " + Month + "-" + Year;
             }
 
-           
-
-            //title
-           
-
-           //calculating the direct deposit per month 
-
-
-
            var directdeposit = from a in db.AdminCosts
                                 join p in db.ParticipationServices on a.SubcontractorId equals p.SubcontractorId
                                 where (a.Year == Year && p.Year == Year) && (a.Month.ToString() == Month && p.Month.ToString() == Month)
@@ -235,20 +226,23 @@ namespace Alliance_for_Life.Controllers
             base.Dispose(disposing);
         }
         //export excel sheets
+        
         [HttpPost]
-        public FileResult Export()
+        public FileResult Export(string Month, int? Year)
         {
-            string Month = Request["Month"];
-            string Year = Request["Year"];
+
+            ViewData["Month"] = Month;
+            ViewData["Year"]  = Year;
+
             //assign default values if Month is empty
             if (String.IsNullOrEmpty(Month))
             {
                 Month = DateTime.Now.ToString("MMM");
             }
             //assign default values if Year is empty
-            if (String.IsNullOrEmpty(Year))
+            if (String.IsNullOrEmpty(Year.ToString()))
             {
-                Year = DateTime.Now.Year.ToString();
+                Year = DateTime.Now.Year;
             }
             DataTable dt = new DataTable("Direct Deposit");
             dt.Columns.AddRange(new DataColumn[8]
@@ -266,7 +260,7 @@ namespace Alliance_for_Life.Controllers
 
             var directdeposit = from a in db.AdminCosts
                                 join p in db.ParticipationServices on a.SubcontractorId equals p.SubcontractorId
-                                where (a.Year.ToString() == Year && p.Year.ToString() == Year) && (a.Month.ToString() == Month && p.Month.ToString() == Month)
+                                where (a.Year == Year && p.Year == Year) && (a.Month.ToString() == Month && p.Month.ToString() == Month)
                                 select new DirectDepositView
                                 {
                                     AdminCost = a,

@@ -242,8 +242,8 @@
 
         </thead>
 
-        @foreach (var items in ViewBag.nonResidentialMIRs)
-        {
+        @foreach (var items in ViewBag.nonResidentialMIRs)       
+            {
             <tr>
                 <td>
                     @items.Subcontractor.OrgName
@@ -299,24 +299,26 @@
 
             </tr>
         }
-        <tr>
-            <td style="background-color:lightgreen; color:black;font-size:20px;">Total:</td>
-            <td style="background-color:lightgreen; color:black;font-size:20px;"></td>
-            <td style="background-color:lightgreen; color:black;font-size:20px;"></td>
-            <td style="background-color:lightgreen; color:black;font-size:20px;"></td>
-            <td style="background-color:lightgreen; color:black;font-size:20px;"></td>
-            <td style="background-color:lightgreen; color:black;font-size:20px;"></td>
-            <td style="background-color:lightgreen; color:black;font-size:20px;"></td>
-            <td style="background-color:lightgreen; color:black;font-size:20px;"></td>
-            <td style="background-color:lightgreen; color:black;font-size:20px;">@Model.Sum(a => a.TotEduClasses).ToString("#,##0")</td>
-            <td style="background-color:lightgreen; color:black;font-size:20px;">@Model.Sum(a => a.TotClientsinEduClasses).ToString("#,##0")</td>
-            <td style="background-color:lightgreen; color:black;font-size:20px;">@Model.Sum(a => a.TotCaseHrs).ToString("#,##0")</td>
-            <td style="background-color:lightgreen; color:black;font-size:20px;">@Model.Sum(a => a.TotClientsCaseHrs).ToString("#,##0")</td>
-            <td style="background-color:lightgreen; color:black;font-size:20px;">@Model.Sum(a => a.TotOtherClasses).ToString("#,##0")</td>
-            <td style="background-color:lightgreen; color:black;font-size:20px;"></td>
-            <td style="background-color:lightgreen; color:black;font-size:20px;"></td>
 
-        </tr>
+    <tr>
+        <td style="background-color:lightgreen; color:black;font-size:20px;">Total:</td>
+        <td style="background-color:lightgreen; color:black;font-size:20px;"></td>
+        <td style="background-color:lightgreen; color:black;font-size:20px;"></td>
+        <td style="background-color:lightgreen; color:black;font-size:20px;">@Model.Sum(a => a.TotA2AEnrollment).ToString("#,##0")</td>
+        <td style="background-color:lightgreen; color:black;font-size:20px;">@Model.Sum(a => a.MA2Apercent).ToString("#,##0")</td>
+        <td style="background-color:lightgreen; color:black;font-size:20px;">@Model.Sum(a => a.TotOverallServed).ToString("#,##0")</td>
+        <td style="background-color:lightgreen; color:black;font-size:20px;">@Model.Sum(a => a.ClientsJobEduServ).ToString("#,##0")</td>
+        <td style="background-color:lightgreen; color:black;font-size:20px;">@Model.Sum(a => a.ParticipatingFathers).ToString("#,##0")</td>
+        <td style="background-color:lightgreen; color:black;font-size:20px;">@Model.Sum(a => a.TotEduClasses).ToString("#,##0")</td>
+        <td style="background-color:lightgreen; color:black;font-size:20px;">@Model.Sum(a => a.TotClientsinEduClasses).ToString("#,##0")</td>
+        <td style="background-color:lightgreen; color:black;font-size:20px;">@Model.Sum(a => a.TotCaseHrs).ToString("#,##0")</td>
+        <td style="background-color:lightgreen; color:black;font-size:20px;">@Model.Sum(a => a.TotClientsCaseHrs).ToString("#,##0")</td>
+        <td style="background-color:lightgreen; color:black;font-size:20px;">@Model.Sum(a => a.TotOtherClasses).ToString("#,##0")</td>
+        <td style="background-color:lightgreen; color:black;font-size:20px;"></td>
+        <td style="background-color:lightgreen; color:black;font-size:20px;"></td>
+     
+
+    </tr>
     </table>
     <div class="container-fluid">
         <form>

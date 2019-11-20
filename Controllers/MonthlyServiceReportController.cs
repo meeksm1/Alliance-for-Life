@@ -17,6 +17,11 @@ namespace Alliance_for_Life.Controllers
         // GET: MonthlyServiceReport
         public ActionResult Index(string sortOrder, int? Year, string Month, Guid? searchString, string currentFilter, int? page, int? pgSize)
         {
+
+            ViewBag.Sub = searchString;
+            ViewBag.Yr = Year;
+            ViewBag.Mnth = Month;
+
             var datelist = Enumerable.Range(System.DateTime.Now.Year, 5).ToList();
             ViewBag.Year = new SelectList(datelist);
             ViewBag.Month = new SelectList(Enum.GetValues(typeof(Months)).Cast<Months>());
@@ -53,28 +58,27 @@ namespace Alliance_for_Life.Controllers
                 ViewBag.Title = "Monthly Service Report for " + Month + "-" + Year;
             }
 
-            //var residential = from r in db.ResidentialMIRs
-            //                     select new MonthlyServices
-            //                     {
-            //                         Residential = r
-            //                     };
 
-            //var nonresidential = from n in db.NonResidentialMIRs
-            //                  select new MonthlyServices
-            //                  {
-            //                     NonResidential = n
-            //                  };
 
             var monthlyservice = from a in db.ResidentialMIRs
-            where a.Year == Year && a.Month.ToString() == Month
-            from p in db.NonResidentialMIRs
-            where p.Year == Year && p.Months.ToString() == Month
-            select new MonthlyServices
-            {
-                Residential = a,
-                NonResidential = p
-            };
+                                 where a.Year == Year && a.Month.ToString() == Month
+                                 from p in db.NonResidentialMIRs
+                                 where p.Year == Year && p.Months.ToString() == Month
+                                 select new MonthlyServices
+                                 {
+                                     Residential = a,
+                                     NonResidential = p
+                                 };
 
+
+            //var monthlyservice = from a in db.ResidentialMIRs
+            //                     join p in db.NonResidentialMIRs on a.SubcontractorId equals p.SubcontractorId
+            //                    where (a.Year == Year && p.Year == Year) && (a.Month.ToString() == Month && p.Months.ToString() == Month)
+            //                    select new MonthlyServices
+            //                    {
+            //                        Residential = a,
+            //                           NonResidential = p
+            //                    };
             //if year is not null
             if (Year != null)
             {

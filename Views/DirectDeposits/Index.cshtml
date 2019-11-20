@@ -9,7 +9,7 @@
 <h2 align="center" style="color:red;">@ViewBag.Title</h2>
 <br />
 <form>
-    @using (Html.BeginForm(FormMethod.Get))
+    @using (Html.BeginForm(FormMethod.Post))
     {
         <div class="container-fluid">
             <div class="row">
@@ -17,10 +17,10 @@
                     Search By Organization: @Html.DropDownList("searchString", (IEnumerable<SelectListItem>)ViewBag.Subcontractor, "", htmlAttributes: new { @class = "form-control", onchange = "this.form.submit()" })
                 </div>
                 <div class="col-xs-5th-1 col-sm-3" style="align-content:center;">
-                    Search By Year: @Html.DropDownList("Year", null, "Select Year", htmlAttributes: new { @class = "form-control", sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter, onchange = "this.form.submit()" })
+                    Search By Year: @Html.DropDownList("Year", null, "Select Year", htmlAttributes: new { @class = "form-control", sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter, onchange = "this.form.submit()" , name="Year"})
                 </div>
                 <div class="col-xs-5th-1 col-sm-3" style="align-content:center;">
-                    Search By Month: @Html.DropDownList("Month", null, "Select Month", htmlAttributes: new { @class = "form-control", sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter, onchange = "this.form.submit()" })
+                    Search By Month: @Html.DropDownList("Month", null, "Select Month", htmlAttributes: new { @class = "form-control", sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter, onchange = "this.form.submit()" , name="Month" })
                 </div>
                 <div class="col-xs-5th-1 col-sm-3" style="align-content:center;">
                     Results per Page: @Html.DropDownList("pgSize", (IEnumerable<SelectListItem>)ViewBag.PageSize, "", htmlAttributes: new { @class = "form-control", sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter, onchange = "this.form.submit()" })
@@ -91,7 +91,7 @@
           
     </table>
     <br />
-    @using (Html.BeginForm("Export", "DirectDeposits", FormMethod.Post))
+    @using (Html.BeginForm("Export", "DirectDeposits", FormMethod.Post ))
     {
         <input type="submit" value="Export Direct Deposit" class="btn btn-group-sm btn-primary" />
 
