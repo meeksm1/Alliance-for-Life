@@ -135,7 +135,7 @@
                 @if (!User.IsInRole("Admin"))
                 {
                     <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.AdminCostId })
+                        @Html.ActionLink("Edit", "Edit", "AdministrationCost", new { id = item.AdminCostId })
                     </td>
                 }
 
@@ -414,12 +414,12 @@
                 @if (!User.IsInRole("Admin"))
                 {
                     <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.PSId })
+                        @Html.ActionLink("Edit", "Edit", "ParticipationService", new { id = item.PSId })
                     </td>
                 }
 
                 <td>
-                    @Html.ActionLink("Details", "Details", new { id = item.PSId })
+                    @Html.ActionLink("Details", "Details","ParticipationService", new { id = item.PSId },null)
                 </td>
                 <td>
                     @item.Subcontractor.OrgName

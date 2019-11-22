@@ -8,12 +8,12 @@
 <link href="~/Scripts/Invoice/style.css" rel="stylesheet" />
 <div class="toolbar hidden-print container invoice">
     <div class="text-right">
-        <button class="btn btn-info" style="border:none; background:none;" onclick="location.href='@Url.Action("Index","Invoices")'" )><i class="fa fa-arrow-circle-left" style="color:red; font-size:36px;"></i> </button>
+        <button class="btn btn-info" style="border:none; background:none;" onclick="location.href='@Url.Action("Index","Invoices")'" )><i class="fa fa-arrow-circle-left" style="color:red; font-size:36px;"></i>Back to Invoices</button>
 
         <button id="printInvoice" class="btn btn-success" onclick="window.print();"><i class="fa fa-print"></i> Print</button>
         <a href="">
         </a>
-        <button id="downloadpdfe" class="btn btn-primary" onclick="window.print();"> <i class="fa fa-arrow-down"></i></button>
+        <button id="downloadpdfe" class="btn btn-primary" onclick="window.print();"> <i class="fa fa-arrow-down"></i>Download PDF</button>
     </div>
 </div>
 <div class="container invoice" style="padding-top:-10px;" id="invoice">
