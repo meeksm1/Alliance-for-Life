@@ -20,7 +20,7 @@ namespace Alliance_for_Life.Models
         public DbSet<A2AStateDeposits> StateDeposit { get; set; }
         public DbSet<DirectDeposits> DirectDeposit { get; set; }
         public ApplicationDbContext()
-             : base("DefaultConnection", throwIfV1Schema: false)
+             : base("AFLLocalConnection", throwIfV1Schema: false)
             
         {
         }

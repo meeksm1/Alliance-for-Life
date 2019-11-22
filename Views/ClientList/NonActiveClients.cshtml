@@ -71,7 +71,7 @@
         <tr></tr>
     </table>
 
-    <h3>Total Non-Active Clients: @Model.Count()</h3>
+    <h3>Total Non-Active Clients: @ViewBag.NonActive</h3>
 
     @using (Html.BeginForm("ExportNonActive", "ClientList", FormMethod.Post))
     {
