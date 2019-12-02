@@ -134,10 +134,10 @@ namespace Alliance_for_Life.Controllers
             return View();
         }
 
-        public ActionResult DownloadViewAsPDF(string encryptId)
-        {
-            return new Rotativa.ActionAsPdf("Download", new { encryptReportId = encryptId }) { FileName = "Invoice.pdf" };
-        }
+        //public ActionResult DownloadViewAsPDF(string encryptId)
+        //{
+        //    return new Rotativa.ActionAsPdf("Download", new { encryptReportId = encryptId }) { FileName = "Invoice.pdf" };
+        //}
 
         //Generate Invoice
         public ActionResult GenerateInvoice(string orgname, string Month, int Year, string billingdate)

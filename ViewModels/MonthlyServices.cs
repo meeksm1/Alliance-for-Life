@@ -8,7 +8,7 @@ namespace Alliance_for_Life.ViewModels
 {
     public class MonthlyServices
     {
-        public ResidentialMIR Residential { get; set; }
-        public NonResidentialMIR NonResidential { get; set; }
+        public IEnumerable<ResidentialMIR> Residential { get; set; }
+        public IEnumerable<NonResidentialMIR> NonResidential { get; set; }
     }
 }

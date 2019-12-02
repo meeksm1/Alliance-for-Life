@@ -1,0 +1,23 @@
+﻿@model Alliance_for_Life.ViewModels.MonthlyServices
+
+@{
+    ViewBag.Title = "MultiData";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>MultiData</h2>
+
+<div>
+    @{ WebGrid obj = new WebGrid(source: Model.Residential, canPage: true, rowsPerPage: 10);}
+    @obj.GetHtml()
+</div>
+<br />
+<div>
+    @{ WebGrid obj1 = new WebGrid(source: Model.NonResidential, canPage: true, rowsPerPage: 10);}
+
+    @obj1.GetHtml()
+</div>
+
+<div>
+    
+</div>

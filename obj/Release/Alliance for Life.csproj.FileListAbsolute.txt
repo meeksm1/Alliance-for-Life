@@ -51,7 +51,6 @@ C:\Users\manoj\OneDrive\Documents\GitHub\Alliance-for-Life\bin\Alliance for Life
 C:\Users\manoj\OneDrive\Documents\GitHub\Alliance-for-Life\bin\Newtonsoft.Json.dll
 C:\Users\manoj\OneDrive\Documents\GitHub\Alliance-for-Life\bin\PagedList.dll
 C:\Users\manoj\OneDrive\Documents\GitHub\Alliance-for-Life\bin\PagedList.Mvc.dll
-C:\Users\manoj\OneDrive\Documents\GitHub\Alliance-for-Life\bin\Rotativa.dll
 C:\Users\manoj\OneDrive\Documents\GitHub\Alliance-for-Life\bin\PagedList.xml
 C:\Users\manoj\OneDrive\Documents\GitHub\Alliance-for-Life\bin\PagedList.Mvc.xml
 C:\Users\manoj\OneDrive\Documents\GitHub\Alliance-for-Life\obj\Release\Alliance_for_Life.Migrations.initialcreation.resources

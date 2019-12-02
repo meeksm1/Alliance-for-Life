@@ -784,6 +784,7 @@
     <Content Include="Views\DirectDeposits\Edit.cshtml" />
     <Content Include="Views\DirectDeposits\Index.cshtml" />
     <Content Include="Views\MonthlyServiceReport\Index.cshtml" />
+    <Content Include="Views\MonthlyServiceReport\MultiData.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config">
