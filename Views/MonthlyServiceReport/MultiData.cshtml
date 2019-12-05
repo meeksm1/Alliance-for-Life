@@ -1,4 +1,4 @@
-﻿@model Alliance_for_Life.ViewModels.MonthlyServices
+﻿@model PagedList.IPagedList<Alliance_for_Life.ViewModels.MonthlyServices>
 
 @{
     ViewBag.Title = "MultiData";
@@ -19,5 +19,81 @@
 </div>
 
 <div>
-    
+
 </div>
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container">
+        <h2>Residential</h2>
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a href="#" class="navbar-brand">Search</a>
+                </div>
+                <div class="collapse navbar-collapse">
+                    @using (Html.BeginForm("MultiData", "MonthlyServiceReport", FormMethod.Get, new { @class = "navbar-form navbar-left" }))
+                    {
+                        <div class="form-group">
+                            <input type="text" name="search" value="@ViewBag.search" class="form-control" placeholder="search" />
+                        </div>
+                        <button type="submit" value="Search" class="btn btn-success">Search</button>
+                    }
+                </div>
+            </div>
+        </nav>
+        <div>
+            @{
+             
+            } 
+              @obj.Table(
+                  tableStyle: "table table-responsive table-bordered",
+                  columns: obj.Columns(
+                  obj.Column(columnName: "ID", header: "ID"),
+                obj.Column(columnName: "MA2Apercent", header: "	MA2Apercent"),
+                obj.Column(columnName: "ParticipatingFathers", header: "ParticipatingFathers"),
+                obj.Column(columnName: "TotA2ABedNights", header: "TotA2ABedNights"),
+                obj.Column(columnName: "TotA2AEnrollment", header: "TotA2AEnrollment")
+                )
+            )
+
+            <div class="row">
+                <div class="col-sm-6">
+                  @obj.PagerList(mode: WebGridPagerModes.All, paginationStyle: "pagination pagination-small pagination-right")*
+                </div>
+            </div>
+
+            @Html.Hidden("dir", obj.SortDirection)
+            @Html.Hidden("col", obj.SortColumn)
+
+        </div>
+    </div>
+    <script src="~/Scripts/jquery-3.1.1.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script>
+        $(function () {
+            try {
+                var dir = $('#dir').val();
+                var col = $('#col').val();
+                var header = $("th a[href*=" + col + "]");
+                if (dir == "Ascending") {
+                    header.text(header.text() + "  ?")
+                }
+                if (dir == "Descending") {
+                    header.text(header.text() + "  ?");
+                }
+
+            } catch (e) {
+
+            }
+        })
+    </script>
+</body>
+</html>
