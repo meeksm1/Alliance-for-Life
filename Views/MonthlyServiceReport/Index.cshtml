@@ -1,4 +1,4 @@
-﻿@model PagedList.IPagedList<Alliance_for_Life.ViewModels.MonthlyServices>
+﻿@model Alliance_for_Life.ViewModels.MonthlyServices
 
 
 <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
@@ -109,60 +109,58 @@
 
         </thead>
 
-        @foreach (var item in Model)
+        @foreach (var item in Model.Residential)
         {
 
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Residential.Select(a => a.Subcontractor.OrgName))
+                    @item.Subcontractor.OrgName
                 </td>
                 <td>
-                    @item.Residential.Select(a => a.Month)
+                    @item.Month
                 </td>
                 <td>
-                    @item.Residential.Select(a => a.Year)
+                    @item.Year
                 </td>
-            </tr>
-        }
-        @*<td>
-            @item.Residential.Select(a=>a.TotBedNights).ToString("#,##0")
-        </td>*@
-        @*<td>
-            @item.Residential.TotA2AEnrollment.ToString("#,##0")
-        </td>
-        <td>
-            @item.Residential.TotA2ABedNights.ToString("#,##0")
-        </td>
-        <td>
-            @item.Residential.ClientsJobEduServ.ToString("#,##0")
-        </td>
-        <td>
-            @item.Residential.ParticipatingFathers.ToString("#,##0")
-        </td>
-        <td>
-            @item.Residential.TotEduClasses.ToString("#,##0")
-        </td>
-        <td>
-            @item.Residential.TotClientsinEduClasses.ToString("#,##0")
-        </td>
-        <td>
-            @item.Residential.TotCaseHrs.ToString("#,##0")
-        </td>
-        <td>
-            @item.Residential.TotClientsCaseHrs.ToString("#,##0")
-        </td>
-        <td>
-            @item.Residential.TotOtherClasses.ToString("#,##0")
-        </td>*@
-        @*<td>
-                    <a href="@Url.Action("Details", "ResidentialMIRs", new { id = item.Residential.Id }, Request.Url.Scheme)">
+                <td>
+                    @item.TotBedNights.ToString("#,##0")
+                </td>
+                <td>
+                    @item.TotA2AEnrollment.ToString("#,##0")
+                </td>
+                <td>
+                    @item.TotA2ABedNights.ToString("#,##0")
+                </td>
+                <td>
+                    @item.ClientsJobEduServ.ToString("#,##0")
+                </td>
+                <td>
+                    @item.ParticipatingFathers.ToString("#,##0")
+                </td>
+                <td>
+                    @item.TotEduClasses.ToString("#,##0")
+                </td>
+                <td>
+                    @item.TotClientsinEduClasses.ToString("#,##0")
+                </td>
+                <td>
+                    @item.TotCaseHrs.ToString("#,##0")
+                </td>
+                <td>
+                    @item.TotClientsCaseHrs.ToString("#,##0")
+                </td>
+                <td>
+                    @item.TotOtherClasses.ToString("#,##0")
+                </td>
+                <td>
+                    <a href="@Url.Action("Details", "ResidentialMIRs", new { id = item.Id }, Request.Url.Scheme)">
                         <i style="font-size:16px; color:#3498DB" class="fa">&#xf06e;</i>
                     </a>
 
                 </td>
 
                 <td>
-                    <a href="@Url.Action("Edit", "ResidentialMIRs", new { id = item.Residential.Id }, Request.Url.Scheme)">
+                    <a href="@Url.Action("Edit", "ResidentialMIRs", new { id = item.Id }, Request.Url.Scheme)">
                         <i style="font-size:16px; color:#3498DB" class="fa">&#xf044;</i>
                     </a>
                 </td>
@@ -174,20 +172,20 @@
             <td style="background-color:lightgreen; color:black;font-size:20px;">Total:</td>
             <td style="background-color:lightgreen; color:black;font-size:20px;"></td>
             <td style="background-color:lightgreen; color:black;font-size:20px;"></td>
-            <td style="background-color:lightgreen; color:black;font-size:20px;">@Model.Sum(a => a.Residential.TotBedNights).ToString("#,##0")</td>
-            <td style="background-color:lightgreen; color:black;font-size:20px;">@Model.Sum(a => a.Residential.TotA2AEnrollment).ToString("#,##0")</td>
-            <td style="background-color:lightgreen; color:black;font-size:20px;">@Model.Sum(a => a.Residential.TotA2ABedNights).ToString("#,##0")</td>
-            <td style="background-color:lightgreen; color:black;font-size:20px;">@Model.Sum(a => a.Residential.ClientsJobEduServ).ToString("#,##0")</td>
-            <td style="background-color:lightgreen; color:black;font-size:20px;">@Model.Sum(a => a.Residential.ParticipatingFathers).ToString("#,##0")</td>
-            <td style="background-color:lightgreen; color:black;font-size:20px;">@Model.Sum(a => a.Residential.TotEduClasses).ToString("#,##0")</td>
-            <td style="background-color:lightgreen; color:black;font-size:20px;">@Model.Sum(a => a.Residential.TotClientsinEduClasses).ToString("#,##0")</td>
-            <td style="background-color:lightgreen; color:black;font-size:20px;">@Model.Sum(a => a.Residential.TotCaseHrs).ToString("#,##0")</td>
-            <td style="background-color:lightgreen; color:black;font-size:20px;">@Model.Sum(a => a.Residential.TotClientsCaseHrs).ToString("#,##0")</td>
-            <td style="background-color:lightgreen; color:black;font-size:20px;">@Model.Sum(a => a.Residential.TotOtherClasses).ToString("#,##0")</td>
+            <td style="background-color:lightgreen; color:black;font-size:20px;"> @Model.Residential.Sum(a => a.TotBedNights).ToString("#,##0")</td>
+            <td style="background-color:lightgreen; color:black;font-size:20px;">@Model.Residential.Sum(a => a.TotA2AEnrollment).ToString("#,##0")</td>
+            <td style="background-color:lightgreen; color:black;font-size:20px;">@Model.Residential.Sum(a => a.TotA2ABedNights).ToString("#,##0")</td>
+            <td style="background-color:lightgreen; color:black;font-size:20px;">@Model.Residential.Sum(a => a.ClientsJobEduServ).ToString("#,##0")</td>
+            <td style="background-color:lightgreen; color:black;font-size:20px;">@Model.Residential.Sum(a => a.ParticipatingFathers).ToString("#,##0")</td>
+            <td style="background-color:lightgreen; color:black;font-size:20px;">@Model.Residential.Sum(a => a.TotEduClasses).ToString("#,##0")</td>
+            <td style="background-color:lightgreen; color:black;font-size:20px;">@Model.Residential.Sum(a => a.TotClientsinEduClasses).ToString("#,##0")</td>
+            <td style="background-color:lightgreen; color:black;font-size:20px;">@Model.Residential.Sum(a => a.TotCaseHrs).ToString("#,##0")</td>
+            <td style="background-color:lightgreen; color:black;font-size:20px;">@Model.Residential.Sum(a => a.TotClientsCaseHrs).ToString("#,##0")</td>
+            <td style="background-color:lightgreen; color:black;font-size:20px;">@Model.Residential.Sum(a => a.TotOtherClasses).ToString("#,##0")</td>
             <td style="background-color:lightgreen; color:black;font-size:20px;"></td>
             <td style="background-color:lightgreen; color:black;font-size:20px;"></td>
 
-        </tr>*@
+        </tr>
 
     </table>
 
@@ -247,57 +245,57 @@
 
         </thead>
 
-        @*@foreach (var items in Model)
+        @foreach (var items in Model.NonResidential)
         {
             <tr>
                 <td>
-                    @items.NonResidential.Subcontractor.OrgName
+                    @items.Subcontractor.OrgName
                 </td>
                 <td>
-                    @items.NonResidential.Months
+                    @items.Months
                 </td>
                 <td>
-                    @items.NonResidential.Year
+                    @items.Year
                 </td>
                 <td>
-                    @items.NonResidential.TotA2AEnrollment.ToString("#,##0")
+                    @items.TotA2AEnrollment.ToString("#,##0")
                 </td>
                 <td>
-                    @items.NonResidential.MA2Apercent.ToString("#,##0")
+                    @items.MA2Apercent.ToString("#,##0")
                 </td>
                 <td>
-                    @items.NonResidential.TotOverallServed.ToString("#,##0")
+                    @items.TotOverallServed.ToString("#,##0")
                 </td>
                 <td>
-                    @items.NonResidential.ClientsJobEduServ.ToString("#,##0")
+                    @items.ClientsJobEduServ.ToString("#,##0")
                 </td>
                 <td>
-                    @items.NonResidential.ParticipatingFathers.ToString("#,##0")
+                    @items.ParticipatingFathers.ToString("#,##0")
                 </td>
                 <td>
-                    @items.NonResidential.TotEduClasses.ToString("#,##0")
+                    @items.TotEduClasses.ToString("#,##0")
                 </td>
                 <td>
-                    @items.NonResidential.TotClientsinEduClasses.ToString("#,##0")
+                    @items.TotClientsinEduClasses.ToString("#,##0")
                 </td>
                 <td>
-                    @items.NonResidential.TotCaseHrs.ToString("#,##0")
+                    @items.TotCaseHrs.ToString("#,##0")
                 </td>
                 <td>
-                    @items.NonResidential.TotClientsCaseHrs.ToString("#,##0")
+                    @items.TotClientsCaseHrs.ToString("#,##0")
                 </td>
                 <td>
-                    @items.NonResidential.TotOtherClasses.ToString("#,##0")
+                    @items.TotOtherClasses.ToString("#,##0")
                 </td>
                 <td>
-                    <a href="@Url.Action("Details", "NonResidentialMIRs", new { id = items.NonResidential.Id }, Request.Url.Scheme)">
+                    <a href="@Url.Action("Details", "NonResidentialMIRs", new { id = items.Id }, Request.Url.Scheme)">
                         <i style="font-size:16px; color:#3498DB" class="fa">&#xf06e;</i>
                     </a>
 
                 </td>
 
                 <td>
-                    <a href="@Url.Action("Edit", "NonResidentialMIRs", new { id = items.NonResidential.Id }, Request.Url.Scheme)">
+                    <a href="@Url.Action("Edit", "NonResidentialMIRs", new { id = items.Id }, Request.Url.Scheme)">
                         <i style="font-size:16px; color:#3498DB" class="fa">&#xf044;</i>
                     </a>
                 </td>
@@ -308,42 +306,19 @@
             <td style="background-color:lightgreen; color:black;font-size:20px;">Total:</td>
             <td style="background-color:lightgreen; color:black;font-size:20px;"></td>
             <td style="background-color:lightgreen; color:black;font-size:20px;"></td>
-            <td style="background-color:lightgreen; color:black;font-size:20px;">@Model.Sum(a => a.NonResidential.TotA2AEnrollment).ToString("#,##0")</td>
-            <td style="background-color:lightgreen; color:black;font-size:20px;">@Model.Sum(a => a.NonResidential.MA2Apercent).ToString("#,##0")</td>
-            <td style="background-color:lightgreen; color:black;font-size:20px;">@Model.Sum(a => a.NonResidential.TotOverallServed).ToString("#,##0")</td>
-            <td style="background-color:lightgreen; color:black;font-size:20px;">@Model.Sum(a => a.NonResidential.ClientsJobEduServ).ToString("#,##0")</td>
-            <td style="background-color:lightgreen; color:black;font-size:20px;">@Model.Sum(a => a.NonResidential.ParticipatingFathers).ToString("#,##0")</td>
-            <td style="background-color:lightgreen; color:black;font-size:20px;">@Model.Sum(a => a.NonResidential.TotEduClasses).ToString("#,##0")</td>
-            <td style="background-color:lightgreen; color:black;font-size:20px;">@Model.Sum(a => a.NonResidential.TotClientsinEduClasses).ToString("#,##0")</td>
-            <td style="background-color:lightgreen; color:black;font-size:20px;">@Model.Sum(a => a.NonResidential.TotCaseHrs).ToString("#,##0")</td>
-            <td style="background-color:lightgreen; color:black;font-size:20px;">@Model.Sum(a => a.NonResidential.TotClientsCaseHrs).ToString("#,##0")</td>
-            <td style="background-color:lightgreen; color:black;font-size:20px;">@Model.Sum(a => a.NonResidential.TotOtherClasses).ToString("#,##0")</td>
+            <td style="background-color:lightgreen; color:black;font-size:20px;">@Model.NonResidential.Sum(a => a.TotA2AEnrollment).ToString("#,##0")</td>
+            <td style="background-color:lightgreen; color:black;font-size:20px;">@Model.NonResidential.Sum(a => a.MA2Apercent).ToString("#,##0")</td>
+            <td style="background-color:lightgreen; color:black;font-size:20px;">@Model.NonResidential.Sum(a => a.TotOverallServed).ToString("#,##0")</td>
+            <td style="background-color:lightgreen; color:black;font-size:20px;">@Model.NonResidential.Sum(a => a.ClientsJobEduServ).ToString("#,##0")</td>
+            <td style="background-color:lightgreen; color:black;font-size:20px;">@Model.NonResidential.Sum(a => a.ParticipatingFathers).ToString("#,##0")</td>
+            <td style="background-color:lightgreen; color:black;font-size:20px;">@Model.NonResidential.Sum(a => a.TotEduClasses).ToString("#,##0")</td>
+            <td style="background-color:lightgreen; color:black;font-size:20px;">@Model.NonResidential.Sum(a => a.TotClientsinEduClasses).ToString("#,##0")</td>
+            <td style="background-color:lightgreen; color:black;font-size:20px;">@Model.NonResidential.Sum(a => a.TotCaseHrs).ToString("#,##0")</td>
+            <td style="background-color:lightgreen; color:black;font-size:20px;">@Model.NonResidential.Sum(a => a.TotClientsCaseHrs).ToString("#,##0")</td>
+            <td style="background-color:lightgreen; color:black;font-size:20px;">@Model.NonResidential.Sum(a => a.TotOtherClasses).ToString("#,##0")</td>
             <td style="background-color:lightgreen; color:black;font-size:20px;"></td>
             <td style="background-color:lightgreen; color:black;font-size:20px;"></td>
 
-        </tr>*@
+        </tr>
     </table>
-
-    <div class="container-fluid">
-        <form>
-            @using (Html.BeginForm())
-            {
-                <br />
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-sm-4">
-                            Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
-
-                            @Html.PagedListPager(Model, page => Url.Action("Index",
-                            new { searchString = ViewBag.Sub, Year = ViewBag.Yr,Month= ViewBag.Mnth,page,pgSize = ViewBag.psize}))
-                        </div>
-                        <div class="col-sm-4">
-                            Results per Page:
-                            @Html.DropDownList("pgSize", (IEnumerable<SelectListItem>)ViewBag.PageSize, "", htmlAttributes: new { @class = "form-control", sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter, onchange = "this.form.submit()" })
-                        </div>
-                    </div>
-                </div>
-            }
-        </form>
-    </div>
 </div>

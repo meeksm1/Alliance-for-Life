@@ -107,6 +107,9 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Linq.Dynamic, Version=1.0.6132.35681, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\System.Linq.Dynamic.1.0.7\lib\net40\System.Linq.Dynamic.dll</HintPath>
+    </Reference>
     <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
       <Private>True</Private>
@@ -256,6 +259,7 @@
     <Compile Include="Controllers\ParticipationServiceController.cs" />
     <Compile Include="Controllers\ResidentialMIRsController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
+    <Compile Include="Controllers\TotalCostReportController.cs" />
     <Compile Include="DTO\Report .cs" />
     <Compile Include="Migrations\201910311551318_initialcreation.cs" />
     <Compile Include="Migrations\201910311551318_initialcreation.Designer.cs">
@@ -330,6 +334,7 @@
     <Compile Include="ViewModels\SetPasswordViewModel.cs" />
     <Compile Include="ViewModels\SubContractorFormViewModel.cs" />
     <Compile Include="ViewModels\SurveysViewModel.cs" />
+    <Compile Include="ViewModels\TotalCostReport.cs" />
     <Compile Include="ViewModels\VerifyCodeViewModel.cs" />
     <Compile Include="ViewModels\VerifyPhoneNumberViewModel.cs" />
   </ItemGroup>
@@ -623,19 +628,23 @@
     <Content Include="Scripts\Home\Test\style.css" />
     <Content Include="Scripts\Invoice\log0.png" />
     <Content Include="Scripts\Invoice\style.css" />
-    <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="App_Browsers\qt.browser" />
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Scripts\jquery-3.0.0-vsdoc.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Scripts\jquery-1.10.2.js" />
-    <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\jquery-3.0.0.js" />
     <Content Include="Scripts\jquery-3.0.0.min.js" />
     <Content Include="Scripts\jquery-3.0.0.slim.js" />
     <Content Include="Scripts\jquery-3.0.0.slim.min.js" />
     <Content Include="Scripts\jquery-3.0.0.slim.min.map" />
     <Content Include="Scripts\jquery-3.0.0.min.map" />
+    <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.4.1.js" />
+    <Content Include="Scripts\jquery-3.4.1.min.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.4.1.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
@@ -784,7 +793,7 @@
     <Content Include="Views\DirectDeposits\Edit.cshtml" />
     <Content Include="Views\DirectDeposits\Index.cshtml" />
     <Content Include="Views\MonthlyServiceReport\Index.cshtml" />
-    <Content Include="Views\MonthlyServiceReport\MultiData.cshtml" />
+    <Content Include="Views\TotalCostReport\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config">

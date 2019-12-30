@@ -194,6 +194,8 @@ namespace Alliance_for_Life.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.Subcontractor = db.SubContractors.Find( directDeposits.AdminCost.SubcontractorId).OrgName;
+                                 
             return View(directDeposits);
         }
 
@@ -258,9 +260,10 @@ namespace Alliance_for_Life.Controllers
                 new DataColumn ("√")
             });
 
+            
             var directdeposit = from a in db.AdminCosts
                                 join p in db.ParticipationServices on a.SubcontractorId equals p.SubcontractorId
-                                where (a.Year == Year && p.Year == Year) && (a.Month.ToString() == Month && p.Month.ToString() == Month)
+                               // where (a.Year == Year && p.Year == Year) && (a.Month.ToString() == Month && p.Month.ToString() == Month)
                                 select new DirectDepositView
                                 {
                                     AdminCost = a,
@@ -269,7 +272,7 @@ namespace Alliance_for_Life.Controllers
 
 
             //orderby year / month / orgname
-            foreach (var item in directdeposit.OrderBy(a => a.AdminCost.Subcontractor.OrgName))
+            foreach (var item in directdeposit)
             {
                 dt.Rows.Add(item.AdminCost.Subcontractor.EIN, item.AdminCost.Subcontractor.OrgName, item.AdminCost.Subcontractor.Region, item.AdminCost.ATotCosts + item.ParticipationService.PTotals, item.AdminCost.ATotCosts
                    , item.AdminCost.ATotCosts, item.AdminCost.ATotCosts * 0.03, item.AdminCost.ATotCosts + item.ParticipationService.PTotals - item.AdminCost.ATotCosts * 0.03);

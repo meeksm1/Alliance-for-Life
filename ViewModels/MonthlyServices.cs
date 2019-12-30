@@ -16,8 +16,4 @@ namespace Alliance_for_Life.ViewModels
 
       
     }
-
-
-
-   
 }
