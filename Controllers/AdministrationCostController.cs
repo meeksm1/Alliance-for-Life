@@ -27,7 +27,7 @@ namespace Alliance_for_Life.Controllers
 
             //paged view
             ViewBag.CurrentSort = sortOrder;
-            var datelist = Enumerable.Range(System.DateTime.Now.Year, 5).ToList();
+            var datelist = Enumerable.Range(System.DateTime.Now.Year-1, 5).ToList();
             ViewBag.Year = new SelectList(datelist);
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.YearSortParm = sortOrder == "Year" ? "year_desc" : "Year";
@@ -135,7 +135,7 @@ namespace Alliance_for_Life.Controllers
             }
 
             int pageNumber = (page ?? 1);
-            int defaSize = (pgSize ?? 10);
+            int defaSize = (pgSize ?? 15);
 
             ViewBag.psize = defaSize;
 
@@ -182,7 +182,7 @@ namespace Alliance_for_Life.Controllers
 
             }
 
-            var datelist = Enumerable.Range(System.DateTime.Now.Year, 5).ToList();
+            var datelist = Enumerable.Range(System.DateTime.Now.Year-1, 5).ToList();
             ViewBag.Year = new SelectList(datelist);
             ViewBag.SubcontractorId = new SelectList(list.OrderBy(a => a.OrgName), "SubcontractorId", "OrgName");
 
@@ -218,7 +218,7 @@ namespace Alliance_for_Life.Controllers
                     return RedirectToAction("Index");
                 }
             }
-            var datelist = Enumerable.Range(System.DateTime.Now.Year, 5).ToList();
+            var datelist = Enumerable.Range(System.DateTime.Now.Year-1, 5).ToList();
 
             ViewBag.Year = new SelectList(datelist);
             ViewBag.SubcontractorId = new SelectList(db.SubContractors.OrderBy(a => a.OrgName), "SubcontractorId", "OrgName", adminCosts.SubcontractorId);
@@ -239,7 +239,7 @@ namespace Alliance_for_Life.Controllers
                 return HttpNotFound();
             }
 
-            var datelist = Enumerable.Range(System.DateTime.Now.Year, 5).ToList();
+            var datelist = Enumerable.Range(System.DateTime.Now.Year-1, 5).ToList();
             ViewBag.Year = new SelectList(datelist);
             ViewBag.SubcontractorId = new SelectList(db.SubContractors.Where(a => a.SubcontractorId == adminCosts.SubcontractorId).OrderBy(a => a.OrgName), "SubcontractorId", "OrgName");
 
@@ -262,7 +262,7 @@ namespace Alliance_for_Life.Controllers
                 return RedirectToAction("Index");
             }
 
-            var datelist = Enumerable.Range(System.DateTime.Now.Year, 5).ToList();
+            var datelist = Enumerable.Range(System.DateTime.Now.Year-1, 5).ToList();
 
 
             ViewBag.Year = new SelectList(datelist);

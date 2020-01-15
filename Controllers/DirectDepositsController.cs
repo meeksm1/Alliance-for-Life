@@ -29,7 +29,7 @@ namespace Alliance_for_Life.Controllers
             ViewBag.Mnth = Month;
 
             ViewBag.CurrentSort = sortOrder;
-            var datelist = Enumerable.Range(System.DateTime.Now.Year, 5).ToList();
+            var datelist = Enumerable.Range(System.DateTime.Now.Year-1, 5).ToList();
             ViewBag.Year = new SelectList(datelist);
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.YearSortParm = sortOrder == "Year" ? "year_desc" : "Year";
@@ -124,7 +124,7 @@ namespace Alliance_for_Life.Controllers
 
             ViewBag.CurrentFilter = searchString;
             int pageNumber = (page ?? 1);
-            int defaSize = (pgSize ?? 10);
+            int defaSize = (pgSize ?? 15);
 
             ViewBag.psize = defaSize;
 

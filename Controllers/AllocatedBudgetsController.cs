@@ -54,7 +54,7 @@ namespace Alliance_for_Life.Controllers
 
 
 
-            var datelist = Enumerable.Range(System.DateTime.Now.Year, 5).ToList();
+            var datelist = Enumerable.Range(System.DateTime.Now.Year-1, 5).ToList();
             ViewBag.Year = new SelectList(datelist);
             ViewBag.ReportTitle = "Allocation Analysis Report -  " + year_search;
             ViewBag.yearselected = year_search;
@@ -78,7 +78,7 @@ namespace Alliance_for_Life.Controllers
                     break;
             }
             int pageNumber = (page ?? 1);
-            int defaSize = (pgSize ?? 10);
+            int defaSize = (pgSize ?? 15);
 
             ViewBag.psize = defaSize;
 
@@ -112,7 +112,7 @@ namespace Alliance_for_Life.Controllers
                 .Include(a => a.AdminCost)
                 .Where(a => a.Year == year_search);
 
-            var datelist = Enumerable.Range(System.DateTime.Now.Year, 5).ToList();
+            var datelist = Enumerable.Range(System.DateTime.Now.Year-1, 5).ToList();
             ViewBag.Year = new SelectList(datelist);
             ViewBag.ReportTitle = "Balance Sheet Report -  " + year_search;
             ViewBag.yearselected = year_search;
@@ -391,7 +391,7 @@ namespace Alliance_for_Life.Controllers
         // GET: AllocatedBudgets/Create
         public ActionResult Create()
         {
-            var datelist = Enumerable.Range(System.DateTime.Now.Year, 5).ToList();
+            var datelist = Enumerable.Range(System.DateTime.Now.Year-1, 5).ToList();
             ViewBag.Year = new SelectList(datelist);
             ViewBag.SubcontractorId = new SelectList(db.SubContractors, "SubcontractorId", "OrgName");
             return View();
@@ -427,7 +427,7 @@ namespace Alliance_for_Life.Controllers
                     return RedirectToAction("Index");
                 }
             }
-            var datelist = Enumerable.Range(System.DateTime.Now.Year, 5).ToList();
+            var datelist = Enumerable.Range(System.DateTime.Now.Year-1, 5).ToList();
             ViewBag.Year = new SelectList(datelist);
             ViewBag.SubcontractorId = new SelectList(db.SubContractors, "SubcontractorId", "OrgName", allocatedBudget.SubcontractorId);
             return View(allocatedBudget);

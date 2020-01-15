@@ -17,7 +17,7 @@ namespace Alliance_for_Life.Controllers
         // GET: Invoices1
         public ActionResult Index(string sortOrder, string searchString, string SubcontractorId, string Month, string Year, string billingdate, string currentFilter, int? page, int? pgSize)
         {
-            var datelist = Enumerable.Range(System.DateTime.Now.Year, 5).ToList();
+            var datelist = Enumerable.Range(System.DateTime.Now.Year-1, 5).ToList();
             ViewBag.Year = new SelectList(datelist);
             var Subcontractors = db.SubContractors.ToList();
             var id = User.Identity.GetUserId();
@@ -110,7 +110,7 @@ namespace Alliance_for_Life.Controllers
             }
 
             int pageNumber = (page ?? 1);
-            int defaSize = (pgSize ?? 10);
+            int defaSize = (pgSize ?? 15);
 
             ViewBag.psize = defaSize;
 

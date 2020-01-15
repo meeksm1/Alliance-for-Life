@@ -31,7 +31,6 @@ C:\Users\manoj\Documents\GitHub\Alliance-for-Life\bin\PagedList.dll
 C:\Users\manoj\Documents\GitHub\Alliance-for-Life\bin\PagedList.Mvc.dll
 C:\Users\manoj\Documents\GitHub\Alliance-for-Life\bin\PagedList.xml
 C:\Users\manoj\Documents\GitHub\Alliance-for-Life\bin\PagedList.Mvc.xml
-C:\Users\manoj\Documents\GitHub\Alliance-for-Life\obj\Release\Alliance for Life.csprojAssemblyReference.cache
 C:\Users\manoj\Documents\GitHub\Alliance-for-Life\obj\Release\Alliance for Life.csproj.GenerateResource.cache
 C:\Users\manoj\Documents\GitHub\Alliance-for-Life\obj\Release\Alliance for Life.csproj.CopyComplete
 C:\Users\manoj\Documents\GitHub\Alliance-for-Life\obj\Release\Alliance for Life.dll

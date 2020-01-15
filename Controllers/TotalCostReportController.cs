@@ -21,7 +21,7 @@ namespace Alliance_for_Life.Controllers
             ViewBag.Yr = Year;
             ViewBag.Mnth = Month;
 
-            var datelist = Enumerable.Range(System.DateTime.Now.Year, 5).ToList();
+            var datelist = Enumerable.Range(System.DateTime.Now.Year-1, 5).ToList();
             ViewBag.Year = new SelectList(datelist);
             ViewBag.Month = new SelectList(Enum.GetValues(typeof(Months)).Cast<Months>());
             ViewBag.CurrentSort = sortOrder;
@@ -126,7 +126,7 @@ namespace Alliance_for_Life.Controllers
             }
 
             int pageNumber = (page ?? 1);
-            int defaSize = (pgSize ?? 10);
+            int defaSize = (pgSize ?? 15);
 
             ViewBag.psize = defaSize;
 

@@ -88,6 +88,8 @@
 
     Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
 
+
         @Html.PagedListPager(Model, page => Url.Action("NonActiveClients",
-                new { searchString = ViewBag.Sub, page, pgSize = ViewBag.psize }))
+                new { searchString = ViewBag.Sub, page, pgSize = ViewBag.psize}))
     </div>
+
