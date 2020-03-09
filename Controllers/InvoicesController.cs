@@ -19,7 +19,7 @@ namespace Alliance_for_Life.Controllers
         {
             var datelist = Enumerable.Range(System.DateTime.Now.Year-1, 5).ToList();
             ViewBag.Year = new SelectList(datelist);
-            var Subcontractors = db.SubContractors.ToList();
+            var Subcontractors = db.SubContractors.OrderBy(a=>a.OrgName).ToList();
             var id = User.Identity.GetUserId();
             var usersubid = db.Users.Find(id).SubcontractorId;
 
