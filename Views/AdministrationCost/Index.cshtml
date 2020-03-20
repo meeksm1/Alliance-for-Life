@@ -79,9 +79,9 @@
             </th>
             @if (!User.IsInRole("User"))
             {
-            <th>
-                Region&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            </th>
+                <th>
+                    Region&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </th>
             }
             <th>
                 Salaries and Wages
@@ -148,89 +148,89 @@
 
         @foreach (var item in Model)
         {
-        <tr>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.AdminCostId })
-            </td>
-            <td>
-                @Html.ActionLink("Details", "Details", new { id = item.AdminCostId })
-            </td>
-            <td>
-                @item.Subcontractor.OrgName
-            </td>
-            <td>
-                @item.Month
-            </td>
-            <td>
-                @item.Year
-            </td>
-            @if (!User.IsInRole("User"))
-            {
+            <tr>
                 <td>
-                    @item.Region.GetDisplayName()
+                    @Html.ActionLink("Edit", "Edit", new { id = item.AdminCostId })
                 </td>
-            }
-            <td>
-                @item.ASalandWages.ToString("C")
-            </td>
-            <td>
-                @item.AEmpBenefits.ToString("C")
-            </td>
-            <td>
-                @item.AEmpTravel.ToString("C")
-            </td>
-            <td>
-                @item.AEmpTraining.ToString("C")
-            </td>
-            <td>
-                @item.AOfficeRent.ToString("C")
-            </td>
-            <td>
-                @item.AOfficeUtilities.ToString("C")
-            </td>
-            <td>
-                @item.AFacilityIns.ToString("C")
-            </td>
-            <td>
-                @item.AOfficeSupplies.ToString("C")
-            </td>
-            <td>
-                @item.AEquipment.ToString("C")
-            </td>
-            <td>
-                @item.AOfficeCommunications.ToString("C")
-            </td>
-            <td>
-                @item.AOfficeMaint.ToString("C")
-            </td>
-            <td>
-                @item.AConsulting.ToString("C")
-            </td>
-            <td>
-                @item.AJanitorServices.ToString("C")
-            </td>
-            <td>
-                @item.ADepreciation.ToString("C")
-            </td>
-            <td>
-                @item.ATechSupport.ToString("C")
-            </td>
-            <td>
-                @item.ASecurityServices.ToString("C")
-            </td>
-            <td>
-                @item.AOtherInput: @item.AOther.ToString("C")
-            </td>
-            <td>
-                @item.AOtherInput2: @item.AOther2.ToString("C")
-            </td>
-            <td>
-                @item.AOtherInput3: @item.AOther3.ToString("C")
-            </td>
-            <td>
-                @item.ATotCosts.ToString("C")
-            </td>
-        </tr>
+                <td>
+                    @Html.ActionLink("Details", "Details", new { id = item.AdminCostId })
+                </td>
+                <td>
+                    @item.Subcontractor.OrgName
+                </td>
+                <td>
+                    @item.Month
+                </td>
+                <td>
+                    @item.Year
+                </td>
+                @if (!User.IsInRole("User"))
+                {
+                    <td>
+                        @item.Region.GetDisplayName()
+                    </td>
+                }
+                <td>
+                    @item.ASalandWages.ToString("C")
+                </td>
+                <td>
+                    @item.AEmpBenefits.ToString("C")
+                </td>
+                <td>
+                    @item.AEmpTravel.ToString("C")
+                </td>
+                <td>
+                    @item.AEmpTraining.ToString("C")
+                </td>
+                <td>
+                    @item.AOfficeRent.ToString("C")
+                </td>
+                <td>
+                    @item.AOfficeUtilities.ToString("C")
+                </td>
+                <td>
+                    @item.AFacilityIns.ToString("C")
+                </td>
+                <td>
+                    @item.AOfficeSupplies.ToString("C")
+                </td>
+                <td>
+                    @item.AEquipment.ToString("C")
+                </td>
+                <td>
+                    @item.AOfficeCommunications.ToString("C")
+                </td>
+                <td>
+                    @item.AOfficeMaint.ToString("C")
+                </td>
+                <td>
+                    @item.AConsulting.ToString("C")
+                </td>
+                <td>
+                    @item.AJanitorServices.ToString("C")
+                </td>
+                <td>
+                    @item.ADepreciation.ToString("C")
+                </td>
+                <td>
+                    @item.ATechSupport.ToString("C")
+                </td>
+                <td>
+                    @item.ASecurityServices.ToString("C")
+                </td>
+                <td>
+                    @item.AOtherInput: @item.AOther.ToString("C")
+                </td>
+                <td>
+                    @item.AOtherInput2: @item.AOther2.ToString("C")
+                </td>
+                <td>
+                    @item.AOtherInput3: @item.AOther3.ToString("C")
+                </td>
+                <td>
+                    @item.ATotCosts.ToString("C")
+                </td>
+            </tr>
         }
     </table>
 
@@ -256,7 +256,7 @@
                             Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
 
                             @Html.PagedListPager(Model, page => Url.Action("Index",
-                                new {searchString = ViewBag.Sub, Year = ViewBag.Yr,Month= ViewBag.Mnth,page,pgSize = ViewBag.psize}))
+                                new { searchString = ViewBag.Sub, Year = ViewBag.Yr, Month = ViewBag.Mnth, page, pgSize = ViewBag.psize }))
                         </div>
                     </div>
                 </div>
@@ -264,3 +264,8 @@
         </form>
     </div>
 </div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/MyScripts.js"></script>
+}
