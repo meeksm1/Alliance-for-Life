@@ -37,6 +37,13 @@
                 Subcontractors
             </th>
             <th style="background-color:#C1F7C1; color:black;">
+                Month
+            </th>
+            <th style="background-color:#C1F7C1; color:black;">
+                Year
+            </th>
+
+            <th style="background-color:#C1F7C1; color:black;">
                 Amount
             </th>
             <th style="background-color:#C1F7C1; color:black;">
@@ -59,34 +66,40 @@
 
         @foreach (var items in Model)
         {
-            <tr>
-                <td>
-                    @items.AdminCost.Subcontractor.OrgName
-                </td>
-                <td>
-                    @Math.Round(items.AdminCost.ATotCosts + items.ParticipationService.PTotals, 2).ToString("C")
+    <tr>
+        <td>
+            @items.AdminCost.Subcontractor.OrgName
+        </td>
+        <td>
+            @items.AdminCost.Month
+        </td>
+        <td>
+            @items.AdminCost.Year
+        </td>
+        <td>
+            @Math.Round(items.AdminCost.ATotCosts + items.ParticipationService.PTotals, 2).ToString("C")
 
-                </td>
-                <td>
-                    @items.AdminCost.ATotCosts.ToString("C")
-                </td>
-                <td>
+        </td>
+        <td>
+            @items.AdminCost.ATotCosts.ToString("C")
+        </td>
+        <td>
 
-                    @Math.Round(items.AdminCost.ATotCosts * 0.03, 2).ToString("C")
+            @Math.Round(items.AdminCost.ATotCosts * 0.03, 2).ToString("C")
 
 
-                </td>
-                <td>
-                    @Math.Round((items.AdminCost.ATotCosts + items.ParticipationService.PTotals) - items.AdminCost.ATotCosts * 0.03, 2).ToString("C")
+        </td>
+        <td>
+            @Math.Round((items.AdminCost.ATotCosts + items.ParticipationService.PTotals) - items.AdminCost.ATotCosts * 0.03, 2).ToString("C")
 
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => items.IsCheked)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = items.DirectDepositsId, items.PSId, items.AdminCostId })
-                </td>
-            </tr>
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => items.IsCheked)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = items.DirectDepositsId, items.PSId, items.AdminCostId })
+        </td>
+    </tr>
         }
           
     </table>

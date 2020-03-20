@@ -103,8 +103,18 @@ namespace Alliance_for_Life.Controllers
                 var yearSearch = Convert.ToInt16(Year);
 
                 invoices = from s in invoices
-                           where ((int)s.Month < 7 && s.Year == yrs) || ((int)s.Month >= 7 && s.Year == yrs + 1) || s.Subcontractor.OrgName.Contains(searchString)
+                           where ((int)s.Month < 7 && s.Year == yrs) || ((int)s.Month >= 7 && s.Year == yrs + 1) || s.Subcontractor.OrgName.Contains(searchString) 
                            select s;
+            }
+            
+            //checking for the month and subcontractor filter
+            if( !String.IsNullOrEmpty(Month))
+            {
+                invoices = invoices.Where(s=>s.Month.ToString() == Month);
+            }
+            if (!String.IsNullOrEmpty(SubcontractorId))
+            {
+                invoices = invoices.Where(s => s.SubcontractorId.ToString() == SubcontractorId);
             }
 
             switch (sortOrder)

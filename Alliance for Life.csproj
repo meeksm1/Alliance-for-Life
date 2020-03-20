@@ -265,6 +265,10 @@
     <Compile Include="Migrations\201910311551318_initialcreation.Designer.cs">
       <DependentUpon>201910311551318_initialcreation.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202003201701012_updated-directdeposit.cs" />
+    <Compile Include="Migrations\202003201701012_updated-directdeposit.Designer.cs">
+      <DependentUpon>202003201701012_updated-directdeposit.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\A2AAllocatedBudget.cs" />
     <Compile Include="Models\A2AStateDeposits.cs" />
@@ -817,6 +821,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201910311551318_initialcreation.resx">
       <DependentUpon>201910311551318_initialcreation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003201701012_updated-directdeposit.resx">
+      <DependentUpon>202003201701012_updated-directdeposit.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

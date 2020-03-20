@@ -15,6 +15,8 @@ namespace Alliance_for_Life.Models
 
         public System.Guid AdminCostId { get; set; }
         public System.Guid PSId { get; set; }
+        public int Year { get; set; }
+        public Months? Month { get; set; }
 
         public virtual AdminCosts AdminCost { get; set; }
         public virtual ParticipationService ParticipationService { get; set; }

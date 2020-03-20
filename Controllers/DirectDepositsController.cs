@@ -47,23 +47,7 @@ namespace Alliance_for_Life.Controllers
             {
                 currentFilter = searchString.ToString();
             }
-            //assign default values if Year is empty
-            if (String.IsNullOrEmpty(Year.ToString()))
-            {
-                Year = DateTime.Now.Year;
-            }
-
-            //assign default values if Month is empty
-            if (String.IsNullOrEmpty(Month))
-            {
-                Month = DateTime.Now.Month.ToString();
-                ViewBag.Title = "Direct Deposit Summary for " + DateTime.Now.ToString("MMMM") + "-" + Year;
-            }
-            else
-            {
-                ViewBag.Title = "Direct Deposit Summary for " + Month + "-" + Year;
-            }
-
+           
            var directdeposit = from a in db.AdminCosts
                                 join p in db.ParticipationServices on a.SubcontractorId equals p.SubcontractorId
                                 where (a.Year == Year && p.Year == Year) && (a.Month.ToString() == Month && p.Month.ToString() == Month)
@@ -80,38 +64,30 @@ namespace Alliance_for_Life.Controllers
                 if (checkdeposit(items.AdminCost.AdminCostId, items.ParticipationService.PSId) == true)
                 {
                     //create if the data does not exists
-                    Create(directdepo, items.AdminCost.AdminCostId, items.ParticipationService.PSId);
+                    Create(directdepo, items.AdminCost.AdminCostId, items.ParticipationService.PSId, items.AdminCost.Year, items.AdminCost.Month.ToString());
                 }
             }
 
             //return data from the database
-            var depodb = db.DirectDeposit.ToList();
+            var depodb = db.DirectDeposit.OrderBy(a=>a.AdminCost.Subcontractor.OrgName).ToList();
 
-            if (!String.IsNullOrEmpty(Month) || !String.IsNullOrEmpty(Year.ToString()) || !String.IsNullOrEmpty(searchString.ToString()))
+            //checking for contrac
+            if(!String.IsNullOrEmpty(searchString.ToString()))
             {
-                var yearSearch = (Year);
-
-                // if Org is empty
-                if (String.IsNullOrEmpty(searchString.ToString()))
-                {
-                    var regionSearch = Enum.Parse(typeof(Months), Month);
-                    depodb = depodb.Where(r => r.AdminCost.Month == (Months)regionSearch && r.AdminCost.Year == yearSearch).ToList();
-
-                    //directdeposit = directdeposit.Where(r => r.AdminCost.Month == (Months)regionSearch && r.AdminCost.Year == yearSearch);
-                }
-                // if none are empty
-                else
-                {
-                    var regionSearch = Enum.Parse(typeof(Months), Month);
-                    depodb = depodb.Where(r => r.AdminCost.Month == (Months)regionSearch && r.AdminCost.Year == yearSearch && r.AdminCost.SubcontractorId == searchString ).ToList();
-                }
+                 depodb = depodb.Where(r => r.AdminCost.SubcontractorId == searchString ).ToList();
+                
             }
-            else
+            if (!String.IsNullOrEmpty(Month))
             {
-                depodb = depodb.Where(r => r.AdminCost.Month == (Months)DateTime.Now.Month && r.AdminCost.Year == DateTime.Now.Year).ToList();
-
+                depodb = depodb.Where(r => r.Month.ToString() == Month).ToList();
             }
 
+            if (!String.IsNullOrEmpty(Year.ToString()))
+            {
+                depodb = depodb.Where(r => r.Year == Year).ToList();
+            }
+
+            depodb = depodb.OrderBy(b => b.Year).ThenBy(c => c.Month).ToList();
             //sorting
             switch (sortOrder)
             {
@@ -166,7 +142,7 @@ namespace Alliance_for_Life.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(DirectDeposits directDeposits, Guid AdminId, Guid PartiID)
+        public ActionResult Create(DirectDeposits directDeposits, Guid AdminId, Guid PartiID, int year, string month)
         {
             directDeposits = new DirectDeposits();
 
@@ -175,6 +151,8 @@ namespace Alliance_for_Life.Controllers
                 directDeposits.DirectDepositsId = Guid.NewGuid();
                 directDeposits.AdminCostId = AdminId;
                 directDeposits.PSId = PartiID;
+                directDeposits.Year = year;
+                directDeposits.Month = (Months)Enum.Parse(typeof(Months), month);
                 db.DirectDeposit.Add(directDeposits);
                 db.SaveChanges();
                 return View();
