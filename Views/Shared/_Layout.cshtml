@@ -41,10 +41,11 @@
 
                 @if (ViewContext.HttpContext.User.IsInRole("Admin"))
                 {
-                    <ul class="nav navbar-nav">
-                        <li> @Html.ActionLink("Contractor Forms", "Create", "AFLForm", new { area = "" }, new { @class = "navbar-brand" })</li>
-                        <li> @Html.ActionLink("Contractor Reports", "Reports", "AFLForm", new { area = "" }, new { @class = "navbar-brand" })</li>
-                    </ul>
+                <ul class="nav navbar-nav">
+                    <li> @Html.ActionLink("Contractor Forms", "Create", "AFLForm", new { area = "" }, new { @class = "navbar-brand" })</li>
+                    <li> @Html.ActionLink("Contractor Reports", "Reports", "AFLForm", new { area = "" }, new { @class = "navbar-brand" })</li>
+                    <li> @Html.ActionLink("Invoices", "Index", "Invoices", new { area = "" }, new { @class = "navbar-brand" })</li>
+                </ul>
                 }
                 else if (ViewContext.HttpContext.User.IsInRole("User"))
                 {

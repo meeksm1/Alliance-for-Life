@@ -84,3 +84,5 @@ C:\Users\manoj.ghimire\Desktop\Alliance-for-Life\obj\Release\Alliance for Life.c
 C:\Users\manoj.ghimire\Desktop\Alliance-for-Life\obj\Release\Alliance for Life.csproj.CopyComplete
 C:\Users\manoj.ghimire\Desktop\Alliance-for-Life\obj\Release\Alliance for Life.dll
 C:\Users\manoj.ghimire\Desktop\Alliance-for-Life\obj\Release\Alliance for Life.pdb
+C:\Users\manoj\Documents\GitHub\Alliance-for-Life\obj\Release\Alliance for Life.csprojAssemblyReference.cache
+C:\Users\manoj\Documents\GitHub\Alliance-for-Life\obj\Release\Alliance for Life.csproj.CoreCompileInputs.cache

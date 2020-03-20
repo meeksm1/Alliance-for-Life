@@ -17,6 +17,12 @@ namespace Alliance_for_Life.Controllers
         // GET: Invoices1
         public ActionResult Index(string sortOrder, string searchString, string SubcontractorId, string Month, string Year, string billingdate, string currentFilter, int? page, int? pgSize)
         {
+
+            ViewBag.Sub = searchString;
+            ViewBag.Yr = Year;
+            ViewBag.Mnth = Month;
+
+
             var datelist = Enumerable.Range(System.DateTime.Now.Year-1, 5).ToList();
             ViewBag.Year = new SelectList(datelist);
             var Subcontractors = db.SubContractors.OrderBy(a=>a.OrgName).ToList();
@@ -89,6 +95,8 @@ namespace Alliance_for_Life.Controllers
                            where usersubid == s.SubcontractorId
                            select s;
             }
+
+
 
             if (!String.IsNullOrEmpty(searchString) || !String.IsNullOrEmpty(Year))
             {
