@@ -17,10 +17,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/20/2020 10:49:07</publishTime>
     </File>
     <File Include="bin/Alliance for Life.dll">
-      <publishTime>03/20/2020 12:52:07</publishTime>
+      <publishTime>03/23/2020 12:48:29</publishTime>
     </File>
     <File Include="bin/Alliance for Life.pdb">
-      <publishTime>03/20/2020 12:52:07</publishTime>
+      <publishTime>03/23/2020 12:48:29</publishTime>
     </File>
     <File Include="bin/Antlr3.Runtime.dll">
       <publishTime>03/20/2020 10:49:08</publishTime>

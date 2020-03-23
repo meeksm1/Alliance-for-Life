@@ -121,7 +121,7 @@ namespace Alliance_for_Life.Controllers
             beginingbalance(year_search);
 
             //CREATING THE VIEWBAG TO PULL afl ALLOCATED BUDGET
-            ViewBag.aflallocation = db.AFLAllocation.Where(a => a.Year == year_search).ToList();
+            ViewBag.aflallocation = db.AFLAllocation.Where(a => a.Year == year_search-1).ToList();
 
             if (allocatedBudget.Count() == 0)
             {
@@ -140,7 +140,7 @@ namespace Alliance_for_Life.Controllers
         public void QuaterlyViewBag(int year_search)
         {
             var FirstQuarter = from qs in db.Invoices
-                               where (int)qs.Month <= 3 && qs.Year == year_search
+                               where (int)qs.Month <= 3 && qs.Year == year_search -1
                                select qs.GrandTotal;
 
             if (FirstQuarter.Count() > 0)
@@ -149,7 +149,7 @@ namespace Alliance_for_Life.Controllers
             }
 
             var SecondQuarter = from qs in db.Invoices
-                                where (int)qs.Month >= 4 && (int)qs.Month <= 6 && qs.Year == year_search
+                                where (int)qs.Month >= 4 && (int)qs.Month <= 6 && qs.Year == year_search-1
                                 select qs.GrandTotal;
 
             if (SecondQuarter.Count() > 0)
@@ -158,7 +158,7 @@ namespace Alliance_for_Life.Controllers
             }
 
             var ThirdQuarter = from qs in db.Invoices
-                               where (int)qs.Month >= 7 && (int)qs.Month <= 9 && qs.Year == year_search
+                               where (int)qs.Month >= 7 && (int)qs.Month <= 9 && qs.Year == year_search-1
                                select qs.GrandTotal;
 
             if (ThirdQuarter.Count() > 0)
@@ -169,7 +169,7 @@ namespace Alliance_for_Life.Controllers
 
 
             var FourthQuarter = from qs in db.Invoices
-                                where (int)qs.Month >= 10 && qs.Year == year_search
+                                where (int)qs.Month >= 10 && qs.Year == year_search-1
                                 select qs.GrandTotal;
 
             if (FourthQuarter.Count() > 0)
@@ -178,7 +178,7 @@ namespace Alliance_for_Life.Controllers
             }
 
             var QuarterTotals = from qs in db.Invoices
-                                where (int)qs.Month <= 12 && qs.Year == year_search
+                                where (int)qs.Month <= 12 && qs.Year == year_search-1
                                 select qs.GrandTotal;
             if (QuarterTotals.Count() > 0)
             {
@@ -207,7 +207,7 @@ namespace Alliance_for_Life.Controllers
 
             //statedeposite loop
 
-            var statedepo = db.StateDeposit.Where(b => b.Year == year_search);
+            var statedepo = db.StateDeposit.Where(b => b.Year == year_search-1);
             if (statedepo.Count() != 0)
             {
                 if (statedepo.Where(a => a.Month == Months.January).Count() != 0)
@@ -273,8 +273,8 @@ namespace Alliance_for_Life.Controllers
                 ViewBag.StateDeposit = statedepo.Sum(a => a.StateDeposits).ToString("C");
             }
 
-            var admincost = db.AdminCosts.Where(a => a.Year == year_search).ToList();
-            var particost = db.ParticipationServices.Where(a => a.Year == year_search).ToList();
+            var admincost = db.AdminCosts.Where(a => a.Year == year_search-1).ToList();
+            var particost = db.ParticipationServices.Where(a => a.Year == year_search-1).ToList();
 
             //calculating Admin Total Cost per month and returning it as viewbag
             ViewBag.JanFee = (admincost.Where(a => a.Month == Months.January).Sum(a => a.ATotCosts));
@@ -367,10 +367,9 @@ namespace Alliance_for_Life.Controllers
             ViewBag.JunRem = Math.Round((ViewBag.JunTot - ViewBag.JunInv), 2);
 
             // Totals
-            var totalcost = db.StateDeposit.Where(a => a.Year == year_search).ToList();
+            var totalcost = db.StateDeposit.Where(a => a.Year == year_search-1).ToList();
             ViewBag.TotalCost = (totalcost.Sum(a => a.StateDeposits));
             ViewBag.Total = Math.Round((ViewBag.JulTot + ViewBag.AugTot + ViewBag.SepTot + ViewBag.OctTot + ViewBag.NovTot + ViewBag.DecTot + ViewBag.JanTot + ViewBag.FebTot + ViewBag.MarTot + ViewBag.AprTot + ViewBag.MayTot + ViewBag.JunTot), 2);
-
         }
 
         // GET: AllocatedBudgets/Details/5
