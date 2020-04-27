@@ -49,7 +49,6 @@ C:\Users\manoj.ghimire\Documents\GitHub\Alliance-for-Life\obj\Release\Alliance f
 C:\Users\manoj.ghimire\Documents\GitHub\Alliance-for-Life\obj\Release\Alliance for Life.csproj.CopyComplete
 C:\Users\manoj.ghimire\Documents\GitHub\Alliance-for-Life\obj\Release\Alliance for Life.dll
 C:\Users\manoj.ghimire\Documents\GitHub\Alliance-for-Life\obj\Release\Alliance for Life.pdb
-C:\Users\manoj.ghimire\Documents\GitHub\Alliance-for-Life\obj\Release\Alliance for Life.csprojAssemblyReference.cache
 C:\Users\manoj\OneDrive\Documents\GitHub\Alliance-for-Life\bin\ApplicationInsights.config
 C:\Users\manoj\OneDrive\Documents\GitHub\Alliance-for-Life\bin\Alliance for Life.dll.config
 C:\Users\manoj\OneDrive\Documents\GitHub\Alliance-for-Life\bin\Alliance for Life.dll
@@ -87,3 +86,6 @@ C:\Users\manoj.ghimire\Desktop\Alliance-for-Life\obj\Release\Alliance for Life.d
 C:\Users\manoj.ghimire\Desktop\Alliance-for-Life\obj\Release\Alliance for Life.pdb
 C:\Users\manoj.ghimire\Desktop\Alliance-for-Life\obj\Release\Alliance_for_Life.Migrations.updateddirectdeposit.resources
 C:\Users\manoj.ghimire\Desktop\Alliance-for-Life\obj\Release\Alliance for Life.csprojAssemblyReference.cache
+C:\Users\manoj.ghimire\Documents\GitHub\Alliance-for-Life\bin\System.Linq.Dynamic.dll
+C:\Users\manoj.ghimire\Documents\GitHub\Alliance-for-Life\obj\Release\Alliance_for_Life.Migrations.updateddirectdeposit.resources
+C:\Users\manoj.ghimire\Documents\GitHub\Alliance-for-Life\obj\Release\Alliance for Life.csprojAssemblyReference.cache

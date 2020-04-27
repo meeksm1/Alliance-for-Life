@@ -389,7 +389,7 @@ namespace Alliance_for_Life.Controllers
 
             var datelist = Enumerable.Range(System.DateTime.Now.Year-1, 5).ToList();
             ViewBag.Year = new SelectList(datelist);
-            ViewBag.SubcontractorId = new SelectList(list, "SubcontractorId", "OrgName");
+            ViewBag.SubcontractorId = new SelectList(list.OrderBy(a=>a.OrgName), "SubcontractorId", "OrgName");
 
 
 

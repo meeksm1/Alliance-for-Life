@@ -125,7 +125,7 @@ namespace Alliance_for_Life.Controllers
         // GET: Surveys/Create
         public ActionResult Create()
         {
-            ViewBag.SubcontractorId = new SelectList(db.SubContractors, "SubcontractorId", "OrgName");
+            ViewBag.SubcontractorId = new SelectList(db.SubContractors.OrderBy(a=>a.OrgName), "SubcontractorId", "OrgName");
             return View();
         }
 
@@ -149,6 +149,7 @@ namespace Alliance_for_Life.Controllers
                 }
                 else
                 {
+                    surveys.SurveyId = new Int32() + 1;
                     surveys.SubmittedDate = DateTime.Now;
                     db.Surveys.Add(surveys);
                     db.SaveChanges();
@@ -156,7 +157,7 @@ namespace Alliance_for_Life.Controllers
                 }
             }
 
-            ViewBag.SubcontractorId = new SelectList(db.SubContractors, "SubcontractorId", "OrgName", surveys.Subcontractors);
+            ViewBag.SubcontractorId = new SelectList(db.SubContractors.OrderBy(a=>a.OrgName), "SubcontractorId", "OrgName", surveys.Subcontractors);
 
             return View(surveys);
         }
