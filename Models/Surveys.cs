@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Alliance_for_Life.Models
 {
@@ -7,6 +8,7 @@ namespace Alliance_for_Life.Models
     {
         [Key]
         [Required]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int SurveyId { get; set; }
 
         public DateTime SubmittedDate { get; set; }

@@ -125,7 +125,7 @@ namespace Alliance_for_Life.Controllers
         // GET: Surveys/Create
         public ActionResult Create()
         {
-            ViewBag.SubcontractorId = new SelectList(db.SubContractors.OrderBy(a=>a.OrgName), "SubcontractorId", "OrgName");
+            ViewBag.SubcontractorId = new SelectList(db.SubContractors.OrderBy(a => a.OrgName), "SubcontractorId", "OrgName");
             return View();
         }
 
@@ -141,7 +141,7 @@ namespace Alliance_for_Life.Controllers
                 var dataexist = from s in db.Surveys
                                 where
                                 s.SubcontractorId == surveys.SubcontractorId &&
-                                s.Month == surveys.Month
+                                s.Month == surveys.Month && s.SubmittedDate.Year == DateTime.Today.Year
                                 select s;
                 if (dataexist.Count() >= 1)
                 {
@@ -149,7 +149,6 @@ namespace Alliance_for_Life.Controllers
                 }
                 else
                 {
-                    surveys.SurveyId = new Int32() + 1;
                     surveys.SubmittedDate = DateTime.Now;
                     db.Surveys.Add(surveys);
                     db.SaveChanges();
@@ -157,7 +156,7 @@ namespace Alliance_for_Life.Controllers
                 }
             }
 
-            ViewBag.SubcontractorId = new SelectList(db.SubContractors.OrderBy(a=>a.OrgName), "SubcontractorId", "OrgName", surveys.Subcontractors);
+            ViewBag.SubcontractorId = new SelectList(db.SubContractors.OrderBy(a => a.OrgName), "SubcontractorId", "OrgName", surveys.Subcontractors);
 
             return View(surveys);
         }
