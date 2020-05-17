@@ -50,16 +50,19 @@ namespace Alliance_for_Life.Controllers
            
            var directdeposit = from a in db.AdminCosts
                                 join p in db.ParticipationServices on a.SubcontractorId equals p.SubcontractorId
-                                where (a.Year == Year && p.Year == Year) && (a.Month.ToString() == Month && p.Month.ToString() == Month)
+                                where (a.Year ==  p.Year ) && (a.Month ==  p.Month)
                                 select new DirectDepositView
                                 {
                                     AdminCost = a,
                                     ParticipationService = p
                                 };
 
+
+            //filter based on the month and year selected
+            directdeposit = directdeposit.Where(a => a.AdminCost.Year == Year && a.ParticipationService.Year == Year).Where(b => b.AdminCost.Month.ToString() == Month && b.ParticipationService.Month.ToString() == Month);
             //check to see if there is data stored on the database
 
-            foreach(var items in directdeposit.ToList())
+            foreach (var items in directdeposit.ToList())
             {
                 if (checkdeposit(items.AdminCost.AdminCostId, items.ParticipationService.PSId) == true)
                 {

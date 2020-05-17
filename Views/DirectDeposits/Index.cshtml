@@ -66,42 +66,94 @@
 
         @foreach (var items in Model)
         {
-    <tr>
-        <td>
-            @items.AdminCost.Subcontractor.OrgName
-        </td>
-        <td>
-            @items.AdminCost.Month
-        </td>
-        <td>
-            @items.AdminCost.Year
-        </td>
-        <td>
-            @Math.Round(items.AdminCost.ATotCosts + items.ParticipationService.PTotals, 2).ToString("C")
+            <tr>
+                <td>
+                    @items.AdminCost.Subcontractor.OrgName
+                </td>
+                <td>
+                    @items.AdminCost.Month
+                </td>
+                <td>
+                    @items.AdminCost.Year
+                </td>
+                <td>
+                    @Math.Round(items.AdminCost.ATotCosts + items.ParticipationService.PTotals, 2).ToString("C")
 
-        </td>
-        <td>
-            @items.AdminCost.ATotCosts.ToString("C")
-        </td>
-        <td>
+                </td>
+                <td>
+                    @items.AdminCost.ATotCosts.ToString("C")
+                </td>
+                <td>
 
-            @Math.Round(items.AdminCost.ATotCosts * 0.03, 2).ToString("C")
+                    @Math.Round(items.AdminCost.ATotCosts * 0.03, 2).ToString("C")
 
 
-        </td>
-        <td>
-            @Math.Round((items.AdminCost.ATotCosts + items.ParticipationService.PTotals) - items.AdminCost.ATotCosts * 0.03, 2).ToString("C")
+                </td>
+                <td>
+                    @Math.Round((items.AdminCost.ATotCosts + items.ParticipationService.PTotals) - items.AdminCost.ATotCosts * 0.03, 2).ToString("C")
 
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => items.IsCheked)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = items.DirectDepositsId, items.PSId, items.AdminCostId })
-        </td>
-    </tr>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => items.IsCheked)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = items.DirectDepositsId, items.PSId, items.AdminCostId })
+                </td>
+            </tr>
+
+
+
         }
-          
+
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+
+    </tr>
+
+        <tr style="background-color: #ffcccb;">
+            <td>
+                Total
+            </td>
+            <td>
+                
+            </td>
+            <td>
+                
+            </td>
+            <td>
+               
+           @Math.Round(Model.Sum(a=>a.AdminCost.ATotCosts) + Model.Sum(b=>b.ParticipationService.PTotals), 2).ToString("C")
+
+            </td>
+            <td>
+                @Model.Sum(a=>a.AdminCost.ATotCosts).ToString("C")
+            </td>
+            <td>
+
+                @Math.Round(Model.Sum(a=>a.AdminCost.ATotCosts * 0.03), 2).ToString("C")
+
+
+            </td>
+            <td>
+               @Math.Round((Model.Sum(a=>a.AdminCost.ATotCosts) + Model.Sum(a=>a.ParticipationService.PTotals)) - Model.Sum(a=>a.AdminCost.ATotCosts * 0.03), 2).ToString("C")
+
+            </td>
+            <td>
+              
+            </td>
+            <td>
+               
+            </td>
+        </tr>
+    
     </table>
     <br />
     @*@using (Html.BeginForm("Export", "DirectDeposits", FormMethod.Post ))
