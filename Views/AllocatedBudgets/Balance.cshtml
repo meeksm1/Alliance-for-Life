@@ -26,9 +26,9 @@
 </div>
 
 <br />
-<p style="color:red; text-align:center;">
+@*<p style="color:red; text-align:center;">
     @ViewBag.error
-</p>
+</p>*@
 
 <table id="dtBasicExample" class="table table-striped table-bordered table-sm" style="font-size:16px" cellspacing="0" width="100">
     <tr>
@@ -624,7 +624,7 @@
                 </td>
             }
 
-            @if (ViewBag.AugBeg < 0)
+            @if (ViewBag.AugTot < 0)
             {
                 <td style="color: red;">
                     @ViewBag.AugTot.ToString("C")
@@ -988,8 +988,9 @@
             @Html.DisplayName("Total Direct & Participant  Allocation")
         </td>
         <td>
-            @Math.Round(Model.Sum(a => a.AllocatedOldBudget)).ToString("C")
-        </td>
+            @String.Format("{0:C}", ViewBag.TotalFee+ViewBag.TotalPFee)
+            @*@Math.Round(Model.Sum(a => a.AllocatedOldBudget)).ToString("C")
+        </td>*@
     </tr>
     <tr>
         <td>
@@ -1002,7 +1003,6 @@
     <tr>
         <td> @Html.Encode("Total State Allocation")</td>
         <td>
-
             @String.Format("{0:C}", ViewBag.TotalFee * 0.1 + Model.Sum(a => a.AllocatedOldBudget))
         </td>
     </tr>

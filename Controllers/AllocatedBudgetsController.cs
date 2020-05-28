@@ -114,7 +114,7 @@ namespace Alliance_for_Life.Controllers
 
             var datelist = Enumerable.Range(System.DateTime.Now.Year-1, 5).ToList();
             ViewBag.Year = new SelectList(datelist);
-            ViewBag.ReportTitle = "Balance Sheet Report -  " + year_search;
+            ViewBag.ReportTitle = "Balance Sheet Report - FY " + year_search;
             ViewBag.yearselected = year_search;
 
             //calling main function
