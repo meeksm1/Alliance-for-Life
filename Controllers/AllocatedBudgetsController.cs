@@ -56,7 +56,7 @@ namespace Alliance_for_Life.Controllers
 
             var datelist = Enumerable.Range(System.DateTime.Now.Year-1, 5).ToList();
             ViewBag.Year = new SelectList(datelist);
-            ViewBag.ReportTitle = "Allocation Analysis Report -  " + year_search;
+            ViewBag.ReportTitle = "Allocation Analysis Report FY -  " + year_search;
             ViewBag.yearselected = year_search;
 
             // quarterly calculations
@@ -78,7 +78,7 @@ namespace Alliance_for_Life.Controllers
                     break;
             }
             int pageNumber = (page ?? 1);
-            int defaSize = (pgSize ?? 15);
+            int defaSize = 40;
 
             ViewBag.psize = defaSize;
 

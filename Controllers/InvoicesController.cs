@@ -141,7 +141,7 @@ namespace Alliance_for_Life.Controllers
             };
 
 
-            invoices = invoices.OrderBy(a => a.Year).OrderBy(a => a.Month);
+            invoices = invoices.OrderBy(a => a.Year).OrderBy(a => a.Month).OrderBy(a=>a.Subcontractor.OrgName);
             return View(invoices.ToPagedList(pageNumber, defaSize));
         }
 
@@ -239,7 +239,7 @@ namespace Alliance_for_Life.Controllers
 
                 //*******************************************************************************************************************
                 //Finding the balance remaining before the invoice is created
-                var balanceRemaining = allocatedbudget.Where(a => a.Year == Year && a.SubcontractorId == invoice.SubcontractorId).FirstOrDefault().AllocatedOldBudget;
+                var balanceRemaining = allocatedbudget.Where(a => a.Year == invoice.Year).Single().AllocatedOldBudget + invoice.AllocatedBudget.AllocatedNewBudget;
                 var i = 1;
 
                 foreach (var items in begbalance.Where(a => a.Year == Year && a.SubcontractorId == invoice.SubcontractorId))
