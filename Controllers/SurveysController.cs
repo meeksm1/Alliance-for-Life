@@ -20,15 +20,20 @@ namespace Alliance_for_Life.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Surveys
-        public ActionResult Index(string sortOrder, Guid? searchString, string Month, string currentFilter, int? page, int? pgSize)
+        public ActionResult Index(string sortOrder, Guid? searchString, string Month, string currentFilter, int? Year, int? page, int? pgSize)
         {
             ViewBag.Sub = searchString;
+            ViewBag.Yr = Year;
             ViewBag.Mnth = Month;
 
-            ViewBag.Month = new SelectList(Enum.GetValues(typeof(Months)).Cast<Months>());
+            //paged view
+            ViewBag.CurrentSort = sortOrder;
+            var datelist = Enumerable.Range(System.DateTime.Now.Year - 1, 5).ToList();
+            ViewBag.Year = new SelectList(datelist);
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
-            ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
+            ViewBag.YearSortParm = sortOrder == "Year" ? "year_desc" : "Year";
             ViewBag.Subcontractor = new SelectList(db.SubContractors.OrderBy(a => a.OrgName), "SubcontractorId", "OrgName");
+            ViewBag.Month = new SelectList(Enum.GetValues(typeof(Months)).Cast<Months>());
 
             //looking for the searchstring
             if (searchString != null)
@@ -52,6 +57,15 @@ namespace Alliance_for_Life.Controllers
                 surveys = from s in db.Surveys
                           where usersubid == s.SubcontractorId
                           select s;
+            }
+
+           
+
+            if ((Year != null) && Year.ToString().Length > 1)
+            {
+
+                surveys = surveys.Where(a => a.SubmittedDate.Year == Year);
+
             }
 
             if (!String.IsNullOrEmpty(Month) || !String.IsNullOrEmpty(searchString.ToString()))
@@ -89,10 +103,15 @@ namespace Alliance_for_Life.Controllers
                     break;
             }
 
+
+            ViewBag.TotalSum = surveys.Count();
+
             int pageNumber = (page ?? 1);
             int defaSize = (pgSize ?? 15);
 
             ViewBag.psize = defaSize;
+
+           
 
             ViewBag.PageSize = new List<SelectListItem>()
             {
@@ -152,7 +171,7 @@ namespace Alliance_for_Life.Controllers
                     surveys.SubmittedDate = DateTime.Now;
                     db.Surveys.Add(surveys);
                     db.SaveChanges();
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Create");
                 }
             }
 
