@@ -96,15 +96,11 @@ namespace Alliance_for_Life.Controllers
                            select s;
             }
 
-
-
-            if (!String.IsNullOrEmpty(searchString) || !String.IsNullOrEmpty(Year))
+            if (!String.IsNullOrEmpty(Year))
             {
-                var yearSearch = Convert.ToInt16(Year);
 
-                invoices = from s in invoices
-                           where ((int)s.Month < 7 && s.Year == yrs) || ((int)s.Month >= 7 && s.Year == yrs + 1) || s.Subcontractor.OrgName.Contains(searchString) 
-                           select s;
+                invoices = invoices.Where(a => a.Year == yrs);
+                    
             }
             
             //checking for the month and subcontractor filter
@@ -141,7 +137,7 @@ namespace Alliance_for_Life.Controllers
             };
 
 
-            invoices = invoices.OrderBy(a => a.Year).OrderBy(a => a.Month).OrderBy(a=>a.Subcontractor.OrgName);
+            invoices = invoices.OrderBy(a => a.Year).OrderBy(a => a.Month).ThenBy(a=>a.Subcontractor.OrgName);
             return View(invoices.ToPagedList(pageNumber, defaSize));
         }
 
@@ -152,11 +148,7 @@ namespace Alliance_for_Life.Controllers
             return View();
         }
 
-        //public ActionResult DownloadViewAsPDF(string encryptId)
-        //{
-        //    return new Rotativa.ActionAsPdf("Download", new { encryptReportId = encryptId }) { FileName = "Invoice.pdf" };
-        //}
-
+       
         //Generate Invoice
         public ActionResult GenerateInvoice(string orgname, string Month, int Year, string billingdate)
         {
@@ -175,8 +167,16 @@ namespace Alliance_for_Life.Controllers
             var particost = db.ParticipationServices
                 .Where(s => s.SubcontractorId == invoice.SubcontractorId && s.Year == invoice.Year && s.Month == invoice.Month);
 
+            //finding the appropriate fiscal year category
+            var budgetyear = Year;
+
+            if((int)Enum.Parse(typeof(Months), Month) >= 7)
+            {
+                budgetyear = Year - 1;
+            }
+
             var allocatedbudget = db.AllocatedBudget
-                .Where(s => s.SubcontractorId == invoice.SubcontractorId && s.Year == invoice.Year);
+                .Where(s => s.SubcontractorId == invoice.SubcontractorId && s.Year == budgetyear);
 
             //set the invoice Admin and Participation ID to Null
             invoice.AdminCostId = Guid.Empty;
@@ -239,7 +239,7 @@ namespace Alliance_for_Life.Controllers
 
                 //*******************************************************************************************************************
                 //Finding the balance remaining before the invoice is created
-                var balanceRemaining = allocatedbudget.Where(a => a.Year == invoice.Year).Single().AllocatedOldBudget + invoice.AllocatedBudget.AllocatedNewBudget;
+                var balanceRemaining = allocatedbudget.Single().AllocatedOldBudget + allocatedbudget.Single().AllocatedNewBudget;
                 var i = 1;
 
                 foreach (var items in begbalance.Where(a => a.Year == Year && a.SubcontractorId == invoice.SubcontractorId))
@@ -275,7 +275,6 @@ namespace Alliance_for_Life.Controllers
                        ;
                     }
                 }
-
 
 
                 //calculating the rest
@@ -342,9 +341,14 @@ namespace Alliance_for_Life.Controllers
             var particost = db.ParticipationServices
                 .Where(s => s.SubcontractorId == invoice.SubcontractorId && s.Year == invoice.Year && s.Month == invoice.Month);
 
-            //allocation budget
+            var budgetyear = invoice.Year;
+            if ((int)Enum.Parse(typeof(Months), invoice.Month.ToString()) >= 7)
+            {
+                budgetyear = invoice.Year - 1;
+            }
+
             var allocatedbudget = db.AllocatedBudget
-              .Where(s => s.SubcontractorId == invoice.SubcontractorId && s.Year == invoice.Year);
+                .Where(s => s.SubcontractorId == invoice.SubcontractorId && s.Year == budgetyear);
 
             //set totals to zero
             invoice.DirectAdminCost = 0;
@@ -373,8 +377,9 @@ namespace Alliance_for_Life.Controllers
                              where s.Year == invoice.Year || s.Year == invoice.Year + 1 || s.Year == invoice.Year - 1 && s.SubcontractorId == invoice.SubcontractorId
                              select s;
 
-            var balanceRemaining = allocatedbudget.Where(a => a.Year == invoice.Year).FirstOrDefault().AllocatedOldBudget + invoice.AllocatedBudget.AllocatedNewBudget;
+            var balanceRemaining = allocatedbudget.Single().AllocatedOldBudget + allocatedbudget.Single().AllocatedNewBudget;
             var i = 1;
+ 
 
             foreach (var items in begbalance.Where(a => a.Year == invoice.Year && a.SubcontractorId == invoice.SubcontractorId).OrderBy(b => b.Year).OrderBy(c => c.Month))
             {
