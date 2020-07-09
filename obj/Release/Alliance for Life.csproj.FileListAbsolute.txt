@@ -90,3 +90,5 @@ C:\Users\manoj.ghimire\Desktop\Alliance-for-Life\obj\Release\Alliance for Life.c
 C:\Users\manoj.ghimire\Desktop\Alliance-for-Life\obj\Release\Alliance for Life.csproj.CopyComplete
 C:\Users\manoj.ghimire\Desktop\Alliance-for-Life\obj\Release\Alliance for Life.dll
 C:\Users\manoj.ghimire\Desktop\Alliance-for-Life\obj\Release\Alliance for Life.pdb
+C:\Users\manoj\Documents\GitHub\Alliance-for-Life\obj\Release\Alliance_for_Life.Migrations.updateddirectdeposit.resources
+C:\Users\manoj\Documents\GitHub\Alliance-for-Life\obj\Release\Alliance_for_Life.Migrations.surveyupdated.resources

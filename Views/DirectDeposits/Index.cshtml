@@ -149,13 +149,12 @@
 
     </table>
     <br />
-    @using
+ 
 
-    </td>
-    <td>
-        (Html.BeginForm("Export", "DirectDeposits", FormMethod.Post))
+
+        @using (Html.BeginForm("Export", "DirectDeposits", FormMethod.Post))
         {
-        <input type="submit" value="Export to Excel" class="btn btn-group-sm btn-primary" onclick="this.form.submit()" />
+            <input type="submit" value="Export to Excel" class="btn btn-group-sm btn-primary" onclick="this.form.submit()" />
         }
 
 
@@ -173,5 +172,6 @@
             </div>
 
         </div>
+
 </form>
 
