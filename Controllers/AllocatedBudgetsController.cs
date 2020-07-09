@@ -10,6 +10,7 @@ using System.Web.Mvc;
 
 namespace Alliance_for_Life.Controllers
 {
+    [Authorize]
     public class AllocatedBudgetsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -273,37 +274,37 @@ namespace Alliance_for_Life.Controllers
                 ViewBag.StateDeposit = statedepo.Sum(a => a.StateDeposits).ToString("C");
             }
 
-            var admincost = db.AdminCosts.Where(a => a.Year == year_search-1).ToList();
-            var particost = db.ParticipationServices.Where(a => a.Year == year_search-1).ToList();
+            var admincost = db.AdminCosts.Where(a => a.Year == year_search-1 || a.Year == year_search).ToList();
+            var particost = db.ParticipationServices.Where(a => a.Year == year_search-1 || a.Year == year_search).ToList();
 
             //calculating Admin Total Cost per month and returning it as viewbag
-            ViewBag.JanFee = (admincost.Where(a => a.Month == Months.January).Sum(a => a.ATotCosts));
-            ViewBag.FebFee = (admincost.Where(a => a.Month == Months.February).Sum(a => a.ATotCosts));
-            ViewBag.MarFee = (admincost.Where(a => a.Month == Months.March).Sum(a => a.ATotCosts));
-            ViewBag.AprFee = (admincost.Where(a => a.Month == Months.April).Sum(a => a.ATotCosts));
-            ViewBag.MayFee = (admincost.Where(a => a.Month == Months.May ).Sum(a => a.ATotCosts));
-            ViewBag.JunFee = (admincost.Where(a => a.Month == Months.June).Sum(a => a.ATotCosts));
-            ViewBag.JulFee = (admincost.Where(a => a.Month == Months.July).Sum(a => a.ATotCosts));
-            ViewBag.AugFee = (admincost.Where(a => a.Month == Months.August).Sum(a => a.ATotCosts));
-            ViewBag.SepFee = (admincost.Where(a => a.Month == Months.September).Sum(a => a.ATotCosts));
-            ViewBag.OctFee = (admincost.Where(a => a.Month == Months.October).Sum(a => a.ATotCosts));
-            ViewBag.NovFee = (admincost.Where(a => a.Month == Months.November).Sum(a => a.ATotCosts));
-            ViewBag.DecFee = (admincost.Where(a => a.Month == Months.December).Sum(a => a.ATotCosts));
+            ViewBag.JanFee = (admincost.Where(a => a.Month == Months.January && a.Year == year_search).Sum(a => a.ATotCosts));
+            ViewBag.FebFee = (admincost.Where(a => a.Month == Months.February && a.Year == year_search).Sum(a => a.ATotCosts));
+            ViewBag.MarFee = (admincost.Where(a => a.Month == Months.March && a.Year == year_search).Sum(a => a.ATotCosts));
+            ViewBag.AprFee = (admincost.Where(a => a.Month == Months.April && a.Year == year_search).Sum(a => a.ATotCosts));
+            ViewBag.MayFee = (admincost.Where(a => a.Month == Months.May && a.Year == year_search).Sum(a => a.ATotCosts));
+            ViewBag.JunFee = (admincost.Where(a => a.Month == Months.June && a.Year == year_search).Sum(a => a.ATotCosts));
+            ViewBag.JulFee = (admincost.Where(a => a.Month == Months.July && a.Year == year_search-1).Sum(a => a.ATotCosts));
+            ViewBag.AugFee = (admincost.Where(a => a.Month == Months.August && a.Year == year_search-1).Sum(a => a.ATotCosts));
+            ViewBag.SepFee = (admincost.Where(a => a.Month == Months.September && a.Year == year_search-1).Sum(a => a.ATotCosts));
+            ViewBag.OctFee = (admincost.Where(a => a.Month == Months.October && a.Year == year_search -1).Sum(a => a.ATotCosts));
+            ViewBag.NovFee = (admincost.Where(a => a.Month == Months.November && a.Year == year_search -1).Sum(a => a.ATotCosts));
+            ViewBag.DecFee = (admincost.Where(a => a.Month == Months.December && a.Year == year_search -1).Sum(a => a.ATotCosts));
             ViewBag.TotalFee = (admincost.Sum(a => a.ATotCosts));
 
             //calculating Participation Total Cost per month and returning it as viewbag
-            ViewBag.JanPFee = (particost.Where(a => a.Month == Months.January).Sum(a => a.PTotals));
-            ViewBag.FebPFee = (particost.Where(a => a.Month == Months.February).Sum(a => a.PTotals));
-            ViewBag.MarPFee = (particost.Where(a => a.Month == Months.March).Sum(a => a.PTotals));
-            ViewBag.AprPFee = (particost.Where(a => a.Month == Months.April).Sum(a => a.PTotals));
-            ViewBag.MayPFee = (particost.Where(a => a.Month == Months.May).Sum(a => a.PTotals));
-            ViewBag.JunPFee = (particost.Where(a => a.Month == Months.June).Sum(a => a.PTotals));
-            ViewBag.JulPFee = (particost.Where(a => a.Month == Months.July).Sum(a => a.PTotals));
-            ViewBag.AugPFee = (particost.Where(a => a.Month == Months.August).Sum(a => a.PTotals));
-            ViewBag.SepPFee = (particost.Where(a => a.Month == Months.September).Sum(a => a.PTotals));
-            ViewBag.OctPFee = (particost.Where(a => a.Month == Months.October).Sum(a => a.PTotals));
-            ViewBag.NovPFee = (particost.Where(a => a.Month == Months.November).Sum(a => a.PTotals));
-            ViewBag.DecPFee = (particost.Where(a => a.Month == Months.December).Sum(a => a.PTotals));
+            ViewBag.JanPFee = (particost.Where(a => a.Month == Months.January && a.Year == year_search).Sum(a => a.PTotals));
+            ViewBag.FebPFee = (particost.Where(a => a.Month == Months.February && a.Year == year_search).Sum(a => a.PTotals));
+            ViewBag.MarPFee = (particost.Where(a => a.Month == Months.March && a.Year == year_search).Sum(a => a.PTotals));
+            ViewBag.AprPFee = (particost.Where(a => a.Month == Months.April && a.Year == year_search).Sum(a => a.PTotals));
+            ViewBag.MayPFee = (particost.Where(a => a.Month == Months.May && a.Year == year_search).Sum(a => a.PTotals));
+            ViewBag.JunPFee = (particost.Where(a => a.Month == Months.June && a.Year == year_search).Sum(a => a.PTotals));
+            ViewBag.JulPFee = (particost.Where(a => a.Month == Months.July && a.Year == year_search -1).Sum(a => a.PTotals));
+            ViewBag.AugPFee = (particost.Where(a => a.Month == Months.August && a.Year == year_search-1).Sum(a => a.PTotals));
+            ViewBag.SepPFee = (particost.Where(a => a.Month == Months.September && a.Year == year_search-1).Sum(a => a.PTotals));
+            ViewBag.OctPFee = (particost.Where(a => a.Month == Months.October && a.Year == year_search-1).Sum(a => a.PTotals));
+            ViewBag.NovPFee = (particost.Where(a => a.Month == Months.November && a.Year == year_search-1).Sum(a => a.PTotals));
+            ViewBag.DecPFee = (particost.Where(a => a.Month == Months.December && a.Year == year_search-1).Sum(a => a.PTotals));
             ViewBag.TotalPFee = (particost.Sum(a => a.PTotals));
 
             //calculating begining balance
