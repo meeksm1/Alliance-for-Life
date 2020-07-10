@@ -188,18 +188,25 @@
             @if ((int)invoice.Month >= 7)
             {
 
-                <td>
-                    @Model.Where(a => a.Year == invoice.Year - 1).Select(a => a.AllocatedBudget.AllocatedOldBudget).FirstOrDefault().ToString("C")
+        <td>
+            @*@Model.Where(a => a.Year == invoice.Year - 1).Select(a => a.AllocatedBudget.AllocatedOldBudget).FirstOrDefault().ToString("C")*@
 
-                </td>
+            @invoice.AllocatedBudget.AllocatedOldBudget.ToString("c")
+
+          
+                
+            @*.Select().invoice.AllocatedBudget.AllocatedOldBudget).FirstOrDefault().ToString("C")*@
+
+        </td>
             }
             else
             {
 
-                <td>
-                    @Model.Where(a => a.Year == invoice.Year).Select(a => a.AllocatedBudget.AllocatedOldBudget).FirstOrDefault().ToString("C")
+        <td>
+            @invoice.AllocatedBudget.AllocatedOldBudget.ToString("c")
+            @*@Model.Where(a => a.Year == invoice.Year).Select(a => a.AllocatedBudget.AllocatedOldBudget).FirstOrDefault().ToString("C")*@
 
-                </td>
+        </td>
             }
 
             @*Adjusted Allocation Amount*@
