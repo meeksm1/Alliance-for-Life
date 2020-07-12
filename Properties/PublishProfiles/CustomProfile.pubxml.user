@@ -17,10 +17,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/08/2020 09:30:06</publishTime>
     </File>
     <File Include="bin/Alliance for Life.dll">
-      <publishTime>07/09/2020 11:30:05</publishTime>
+      <publishTime>07/10/2020 14:33:44</publishTime>
     </File>
     <File Include="bin/Alliance for Life.pdb">
-      <publishTime>07/09/2020 11:30:05</publishTime>
+      <publishTime>07/10/2020 14:33:44</publishTime>
     </File>
     <File Include="bin/Antlr3.Runtime.dll">
       <publishTime>07/08/2020 09:30:06</publishTime>
@@ -1256,7 +1256,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/08/2020 09:30:06</publishTime>
     </File>
     <File Include="Views/AllocatedBudgets/Balance.cshtml">
-      <publishTime>07/08/2020 09:30:06</publishTime>
+      <publishTime>07/10/2020 14:30:59</publishTime>
     </File>
     <File Include="Views/AllocatedBudgets/Create.cshtml">
       <publishTime>07/08/2020 09:30:06</publishTime>
@@ -1271,7 +1271,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/08/2020 09:30:06</publishTime>
     </File>
     <File Include="Views/AllocatedBudgets/Index.cshtml">
-      <publishTime>07/08/2020 09:30:06</publishTime>
+      <publishTime>07/10/2020 09:55:33</publishTime>
     </File>
     <File Include="Views/BudgetCosts/AExpenseVSBExpense.cshtml">
       <publishTime>03/14/2019 18:27:47</publishTime>
@@ -1376,7 +1376,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/14/2019 18:27:47</publishTime>
     </File>
     <File Include="Views/Invoices/Index.cshtml">
-      <publishTime>07/08/2020 09:30:06</publishTime>
+      <publishTime>07/10/2020 11:14:20</publishTime>
     </File>
     <File Include="Views/Invoices/Invoice.cshtml">
       <publishTime>07/08/2020 09:30:06</publishTime>
