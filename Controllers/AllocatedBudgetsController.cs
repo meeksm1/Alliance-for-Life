@@ -53,24 +53,7 @@ namespace Alliance_for_Life.Controllers
      .Include(a => a.Subcontractor)
      .Include(a => a.Invoice)
      .Include(a => a.AdminCost)
-     .Where(a => a.Year == year_search || a.Year == year_search  + 1 || a.Year == year_search -1);
-
- //foreach (var items in allocatedBudget.ToList())
- //{
- //    foreach(var invoiceitem in items.Invoice.ToList())
- //    {
- //        if (invoiceitem.Year == year_search && (int)invoiceitem.Month < 7)
- //        {
- // items.Invoice.Remove(invoiceitem);
- //        }
- //        if (invoiceitem.Year == year_search -1 && (int)invoiceitem.Month >= 7)
- //        {
- // items.Invoice.Remove(invoiceitem);
- //        }
- //    }
-     
- //}
-           
+     .Where(a => a.Year == year_search || a.Year == year_search -1);
 
 
  var datelist = Enumerable.Range(System.DateTime.Now.Year-1, 5).ToList();
@@ -197,8 +180,12 @@ namespace Alliance_for_Life.Controllers
 
  if (FirstQuarter.Count() > 0)
  {
-     ViewBag.FirstQuarter = FirstQuarter.Sum().ToString("C");
+     ViewBag.FirstQuarter = FirstQuarter.Sum();
  }
+ else
+            {
+                ViewBag.FirstQuarter = 0.00;
+            }
 
  var SecondQuarter = from qs in db.Invoices
           where (int)qs.Month >= 4 && (int)qs.Month <= 6 && qs.Year == year_search-1
@@ -206,37 +193,49 @@ namespace Alliance_for_Life.Controllers
 
  if (SecondQuarter.Count() > 0)
  {
-     ViewBag.SecondQuarter = SecondQuarter.Sum().ToString("C");
+     ViewBag.SecondQuarter = SecondQuarter.Sum();
  }
+            else
+            {
+                ViewBag.SecondQuarter = 0.00;
+            }
 
  var ThirdQuarter = from qs in db.Invoices
-         where (int)qs.Month >= 7 && (int)qs.Month <= 9 && qs.Year == year_search-1
+         where (int)qs.Month >= 7 && (int)qs.Month <= 9 && qs.Year == year_search
          select qs.GrandTotal;
 
  if (ThirdQuarter.Count() > 0)
  {
-     ViewBag.ThirdQuarter = ThirdQuarter.Sum().ToString("C");
+     ViewBag.ThirdQuarter = ThirdQuarter.Sum();
  }
+ else
+            {
+                ViewBag.ThirdQuarter = 0.00;
+            }
 
 
 
  var FourthQuarter = from qs in db.Invoices
-          where (int)qs.Month >= 10 && qs.Year == year_search-1
+          where (int)qs.Month >= 10 && qs.Year == year_search
           select qs.GrandTotal;
 
  if (FourthQuarter.Count() > 0)
  {
-     ViewBag.FourthQuarter = FourthQuarter.Sum().ToString("C");
+     ViewBag.FourthQuarter = FourthQuarter.Sum();
  }
+ else
+            {
+                ViewBag.FourthQuarter = 0.00;
 
- var QuarterTotals = from qs in db.Invoices
-          where (int)qs.Month <= 12 && qs.Year == year_search-1
-          select qs.GrandTotal;
- if (QuarterTotals.Count() > 0)
- {
-     ViewBag.QuarterTotals = QuarterTotals.Sum().ToString("C");
+            }
 
- }
+
+
+            //quarter total
+                     ViewBag.QuarterTotals = Math.Round(ViewBag.FirstQuarter + ViewBag.SecondQuarter+ ViewBag.ThirdQuarter + ViewBag.FourthQuarter);
+            ;
+
+
 
         }
 
