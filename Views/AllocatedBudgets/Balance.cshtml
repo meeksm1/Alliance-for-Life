@@ -984,7 +984,7 @@
 
 <table id="dtBasicExample" class="table table-striped table-bordered table-sm" style="font-size:16px" cellspacing="0" width="100">
     <tr>
-        <td> @Html.Encode("Begining Allocation")</td>
+        <td> @Html.Encode("Beginning Allocation")</td>
         <td>
             @String.Format("{0:C}", ViewBag.BeginingAllocation)
         </td>
@@ -1020,7 +1020,8 @@
 
     <tr>
         <td>@Html.Encode("Allocation Left to Spend")</td>
-        <td>  @String.Format("{0:C}", (ViewBag.TotalFee * 0.1 + Model.Sum(a => a.AllocatedOldBudget)) - (ViewBag.TotalPFee + ViewBag.TotalFee + ViewBag.TotalFee * 0.1))</td>
+        <td>
+            @String.Format("{0:C}", (ViewBag.BeginingAllocation) - (ViewBag.TotalPFee + ViewBag.TotalFee + (ViewBag.TotalFee * 0.1)))  </td>
     </tr>
     @*<tr>
             <td></td>

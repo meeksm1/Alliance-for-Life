@@ -138,10 +138,11 @@
 
                 @Math.Round(Model.Sum(a => a.AdminCost.ATotCosts * 0.03), 2).ToString("C")
 
-                @Math.Round((Model.Sum(a => a.AdminCost.ATotCosts) + Model.Sum(a => a.ParticipationService.PTotals)) - Model.Sum(a => a.AdminCost.ATotCosts * 0.03), 2).ToString("C")
 
             </td>
             <td>
+                @Math.Round((Model.Sum(a => a.AdminCost.ATotCosts) + Model.Sum(a => a.ParticipationService.PTotals)) - Model.Sum(a => a.AdminCost.ATotCosts * 0.03), 2).ToString("C")
+
             </td>
             <td>
             </td>
