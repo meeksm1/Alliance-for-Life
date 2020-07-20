@@ -14,5 +14,10 @@
     <li><a href="@Url.Action("Create", "ParticipationService")">Participation Costs Form</a></li>
     <li><a href="@Url.Action("Create", "A2AStateDeposits")">State Deposit Form</a></li>
     <li><a href="@Url.Action("Create", "Surveys")">Returned Survey Form </a></li>
+    @if (User.IsInRole("Admin"))
+    {
+        <li><a href="@Url.Action("Create", "A2AAllocatedBudget")">Add Beginning Balance</a></li>
+    }
+
 </ul>
   

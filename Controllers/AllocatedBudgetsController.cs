@@ -140,11 +140,13 @@ namespace Alliance_for_Life.Controllers
  }
 
 
- ViewBag.BeginingAllocation = bal.Sum(a=>a.StateDeposits);
- 
+            // ViewBag.BeginingAllocation = bal.Sum(a=>a.StateDeposits);
+            ViewBag.BeginingAllocation = db.AFLAllocation.Where(a => a.Year == year_search).Select(b => b.BeginingBalance).FirstOrDefault();
 
- //calling main function
- beginingbalance(year_search);
+
+
+            //calling main function
+            beginingbalance(year_search);
 
  //CREATING THE VIEWBAG TO PULL afl ALLOCATED BUDGET
  ViewBag.aflallocation = db.AFLAllocation.Where(a => a.Year == year_search-1).ToList();

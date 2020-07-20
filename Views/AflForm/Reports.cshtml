@@ -28,6 +28,11 @@
     <li><a href="@Url.Action("Index", "ParticipationService")"> Participation Cost Report </a></li>
     <li><a href="@Url.Action("TotalCostReport", "ParticipationService")">Total Cost Reports</a></li>
 
+    @if (User.IsInRole("Admin"))
+    {
+       
+        <li><a href="@Url.Action("Index", "A2AAllocatedBudget")"> View Beginning Balance</a></li>
+    }
 
 </ul>
 

@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Create</h2>
+    <h2>A2A Allocated Budget</h2>
 
 @using (Html.BeginForm())
 {
@@ -15,11 +15,11 @@
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>A2AAllocatedBudget</h4>
+        @*<h4> Create A2A Allocated Budget</h4>*@
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            @Html.LabelFor(model => model.Year, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("Fiscal Year", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("Year", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Year, "", new { @class = "text-danger" })
@@ -27,7 +27,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.BeginingBalance, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("Begining Balance", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.BeginingBalance, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.BeginingBalance, "", new { @class = "text-danger" })

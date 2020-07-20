@@ -1,4 +1,5 @@
 ﻿using Alliance_for_Life.Models;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Data;
 using System.Data.Entity;
@@ -36,6 +37,8 @@ namespace Alliance_for_Life.Controllers
         // GET: A2AAllocatedBudget/Create
         public ActionResult Create()
         {
+
+
             var datelist = Enumerable.Range(System.DateTime.Now.Year-1, 5).ToList();
             ViewBag.Year = new SelectList(datelist);
             return View();

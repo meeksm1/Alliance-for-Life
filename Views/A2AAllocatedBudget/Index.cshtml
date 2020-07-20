@@ -13,10 +13,10 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Year)
+            @Html.DisplayName("Fiscal Year")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.BeginingBalance)
+            @Html.DisplayName("Begining Balance")
         </th>
         <th></th>
     </tr>
@@ -27,7 +27,7 @@
             @Html.DisplayFor(modelItem => item.Year)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.BeginingBalance)
+            @item.BeginingBalance.ToString("c")
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.A2AAllocatedBudgetId }) |
