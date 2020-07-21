@@ -61,6 +61,13 @@
 
     <table id="dtBasicExample" class="table table-striped table-bordered table-sm" style="font-size:16px" cellspacing="0" width="100">
         <tr>
+            @if (User.IsInRole("Admin"))
+            {
+
+                <th>
+                    Delete
+                </th>
+            }
             <th>
                 Edit
             </th>
@@ -129,6 +136,13 @@
         @foreach (var item in Model)
         {
         <tr>
+             @if (User.IsInRole("Admin"))
+        {
+
+            <td>
+                @Html.ActionLink("Delete", "Delete", new { id = item.PSId })
+            </td>
+        }
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.PSId })
             </td>

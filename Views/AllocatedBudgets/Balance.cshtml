@@ -559,7 +559,7 @@
             }
 
             <td style="background-color:#fedada">
-                @Math.Round(ViewBag.AugBeg + ViewBag.SepBeg + ViewBag.OctBeg + ViewBag.NovBeg + ViewBag.DecBeg + ViewBag.JanBeg + ViewBag.FebBeg + ViewBag.MarBeg + ViewBag.AprBeg + ViewBag.MayBeg + ViewBag.JunBeg).ToString("C")
+               @* @Math.Round(ViewBag.AugBeg + ViewBag.SepBeg + ViewBag.OctBeg + ViewBag.NovBeg + ViewBag.DecBeg + ViewBag.JanBeg + ViewBag.FebBeg + ViewBag.MarBeg + ViewBag.AprBeg + ViewBag.MayBeg + ViewBag.JunBeg).ToString("C")*@
             </td>
         <tr />
         <tr style="font-size:13px; text-align:center;">
@@ -768,7 +768,7 @@
             }
 
             <td style="background-color:#fedada">
-                @Math.Round(((ViewBag.JunTot) + (ViewBag.StateDeposit)) - (Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.June).Sum(b => b.GrandTotal)) + (ViewBag.JunFee * .13)), 2).ToString("C")
+               @* @Math.Round(((ViewBag.JunTot) + (ViewBag.StateDeposit)) - (Model.Sum(a => a.Invoice.Where(k => k.Month == Alliance_for_Life.Models.Months.June).Sum(b => b.GrandTotal)) + (ViewBag.JunFee * .13)), 2).ToString("C")*@
             </td>
         <tr />
         <tr style="font-size:13px; text-align:center;">
@@ -812,7 +812,7 @@
                 @String.Format("{0:C}", ViewBag.JunPFee + ViewBag.JunFee + ViewBag.JunFee * 0.1)
             </td>
             <td style="background-color:#fedada">
-                @String.Format("{0:C}", ViewBag.TotalPFee + ViewBag.TotalFee + ViewBag.TotalFee * 0.1)
+                @String.Format("{0:C}",  ViewBag.TotalPFee + ViewBag.TotalFee + ViewBag.TotalFee * 0.1)
             </td>
         <tr />
         <tr style="font-size:13px; text-align:center;">
@@ -977,7 +977,7 @@
             }
 
         <td style="background-color:#fedada">
-            @String.Format("{0:C}", ViewBag.TotalPFee + ViewBag.TotalFee + ViewBag.TotalFee * 0.1 - ViewBag.StateDeposit)
+           @* @String.Format("{0:C}", ViewBag.TotalPFee + ViewBag.TotalFee + ViewBag.TotalFee * 0.1 - ViewBag.StateDeposit)*@
         </td>
         <tr />
 </table>

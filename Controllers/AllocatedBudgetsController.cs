@@ -326,7 +326,7 @@ namespace Alliance_for_Life.Controllers
      //total state deposit
      var firsthalfyeardeposit = statedepo.Where(a=>a.Year == year_search-1 && (int)a.Month < 7 ).Sum(a => a.StateDeposits);
      var secondhalfyeardeposit = statedepo.Where(a => a.Year == year_search  && (int)a.Month >= 7).Sum(a => a.StateDeposits);
-     ViewBag.StateDeposit = Math.Round(firsthalfyeardeposit + secondhalfyeardeposit);
+     ViewBag.StateDeposit = Math.Round((firsthalfyeardeposit + secondhalfyeardeposit),3);
         // Model.Sum(firsthalfyeardeposit + secondhalfyeardeposit).ToString("C");
  }
 
@@ -346,7 +346,7 @@ namespace Alliance_for_Life.Controllers
  ViewBag.OctFee = Math.Round((admincost.Where(a => a.Month == Months.October && a.Year == year_search -1).Sum(a => a.ATotCosts)), 3);
  ViewBag.NovFee = Math.Round((admincost.Where(a => a.Month == Months.November && a.Year == year_search -1).Sum(a => a.ATotCosts)), 3);
  ViewBag.DecFee = Math.Round((admincost.Where(a => a.Month == Months.December && a.Year == year_search -1).Sum(a => a.ATotCosts)), 3);
- ViewBag.TotalFee = Math.Round(ViewBag.JanFee + ViewBag.FebFee + ViewBag.MarFee + ViewBag.AprFee + ViewBag.MayFee + ViewBag.JunFee + ViewBag.JulFee + ViewBag.AugFee + ViewBag.SepFee + ViewBag.OctFee + ViewBag.NovFee + ViewBag.DecFee, 3);
+ ViewBag.TotalFee = Math.Round(ViewBag.JanFee + ViewBag.FebFee + ViewBag.MarFee + ViewBag.AprFee + ViewBag.MayFee + ViewBag.JunFee + ViewBag.JulFee + ViewBag.AugFee + ViewBag.SepFee + ViewBag.OctFee + ViewBag.NovFee + ViewBag.DecFee, 2);
 
  //calculating Participation Total Cost per month and returning it as viewbag
  ViewBag.JanPFee = (particost.Where(a => a.Month == Months.January && a.Year == year_search).Sum(a => a.PTotals));
@@ -362,7 +362,7 @@ namespace Alliance_for_Life.Controllers
  ViewBag.NovPFee = (particost.Where(a => a.Month == Months.November && a.Year == year_search-1).Sum(a => a.PTotals));
  ViewBag.DecPFee = (particost.Where(a => a.Month == Months.December && a.Year == year_search-1).Sum(a => a.PTotals));
 
- ViewBag.TotalPFee = ViewBag.JanPFee +ViewBag.FebPFee +ViewBag.MarPFee +ViewBag.AprPFee +ViewBag.MayPFee +ViewBag.JunPFee +ViewBag.JulPFee +ViewBag.AugPFee+ViewBag.SepPFee +ViewBag.OctPFee+ViewBag.NovPFee +ViewBag.DecPFee;
+ ViewBag.TotalPFee = Math.Round(( ViewBag.JanPFee +ViewBag.FebPFee +ViewBag.MarPFee +ViewBag.AprPFee +ViewBag.MayPFee +ViewBag.JunPFee +ViewBag.JulPFee +ViewBag.AugPFee+ViewBag.SepPFee +ViewBag.OctPFee+ViewBag.NovPFee +ViewBag.DecPFee),2);
 
 //calculating begining balance
 ViewBag.JulTot = ViewBag.DepoJul ?? 0;
@@ -395,7 +395,7 @@ ViewBag.JulTot = ViewBag.DepoJul ?? 0;
  ViewBag.DecRem = Math.Round((ViewBag.DecTot - ViewBag.DecInv), 3);
  //for january
  ViewBag.JanBeg = ViewBag.DecRem;
- ViewBag.JanTot = Math.Round((ViewBag.JanBeg + ViewBag.DepoJan), 3);
+ ViewBag.JanTot = Math.Round((ViewBag.JanBeg + ViewBag.DepoJan), 2);
  ViewBag.JanInv = ViewBag.JanPFee + ViewBag.JanFee + ViewBag.JanFee * 0.1;
  ViewBag.JanRem = Math.Round((ViewBag.JanTot - ViewBag.JanInv), 3);
  //for february
@@ -427,7 +427,7 @@ ViewBag.JulTot = ViewBag.DepoJul ?? 0;
  // Totals
  var totalcost = db.StateDeposit.Where(a => a.Year == year_search-1).ToList();
  ViewBag.TotalCost = (totalcost.Sum(a => a.StateDeposits));
- ViewBag.Total = Math.Round((ViewBag.JulTot + ViewBag.AugTot + ViewBag.SepTot + ViewBag.OctTot + ViewBag.NovTot + ViewBag.DecTot + ViewBag.JanTot + ViewBag.FebTot + ViewBag.MarTot + ViewBag.AprTot + ViewBag.MayTot + ViewBag.JunTot), 2);
+ ViewBag.Total = Math.Round((ViewBag.JulTot + ViewBag.AugTot + ViewBag.SepTot + ViewBag.OctTot + ViewBag.NovTot + ViewBag.DecTot + ViewBag.JanTot + ViewBag.FebTot + ViewBag.MarTot + ViewBag.AprTot + ViewBag.MayTot + ViewBag.JunTot), 3);
         }
 
         // GET: AllocatedBudgets/Details/5

@@ -17,10 +17,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/13/2020 11:31:07</publishTime>
     </File>
     <File Include="bin/Alliance for Life.dll">
-      <publishTime>07/18/2020 15:57:31</publishTime>
+      <publishTime>07/21/2020 12:16:56</publishTime>
     </File>
     <File Include="bin/Alliance for Life.pdb">
-      <publishTime>07/18/2020 15:57:31</publishTime>
+      <publishTime>07/21/2020 12:16:56</publishTime>
     </File>
     <File Include="bin/Antlr3.Runtime.dll">
       <publishTime>07/13/2020 11:31:08</publishTime>
@@ -1154,7 +1154,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/13/2020 11:31:08</publishTime>
     </File>
     <File Include="Views/A2AAllocatedBudget/Create.cshtml">
-      <publishTime>07/13/2020 11:31:08</publishTime>
+      <publishTime>07/20/2020 09:23:23</publishTime>
     </File>
     <File Include="Views/A2AAllocatedBudget/Delete.cshtml">
       <publishTime>07/13/2020 11:31:08</publishTime>
@@ -1166,7 +1166,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/13/2020 11:31:08</publishTime>
     </File>
     <File Include="Views/A2AAllocatedBudget/Index.cshtml">
-      <publishTime>07/13/2020 11:31:08</publishTime>
+      <publishTime>07/20/2020 09:37:53</publishTime>
     </File>
     <File Include="Views/A2AStateDeposits/Create.cshtml">
       <publishTime>07/13/2020 11:31:08</publishTime>
@@ -1247,16 +1247,16 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/13/2020 11:31:08</publishTime>
     </File>
     <File Include="Views/AdministrationCost/Index.cshtml">
-      <publishTime>07/13/2020 11:31:08</publishTime>
+      <publishTime>07/21/2020 11:43:17</publishTime>
     </File>
     <File Include="Views/AflForm/Create.cshtml">
-      <publishTime>07/13/2020 11:31:08</publishTime>
+      <publishTime>07/20/2020 09:32:00</publishTime>
     </File>
     <File Include="Views/AflForm/Reports.cshtml">
-      <publishTime>07/13/2020 11:31:08</publishTime>
+      <publishTime>07/20/2020 09:35:06</publishTime>
     </File>
     <File Include="Views/AllocatedBudgets/Balance.cshtml">
-      <publishTime>07/18/2020 15:39:14</publishTime>
+      <publishTime>07/21/2020 12:00:09</publishTime>
     </File>
     <File Include="Views/AllocatedBudgets/Create.cshtml">
       <publishTime>07/13/2020 11:31:08</publishTime>
@@ -1379,7 +1379,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/13/2020 11:31:08</publishTime>
     </File>
     <File Include="Views/Invoices/Invoice.cshtml">
-      <publishTime>07/13/2020 11:31:08</publishTime>
+      <publishTime>07/21/2020 12:15:40</publishTime>
     </File>
     <File Include="Views/Manage/AddPhoneNumber.cshtml">
       <publishTime>07/13/2020 11:31:08</publishTime>
@@ -1436,7 +1436,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/13/2020 11:31:08</publishTime>
     </File>
     <File Include="Views/ParticipationService/Index.cshtml">
-      <publishTime>07/13/2020 11:31:08</publishTime>
+      <publishTime>07/21/2020 11:45:51</publishTime>
     </File>
     <File Include="Views/ParticipationService/TotalCostReport.cshtml">
       <publishTime>07/13/2020 11:31:08</publishTime>
