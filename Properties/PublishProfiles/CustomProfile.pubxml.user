@@ -17,10 +17,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/13/2020 11:31:07</publishTime>
     </File>
     <File Include="bin/Alliance for Life.dll">
-      <publishTime>07/21/2020 12:16:56</publishTime>
+      <publishTime>07/23/2020 16:26:18</publishTime>
     </File>
     <File Include="bin/Alliance for Life.pdb">
-      <publishTime>07/21/2020 12:16:56</publishTime>
+      <publishTime>07/23/2020 16:26:18</publishTime>
     </File>
     <File Include="bin/Antlr3.Runtime.dll">
       <publishTime>07/13/2020 11:31:08</publishTime>
@@ -1241,7 +1241,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/13/2020 11:31:08</publishTime>
     </File>
     <File Include="Views/AdministrationCost/Details.cshtml">
-      <publishTime>07/13/2020 11:31:08</publishTime>
+      <publishTime>07/23/2020 16:26:12</publishTime>
     </File>
     <File Include="Views/AdministrationCost/Edit.cshtml">
       <publishTime>07/13/2020 11:31:08</publishTime>

@@ -17,13 +17,13 @@
       <dd>
           @Model.Subcontractor.OrgName
       </dd>
-      <dt class="col-md-2">
+      @*<dt class="col-md-2">
           Region
       </dt>
 
       <dd>
           @Model.Region.GetDisplayName()
-      </dd>
+      </dd>*@
       <dt class="col-md-2">
           Month
       </dt>
@@ -203,10 +203,7 @@
   </dl>
 </div>
 <p>
-    @if (!User.IsInRole("Admin"))
-    {
-        @Html.ActionLink("Delete |", "Delete", new { id = Model.AdminCostId });
-}
+ 
     @Html.ActionLink("Back to List", "Index")
 </p>
 <br />
