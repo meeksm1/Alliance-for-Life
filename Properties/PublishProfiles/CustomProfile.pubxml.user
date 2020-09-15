@@ -17,10 +17,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/13/2020 11:31:07</publishTime>
     </File>
     <File Include="bin/Alliance for Life.dll">
-      <publishTime>07/23/2020 16:26:18</publishTime>
+      <publishTime>09/03/2020 14:19:40</publishTime>
     </File>
     <File Include="bin/Alliance for Life.pdb">
-      <publishTime>07/23/2020 16:26:18</publishTime>
+      <publishTime>09/03/2020 14:19:40</publishTime>
     </File>
     <File Include="bin/Antlr3.Runtime.dll">
       <publishTime>07/13/2020 11:31:08</publishTime>
@@ -1256,7 +1256,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/20/2020 09:35:06</publishTime>
     </File>
     <File Include="Views/AllocatedBudgets/Balance.cshtml">
-      <publishTime>07/21/2020 12:00:09</publishTime>
+      <publishTime>09/03/2020 14:08:55</publishTime>
     </File>
     <File Include="Views/AllocatedBudgets/Create.cshtml">
       <publishTime>07/13/2020 11:31:08</publishTime>
@@ -1376,7 +1376,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/14/2019 18:27:47</publishTime>
     </File>
     <File Include="Views/Invoices/Index.cshtml">
-      <publishTime>07/13/2020 11:31:08</publishTime>
+      <publishTime>09/03/2020 14:19:11</publishTime>
     </File>
     <File Include="Views/Invoices/Invoice.cshtml">
       <publishTime>07/21/2020 12:15:40</publishTime>

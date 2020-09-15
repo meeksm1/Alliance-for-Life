@@ -115,15 +115,13 @@
                         @Html.Label(group.Key)
                     </td>
                     <td>
-
                         @foreach (var item in group)
                         {
-                            if (item.Invoice.Select(a => a.Month ).Contains(Alliance_for_Life.Models.Months.July))
+                            if (item.Invoice.Select(a => a.Month).Contains(Alliance_for_Life.Models.Months.July))
                             {
-
                                 @item.Invoice.Where(a => a.Month == Alliance_for_Life.Models.Months.July && a.Year == ViewBag.yearselected - 1).Select(a => a.GrandTotal).SingleOrDefault().ToString("C")
                             }
-                        }
+                        }  
                     </td>
                     <td>
                         @foreach (var item in group)

@@ -119,6 +119,8 @@
             </td>
             <td style="background-color:#fedada">
                 @String.Format("{0:C}", ViewBag.TotalFee)
+
+              
             </td>
         <tr />
         <tr style="font-size:13px; text-align:center;">
@@ -250,7 +252,9 @@
                 @String.Format("{0:C}", ViewBag.JunFee * 0.1)
             </td>
             <td style="background-color:#fedada">
-                @String.Format("{0:C}", ViewBag.TotalFee * 0.1)
+                @String.Format("{0:C}", (ViewBag.TotalFee * 0.1))
+
+                  @*@String.Format("{0:C}", ( ViewBag.JanFee + ViewBag.FebFee + ViewBag.MarFee + ViewBag.AprFee + ViewBag.MayFee + ViewBag.JunFee + ViewBag.JulFee + ViewBag.AugFee + ViewBag.SepFee + ViewBag.OctFee + ViewBag.NovFee + ViewBag.DecFee))*@
             </td>
         <tr />
         <tr style="font-size:13px; text-align:center;">
@@ -949,6 +953,7 @@
             else
             {
         <td>
+            
             @String.Format("{0:C}", ViewBag.AprRem)
         </td>
             }

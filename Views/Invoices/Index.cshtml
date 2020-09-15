@@ -187,23 +187,25 @@
             @*Beginning Allocation Amount*@
             @if ((int)invoice.Month >= 7)
             {
-
-        <td>
-            @*@Model.Where(a => a.Year == invoice.Year - 1).Select(a => a.AllocatedBudget.AllocatedOldBudget).FirstOrDefault().ToString("C")*@
-
-            @invoice.AllocatedBudget.AllocatedOldBudget.ToString("c")
-
-          
                 
-            @*.Select().invoice.AllocatedBudget.AllocatedOldBudget).FirstOrDefault().ToString("C")*@
 
-        </td>
+                <td>
+                    @*@Model.Where(a => a.Year == invoice.Year - 1).Select(a => a.AllocatedBudget.AllocatedOldBudget).FirstOrDefault().ToString("C")*@
+
+                    
+                        @invoice.AllocatedBudget.AllocatedOldBudget.ToString("c")
+                    
+
+                  </td>
             }
             else
             {
 
         <td>
-            @invoice.AllocatedBudget.AllocatedOldBudget.ToString("c")
+
+           
+                @invoice.AllocatedBudget.AllocatedOldBudget.ToString("c")
+            
             @*@Model.Where(a => a.Year == invoice.Year).Select(a => a.AllocatedBudget.AllocatedOldBudget).FirstOrDefault().ToString("C")*@
 
         </td>
@@ -213,20 +215,49 @@
             @if ((int)invoice.Month >= 7)
             {
 
-                <td>
-                    @Model.Where(a => a.Year == invoice.Year - 1).Select(a => a.AllocatedBudget.AllocatedNewBudget).FirstOrDefault().ToString("C")
+                if (Model.Where(a => a.Year == invoice.Year - 1).Any())
+                {
+                    invoice.AllocatedBudget.AllocatedNewBudget.ToString("c");
+                }
 
-                </td>
+
+                if (invoice.AllocatedBudget.AllocatedNewBudget < 0)
+                {
+                    <td style="color: red;">
+                        @invoice.AllocatedBudget.AllocatedNewBudget.ToString("C")
+                    </td>
+                }
+                else
+                {
+                    <td>
+
+                        @invoice.AllocatedBudget.AllocatedNewBudget.ToString("C")
+                        @* @Model.Where(a => a.Year == invoice.Year - 1).Select(a => a.AllocatedBudget.AllocatedNewBudget).FirstOrDefault().ToString("C")*@
+
+                    </td>
+                }
+
             }
             else
             {
 
-                <td>
-                    @Model.Where(a => a.Year == invoice.Year).Select(a => a.AllocatedBudget.AllocatedNewBudget).FirstOrDefault().ToString("C")
+                if (invoice.AllocatedBudget.AllocatedNewBudget < 0)
+                {
+                    <td style="color: red;">
+                        @invoice.AllocatedBudget.AllocatedNewBudget.ToString("C")
+                    </td>
+                }
+                else
+                {
+                    <td>
 
-                </td>
+                        @invoice.AllocatedBudget.AllocatedNewBudget.ToString("C")
+                        @* @Model.Where(a => a.Year == invoice.Year - 1).Select(a => a.AllocatedBudget.AllocatedNewBudget).FirstOrDefault().ToString("C")*@
+
+                    </td>
+                }
             }
-          
+
 
             @if ((invoice.BalanceRemaining) < 0)
             {
