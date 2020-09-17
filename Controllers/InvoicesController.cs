@@ -236,45 +236,41 @@ namespace Alliance_for_Life.Controllers
                 //*******************************************************************************************************************
                 //Finding the balance remaining before the invoice is created
 
-                //calculating balance remaining
-                var begbalance = from s in db.Invoices
-                                 where s.Year == invoice.Year || s.Year == invoice.Year + 1 || s.Year == invoice.Year - 1 && s.SubcontractorId == invoice.SubcontractorId
-                                 select s;
-
-                var balanceRemaining = allocatedbudget.Single().AllocatedOldBudget + allocatedbudget.Single().AllocatedNewBudget;
-                var i = 1;
 
 
-                foreach (var items in begbalance.Where(a => a.Year == invoice.Year && a.SubcontractorId == invoice.SubcontractorId).OrderBy(b => b.Year).OrderBy(c => c.Month))
+                //get the beginning allocation for the invoice
+                var budget_allocation = db.AllocatedBudget.Where(a => a.SubcontractorId == invoice.SubcontractorId).ToList();
+                if ((int)invoice.Month < 7)
                 {
-
-                    if ((int)items.Month <= (int)invoice.Month - i)
-                    {
-                        balanceRemaining = items.BalanceRemaining;
-                    }
-                    i++;
+                    budget_allocation = budget_allocation.FindAll(a => a.Year == invoice.Year);
+                }
+                else
+                {
+                    budget_allocation = budget_allocation.FindAll(a => a.Year == invoice.Year - 1);
                 }
 
+
+                //selecting the invoice for the remaining balance before
+                var invoice_todate = db.Invoices.Where(a => a.SubcontractorId == invoice.SubcontractorId).ToList();
                 if ((int)invoice.Month == 7)
                 {
-
-                    foreach (var items in begbalance.Where(a => a.Year == invoice.Year - 1 && a.SubcontractorId == invoice.SubcontractorId).OrderBy(b => b.Year).OrderBy(c => c.Month))
-                    {
-                        if ((int)items.Month < (int)invoice.Month)
-                        {
-                            balanceRemaining = items.BalanceRemaining;
-                        }
-                    }
+                    invoice_todate = invoice_todate.FindAll(a => a.Year == invoice.Year - 1);
                 }
-                else if ((int)invoice.Month > 7)
+                else
                 {
-                    foreach (var items in begbalance.Where(a => a.Year == invoice.Year + 1 && a.SubcontractorId == invoice.SubcontractorId).OrderBy(b => b.Year).OrderBy(c => c.Month))
-                    {
-                        if ((int)items.Month <= (int)invoice.Month - i)
-                        {
-                            balanceRemaining = items.BalanceRemaining;
-                        }
-                    }
+                    invoice_todate = invoice_todate.FindAll(a => a.Year == invoice.Year);
+                }
+
+                //calculating the begining balance          
+                var balanceRemaining = budget_allocation.Single().AllocatedOldBudget + budget_allocation.Single().AllocatedNewBudget;
+
+
+                //check to see if for the month
+                //converting month to integer for comparing from the table
+
+                if ((int)invoice.Month != 1)
+                {
+                    balanceRemaining = invoice_todate.Where(a => a.Month == invoice.Month - 1).FirstOrDefault().BalanceRemaining;
                 }
 
 
@@ -289,32 +285,7 @@ namespace Alliance_for_Life.Controllers
                 invoice.OrgName = db.SubContractors.Find(invoice.SubcontractorId).OrgName;
                 invoice.AllocatedBudgetId = allocatedbudget.FirstOrDefault().AllocatedBudgetId;
 
-
-
-                if (month_TO >= 7)
-                {
-                    var allocationupdated = from s in db.AllocatedBudget
-                                            where s.Year == (Year - 1) && s.SubcontractorId == invoice.SubcontractorId
-                                            select s.AllocatedNewBudget;
-
-                    balanceRemaining = balanceRemaining + allocationupdated.SingleOrDefault();
-
-                }
-                else
-                {
-                    var allocationupdated = from s in db.AllocatedBudget
-                                            where s.Year == (Year) && s.SubcontractorId == invoice.SubcontractorId
-                                            select s.AllocatedNewBudget;
-
-                    balanceRemaining = balanceRemaining + allocationupdated.SingleOrDefault();
-
-
-                }
-
-
-                //calculating the rest
-               // invoice.BalanceRemaining = balanceRemaining - begbalance.Sum(a => a.GrandTotal);
-
+              
                 //add to the Invoice table and save data
                 db.Invoices.Add(invoice);
                 db.SaveChanges();
@@ -323,6 +294,7 @@ namespace Alliance_for_Life.Controllers
             //check if the data exists
             ModelState.Clear();
             invoice.Year = DateTime.Now.Year;
+          
             return View("Index");
         }
 
@@ -358,6 +330,9 @@ namespace Alliance_for_Life.Controllers
 
             //selecting the invoice for the remaining balance before
             var invoice_todate = db.Invoices.Where(a=>a.SubcontractorId == invoice.SubcontractorId).ToList();
+
+           
+
             if ((int)invoice.Month == 7)
             {
                 invoice_todate = invoice_todate.FindAll(a => a.Year == invoice.Year-1 );
@@ -367,6 +342,7 @@ namespace Alliance_for_Life.Controllers
                 invoice_todate = invoice_todate.FindAll(a => a.Year == invoice.Year );
             }
 
+            var first_itemMonth = invoice_todate.FirstOrDefault().Month;
             //calculating the begining balance          
             var balanceRemaining = budget_allocation.Single().AllocatedOldBudget + budget_allocation.Single().AllocatedNewBudget;
 
@@ -374,7 +350,7 @@ namespace Alliance_for_Life.Controllers
             //check to see if for the month
             //converting month to integer for comparing from the table
             
-            if ((int)invoice.Month != 1)
+            if ((int)invoice.Month != 1 && invoice.Month != first_itemMonth)
             {
                 balanceRemaining = invoice_todate.Where(a => a.Month == invoice.Month - 1).FirstOrDefault().BalanceRemaining;
             }
@@ -382,6 +358,7 @@ namespace Alliance_for_Life.Controllers
 
 
             invoice.BalanceRemaining = balanceRemaining - invoice.GrandTotal;
+            invoice.AllocatedBudgetId = budget_allocation.FirstOrDefault().AllocatedBudgetId;
 
             // calculating the rest
             invoice.OrgName = db.SubContractors.Find(invoice.SubcontractorId).OrgName;
