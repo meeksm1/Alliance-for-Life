@@ -137,7 +137,7 @@ namespace Alliance_for_Life.Controllers
             };
 
 
-            invoices = invoices.OrderBy(a => a.Year).OrderBy(a => a.Month).ThenBy(a=>a.Subcontractor.OrgName);
+            invoices = invoices.OrderBy(a => a.Year).OrderBy(b => b.Month).ThenBy(c=>c.Subcontractor.OrgName);
             return View(invoices.ToPagedList(pageNumber, defaSize));
         }
 
@@ -245,20 +245,20 @@ namespace Alliance_for_Life.Controllers
                 var i = 1;
 
 
-                //foreach (var items in begbalance.Where(a => a.Year == invoice.Year && a.SubcontractorId == invoice.SubcontractorId).OrderBy(b => b.Year).OrderBy(c => c.Month))
-                //{
-
-                //    if ((int)items.Month <= (int)invoice.Month - i)
-                //    {
-                //        balanceRemaining = items.BalanceRemaining;
-                //    }
-                //    i++;
-                //}
-
-                if ((int)invoice.Month < 7)
+                foreach (var items in begbalance.Where(a => a.Year == invoice.Year && a.SubcontractorId == invoice.SubcontractorId).OrderBy(b => b.Year).OrderBy(c => c.Month))
                 {
 
-                    foreach (var items in begbalance.Where(a => a.Year == invoice.Year  && a.SubcontractorId == invoice.SubcontractorId).OrderBy(b => b.Year).OrderBy(c => c.Month))
+                    if ((int)items.Month <= (int)invoice.Month - i)
+                    {
+                        balanceRemaining = items.BalanceRemaining;
+                    }
+                    i++;
+                }
+
+                if ((int)invoice.Month == 7)
+                {
+
+                    foreach (var items in begbalance.Where(a => a.Year == invoice.Year - 1 && a.SubcontractorId == invoice.SubcontractorId).OrderBy(b => b.Year).OrderBy(c => c.Month))
                     {
                         if ((int)items.Month < (int)invoice.Month)
                         {
@@ -266,7 +266,7 @@ namespace Alliance_for_Life.Controllers
                         }
                     }
                 }
-                else if ((int)invoice.Month >= 7)
+                else if ((int)invoice.Month > 7)
                 {
                     foreach (var items in begbalance.Where(a => a.Year == invoice.Year + 1 && a.SubcontractorId == invoice.SubcontractorId).OrderBy(b => b.Year).OrderBy(c => c.Month))
                     {
@@ -334,47 +334,54 @@ namespace Alliance_for_Life.Controllers
 
             var invoice = db.Invoices.Find(id);
 
-
-
-            //invoice new updated date
             invoice.SubmittedDate = System.DateTime.Now;
 
-
-            //getting all the admincost total based on the invoice id
-            invoice.DirectAdminCost = db.AdminCosts.Where(a=>a.AdminCostId == invoice.AdminCostId).Sum(a => a.ATotCosts);
-
-            //get all the participation total based on the id
-            invoice.ParticipantServices = db.ParticipationServices.Where(a => a.PSId == invoice.PSId).Sum(a => a.PTotals);
-
-
-            //get the allocation amount
-            var allocationamt = db.AllocatedBudget.Where(a => a.SubcontractorId == invoice.SubcontractorId && a.Year == invoice.Year);
-
-            //get the remaining balance
-            //calculating balance remaining
-            var begbalance = from s in db.Invoices
-                             where s.Year == invoice.Year || s.Year == invoice.Year + 1 || s.Year == invoice.Year - 1 && s.SubcontractorId == invoice.SubcontractorId                            
-                             select s;
-
-            //get all the items upto the month -1
-            foreach(var items in begbalance.Where(a=>(int)a.Month))
-            {
-
-            }
-
-
-
-            var totaltoprevious = begbalance.Where(a => (int)a.Month < (int)invoice.Month).Sum(a => a.GrandTotal);
-
-
+            invoice.DirectAdminCost = db.AdminCosts.Where(a => a.AdminCostId == invoice.AdminCostId).SingleOrDefault().ATotCosts;
+            invoice.ParticipantServices = db.ParticipationServices.Where(a => a.PSId == invoice.PSId).SingleOrDefault().PTotals;
 
             invoice.GrandTotal = invoice.DirectAdminCost + invoice.ParticipantServices;
             invoice.LessManagementFee = invoice.DirectAdminCost * .03;
             invoice.DepositAmount = invoice.GrandTotal - invoice.LessManagementFee;
 
- 
 
-            invoice.BalanceRemaining = allocationamt.First().AllocatedOldBudget + allocationamt.First().AllocatedOldBudget - totaltoprevious - invoice.GrandTotal;
+            //get the beginning allocation for the invoice
+            var budget_allocation = db.AllocatedBudget.Where(a=>a.SubcontractorId == invoice.SubcontractorId).ToList();
+            if ((int) invoice.Month < 7)
+            {
+                 budget_allocation = budget_allocation.FindAll(a => a.Year == invoice.Year);
+            }
+            else
+            {
+                budget_allocation = budget_allocation.FindAll(a => a.Year == invoice.Year -1);
+            }
+
+
+            //selecting the invoice for the remaining balance before
+            var invoice_todate = db.Invoices.Where(a=>a.SubcontractorId == invoice.SubcontractorId).ToList();
+            if ((int)invoice.Month == 7)
+            {
+                invoice_todate = invoice_todate.FindAll(a => a.Year == invoice.Year-1 );
+            }
+            else
+            {
+                invoice_todate = invoice_todate.FindAll(a => a.Year == invoice.Year );
+            }
+
+            //calculating the begining balance          
+            var balanceRemaining = budget_allocation.Single().AllocatedOldBudget + budget_allocation.Single().AllocatedNewBudget;
+
+
+            //check to see if for the month
+            //converting month to integer for comparing from the table
+            
+            if ((int)invoice.Month != 1)
+            {
+                balanceRemaining = invoice_todate.Where(a => a.Month == invoice.Month - 1).FirstOrDefault().BalanceRemaining;
+            }
+
+
+
+            invoice.BalanceRemaining = balanceRemaining - invoice.GrandTotal;
 
             // calculating the rest
             invoice.OrgName = db.SubContractors.Find(invoice.SubcontractorId).OrgName;
