@@ -783,44 +783,48 @@
             <th class="th-sm">
                 Total Invoice
             </th>
-            <td>
+            <td class="inv">
                 @String.Format("{0:C}", ViewBag.JulPFee + ViewBag.JulFee + ViewBag.JulFee * 0.1)
             </td>
-            <td>
+            <td class="inv">
                 @String.Format("{0:C}", ViewBag.AugPFee + ViewBag.AugFee + ViewBag.AugFee * 0.1)
             </td>
-            <td>
+            <td class="inv">
                 @String.Format("{0:C}", ViewBag.SepPFee + ViewBag.SepFee + ViewBag.SepFee * 0.1)
             </td>
-            <td>
+            <td class="inv">
                 @String.Format("{0:C}", ViewBag.OctPFee + ViewBag.OctFee + ViewBag.OctFee * 0.1)
             </td>
-            <td>
+            <td class="inv">
                 @String.Format("{0:C}", ViewBag.NovPFee + ViewBag.NovFee + ViewBag.NovFee * 0.1)
             </td>
-            <td>
+            <td class="inv">
                 @String.Format("{0:C}", ViewBag.DecPFee + ViewBag.DecFee + ViewBag.DecFee * 0.1)
             </td>
-            <td>
+            <td class="inv">
                 @String.Format("{0:C}", ViewBag.JanPFee + ViewBag.JanFee + ViewBag.JanFee * 0.1)
             </td>
-            <td>
+            <td class="inv">
                 @String.Format("{0:C}", ViewBag.FebPFee + ViewBag.FebFee + ViewBag.FebFee * 0.1)
             </td>
-            <td>
+            <td class="inv">
                 @String.Format("{0:C}", ViewBag.MarPFee + ViewBag.MarFee + ViewBag.MarFee * 0.1)
             </td>
-            <td>
+            
+            <td class="inv">
                 @String.Format("{0:C}", ViewBag.AprPFee + ViewBag.AprFee + ViewBag.AprFee * 0.1)
             </td>
-            <td>
+            <td class="inv">
                 @String.Format("{0:C}", ViewBag.MayPFee + ViewBag.MayFee + ViewBag.MayFee * 0.1)
-            </td>
-            <td>
+            </td class="inv">
+            <td class="inv">
                 @String.Format("{0:C}", ViewBag.JunPFee + ViewBag.JunFee + ViewBag.JunFee * 0.1)
             </td>
-            <td style="background-color:#fedada">
-                @String.Format("{0:C}",  ViewBag.TotalPFee + ViewBag.TotalFee + ViewBag.TotalFee * 0.1)
+            <td style="background-color:#fedada" class="invtotal">
+                @String.Format("{0:C}", ViewBag.TotalPFee + ViewBag.TotalFee + (ViewBag.TotalFee * 0.1))
+
+                
+
             </td>
         <tr />
         <tr style="font-size:13px; text-align:center;">
@@ -1010,15 +1014,17 @@
         </td>
         <td>
             @String.Format("{0:C}", ViewBag.TotalFee + ViewBag.TotalPFee)
-            @*@Math.Round(Model.Sum(a => a.AllocatedOldBudget)).ToString("C")
-                </td>*@
+   
+   
+        </td>
     </tr>
     <tr>
         <td>
             @Html.Encode("10% Direct Admin")
         </td>
         <td>
-            @String.Format("{0:C}", ViewBag.TotalFee * 0.1)
+            @String.Format("{0:C}", ViewBag.TotalFee * 0.10)
+
         </td>
     </tr>
 
@@ -1031,29 +1037,10 @@
         <td>@Html.Encode("Allocation Left to Spend")</td>
         <td>
             @String.Format("{0:C}", (ViewBag.BeginingAllocation) - (ViewBag.TotalPFee + ViewBag.TotalFee + (ViewBag.TotalFee * 0.1)))  </td>
-    </tr>
-    @*<tr>
-            <td></td>
-            <td></td>
-        </tr>*@
-    @*<tr>
-            <td>
-                @Html.DisplayName("10% Direct to-date")
-            </td>
-            <td>
-                @String.Format("{0:C}", (ViewBag.TotalPFee + ViewBag.TotalFee + ViewBag.TotalFee * 0.1) * 0.1)
-            </td>
-        </tr>
-        <tr>
-            <td>
-                @Html.DisplayName("10% Balance")
-            </td>
-            <td>
-                @String.Format("{0:C}", ((ViewBag.TotalFee * 0.1) - (ViewBag.TotalPFee + ViewBag.TotalFee + ViewBag.TotalFee * 0.1) * 0.1))
-            </td>
-        </tr>*@
+    </tr> 
 </table>
 <br />
 <br />
 <br />
 <br />
+<script src="~/Scripts/MyScripts.js"></script>

@@ -148,8 +148,24 @@ namespace Alliance_for_Life.Controllers
             //calling main function
             beginingbalance(year_search);
 
- //CREATING THE VIEWBAG TO PULL afl ALLOCATED BUDGET
- ViewBag.aflallocation = db.AFLAllocation.Where(a => a.Year == year_search-1).ToList();
+
+
+            //calculate the total admin and participation 
+           // var invoicetotal = db.Invoices.Where(a => a.Year == year_search || a.Year == year_search - 1);
+
+           //var total1 = invoicetotal.Where(a => (int)a.Month < 7 && a.Year == year_search - 1).Sum(b=>b.GrandTotal);
+           // var total2 = invoicetotal.Where(a => (int)a.Month >= 7 && a.Year == year_search ).Sum(b => b.GrandTotal);
+
+           // var total1admin = invoicetotal.Where(a => (int)a.Month < 7 && a.Year == year_search - 1).Sum(b => b.DirectAdminCost);
+           // var total2admin = invoicetotal.Where(a => (int)a.Month >= 7 && a.Year == year_search).Sum(b => b.DirectAdminCost);
+
+           // var admintotal = total1admin + total2admin;
+           // var tenadmin = admintotal * 0.1;
+           // var invoicetotalsum = total1+total2 + tenadmin ;
+
+
+            //CREATING THE VIEWBAG TO PULL afl ALLOCATED BUDGET
+            ViewBag.aflallocation = db.AFLAllocation.Where(a => a.Year == year_search-1).ToList();
 
  if (allocatedBudget.Count() == 0)
  {

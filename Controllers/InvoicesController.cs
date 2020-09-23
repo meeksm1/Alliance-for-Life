@@ -51,6 +51,8 @@ namespace Alliance_for_Life.Controllers
 
             ViewBag.CurrentFilter = searchString;
 
+            
+
             //generate invoices 
             if (SubcontractorId != null && Month != null && Year != null && billingdate != null)
             {
@@ -63,6 +65,21 @@ namespace Alliance_for_Life.Controllers
                                 s.Month == mon
                                 select s;
 
+
+
+                //get the allocaation amount for the given fiscal year
+                //check to see if the allocation budget is there
+                var budget_allocation = db.AllocatedBudget.Where(a => a.SubcontractorId == new Guid(SubcontractorId)).ToList();
+                if ((int)mon < 7)
+                {
+                    budget_allocation = budget_allocation.FindAll(a => a.Year == year);
+                }
+                else
+                {
+                    budget_allocation = budget_allocation.FindAll(a => a.Year == year - 1);
+                }
+
+
                 if (dataexist.Count() >= 1)
                 {
                     ViewBag.error = "Invoice for " + db.SubContractors.Find(new Guid(SubcontractorId)).OrgName
@@ -71,7 +88,14 @@ namespace Alliance_for_Life.Controllers
                     searchString = db.SubContractors.Find(new Guid(SubcontractorId)).OrgName;
                 }
 
-                else
+                else if(budget_allocation.Count() == 0)
+                {
+                    ViewBag.error = "Budget for " + db.SubContractors.Find(new Guid(SubcontractorId)).OrgName
+                       + " for this year has not been allocated. Please contact us for more information!";
+
+                    searchString = db.SubContractors.Find(new Guid(SubcontractorId)).OrgName;
+                }
+                else 
                 {
                     GenerateInvoice(SubcontractorId, Month, year, billingdate);
 

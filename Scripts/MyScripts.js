@@ -77,3 +77,18 @@ $(function calcInvoiceAllocatedFunds() {
         jQuery("#BalanceRemaining").val(result);
     });
 });
+
+//calculate the total invoice for the budget sheet
+$(function addBudgetInvoiceTotals() {
+    $('.inv').change(function () {
+
+        // Loop through all input's and re-calculate the total
+        var total = 0.00;
+        $('.inv').each(function () {
+            total += +$(this).val();
+        });
+
+        // Update the total
+        $("#invtotal").val(total.toFixed(2));      
+    });
+});
