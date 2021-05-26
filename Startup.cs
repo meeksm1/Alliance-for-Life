@@ -9,6 +9,7 @@ namespace Alliance_for_Life
         public void Configuration(IAppBuilder app)
         {
             ConfigureAuth(app);
+
         }
     }
 }

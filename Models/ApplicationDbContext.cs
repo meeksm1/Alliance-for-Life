@@ -23,6 +23,7 @@ namespace Alliance_for_Life.Models
              : base("DefaultConnection", throwIfV1Schema: false)
             
         {
+            
         }
 
         public static ApplicationDbContext Create()

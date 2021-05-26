@@ -35,7 +35,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Year, htmlAttributes: new { @class = "control-label col-md-2"})
+            @Html.Label("Year (not FY)", htmlAttributes: new { @class = "control-label col-md-2"})
             <div class="col-md-10">
                 @Html.DropDownList("Year", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Year, "", new { @class = "text-danger" })
